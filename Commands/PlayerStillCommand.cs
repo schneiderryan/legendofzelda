@@ -15,7 +15,7 @@ namespace Sprint0
 
         public void Execute()
         {
-
+            this.player.BeStill();
         }
     }
 }

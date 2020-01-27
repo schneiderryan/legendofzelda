@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sprint0
 {
-    class Link : IPlayer
+    class Link : IPlayer 
     {
         private ISprite linkSpriteSheet;
         private KeyboardController keyboard;
