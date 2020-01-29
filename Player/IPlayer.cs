@@ -13,5 +13,9 @@ namespace Sprint0
         void MoveDown();
         void Attack();
         void BeStill();
+
+        void Update();
+
+        void Draw();
     }
 }

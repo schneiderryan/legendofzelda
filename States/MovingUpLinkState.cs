@@ -21,26 +21,31 @@ namespace Sprint0
         public void MoveDown()
         {
             link.state = new MovingDownLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
         }
 
         public void MoveRight()
         {
             link.state = new MovingRightLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
         }
 
         public void MoveLeft()
         {
             link.state = new MovingLeftLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
         }
 
         public void Attack()
         {
             link.state = new AttackingLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateUpAttackingLinkSprite();
         }
 
         public void BeStill()
         {
             link.state = new StillLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
         }
 
         public void Update()

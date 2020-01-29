@@ -7,12 +7,12 @@ namespace Sprint0
 {
     class Link : IPlayer 
     {
-        private ISprite linkSpriteSheet;
+        public ISprite sprite;
         private KeyboardController keyboard;
         public ILinkState state;
         public Link()
         {
-            this.linkSpriteSheet = PlayerSpriteFactory.Instance.CreateLinkSprite();
+            this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
             this.keyboard = new KeyboardController(generateDictionary());
             this.state = new StillLinkState(this);
         }
@@ -45,6 +45,18 @@ namespace Sprint0
         public void BeStill()
         {
             state.BeStill();
+        }
+
+        public void Update()
+        {
+            keyboard.Update();
+            state.Update();
+            sprite.Update();
+        }
+
+        public void Draw()
+        {
+            //implement draw
         }
 
         private Dictionary<Keys, ICommand> generateDictionary()
