@@ -1,5 +1,5 @@
 ﻿
-namespace Sprint0
+namespace LegendOfZelda
 {
     public interface IController
     {
