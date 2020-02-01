@@ -34,6 +34,7 @@ namespace LegendOfZelda
             SpriteSheet = Content.Load<Texture2D>("smb_luigi_sheet");
             background = new BackgroundScene(Content.Load<SpriteFont>("PressStart2P"),
                     this.GraphicsDevice);
+            Textures.LoadAllTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             binds[Keys.D1].Execute(); // sets Sprite to a static sprite

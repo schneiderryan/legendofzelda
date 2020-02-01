@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda
 {
     public class Rupee : IItem
     {
-        ISprite sprite;
+        protected ISprite sprite;
 
         public Rupee()
         {
-            
+            sprite = new AnimatedSprite(Textures.GetItemsSheet(),
+                    new Rectangle(61, 34, 8, 16), 2);
         }
     }
 }
