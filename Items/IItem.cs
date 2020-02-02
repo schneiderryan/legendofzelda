@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace LegendOfZelda
 {
-    public interface IItem
+    public interface IItem : Drawable
     {
     }
 }
