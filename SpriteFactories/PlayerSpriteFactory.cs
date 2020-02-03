@@ -37,20 +37,13 @@ namespace Sprint0
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
             linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
             leftWalkingLink.SetData(data);
-            return new AnimatedSprite(leftWalkingLink, new Rectangle(0, 0, 15, 23), 2);
+            return new AnimatedSprite(leftWalkingLink, new Rectangle(0, 0, 15, 23), 2, false);
         }
 
         public ISprite CreateRightWalkingLinkSprite()
         {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(90, 0, 15, 46);
-
-            Texture2D rightWalkingLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            rightWalkingLink.SetData(data);
-            return new AnimatedSprite(rightWalkingLink, new Rectangle(0, 0, 15, 23), 2);
+            return new AnimatedSprite(linkSpriteSheet,
+                    new Rectangle(90, 0, 15, 15), 2, false);
         }
 
         public ISprite CreateUpWalkingLinkSprite()
@@ -63,7 +56,7 @@ namespace Sprint0
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
             linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
             upWalkingLink.SetData(data);
-            return new AnimatedSprite(upWalkingLink, new Rectangle(0, 0, 15, 23), 2);
+            return new AnimatedSprite(upWalkingLink, new Rectangle(0, 0, 15, 23), 2, false);
         }
 
         public ISprite CreateDownWalkingLinkSprite()
@@ -76,7 +69,7 @@ namespace Sprint0
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
             linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
             leftWalkingLink.SetData(data);
-            return new AnimatedSprite(leftWalkingLink, new Rectangle(0, 0, 15, 23), 2);
+            return new AnimatedSprite(leftWalkingLink, new Rectangle(0, 0, 15, 23), 2, false);
         }
 
         public ISprite CreateLeftAttackingLinkSprite()
@@ -89,7 +82,7 @@ namespace Sprint0
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
             linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
             leftAttackingLink.SetData(data);
-            return new AnimatedSprite(leftAttackingLink, new Rectangle(0, 0, 28, 23), 2);
+            return new AnimatedSprite(leftAttackingLink, new Rectangle(0, 0, 28, 23), 2, false);
         }
 
         public ISprite CreateRightAttackingLinkSprite()
@@ -102,7 +95,7 @@ namespace Sprint0
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
             linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
             rightAttackingLink.SetData(data);
-            return new AnimatedSprite(rightAttackingLink, new Rectangle(0, 0, 28, 23), 2);
+            return new AnimatedSprite(rightAttackingLink, new Rectangle(0, 0, 28, 23), 2, false);
         }
 
         public ISprite CreateUpAttackingLinkSprite()
@@ -115,7 +108,7 @@ namespace Sprint0
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
             linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
             upAttackingLink.SetData(data);
-            return new AnimatedSprite(upAttackingLink, new Rectangle(0, 0, 18, 26), 2);
+            return new AnimatedSprite(upAttackingLink, new Rectangle(0, 0, 18, 26), 2, false);
         }
 
         public ISprite CreateDownAttackingLinkSprite()
@@ -128,7 +121,7 @@ namespace Sprint0
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
             linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
             downAttackingLink.SetData(data);
-            return new AnimatedSprite(downAttackingLink, new Rectangle(0, 0, 18, 26), 2);
+            return new AnimatedSprite(downAttackingLink, new Rectangle(0, 0, 18, 26), 2, false);
         }
 
         public ISprite CreateLeftStillLinkSprite()
