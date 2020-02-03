@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +15,7 @@ namespace Sprint0
         public Link()
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
+            this.sprite.Position = new Point(20,20);
             this.keyboard = new KeyboardController(generateDictionary());
             this.state = new StillLinkState(this);
         }
@@ -54,9 +57,9 @@ namespace Sprint0
             sprite.Update();
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch sb)
         {
-            //implement draw
+            sprite.Draw(sb);
         }
 
         private Dictionary<Keys, ICommand> generateDictionary()

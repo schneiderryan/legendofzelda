@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using System.Text;
 
 namespace Sprint0
@@ -50,7 +51,7 @@ namespace Sprint0
 
         public void Update()
         {
-            //Implement how to move right
+            link.sprite.Position = new Point(link.sprite.Position.X + 5, link.sprite.Position.Y);
         }
     }
 }

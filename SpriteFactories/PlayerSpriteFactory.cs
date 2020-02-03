@@ -167,7 +167,7 @@ namespace Sprint0
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
             linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
             upStillLink.SetData(data);
-            return new Sprite(upStillLink, new Rectangle(0, 0, 14, 16));
+            return new Sprite(linkSpriteSheet, new Rectangle(0, 0, 14, 16));
         }
 
         public ISprite CreateDownStillLinkSprite()
