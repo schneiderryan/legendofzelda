@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -55,7 +56,7 @@ namespace Sprint0
 
         public void Update()
         {
-            //Nothing to do
+            link.sprite.Position = new Point(link.xPos, link.yPos);
         }
     }
 }
