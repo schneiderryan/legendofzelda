@@ -13,7 +13,8 @@ namespace Sprint0
 
         public Point Position { get; set; }
 
-        public float Scale {
+        public float Scale
+        {
             get { return scale; }
             set
             {
@@ -27,6 +28,8 @@ namespace Sprint0
         {
             this.texture = texture;
             this.sourceRect = sourecRect;
+            Scale = 1.0f;
+            Position = new Point();
         }
 
         public virtual void Draw(SpriteBatch sb)
