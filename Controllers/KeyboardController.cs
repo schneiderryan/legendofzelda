@@ -5,9 +5,9 @@ namespace Sprint0
 {
     public class KeyboardController : IController
     {
-        private Dictionary<Keys, ICommand> keyBinds;
+        private Dictionary<Keys, IPlayerCommand> keyBinds;
 
-        public KeyboardController(Dictionary<Keys, ICommand> keyBinds)
+        public KeyboardController(Dictionary<Keys, IPlayerCommand> keyBinds)
         {
             this.keyBinds = keyBinds;
         }
@@ -17,7 +17,7 @@ namespace Sprint0
             Keys[] keys = Keyboard.GetState().GetPressedKeys();
             foreach (Keys k in keys)
             {
-                ICommand a;
+                IPlayerCommand a;
                 if (keyBinds.TryGetValue(k, out a))
                 {
                     a.Execute();

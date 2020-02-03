@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sprint0
 {
-    class PlayerStillCommand : ICommand
+    class PlayerStillCommand : IPlayerCommand
     {
         private IPlayer player;
 

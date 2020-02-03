@@ -1,7 +1,7 @@
 ﻿
 namespace Sprint0
 {
-    public class QuitCommand : ICommand
+    public class QuitCommand : IPlayerCommand
     {
         private Game1 game1;
 

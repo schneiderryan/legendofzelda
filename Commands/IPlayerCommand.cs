@@ -1,7 +1,7 @@
 ﻿
 namespace Sprint0
 {
-    public interface ICommand
+    public interface IPlayerCommand
     {
         void Execute();
     }

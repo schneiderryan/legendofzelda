@@ -5,21 +5,21 @@ namespace Sprint0
 {
     public class MouseController : IController
     {
-        private ICommand[][] grid;
+        private IPlayerCommand[][] grid;
         private Viewport viewport;
-        private ICommand quitCommand;
+        private IPlayerCommand quitCommand;
 
         public MouseController(Game1 game1)
         {
             this.viewport = game1.GraphicsDevice.Viewport;
-            grid = new ICommand[2][]
+            grid = new IPlayerCommand[2][]
             {
-                new ICommand[2]
+                new IPlayerCommand[2]
                 {
                     new StaticSpriteCommand(game1),
                     new MoveSpriteCommand(game1)
                 },
-                new ICommand[2]
+                new IPlayerCommand[2]
                 {
                     new AnimatedSpriteCommand(game1),
                     new DancingSpriteCommand(game1)

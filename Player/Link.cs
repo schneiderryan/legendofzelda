@@ -62,9 +62,9 @@ namespace Sprint0
             sprite.Draw(sb);
         }
 
-        private Dictionary<Keys, ICommand> generateDictionary()
+        private Dictionary<Keys, IPlayerCommand> generateDictionary()
         {
-            Dictionary<Keys, ICommand> commands = new Dictionary<Keys, ICommand>();
+            Dictionary<Keys, IPlayerCommand> commands = new Dictionary<Keys, IPlayerCommand>();
             commands.Add(Keys.Left, new PlayerMoveLeftCommand(this));
             commands.Add(Keys.Right, new PlayerMoveRightCommand(this));
             commands.Add(Keys.Up, new PlayerMoveUpCommand(this));
