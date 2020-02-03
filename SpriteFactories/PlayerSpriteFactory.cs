@@ -61,12 +61,12 @@ namespace Sprint0
 
         public ISprite CreateUpAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(60, 60, 18, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(60, 60, 18, 26), 2, false);
         }
 
         public ISprite CreateDownAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(0, 0, 18, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(0, 60, 18, 26), 2, false);
         }
 
         public ISprite CreateLeftStillLinkSprite()

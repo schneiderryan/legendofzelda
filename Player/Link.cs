@@ -18,6 +18,7 @@ namespace Sprint0
         public Link()
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
+            this.sprite.Scale = 2.0f;
             this.xPos = 400;
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
