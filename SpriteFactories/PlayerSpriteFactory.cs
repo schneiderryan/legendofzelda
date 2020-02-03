@@ -10,6 +10,7 @@ namespace Sprint0
     class PlayerSpriteFactory
     {
         private Texture2D linkSpriteSheet;
+        private Texture2D upStillLink;
         private static PlayerSpriteFactory instance = new PlayerSpriteFactory();
 
         private PlayerSpriteFactory() { }
@@ -25,6 +26,7 @@ namespace Sprint0
         public void LoadTextures(ContentManager content)
         {
             linkSpriteSheet = content.Load<Texture2D>("link");
+            upStillLink = content.Load<Texture2D>("StillLinkUp");
         }
 
         public ISprite CreateLeftWalkingLinkSprite()
@@ -158,16 +160,8 @@ namespace Sprint0
         }
 
         public ISprite CreateUpStillLinkSprite()
-        {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(61, 0, 14, 16);
-
-            Texture2D upStillLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            upStillLink.SetData(data);
-            return new Sprite(linkSpriteSheet, new Rectangle(0, 0, 14, 16));
+        {   
+            return new Sprite(upStillLink, new Rectangle(0, 0, upStillLink.Width, upStillLink.Height));
         }
 
         public ISprite CreateDownStillLinkSprite()

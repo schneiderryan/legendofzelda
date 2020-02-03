@@ -12,10 +12,15 @@ namespace Sprint0
         public ISprite sprite;
         private KeyboardController keyboard;
         public ILinkState state;
+        public int xPos;
+        public int yPos;
+
         public Link()
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
-            this.sprite.Position = new Point(20,20);
+            this.xPos = 400;
+            this.yPos = 200;
+            this.sprite.Position = new Point(xPos, yPos);
             this.keyboard = new KeyboardController(generateDictionary());
             this.state = new StillLinkState(this);
         }
@@ -75,7 +80,7 @@ namespace Sprint0
             commands.Add(Keys.S, new PlayerMoveDownCommand(this));
             commands.Add(Keys.Z, new PlayerAttackCommand(this));
             commands.Add(Keys.N, new PlayerAttackCommand(this));
-            commands.Add(Keys.None, new PlayerStillCommand(this));
+            commands.Add(Keys.None , new PlayerStillCommand(this));
             return commands;
         }
     }

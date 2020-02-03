@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -50,7 +51,12 @@ namespace Sprint0
 
         public void Update()
         {
-            //Implement how to move left
+            link.xPos -= 2;
+            if (link.xPos < 0)
+            {
+                link.xPos += 800;
+            }
+            link.sprite.Position = new Point(link.xPos, link.yPos);
         }
     }
 }

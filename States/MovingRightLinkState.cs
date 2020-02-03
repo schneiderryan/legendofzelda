@@ -51,7 +51,12 @@ namespace Sprint0
 
         public void Update()
         {
-            link.sprite.Position = new Point(link.sprite.Position.X + 5, link.sprite.Position.Y);
+            link.xPos += 2;
+            if (link.xPos > 800)
+            {
+                link.xPos -= 800;
+            }
+            link.sprite.Position = new Point(link.xPos, link.yPos);
         }
     }
 }
