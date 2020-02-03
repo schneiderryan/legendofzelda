@@ -27,6 +27,8 @@ namespace LegendOfZelda
         {
             this.texture = texture;
             this.sourceRect = sourecRect;
+            Scale = 1.0f;
+            Position = new Point();
         }
 
         public virtual void Draw(SpriteBatch sb)
