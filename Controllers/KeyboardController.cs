@@ -15,10 +15,18 @@ namespace Sprint0
         public void Update()
         {
             Keys[] keys = Keyboard.GetState().GetPressedKeys();
+            ICommand a;
             foreach (Keys k in keys)
             {
-                ICommand a;
+                
                 if (keyBinds.TryGetValue(k, out a))
+                {
+                    a.Execute();
+                }
+            }
+            if (keys.Length == 0) 
+            {
+                if (keyBinds.TryGetValue(Keys.None, out a))
                 {
                     a.Execute();
                 }
