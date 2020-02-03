@@ -31,99 +31,42 @@ namespace Sprint0
 
         public ISprite CreateLeftWalkingLinkSprite()
         {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(30, 0, 15, 46);
-
-            Texture2D leftWalkingLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            leftWalkingLink.SetData(data);
-            return new AnimatedSprite(leftWalkingLink, new Rectangle(0, 0, 15, 23), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(30, 0, 15, 15), 2, false);
         }
 
         public ISprite CreateRightWalkingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet,
-                    new Rectangle(90, 0, 15, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(90, 0, 15, 15), 2, false);
         }
 
         public ISprite CreateUpWalkingLinkSprite()
         {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(60, 0, 15, 46);
-
-            Texture2D upWalkingLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            upWalkingLink.SetData(data);
-            return new AnimatedSprite(upWalkingLink, new Rectangle(0, 0, 15, 23), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(60, 0, 15, 15), 2, false);
         }
 
         public ISprite CreateDownWalkingLinkSprite()
         {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(0, 0, 15, 46);
-
-            Texture2D leftWalkingLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            leftWalkingLink.SetData(data);
-            return new AnimatedSprite(leftWalkingLink, new Rectangle(0, 0, 15, 23), 2, false);
+           return new AnimatedSprite(linkSpriteSheet, new Rectangle(0, 0, 15, 15), 2, false);
         }
 
         public ISprite CreateLeftAttackingLinkSprite()
         {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(24, 60, 28, 46);
-
-            Texture2D leftAttackingLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            leftAttackingLink.SetData(data);
-            return new AnimatedSprite(leftAttackingLink, new Rectangle(0, 0, 28, 23), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(24, 60, 28, 15), 2, false);
         }
 
         public ISprite CreateRightAttackingLinkSprite()
         {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(84, 60, 28, 46);
-
-            Texture2D rightAttackingLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            rightAttackingLink.SetData(data);
-            return new AnimatedSprite(rightAttackingLink, new Rectangle(0, 0, 28, 23), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(84, 60, 28, 15), 2, false);
         }
 
         public ISprite CreateUpAttackingLinkSprite()
         {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(60, 60, 18, 52);
-
-            Texture2D upAttackingLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            upAttackingLink.SetData(data);
-            return new AnimatedSprite(upAttackingLink, new Rectangle(0, 0, 18, 26), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(60, 60, 18, 15), 2, false);
         }
 
         public ISprite CreateDownAttackingLinkSprite()
         {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-            Rectangle sourceRectangle = new Rectangle(0, 0, 18, 52);
-
-            Texture2D downAttackingLink = new Texture2D(linkSpriteSheet.GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            linkSpriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
-            downAttackingLink.SetData(data);
-            return new AnimatedSprite(downAttackingLink, new Rectangle(0, 0, 18, 26), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(0, 0, 18, 15), 2, false);
         }
 
         public ISprite CreateLeftStillLinkSprite()
