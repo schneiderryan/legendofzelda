@@ -28,7 +28,7 @@ namespace Sprint0
         {
             this.texture = texture;
             this.sourceRect = sourecRect;
-            Scale = 1.0f;
+            Scale = 2.5f;
             Position = new Point();
         }
 

@@ -6,11 +6,11 @@ using Sprint0;
 namespace Sprint0
 {
 
-	class DownMovingGoriyaState : IGoriyaState
+	class RightMovingGoriyaState : IGoriyaState
 	{
 		private Goriya goriya;
 
-		public DownMovingGoriyaState(Goriya goriya)
+		public RightMovingGoriyaState(Goriya goriya)
 		{
 			this.goriya = goriya;
 		}
@@ -35,13 +35,13 @@ namespace Sprint0
 
 		public void MoveDown()
 		{
-			//nothing to do 
+			goriya.state = new DownMovingGoriyaState(goriya);
+			goriya.sprite = EnemySpriteFactory.Instance.CreateDownMovingGoriyaSprite();
 		}
 
 		public void MoveRight()
 		{
-			goriya.state = new RightMovingGoriyaState(goriya);
-			goriya.sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
+			
 		}
 
 
@@ -53,10 +53,10 @@ namespace Sprint0
 
 		public void Update()
 		{
-			goriya.yPos += 1;
-			if (goriya.yPos > 480)
+			goriya.xPos += 1;
+			if (goriya.xPos > 800)
 			{
-				goriya.yPos -= 480;
+				goriya.xPos -= 800;
 			}
 			goriya.sprite.Position = new Point(goriya.xPos, goriya.yPos);
 		}

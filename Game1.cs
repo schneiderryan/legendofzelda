@@ -11,11 +11,13 @@ namespace Sprint0
         public SpriteBatch spriteBatch;
         IController keyboard;
         IController mouse;
+        IController random;
         IScene background;
 
         public Texture2D SpriteSheet { get; set; }
         public ISprite Sprite { get; set; }
-        IEnemy goriya;
+        public IEnemy goriya;
+       
 
         public Game1()
         {
@@ -35,6 +37,7 @@ namespace Sprint0
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EnemySpriteFactory.Instance.LoadTextures(Content);
             this.goriya = new Goriya();
+            random = new RandomEnemyController(this.goriya);
         }
 
         protected override void Update(GameTime gameTime)

@@ -8,7 +8,7 @@ namespace Sprint0
         private Rectangle firstRect;
         private int frameCounter = 0;
         private readonly int nFrames;
-        private readonly int delay = 5;
+        private readonly int delay = 7;
         private int delayCounter = 0;
         private bool isRow;
 

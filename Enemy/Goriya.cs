@@ -10,17 +10,30 @@ namespace Sprint0
 
 	public class Goriya : IEnemy
 	{
+		private Random randomStep = new Random();
 		public IGoriyaState state;
 		public ISprite sprite;
 		private KeyboardController keyboard;
-		
+		private RandomEnemyController random;
+		public int xPos;
+		public int yPos;
+		public int currentStep;
+		public int changeDirection;
+
+		int IEnemy.currentStep { get ; set ; }
+		int IEnemy.changeDirection { get; set; }
+
 		public Goriya()
 		{
 
-			this.sprite = EnemySpriteFactory.Instance.CreateDownMovingGoriyaSprite();
-			this.sprite.Position = new Point(20, 20);
-			this.keyboard = new KeyboardController(generateDictionary());
-			this.state = new DownMovingGoriyaState(this);
+			sprite = EnemySpriteFactory.Instance.CreateDownMovingGoriyaSprite();
+			xPos = 400;
+			yPos = 200;
+			sprite.Position = new Point(xPos, yPos);
+			currentStep = 0;
+			changeDirection = this.randomStep.Next(0, 150);
+			random = new RandomEnemyController(this);
+			state = new DownMovingGoriyaState(this);
 		}
 
 		public void ChangeDirection()
@@ -35,7 +48,7 @@ namespace Sprint0
 
 		public void MoveLeft()
 		{
-			state.MoveUp();
+			state.MoveLeft();
 		}
 
 		public void MoveRight()
@@ -43,18 +56,25 @@ namespace Sprint0
 			state.MoveRight();
 		}
 
-		public void MoveUp()
+		 public void MoveUp()
 		{
 			state.MoveUp();
 		}
-		public void MoveDown()
+		 public void MoveDown()
 		{
 			state.MoveDown();
 		}
 
-		public void Update()
+		 public void Update()
 		{
-			keyboard.Update();
+			currentStep++;
+			if(currentStep > changeDirection)
+			{
+				random.Update();
+				currentStep = 0;
+				changeDirection = this.randomStep.Next(0, 150);
+			}
+			
 			state.Update();
 			sprite.Update();
 		}
@@ -64,14 +84,7 @@ namespace Sprint0
 			sprite.Draw(spriteBatch);
 		}
 
-		private Dictionary<Keys, ICommand> generateDictionary()
-		{
-			Dictionary<Keys, ICommand> commands = new Dictionary<Keys, ICommand>();
-			commands.Add(Keys.U, new EnemyMoveUpCommand(this));
-			commands.Add(Keys.D, new EnemyMoveDownCommand(this));
-			return commands;
-		}
-
-
+		
+		
 	}
 }

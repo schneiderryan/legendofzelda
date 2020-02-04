@@ -40,20 +40,26 @@ namespace Sprint0
 
 		public void MoveRight()
 		{
-			//goriya.state = new MovingRightGoriyaState(link);
-			//goriya.sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
+			goriya.state = new RightMovingGoriyaState(goriya);
+			goriya.sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
 		}
 
 
 		public void MoveLeft()
 		{
-			//goriya.state = new MovingLeftGoriyaState(link);
-			//goriya.sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
+			goriya.state = new LeftMovingGoriyaState(goriya);
+			goriya.sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
 		}
 
 		public void Update()
 		{
-
+			goriya.yPos -= 1;
+			if (goriya.yPos < 0)
+			{
+				goriya.yPos += 480;
+			}
+			
+			goriya.sprite.Position = new Point(goriya.xPos, goriya.yPos);
 		}
 
 

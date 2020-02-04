@@ -2,8 +2,11 @@
 
 namespace Sprint0
 {
-    interface IEnemy
+    public interface IEnemy
     {
+        int currentStep { get; set; }
+        int changeDirection { get; set; }
+
         void MoveLeft();
         void MoveRight();
         void MoveUp();
