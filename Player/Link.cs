@@ -23,7 +23,7 @@ namespace Sprint0
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
             this.keyboard = new KeyboardController(generateDictionary());
-            this.state = new StillLinkState(this);
+            this.state = new StillDownLinkState(this);
         }
 
         public void MoveLeft()

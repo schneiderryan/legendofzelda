@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using System.Text;
 
 namespace Sprint0
 {
-    class MovingRightLinkState : ILinkState
+    class AttackingRightLinkState : ILinkState
     {
         private Link link;
-
-        public MovingRightLinkState(Link link)
+        public AttackingRightLinkState(Link link)
         {
             this.link = link;
         }
@@ -30,7 +29,9 @@ namespace Sprint0
 
         public void MoveRight()
         {
-            //Nothing to do
+            link.state = new MovingRightLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
+            link.sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
@@ -42,9 +43,7 @@ namespace Sprint0
 
         public void Attack()
         {
-            link.state = new AttackingRightLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRightAttackingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            //Nothing to do
         }
 
         public void BeStill()
@@ -56,11 +55,6 @@ namespace Sprint0
 
         public void Update()
         {
-            link.xPos += 2;
-            if (link.xPos > 800)
-            {
-                link.xPos -= 800;
-            }
             link.sprite.Position = new Point(link.xPos, link.yPos);
         }
     }

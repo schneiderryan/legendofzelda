@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Sprint0
 {
-    class AttackingLinkState : ILinkState
+    class AttackingDownLinkState : ILinkState
     {
         private Link link;
-        public AttackingLinkState(Link link)
+        public AttackingDownLinkState(Link link)
         {
             this.link = link;
         }
@@ -48,8 +48,9 @@ namespace Sprint0
 
         public void BeStill()
         {
-            link.state = new StillLinkState(link);
-            //set sprite depending on direction
+            link.state = new StillDownLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateDownStillLinkSprite();
+            link.sprite.Scale = 2.0f;
         }
 
         public void Update()

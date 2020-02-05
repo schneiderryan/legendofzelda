@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Sprint0
 {
-    class StillLinkState : ILinkState
+    internal class StillLeftLinkState : ILinkState
     {
         private Link link;
 
-        public StillLinkState(Link link)
+        public StillLeftLinkState(Link link)
         {
             this.link = link;
         }
@@ -44,8 +44,8 @@ namespace Sprint0
 
         public void Attack()
         {
-            link.state = new AttackingLinkState(link);
-            //set sprite depending on direction
+            link.state = new AttackingLeftLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateLeftAttackingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
