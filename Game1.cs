@@ -13,6 +13,8 @@ namespace LegendOfZelda
         IController mouse;
         IScene background;
 
+
+        public IItem Arrow { get; set; }
         public Texture2D SpriteSheet { get; set; }
         public ISprite Sprite { get; set; }
 
@@ -31,7 +33,7 @@ namespace LegendOfZelda
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            SpriteSheet = Content.Load<Texture2D>("smb_luigi_sheet");
+            SpriteSheet = Content.Load<Texture2D>("nes_zelda_items_mod");
             background = new BackgroundScene(Content.Load<SpriteFont>("PressStart2P"),
                     this.GraphicsDevice);
             Textures.LoadAllTextures(Content);
@@ -40,6 +42,8 @@ namespace LegendOfZelda
             binds[Keys.D1].Execute(); // sets Sprite to a static sprite
             keyboard = new KeyboardController(binds);
             mouse = new MouseController(this);
+            
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -69,7 +73,7 @@ namespace LegendOfZelda
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
-            ICommand cmd = new DancingSpriteCommand(this);
+            ICommand cmd = new CreateItemCommand(this, spriteBatch);
             keyBinds.Add(Keys.NumPad4, cmd);
             keyBinds.Add(Keys.D4, cmd);
 

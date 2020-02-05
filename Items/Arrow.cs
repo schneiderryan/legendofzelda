@@ -7,5 +7,6 @@ namespace LegendOfZelda
         {
             sprite = ItemSpriteFactory.GetArrow();
         }
+
     }
 }

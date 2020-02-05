@@ -9,5 +9,15 @@ namespace LegendOfZelda
         {
             sprite.Draw(sb);
         }
+
+        public virtual void Update()
+        {
+            sprite.Update();
+        }
+
+        public ISprite getSprite()
+        {
+            return this.sprite;
+        }
     }
 }
