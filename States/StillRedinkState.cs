@@ -5,46 +5,46 @@ using System.Text;
 
 namespace Sprint0
 {
-    class StillLinkState : ILinkState
+    class StillRedLinkState : ILinkState
     {
-        private GreenLink link;
+        private RedLink link;
 
-        public StillLinkState(GreenLink link)
+        public StillRedLinkState(RedLink link)
         {
             this.link = link;
         }
 
         public void MoveUp()
         {
-            link.state = new MovingUpLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateUpWalkingLinkSprite();
+            link.state = new MovingUpRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void MoveDown()
         {
-            link.state = new MovingDownLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
+            link.state = new MovingDownRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
         {
-            link.state = new MovingRightLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
+            link.state = new MovingRightRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
         {
-            link.state = new MovingLeftLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
+            link.state = new MovingLeftRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void Attack()
         {
-            link.state = new AttackingLinkState(link);
+            link.state = new AttackingRedLinkState(link);
             //set sprite depending on direction
             link.sprite.Scale = 2.0f;
         }

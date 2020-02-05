@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Sprint0
 {
-    class MovingUpLinkState : ILinkState
+    class MovingUpRedLinkState : ILinkState
     {
-        private GreenLink link;
+        private RedLink link;
 
-        public MovingUpLinkState(GreenLink link)
+        public MovingUpRedLinkState(RedLink link)
         {
             this.link = link;
         }
@@ -21,36 +21,36 @@ namespace Sprint0
 
         public void MoveDown()
         {
-            link.state = new MovingDownLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
+            link.state = new MovingDownRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
         {
-            link.state = new MovingRightLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
+            link.state = new MovingRightRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
         {
-            link.state = new MovingLeftLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
+            link.state = new MovingLeftRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void Attack()
         {
-            link.state = new AttackingLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateUpAttackingLinkSprite();
+            link.state = new AttackingRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedUpAttackingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void BeStill()
         {
-            link.state = new StillLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
+            link.state = new StillRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 

@@ -39,7 +39,7 @@ namespace Sprint0
             //keyboard = new KeyboardController(binds);
             //mouse = new MouseController(this);
             PlayerSpriteFactory.Instance.LoadTextures(Content);
-            this.link = new Link();
+            this.link = new GreenLink();
         }
 
         protected override void Update(GameTime gameTime)

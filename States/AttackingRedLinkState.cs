@@ -5,39 +5,39 @@ using System.Text;
 
 namespace Sprint0
 {
-    class AttackingLinkState : ILinkState
+    class AttackingRedLinkState : ILinkState
     {
-        private GreenLink link;
-        public AttackingLinkState(GreenLink link)
+        private RedLink link;
+        public AttackingRedLinkState(RedLink link)
         {
             this.link = link;
         }
 
         public void MoveUp()
         {
-            link.state = new MovingUpLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateUpWalkingLinkSprite();
+            link.state = new MovingUpRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void MoveDown()
         {
-            link.state = new MovingDownLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
+            link.state = new MovingDownRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
         {
-            link.state = new MovingRightLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
+            link.state = new MovingRightRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
         {
-            link.state = new MovingLeftLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
+            link.state = new MovingLeftRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
@@ -48,7 +48,7 @@ namespace Sprint0
 
         public void BeStill()
         {
-            link.state = new StillLinkState(link);
+            link.state = new StillRedLinkState(link);
             //set sprite depending on direction
         }
 

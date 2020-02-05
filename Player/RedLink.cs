@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sprint0
 {
-    class GreenLink : IPlayer 
+    class RedLink : IPlayer 
     {
         public ISprite sprite;
         private KeyboardController keyboard;
@@ -15,15 +15,15 @@ namespace Sprint0
         public int xPos;
         public int yPos;
 
-        public GreenLink()
+        public RedLink()
         {
-            this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
+            this.sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
             this.sprite.Scale = 2.0f;
             this.xPos = 400;
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
             this.keyboard = new KeyboardController(generateDictionary());
-            this.state = new StillLinkState(this);
+            this.state = new StillRedLinkState(this);
         }
 
         public void MoveLeft()
