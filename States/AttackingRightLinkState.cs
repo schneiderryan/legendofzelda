@@ -5,11 +5,10 @@ using System.Text;
 
 namespace Sprint0
 {
-    class MovingLeftLinkState : ILinkState
+    class AttackingRightLinkState : ILinkState
     {
-        private GreenLink link;
-
-        public MovingLeftLinkState(GreenLink link)
+        private Link link;
+        public AttackingRightLinkState(Link link)
         {
             this.link = link;
         }
@@ -37,30 +36,25 @@ namespace Sprint0
 
         public void MoveLeft()
         {
-            //Nothing to do
+            link.state = new MovingLeftLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
+            link.sprite.Scale = 2.0f;
         }
 
         public void Attack()
         {
-            link.state = new AttackingLeftLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateLeftAttackingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            //Nothing to do
         }
 
         public void BeStill()
         {
-            link.state = new StillLeftLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateLeftStillLinkSprite();
+            link.state = new StillRightLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRightStillLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void Update()
         {
-            link.xPos -= 2;
-            if (link.xPos < 0)
-            {
-                link.xPos += 800;
-            }
             link.sprite.Position = new Point(link.xPos, link.yPos);
         }
     }

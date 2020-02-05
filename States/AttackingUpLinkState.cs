@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sprint0
 {
-    class AttackingLinkState : ILinkState
+    class AttackingUpLinkState : ILinkState
     {
         private GreenLink link;
         public AttackingLinkState(GreenLink link)
@@ -48,8 +48,9 @@ namespace Sprint0
 
         public void BeStill()
         {
-            link.state = new StillLinkState(link);
-            //set sprite depending on direction
+            link.state = new StillUpLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
+            link.sprite.Scale = 2.0f;
         }
 
         public void Update()

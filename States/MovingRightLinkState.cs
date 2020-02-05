@@ -42,14 +42,14 @@ namespace Sprint0
 
         public void Attack()
         {
-            link.state = new AttackingLinkState(link);
+            link.state = new AttackingRightLinkState(link);
             link.sprite = PlayerSpriteFactory.Instance.CreateRightAttackingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void BeStill()
         {
-            link.state = new StillLinkState(link);
+            link.state = new StillRightLinkState(link);
             link.sprite = PlayerSpriteFactory.Instance.CreateRightStillLinkSprite();
             link.sprite.Scale = 2.0f;
         }
