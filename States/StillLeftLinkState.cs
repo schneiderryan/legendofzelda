@@ -7,9 +7,9 @@ namespace Sprint0
 {
     internal class StillLeftLinkState : ILinkState
     {
-        private Link link;
+        private GreenLink link;
 
-        public StillLeftLinkState(Link link)
+        public StillLeftLinkState(GreenLink link)
         {
             this.link = link;
         }

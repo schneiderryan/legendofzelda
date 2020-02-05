@@ -9,7 +9,7 @@ namespace Sprint0
     {
         private GreenLink link;
 
-        public StillLinkState(GreenLink link)
+        public StillUpLinkState(GreenLink link)
         {
             this.link = link;
         }

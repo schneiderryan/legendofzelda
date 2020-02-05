@@ -7,8 +7,8 @@ namespace Sprint0
 {
     class AttackingDownLinkState : ILinkState
     {
-        private Link link;
-        public AttackingDownLinkState(Link link)
+        private GreenLink link;
+        public AttackingDownLinkState(GreenLink link)
         {
             this.link = link;
         }

@@ -5,10 +5,11 @@ using System.Text;
 
 namespace Sprint0
 {
-    class AttackingRedLinkState : ILinkState
+    class StillRightRedLinkState : ILinkState
     {
         private RedLink link;
-        public AttackingRedLinkState(RedLink link)
+
+        public StillRightRedLinkState(RedLink link)
         {
             this.link = link;
         }
@@ -43,13 +44,14 @@ namespace Sprint0
 
         public void Attack()
         {
-            //Nothing to do
+            link.state = new AttackingRightRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedRightAttackingLinkSprite();
+            link.sprite.Scale = 2.0f;
         }
 
         public void BeStill()
         {
-            link.state = new StillRedLinkState(link);
-            //set sprite depending on direction
+            //Nothing to do
         }
 
         public void Update()

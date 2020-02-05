@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Sprint0
 {
-    class MovingDownRedLinkState : ILinkState
+    internal class StillLeftRedLinkState : ILinkState
     {
         private RedLink link;
 
-        public MovingDownRedLinkState(RedLink link)
+        public StillLeftRedLinkState(RedLink link)
         {
             this.link = link;
         }
@@ -23,7 +23,9 @@ namespace Sprint0
 
         public void MoveDown()
         {
-            //Nothing to do
+            link.state = new MovingDownRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
+            link.sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
@@ -42,25 +44,18 @@ namespace Sprint0
 
         public void Attack()
         {
-            link.state = new AttackingDownRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownAttackingLinkSprite();
+            link.state = new AttackingLeftRedLinkState(link);
+            link.sprite = PlayerSpriteFactory.Instance.CreateRedLeftAttackingLinkSprite();
             link.sprite.Scale = 2.0f;
         }
 
         public void BeStill()
         {
-            link.state = new StillDownRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownStillLinkSprite();
-            link.sprite.Scale = 2.0f;
+            //Nothing to do
         }
 
         public void Update()
         {
-            link.yPos += 2;
-            if (link.yPos > 480)
-            {
-                link.yPos -= 480;
-            }
             link.sprite.Position = new Point(link.xPos, link.yPos);
         }
     }
