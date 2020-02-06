@@ -5,12 +5,13 @@ namespace LegendOfZelda
 {
     public class AnimatedSprite : Sprite
     {
-        private Rectangle firstRect;
+        protected readonly int nFrames;
         private int frameCounter = 0;
-        private readonly int nFrames;
-        private readonly int delay = 5;
         private int delayCounter = 0;
+        private Rectangle firstRect;
         private bool isRow;
+
+        public int AnimationDelay { get; set; }
 
         public AnimatedSprite(Texture2D texture, Rectangle firstFrame,
                 int nFrames, bool isRow = true)
@@ -19,13 +20,14 @@ namespace LegendOfZelda
             this.firstRect = firstFrame;
             this.nFrames = nFrames;
             this.isRow = isRow;
+            AnimationDelay = 5;
         }
 
         public override void Update()
         {
             // delay updating the frame to make it animate slower
             delayCounter++;
-            if (delayCounter >= delay)
+            if (delayCounter >= AnimationDelay)
             {
                 delayCounter = 0;
                 frameCounter++;

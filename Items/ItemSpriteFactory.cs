@@ -48,8 +48,11 @@ namespace LegendOfZelda
 
         public static ISprite GetExplodingBomb()
         {
-            return new AnimatedSprite(Textures.GetEffectsSheet(),
-                new Rectangle(138, 203, 16, 16), 3);
+            return new AnimateOnceSprite(Textures.GetEffectsSheet(),
+                new Rectangle(138, 203, 16, 16), 4)
+            {
+                AnimationDelay = 20
+            };
         }
 
         public static ISprite GetBoomerang()

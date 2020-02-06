@@ -41,10 +41,9 @@ namespace LegendOfZelda
             Textures.LoadAllTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
-            binds[Keys.D1].Execute(); // sets Sprite to a static sprite
+            //binds[Keys.D1].Execute(); // sets Sprite to a static sprite
             keyboard = new KeyboardController(binds);
             mouse = new MouseController(this);
-
             Sprite = ItemSpriteFactory.GetExplodingBomb();
         }
 
