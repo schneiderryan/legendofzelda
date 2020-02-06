@@ -12,6 +12,7 @@ namespace LegendOfZelda
         IController keyboard;
         IController mouse;
         IScene background;
+        public Bomb bomb;
 
 
         public IItem Arrow { get; set; }
@@ -28,6 +29,7 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             base.Initialize();
+            bomb = new Bomb();
         }
 
         protected override void LoadContent()
@@ -42,8 +44,8 @@ namespace LegendOfZelda
             binds[Keys.D1].Execute(); // sets Sprite to a static sprite
             keyboard = new KeyboardController(binds);
             mouse = new MouseController(this);
-            
 
+            Sprite = ItemSpriteFactory.GetExplodingBomb();
         }
 
         protected override void Update(GameTime gameTime)
@@ -51,6 +53,7 @@ namespace LegendOfZelda
             keyboard.Update();
             mouse.Update();
             Sprite.Update();
+            bomb.Update();
             base.Update(gameTime);
         }
 
@@ -64,6 +67,7 @@ namespace LegendOfZelda
 
             background.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
+            bomb.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -73,7 +77,7 @@ namespace LegendOfZelda
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
-            ICommand cmd = new CreateItemCommand(this, spriteBatch);
+            ICommand cmd = new CreateItemCommand(this);
             keyBinds.Add(Keys.NumPad4, cmd);
             keyBinds.Add(Keys.D4, cmd);
 

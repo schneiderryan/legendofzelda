@@ -10,30 +10,17 @@ namespace LegendOfZelda
     {
 
         private Game1 game1;
-        private Item item;
-        private SpriteBatch spriteBatch;
-        private ISprite sprite;
 
 
-        public CreateItemCommand(Game1 game1, SpriteBatch spriteBatch)
+        public CreateItemCommand(Game1 game1)
         {
             this.game1 = game1;
-            Viewport viewport = game1.GraphicsDevice.Viewport;
-            Point center = new Point(viewport.Width / 2 - 30, viewport.Height / 2 - 30);
-            this.spriteBatch = spriteBatch;
-            this.sprite = game1.Sprite;
         }
         
 
         public void Execute()
         {
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            item = new Arrow();
-            game1.Arrow = item;
-            sprite = item.getSprite();
-            sprite.Draw(spriteBatch);
-            spriteBatch.End();
-
+            game1.bomb.Detonate();
         }
     }
 }

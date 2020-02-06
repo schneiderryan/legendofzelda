@@ -46,6 +46,12 @@ namespace LegendOfZelda
                     new Rectangle(136, 0, 8, 14));
         }
 
+        public static ISprite GetExplodingBomb()
+        {
+            return new AnimatedSprite(Textures.GetEffectsSheet(),
+                new Rectangle(138, 203, 16, 16), 3);
+        }
+
         public static ISprite GetBoomerang()
         {
             return new Sprite(Textures.GetItemsSheet(),

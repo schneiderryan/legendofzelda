@@ -7,5 +7,10 @@ namespace LegendOfZelda
         {
             sprite = ItemSpriteFactory.GetBomb();
         }
+
+        public void Detonate()
+        {
+            sprite = ItemSpriteFactory.GetExplodingBomb();
+        }
     }
 }
