@@ -10,6 +10,10 @@ namespace Sprint0
     class PlayerSpriteFactory
     {
         private Texture2D linkSpriteSheet;
+        private Texture2D linkAttackingDown;
+        private Texture2D linkAttackingUp;
+        private Texture2D redLinkAttackingDown;
+        private Texture2D redLinkAttackingUp;
         private static PlayerSpriteFactory instance = new PlayerSpriteFactory();
 
         private PlayerSpriteFactory() { }
@@ -25,6 +29,11 @@ namespace Sprint0
         public void LoadTextures(ContentManager content)
         {
             linkSpriteSheet = content.Load<Texture2D>("link");
+            linkAttackingDown = content.Load<Texture2D>("downAttackingLink");
+            linkAttackingUp = content.Load<Texture2D>("upAttackingLink");
+            redLinkAttackingDown = content.Load<Texture2D>("downAttackingRedLink");
+            redLinkAttackingUp = content.Load<Texture2D>("upAttackingRedLink");
+
         }
 
         //Green Link Sprites
@@ -61,12 +70,12 @@ namespace Sprint0
 
         public ISprite CreateUpAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(60, 50, 18, 24), 2, false);
+            return new AnimatedSprite(linkAttackingUp, new Rectangle(0, 0, 17, linkAttackingUp.Height), 2, true);
         }
 
         public ISprite CreateDownAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(0, 60, 18, 24), 2, false);
+            return new AnimatedSprite(linkAttackingDown, new Rectangle(0, 0, 17, linkAttackingDown.Height), 2, true);
         }
 
         public ISprite CreateLeftStillLinkSprite()
@@ -123,12 +132,12 @@ namespace Sprint0
 
         public ISprite CreateRedUpAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(300, 50, 18, 24), 2, false);
+            return new AnimatedSprite(redLinkAttackingUp, new Rectangle(0, 0, 19, redLinkAttackingUp.Height), 2, true);
         }
 
         public ISprite CreateRedDownAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(240, 50, 18, 24), 2, false);
+            return new AnimatedSprite(redLinkAttackingDown, new Rectangle(0, 0, 19, redLinkAttackingDown.Height), 2, true);
         }
 
         public ISprite CreateRedLeftStillLinkSprite()
