@@ -9,10 +9,10 @@ namespace LegendOfZelda
     public class CreateItemCommand : ICommand
     {
 
-        private Game1 game1;
+        private LegendOfZelda game1;
 
 
-        public CreateItemCommand(Game1 game1)
+        public CreateItemCommand(LegendOfZelda game1)
         {
             this.game1 = game1;
         }

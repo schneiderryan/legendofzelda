@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     public class MoveSpriteCommand : StaticSpriteCommand
     {
-        public MoveSpriteCommand(Game1 game1) : base(game1)
+        public MoveSpriteCommand(LegendOfZelda game1) : base(game1)
         {
             Viewport viewport = game1.GraphicsDevice.Viewport;
             Point centerTop = new Point(this.sprite.Position.X, 0);

@@ -5,10 +5,10 @@ namespace LegendOfZelda
 {
     public class StaticSpriteCommand : ICommand
     {
-        protected Game1 game1;
+        protected LegendOfZelda game1;
         protected ISprite sprite;
 
-        public StaticSpriteCommand(Game1 game1)
+        public StaticSpriteCommand(LegendOfZelda game1)
         {
             this.game1 = game1;
             Viewport viewport = game1.GraphicsDevice.Viewport;

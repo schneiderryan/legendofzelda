@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public class Game1 : Game
+    public class LegendOfZelda : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -19,7 +19,7 @@ namespace LegendOfZelda
         public Texture2D SpriteSheet { get; set; }
         public ISprite Sprite { get; set; }
 
-        public Game1()
+        public LegendOfZelda()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -30,6 +30,7 @@ namespace LegendOfZelda
         {
             base.Initialize();
             bomb = new Bomb();
+            this.Window.Title = "Legend of Zelda";
         }
 
         protected override void LoadContent()

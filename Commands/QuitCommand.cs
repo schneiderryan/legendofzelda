@@ -3,9 +3,9 @@ namespace LegendOfZelda
 {
     public class QuitCommand : ICommand
     {
-        private Game1 game1;
+        private LegendOfZelda game1;
 
-        public QuitCommand(Game1 game1)
+        public QuitCommand(LegendOfZelda game1)
         {
             this.game1 = game1;
         }
