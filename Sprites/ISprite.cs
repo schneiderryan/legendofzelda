@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public interface ISprite : Drawable
+    public interface ISprite
     {
         Point Position { get; set; }
         float Scale { get; set; }
         void Update();
+        void Draw(SpriteBatch sb);
     }
 }
