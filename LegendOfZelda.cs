@@ -12,7 +12,7 @@ namespace LegendOfZelda
         IController keyboard;
         IController mouse;
         IScene background;
-        public Bomb bomb;
+        public WoodSword sword;
 
 
         public IItem Arrow { get; set; }
@@ -29,7 +29,8 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             base.Initialize();
-            bomb = new Bomb();
+            sword = new WoodSword();
+            sword.BeOnGround();
             this.Window.Title = "Legend of Zelda";
         }
 
@@ -53,7 +54,7 @@ namespace LegendOfZelda
             keyboard.Update();
             mouse.Update();
             Sprite.Update();
-            bomb.Update();
+            sword.Update();
             base.Update(gameTime);
         }
 
@@ -67,7 +68,7 @@ namespace LegendOfZelda
 
             background.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
-            bomb.Draw(spriteBatch);
+            sword.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

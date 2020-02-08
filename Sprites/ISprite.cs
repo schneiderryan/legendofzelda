@@ -5,6 +5,7 @@ namespace LegendOfZelda
 {
     public interface ISprite
     {
+        SpriteEffects Effects { get; set; }
         Point Position { get; set; }
         float Scale { get; set; }
         void Update();
