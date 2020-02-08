@@ -68,6 +68,21 @@ namespace Sprint0
             sprite.Draw(sb);
         }
 
+        public void UseItem1()
+        {
+            //Implement item 1
+        }
+
+        public void UseItem2()
+        {
+            //Implement item 2
+        }
+
+        public void UseItem3()
+        {
+            //Implement item 3
+        }
+
         private Dictionary<Keys, ICommand> generateDictionary()
         {
             Dictionary<Keys, ICommand> commands = new Dictionary<Keys, ICommand>();
@@ -82,6 +97,12 @@ namespace Sprint0
             commands.Add(Keys.Z, new PlayerAttackCommand(this));
             commands.Add(Keys.N, new PlayerAttackCommand(this));
             commands.Add(Keys.None, new PlayerStillCommand(this));
+            commands.Add(Keys.D1, new PlayerUseItem1Command(this));
+            commands.Add(Keys.NumPad1, new PlayerUseItem1Command(this));
+            commands.Add(Keys.D2, new PlayerUseItem2Command(this));
+            commands.Add(Keys.NumPad2, new PlayerUseItem2Command(this));
+            commands.Add(Keys.D3, new PlayerUseItem3Command(this));
+            commands.Add(Keys.NumPad3, new PlayerUseItem3Command(this));
             return commands;
         }
     }

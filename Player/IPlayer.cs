@@ -16,7 +16,9 @@ namespace Sprint0
         void BeStill();
 
         void Update();
-
+        void UseItem1();
+        void UseItem2();
+        void UseItem3();
         void Draw(SpriteBatch sb);
     }
 }
