@@ -11,7 +11,7 @@ namespace Sprint0
             Point leftCenter = new Point(0, this.sprite.Position.Y);
             Point rightCenter = new Point(viewport.Width - 60, leftCenter.Y);
             IPath path = new LineLoop(leftCenter, rightCenter, new Vector2(3, 0));
-            this.sprite = new DancingSprite(game1.SpriteSheet, new Rectangle(241, 0, 15, 15), 3, path)
+            this.sprite = new DancingSprite(game1.SpriteSheet, new Rectangle(0, 0, 15, 15), 3, path)
             {
                 Scale = 4
             };

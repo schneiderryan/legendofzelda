@@ -10,6 +10,7 @@ namespace Sprint0
     class EnemySpriteFactory
     {
         private Texture2D enemySpriteSheet;
+        private Texture2D bossSpriteSheet;
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
 
         private EnemySpriteFactory() { }
@@ -25,6 +26,7 @@ namespace Sprint0
         public void LoadTextures(ContentManager content)
         {
             enemySpriteSheet = content.Load<Texture2D>("loz_enemy_sheet");
+            bossSpriteSheet = content.Load<Texture2D>("zelda-sprites-bosses");
         }
 
 
@@ -59,6 +61,27 @@ namespace Sprint0
             //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
 
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(90, 60, 15, 15), 2, false, false);
+        }
+
+
+        public ISprite CreateMovingGelSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(400, 180, 14, 15), 2, false, false);
+        }
+
+
+       
+
+
+        public ISprite CreateMovingTrapSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(270, 330, 16, 16),1, false, false);
         }
 
         public ISprite CreateUpMovingKeeseSprite()
@@ -190,6 +213,39 @@ namespace Sprint0
             //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
 
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(271, 0, 15, 15), 2, false, false);
+        }
+
+        public ISprite CreateDownMovingAquamentusSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(0, 0, 40, 35), 2, true, false);
+        }
+
+        public ISprite CreateUpMovingAquamentusSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(0, 0, 40, 35), 2, true, false);
+        }
+
+        public ISprite CreateLeftMovingAquamentusSprite()
+        {
+
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(0, 0, 40, 35), 2, true, false);
+        }
+
+        public ISprite CreateRightMovingAquamentusSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(0, 0, 40, 35), 2,true, false);
         }
 
 

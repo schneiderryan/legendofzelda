@@ -18,13 +18,13 @@ namespace Sprint0
 
 		public void ChangeDirection()
 		{
-			//goriya.state = new RightMovingGoriyaState(goriya);
+			//trap.state = new RightMovingGoriyaState(trap);
 			//add up and down directions based on a random number
 		}
 
 		public void BeKilled()
 		{
-			//goriya.state = new KilledEnemyState(goriya);
+			//trap.state = new KilledEnemyState(trap);
 		}
 
 		public void MoveUp()

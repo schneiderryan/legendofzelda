@@ -9,14 +9,17 @@ namespace Sprint0
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
+
         IController keyboard;
         IController mouse;
         IController random;
         IScene background;
-
+        public List<IEnemy> list;
+        public int index;
+        public int maxEnemy;
         public Texture2D SpriteSheet { get; set; }
         public ISprite Sprite { get; set; }
-        public IEnemy goriya;
+        public IEnemy enemy;
         public IEnemy goriya2;
         public IEnemy goriya3;
         public IEnemy goriya4;
@@ -44,6 +47,7 @@ namespace Sprint0
 
         protected override void Initialize()
         {
+            
             base.Initialize();
         }
 
@@ -51,24 +55,42 @@ namespace Sprint0
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EnemySpriteFactory.Instance.LoadTextures(Content);
-            this.goriya = new Goriya();
-            this.goriya2 = new Goriya();
-            this.goriya3 = new Goriya();
-            this.goriya4 = new Goriya();
-            this.keese = new Keese();
+            SpriteSheet = Content.Load<Texture2D>("loz_enemy_sheet");
+            list = new List<IEnemy>();
+            index = 0;
+            
+            enemy = new Gel();
+    
+            list.Add(enemy);
+            list.Add(new Goriya());
+            list.Add(new Keese());
+            list.Add(new Stalfo());
+            list.Add(new Trap());
+            list.Add(new LFWallmaster());
+            list.Add(new RFWallmaster());
+            list.Add(new Aquamentus());
+            maxEnemy = list.Count-1;
+            Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
+            //binds[Keys.O].Execute();
+            keyboard = new KeyboardController(this, binds);
+            /*this.goriya2 = new Gel();
+            this.goriya3 = new Gel();
+            this.goriya4 = new Gel();
+            
             this.keese2 = new Keese();
             this.keese3 = new Keese();
             this.keese4 = new Keese();
-            this.stalfo = new Stalfo();
+            
             this.stalfo2 = new Stalfo();
             this.stalfo3 = new Stalfo();
             this.stalfo4 = new Stalfo();
-            this.lfwallmaster = new LFWallmaster();
+            
             this.lfwallmaster2 = new LFWallmaster();
-            this.rfwallmaster = new RFWallmaster();
+            
             this.rfwallmaster2 = new RFWallmaster();
+            */
 
-            random = new RandomEnemyController(this.goriya);
+            /*random = new RandomEnemyController(this.trap);
             random = new RandomEnemyController(this.goriya2);
             random = new RandomEnemyController(this.goriya3);
             random = new RandomEnemyController(this.goriya4);
@@ -84,26 +106,34 @@ namespace Sprint0
             random = new RandomEnemyController(this.lfwallmaster2);
             random = new RandomEnemyController(this.rfwallmaster);
             random = new RandomEnemyController(this.rfwallmaster2);
+            */
         }
 
         protected override void Update(GameTime gameTime)
         {
-            goriya.Update();
-            goriya2.Update();
+    
+            keyboard.Update();
+            enemy.Update();
+           // keese.Update();
+            //stalfo.Update();
+            //lfwallmaster.Update();
+            //rfwallmaster.Update();
+            /*goriya2.Update();
             goriya3.Update();
             goriya4.Update();
-            keese.Update();
+            
             keese2.Update();
             keese3.Update();
             keese4.Update();
-            stalfo.Update();
+            
             stalfo2.Update();
             stalfo3.Update();
             stalfo4.Update();
-            lfwallmaster.Update();
+            
             lfwallmaster2.Update();
-            rfwallmaster.Update();
+            
             rfwallmaster2.Update();
+            */
             base.Update(gameTime);
         }
 
@@ -119,7 +149,8 @@ namespace Sprint0
             //Sprite.Draw(spriteBatch);
             //spriteBatch.End();
             spriteBatch.Begin();
-            goriya.Draw(spriteBatch);
+            enemy.Draw(spriteBatch);
+            /*
             goriya2.Draw(spriteBatch);
             goriya3.Draw(spriteBatch);
             goriya4.Draw(spriteBatch);
@@ -135,11 +166,28 @@ namespace Sprint0
             lfwallmaster2.Draw(spriteBatch);
             rfwallmaster.Draw(spriteBatch);
             rfwallmaster2.Draw(spriteBatch);
+            */
+           
             spriteBatch.End();
-
+            
             base.Draw(gameTime);
         }
 
-        
+        private Dictionary<Keys, ICommand> GenerateKeyBinds()
+        {
+            Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
+            
+            ICommand cmd = new EnemyMoveUpCommand(enemy);
+            keyBinds.Add(Keys.O, cmd);
+
+            cmd = new EnemyMoveUpCommand(enemy);
+            keyBinds.Add(Keys.P, cmd);
+
+            
+
+            return keyBinds;
+        }
+
+
     }
 }

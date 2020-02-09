@@ -8,10 +8,10 @@ using System.Collections.Generic;
 namespace Sprint0
 {
 
-	public class Goriya : IEnemy
+	public class Trap : IEnemy
 	{
 		private Random randomStep = new Random();
-		public IGoriyaState state;
+		public ITrapState state;
 		public ISprite sprite;
 		private KeyboardController keyboard;
 		private RandomEnemyController random;
@@ -23,17 +23,17 @@ namespace Sprint0
 		int IEnemy.currentStep { get ; set ; }
 		int IEnemy.changeDirection { get; set; }
 
-		public Goriya()
+		public Trap()
 		{
 
-			sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
+			sprite = EnemySpriteFactory.Instance.CreateMovingTrapSprite();
 			xPos = 400;
 			yPos = 200;
 			sprite.Position = new Point(xPos, yPos);
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);
-			state = new RightMovingGoriyaState(this);
+			state = new RightMovingTrapState(this);
 		}
 
 		public void ChangeDirection()
