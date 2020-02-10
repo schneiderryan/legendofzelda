@@ -14,7 +14,6 @@ namespace Sprint0
         void MoveDown();
         void Attack();
         void BeStill();
-
         void Update();
         void UseItem1();
         void UseItem2();
