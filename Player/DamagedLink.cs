@@ -3,15 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Player
+namespace LegendOfZelda
 {
     class DamagedLink : IPlayer
     {
-        Game1 game;
+        LegendOfZelda game;
         IPlayer decoratedLink;
         int timer = 1000;
 
-        public DamagedLink (IPlayer decoratedLink, Game1 game)
+        public DamagedLink (IPlayer decoratedLink, LegendOfZelda game)
         {
             this.decoratedLink = decoratedLink;
             this.game = game;
