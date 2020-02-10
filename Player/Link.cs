@@ -56,6 +56,11 @@ namespace Sprint0
             state.BeStill();
         }
 
+        public void TakeDamage()
+        {
+            state.TakeDamage();
+        }
+
         public void Update()
         {
             keyboard.Update();
