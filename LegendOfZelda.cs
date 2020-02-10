@@ -3,16 +3,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace Sprint0
+namespace LegendOfZelda
 {
-    public class Game1 : Game
+    public class LegendOfZelda : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public IPlayer link;
 
 
-        public Game1()
+        public LegendOfZelda()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
