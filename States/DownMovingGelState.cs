@@ -18,8 +18,7 @@ namespace Sprint0
 
 		public void ChangeDirection()
 		{
-			//trap.state = new RightMovingGoriyaState(trap);
-			//add up and down directions based on a random number
+			
 		}
 
 		public void BeKilled()

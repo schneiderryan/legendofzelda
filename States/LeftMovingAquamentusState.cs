@@ -15,7 +15,26 @@ namespace Sprint0
 			this.aquamentus = aquamentus;
 		}
 
+		public void BreathFireball()
+		{
+			aquamentus.fireball[0] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			aquamentus.fireball[0].Position = new Point(aquamentus.xFire0, aquamentus.yFire0);
+			aquamentus.fireball[1] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			aquamentus.fireball[1].Position = new Point(aquamentus.xFire1, aquamentus.yFire1);
+			aquamentus.fireball[2] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			aquamentus.fireball[2].Position = new Point(aquamentus.xFire2, aquamentus.yFire2);
 
+			while(aquamentus.fireStep < 50)
+			{
+				aquamentus.xFire0--;
+				aquamentus.xFire1--;
+				aquamentus.xFire2--;
+				aquamentus.yFire0++;
+				
+				aquamentus.yFire2--;
+
+			}
+		}
 		public void ChangeDirection()
 		{
 			//aquamentus.state = new RightMovingAquamentusState(aquamentus);
@@ -29,14 +48,12 @@ namespace Sprint0
 
 		public void MoveUp()
 		{
-			aquamentus.state = new UpMovingAquamentusState(aquamentus);
-			aquamentus.sprite = EnemySpriteFactory.Instance.CreateUpMovingAquamentusSprite();
+			
 		}
 
 		public void MoveDown()
 		{
-			aquamentus.state = new DownMovingAquamentusState(aquamentus);
-			aquamentus.sprite = EnemySpriteFactory.Instance.CreateDownMovingAquamentusSprite();
+			
 		}
 
 		public void MoveRight()
@@ -53,6 +70,7 @@ namespace Sprint0
 
 		public void Update()
 		{
+			aquamentus.fireStep++;
 			aquamentus.xPos -= 1;
 			if (aquamentus.xPos < 0)
 			{

@@ -11,6 +11,8 @@ namespace Sprint0
 
         protected Rectangle sourceRect;
 
+        public SpriteEffects Effects { get; set; }
+
         public Point Position { get; set; }
 
         public float Scale
@@ -28,8 +30,9 @@ namespace Sprint0
         {
             this.texture = texture;
             this.sourceRect = sourecRect;
-            Scale = 2.5f;
+            Scale = 4.0f;
             Position = new Point();
+            Effects = SpriteEffects.None;
         }
 
         public virtual void Draw(SpriteBatch sb)

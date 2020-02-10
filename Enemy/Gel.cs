@@ -38,6 +38,9 @@ namespace Sprint0
 
 		public void ChangeDirection()
 		{
+			random.Update();
+			currentStep = 0;
+			changeDirection = this.randomStep.Next(0, 150);
 			state.ChangeDirection();
 		}
 
@@ -70,9 +73,7 @@ namespace Sprint0
 			currentStep++;
 			if(currentStep > changeDirection)
 			{
-				random.Update();
-				currentStep = 0;
-				changeDirection = this.randomStep.Next(0, 150);
+				this.ChangeDirection();
 			}
 			
 			state.Update();

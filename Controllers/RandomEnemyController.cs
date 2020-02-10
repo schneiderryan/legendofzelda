@@ -12,7 +12,8 @@ namespace Sprint0
 
         public RandomEnemyController(IEnemy enemy)
         {
-            this.directions = new ICommand[] { new EnemyMoveUpCommand(enemy),
+            this.directions = new ICommand[] { 
+                new EnemyMoveUpCommand(enemy),
                 new EnemyMoveDownCommand(enemy),
                 new EnemyMoveLeftCommand(enemy),
                 new EnemyMoveRightCommand(enemy)

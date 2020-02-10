@@ -15,7 +15,12 @@ namespace Sprint0
 			this.aquamentus = aquamentus;
 		}
 
-
+		public void BreathFireball()
+		{
+			aquamentus.fireball[0] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			aquamentus.fireball[1] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			aquamentus.fireball[3] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+		}
 		public void ChangeDirection()
 		{
 			//aquamentus.state = new RightMovingaquamentusState(aquamentus);
@@ -29,14 +34,12 @@ namespace Sprint0
 
 		public void MoveUp()
 		{
-			aquamentus.state = new UpMovingAquamentusState(aquamentus);
-			aquamentus.sprite = EnemySpriteFactory.Instance.CreateUpMovingAquamentusSprite();
+			
 		}
 
 		public void MoveDown()
 		{
-			aquamentus.state = new DownMovingAquamentusState(aquamentus);
-			aquamentus.sprite = EnemySpriteFactory.Instance.CreateDownMovingAquamentusSprite();
+		
 		}
 
 		public void MoveRight()
