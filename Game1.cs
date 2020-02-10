@@ -9,9 +9,6 @@ namespace Sprint0
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        public Texture2D SpriteSheet { get; set; }
-        public ISprite Sprite { get; set; }
         IPlayer link;
 
         public Game1()
