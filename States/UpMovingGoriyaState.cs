@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0;
 
 
-namespace Sprint0
+namespace LegendOfZelda
 {
 
 	class UpMovingGoriyaState : IGoriyaState

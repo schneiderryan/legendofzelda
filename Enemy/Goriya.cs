@@ -5,7 +5,7 @@ using Sprint0;
 using System;
 using System.Collections.Generic;
 
-namespace Sprint0
+namespace LegendOfZelda
 {
 
 	public class Goriya : IEnemy

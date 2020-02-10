@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint0
+namespace LegendOfZelda
 {
     public class DancingSpriteCommand : StaticSpriteCommand
     {
-        public DancingSpriteCommand(Game1 game1) : base(game1)
+        public DancingSpriteCommand(LegendOfZelda game1) : base(game1)
         {
             Viewport viewport = game1.GraphicsDevice.Viewport;
             Point leftCenter = new Point(0, this.sprite.Position.Y);

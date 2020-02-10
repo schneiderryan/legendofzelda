@@ -2,8 +2,9 @@
 
 namespace LegendOfZelda
 {
-    public interface IScene
+    public interface IItem
     {
+        void Update();
         void Draw(SpriteBatch sb);
     }
 }

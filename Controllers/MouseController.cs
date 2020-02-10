@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint0
+namespace LegendOfZelda
 {
     public class MouseController : IController
     {
@@ -9,7 +9,7 @@ namespace Sprint0
         private Viewport viewport;
         private ICommand quitCommand;
 
-        public MouseController(Game1 game1)
+        public MouseController(LegendOfZelda game1)
         {
             this.viewport = game1.GraphicsDevice.Viewport;
             grid = new ICommand[2][]

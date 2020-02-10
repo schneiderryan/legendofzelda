@@ -1,15 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint0
+namespace LegendOfZelda
 {
     public class Sprite : ISprite
     {
         private Texture2D texture;
+
+        protected Rectangle sourceRect;
         private float scale;
         private Point size;
 
-        protected Rectangle sourceRect;
+        public SpriteEffects Effects { get; set; }
 
         public Point Position { get; set; }
 
@@ -34,8 +36,9 @@ namespace Sprint0
 
         public virtual void Draw(SpriteBatch sb)
         {
-            Rectangle outRect = new Rectangle(Position, size);
-            sb.Draw(texture, outRect, sourceRect, Color.White);
+            Vector2 pos = new Vector2(Position.X, Position.Y);
+            sb.Draw(texture, pos, sourceRect, Color.White,
+                0, new Vector2(), Scale, Effects, 0);
         }
 
         public virtual void Update() { /* no code needed */ }
