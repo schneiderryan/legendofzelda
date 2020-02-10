@@ -1,0 +1,16 @@
+﻿using Microsoft.Xna.Framework.Graphics;
+
+namespace LegendOfZelda
+{
+    interface IEnemy
+    {
+        void MoveLeft();
+        void MoveRight();
+        void MoveUp();
+        void MoveDown();
+
+        void Update();
+
+        void Draw(SpriteBatch spriteBatch);
+    }
+}

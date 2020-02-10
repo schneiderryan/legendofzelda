@@ -13,6 +13,7 @@ namespace LegendOfZelda
 
         public int AnimationDelay { get; set; }
 
+
         public AnimatedSprite(Texture2D texture, Rectangle firstFrame,
                 int nFrames, bool isRow = true)
             : base(texture, firstFrame)

@@ -7,8 +7,8 @@ namespace LegendOfZelda
 {
     public class LegendOfZelda : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
         IController keyboard;
 
         // remove this l8r
@@ -19,6 +19,9 @@ namespace LegendOfZelda
         public int currentIndex;
 
         public IItem Arrow { get; set; }
+        public Texture2D SpriteSheet { get; set; }
+        public ISprite Sprite { get; set; }
+        IEnemy goriya;
 
         public LegendOfZelda()
         {
@@ -51,6 +54,8 @@ namespace LegendOfZelda
             };
             currentIndex = 0;
             currentItem = items[currentIndex];
+            EnemySpriteFactory.Instance.LoadTextures(Content);
+            this.goriya = new Goriya();
         }
 
         protected override void Update(GameTime gameTime)
@@ -61,6 +66,7 @@ namespace LegendOfZelda
             {
                 currentItem.Update();
             }
+            goriya.Update();
             base.Update(gameTime);
         }
 
@@ -69,13 +75,14 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // This gets rid of blurry scaling
-            // https://gamedev.stackexchange.com/a/6822
+            https://gamedev.stackexchange.com/a/6822
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             if (currentItem != null)
             {
                 currentItem.Draw(spriteBatch);
             }
+            goriya.Draw(spriteBatch);
             testItem.Draw(spriteBatch);
             spriteBatch.End();
 
