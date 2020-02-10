@@ -57,7 +57,8 @@ namespace LegendOfZelda
             return new AnimateOnceSprite(Textures.GetWeaponSheet(),
                 new Rectangle(138, 203, 16, 16), 4)
             {
-                AnimationDelay = 20
+                AnimationDelay = 20,
+                Scale = 3
             };
         }
 

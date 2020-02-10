@@ -1,33 +1,54 @@
-﻿
+﻿using Microsoft.Xna.Framework.Graphics;
+
 namespace LegendOfZelda
 {
     public class Bomb : Item
     {
-        public enum BombState { Ready, Exploding, Done };
+        public enum BombState { Ready, Detonated, Exploding, Used };
         public BombState State { get; private set; }
+
+        private int fuseDelay;
 
         public Bomb()
         {
             sprite = ItemSpriteFactory.GetBomb();
             sprite.Scale = 2;
             State = BombState.Ready;
+            fuseDelay = 60;
         }
 
         public void Detonate()
         {
-            // Real explosion doesn't look like this, but this is good for now
-            sprite = ItemSpriteFactory.GetExplodingBomb();
-            sprite.Scale = 4;
-            State = BombState.Exploding;
+            State = BombState.Detonated;
         }
 
         public override void Update()
         {
             base.Update();
-            if (State == BombState.Exploding
-                && (sprite as AnimateOnceSprite).AnimationEnded)
+            if (State == BombState.Detonated)
             {
-                State = BombState.Done;
+                if (fuseDelay > 0)
+                {
+                    fuseDelay--;
+                }
+                else
+                {
+                    State = BombState.Exploding;
+                    sprite = ItemSpriteFactory.GetExplodingBomb();
+                }
+            }
+            else if (State == BombState.Exploding
+                    && (sprite as AnimateOnceSprite).AnimationEnded)
+            {
+                State = BombState.Used;
+            }
+        }
+
+        public override void Draw(SpriteBatch sb)
+        {
+            if (State != BombState.Used)
+            {
+                base.Draw(sb);
             }
         }
     }

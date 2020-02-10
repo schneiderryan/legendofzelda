@@ -17,7 +17,7 @@ namespace LegendOfZelda
         
         public void Execute()
         {
-            game1.sword.ThrowRight(new Vector2());
+            game1.bomb.Detonate();
         }
     }
 }
