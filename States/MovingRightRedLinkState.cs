@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System.Text;
 
-namespace Sprint0
+namespace LegendOfZelda
 {
     class MovingRightRedLinkState : ILinkState
     {
