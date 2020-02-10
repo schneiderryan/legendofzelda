@@ -46,7 +46,8 @@ namespace LegendOfZelda
             Textures.LoadAllTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
-            //binds[Keys.D1].Execute(); // sets Sprite to a static sprite
+            //binds[Keys.D1].Execute(); 
+            // sets Sprite to a static sprite
             keyboard = new KeyboardController(binds);
             mouse = new MouseController(this);
             Sprite = ItemSpriteFactory.GetExplodingBomb();
@@ -81,8 +82,8 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // This gets rid of blurry scaling
-            // https://gamedev.stackexchange.com/a/6822
-            // spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            https://gamedev.stackexchange.com/a/6822
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             background.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
@@ -90,10 +91,6 @@ namespace LegendOfZelda
             {
                 currentItem.Draw(spriteBatch);
             }
-            //background.Draw(spriteBatch);
-            //Sprite.Draw(spriteBatch);
-            //spriteBatch.End();
-            spriteBatch.Begin();
             goriya.Draw(spriteBatch);
             spriteBatch.End();
 
