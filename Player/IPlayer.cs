@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint0
 {
-    interface IPlayer
+    public interface IPlayer
     {
         void MoveLeft();
         void MoveRight();

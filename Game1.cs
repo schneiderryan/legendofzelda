@@ -9,7 +9,8 @@ namespace Sprint0
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        IPlayer link;
+        public IPlayer link;
+
 
         public Game1()
         {
