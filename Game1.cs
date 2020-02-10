@@ -27,7 +27,7 @@ namespace Sprint0
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             PlayerSpriteFactory.Instance.LoadTextures(Content);
-            this.link = new RedLink();
+            this.link = new GreenLink();
         }
 
         protected override void Update(GameTime gameTime)
