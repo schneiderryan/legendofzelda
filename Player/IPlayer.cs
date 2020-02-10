@@ -14,6 +14,7 @@ namespace LegendOfZelda
         void MoveDown();
         void Attack();
         void BeStill();
+        void TakeDamage();
         void Update();
         void UseItem1();
         void UseItem2();
