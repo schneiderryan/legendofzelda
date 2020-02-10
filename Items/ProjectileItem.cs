@@ -3,74 +3,78 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public abstract class Sword : IItem
+    public abstract class ProjectileItem : IItem
     {
-        public enum SwordState { OnPlayer, OnGround, Thrown }
-        public SwordState State { get; protected set; }
+        public enum ProjectileState { OnPlayer, OnGround, Thrown }
+        public ProjectileState State { get; protected set; }
 
         protected ISprite upSprite;
         protected ISprite rightSprite;
+        protected float initialVelocity = 12f;
 
-        private const float VELOCITY = 12f;
-        private IProjectile thrownSword;
+        private IProjectile projectile;
 
         public virtual void ThrowLeft(Vector2 position)
         {
-            State = SwordState.Thrown;
+            State = ProjectileState.Thrown;
             rightSprite.Effects = SpriteEffects.FlipHorizontally;
-            thrownSword = new Projectile(rightSprite, position, new Vector2(-VELOCITY, 0));
+            projectile = new Projectile(rightSprite, position,
+                new Vector2(-initialVelocity, 0));
         }
 
         public virtual void ThrowRight(Vector2 position)
         {
-            State = SwordState.Thrown;
+            State = ProjectileState.Thrown;
             rightSprite.Effects = SpriteEffects.None;
-            thrownSword = new Projectile(rightSprite, position, new Vector2(VELOCITY, 0));
+            projectile = new Projectile(rightSprite, position,
+                new Vector2(initialVelocity, 0));
         }
 
         public virtual void ThrowUp(Vector2 position)
         {
-            State = SwordState.Thrown;
+            State = ProjectileState.Thrown;
             upSprite.Effects = SpriteEffects.None;
-            thrownSword = new Projectile(upSprite, position, new Vector2(0, -VELOCITY));
+            projectile = new Projectile(upSprite, position,
+                new Vector2(0, -initialVelocity));
         }
 
         public virtual void ThrowDown(Vector2 position)
         {
-            State = SwordState.Thrown;
+            State = ProjectileState.Thrown;
             upSprite.Effects = SpriteEffects.FlipVertically;
-            thrownSword = new Projectile(upSprite, position, new Vector2(0, VELOCITY));
+            projectile = new Projectile(upSprite, position,
+                new Vector2(0, initialVelocity));
         }
 
         public virtual void BeOnGround()
         {
-            State = SwordState.OnGround;
+            State = ProjectileState.OnGround;
             upSprite.Effects = SpriteEffects.None;
         }
 
         public virtual void BeOnPlayer()
         {
-            State = SwordState.OnPlayer;
+            State = ProjectileState.OnPlayer;
         }
 
         public virtual void Draw(SpriteBatch sb)
         {
-            if (State == SwordState.OnGround)
+            if (State == ProjectileState.OnGround)
             {
                 upSprite.Draw(sb);
             }
-            else if (State == SwordState.Thrown)
+            else if (State == ProjectileState.Thrown)
             {
-                thrownSword.Draw(sb);
+                projectile.Draw(sb);
             }
             // don't draw the sword if a player has it
         }
 
         public virtual void Update()
         {
-            if (State == SwordState.Thrown)
+            if (State == ProjectileState.Thrown)
             {
-                thrownSword.Update();
+                projectile.Update();
             }
         }
     }

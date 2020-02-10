@@ -10,11 +10,13 @@ namespace LegendOfZelda
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         IController keyboard;
-        public WoodSword sword;
+
+        // remove this l8r
+        public Boomerang testItem;
+
         public List<IItem> items;
         public IItem currentItem;
         public int currentIndex;
-
 
         public IItem Arrow { get; set; }
 
@@ -28,9 +30,7 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             base.Initialize();
-            sword = new WoodSword();
-            bomb = new Bomb();
-            sword.BeOnGround();
+            testItem = new Boomerang();
             this.Window.Title = "The Legend of Zelda";
         }
 
@@ -40,9 +40,8 @@ namespace LegendOfZelda
             Textures.LoadAllTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
-            keyboard = new KeyboardController(binds);
-            mouse = new MouseController(this);
-            Sprite = ItemSpriteFactory.GetExplodingBomb();
+            keyboard = new SinglePressKeyboardController(binds);
+
             items = new List<IItem>
             {
                 new Arrow(),
@@ -57,8 +56,7 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
-            mouse.Update();
-            Sprite.Update();
+            testItem.Update();
             if (currentItem != null)
             {
                 currentItem.Update();
@@ -74,14 +72,11 @@ namespace LegendOfZelda
             // https://gamedev.stackexchange.com/a/6822
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            background.Draw(spriteBatch);
-            Sprite.Draw(spriteBatch);
             if (currentItem != null)
             {
                 currentItem.Draw(spriteBatch);
             }
-            sword.Draw(spriteBatch);
-            bomb.Draw(spriteBatch);
+            testItem.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -95,7 +90,7 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.NumPad5, cmd);
             keyBinds.Add(Keys.D5, cmd);
 
-            cmd = new ThrowSwordDownCommand(this);
+            cmd = new TestCommand(this);
             keyBinds.Add(Keys.NumPad4, cmd);
             keyBinds.Add(Keys.D4, cmd);
 

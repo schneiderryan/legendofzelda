@@ -6,18 +6,18 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    public class ThrowSwordDownCommand : ICommand
+    public class TestCommand : ICommand
     {
         private LegendOfZelda game1;
 
-        public ThrowSwordDownCommand(LegendOfZelda game1)
+        public TestCommand(LegendOfZelda game1)
         {
             this.game1 = game1;
         }
         
         public void Execute()
         {
-            game1.sword.ThrowDown(new Vector2());
+            game1.testItem.ThrowRight(new Vector2(100, 100));
         }
     }
 }

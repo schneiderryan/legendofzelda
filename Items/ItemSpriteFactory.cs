@@ -64,8 +64,12 @@ namespace LegendOfZelda
 
         public static ISprite GetBoomerang()
         {
-            return new Sprite(Textures.GetItemSheet(),
-                    new Rectangle(129, 3, 5, 8));
+            return new AnimatedSprite(Textures.GetWeaponSheet(),
+                    new Rectangle(63, 189, 8, 8), 8)
+            {
+                AnimationDelay = 2
+            };
+
         }
 
         public static ISprite GetBow()

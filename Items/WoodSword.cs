@@ -1,13 +1,13 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class WoodSword : Sword
+    public class WoodSword : ProjectileItem
     {
         public WoodSword()
         {
             upSprite = ItemSpriteFactory.GetWoodSwordUp();
             rightSprite = ItemSpriteFactory.GetWoodSwordRight();
-            State = SwordState.OnGround;
+            State = ProjectileState.OnGround;
         }
     }
 }
