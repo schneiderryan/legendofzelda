@@ -9,7 +9,7 @@ namespace LegendOfZelda
         private static Texture2D effects;
         public static void LoadAllTextures(ContentManager contentManager)
         {
-            items = contentManager.Load<Texture2D>("nes_zelda_items_mod");
+            items = contentManager.Load<Texture2D>("items_mod");
             effects = contentManager.Load<Texture2D>("weapons_mod");
         }
 
