@@ -8,20 +8,30 @@ namespace LegendOfZelda
         private Texture2D texture;
 
         protected Rectangle sourceRect;
+        private float scale;
+        private Point size;
 
         public SpriteEffects Effects { get; set; }
 
         public Point Position { get; set; }
 
-        public float Scale { get; set; }
+        public float Scale
+        {
+            get { return scale; }
+            set
+            {
+                scale = value;
+                size = new Point((int)(value * sourceRect.Width),
+                    (int)(value * sourceRect.Height));
+            }
+        }
 
         public Sprite(Texture2D texture, Rectangle sourecRect)
         {
             this.texture = texture;
             this.sourceRect = sourecRect;
-            Scale = 4.0f;
+            Scale = 1.0f;
             Position = new Point();
-            Effects = SpriteEffects.None;
         }
 
         public virtual void Draw(SpriteBatch sb)

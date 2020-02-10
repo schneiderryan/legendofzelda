@@ -28,11 +28,10 @@
 #begin PressStart2P.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:PressStart2P.spritefont
 
-#begin smb_luigi_sheet.png
+#begin loz_enemy_sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -42,7 +41,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:smb_luigi_sheet.png
+/build:loz_enemy_sheet.png
 
 #begin weapons_mod.png
 /importer:TextureImporter
