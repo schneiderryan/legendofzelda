@@ -11,7 +11,9 @@ namespace LegendOfZelda
         SpriteBatch spriteBatch;
         IController keyboard;
         public WoodSword sword;
-        public Bomb bomb;
+        public List<IItem> items;
+        public IItem currentItem;
+        public int currentIndex;
 
 
         public IItem Arrow { get; set; }
@@ -39,13 +41,28 @@ namespace LegendOfZelda
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             keyboard = new KeyboardController(binds);
+            mouse = new MouseController(this);
+            Sprite = ItemSpriteFactory.GetExplodingBomb();
+            items = new List<IItem>
+            {
+                new Arrow(),
+                new WoodSword(),
+                new Bomb(),
+                new Boomerang()
+            };
+            currentIndex = 0;
+            currentItem = items[currentIndex];
         }
 
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
-            sword.Update();
-            bomb.Update();
+            mouse.Update();
+            Sprite.Update();
+            if (currentItem != null)
+            {
+                currentItem.Update();
+            }
             base.Update(gameTime);
         }
 
@@ -56,6 +73,13 @@ namespace LegendOfZelda
             // This gets rid of blurry scaling
             // https://gamedev.stackexchange.com/a/6822
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+            background.Draw(spriteBatch);
+            Sprite.Draw(spriteBatch);
+            if (currentItem != null)
+            {
+                currentItem.Draw(spriteBatch);
+            }
             sword.Draw(spriteBatch);
             bomb.Draw(spriteBatch);
             spriteBatch.End();
@@ -67,13 +91,23 @@ namespace LegendOfZelda
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
-            ICommand cmd = new CreateItemCommand(this);
+            ICommand cmd = new CreateSwordCommand(this);
+            keyBinds.Add(Keys.NumPad5, cmd);
+            keyBinds.Add(Keys.D5, cmd);
+
+            cmd = new ThrowSwordDownCommand(this);
             keyBinds.Add(Keys.NumPad4, cmd);
             keyBinds.Add(Keys.D4, cmd);
 
             cmd = new QuitCommand(this);
             keyBinds.Add(Keys.NumPad0, cmd);
             keyBinds.Add(Keys.D0, cmd);
+
+            cmd = new SwapItemCommand(this, "next");
+            keyBinds.Add(Keys.I, cmd);
+
+            cmd = new SwapItemCommand(this, "previous");
+            keyBinds.Add(Keys.U, cmd);
 
             return keyBinds;
         }
