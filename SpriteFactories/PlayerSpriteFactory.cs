@@ -70,7 +70,7 @@ namespace Sprint0
 
         public ISprite CreateUpAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkAttackingUp, new Rectangle(0, 0, 17, linkAttackingUp.Height), 2, true);
+            return new AnimatedSprite(linkAttackingUp, new Rectangle(0, 0, 20, linkAttackingUp.Height), 2, true);
         }
 
         public ISprite CreateDownAttackingLinkSprite()
@@ -132,12 +132,12 @@ namespace Sprint0
 
         public ISprite CreateRedUpAttackingLinkSprite()
         {
-            return new AnimatedSprite(redLinkAttackingUp, new Rectangle(0, 0, 19, redLinkAttackingUp.Height), 2, true);
+            return new AnimatedSprite(redLinkAttackingUp, new Rectangle(0, 0, 20, redLinkAttackingUp.Height), 2, true);
         }
 
         public ISprite CreateRedDownAttackingLinkSprite()
         {
-            return new AnimatedSprite(redLinkAttackingDown, new Rectangle(0, 0, 19, redLinkAttackingDown.Height), 2, true);
+            return new AnimatedSprite(redLinkAttackingDown, new Rectangle(0, 0, 20, redLinkAttackingDown.Height), 2, true);
         }
 
         public ISprite CreateRedLeftStillLinkSprite()

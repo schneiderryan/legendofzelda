@@ -9,9 +9,6 @@ namespace Sprint0
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        IController keyboard;
-        IController mouse;
-        IScene background;
 
         public Texture2D SpriteSheet { get; set; }
         public ISprite Sprite { get; set; }
@@ -32,21 +29,12 @@ namespace Sprint0
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //SpriteSheet = Content.Load<Texture2D>("smb_luigi_sheet");
-            //background = new BackgroundScene(Content.Load<SpriteFont>("PressStart2P"), this.GraphicsDevice);
-            //Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
-            //binds[Keys.D1].Execute(); // sets Sprite to a static sprite
-            //keyboard = new KeyboardController(binds);
-            //mouse = new MouseController(this);
             PlayerSpriteFactory.Instance.LoadTextures(Content);
-            this.link = new GreenLink();
+            this.link = new RedLink();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            //keyboard.Update();
-            //mouse.Update();
-            //Sprite.Update();
             link.Update();
             base.Update(gameTime);
         }
