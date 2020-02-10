@@ -8,16 +8,12 @@ namespace LegendOfZelda
         protected readonly int nFrames;
         private int frameCounter = 0;
         private int delayCounter = 0;
-<<<<<<< HEAD
         private Rectangle firstRect;
         private bool isRow;
 
         public int AnimationDelay { get; set; }
 
-=======
-        private bool isRow;
 
->>>>>>> 13c1858d758aae16be47ef65e6e8d6c186945d1f
         public AnimatedSprite(Texture2D texture, Rectangle firstFrame,
                 int nFrames, bool isRow = true)
             : base(texture, firstFrame)
@@ -25,10 +21,7 @@ namespace LegendOfZelda
             this.firstRect = firstFrame;
             this.nFrames = nFrames;
             this.isRow = isRow;
-<<<<<<< HEAD
             AnimationDelay = 5;
-=======
->>>>>>> 13c1858d758aae16be47ef65e6e8d6c186945d1f
         }
 
         public override void Update()

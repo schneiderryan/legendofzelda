@@ -65,7 +65,6 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
-<<<<<<< HEAD:LegendOfZelda.cs
             keyboard.Update();
             mouse.Update();
             Sprite.Update();
@@ -73,9 +72,7 @@ namespace LegendOfZelda
             {
                 currentItem.Update();
             }
-=======
             goriya.Update();
->>>>>>> 13c1858d758aae16be47ef65e6e8d6c186945d1f:Game1.cs
             base.Update(gameTime);
         }
 
@@ -87,26 +84,22 @@ namespace LegendOfZelda
             // https://gamedev.stackexchange.com/a/6822
             // spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-<<<<<<< HEAD:LegendOfZelda.cs
             background.Draw(spriteBatch);
             Sprite.Draw(spriteBatch);
             if (currentItem != null)
             {
                 currentItem.Draw(spriteBatch);
             }
-=======
             //background.Draw(spriteBatch);
             //Sprite.Draw(spriteBatch);
             //spriteBatch.End();
             spriteBatch.Begin();
             goriya.Draw(spriteBatch);
->>>>>>> 13c1858d758aae16be47ef65e6e8d6c186945d1f:Game1.cs
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-<<<<<<< HEAD:LegendOfZelda.cs
         private Dictionary<Keys, ICommand> GenerateKeyBinds()
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
@@ -143,8 +136,6 @@ namespace LegendOfZelda
 
             return keyBinds;
         }
-=======
         
->>>>>>> 13c1858d758aae16be47ef65e6e8d6c186945d1f:Game1.cs
     }
 }
