@@ -10,14 +10,11 @@ namespace LegendOfZelda
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         IController keyboard;
-        IController mouse;
-        IScene background;
         public WoodSword sword;
+        public Bomb bomb;
 
 
         public IItem Arrow { get; set; }
-        public Texture2D SpriteSheet { get; set; }
-        public ISprite Sprite { get; set; }
 
         public LegendOfZelda()
         {
@@ -30,31 +27,25 @@ namespace LegendOfZelda
         {
             base.Initialize();
             sword = new WoodSword();
+            bomb = new Bomb();
             sword.BeOnGround();
-            this.Window.Title = "Legend of Zelda";
+            this.Window.Title = "The Legend of Zelda";
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            SpriteSheet = Content.Load<Texture2D>("nes_zelda_items_mod");
-            background = new BackgroundScene(Content.Load<SpriteFont>("PressStart2P"),
-                    this.GraphicsDevice);
             Textures.LoadAllTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
-            //binds[Keys.D1].Execute(); // sets Sprite to a static sprite
             keyboard = new KeyboardController(binds);
-            mouse = new MouseController(this);
-            Sprite = ItemSpriteFactory.GetExplodingBomb();
         }
 
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
-            mouse.Update();
-            Sprite.Update();
             sword.Update();
+            bomb.Update();
             base.Update(gameTime);
         }
 
@@ -65,10 +56,8 @@ namespace LegendOfZelda
             // This gets rid of blurry scaling
             // https://gamedev.stackexchange.com/a/6822
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
-            background.Draw(spriteBatch);
-            Sprite.Draw(spriteBatch);
             sword.Draw(spriteBatch);
+            bomb.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -81,18 +70,6 @@ namespace LegendOfZelda
             ICommand cmd = new CreateItemCommand(this);
             keyBinds.Add(Keys.NumPad4, cmd);
             keyBinds.Add(Keys.D4, cmd);
-
-            cmd = new MoveSpriteCommand(this);
-            keyBinds.Add(Keys.NumPad3, cmd);
-            keyBinds.Add(Keys.D3, cmd);
-
-            cmd = new AnimatedSpriteCommand(this);
-            keyBinds.Add(Keys.NumPad2, cmd);
-            keyBinds.Add(Keys.D2, cmd);
-
-            cmd = new StaticSpriteCommand(this);
-            keyBinds.Add(Keys.NumPad1, cmd);
-            keyBinds.Add(Keys.D1, cmd);
 
             cmd = new QuitCommand(this);
             keyBinds.Add(Keys.NumPad0, cmd);
