@@ -17,23 +17,32 @@ namespace Sprint0
 
 		public void BreathFireball()
 		{
-			aquamentus.fireball[0] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
-			aquamentus.fireball[0].Position = new Point(aquamentus.xFire0, aquamentus.yFire0);
-			aquamentus.fireball[1] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
-			aquamentus.fireball[1].Position = new Point(aquamentus.xFire1, aquamentus.yFire1);
-			aquamentus.fireball[2] = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
-			aquamentus.fireball[2].Position = new Point(aquamentus.xFire2, aquamentus.yFire2);
+			aquamentus.sprite = EnemySpriteFactory.Instance.CreateRightMovingFireAquamentusSprite();
+			aquamentus.xFire0 = 400;
+			aquamentus.yFire0 = 200;
+			aquamentus.xFire1 = 400;
+			aquamentus.yFire1 = 200;
+			aquamentus.xFire2 = 400;
+			aquamentus.yFire2 = 200;
+			
+			aquamentus.fireball0 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			aquamentus.fireball0.Position = new Point(aquamentus.xFire0, aquamentus.yFire0);
+			aquamentus.fireball1 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			aquamentus.fireball1.Position = new Point(aquamentus.xFire1, aquamentus.yFire1);
+			aquamentus.fireball2 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			aquamentus.fireball2.Position = new Point(aquamentus.xFire2, aquamentus.yFire2);
 
-			while(aquamentus.fireStep < 50)
+			while (aquamentus.fireStep < 50)
 			{
 				aquamentus.xFire0--;
 				aquamentus.xFire1--;
 				aquamentus.xFire2--;
 				aquamentus.yFire0++;
-				
 				aquamentus.yFire2--;
+				aquamentus.fireStep++;
 
 			}
+			aquamentus.sprite = EnemySpriteFactory.Instance.CreateRightMovingAquamentusSprite();
 		}
 		public void ChangeDirection()
 		{

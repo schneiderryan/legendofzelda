@@ -221,21 +221,8 @@ namespace Sprint0
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(271, 0, 15, 15), 2, false, false);
         }
 
-        public ISprite CreateDownMovingAquamentusSprite()
-        {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+        
 
-            return new AnimatedSprite(bossSpriteSheet, new Rectangle(0, 0, 40, 35), 2, true, false);
-        }
-
-        public ISprite CreateUpMovingAquamentusSprite()
-        {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-
-            return new AnimatedSprite(bossSpriteSheet, new Rectangle(0, 0, 40, 35), 2, true, false);
-        }
 
         public ISprite CreateLeftMovingAquamentusSprite()
         {
@@ -252,6 +239,23 @@ namespace Sprint0
             //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
 
             return new AnimatedSprite(bossSpriteSheet, new Rectangle(0, 0, 40, 35), 2,true, false);
+        }
+
+        public ISprite CreateLeftMovingFireAquamentusSprite()
+        {
+
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(94, 0, 40, 35), 2, true, false);
+        }
+
+        public ISprite CreateRightMovingFireAquamentusSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(94, 0, 40, 35), 2, true, false);
         }
 
 

@@ -13,7 +13,9 @@ namespace Sprint0
 		private Random randomStep = new Random();
 		public IAquamentusState state;
 		public ISprite sprite;
-		public ISprite[] fireball;
+		public ISprite fireball0;
+		public ISprite fireball1;
+		public ISprite fireball2;
 		private KeyboardController keyboard;
 		private RandomEnemyController random;
 
@@ -38,21 +40,15 @@ namespace Sprint0
 		public Aquamentus()
 		{
 			
-			sprite = EnemySpriteFactory.Instance.CreateUpMovingAquamentusSprite();
+			sprite = EnemySpriteFactory.Instance.CreateLeftMovingAquamentusSprite();
+			
 			xPos = 400;
 			yPos = 200;
-			xFire0 = 400;
-			yFire0 = 200;
-			xFire1 = 400;
-			yFire1 = 200;
-			xFire2 = 400;
-			yFire2 = 200;
+			
 			sprite.Position = new Point(xPos, yPos);
 			state = new LeftMovingAquamentusState(this);
 
 			
-			
-
 			breathFire = this.randomStep.Next(10, 50);
 
 			currentStep = 0;
@@ -96,11 +92,13 @@ namespace Sprint0
 
 		 public void Update()
 		{
-			if(currentStep > breathFire)
+			currentStep++;
+			if (currentStep > breathFire)
 			{
+				
 				this.BreathFireball();
 			}
-			currentStep++;
+			
 			if(currentStep > changeDirection)
 			{
 				random.Update();
