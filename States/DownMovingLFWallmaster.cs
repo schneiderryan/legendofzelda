@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0;
+using LegendOfZelda;
 
 
-namespace Sprint0
+namespace LegendOfZelda
 {
 
 	class DownMovingLFWallmasterState : IWallmasterState

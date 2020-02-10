@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sprint0;
+using LegendOfZelda;
 using System;
 using System.Collections.Generic;
 
-namespace Sprint0
+namespace LegendOfZelda
 {
 
 	public class RFWallmaster : IEnemy
