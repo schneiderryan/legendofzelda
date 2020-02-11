@@ -13,18 +13,15 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin DamagedLink.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:DamagedLink.png
+<<<<<<< HEAD
+#begin PressStart2P.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:PressStart2P.spritefont
 
+#begin loz_enemy_sheet.png
+=======
 #begin downAttackingLink.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -74,6 +71,7 @@
 /build:upAttackingLink.png
 
 #begin upAttackingRedLink.png
+>>>>>>> Taylor
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -83,5 +81,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+<<<<<<< HEAD
+/build:loz_enemy_sheet.png
+=======
 /build:upAttackingRedLink.png
+>>>>>>> Taylor
 

@@ -3,17 +3,18 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace LegendOfZelda
+namespace Sprint0
 {
-    public class LegendOfZelda : Game
+    public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        public IPlayer link;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
+        IEnemy goriya;
+        IPlayer link;
 
-
-        public LegendOfZelda()
+        public Game1()
         {
+            
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -27,12 +28,15 @@ namespace LegendOfZelda
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            EnemySpriteFactory.Instance.LoadTextures(Content);
+            this.goriya = new Goriya();
             PlayerSpriteFactory.Instance.LoadTextures(Content);
-            this.link = new GreenLink(this);
+            this.link = new RedLink();
         }
 
         protected override void Update(GameTime gameTime)
         {
+            goriya.Update();
             link.Update();
             base.Update(gameTime);
         }
@@ -41,45 +45,14 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //// This gets rid of blurry scaling
-            //// https://gamedev.stackexchange.com/a/6822
-            //spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
-            //background.Draw(spriteBatch);
-            //Sprite.Draw(spriteBatch);
-            //spriteBatch.End();
+            spriteBatch.Begin();
+            goriya.Draw(spriteBatch);
+            spriteBatch.End();
 
             spriteBatch.Begin();
             link.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
-
-        //private Dictionary<Keys, ICommand> GenerateKeyBinds()
-        //{
-        //    Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
-
-        //    ICommand cmd = new DancingSpriteCommand(this);
-        //    keyBinds.Add(Keys.NumPad4, cmd);
-        //    keyBinds.Add(Keys.D4, cmd);
-
-        //    cmd = new MoveSpriteCommand(this);
-        //    keyBinds.Add(Keys.NumPad3, cmd);
-        //    keyBinds.Add(Keys.D3, cmd);
-
-        //    cmd = new AnimatedSpriteCommand(this);
-        //    keyBinds.Add(Keys.NumPad2, cmd);
-        //    keyBinds.Add(Keys.D2, cmd);
-
-        //    cmd = new StaticSpriteCommand(this);
-        //    keyBinds.Add(Keys.NumPad1, cmd);
-        //    keyBinds.Add(Keys.D1, cmd);
-
-        //    cmd = new QuitCommand(this);
-        //    keyBinds.Add(Keys.NumPad0, cmd);
-        //    keyBinds.Add(Keys.D0, cmd);
-
-        //    return keyBinds;
-        //}
     }
 }
