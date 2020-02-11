@@ -50,7 +50,7 @@ namespace Sprint0
             spriteBatch.End();
 
             spriteBatch.Begin();
-            link.Draw(spriteBatch);
+            link.Draw(spriteBatch, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }

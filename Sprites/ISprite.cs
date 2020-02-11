@@ -7,7 +7,7 @@ namespace LegendOfZelda
     {
         Point Position { get; set; }
         float Scale { get; set; }
-        void Draw(SpriteBatch sb);
+        void Draw(SpriteBatch sb, Color color);
         void Update();
     }
 }
