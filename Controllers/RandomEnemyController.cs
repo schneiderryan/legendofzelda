@@ -22,6 +22,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
+
             directions[random.Next(0, 4)].Execute();
           
         }

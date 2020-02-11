@@ -73,14 +73,7 @@ namespace LegendOfZelda
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(400, 180, 14, 15), 2, false, false);
         }
 
-        public ISprite CreateMovingFireballSprite()
-        {
-            //Crop spritesheet to contain only desired sprites
-            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
-
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(331, 0, 14, 16), 3, false, false);
-        }
-
+        
         //334, 364, 3
 
         public ISprite CreateMovingTrapSprite()
@@ -248,7 +241,7 @@ namespace LegendOfZelda
             //Crop spritesheet to contain only desired sprites
             //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
 
-            return new AnimatedSprite(bossSpriteSheet, new Rectangle(94, 0, 40, 35), 2, true, false);
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(89, 0, 40, 35), 2, true, false);
         }
 
         public ISprite CreateRightMovingFireAquamentusSprite()
@@ -256,9 +249,16 @@ namespace LegendOfZelda
             //Crop spritesheet to contain only desired sprites
             //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
 
-            return new AnimatedSprite(bossSpriteSheet, new Rectangle(94, 0, 40, 35), 2, true, false);
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(89, 0, 40, 35), 2, true, false);
         }
 
+        public ISprite CreateMovingFireballSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true, false);
+        }
 
     }
 }

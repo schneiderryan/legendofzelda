@@ -20,6 +20,7 @@ namespace LegendOfZelda
         public Texture2D SpriteSheet { get; set; }
         public ISprite Sprite { get; set; }
         public IEnemy enemy;
+        public Aquamentus aquamentus;
         
 
         public Game1()
@@ -45,6 +46,7 @@ namespace LegendOfZelda
             index = 0;
             
             enemy = new Gel();
+            aquamentus = new Aquamentus();
     
             list.Add(enemy);
             list.Add(new Goriya());
@@ -53,37 +55,18 @@ namespace LegendOfZelda
             list.Add(new Trap());
             list.Add(new LFWallmaster());
             list.Add(new RFWallmaster());
-            list.Add(new Aquamentus());
+            list.Add(aquamentus);
             maxEnemy = list.Count-1;
             Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
             keyboard = new KeyboardController(this, binds);
             
-            /*random = new RandomEnemyController(this.trap);
-            random = new RandomEnemyController(this.goriya2);
-            random = new RandomEnemyController(this.goriya3);
-            random = new RandomEnemyController(this.goriya4);
-            random = new RandomEnemyController(this.keese);
-            random = new RandomEnemyController(this.keese2);
-            random = new RandomEnemyController(this.keese3);
-            random = new RandomEnemyController(this.keese4);
-            random = new RandomEnemyController(this.stalfo);
-            random = new RandomEnemyController(this.stalfo2);
-            random = new RandomEnemyController(this.stalfo3);
-            random = new RandomEnemyController(this.stalfo4);
-            random = new RandomEnemyController(this.lfwallmaster);
-            random = new RandomEnemyController(this.lfwallmaster2);
-            random = new RandomEnemyController(this.rfwallmaster);
-            random = new RandomEnemyController(this.rfwallmaster2);
-            */
         }
 
         protected override void Update(GameTime gameTime)
         {
-    
             keyboard.Update();
             enemy.Update();
-           
             base.Update(gameTime);
         }
 
@@ -100,24 +83,12 @@ namespace LegendOfZelda
             //spriteBatch.End();
             spriteBatch.Begin();
             enemy.Draw(spriteBatch);
-            /*
-            goriya2.Draw(spriteBatch);
-            goriya3.Draw(spriteBatch);
-            goriya4.Draw(spriteBatch);
-            keese.Draw(spriteBatch);
-            keese2.Draw(spriteBatch);
-            keese3.Draw(spriteBatch);
-            keese4.Draw(spriteBatch);
-            stalfo.Draw(spriteBatch);
-            stalfo2.Draw(spriteBatch);
-            stalfo3.Draw(spriteBatch);
-            stalfo4.Draw(spriteBatch);
-            lfwallmaster.Draw(spriteBatch);
-            lfwallmaster2.Draw(spriteBatch);
-            rfwallmaster.Draw(spriteBatch);
-            rfwallmaster2.Draw(spriteBatch);
-            */
-           
+            if(enemy == aquamentus)
+            {
+                aquamentus.Draw(spriteBatch);
+            }
+            
+ 
             spriteBatch.End();
             
             base.Draw(gameTime);
@@ -133,7 +104,9 @@ namespace LegendOfZelda
             cmd = new EnemyMoveUpCommand(enemy);
             keyBinds.Add(Keys.P, cmd);
 
-            
+            cmd = new BreatheFireballCommand(this);
+            keyBinds.Add(Keys.F, cmd);
+
 
             return keyBinds;
         }

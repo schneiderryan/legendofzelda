@@ -2,7 +2,6 @@
 
 public interface IAquamentusState
 {
-	void BreathFireball();
 	void ChangeDirection();
 	void BeKilled();
 	void Update();

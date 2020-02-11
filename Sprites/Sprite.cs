@@ -30,7 +30,7 @@ namespace LegendOfZelda
         {
             this.texture = texture;
             this.sourceRect = sourecRect;
-            Scale = 4.0f;
+            Scale = 2.0f;
             Position = new Point();
             Effects = SpriteEffects.None;
         }

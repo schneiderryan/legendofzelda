@@ -9,40 +9,32 @@ namespace LegendOfZelda
 	class RightMovingAquamentusState : IAquamentusState
 	{
 		private Aquamentus aquamentus;
+		private int changeDirection;
+		private bool breathe;
+		private int openMouth;
 
 		public RightMovingAquamentusState(Aquamentus aquamentus)
 		{
+
 			this.aquamentus = aquamentus;
-		}
-
-		public void BreathFireball()
-		{
 			
-			aquamentus.xFire0 = 400;
-			aquamentus.yFire0 = 200;
-			aquamentus.xFire1 = 400;
-			aquamentus.yFire1 = 200;
-			aquamentus.xFire2 = 400;
-			aquamentus.yFire2 = 200;
-			
-			aquamentus.fireball0 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
-			aquamentus.fireball0.Position = new Point(aquamentus.xFire0, aquamentus.yFire0);
-			aquamentus.fireball1 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
-			aquamentus.fireball1.Position = new Point(aquamentus.xFire1, aquamentus.yFire1);
-			aquamentus.fireball2 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
-			aquamentus.fireball2.Position = new Point(aquamentus.xFire2, aquamentus.yFire2);
+			this.changeDirection = aquamentus.changeDirection;
+			this.openMouth = 0;
 
-			while (aquamentus.fireStep < 50)
+			if (this.changeDirection % 2 == 1)
 			{
-				aquamentus.xFire0--;
-				aquamentus.xFire1--;
-				aquamentus.xFire2--;
-				aquamentus.yFire0++;
-				aquamentus.yFire2--;
-				aquamentus.fireStep++;
-
+				aquamentus.sprite = EnemySpriteFactory.Instance.CreateRightMovingFireAquamentusSprite();
+				this.aquamentus.BreatheFireball(aquamentus.xPos, aquamentus.yPos);
+				breathe = true;
+				
+			}
+			else
+			{
+				this.aquamentus.sprite = EnemySpriteFactory.Instance.CreateRightMovingAquamentusSprite();
 			}
 		}
+
+		
 			public void ChangeDirection()
 		{
 			//aquamentus.state = new RightMovingaquamentusState(aquamentus);
@@ -73,19 +65,30 @@ namespace LegendOfZelda
 		public void MoveLeft()
 		{
 			aquamentus.state = new LeftMovingAquamentusState(aquamentus);
-			aquamentus.sprite = EnemySpriteFactory.Instance.CreateLeftMovingAquamentusSprite();
 		}
 
 		public void Update()
 		{
+			if (breathe)
+			{
+				openMouth++;
+				if (openMouth > 20)
+				{
+					aquamentus.sprite = EnemySpriteFactory.Instance.CreateRightMovingAquamentusSprite();
+					openMouth = 0;
+					breathe = false;
+				}
+
+			}
 			aquamentus.xPos += 1;
 			if (aquamentus.xPos > 800)
 			{
 				aquamentus.xPos -= 800;
 			}
 			aquamentus.sprite.Position = new Point(aquamentus.xPos, aquamentus.yPos);
-		}
+			
 
+		}
 
 	}
 }
