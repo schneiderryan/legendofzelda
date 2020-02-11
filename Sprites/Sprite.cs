@@ -6,10 +6,10 @@ namespace LegendOfZelda
     public class Sprite : ISprite
     {
         private Texture2D texture;
-
-        protected Rectangle sourceRect;
         private float scale;
         private Point size;
+
+        protected Rectangle sourceRect;
 
         public SpriteEffects Effects { get; set; }
 
@@ -34,11 +34,10 @@ namespace LegendOfZelda
             Position = new Point();
         }
 
-        public virtual void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb, Color color)
         {
-            Vector2 pos = new Vector2(Position.X, Position.Y);
-            sb.Draw(texture, pos, sourceRect, Color.White,
-                0, new Vector2(), Scale, Effects, 0);
+            Rectangle outRect = new Rectangle(Position, size);
+            sb.Draw(texture, outRect, sourceRect, color);
         }
 
         public virtual void Update() { /* no code needed */ }

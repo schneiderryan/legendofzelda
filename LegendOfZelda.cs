@@ -22,10 +22,11 @@ namespace LegendOfZelda
         public Texture2D SpriteSheet { get; set; }
         public ISprite Sprite { get; set; }
         IEnemy goriya;
+        public IPlayer link;
 
         public LegendOfZelda()
         {
-            
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -44,6 +45,7 @@ namespace LegendOfZelda
             background = new BackgroundScene(Content.Load<SpriteFont>("PressStart2P"),
                     this.GraphicsDevice);
             Textures.LoadAllTextures(Content);
+            PlayerSpriteFactory.Instance.LoadTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.D1].Execute(); 
@@ -62,6 +64,7 @@ namespace LegendOfZelda
             currentItem = items[currentIndex];
             EnemySpriteFactory.Instance.LoadTextures(Content);
             this.goriya = new Goriya();
+            this.link = new GreenLink(this);
         }
 
         protected override void Update(GameTime gameTime)
@@ -74,6 +77,7 @@ namespace LegendOfZelda
                 currentItem.Update();
             }
             goriya.Update();
+            link.Update();
             base.Update(gameTime);
         }
 
@@ -81,17 +85,18 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // This gets rid of blurry scaling
-            https://gamedev.stackexchange.com/a/6822
+        // This gets rid of blurry scaling
+        //https://gamedev.stackexchange.com/a/6822
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             background.Draw(spriteBatch);
-            Sprite.Draw(spriteBatch);
+            Sprite.Draw(spriteBatch, Color.White);
             if (currentItem != null)
             {
                 currentItem.Draw(spriteBatch);
             }
             goriya.Draw(spriteBatch);
+            link.Draw(spriteBatch, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -133,6 +138,6 @@ namespace LegendOfZelda
 
             return keyBinds;
         }
-        
+
     }
 }
