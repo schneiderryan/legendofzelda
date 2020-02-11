@@ -10,7 +10,7 @@ namespace LegendOfZelda
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         IEnemy goriya;
-        IPlayer link;
+        public IPlayer link;
 
         public LegendOfZelda()
         {
