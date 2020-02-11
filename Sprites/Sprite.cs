@@ -13,7 +13,8 @@ namespace LegendOfZelda
 
         public Point Position { get; set; }
 
-        public float Scale {
+        public float Scale
+        {
             get { return scale; }
             set
             {

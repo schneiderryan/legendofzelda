@@ -12,7 +12,6 @@
 
 
 #---------------------------------- Content ---------------------------------#
-
 #begin DamagedLink.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -24,8 +23,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:DamagedLink.png
-
-#begin downAttackingLink.png
+#begin items_mod.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,9 +33,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:downAttackingLink.png
+/build:items_mod.png
 
-#begin downAttackingRedLink.png
+#begin PressStart2P.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:PressStart2P.spritefont
+
+#begin loz_enemy_sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,9 +51,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:downAttackingRedLink.png
+/build:loz_enemy_sheet.png
 
-#begin link.png
+#begin weapons_mod.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,29 +63,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:link.png
-
-#begin upAttackingLink.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:upAttackingLink.png
-
-#begin upAttackingRedLink.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:upAttackingRedLink.png
+/build:weapons_mod.png
 
