@@ -19,37 +19,37 @@ namespace LegendOfZelda
 
         public void Attack()
         {
-            ///
+            decoratedLink.Attack();
         }
 
         public void BeStill()
         {
-            //
+            decoratedLink.BeStill();
         }
 
         public void Draw(SpriteBatch sb)
         {
-            //
+            // need to add color mask to drawing based on timer
         }
 
         public void MoveDown()
         {
-            //
+            decoratedLink.MoveDown();
         }
 
         public void MoveLeft()
         {
-            //
+            decoratedLink.MoveLeft();
         }
 
         public void MoveRight()
         {
-            //
+            decoratedLink.MoveRight();
         }
 
         public void MoveUp()
         {
-
+            decoratedLink.MoveUp();
         }
 
         public void TakeDamage()
@@ -69,17 +69,17 @@ namespace LegendOfZelda
 
         public void UseItem1()
         {
-            //
+            decoratedLink.UseItem1();
         }
 
         public void UseItem2()
         {
-            //
+            decoratedLink.UseItem2();
         }
 
         public void UseItem3()
         {
-            //;
+            decoratedLink.UseItem3();
         }
         public void RemoveDecorator()
         {
