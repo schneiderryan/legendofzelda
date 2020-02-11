@@ -9,13 +9,14 @@ namespace LegendOfZelda
 {
     class GreenLink : IPlayer 
     {
+        public LegendOfZelda game;
         public ISprite sprite;
         private KeyboardController keyboard;
         public ILinkState state;
         public int xPos;
         public int yPos;
 
-        public GreenLink()
+        public GreenLink(LegendOfZelda game)
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
             this.sprite.Scale = 2.0f;
@@ -24,6 +25,7 @@ namespace LegendOfZelda
             this.sprite.Position = new Point(xPos, yPos);
             this.keyboard = new KeyboardController(generateDictionary());
             this.state = new StillUpLinkState(this);
+            this.game = game;
         }
 
         public void MoveLeft()
@@ -96,6 +98,7 @@ namespace LegendOfZelda
             commands.Add(Keys.Up, new PlayerMoveUpCommand(this));
             commands.Add(Keys.Down, new PlayerMoveDownCommand(this));
             commands.Add(Keys.A, new PlayerMoveLeftCommand(this));
+            commands.Add(Keys.E, new PlayerDamagedCommand(this));
             commands.Add(Keys.D, new PlayerMoveRightCommand(this));
             commands.Add(Keys.W, new PlayerMoveUpCommand(this));
             commands.Add(Keys.S, new PlayerMoveDownCommand(this));

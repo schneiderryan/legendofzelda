@@ -49,7 +49,7 @@ namespace LegendOfZelda
 
         public void MoveUp()
         {
-            throw new NotImplementedException();
+
         }
 
         public void TakeDamage()

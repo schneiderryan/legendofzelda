@@ -9,13 +9,14 @@ namespace LegendOfZelda
 {
     class RedLink : IPlayer 
     {
+        public LegendOfZelda game;
         public ISprite sprite;
         private KeyboardController keyboard;
         public ILinkState state;
         public int xPos;
         public int yPos;
 
-        public RedLink()
+        public RedLink(LegendOfZelda game)
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
             this.sprite.Scale = 2.0f;
@@ -24,6 +25,7 @@ namespace LegendOfZelda
             this.sprite.Position = new Point(xPos, yPos);
             this.keyboard = new KeyboardController(generateDictionary());
             this.state = new StillUpRedLinkState(this);
+            this.game = game;
         }
 
         public void MoveLeft()
@@ -104,6 +106,11 @@ namespace LegendOfZelda
             commands.Add(Keys.D3, new PlayerUseItem3Command(this));
             commands.Add(Keys.NumPad3, new PlayerUseItem3Command(this));
             return commands;
+        }
+
+        public void TakeDamage()
+        {
+            state.TakeDamage();
         }
     }
 }

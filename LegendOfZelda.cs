@@ -28,7 +28,7 @@ namespace LegendOfZelda
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             PlayerSpriteFactory.Instance.LoadTextures(Content);
-            this.link = new GreenLink();
+            this.link = new GreenLink(this);
         }
 
         protected override void Update(GameTime gameTime)

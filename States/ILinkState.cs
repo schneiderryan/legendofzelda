@@ -12,6 +12,7 @@ namespace LegendOfZelda
         void MoveLeft();
         void Attack();
         void BeStill();
+        void TakeDamage();
         void Update();
     }
 }
