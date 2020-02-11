@@ -60,7 +60,7 @@ namespace LegendOfZelda
 
         public void TakeDamage()
         {
-            state.TakeDamage();
+            this.game.link = new DamagedLink(this, this.game);
         }
 
         public void Update()

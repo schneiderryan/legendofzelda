@@ -58,9 +58,5 @@ namespace LegendOfZelda
         {
             link.sprite.Position = new Point(link.xPos, link.yPos);
         }
-        public void TakeDamage()
-        {
-            new DamagedLink(link, link.game);
-        }
     }
 }

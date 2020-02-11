@@ -19,32 +19,32 @@ namespace LegendOfZelda
 
         public void Attack()
         {
-            throw new NotImplementedException();
+            ///
         }
 
         public void BeStill()
         {
-            throw new NotImplementedException();
+            //
         }
 
         public void Draw(SpriteBatch sb)
         {
-            throw new NotImplementedException();
+            //
         }
 
         public void MoveDown()
         {
-            throw new NotImplementedException();
+            //
         }
 
         public void MoveLeft()
         {
-            throw new NotImplementedException();
+            //
         }
 
         public void MoveRight()
         {
-            throw new NotImplementedException();
+            //
         }
 
         public void MoveUp()
@@ -69,17 +69,17 @@ namespace LegendOfZelda
 
         public void UseItem1()
         {
-            throw new NotImplementedException();
+            //
         }
 
         public void UseItem2()
         {
-            throw new NotImplementedException();
+            //
         }
 
         public void UseItem3()
         {
-            throw new NotImplementedException();
+            //;
         }
         public void RemoveDecorator()
         {
