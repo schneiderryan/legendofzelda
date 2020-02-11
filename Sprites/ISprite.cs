@@ -5,9 +5,10 @@ namespace LegendOfZelda
 {
     public interface ISprite
     {
+        SpriteEffects Effects { get; set; }
         Point Position { get; set; }
         float Scale { get; set; }
-        void Draw(SpriteBatch sb, Color color);
         void Update();
+        void Draw(SpriteBatch sb, Color color);
     }
 }

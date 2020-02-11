@@ -11,6 +11,8 @@ namespace LegendOfZelda
 
         protected Rectangle sourceRect;
 
+        public SpriteEffects Effects { get; set; }
+
         public Point Position { get; set; }
 
         public float Scale

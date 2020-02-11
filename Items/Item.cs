@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
@@ -7,7 +8,7 @@ namespace LegendOfZelda
         protected ISprite sprite;
         public virtual void Draw(SpriteBatch sb)
         {
-            sprite.Draw(sb);
+            sprite.Draw(sb, Color.White);
         }
 
         public virtual void Update()

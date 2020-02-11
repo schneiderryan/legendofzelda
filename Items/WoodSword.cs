@@ -68,7 +68,7 @@ namespace LegendOfZelda
         {
             if (State == SwordState.OnGround)
             {
-                sprite.Draw(sb);
+                sprite.Draw(sb, Color.White);
             }
             else if (State == SwordState.Thrown)
             {

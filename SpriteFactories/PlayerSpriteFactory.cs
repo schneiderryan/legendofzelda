@@ -33,7 +33,6 @@ namespace LegendOfZelda
             linkAttackingUp = content.Load<Texture2D>("upAttackingLink");
             redLinkAttackingDown = content.Load<Texture2D>("downAttackingRedLink");
             redLinkAttackingUp = content.Load<Texture2D>("upAttackingRedLink");
-
         }
 
         //Green Link Sprites
