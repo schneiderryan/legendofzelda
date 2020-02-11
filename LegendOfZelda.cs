@@ -3,16 +3,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace Sprint0
+namespace LegendOfZelda
 {
-    public class Game1 : Game
+    public class LegendOfZelda : Game
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         IEnemy goriya;
         IPlayer link;
 
-        public Game1()
+        public LegendOfZelda()
         {
             
             graphics = new GraphicsDeviceManager(this);
@@ -31,7 +31,7 @@ namespace Sprint0
             EnemySpriteFactory.Instance.LoadTextures(Content);
             this.goriya = new Goriya();
             PlayerSpriteFactory.Instance.LoadTextures(Content);
-            this.link = new RedLink();
+            this.link = new GreenLink(this);
         }
 
         protected override void Update(GameTime gameTime)
@@ -50,7 +50,7 @@ namespace Sprint0
             spriteBatch.End();
 
             spriteBatch.Begin();
-            link.Draw(spriteBatch, Color.White);
+            link.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
