@@ -95,6 +95,7 @@ namespace LegendOfZelda
             commands.Add(Keys.A, new PlayerMoveLeftCommand(this));
             commands.Add(Keys.D, new PlayerMoveRightCommand(this));
             commands.Add(Keys.W, new PlayerMoveUpCommand(this));
+            commands.Add(Keys.E, new PlayerDamagedCommand(this));
             commands.Add(Keys.S, new PlayerMoveDownCommand(this));
             commands.Add(Keys.Z, new PlayerAttackCommand(this));
             commands.Add(Keys.N, new PlayerAttackCommand(this));
