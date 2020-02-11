@@ -31,10 +31,10 @@ namespace LegendOfZelda
             Position = new Point();
         }
 
-        public virtual void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb, Color color)
         {
             Rectangle outRect = new Rectangle(Position, size);
-            sb.Draw(texture, outRect, sourceRect, Color.White);
+            sb.Draw(texture, outRect, sourceRect, color);
         }
 
         public virtual void Update() { /* no code needed */ }

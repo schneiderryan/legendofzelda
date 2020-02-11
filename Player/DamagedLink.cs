@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace LegendOfZelda
     {
         LegendOfZelda game;
         IPlayer decoratedLink;
-        int timer = 1000;
+        int timer = 200;
 
         public DamagedLink (IPlayer decoratedLink, LegendOfZelda game)
         {
@@ -27,8 +28,9 @@ namespace LegendOfZelda
             decoratedLink.BeStill();
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Color color)
         {
+            decoratedLink.Draw(sb, Color.Red);
             // need to add color mask to drawing based on timer
         }
 

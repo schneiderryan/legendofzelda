@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,6 @@ namespace LegendOfZelda
         void UseItem1();
         void UseItem2();
         void UseItem3();
-        void Draw(SpriteBatch sb);
+        void Draw(SpriteBatch sb, Color color);
     }
 }

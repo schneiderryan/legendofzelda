@@ -70,9 +70,9 @@ namespace LegendOfZelda
             sprite.Update();
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb);
+            sprite.Draw(sb, color);
         }
 
         public void UseItem1()
