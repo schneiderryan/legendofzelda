@@ -11,7 +11,7 @@ namespace LegendOfZelda
         void MoveRight();
         void MoveLeft();
         void Attack();
-        void UseItem1();
+        void UseItem(ProjectileItem item);
         void BeStill();
         void Update();
     }

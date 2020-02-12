@@ -49,9 +49,9 @@ namespace LegendOfZelda
             link.sprite.Scale = 2.0f;
         }
 
-        public void UseItem1()
+        public void UseItem(ProjectileItem item)
         {
-            link.game.projectiles.Add(new Projectile(ProjectileSpriteFactory.Instance.CreateDownArrow(), new Vector2(link.xPos, link.yPos), new Vector2(0, 7)));
+            item.ThrowDown(new Vector2(0, 8));
         }
 
         public void BeStill()

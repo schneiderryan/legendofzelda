@@ -73,23 +73,13 @@ namespace LegendOfZelda
             sprite.Draw(sb, color);
         }
 
-        public void UseItem1()
+        public void UseItem(ProjectileItem item)
         {
             if (item1Timer == 0)
             {
                 item1Timer = 75;
-                state.UseItem1();
+                state.UseItem(item);
             }
-        }
-
-        public void UseItem2()
-        {
-            //Implement item 2
-        }
-
-        public void UseItem3()
-        {
-            //Implement item 3
         }
 
         public void TakeDamage()

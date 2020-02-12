@@ -4,18 +4,18 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class PlayerUseItem3Command : ICommand
+    class PlayerUseThrowingSwordCommand : ICommand
     {
         private IPlayer player;
 
-        public PlayerUseItem3Command(IPlayer player)
+        public PlayerUseThrowingSwordCommand(IPlayer player)
         {
             this.player = player;
         }
 
         public void Execute()
         {
-            player.UseItem3();
+            player.UseItem(new WoodSword());
         }
     }
 }

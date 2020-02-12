@@ -24,7 +24,7 @@ namespace LegendOfZelda
         public List<IItem> items;
         public IItem currentItem;
         public int currentIndex;
-        public List<IProjectile> projectiles;
+        public List<ProjectileItem> projectiles;
 
         public IPlayer link;
 
@@ -41,7 +41,7 @@ namespace LegendOfZelda
         {
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
-            projectiles = new List<IProjectile>();
+            projectiles = new List<ProjectileItem>();
 
         }
 
@@ -66,7 +66,7 @@ namespace LegendOfZelda
             list.Add(new RFWallmaster());
             list.Add(aquamentus);
             maxEnemy = list.Count-1;
-            this.link = new RedLink(this);
+            this.link = new GreenLink(this);
             Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
             keyboarda = new EnemyKeyboardController(this, binds);
@@ -94,7 +94,7 @@ namespace LegendOfZelda
             enemy.Update();
 
             currentItem.Update();
-            foreach(IProjectile projectile in projectiles)
+            foreach(ProjectileItem projectile in projectiles)
             {
                 projectile.Update();
             }
@@ -115,10 +115,9 @@ namespace LegendOfZelda
             {
                 aquamentus.Draw(spriteBatch);
             }
-            
 
             currentItem.Draw(spriteBatch);
-            foreach (IProjectile projectile in projectiles)
+            foreach (ProjectileItem projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
             }
@@ -175,15 +174,15 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.Z, cmd);
             keyBinds.Add(Keys.N, cmd);
 
-            cmd = new PlayerUseItem1Command(this.link);
-            keyBinds.Add(Keys.D1, cmd);
-            keyBinds.Add(Keys.NumPad1, cmd);
-
-            cmd = new PlayerUseItem2Command(this.link);
+            cmd = new PlayerUseArrowCommand(this.link);
             keyBinds.Add(Keys.D2, cmd);
             keyBinds.Add(Keys.NumPad2, cmd);
 
-            cmd = new PlayerUseItem3Command(this.link);
+            cmd = new PlayerUseThrowingSwordCommand(this.link);
+            keyBinds.Add(Keys.D1, cmd);
+            keyBinds.Add(Keys.NumPad1, cmd);
+
+            cmd = new PlayerUseBoomerangCommand(this.link);
             keyBinds.Add(Keys.D3, cmd);
             keyBinds.Add(Keys.NumPad3, cmd);
 

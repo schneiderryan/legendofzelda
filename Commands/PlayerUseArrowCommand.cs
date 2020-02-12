@@ -4,18 +4,18 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class PlayerUseItem1Command : ICommand
+    class PlayerUseArrowCommand : ICommand
     {
         private IPlayer player;
 
-        public PlayerUseItem1Command(IPlayer player)
+        public PlayerUseArrowCommand(IPlayer player)
         {
             this.player = player;
         }
 
         public void Execute()
         {
-            player.UseItem1();
+            player.UseItem(new Boomerang());
         }
     }
 }

@@ -89,20 +89,11 @@ namespace LegendOfZelda
             decoratedLink.Update();
         }
 
-        public void UseItem1()
+        public void UseItem(ProjectileItem item)
         {
-            decoratedLink.UseItem1();
+            decoratedLink.UseItem(item);
         }
 
-        public void UseItem2()
-        {
-            decoratedLink.UseItem2();
-        }
-
-        public void UseItem3()
-        {
-            decoratedLink.UseItem3();
-        }
         public void RemoveDecorator()
         {
             game.link = decoratedLink;
