@@ -80,6 +80,8 @@ namespace LegendOfZelda
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             keyboard = new SinglePressKeyboardController(binds);
+   
+            keyboardb = new SinglePressKeyboardController(binds);
 
             items = GenerateItemList();
             currentIndex = 0;
