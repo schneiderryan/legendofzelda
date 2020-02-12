@@ -11,16 +11,15 @@ namespace LegendOfZelda
         private readonly int delay = 7;
         private int delayCounter = 0;
         private bool isRow;
-        private bool isStalfo;
-
+       
         public AnimatedSprite(Texture2D texture, Rectangle firstFrame,
-                int nFrames, bool isRow = true, bool isStalfo = true)
+                int nFrames, bool isRow)
             : base(texture, firstFrame)
         {
             this.firstRect = firstFrame;
             this.nFrames = nFrames;
             this.isRow = isRow;
-            this.isStalfo = isStalfo;
+            
         }
 
         public override void Update()
@@ -36,19 +35,14 @@ namespace LegendOfZelda
                 // times 2 because of how the spritesheet is formated
                 if (isRow)
                 {
-                    //sourceRect.X = firstRect.X + frameCounter * 2 * firstRect.Width;
-                    sourceRect.X = firstRect.X + (frameCounter * firstRect.Width) -2;
+                    sourceRect.X = firstRect.X + frameCounter * 2 * firstRect.Width;
+                   
                 }
                 else
                 {
-                    if(isStalfo)
-                    {
-                        sourceRect.Y = firstRect.Y + (frameCounter * 2 * firstRect.Height);
-                    }
-                    else
-                    {
-                        sourceRect.Y = firstRect.Y + frameCounter * 2 * firstRect.Height;
-                    }                   
+                
+                    sourceRect.Y = firstRect.Y + frameCounter * 2 * firstRect.Height;
+                                      
                 }
             }
         }

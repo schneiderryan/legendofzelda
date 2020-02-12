@@ -8,9 +8,9 @@ namespace LegendOfZelda
 {
     public class BreatheFireballCommand : ICommand
     {
-        private Game1 game1;
+        private LegendOfZelda game1;
 
-        public BreatheFireballCommand(Game1 game1)
+        public BreatheFireballCommand(LegendOfZelda game1)
         {
             this.game1 = game1;
         }

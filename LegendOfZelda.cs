@@ -5,25 +5,22 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public class Game1 : Game
+    public class LegendOfZelda : Game
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
 
         IController keyboard;
-        IController mouse;
-        IController random;
-        IScene background;
         public List<IEnemy> list;
         public int index;
         public int maxEnemy;
-        public Texture2D SpriteSheet { get; set; }
+        public Texture2D EnemySpriteSheet { get; set; }
         public ISprite Sprite { get; set; }
         public IEnemy enemy;
         public Aquamentus aquamentus;
         
 
-        public Game1()
+        public LegendOfZelda()
         {
             
             graphics = new GraphicsDeviceManager(this);
@@ -33,15 +30,15 @@ namespace LegendOfZelda
 
         protected override void Initialize()
         {
-            
             base.Initialize();
+            this.Window.Title = "Legend of Zelda";
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EnemySpriteFactory.Instance.LoadTextures(Content);
-            SpriteSheet = Content.Load<Texture2D>("loz_enemy_sheet");
+            EnemySpriteSheet = Content.Load<Texture2D>("loz_enemy_sheet");
             list = new List<IEnemy>();
             index = 0;
             

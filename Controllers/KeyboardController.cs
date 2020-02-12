@@ -6,10 +6,10 @@ namespace LegendOfZelda
     public class KeyboardController : IController
     {
         private Dictionary<Keys, ICommand> keyBinds;
-        private Game1 game;
+        private LegendOfZelda game;
         private int speed;
 
-        public KeyboardController(Game1 game1, Dictionary<Keys, ICommand> keyBinds)
+        public KeyboardController(LegendOfZelda game1, Dictionary<Keys, ICommand> keyBinds)
         {
             this.keyBinds = keyBinds;
             this.game = game1;
