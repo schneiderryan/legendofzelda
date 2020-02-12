@@ -9,21 +9,25 @@ namespace LegendOfZelda
         private Vector2 pos;
         private ISprite sprite;
 
-        public Vector2 Acceleration { get; set; }
+        public int X
+        {
+            get { return (int) pos.X; }
+        }
+        public int Y
+        {
+            get { return (int) pos.Y; }
+        }
 
         public Projectile(ISprite sprite, Vector2 position,
-                Vector2 velocity, Vector2 acceleration = new Vector2())
+                Vector2 velocity)
         {
             this.sprite = sprite;
             this.pos = position;
             this.vel = velocity;
-            this.Acceleration = acceleration;
         }
 
         public virtual void Update()
         {
-            vel.X += Acceleration.X;
-            vel.Y += Acceleration.Y;
             pos.X += vel.X;
             pos.Y += vel.Y;
             sprite.Position = new Point((int) pos.X, (int) pos.Y);

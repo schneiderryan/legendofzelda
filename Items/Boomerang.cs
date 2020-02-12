@@ -8,13 +8,9 @@ namespace LegendOfZelda
         {
             rightSprite = ItemSpriteFactory.GetBoomerang();
             upSprite = ItemSpriteFactory.GetBoomerang();
+            sprite = upSprite;
             State = ProjectileState.OnGround;
             initialVelocity = 4f;
-        }
-
-        public override void ThrowLeft(Vector2 position)
-        {
-            base.ThrowLeft(position);
         }
     }
 }

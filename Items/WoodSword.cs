@@ -7,6 +7,7 @@ namespace LegendOfZelda
         {
             upSprite = ItemSpriteFactory.GetWoodSwordUp();
             rightSprite = ItemSpriteFactory.GetWoodSwordRight();
+            sprite = upSprite;
             State = ProjectileState.OnGround;
         }
     }

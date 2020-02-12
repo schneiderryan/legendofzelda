@@ -6,8 +6,9 @@ namespace LegendOfZelda
     {
         public static ISprite GetHeart()
         {
-            return new Sprite(Textures.GetItemSheet(),
-                    new Rectangle(144, 0, 8, 16));
+            return new AnimatedSprite(Textures.GetItemSheet(),
+                    new Rectangle(0, 34, 7, 8), 2)
+            { AnimationDelay = 10 };
         }
 
         public static ISprite GetHeartContainer()
@@ -19,13 +20,15 @@ namespace LegendOfZelda
         public static ISprite GetFairy()
         {
             return new AnimatedSprite(Textures.GetItemSheet(),
-                    new Rectangle(29, 34, 8, 16), 2);
+                    new Rectangle(29, 34, 8, 16), 2)
+            { AnimationDelay = 5 };
         }
 
         public static ISprite GetRupee()
         {
             return new AnimatedSprite(Textures.GetItemSheet(),
-                    new Rectangle(61, 34, 8, 16), 2);
+                    new Rectangle(61, 34, 8, 16), 2)
+            { AnimationDelay = 10 };
         }
 
         public static ISprite GetBlueRupee()
@@ -105,7 +108,8 @@ namespace LegendOfZelda
         public static ISprite GetTriforceShard()
         {
             return new AnimatedSprite(Textures.GetItemSheet(),
-                    new Rectangle(95, 34, 10, 10), 2);
+                    new Rectangle(95, 34, 10, 10), 2)
+            { AnimationDelay = 10 };
         }
     }
 }
