@@ -11,16 +11,10 @@ namespace LegendOfZelda
         public SpriteBatch spriteBatch;
         IController keyboard;
 
-        // remove this l8r
-        public Boomerang testItem;
-
         public List<IItem> items;
         public IItem currentItem;
         public int currentIndex;
 
-        public IItem Arrow { get; set; }
-        public Texture2D SpriteSheet { get; set; }
-        public ISprite Sprite { get; set; }
         IEnemy goriya;
 
         public LegendOfZelda()
@@ -33,7 +27,6 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             base.Initialize();
-            testItem = new Boomerang();
             this.Window.Title = "The Legend of Zelda";
         }
 
@@ -45,13 +38,7 @@ namespace LegendOfZelda
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             keyboard = new SinglePressKeyboardController(binds);
 
-            items = new List<IItem>
-            {
-                new Arrow(),
-                new WoodSword(),
-                new Bomb(),
-                new Boomerang()
-            };
+            items = GenerateItemList();
             currentIndex = 0;
             currentItem = items[currentIndex];
             EnemySpriteFactory.Instance.LoadTextures(Content);
@@ -61,11 +48,7 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
-            testItem.Update();
-            if (currentItem != null)
-            {
-                currentItem.Update();
-            }
+            currentItem.Update();
             goriya.Update();
             base.Update(gameTime);
         }
@@ -75,15 +58,11 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // This gets rid of blurry scaling
-            https://gamedev.stackexchange.com/a/6822
+            // https://gamedev.stackexchange.com/a/6822
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            if (currentItem != null)
-            {
-                currentItem.Draw(spriteBatch);
-            }
+            currentItem.Draw(spriteBatch);
             goriya.Draw(spriteBatch);
-            testItem.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -93,25 +72,46 @@ namespace LegendOfZelda
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
-            ICommand cmd = new CreateSwordCommand(this);
-            keyBinds.Add(Keys.NumPad5, cmd);
-            keyBinds.Add(Keys.D5, cmd);
-
-            cmd = new TestCommand(this);
-            keyBinds.Add(Keys.NumPad4, cmd);
-            keyBinds.Add(Keys.D4, cmd);
-
-            cmd = new QuitCommand(this);
-            keyBinds.Add(Keys.NumPad0, cmd);
-            keyBinds.Add(Keys.D0, cmd);
-
-            cmd = new SwapItemCommand(this, "next");
+            ICommand cmd = new SwapItemCommand(this, "next");
             keyBinds.Add(Keys.I, cmd);
 
             cmd = new SwapItemCommand(this, "previous");
             keyBinds.Add(Keys.U, cmd);
 
+            cmd = new QuitCommand(this);
+            keyBinds.Add(Keys.NumPad0, cmd);
+            keyBinds.Add(Keys.D0, cmd);
+
             return keyBinds;
+        }
+
+        private static List<IItem> GenerateItemList()
+        {
+            List<IItem> list = new List<IItem>()
+            {
+                new Arrow(),
+                new BlueRupee(),
+                new Bomb(),
+                new Boomerang(),
+                new Bow(),
+                new Compass(),
+                new Fairy(),
+                new Heart(),
+                new HeartContainer(),
+                new Key(),
+                new Map(),
+                new Rupee(),
+                new TriforceShard(),
+                new WoodSword(),
+            };
+
+            foreach (IItem i in list)
+            {
+                i.X = 100;
+                i.Y = 100;
+            }
+
+            return list;
         }
     }
 }
