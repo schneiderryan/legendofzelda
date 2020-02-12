@@ -65,6 +65,7 @@ namespace LegendOfZelda
             list.Add(new RFWallmaster());
             list.Add(aquamentus);
             maxEnemy = list.Count-1;
+            this.link = new RedLink(this);
             Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
             keyboarda = new EnemyKeyboardController(this, binds);
@@ -76,17 +77,12 @@ namespace LegendOfZelda
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
             EnemySpriteFactory.Instance.LoadTextures(Content);
 
-            this.link = new RedLink(this);
-
-            Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
-            keyboard = new SinglePressKeyboardController(binds);
-   
             keyboardb = new SinglePressKeyboardController(binds);
 
             items = GenerateItemList();
             currentIndex = 0;
             currentItem = items[currentIndex];
-            this.goriya = new Goriya();
+            //this.goriya = new Goriya();
         }
 
         protected override void Update(GameTime gameTime)
