@@ -14,8 +14,10 @@ namespace LegendOfZelda
         public List<IItem> items;
         public IItem currentItem;
         public int currentIndex;
+        public List<IProjectile> projectiles;
 
         IEnemy goriya;
+        public IPlayer link;
 
         public LegendOfZelda()
         {
@@ -34,6 +36,8 @@ namespace LegendOfZelda
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content);
+            PlayerSpriteFactory.Instance.LoadTextures(Content);
+            ProjectileSpriteFactory.Instance.LoadTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             keyboard = new SinglePressKeyboardController(binds);
@@ -43,13 +47,18 @@ namespace LegendOfZelda
             currentItem = items[currentIndex];
             EnemySpriteFactory.Instance.LoadTextures(Content);
             this.goriya = new Goriya();
+            this.link = new RedLink(this);
         }
 
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
-            currentItem.Update();
+            foreach(IProjectile projectile in projectiles)
+            {
+                projectile.Update();
+            }
             goriya.Update();
+            link.Update();
             base.Update(gameTime);
         }
 
@@ -62,7 +71,14 @@ namespace LegendOfZelda
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentItem.Draw(spriteBatch);
+            background.Draw(spriteBatch);
+            Sprite.Draw(spriteBatch, Color.White);
+            foreach (IProjectile projectile in projectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
             goriya.Draw(spriteBatch);
+            link.Draw(spriteBatch, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

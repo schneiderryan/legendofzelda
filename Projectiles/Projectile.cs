@@ -36,7 +36,7 @@ namespace LegendOfZelda
 
         public virtual void Draw(SpriteBatch sb)
         {
-            sprite.Draw(sb);
+            sprite.Draw(sb, Color.White);
         }
     }
 }
