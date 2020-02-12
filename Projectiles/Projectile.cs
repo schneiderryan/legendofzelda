@@ -5,9 +5,18 @@ namespace LegendOfZelda
 {
     public class Projectile : IProjectile
     {
-        protected Vector2 vel;
-        public Vector2 pos;
-        protected ISprite sprite;
+        private Vector2 vel;
+        private Vector2 pos;
+        private ISprite sprite;
+
+        public int X
+        {
+            get { return (int) pos.X; }
+        }
+        public int Y
+        {
+            get { return (int) pos.Y; }
+        }
 
         public Projectile(ISprite sprite, Vector2 position,
                 Vector2 velocity)
@@ -22,6 +31,7 @@ namespace LegendOfZelda
             pos.X += vel.X;
             pos.Y += vel.Y;
             sprite.Position = new Point((int) pos.X, (int) pos.Y);
+            sprite.Update();
         }
 
         public virtual void Draw(SpriteBatch sb)

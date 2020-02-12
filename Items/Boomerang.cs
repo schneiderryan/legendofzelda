@@ -1,11 +1,16 @@
-﻿
+﻿using Microsoft.Xna.Framework;
+
 namespace LegendOfZelda
 {
-    public class Boomerang : Item
+    public class Boomerang : ProjectileItem
     {
         public Boomerang()
         {
-            sprite = ItemSpriteFactory.GetBoomerang();
+            rightSprite = ItemSpriteFactory.GetBoomerang();
+            upSprite = ItemSpriteFactory.GetBoomerang();
+            sprite = upSprite;
+            State = ProjectileState.OnGround;
+            initialVelocity = 4f;
         }
     }
 }

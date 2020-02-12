@@ -5,9 +5,7 @@ namespace LegendOfZelda
 {
     public class Sprite : ISprite
     {
-        private Texture2D texture;
-        private float scale;
-        private Point size;
+        private readonly Texture2D texture;
 
         protected Rectangle sourceRect;
 
@@ -15,29 +13,27 @@ namespace LegendOfZelda
 
         public Point Position { get; set; }
 
-        public float Scale
-        {
-            get { return scale; }
-            set
-            {
-                scale = value;
-                size = new Point((int)(value * sourceRect.Width),
-                    (int)(value * sourceRect.Height));
-            }
-        }
+        public float Scale { get; set; }
 
         public Sprite(Texture2D texture, Rectangle sourecRect)
         {
             this.texture = texture;
             this.sourceRect = sourecRect;
-            Scale = 1.0f;
+            Scale = 2.0f;
             Position = new Point();
+            Effects = SpriteEffects.None;
         }
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {
-            Rectangle outRect = new Rectangle(Position, size);
-            sb.Draw(texture, outRect, sourceRect, color);
+            Vector2 pos = new Vector2(Position.X, Position.Y);
+            sb.Draw(texture, pos, sourceRect, color,
+                0, new Vector2(), Scale, Effects, 0);
+        }
+
+        public virtual void Draw(SpriteBatch sb)
+        {
+            this.Draw(sb, Color.White);
         }
 
         public virtual void Update() { /* no code needed */ }

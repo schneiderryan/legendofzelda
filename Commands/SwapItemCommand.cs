@@ -10,7 +10,6 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game1;
         private String swapDirection;
-        private int index;
 
         public SwapItemCommand(LegendOfZelda game1, String direction)
         {

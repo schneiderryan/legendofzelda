@@ -10,5 +10,6 @@ namespace LegendOfZelda
         float Scale { get; set; }
         void Update();
         void Draw(SpriteBatch sb, Color color);
+        void Draw(SpriteBatch sb);
     }
 }
