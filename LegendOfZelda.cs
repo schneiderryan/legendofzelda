@@ -30,6 +30,7 @@ namespace LegendOfZelda
         {
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
+            projectiles = new List<IProjectile>();
         }
 
         protected override void LoadContent()
@@ -53,6 +54,7 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
+            currentItem.Update();
             foreach(IProjectile projectile in projectiles)
             {
                 projectile.Update();
