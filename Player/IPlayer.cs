@@ -9,6 +9,9 @@ namespace LegendOfZelda
 {
     public interface IPlayer
     {
+        string direction { get; set; }
+        int xPos { get; set; }
+        int yPos { get; set; }
         void MoveLeft();
         void MoveRight();
         void MoveUp();
@@ -17,9 +20,7 @@ namespace LegendOfZelda
         void BeStill();
         void TakeDamage();
         void Update();
-        void UseItem1();
-        void UseItem2();
-        void UseItem3();
+        void UseItem(IProjectile item);
         void Draw(SpriteBatch sb, Color color);
     }
 }

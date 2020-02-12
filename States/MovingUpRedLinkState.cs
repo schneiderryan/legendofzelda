@@ -12,6 +12,7 @@ namespace LegendOfZelda
         public MovingUpRedLinkState(RedLink link)
         {
             this.link = link;
+            this.link.direction = "up";
         }
 
         public void MoveUp()
@@ -45,11 +46,6 @@ namespace LegendOfZelda
             link.state = new AttackingUpRedLinkState(link);
             link.sprite = PlayerSpriteFactory.Instance.CreateRedUpAttackingLinkSprite();
             link.sprite.Scale = 2.0f;
-        }
-
-        public void UseItem1()
-        {
-            link.game.projectiles.Add(new Projectile(ProjectileSpriteFactory.Instance.CreateRedUpArrow(), new Vector2(link.xPos, link.yPos), new Vector2(0, -7)));
         }
 
         public void BeStill()
