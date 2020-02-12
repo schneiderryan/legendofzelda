@@ -1,15 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using LegendOfZelda;
 using System;
-
+using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
 
-	public class Goriya : IEnemy
+	public class Keese : IEnemy
 	{
 		private Random randomStep = new Random();
-		public IGoriyaState state;
+		public IKeeseState state;
 		public ISprite sprite;
 		private KeyboardController keyboard;
 		private RandomEnemyController random;
@@ -21,17 +23,17 @@ namespace LegendOfZelda
 		int IEnemy.currentStep { get ; set ; }
 		int IEnemy.changeDirection { get; set; }
 
-		public Goriya()
+		public Keese()
 		{
 
-			sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
+			sprite = EnemySpriteFactory.Instance.CreateUpMovingKeeseSprite();
 			xPos = 400;
 			yPos = 200;
 			sprite.Position = new Point(xPos, yPos);
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);
-			state = new RightMovingGoriyaState(this);
+			state = new DownMovingKeeseState(this);
 		}
 
 		public void ChangeDirection()
@@ -79,7 +81,7 @@ namespace LegendOfZelda
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			sprite.Draw(spriteBatch, Color.White);
+			sprite.Draw(spriteBatch);
 		}
 
 		

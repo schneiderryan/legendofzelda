@@ -18,13 +18,13 @@ namespace LegendOfZelda
 
 		public void ChangeDirection()
 		{
-			//goriya.state = new RightMovingGoriyaState(goriya);
+			//trap.state = new RightMovingGoriyaState(trap);
 			//add up and down directions based on a random number
 		}
 
 		public void BeKilled()
 		{
-			//goriya.state = new KilledEnemyState(goriya);
+			//trap.state = new KilledEnemyState(trap);
 		}
 
 		public void MoveUp()
@@ -40,20 +40,25 @@ namespace LegendOfZelda
 
 		public void MoveRight()
 		{
-			//goriya.state = new MovingRightGoriyaState(link);
-			//goriya.sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
+			goriya.state = new RightMovingGoriyaState(goriya);
+			goriya.sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
 		}
 
 
 		public void MoveLeft()
 		{
-			//goriya.state = new MovingLeftGoriyaState(link);
-			//goriya.sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
+			goriya.state = new LeftMovingGoriyaState(goriya);
+			goriya.sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
 		}
 
 		public void Update()
 		{
-
+			goriya.yPos += 1;
+			if (goriya.yPos > 480)
+			{
+				goriya.yPos -= 480;
+			}
+			goriya.sprite.Position = new Point(goriya.xPos, goriya.yPos);
 		}
 
 

@@ -9,15 +9,26 @@ namespace LegendOfZelda
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        IController keyboard;
 
+        IController keyboarda;
+        IController keyboardb;
+        IController keyboardc;
+        public List<IEnemy> list;
+        public int index;
+        public int maxEnemy;
+        public Texture2D EnemySpriteSheet { get; set; }
+        public ISprite Sprite { get; set; }
+        public IEnemy enemy;
+        public Aquamentus aquamentus;
+   
         public List<IItem> items;
         public IItem currentItem;
         public int currentIndex;
         public List<IProjectile> projectiles;
 
-        IEnemy goriya;
         public IPlayer link;
+
+
 
         public LegendOfZelda()
         {
@@ -31,11 +42,35 @@ namespace LegendOfZelda
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
             projectiles = new List<IProjectile>();
+
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            EnemySpriteFactory.Instance.LoadTextures(Content);
+            EnemySpriteSheet = Content.Load<Texture2D>("loz_enemy_sheet");
+            list = new List<IEnemy>();
+            index = 0;
+            
+            enemy = new Gel();
+            aquamentus = new Aquamentus();
+    
+            list.Add(enemy);
+            list.Add(new Goriya());
+            list.Add(new Keese());
+            list.Add(new Stalfo());
+            list.Add(new Trap());
+            list.Add(new LFWallmaster());
+            list.Add(new RFWallmaster());
+            list.Add(aquamentus);
+            maxEnemy = list.Count-1;
+            Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
+            //binds[Keys.O].Execute();
+            keyboarda = new EnemyKeyboardController(this, binds);
+            keyboardc = new KeyboardController(binds);
+
+
             Textures.LoadAllTextures(Content);
             PlayerSpriteFactory.Instance.LoadTextures(Content);
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
@@ -54,14 +89,20 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
-            keyboard.Update();
+            keyboarda.Update();
+            keyboardb.Update();
+            keyboardc.Update();
+
+            enemy.Update();
+
             currentItem.Update();
             foreach(IProjectile projectile in projectiles)
             {
                 projectile.Update();
             }
-            goriya.Update();
+           
             link.Update();
+
             base.Update(gameTime);
         }
 
@@ -69,8 +110,18 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // This gets rid of blurry scaling
-            // https://gamedev.stackexchange.com/a/6822
+           
+            spriteBatch.Begin();
+            enemy.Draw(spriteBatch);
+            if(enemy == aquamentus)
+            {
+                aquamentus.Draw(spriteBatch);
+            }
+            
+ 
+            spriteBatch.End();
+            
+
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentItem.Draw(spriteBatch);
@@ -78,9 +129,10 @@ namespace LegendOfZelda
             {
                 projectile.Draw(spriteBatch);
             }
-            goriya.Draw(spriteBatch);
+            
             link.Draw(spriteBatch, Color.White);
             spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
@@ -89,7 +141,15 @@ namespace LegendOfZelda
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
-            ICommand cmd = new SwapItemCommand(this, "next");
+            
+            ICommand cmd = new EnemyMoveUpCommand(enemy);
+            keyBinds.Add(Keys.O, cmd);
+
+            cmd = new EnemyMoveUpCommand(enemy);
+            keyBinds.Add(Keys.P, cmd);
+
+            
+             cmd = new SwapItemCommand(this, "next");
             keyBinds.Add(Keys.I, cmd);
 
             cmd = new SwapItemCommand(this, "previous");
@@ -140,6 +200,8 @@ namespace LegendOfZelda
             return keyBinds;
         }
 
+
+
         private static List<IItem> GenerateItemList()
         {
             List<IItem> list = new List<IItem>()
@@ -168,5 +230,6 @@ namespace LegendOfZelda
 
             return list;
         }
+
     }
 }
