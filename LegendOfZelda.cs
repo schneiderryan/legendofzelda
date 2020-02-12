@@ -92,7 +92,7 @@ namespace LegendOfZelda
             enemy.Update();
 
             currentItem.Update();
-            foreach(IEnemyProjectile projectile in projectiles)
+            foreach(IProjectile projectile in projectiles)
             {
                 projectile.Update();
             }
