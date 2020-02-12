@@ -23,8 +23,8 @@ namespace LegendOfZelda
 		public IProjectile fireball2;
 		private RandomEnemyController random;
 		protected const float VELOCITY = -8f;
-		protected const float VELOCITYYUP = 2f;
-		protected const float VELOCITYYDOWN = -2f;
+		protected const float VELOCITYYUP = -2f;
+		protected const float VELOCITYYDOWN = 2f;
 
 
 
