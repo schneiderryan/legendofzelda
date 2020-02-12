@@ -142,7 +142,7 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.P, cmd);
 
             
-             cmd = new SwapItemCommand(this, "next");
+            cmd = new SwapItemCommand(this, "next");
             keyBinds.Add(Keys.I, cmd);
 
             cmd = new SwapItemCommand(this, "previous");
