@@ -15,6 +15,7 @@ namespace LegendOfZelda
         public ILinkState state;
         public int xPos;
         public int yPos;
+        private int item1Timer;
 
         public GreenLink(LegendOfZelda game)
         {
@@ -26,6 +27,7 @@ namespace LegendOfZelda
             this.keyboard = new KeyboardController(generateDictionary());
             this.state = new StillUpLinkState(this);
             this.game = game;
+            this.item1Timer = 0;
         }
 
         public void MoveLeft()
@@ -68,6 +70,10 @@ namespace LegendOfZelda
             keyboard.Update();
             state.Update();
             sprite.Update();
+            if(item1Timer > 0)
+            {
+                item1Timer--;
+            }
         }
 
         public void Draw(SpriteBatch sb, Color color)
@@ -77,7 +83,11 @@ namespace LegendOfZelda
 
         public void UseItem1()
         {
-            //Implement item 1
+            if(item1Timer == 0)
+            {
+                item1Timer = 75;
+                state.UseItem1();
+            }
         }
 
         public void UseItem2()

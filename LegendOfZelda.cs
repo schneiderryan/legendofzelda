@@ -16,6 +16,7 @@ namespace LegendOfZelda
         public List<IItem> items;
         public IItem currentItem;
         public int currentIndex;
+        public List<IProjectile> projectiles;
 
 
         public IItem Arrow { get; set; }
@@ -46,6 +47,7 @@ namespace LegendOfZelda
                     this.GraphicsDevice);
             Textures.LoadAllTextures(Content);
             PlayerSpriteFactory.Instance.LoadTextures(Content);
+            ProjectileSpriteFactory.Instance.LoadTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.D1].Execute(); 
@@ -60,11 +62,12 @@ namespace LegendOfZelda
                 new Bomb(),
                 new Boomerang()
             };
+            projectiles = new List<IProjectile>();
             currentIndex = 0;
             currentItem = items[currentIndex];
             EnemySpriteFactory.Instance.LoadTextures(Content);
             this.goriya = new Goriya();
-            this.link = new GreenLink(this);
+            this.link = new RedLink(this);
         }
 
         protected override void Update(GameTime gameTime)
@@ -75,6 +78,10 @@ namespace LegendOfZelda
             if (currentItem != null)
             {
                 currentItem.Update();
+            }
+            foreach(IProjectile projectile in projectiles)
+            {
+                projectile.Update();
             }
             goriya.Update();
             link.Update();
@@ -94,6 +101,10 @@ namespace LegendOfZelda
             if (currentItem != null)
             {
                 currentItem.Draw(spriteBatch);
+            }
+            foreach (IProjectile projectile in projectiles)
+            {
+                projectile.Draw(spriteBatch);
             }
             goriya.Draw(spriteBatch);
             link.Draw(spriteBatch, Color.White);

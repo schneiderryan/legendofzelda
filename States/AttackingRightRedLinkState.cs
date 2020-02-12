@@ -46,6 +46,11 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void UseItem1()
+        {
+            link.game.projectiles.Add(new Projectile(ProjectileSpriteFactory.Instance.CreateRightArrow(), new Vector2(link.xPos, link.yPos), new Vector2(3, 0)));
+        }
+
         public void BeStill()
         {
             link.state = new StillRightRedLinkState(link);
