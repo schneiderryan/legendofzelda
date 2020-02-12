@@ -12,6 +12,7 @@
 
 
 #---------------------------------- Content ---------------------------------#
+
 #begin DamagedLink.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -23,6 +24,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:DamagedLink.png
+
 #begin items_mod.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -34,6 +36,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:items_mod.png
+
+#begin link.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:link.png
 
 #begin loz_enemy_sheet.png
 /importer:TextureImporter

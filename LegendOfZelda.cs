@@ -38,6 +38,7 @@ namespace LegendOfZelda
             Textures.LoadAllTextures(Content);
             PlayerSpriteFactory.Instance.LoadTextures(Content);
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
+            EnemySpriteFactory.Instance.LoadTextures(Content);
 
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             keyboard = new SinglePressKeyboardController(binds);
@@ -45,7 +46,6 @@ namespace LegendOfZelda
             items = GenerateItemList();
             currentIndex = 0;
             currentItem = items[currentIndex];
-            EnemySpriteFactory.Instance.LoadTextures(Content);
             this.goriya = new Goriya();
             this.link = new RedLink(this);
         }
@@ -71,8 +71,6 @@ namespace LegendOfZelda
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentItem.Draw(spriteBatch);
-            background.Draw(spriteBatch);
-            Sprite.Draw(spriteBatch, Color.White);
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);

@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     public class Sprite : ISprite
     {
-        private Texture2D texture;
+        private readonly Texture2D texture;
 
         protected Rectangle sourceRect;
 
@@ -29,6 +29,11 @@ namespace LegendOfZelda
             Vector2 pos = new Vector2(Position.X, Position.Y);
             sb.Draw(texture, pos, sourceRect, color,
                 0, new Vector2(), Scale, Effects, 0);
+        }
+
+        public virtual void Draw(SpriteBatch sb)
+        {
+            this.Draw(sb, Color.White);
         }
 
         public virtual void Update() { /* no code needed */ }

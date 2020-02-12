@@ -29,7 +29,7 @@ namespace LegendOfZelda
 
         public virtual void Draw(SpriteBatch sb)
         {
-            sprite.Draw(sb, Color.White);
+            sprite.Draw(sb);
         }
 
         public virtual void Update()
