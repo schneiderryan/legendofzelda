@@ -12,6 +12,7 @@ namespace LegendOfZelda
         public StillRightRedLinkState(RedLink link)
         {
             this.link = link;
+            this.link.direction = "right";
         }
 
         public void MoveUp()
@@ -47,11 +48,6 @@ namespace LegendOfZelda
             link.state = new AttackingRightRedLinkState(link);
             link.sprite = PlayerSpriteFactory.Instance.CreateRedRightAttackingLinkSprite();
             link.sprite.Scale = 2.0f;
-        }
-
-        public void UseItem(ProjectileItem item)
-        {
-            item.ThrowRight(new Vector2(8, 0));
         }
 
         public void BeStill()

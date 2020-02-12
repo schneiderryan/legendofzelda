@@ -11,6 +11,7 @@ namespace LegendOfZelda
         public AttackingLeftRedLinkState(RedLink link)
         {
             this.link = link;
+            this.link.direction = "left";
         }
 
         public void MoveUp()
@@ -44,11 +45,6 @@ namespace LegendOfZelda
         public void Attack()
         {
             //Nothing to do
-        }
-
-        public void UseItem(ProjectileItem item)
-        {
-            item.ThrowLeft(new Vector2(-8, 0));
         }
 
         public void BeStill()

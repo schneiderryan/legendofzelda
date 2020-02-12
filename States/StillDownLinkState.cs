@@ -12,6 +12,7 @@ namespace LegendOfZelda
         public StillDownLinkState(GreenLink link)
         {
             this.link = link;
+            this.link.direction = "down";
         }
 
         public void MoveUp()
@@ -47,11 +48,6 @@ namespace LegendOfZelda
             link.state = new AttackingDownLinkState(link);
             link.sprite = PlayerSpriteFactory.Instance.CreateDownAttackingLinkSprite();
             link.sprite.Scale = 2.0f;
-        }
-
-        public void UseItem(ProjectileItem item)
-        {
-            item.ThrowDown(new Vector2(0, 8));
         }
 
         public void BeStill()

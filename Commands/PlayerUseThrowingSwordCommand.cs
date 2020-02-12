@@ -15,7 +15,7 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            player.UseItem(new WoodSword());
+            //player.UseItem(new WoodSword());
         }
     }
 }

@@ -24,7 +24,7 @@ namespace LegendOfZelda
         public List<IItem> items;
         public IItem currentItem;
         public int currentIndex;
-        public List<ProjectileItem> projectiles;
+        public List<IProjectile> projectiles;
 
         public IPlayer link;
 
@@ -41,7 +41,7 @@ namespace LegendOfZelda
         {
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
-            projectiles = new List<ProjectileItem>();
+            projectiles = new List<IProjectile>();
 
         }
 
@@ -94,7 +94,7 @@ namespace LegendOfZelda
             enemy.Update();
 
             currentItem.Update();
-            foreach(ProjectileItem projectile in projectiles)
+            foreach(IProjectile projectile in projectiles)
             {
                 projectile.Update();
             }
@@ -117,7 +117,7 @@ namespace LegendOfZelda
             }
 
             currentItem.Draw(spriteBatch);
-            foreach (ProjectileItem projectile in projectiles)
+            foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
             }

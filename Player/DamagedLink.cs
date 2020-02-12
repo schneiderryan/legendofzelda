@@ -11,11 +11,34 @@ namespace LegendOfZelda
         LegendOfZelda game;
         IPlayer decoratedLink;
         int timer = 192; // to give about 3 seconds
+        private int x;
+        private int y;
+        private String d;
+        private int itemTimer;
+
+        public int xPos
+        {
+            get { return x; }
+            set { x = value; }
+        }
+
+        public int yPos
+        {
+            get { return y; }
+            set { y = value; }
+        }
+
+        public String direction
+        {
+            get { return d; }
+            set { d = value; }
+        }
 
         public DamagedLink (IPlayer decoratedLink, LegendOfZelda game)
         {
             this.decoratedLink = decoratedLink;
             this.game = game;
+            this.itemTimer = 0;
         }
 
         public void Attack()
@@ -87,11 +110,19 @@ namespace LegendOfZelda
                 RemoveDecorator();
             }
             decoratedLink.Update();
+            if (itemTimer > 0)
+            {
+                itemTimer--;
+            }
         }
 
-        public void UseItem(ProjectileItem item)
+        public void UseItem(IProjectile item)
         {
-            decoratedLink.UseItem(item);
+            if (itemTimer == 0)
+            {
+                itemTimer = 75;
+                game.projectiles.Add(item);
+            }
         }
 
         public void RemoveDecorator()

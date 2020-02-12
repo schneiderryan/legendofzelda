@@ -12,20 +12,40 @@ namespace LegendOfZelda
         public LegendOfZelda game;
         public ISprite sprite;
         public ILinkState state;
-        public int xPos;
-        public int yPos;
-        private int item1Timer;
+        private int itemTimer;
+        private int x;
+        private int y;
+        private String d;
+
+        public int xPos
+        {
+            get { return x; }
+            set { x = value; }
+        }
+
+        public int yPos
+        {
+            get { return y; }
+            set { y = value; }
+        }
+
+        public String direction
+        {
+            get { return d; }
+            set { d = value; }
+        }
 
         public RedLink(LegendOfZelda game)
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
+            this.direction = "up";
             this.sprite.Scale = 2.0f;
             this.xPos = 400;
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
             this.state = new StillUpRedLinkState(this);
             this.game = game;
-            this.item1Timer = 0;
+            this.itemTimer = 0;
         }
 
         public void MoveLeft()
@@ -62,9 +82,9 @@ namespace LegendOfZelda
         {
             state.Update();
             sprite.Update();
-            if(item1Timer > 0)
+            if(itemTimer > 0)
             {
-                item1Timer--;
+                itemTimer--;
             }
         }
 
@@ -73,12 +93,12 @@ namespace LegendOfZelda
             sprite.Draw(sb, color);
         }
 
-        public void UseItem(ProjectileItem item)
+        public void UseItem(IProjectile item)
         {
-            if (item1Timer == 0)
+            if (itemTimer == 0)
             {
-                item1Timer = 75;
-                state.UseItem(item);
+                itemTimer = 75;
+                game.projectiles.Add(item);
             }
         }
 
