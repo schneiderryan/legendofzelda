@@ -6,56 +6,28 @@ namespace LegendOfZelda
     public class KeyboardController : IController
     {
         private Dictionary<Keys, ICommand> keyBinds;
-        private LegendOfZelda game;
-        private int speed;
 
-        public KeyboardController(LegendOfZelda game1, Dictionary<Keys, ICommand> keyBinds)
+        public KeyboardController(Dictionary<Keys, ICommand> keyBinds)
         {
             this.keyBinds = keyBinds;
-            this.game = game1;
-            this.speed = 0;
         }
 
         public void Update()
         {
-            speed++;
-            if(speed % 5 == 0)
+            Keys[] keys = Keyboard.GetState().GetPressedKeys();
+            ICommand a;
+            foreach (Keys k in keys)
             {
-                Keys[] keys = Keyboard.GetState().GetPressedKeys();
-                foreach (Keys k in keys)
+                if (keyBinds.TryGetValue(k, out a))
                 {
-                    ICommand a;
-
-                    if (keyBinds.TryGetValue(k, out a))
-                    {
-                        if (Keyboard.GetState().IsKeyDown(Keys.O))
-                        {
-                            if (game.index == 0)
-                            {
-                                game.index = game.maxEnemy;
-                            }
-                            else
-                            {
-                                game.index--;
-                            }
-
-                        }
-                        else if (k == Keys.P)
-                        {
-                            if (game.index == game.maxEnemy)
-                            {
-                                game.index = 0;
-                            }
-                            else
-                            {
-                                game.index++;
-                            }
-
-                        }
-                        game.enemy = game.list[game.index];
-                        a.Execute();
-                    }
-            
+                    a.Execute();
+                }
+            }
+            if (keys.Length == 0)
+            {
+                if (keyBinds.TryGetValue(Keys.None, out a))
+                {
+                    a.Execute();
                 }
             }
         }

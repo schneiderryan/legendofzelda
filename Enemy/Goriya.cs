@@ -79,7 +79,7 @@ namespace LegendOfZelda
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			sprite.Draw(spriteBatch);
+			sprite.Draw(spriteBatch, Color.White);
 		}
 
 		

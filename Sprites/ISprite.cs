@@ -8,7 +8,8 @@ namespace LegendOfZelda
         SpriteEffects Effects { get; set; }
         Point Position { get; set; }
         float Scale { get; set; }
-        void Draw(SpriteBatch sb);
         void Update();
+        void Draw(SpriteBatch sb, Color color);
+        void Draw(SpriteBatch sb);
     }
 }
