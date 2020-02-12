@@ -41,6 +41,8 @@ namespace LegendOfZelda
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
             EnemySpriteFactory.Instance.LoadTextures(Content);
 
+            this.link = new RedLink(this);
+
             Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
             keyboard = new SinglePressKeyboardController(binds);
 
@@ -48,7 +50,6 @@ namespace LegendOfZelda
             currentIndex = 0;
             currentItem = items[currentIndex];
             this.goriya = new Goriya();
-            this.link = new RedLink(this);
         }
 
         protected override void Update(GameTime gameTime)
@@ -97,6 +98,44 @@ namespace LegendOfZelda
             cmd = new QuitCommand(this);
             keyBinds.Add(Keys.NumPad0, cmd);
             keyBinds.Add(Keys.D0, cmd);
+
+            cmd = new PlayerMoveLeftCommand(this.link);
+            keyBinds.Add(Keys.Left, cmd);
+            keyBinds.Add(Keys.A, cmd);
+
+            cmd = new PlayerMoveRightCommand(this.link);
+            keyBinds.Add(Keys.Right, cmd);
+            keyBinds.Add(Keys.D, cmd);
+
+            cmd = new PlayerMoveUpCommand(this.link);
+            keyBinds.Add(Keys.Up, cmd);
+            keyBinds.Add(Keys.W, cmd);
+
+            cmd = new PlayerMoveDownCommand(this.link);
+            keyBinds.Add(Keys.Down, cmd);
+            keyBinds.Add(Keys.S, cmd);
+
+            cmd = new PlayerDamagedCommand(this.link);
+            keyBinds.Add(Keys.E, cmd);
+
+            cmd = new PlayerAttackCommand(this.link);
+            keyBinds.Add(Keys.Z, cmd);
+            keyBinds.Add(Keys.N, cmd);
+
+            cmd = new PlayerUseItem1Command(this.link);
+            keyBinds.Add(Keys.D1, cmd);
+            keyBinds.Add(Keys.NumPad1, cmd);
+
+            cmd = new PlayerUseItem2Command(this.link);
+            keyBinds.Add(Keys.D2, cmd);
+            keyBinds.Add(Keys.NumPad2, cmd);
+
+            cmd = new PlayerUseItem3Command(this.link);
+            keyBinds.Add(Keys.D3, cmd);
+            keyBinds.Add(Keys.NumPad3, cmd);
+
+            cmd = new PlayerStillCommand(this.link);
+            keyBinds.Add(Keys.None, cmd);
 
             return keyBinds;
         }
