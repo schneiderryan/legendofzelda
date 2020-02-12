@@ -12,6 +12,7 @@ namespace LegendOfZelda
 
         IController keyboarda;
         IController keyboardb;
+        IController keyboardc;
         public List<IEnemy> list;
         public int index;
         public int maxEnemy;
@@ -66,8 +67,9 @@ namespace LegendOfZelda
             maxEnemy = list.Count-1;
             Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
-            keyboarda = new KeyboardController(binds);
-        
+            keyboarda = new EnemyKeyboardController(this, binds);
+            keyboardc = new KeyboardController(binds);
+
 
             Textures.LoadAllTextures(Content);
             PlayerSpriteFactory.Instance.LoadTextures(Content);
@@ -88,6 +90,7 @@ namespace LegendOfZelda
         {
             keyboarda.Update();
             keyboardb.Update();
+            keyboardc.Update();
 
             enemy.Update();
 
