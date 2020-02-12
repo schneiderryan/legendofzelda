@@ -6,7 +6,7 @@ namespace LegendOfZelda
     public class Projectile : IProjectile
     {
         protected Vector2 vel;
-        protected Vector2 pos;
+        public Vector2 pos;
         protected ISprite sprite;
 
         public Projectile(ISprite sprite, Vector2 position,
