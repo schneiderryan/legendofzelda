@@ -46,5 +46,25 @@ namespace LegendOfZelda
         {
             return new Sprite(projectileSpriteSheet, new Rectangle(185, 196, 6, 17));
         }
+
+        public ISprite CreateRedLeftArrow()
+        {
+            return new Sprite(projectileSpriteSheet, new Rectangle(150, 229, 17, 6));
+        }
+
+        public ISprite CreateRedDownArrow()
+        {
+            return new Sprite(projectileSpriteSheet, new Rectangle(124, 224, 6, 17));
+        }
+
+        public ISprite CreateRedRightArrow()
+        {
+            return new Sprite(projectileSpriteSheet, new Rectangle(210, 229, 17, 6));
+        }
+
+        public ISprite CreateRedUpArrow()
+        {
+            return new Sprite(projectileSpriteSheet, new Rectangle(185, 224, 6, 17));
+        }
     }
 }
