@@ -15,7 +15,7 @@ namespace LegendOfZelda
         private int y;
         private String d;
         private int itemTimer;
-
+        private String c;
         public int xPos
         {
             get { return x; }
@@ -32,6 +32,12 @@ namespace LegendOfZelda
         {
             get { return d; }
             set { d = value; }
+        }
+
+        public String color
+        {
+            get { return c; }
+            set { c = value; }
         }
 
         public DamagedLink (IPlayer decoratedLink, LegendOfZelda game)

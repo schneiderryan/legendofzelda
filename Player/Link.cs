@@ -16,6 +16,7 @@ namespace LegendOfZelda
         private int x;
         private int y;
         private String d;
+        private String c;
 
         public int xPos
         {
@@ -35,10 +36,17 @@ namespace LegendOfZelda
             set { d = value; }
         }
 
+        public String color
+        {
+            get { return c; }
+            set { c = value; }
+        }
+
         public GreenLink(LegendOfZelda game)
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
-            this.direction = "up";
+            this.d = "up";
+            this.c = "green";
             this.sprite.Scale = 2.0f;
             this.xPos = 400;
             this.yPos = 200;

@@ -23,29 +23,56 @@ namespace LegendOfZelda
             get { return (int) yPos; }
         }
 
-        public ArrowProjectile(String direction, int xPos, int yPos, int velocity)
+        public ArrowProjectile(String direction, String color, int xPos, int yPos, int velocity)
         {
             if(direction == "up")
             {
-                this.sprite = ProjectileSpriteFactory.Instance.CreateRedUpArrow();
+                if (color == "green")
+                {
+                    this.sprite = ProjectileSpriteFactory.Instance.CreateUpArrow();
+                } else if(color == "red")
+                {
+                    this.sprite = ProjectileSpriteFactory.Instance.CreateRedUpArrow();
+                }
                 this.xVel = 0;
                 this.yVel = -velocity;
             } 
             else if(direction == "down")
             {
-                this.sprite = ProjectileSpriteFactory.Instance.CreateRedDownArrow();
+                if (color == "green")
+                {
+                    this.sprite = ProjectileSpriteFactory.Instance.CreateDownArrow();
+                }
+                else if (color == "red")
+                {
+                    this.sprite = ProjectileSpriteFactory.Instance.CreateRedDownArrow();
+                }
                 this.xVel = 0;
                 this.yVel = velocity;
             } 
             else if(direction == "right")
             {
-                this.sprite = ProjectileSpriteFactory.Instance.CreateRedRightArrow();
+                if (color == "green")
+                {
+                    this.sprite = ProjectileSpriteFactory.Instance.CreateRightArrow();
+                }
+                else if (color == "red")
+                {
+                    this.sprite = ProjectileSpriteFactory.Instance.CreateRedRightArrow();
+                }
                 this.xVel = velocity;
                 this.yVel = 0;
             } 
             else if(direction == "left")
             {
-                this.sprite = ProjectileSpriteFactory.Instance.CreateRedLeftArrow();
+                if (color == "green")
+                {
+                    this.sprite = ProjectileSpriteFactory.Instance.CreateLeftArrow();
+                }
+                else if (color == "red")
+                {
+                    this.sprite = ProjectileSpriteFactory.Instance.CreateRedLeftArrow();
+                }
                 this.xVel = -velocity;
                 this.yVel = 0;
             }
