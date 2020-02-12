@@ -116,11 +116,6 @@ namespace LegendOfZelda
                 aquamentus.Draw(spriteBatch);
             }
             
- 
-            spriteBatch.End();
-            
-
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentItem.Draw(spriteBatch);
             foreach (IProjectile projectile in projectiles)
