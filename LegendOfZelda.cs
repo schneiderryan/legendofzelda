@@ -66,7 +66,7 @@ namespace LegendOfZelda
             list.Add(new RFWallmaster());
             list.Add(aquamentus);
             maxEnemy = list.Count-1;
-            this.link = new GreenLink(this);
+            this.link = new RedLink(this);
             Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
             keyboarda = new EnemyKeyboardController(this, binds);

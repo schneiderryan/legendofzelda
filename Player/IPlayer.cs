@@ -10,6 +10,7 @@ namespace LegendOfZelda
     public interface IPlayer
     {
         string direction { get; set; }
+        string color { get; set; }
         int xPos { get; set; }
         int yPos { get; set; }
         void MoveLeft();
