@@ -50,6 +50,7 @@ namespace LegendOfZelda
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EnemySpriteFactory.Instance.LoadTextures(Content);
             EnemySpriteSheet = Content.Load<Texture2D>("loz_enemy_sheet");
+            PlayerSpriteFactory.Instance.LoadTextures(Content);
             list = new List<IEnemy>();
             index = 0;
             
@@ -73,7 +74,6 @@ namespace LegendOfZelda
 
 
             Textures.LoadAllTextures(Content);
-            PlayerSpriteFactory.Instance.LoadTextures(Content);
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
             EnemySpriteFactory.Instance.LoadTextures(Content);
 
