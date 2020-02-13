@@ -174,13 +174,13 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.Z, cmd);
             keyBinds.Add(Keys.N, cmd);
 
-            cmd = new PlayerUseArrowCommand(this.link);
-            keyBinds.Add(Keys.D2, cmd);
-            keyBinds.Add(Keys.NumPad2, cmd);
-
             cmd = new PlayerUseThrowingSwordCommand(this.link);
             keyBinds.Add(Keys.D1, cmd);
             keyBinds.Add(Keys.NumPad1, cmd);
+
+            cmd = new PlayerUseArrowCommand(this.link);
+            keyBinds.Add(Keys.D2, cmd);
+            keyBinds.Add(Keys.NumPad2, cmd);
 
             cmd = new PlayerUseBoomerangCommand(this.link);
             keyBinds.Add(Keys.D3, cmd);
