@@ -20,7 +20,7 @@ namespace LegendOfZelda
         }
         public int Y
         {
-            get { return (int) yPos; }
+            get { return yPos; }
         }
 
         public ArrowProjectile(String direction, String color, int xPos, int yPos, int velocity)
