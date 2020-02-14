@@ -6,6 +6,9 @@ namespace LegendOfZelda
 {
     class Wallet : Item
     {
+        public override void Use(IPlayer player)
+        {
 
+        }
     }
 }

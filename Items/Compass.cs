@@ -7,5 +7,10 @@ namespace LegendOfZelda
         {
             sprite = ItemSpriteFactory.GetCompass();
         }
+
+        public override void Use(IPlayer player)
+        {
+
+        }
     }
 }
