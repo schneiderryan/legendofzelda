@@ -13,7 +13,6 @@ namespace LegendOfZelda
 		private Random randomStep = new Random();
 		public IKeeseState state;
 		public ISprite sprite;
-		private KeyboardController keyboard;
 		private RandomEnemyController random;
 		public int xPos;
 		public int yPos;

@@ -8,12 +8,14 @@ namespace LegendOfZelda
         private Dictionary<Keys, ICommand> keyBinds;
         private LegendOfZelda game;
         private int speed;
+        private int index;
 
         public EnemyKeyboardController(LegendOfZelda game1, Dictionary<Keys, ICommand> keyBinds)
         {
             this.keyBinds = keyBinds;
             this.game = game1;
             this.speed = 0;
+            this.index = 0;
         }
 
         public void Update()
@@ -30,29 +32,26 @@ namespace LegendOfZelda
                     {
                         if (Keyboard.GetState().IsKeyDown(Keys.O))
                         {
-                            if (game.index == 0)
+                            if (index == 0)
                             {
-                                game.index = game.maxEnemy;
+                                index = game.enemies.Count;
                             }
                             else
                             {
-                                game.index--;
+                                index--;
                             }
-
                         }
                         else if (k == Keys.P)
                         {
-                            if (game.index == game.maxEnemy)
+                            if (index == game.enemies.Count)
                             {
-                                game.index = 0;
+                                index = 0;
                             }
                             else
                             {
-                                game.index++;
+                                index++;
                             }
-
                         }
-                        game.enemy = game.list[game.index];
                         a.Execute();
                     }
 
