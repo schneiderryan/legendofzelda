@@ -8,14 +8,12 @@ namespace LegendOfZelda
         private Dictionary<Keys, ICommand> keyBinds;
         private LegendOfZelda game;
         private int speed;
-        private int index;
 
-        public EnemyKeyboardController(LegendOfZelda game1, Dictionary<Keys, ICommand> keyBinds)
+        public EnemyKeyboardController(LegendOfZelda game, Dictionary<Keys, ICommand> keyBinds)
         {
             this.keyBinds = keyBinds;
-            this.game = game1;
+            this.game = game;
             this.speed = 0;
-            this.index = 0;
         }
 
         public void Update()
@@ -28,30 +26,31 @@ namespace LegendOfZelda
                 {
                     ICommand a;
 
+                    if (Keyboard.GetState().IsKeyDown(Keys.O))
+                    {
+                        if (game.enemyIndex == 0)
+                        {
+                            game.enemyIndex = game.enemies.Count - 1;
+                        }
+                        else
+                        {
+                            game.enemyIndex--;
+                        }
+                    }
+                    else if (k == Keys.P)
+                    {
+                        if (game.enemyIndex == game.enemies.Count - 1)
+                        {
+                            game.enemyIndex = 0;
+                        }
+                        else
+                        {
+                            game.enemyIndex++;
+                        }
+                    }
+
                     if (keyBinds.TryGetValue(k, out a))
                     {
-                        if (Keyboard.GetState().IsKeyDown(Keys.O))
-                        {
-                            if (index == 0)
-                            {
-                                index = game.enemies.Count;
-                            }
-                            else
-                            {
-                                index--;
-                            }
-                        }
-                        else if (k == Keys.P)
-                        {
-                            if (index == game.enemies.Count)
-                            {
-                                index = 0;
-                            }
-                            else
-                            {
-                                index++;
-                            }
-                        }
                         a.Execute();
                     }
 

@@ -62,7 +62,8 @@ namespace LegendOfZelda
         public static ISprite GetBoomerang()
         {
             return new Sprite(Textures.GetItemSheet(),
-                    new Rectangle(128, 2, 8, 8));
+                    new Rectangle(128, 2, 8, 8))
+            { Scale = 3f };
         }
 
         public static ISprite GetBow()
