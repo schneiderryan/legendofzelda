@@ -21,7 +21,8 @@ namespace LegendOfZelda
         void BeStill();
         void TakeDamage();
         void Update();
-        void UseItem(IProjectile item);
+        void UseItem(IItem item);
+        void UseProjectile(IProjectile item);
         void Draw(SpriteBatch sb, Color color);
     }
 }
