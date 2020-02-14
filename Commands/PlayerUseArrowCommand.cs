@@ -15,7 +15,7 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            player.UseItem(new ArrowProjectile(player.direction, player.color, player.xPos, player.yPos, 8));
+            player.UseProjectile(new ArrowProjectile(player.direction, player.color, player.xPos, player.yPos, 8));
         }
     }
 }
