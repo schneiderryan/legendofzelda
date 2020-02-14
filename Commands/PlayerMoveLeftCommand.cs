@@ -6,16 +6,16 @@ namespace LegendOfZelda
 {
     class PlayerMoveLeftCommand : ICommand
     {
-        private IPlayer player;
+        private LegendOfZelda game;
 
-        public PlayerMoveLeftCommand(IPlayer player)
+        public PlayerMoveLeftCommand(LegendOfZelda game)
         {
-            this.player = player;
+            this.game = game;
         }
 
         public void Execute()
         {
-            player.MoveLeft();
+            game.link.MoveLeft();
         }
     }
 }

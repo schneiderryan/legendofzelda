@@ -6,16 +6,16 @@ namespace LegendOfZelda
 {
     class PlayerUseBoomerangCommand : ICommand
     {
-        private IPlayer player;
+        private LegendOfZelda game;
 
-        public PlayerUseBoomerangCommand(IPlayer player)
+        public PlayerUseBoomerangCommand(LegendOfZelda game)
         {
-            this.player = player;
+            this.game = game;
         }
 
         public void Execute()
         {
-            player.UseProjectile(new BoomerangProjectile(player.direction, player.xPos, player.yPos));
+            game.link.UseProjectile(new BoomerangProjectile(game.link.direction, game.link.xPos, game.link.yPos));
         }
     }
 }
