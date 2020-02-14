@@ -32,7 +32,7 @@ namespace LegendOfZelda
 			sprite.Position = new Point(xPos, yPos);
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(0, 150);
-			random = new RandomEnemyController(this);
+			random = new RandomEnemyController( this);
 			state = new RightMovingGelState(this);
 		}
 

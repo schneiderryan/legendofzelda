@@ -10,9 +10,9 @@ namespace LegendOfZelda
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
 
-        IController keyboarda;
-        IController keyboardb;
-        public IController keyboardc;
+        public IController keyboarda;
+        public IController keyboardb;
+
         public Dictionary<Keys, ICommand> binds;
         public List<IEnemy> list;
         public int index;
@@ -56,8 +56,7 @@ namespace LegendOfZelda
             index = 0;
             
             enemy = new Gel();
-            aquamentus = new Aquamentus();
-    
+           
             list.Add(enemy);
             list.Add(new Goriya());
             list.Add(new Keese());
@@ -65,13 +64,13 @@ namespace LegendOfZelda
             list.Add(new Trap());
             list.Add(new LFWallmaster());
             list.Add(new RFWallmaster());
-            list.Add(aquamentus);
+            list.Add(new Aquamentus());
             maxEnemy = list.Count-1;
             this.link = new GreenLink(this);
             binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
-            keyboarda = new EnemyKeyboardController(this, binds);
-            keyboardc = new KeyboardController(binds);
+           
+            keyboarda = new KeyboardController(this, binds);
 
 
             Textures.LoadAllTextures(Content);
@@ -90,7 +89,7 @@ namespace LegendOfZelda
         {
             keyboarda.Update();
             keyboardb.Update();
-            keyboardc.Update();
+            
 
             enemy.Update();
 
@@ -108,14 +107,11 @@ namespace LegendOfZelda
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
            
             spriteBatch.Begin();
+
             enemy.Draw(spriteBatch);
-            if(enemy == aquamentus)
-            {
-                aquamentus.Draw(spriteBatch);
-            }
+
 
             currentItem.Draw(spriteBatch);
             foreach (IProjectile projectile in projectiles)
@@ -151,6 +147,9 @@ namespace LegendOfZelda
             cmd = new QuitCommand(this);
             keyBinds.Add(Keys.NumPad0, cmd);
             keyBinds.Add(Keys.D0, cmd);
+
+            cmd = new ResetCommand(this);
+            keyBinds.Add(Keys.R, cmd);
 
             cmd = new PlayerMoveLeftCommand(this.link);
             keyBinds.Add(Keys.Left, cmd);
@@ -190,8 +189,6 @@ namespace LegendOfZelda
             cmd = new PlayerStillCommand(this.link);
             keyBinds.Add(Keys.None, cmd);
 
-            cmd = new ResetCommand(this);
-            keyBinds.Add(Keys.R, cmd);
 
             return keyBinds;
         }
