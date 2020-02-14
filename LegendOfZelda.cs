@@ -10,8 +10,8 @@ namespace LegendOfZelda
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
 
-        IController keyboarda;
-        IController keyboardb;
+        public IController keyboarda;
+        public IController keyboardb;
 
         public Dictionary<Keys, ICommand> binds;
         public List<IEnemy> list;
@@ -188,9 +188,6 @@ namespace LegendOfZelda
 
             cmd = new PlayerStillCommand(this.link);
             keyBinds.Add(Keys.None, cmd);
-
-            cmd = new ResetCommand(this);
-            keyBinds.Add(Keys.R, cmd);
 
 
             return keyBinds;
