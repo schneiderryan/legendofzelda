@@ -7,5 +7,10 @@ namespace LegendOfZelda
         {
             sprite = ItemSpriteFactory.GetWoodSword();
         }
+
+        public override void Use(IPlayer player)
+        {
+
+        }
     }
 }

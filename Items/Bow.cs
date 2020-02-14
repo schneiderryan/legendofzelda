@@ -25,7 +25,7 @@ namespace LegendOfZelda
                     proj = new GreenArrowProjectile(player.direction,
                         player.xPos, player.yPos);
                 }
-                player.FireProjectile(proj);
+                player.UseProjectile(proj);
             }
         }
     }
