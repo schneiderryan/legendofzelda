@@ -12,7 +12,8 @@ namespace LegendOfZelda
 
         IController keyboarda;
         IController keyboardb;
-        IController keyboardc;
+        public IController keyboardc;
+        public Dictionary<Keys, ICommand> binds;
         public List<IEnemy> list;
         public int index;
         public int maxEnemy;
@@ -67,7 +68,7 @@ namespace LegendOfZelda
             list.Add(aquamentus);
             maxEnemy = list.Count-1;
             this.link = new GreenLink(this);
-            Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
+            binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
             keyboarda = new EnemyKeyboardController(this, binds);
             keyboardc = new KeyboardController(binds);
