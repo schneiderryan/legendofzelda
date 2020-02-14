@@ -15,7 +15,11 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            player.UseItem(new ArrowProjectile(player.direction, player.color, player.xPos, player.yPos, 8));
+            Bow bow = new Bow()
+            {
+                HasArrow = true
+            };
+            player.UseItem(bow);
         }
     }
 }

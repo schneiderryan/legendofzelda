@@ -24,7 +24,7 @@ namespace LegendOfZelda
 
         public void LoadTextures(ContentManager content)
         {
-            projectileSpriteSheet = content.Load<Texture2D>("link");
+            projectileSpriteSheet = Textures.GetLinkSheet();
         }
 
         public ISprite CreateLeftArrow()
@@ -85,6 +85,13 @@ namespace LegendOfZelda
         public ISprite CreateLeftSwordProjectile()
         {
             return new AnimatedSprite(projectileSpriteSheet, new Rectangle(30, 199, 16, 7), 4, false);
+        }
+
+        public ISprite CreateBoomerang()
+        {
+            return new AnimatedSprite(Textures.GetWeaponSheet(),
+                new Rectangle(63, 189, 16, 16), 8)
+            { AnimationDelay = 2 };
         }
     }
 }

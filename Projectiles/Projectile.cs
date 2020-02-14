@@ -5,30 +5,43 @@ namespace LegendOfZelda
 {
     public abstract class Projectile : IProjectile
     {
-        protected Vector2 velocity;
-        protected Vector2 position;
+        protected int xVel = 0;
+        protected int yVel = 0;
+        protected int initialVel = 10;
         protected ISprite sprite;
 
-        public Projectile(Vector2 position, Vector2 velocity)
+        public Projectile(string direction, int xPos, int yPos)
         {
-            this.position = position;
-            this.velocity = velocity;
+            X = xPos;
+            Y = yPos;
+            sprite.Position = new Point(xPos, yPos);
+
+            if (direction == "up")
+            {
+                this.yVel = -initialVel;
+            }
+            else if (direction == "down")
+            {
+                this.yVel = initialVel;
+            }
+            else if (direction == "right")
+            {
+                this.xVel = initialVel;
+            }
+            else if (direction == "left")
+            {
+                this.xVel = -initialVel;
+            }
         }
 
-        public virtual int X
-        {
-            get { return (int) position.X; }
-        }
-        public virtual int Y
-        {
-            get { return (int) position.Y; }
-        }
+        public virtual int X { get; protected set; }
+        public virtual int Y { get; protected set; }
 
         public virtual void Update()
         {
-            position.X += velocity.X;
-            position.Y += velocity.Y;
-            sprite.Position = new Point((int) position.X, (int) position.Y);
+            X += xVel;
+            Y += yVel;
+            sprite.Position = new Point(X, Y);
             sprite.Update();
         }
 

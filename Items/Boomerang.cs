@@ -2,15 +2,11 @@
 
 namespace LegendOfZelda
 {
-    public class Boomerang : ProjectileItem
+    public class Boomerang : Item
     {
         public Boomerang()
         {
-            rightSprite = ItemSpriteFactory.GetBoomerang();
-            upSprite = ItemSpriteFactory.GetBoomerang();
-            sprite = upSprite;
-            State = ProjectileState.OnGround;
-            initialVelocity = 4f;
+            sprite = ItemSpriteFactory.GetBoomerang();
         }
     }
 }
