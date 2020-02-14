@@ -6,16 +6,16 @@ namespace LegendOfZelda
 {
     class PlayerAttackCommand : ICommand
     {
-        private IPlayer player;
+        private LegendOfZelda game;
 
-        public PlayerAttackCommand(IPlayer player)
+        public PlayerAttackCommand(LegendOfZelda game)
         {
-            this.player = player;
+            this.game = game;
         }
 
         public void Execute()
         {
-            player.Attack();
+            game.link.Attack();
         }
     }
 }

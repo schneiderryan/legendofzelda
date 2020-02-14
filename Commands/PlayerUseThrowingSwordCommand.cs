@@ -6,16 +6,16 @@ namespace LegendOfZelda
 {
     class PlayerUseThrowingSwordCommand : ICommand
     {
-        private IPlayer player;
+        private LegendOfZelda game;
 
-        public PlayerUseThrowingSwordCommand(IPlayer player)
+        public PlayerUseThrowingSwordCommand(LegendOfZelda game)
         {
-            this.player = player;
+            this.game = game;
         }
 
         public void Execute()
         {
-            player.UseProjectile(new SwordProjectile(player.direction, player.xPos, player.yPos));
+            game.link.UseProjectile(new SwordProjectile(game.link.direction, game.link.xPos, game.link.yPos));
         }
     }
 }

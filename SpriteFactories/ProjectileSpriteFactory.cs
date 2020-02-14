@@ -9,7 +9,7 @@ namespace LegendOfZelda
 {
     class ProjectileSpriteFactory
     {
-        private Texture2D projectileSpriteSheet;
+        private Texture2D projectileSpriteSheet = Textures.GetLinkSheet();
         private static ProjectileSpriteFactory instance = new ProjectileSpriteFactory();
 
         private ProjectileSpriteFactory() { }
@@ -20,11 +20,6 @@ namespace LegendOfZelda
             {
                 return instance;
             }
-        }
-
-        public void LoadTextures(ContentManager content)
-        {
-            projectileSpriteSheet = Textures.GetLinkSheet();
         }
 
         public ISprite CreateLeftArrow()

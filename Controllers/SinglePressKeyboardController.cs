@@ -27,12 +27,9 @@ namespace LegendOfZelda
                     heldKeys.Add(k);
                 }
             }
-            if (keys.Length == 0)
+            if (keys.Length == 0 && keyBinds.TryGetValue(Keys.None, out a))
             {
-                if (keyBinds.TryGetValue(Keys.None, out a))
-                {
-                    a.Execute();
-                }
+                a.Execute();
             }
             UpdateHeldKeys(state);
         }
@@ -41,7 +38,7 @@ namespace LegendOfZelda
         {
             for (int i = 0; i < heldKeys.Count; i++)
             {
-                if (!state.IsKeyDown(heldKeys[i]))
+                if (state.IsKeyUp(heldKeys[i]))
                 {
                     heldKeys.RemoveAt(i);
                 }

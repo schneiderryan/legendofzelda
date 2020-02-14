@@ -44,6 +44,7 @@ namespace LegendOfZelda
 
         public GreenLink(LegendOfZelda game)
         {
+            this.game = game;
             this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
             this.d = "up";
             this.c = "green";
@@ -52,7 +53,6 @@ namespace LegendOfZelda
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
             this.state = new StillUpLinkState(this);
-            this.game = game;
             this.itemTimer = 0;
         }
 

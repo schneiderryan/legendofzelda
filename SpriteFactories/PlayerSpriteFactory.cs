@@ -9,11 +9,12 @@ namespace LegendOfZelda
 {
     class PlayerSpriteFactory
     {
-        private Texture2D linkSpriteSheet;
-        private Texture2D linkAttackingDown;
-        private Texture2D linkAttackingUp;
-        private Texture2D redLinkAttackingDown;
-        private Texture2D redLinkAttackingUp;
+        private Texture2D linkSpriteSheet = Textures.GetLinkSheet();
+        private Texture2D linkAttackingDown = Textures.GetLinkAttackingDown();
+        private Texture2D linkAttackingUp = Textures.GetLinkAttackingUp();
+        private Texture2D redLinkAttackingDown = Textures.GetRedLinkAttackingDown();
+        private Texture2D redLinkAttackingUp = Textures.GetRedLinkAttackingUp();
+        
         private static PlayerSpriteFactory instance = new PlayerSpriteFactory();
 
         private PlayerSpriteFactory() { }
@@ -24,15 +25,6 @@ namespace LegendOfZelda
             {
                 return instance;
             }
-        }
-
-        public void LoadTextures(ContentManager content)
-        {
-            linkSpriteSheet = content.Load<Texture2D>("link");
-            linkAttackingDown = content.Load<Texture2D>("downAttackingLink");
-            linkAttackingUp = content.Load<Texture2D>("upAttackingLink");
-            redLinkAttackingDown = content.Load<Texture2D>("downAttackingRedLink");
-            redLinkAttackingUp = content.Load<Texture2D>("upAttackingRedLink");
         }
 
         //Green Link Sprites

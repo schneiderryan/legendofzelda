@@ -6,16 +6,16 @@ namespace LegendOfZelda
 {
     class PlayerStillCommand : ICommand
     {
-        private IPlayer player;
+        private LegendOfZelda game;
 
-        public PlayerStillCommand(IPlayer player)
+        public PlayerStillCommand(LegendOfZelda game)
         {
-            this.player = player;
+            this.game = game;
         }
 
         public void Execute()
         {
-            this.player.BeStill();
+            this.game.link.BeStill();
         }
     }
 }

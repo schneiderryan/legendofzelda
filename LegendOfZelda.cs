@@ -1,35 +1,26 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
     public class LegendOfZelda : Game
     {
-        public GraphicsDeviceManager graphics;
-        public SpriteBatch spriteBatch;
+        IController playerKeyboard;
+        IController enemyKeyboard;
+        IController keyboard;
 
-        public IController keyboarda;
-        public IController keyboardb;
-
-        public Dictionary<Keys, ICommand> binds;
-        public List<IEnemy> list;
-        public int index;
-        public int maxEnemy;
-        public Texture2D EnemySpriteSheet { get; set; }
-        public ISprite Sprite { get; set; }
-        public IEnemy enemy;
-        public Aquamentus aquamentus;
-   
+        public List<IEnemy> enemies;
+        public int enemyIndex = 0;
         public List<IItem> items;
-        public IItem currentItem;
-        public int currentIndex;
-        public List<IProjectile> projectiles;
+        public int itemIndex = 0;
 
+        public List<IProjectile> projectiles;
         public IPlayer link;
 
+        public GraphicsDeviceManager graphics;
 
+        private SpriteBatch spriteBatch;
 
         public LegendOfZelda()
         {
@@ -42,64 +33,38 @@ namespace LegendOfZelda
         {
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
-            projectiles = new List<IProjectile>();
 
+            projectiles = new List<IProjectile>();
+            this.link = new GreenLink(this);
+
+            keyboard = GameSetup.CreateGeneralKeysController(this);
+            playerKeyboard = GameSetup.CreatePlayerKeysController(this);
+            enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
+
+            items = GameSetup.GenerateItemList();
+            enemies = GameSetup.GenerateEnemyList();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            EnemySpriteFactory.Instance.LoadTextures(Content);
-            EnemySpriteSheet = Content.Load<Texture2D>("loz_enemy_sheet");
-            PlayerSpriteFactory.Instance.LoadTextures(Content);
-            list = new List<IEnemy>();
-            index = 0;
-            
-            enemy = new Gel();
-           
-            list.Add(enemy);
-            list.Add(new Goriya());
-            list.Add(new Keese());
-            list.Add(new Stalfo());
-            list.Add(new Trap());
-            list.Add(new LFWallmaster());
-            list.Add(new RFWallmaster());
-            list.Add(new Aquamentus());
-            maxEnemy = list.Count-1;
-            this.link = new GreenLink(this);
-            binds = GenerateKeyBinds();
-            //binds[Keys.O].Execute();
-           
-            keyboarda = new KeyboardController(this, binds);
-
-
             Textures.LoadAllTextures(Content);
-            ProjectileSpriteFactory.Instance.LoadTextures(Content);
-            EnemySpriteFactory.Instance.LoadTextures(Content);
-
-            keyboardb = new SinglePressKeyboardController(binds);
-
-            items = GenerateItemList();
-            currentIndex = 0;
-            currentItem = items[currentIndex];
-            //this.goriya = new Goriya();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            keyboarda.Update();
-            keyboardb.Update();
-            
+            keyboard.Update();
+            playerKeyboard.Update();
+            enemyKeyboard.Update();
 
-            enemy.Update();
+            enemies[enemyIndex].Update();
+            items[itemIndex].Update();
+            link.Update();
 
-            currentItem.Update();
-            foreach(IProjectile projectile in projectiles)
+            foreach (IProjectile projectile in projectiles)
             {
                 projectile.Update();
             }
-           
-            link.Update();
 
             base.Update(gameTime);
         }
@@ -107,122 +72,20 @@ namespace LegendOfZelda
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-           
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            enemy.Draw(spriteBatch);
+            enemies[enemyIndex].Draw(spriteBatch);
+            items[itemIndex].Draw(spriteBatch);
+            link.Draw(spriteBatch, Color.White);
 
-
-            currentItem.Draw(spriteBatch);
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
             }
             
-            link.Draw(spriteBatch, Color.White);
             spriteBatch.End();
-
 
             base.Draw(gameTime);
         }
-
-        private Dictionary<Keys, ICommand> GenerateKeyBinds()
-        {
-            Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
-
-            
-            ICommand cmd = new EnemyMoveUpCommand(enemy);
-            keyBinds.Add(Keys.O, cmd);
-
-            cmd = new EnemyMoveUpCommand(enemy);
-            keyBinds.Add(Keys.P, cmd);
-
-            
-            cmd = new SwapItemCommand(this, "next");
-            keyBinds.Add(Keys.I, cmd);
-
-            cmd = new SwapItemCommand(this, "previous");
-            keyBinds.Add(Keys.U, cmd);
-
-            cmd = new QuitCommand(this);
-            keyBinds.Add(Keys.NumPad0, cmd);
-            keyBinds.Add(Keys.D0, cmd);
-
-            cmd = new ResetCommand(this);
-            keyBinds.Add(Keys.R, cmd);
-
-            cmd = new PlayerMoveLeftCommand(this.link);
-            keyBinds.Add(Keys.Left, cmd);
-            keyBinds.Add(Keys.A, cmd);
-
-            cmd = new PlayerMoveRightCommand(this.link);
-            keyBinds.Add(Keys.Right, cmd);
-            keyBinds.Add(Keys.D, cmd);
-
-            cmd = new PlayerMoveUpCommand(this.link);
-            keyBinds.Add(Keys.Up, cmd);
-            keyBinds.Add(Keys.W, cmd);
-
-            cmd = new PlayerMoveDownCommand(this.link);
-            keyBinds.Add(Keys.Down, cmd);
-            keyBinds.Add(Keys.S, cmd);
-
-            cmd = new PlayerDamagedCommand(this.link);
-            keyBinds.Add(Keys.E, cmd);
-
-            cmd = new PlayerAttackCommand(this.link);
-            keyBinds.Add(Keys.Z, cmd);
-            keyBinds.Add(Keys.N, cmd);
-
-            cmd = new PlayerUseThrowingSwordCommand(this.link);
-            keyBinds.Add(Keys.D1, cmd);
-            keyBinds.Add(Keys.NumPad1, cmd);
-
-            cmd = new PlayerUseArrowCommand(this.link);
-            keyBinds.Add(Keys.D2, cmd);
-            keyBinds.Add(Keys.NumPad2, cmd);
-
-            cmd = new PlayerUseBoomerangCommand(this.link);
-            keyBinds.Add(Keys.D3, cmd);
-            keyBinds.Add(Keys.NumPad3, cmd);
-
-            cmd = new PlayerStillCommand(this.link);
-            keyBinds.Add(Keys.None, cmd);
-
-
-            return keyBinds;
-        }
-
-
-
-        private static List<IItem> GenerateItemList()
-        {
-            List<IItem> list = new List<IItem>()
-            {
-                new Arrow(),
-                new BlueRupee(),
-                new Bomb(),
-                new Boomerang(),
-                new Bow(),
-                new Compass(),
-                new Fairy(),
-                new Heart(),
-                new HeartContainer(),
-                new Key(),
-                new Map(),
-                new Rupee(),
-                new TriforceShard(),
-                new WoodSword(),
-            };
-
-            foreach (IItem i in list)
-            {
-                i.X = 100;
-                i.Y = 100;
-            }
-
-            return list;
-        }
-
     }
 }

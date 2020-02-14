@@ -43,6 +43,7 @@ namespace LegendOfZelda
 
         public RedLink(LegendOfZelda game)
         {
+            this.game = game;
             this.sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
             this.d = "up";
             this.c = "red";
@@ -50,11 +51,7 @@ namespace LegendOfZelda
             this.xPos = 400;
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
-
-            //this.keyboard = new KeyboardController(game, generateDictionary());
-
             this.state = new StillUpRedLinkState(this);
-            this.game = game;
             this.itemTimer = 0;
         }
 

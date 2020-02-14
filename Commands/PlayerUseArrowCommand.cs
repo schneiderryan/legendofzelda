@@ -6,11 +6,11 @@ namespace LegendOfZelda
 {
     class PlayerUseArrowCommand : ICommand
     {
-        private IPlayer player;
+        private LegendOfZelda game;
 
-        public PlayerUseArrowCommand(IPlayer player)
+        public PlayerUseArrowCommand(LegendOfZelda game)
         {
-            this.player = player;
+            this.game = game;
         }
 
         public void Execute()
@@ -19,7 +19,7 @@ namespace LegendOfZelda
             {
                 HasArrow = true
             };
-            player.UseItem(bow);
+            game.link.UseItem(bow);
         }
     }
 }
