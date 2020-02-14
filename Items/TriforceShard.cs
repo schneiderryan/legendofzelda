@@ -7,5 +7,10 @@ namespace LegendOfZelda
         {
             sprite = ItemSpriteFactory.GetTriforceShard();
         }
+
+        public override void Use(IPlayer player)
+        {
+
+        }
     }
 }

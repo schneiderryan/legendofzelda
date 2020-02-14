@@ -85,7 +85,7 @@ namespace LegendOfZelda
         public ISprite CreateBoomerang()
         {
             return new AnimatedSprite(Textures.GetWeaponSheet(),
-                new Rectangle(63, 189, 16, 16), 8)
+                new Rectangle(64, 188, 7, 11), 8)
             { AnimationDelay = 2 };
         }
     }

@@ -51,5 +51,10 @@ namespace LegendOfZelda
                 base.Draw(sb);
             }
         }
+
+        public override void Use(IPlayer player)
+        {
+
+        }
     }
 }

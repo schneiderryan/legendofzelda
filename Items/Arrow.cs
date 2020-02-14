@@ -8,5 +8,10 @@ namespace LegendOfZelda
             sprite = ItemSpriteFactory.GetArrow();
         }
 
+        public override void Use(IPlayer player)
+        {
+
+        }
+
     }
 }
