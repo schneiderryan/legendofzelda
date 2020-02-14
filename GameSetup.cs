@@ -66,7 +66,7 @@ namespace LegendOfZelda
             cmd = new QuitCommand(game);
             keyBinds.Add(Keys.Q, cmd);
 
-            return new SinglePressKeyboardController(keyBinds);
+            return new SlowKeyboardController(keyBinds);
         }
 
         public static IController CreateEnemyKeysController(LegendOfZelda game)
