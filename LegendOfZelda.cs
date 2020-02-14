@@ -189,6 +189,9 @@ namespace LegendOfZelda
             cmd = new PlayerStillCommand(this.link);
             keyBinds.Add(Keys.None, cmd);
 
+            cmd = new ResetCommand(this);
+            keyBinds.Add(Keys.R, cmd);
+
             return keyBinds;
         }
 

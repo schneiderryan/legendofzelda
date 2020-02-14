@@ -106,22 +106,18 @@ namespace LegendOfZelda
             sprite.Draw(sb, color);
         }
 
-        public void UseItem(IItem item)
-        {
-            if(itemTimer == 0)
-            {
-                itemTimer = 75;
-                //game.projectiles.Add(item);
-            }
-        }
-
-        public void UseProjectile(IProjectile projectile)
+        public void FireProjectile(IProjectile projectile)
         {
             if(itemTimer == 0)
             {
                 itemTimer = 75;
                 game.projectiles.Add(projectile);
             }
+        }
+
+        public void UseItem(IItem item)
+        {
+            item.Use(this);
         }
     }
 }

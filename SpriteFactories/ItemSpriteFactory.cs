@@ -37,16 +37,10 @@ namespace LegendOfZelda
                     new Rectangle(61, 34, 8, 16));
         }
 
-        public static ISprite GetWoodSwordUp()
+        public static ISprite GetWoodSword()
         {
-            return new Sprite(Textures.GetWeaponSheet(),
-                    new Rectangle(1, 154, 7, 16));
-        }
-
-        public static ISprite GetWoodSwordRight()
-        {
-            return new Sprite(Textures.GetWeaponSheet(),
-                    new Rectangle(10, 159, 16, 7));
+            return new Sprite(Textures.GetItemSheet(),
+                    new Rectangle(104, 0, 7, 16));
         }
 
         public static ISprite GetBomb()
@@ -67,12 +61,8 @@ namespace LegendOfZelda
 
         public static ISprite GetBoomerang()
         {
-            return new AnimatedSprite(Textures.GetWeaponSheet(),
-                    new Rectangle(63, 189, 8, 8), 8)
-            {
-                AnimationDelay = 2
-            };
-
+            return new Sprite(Textures.GetItemSheet(),
+                    new Rectangle(128, 2, 8, 8));
         }
 
         public static ISprite GetBow()

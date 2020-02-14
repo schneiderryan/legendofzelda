@@ -3,34 +3,45 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public class Projectile : IProjectile
+    public abstract class Projectile : IProjectile
     {
-        private Vector2 vel;
-        private Vector2 pos;
-        private ISprite sprite;
+        protected int xVel = 0;
+        protected int yVel = 0;
+        protected int initialVel = 10;
+        protected ISprite sprite;
 
-        public int X
+        public Projectile(string direction, int xPos, int yPos)
         {
-            get { return (int) pos.X; }
-        }
-        public int Y
-        {
-            get { return (int) pos.Y; }
+            X = xPos;
+            Y = yPos;
+            sprite.Position = new Point(xPos, yPos);
+
+            if (direction == "up")
+            {
+                this.yVel = -initialVel;
+            }
+            else if (direction == "down")
+            {
+                this.yVel = initialVel;
+            }
+            else if (direction == "right")
+            {
+                this.xVel = initialVel;
+            }
+            else if (direction == "left")
+            {
+                this.xVel = -initialVel;
+            }
         }
 
-        public Projectile(ISprite sprite, Vector2 position,
-                Vector2 velocity)
-        {
-            this.sprite = sprite;
-            this.pos = position;
-            this.vel = velocity;
-        }
+        public virtual int X { get; protected set; }
+        public virtual int Y { get; protected set; }
 
         public virtual void Update()
         {
-            pos.X += vel.X;
-            pos.Y += vel.Y;
-            sprite.Position = new Point((int) pos.X, (int) pos.Y);
+            X += xVel;
+            Y += yVel;
+            sprite.Position = new Point(X, Y);
             sprite.Update();
         }
 
