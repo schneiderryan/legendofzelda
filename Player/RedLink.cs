@@ -7,27 +7,55 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class RedLink : IPlayer 
+    class RedLink : IPlayer
     {
         public LegendOfZelda game;
         public ISprite sprite;
-        private KeyboardController keyboard;
         public ILinkState state;
-        public int xPos;
-        public int yPos;
-        private int item1Timer;
+        private int itemTimer;
+        private int x;
+        private int y;
+        private String d;
+        private String c;
+        public int xPos
+        {
+            get { return x; }
+            set { x = value; }
+        }
+
+        public int yPos
+        {
+            get { return y; }
+            set { y = value; }
+        }
+
+        public String direction
+        {
+            get { return d; }
+            set { d = value; }
+        }
+
+        public String color
+        {
+            get { return c; }
+            set { c = value; }
+        }
 
         public RedLink(LegendOfZelda game)
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
+            this.d = "up";
+            this.c = "red";
             this.sprite.Scale = 2.0f;
             this.xPos = 400;
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
-            this.keyboard = new KeyboardController(game, generateDictionary());
+
+            //this.keyboard = new KeyboardController(game, generateDictionary());
+
             this.state = new StillUpRedLinkState(this);
             this.game = game;
-            this.item1Timer = 0;
+            this.itemTimer = 0;
         }
 
         public void MoveLeft()
@@ -62,12 +90,11 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            keyboard.Update();
             state.Update();
             sprite.Update();
-            if(item1Timer > 0)
+            if(itemTimer > 0)
             {
-                item1Timer--;
+                itemTimer--;
             }
         }
 
@@ -76,47 +103,18 @@ namespace LegendOfZelda
             sprite.Draw(sb, color);
         }
 
-        public void UseItem1()
+        public void UseProjectile(IProjectile projectile)
         {
-            if (item1Timer == 0)
+            if (itemTimer == 0)
             {
-                item1Timer = 75;
-                state.UseItem1();
+                itemTimer = 75;
+                game.projectiles.Add(projectile);
             }
         }
 
-        public void UseItem2()
+        public void UseItem(IItem item)
         {
-            //Implement item 2
-        }
-
-        public void UseItem3()
-        {
-            //Implement item 3
-        }
-
-        private Dictionary<Keys, ICommand> generateDictionary()
-        {
-            Dictionary<Keys, ICommand> commands = new Dictionary<Keys, ICommand>();
-            commands.Add(Keys.Left, new PlayerMoveLeftCommand(this));
-            commands.Add(Keys.Right, new PlayerMoveRightCommand(this));
-            commands.Add(Keys.Up, new PlayerMoveUpCommand(this));
-            commands.Add(Keys.Down, new PlayerMoveDownCommand(this));
-            commands.Add(Keys.A, new PlayerMoveLeftCommand(this));
-            commands.Add(Keys.D, new PlayerMoveRightCommand(this));
-            commands.Add(Keys.W, new PlayerMoveUpCommand(this));
-            commands.Add(Keys.E, new PlayerDamagedCommand(this));
-            commands.Add(Keys.S, new PlayerMoveDownCommand(this));
-            commands.Add(Keys.Z, new PlayerAttackCommand(this));
-            commands.Add(Keys.N, new PlayerAttackCommand(this));
-            commands.Add(Keys.None, new PlayerStillCommand(this));
-            commands.Add(Keys.D1, new PlayerUseItem1Command(this));
-            commands.Add(Keys.NumPad1, new PlayerUseItem1Command(this));
-            commands.Add(Keys.D2, new PlayerUseItem2Command(this));
-            commands.Add(Keys.NumPad2, new PlayerUseItem2Command(this));
-            commands.Add(Keys.D3, new PlayerUseItem3Command(this));
-            commands.Add(Keys.NumPad3, new PlayerUseItem3Command(this));
-            return commands;
+            item.Use(this);
         }
 
         public void TakeDamage()

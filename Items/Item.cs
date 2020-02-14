@@ -36,5 +36,7 @@ namespace LegendOfZelda
         {
             sprite.Update();
         }
+
+        public abstract void Use(IPlayer player);
     }
 }

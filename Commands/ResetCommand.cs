@@ -1,29 +1,36 @@
-﻿
+
+
 namespace LegendOfZelda
 {
-    public class ResetCommand : ICommand
+
+    internal class ResetCommand : ICommand
     {
-        private LegendOfZelda game1;
+        private LegendOfZelda game;
 
-        public ResetCommand(LegendOfZelda game1)
+        public ResetCommand(LegendOfZelda game)
         {
-            this.game1 = game1;
-            
+            this.game = game;
         }
 
-        public void Execute()
-        {
-            game1.list[0] = new Gel();
-            game1.list[1] = new Goriya();
-            game1.list[2] = new Keese();
-            game1.list[3] = new Stalfo();
-            game1.list[4] = new Trap();
-            game1.list[5] = new LFWallmaster();
-            game1.list[6] = new RFWallmaster();
-            game1.list[7] = new Aquamentus();
-            game1.index = 0;
+            public void Execute()
+            {
+
+                game.list[0] = new Gel();
+                game.list[1] = new Goriya();
+                game.list[2] = new Keese();
+                game.list[3] = new Stalfo();
+                game.list[4] = new Trap();
+                game.list[5] = new LFWallmaster();
+                game.list[6] = new RFWallmaster();
+                game.list[7] = new Aquamentus();
+                game.index = 0;
+
+                game.currentIndex = 0;
+                game.currentItem = game.items[game.currentIndex];
+                game.enemy = new Gel();
+                game.link = new GreenLink(game);
+                game.keyboardc = new KeyboardController(game.binds);
+            }
 
         }
-
     }
-}

@@ -1,14 +1,16 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class WoodSword : ProjectileItem
+    public class WoodSword : Item
     {
         public WoodSword()
         {
-            upSprite = ItemSpriteFactory.GetWoodSwordUp();
-            rightSprite = ItemSpriteFactory.GetWoodSwordRight();
-            sprite = upSprite;
-            State = ProjectileState.OnGround;
+            sprite = ItemSpriteFactory.GetWoodSword();
+        }
+
+        public override void Use(IPlayer player)
+        {
+
         }
     }
 }

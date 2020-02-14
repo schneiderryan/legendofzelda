@@ -12,6 +12,8 @@ namespace LegendOfZelda
 
         IController keyboarda;
         IController keyboardb;
+
+        public Dictionary<Keys, ICommand> binds;
         public List<IEnemy> list;
         public int index;
         public int maxEnemy;
@@ -49,6 +51,7 @@ namespace LegendOfZelda
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EnemySpriteFactory.Instance.LoadTextures(Content);
             EnemySpriteSheet = Content.Load<Texture2D>("loz_enemy_sheet");
+            PlayerSpriteFactory.Instance.LoadTextures(Content);
             list = new List<IEnemy>();
             index = 0;
             
@@ -63,25 +66,23 @@ namespace LegendOfZelda
             list.Add(new RFWallmaster());
             list.Add(new Aquamentus());
             maxEnemy = list.Count-1;
-            Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
+            this.link = new GreenLink(this);
+            binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
            
             keyboarda = new KeyboardController(this, binds);
 
 
             Textures.LoadAllTextures(Content);
-            PlayerSpriteFactory.Instance.LoadTextures(Content);
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
             EnemySpriteFactory.Instance.LoadTextures(Content);
-   
+
             keyboardb = new SinglePressKeyboardController(binds);
 
             items = GenerateItemList();
             currentIndex = 0;
             currentItem = items[currentIndex];
-            
-            this.link = new RedLink(this);
-
+            //this.goriya = new Goriya();
         }
 
         protected override void Update(GameTime gameTime)
@@ -106,17 +107,11 @@ namespace LegendOfZelda
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
            
             spriteBatch.Begin();
 
             enemy.Draw(spriteBatch);
-           
- 
-            spriteBatch.End();
-            
 
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentItem.Draw(spriteBatch);
             foreach (IProjectile projectile in projectiles)
@@ -143,7 +138,7 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.P, cmd);
 
             
-             cmd = new SwapItemCommand(this, "next");
+            cmd = new SwapItemCommand(this, "next");
             keyBinds.Add(Keys.I, cmd);
 
             cmd = new SwapItemCommand(this, "previous");
@@ -152,6 +147,47 @@ namespace LegendOfZelda
             cmd = new QuitCommand(this);
             keyBinds.Add(Keys.NumPad0, cmd);
             keyBinds.Add(Keys.D0, cmd);
+
+            cmd = new ResetCommand(this);
+            keyBinds.Add(Keys.R, cmd);
+
+            cmd = new PlayerMoveLeftCommand(this.link);
+            keyBinds.Add(Keys.Left, cmd);
+            keyBinds.Add(Keys.A, cmd);
+
+            cmd = new PlayerMoveRightCommand(this.link);
+            keyBinds.Add(Keys.Right, cmd);
+            keyBinds.Add(Keys.D, cmd);
+
+            cmd = new PlayerMoveUpCommand(this.link);
+            keyBinds.Add(Keys.Up, cmd);
+            keyBinds.Add(Keys.W, cmd);
+
+            cmd = new PlayerMoveDownCommand(this.link);
+            keyBinds.Add(Keys.Down, cmd);
+            keyBinds.Add(Keys.S, cmd);
+
+            cmd = new PlayerDamagedCommand(this.link);
+            keyBinds.Add(Keys.E, cmd);
+
+            cmd = new PlayerAttackCommand(this.link);
+            keyBinds.Add(Keys.Z, cmd);
+            keyBinds.Add(Keys.N, cmd);
+
+            cmd = new PlayerUseThrowingSwordCommand(this.link);
+            keyBinds.Add(Keys.D1, cmd);
+            keyBinds.Add(Keys.NumPad1, cmd);
+
+            cmd = new PlayerUseArrowCommand(this.link);
+            keyBinds.Add(Keys.D2, cmd);
+            keyBinds.Add(Keys.NumPad2, cmd);
+
+            cmd = new PlayerUseBoomerangCommand(this.link);
+            keyBinds.Add(Keys.D3, cmd);
+            keyBinds.Add(Keys.NumPad3, cmd);
+
+            cmd = new PlayerStillCommand(this.link);
+            keyBinds.Add(Keys.None, cmd);
 
             cmd = new ResetCommand(this);
             keyBinds.Add(Keys.R, cmd);

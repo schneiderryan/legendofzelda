@@ -7,5 +7,10 @@ namespace LegendOfZelda
         {
             sprite = ItemSpriteFactory.GetBlueRupee();
         }
+
+        public override void Use(IPlayer player)
+        {
+
+        }
     }
 }

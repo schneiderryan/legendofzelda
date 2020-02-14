@@ -18,13 +18,20 @@ namespace LegendOfZelda
         {
             KeyboardState state = Keyboard.GetState();
             Keys[] keys = state.GetPressedKeys();
+            ICommand a;
             foreach (Keys k in keys)
             {
-                ICommand a;
                 if (!heldKeys.Contains(k) && keyBinds.TryGetValue(k, out a))
                 {
                     a.Execute();
                     heldKeys.Add(k);
+                }
+            }
+            if (keys.Length == 0)
+            {
+                if (keyBinds.TryGetValue(Keys.None, out a))
+                {
+                    a.Execute();
                 }
             }
             UpdateHeldKeys(state);

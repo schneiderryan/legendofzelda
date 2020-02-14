@@ -62,9 +62,9 @@ namespace LegendOfZelda
 		public void BreatheFireball(int xPos, int yPos)
 		{
 			State = FireballState.Breathed;
-			fireball0 = new Projectile(fireballSprite0, new Vector2(xPos, yPos-100), new Vector2(VELOCITY, VELOCITYYUP));
-			fireball1 = new Projectile(fireballSprite1, new Vector2(xPos, yPos), new Vector2(VELOCITY, 0));
-			fireball2 = new Projectile(fireballSprite2, new Vector2(xPos, yPos+100), new Vector2(VELOCITY, VELOCITYYDOWN));
+			fireball0 = new EnemyProjectile(fireballSprite0, new Vector2(xPos, yPos-100), new Vector2(VELOCITY, VELOCITYYUP));
+			fireball1 = new EnemyProjectile(fireballSprite1, new Vector2(xPos, yPos), new Vector2(VELOCITY, 0));
+			fireball2 = new EnemyProjectile(fireballSprite2, new Vector2(xPos, yPos+100), new Vector2(VELOCITY, VELOCITYYDOWN));
 		}
 
 		public void ChangeDirection()
