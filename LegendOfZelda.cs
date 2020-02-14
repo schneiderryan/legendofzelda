@@ -6,9 +6,9 @@ namespace LegendOfZelda
 {
     public class LegendOfZelda : Game
     {
-        IController playerKeyboard;
-        IController enemyKeyboard;
-        IController keyboard;
+        public IController playerKeyboard;
+        public IController enemyKeyboard;
+        public IController keyboard;
 
         public List<IEnemy> enemies;
         public int enemyIndex = 0;
