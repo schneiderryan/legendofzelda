@@ -7,25 +7,53 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class GreenLink : IPlayer 
+    class GreenLink : IPlayer
     {
         public LegendOfZelda game;
         public ISprite sprite;
         public ILinkState state;
-        public int xPos;
-        public int yPos;
-        private int item1Timer;
+        private int itemTimer;
+        private int x;
+        private int y;
+        private String d;
+        private String c;
+
+        public int xPos
+        {
+            get { return x; }
+            set { x = value; }
+        }
+
+        public int yPos
+        {
+            get { return y; }
+            set { y = value; }
+        }
+
+        public String direction
+        {
+            get { return d; }
+            set { d = value; }
+        }
+
+        public String color
+        {
+            get { return c; }
+            set { c = value; }
+        }
 
         public GreenLink(LegendOfZelda game)
         {
             this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
+            this.d = "up";
+            this.c = "green";
             this.sprite.Scale = 2.0f;
             this.xPos = 400;
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
             this.state = new StillUpLinkState(this);
             this.game = game;
-            this.item1Timer = 0;
+            this.itemTimer = 0;
         }
 
         public void MoveLeft()
@@ -67,9 +95,9 @@ namespace LegendOfZelda
         {
             state.Update();
             sprite.Update();
-            if(item1Timer > 0)
+            if (itemTimer > 0)
             {
-                item1Timer--;
+                itemTimer--;
             }
         }
 
@@ -78,23 +106,13 @@ namespace LegendOfZelda
             sprite.Draw(sb, color);
         }
 
-        public void UseItem1()
+        public void UseItem(IProjectile item)
         {
-            if(item1Timer == 0)
+            if(itemTimer == 0)
             {
-                item1Timer = 75;
-                state.UseItem1();
+                itemTimer = 75;
+                game.projectiles.Add(item);
             }
-        }
-
-        public void UseItem2()
-        {
-            //Implement item 2
-        }
-
-        public void UseItem3()
-        {
-            //Implement item 3
         }
     }
 }

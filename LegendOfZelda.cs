@@ -50,6 +50,7 @@ namespace LegendOfZelda
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EnemySpriteFactory.Instance.LoadTextures(Content);
             EnemySpriteSheet = Content.Load<Texture2D>("loz_enemy_sheet");
+            PlayerSpriteFactory.Instance.LoadTextures(Content);
             list = new List<IEnemy>();
             index = 0;
             
@@ -65,6 +66,7 @@ namespace LegendOfZelda
             list.Add(new RFWallmaster());
             list.Add(aquamentus);
             maxEnemy = list.Count-1;
+            this.link = new GreenLink(this);
             Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
             keyboarda = new EnemyKeyboardController(this, binds);
@@ -72,22 +74,15 @@ namespace LegendOfZelda
 
 
             Textures.LoadAllTextures(Content);
-            PlayerSpriteFactory.Instance.LoadTextures(Content);
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
             EnemySpriteFactory.Instance.LoadTextures(Content);
 
-            this.link = new RedLink(this);
-
-            Dictionary<Keys, ICommand> binds = GenerateKeyBinds();
-            keyboard = new SinglePressKeyboardController(binds);
-   
             keyboardb = new SinglePressKeyboardController(binds);
 
             items = GenerateItemList();
             currentIndex = 0;
             currentItem = items[currentIndex];
-            
-            this.goriya = new Goriya();
+            //this.goriya = new Goriya();
         }
 
         protected override void Update(GameTime gameTime)
@@ -120,12 +115,6 @@ namespace LegendOfZelda
             {
                 aquamentus.Draw(spriteBatch);
             }
-            
- 
-            spriteBatch.End();
-            
-
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             currentItem.Draw(spriteBatch);
             foreach (IProjectile projectile in projectiles)
@@ -152,7 +141,7 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.P, cmd);
 
             
-             cmd = new SwapItemCommand(this, "next");
+            cmd = new SwapItemCommand(this, "next");
             keyBinds.Add(Keys.I, cmd);
 
             cmd = new SwapItemCommand(this, "previous");
@@ -161,7 +150,7 @@ namespace LegendOfZelda
             cmd = new QuitCommand(this);
             keyBinds.Add(Keys.NumPad0, cmd);
             keyBinds.Add(Keys.D0, cmd);
-            
+
             cmd = new PlayerMoveLeftCommand(this.link);
             keyBinds.Add(Keys.Left, cmd);
             keyBinds.Add(Keys.A, cmd);
@@ -185,15 +174,15 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.Z, cmd);
             keyBinds.Add(Keys.N, cmd);
 
-            cmd = new PlayerUseItem1Command(this.link);
+            cmd = new PlayerUseThrowingSwordCommand(this.link);
             keyBinds.Add(Keys.D1, cmd);
             keyBinds.Add(Keys.NumPad1, cmd);
 
-            cmd = new PlayerUseItem2Command(this.link);
+            cmd = new PlayerUseArrowCommand(this.link);
             keyBinds.Add(Keys.D2, cmd);
             keyBinds.Add(Keys.NumPad2, cmd);
 
-            cmd = new PlayerUseItem3Command(this.link);
+            cmd = new PlayerUseBoomerangCommand(this.link);
             keyBinds.Add(Keys.D3, cmd);
             keyBinds.Add(Keys.NumPad3, cmd);
 
