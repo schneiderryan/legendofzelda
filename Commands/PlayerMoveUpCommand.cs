@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,16 +7,19 @@ namespace LegendOfZelda
 {
     class PlayerMoveUpCommand : ICommand
     {
-        private LegendOfZelda game;
+        private IPlayer player;
 
-        public PlayerMoveUpCommand(LegendOfZelda game)
+        public PlayerMoveUpCommand(IPlayer player)
         {
-            this.game = game;
+            this.player = player;
         }
 
         public void Execute()
         {
-            game.link.MoveUp();
+            if (!player.IsAttacking())
+            {
+                player.MoveUp();
+            }
         }
     }
 }

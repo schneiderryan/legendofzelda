@@ -24,5 +24,7 @@ namespace LegendOfZelda
         void UseItem(IItem item);
         void UseProjectile(IProjectile item);
         void Draw(SpriteBatch sb, Color color);
+        void RegisterAttackKeys(List<Keys> attackKeys);
+        bool IsAttacking();
     }
 }

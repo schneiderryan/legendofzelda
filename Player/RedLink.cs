@@ -17,6 +17,8 @@ namespace LegendOfZelda
         private int y;
         private String d;
         private String c;
+        private List<Keys> attackKeys;
+
         public int xPos
         {
             get { return x; }
@@ -117,6 +119,23 @@ namespace LegendOfZelda
         public void TakeDamage()
         {
             this.game.link = new DamagedLink(this, this.game);
+        }
+
+        public void RegisterAttackKeys(List<Keys> attackKeys)
+        {
+            this.attackKeys = attackKeys;
+        }
+
+        public bool IsAttacking()
+        {
+            foreach (Keys key in this.attackKeys)
+            {
+                if (Keyboard.GetState().IsKeyDown(key))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

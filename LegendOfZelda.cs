@@ -38,7 +38,7 @@ namespace LegendOfZelda
             this.link = new GreenLink(this);
 
             keyboard = GameSetup.CreateGeneralKeysController(this);
-            playerKeyboard = GameSetup.CreatePlayerKeysController(this);
+            playerKeyboard = GameSetup.CreatePlayerKeysController(link);
             enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
             items = GameSetup.GenerateItemList();

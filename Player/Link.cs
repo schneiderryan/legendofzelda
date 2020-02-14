@@ -17,6 +17,7 @@ namespace LegendOfZelda
         private int y;
         private String d;
         private String c;
+        private List<Keys> attackKeys;
 
         public int xPos
         {
@@ -118,6 +119,23 @@ namespace LegendOfZelda
         public void UseItem(IItem item)
         {
             item.Use(this);
+        }
+
+        public void RegisterAttackKeys(List<Keys> attackKeys)
+        {
+            this.attackKeys = attackKeys;
+        }
+
+        public bool IsAttacking()
+        {
+            foreach (Keys key in this.attackKeys)
+            {
+                if (Keyboard.GetState().IsKeyDown(key))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

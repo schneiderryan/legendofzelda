@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,8 @@ namespace LegendOfZelda
         private String d;
         private int itemTimer;
         private String c;
+        private List<Keys> attackKeys;
+
         public int xPos
         {
             get { return x; }
@@ -143,6 +146,23 @@ namespace LegendOfZelda
         public void RemoveDecorator()
         {
             game.link = decoratedLink;
+        }
+
+        public void RegisterAttackKeys(List<Keys> attackKeys)
+        {
+            this.attackKeys = attackKeys;
+        }
+
+        public bool IsAttacking()
+        {
+            foreach(Keys key in this.attackKeys)
+            {
+                if (Keyboard.GetState().IsKeyDown(key))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
