@@ -12,7 +12,6 @@ namespace LegendOfZelda
 
         IController keyboarda;
         IController keyboardb;
-        IController keyboardc;
         public List<IEnemy> list;
         public int index;
         public int maxEnemy;
@@ -54,8 +53,7 @@ namespace LegendOfZelda
             index = 0;
             
             enemy = new Gel();
-            aquamentus = new Aquamentus();
-    
+           
             list.Add(enemy);
             list.Add(new Goriya());
             list.Add(new Keese());
@@ -63,12 +61,12 @@ namespace LegendOfZelda
             list.Add(new Trap());
             list.Add(new LFWallmaster());
             list.Add(new RFWallmaster());
-            list.Add(aquamentus);
+            list.Add(new Aquamentus());
             maxEnemy = list.Count-1;
             Dictionary <Keys, ICommand> binds = GenerateKeyBinds();
             //binds[Keys.O].Execute();
-            keyboarda = new EnemyKeyboardController(this, binds);
-            keyboardc = new KeyboardController(binds);
+           
+            keyboarda = new KeyboardController(this, binds);
 
 
             Textures.LoadAllTextures(Content);
@@ -90,7 +88,7 @@ namespace LegendOfZelda
         {
             keyboarda.Update();
             keyboardb.Update();
-            keyboardc.Update();
+            
 
             enemy.Update();
 
@@ -111,12 +109,9 @@ namespace LegendOfZelda
 
            
             spriteBatch.Begin();
+
             enemy.Draw(spriteBatch);
-            if(enemy == aquamentus)
-            {
-                aquamentus.Draw(spriteBatch);
-            }
-            
+           
  
             spriteBatch.End();
             
@@ -157,6 +152,9 @@ namespace LegendOfZelda
             cmd = new QuitCommand(this);
             keyBinds.Add(Keys.NumPad0, cmd);
             keyBinds.Add(Keys.D0, cmd);
+
+            cmd = new ResetCommand(this);
+            keyBinds.Add(Keys.R, cmd);
 
 
             return keyBinds;

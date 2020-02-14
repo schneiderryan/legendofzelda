@@ -24,7 +24,7 @@ namespace LegendOfZelda
             this.xPos = 400;
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
-            this.keyboard = new KeyboardController(generateDictionary());
+            this.keyboard = new KeyboardController(game, generateDictionary());
             this.state = new StillUpRedLinkState(this);
             this.game = game;
             this.item1Timer = 0;
