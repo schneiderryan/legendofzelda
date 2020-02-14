@@ -16,6 +16,7 @@
             game.currentItem = game.items[game.currentIndex];
             game.enemy = new Gel();
             game.link = new GreenLink(game);
+            game.keyboardc = new KeyboardController(game.binds);
         }
     }
 }
