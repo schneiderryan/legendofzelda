@@ -5,47 +5,52 @@ namespace LegendOfZelda
 {
     public static class GameSetup
     {
-        public static IController CreatePlayerKeysController(LegendOfZelda game)
+        public static IController CreatePlayerKeysController(IPlayer player)
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
-            ICommand cmd = new PlayerMoveLeftCommand(game);
+            ICommand cmd = new PlayerMoveLeftCommand(player);
             keyBinds.Add(Keys.Left, cmd);
             keyBinds.Add(Keys.A, cmd);
 
-            cmd = new PlayerMoveRightCommand(game);
+            cmd = new PlayerMoveRightCommand(player);
             keyBinds.Add(Keys.Right, cmd);
             keyBinds.Add(Keys.D, cmd);
 
-            cmd = new PlayerMoveUpCommand(game);
+            cmd = new PlayerMoveUpCommand(player);
             keyBinds.Add(Keys.Up, cmd);
             keyBinds.Add(Keys.W, cmd);
 
-            cmd = new PlayerMoveDownCommand(game);
+            cmd = new PlayerMoveDownCommand(player);
             keyBinds.Add(Keys.Down, cmd);
             keyBinds.Add(Keys.S, cmd);
 
-            cmd = new PlayerDamagedCommand(game);
+            cmd = new PlayerDamagedCommand(player);
             keyBinds.Add(Keys.E, cmd);
 
-            cmd = new PlayerAttackCommand(game);
+            cmd = new PlayerAttackCommand(player);
             keyBinds.Add(Keys.Z, cmd);
             keyBinds.Add(Keys.N, cmd);
 
-            cmd = new PlayerUseThrowingSwordCommand(game);
+            cmd = new PlayerUseThrowingSwordCommand(player);
             keyBinds.Add(Keys.D1, cmd);
             keyBinds.Add(Keys.NumPad1, cmd);
 
-            cmd = new PlayerUseArrowCommand(game);
+            cmd = new PlayerUseArrowCommand(player);
             keyBinds.Add(Keys.D2, cmd);
             keyBinds.Add(Keys.NumPad2, cmd);
 
-            cmd = new PlayerUseBoomerangCommand(game);
+            cmd = new PlayerUseBoomerangCommand(player);
             keyBinds.Add(Keys.D3, cmd);
             keyBinds.Add(Keys.NumPad3, cmd);
 
-            cmd = new PlayerStillCommand(game);
+            cmd = new PlayerStillCommand(player);
             keyBinds.Add(Keys.None, cmd);
+
+            List<Keys> attackKeys = new List<Keys>();
+            attackKeys.Add(Keys.Z);
+            attackKeys.Add(Keys.N);
+            player.RegisterAttackKeys(attackKeys);
 
             return new KeyboardController(keyBinds);
         }

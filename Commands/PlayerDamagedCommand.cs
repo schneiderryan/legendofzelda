@@ -2,16 +2,16 @@
 {
     internal class PlayerDamagedCommand : ICommand
     {
-        private LegendOfZelda game;
+        private IPlayer player;
 
-        public PlayerDamagedCommand(LegendOfZelda game)
+        public PlayerDamagedCommand(IPlayer player)
         {
-            this.game = game;
+            this.player = player;
         }
 
         public void Execute()
         {
-            game.link.TakeDamage();
+            player.TakeDamage();
         }
     }
 }
