@@ -19,6 +19,7 @@ namespace LegendOfZelda
             // don't need to make a new items list b/c they don't do as much
 
             game.link = new GreenLink(game);
+            game.playerKeyboard = GameSetup.CreatePlayerKeysController(game.link);
             game.projectiles = new List<IProjectile>();
         }
     }
