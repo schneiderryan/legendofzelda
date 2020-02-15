@@ -127,11 +127,7 @@ namespace LegendOfZelda
 
         public void UseItem(IItem item)
         {
-            if (itemTimer == 0)
-            {
-                itemTimer = 75;
-                //game.projectiles.Add(item);
-            }
+            item.Use(this);
         }
 
         public void UseProjectile(IProjectile projectile)

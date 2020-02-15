@@ -3,5 +3,9 @@ February 14th
 Sprint 2
 DamagedLink.cs
 Emily Smith
+10 minutes
 
-
+Overall, everything is very readable.  Things are named so that it is easy to understand what they are and what they're behavior
+should be.  Methods bodies are for the most part very short and easy to understand.  The only method that is longer is the method
+for draw, but it is necessary for this method to be a little longer in order to get the behavior that is desired.  Even with this
+method being longer, things are still named well and it is easy to quickly get an idea of what is happening within the method.

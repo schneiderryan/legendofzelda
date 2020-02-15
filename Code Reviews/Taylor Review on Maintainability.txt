@@ -3,5 +3,11 @@ February 14th
 Sprint 2
 DamagedLink.cs
 Emily Smith
+10 minutes
 
-
+Overall, code quality is very good.  In all methods except draw, actions are abstracted out into other methods so that the code
+is simple and doesn't contain too much functionality within this single class, making this code very reusable.  The only method
+that isn't abstracted is the draw method.  If the behavior of drawing a damaged link were changed, then the draw method would
+have to heavily be changed in order to support the change.  If the draw method were more abstracted, less work would need to be
+done in order to fix the method.  Other than that though, I feel that the rest of the code is very well abstracted so it is very
+reusable in the case that other changes were to be made.
