@@ -1,13 +1,13 @@
 ﻿Taylor Benjamin
 February 14th
 Sprint 2
-DamagedLink.cs
-Emily Smith
+Aquamentus.cs
+Adam O'Reilly
 10 minutes
 
-Overall, code quality is very good.  In all methods except draw, actions are abstracted out into other methods so that the code
-is simple and doesn't contain too much functionality within this single class, making this code very reusable.  The only method
-that isn't abstracted is the draw method.  If the behavior of drawing a damaged link were changed, then the draw method would
-have to heavily be changed in order to support the change.  If the draw method were more abstracted, less work would need to be
-done in order to fix the method.  Other than that though, I feel that the rest of the code is very well abstracted so it is very
-reusable in the case that other changes were to be made.
+Overall, code quality is very good.  Many of the methods simply call another abstracted method so that all of the logic is not
+contained in this single class.  This means that if changes to those behavior were necessary, the code in the aquamentus class
+itself would not have to change in those methods.  Looking at the code overall, I think that the maintainablility of the class
+is very good.  If the aquamentus were to start at a position other than the middle of the window then some changes would have to 
+be made but this is a very simple change where position could simply be passed in the constructor of the aquamentus.  Other than 
+that, I don't see anything that would be hard to maintain if other changes were to be made.
