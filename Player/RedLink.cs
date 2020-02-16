@@ -15,8 +15,8 @@ namespace LegendOfZelda
         private int itemTimer;
         private int x;
         private int y;
-        private String d;
-        private String c;
+        private string d;
+        private string c;
         public int xPos
         {
             get { return x; }
