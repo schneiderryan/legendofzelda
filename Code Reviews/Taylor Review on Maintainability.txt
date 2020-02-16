@@ -1,13 +1,12 @@
 ﻿Taylor Benjamin
 February 14th
 Sprint 2
-Aquamentus.cs
-Adam O'Reilly
+DamagedLink.cs
+Emily Smith
 10 minutes
 
-Overall, code quality is very good.  Many of the methods simply call another abstracted method so that all of the logic is not
-contained in this single class.  This means that if changes to those behavior were necessary, the code in the aquamentus class
+Overall, the code quality is very good.  Many of the methods simply call another abstracted method so that all of the logic is not
+contained in this single class.  This means that if changes to those behavior were necessary, the code in the damaged link class
 itself would not have to change in those methods.  Looking at the code overall, I think that the maintainablility of the class
-is very good.  If the aquamentus were to start at a position other than the middle of the window then some changes would have to 
-be made but this is a very simple change where position could simply be passed in the constructor of the aquamentus.  Other than 
-that, I don't see anything that would be hard to maintain if other changes were to be made.
+is very good.  The only thing that may be a little difficult to maintain could be the draw method if the way that damaged link 
+is drawn were to change but other than that this classes maintainablility seems very good to me.
