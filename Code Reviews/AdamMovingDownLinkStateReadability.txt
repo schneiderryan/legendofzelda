@@ -1,0 +1,12 @@
+Adam O'Reilly
+February 16
+Sprint 2
+MovingDownLinkState.cs
+Tyler/Emily
+10
+
+Specific comments on what is readable and what is not:
+Overall I think the readabilty of your MovingDownLinkState class is pretty solid. The only confusion I have with naming
+conventions is the difference between Moving and Walking (which you use in the sprite factory). Are there other speeds
+of movement or should moving be changed to walking/vice versa? Other than that I think the class is very readable, nothing is confusing 
+as to what it's referring to. 

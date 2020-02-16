@@ -43,15 +43,6 @@ namespace LegendOfZelda
 			//aquamentus.state = new KilledEnemyState(aquamentus);
 		}
 
-		public void MoveUp()
-		{
-			
-		}
-
-		public void MoveDown()
-		{
-			
-		}
 
 		public void MoveRight()
 		{

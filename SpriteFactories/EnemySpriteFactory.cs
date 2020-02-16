@@ -8,6 +8,7 @@ namespace LegendOfZelda
     {
         private Texture2D enemySpriteSheet;
         private Texture2D bossSpriteSheet;
+        private Texture2D weaponsSpriteSheet;
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
 
         private EnemySpriteFactory() { }
@@ -24,6 +25,7 @@ namespace LegendOfZelda
         {
             enemySpriteSheet = content.Load<Texture2D>("loz_enemy_sheet");
             bossSpriteSheet = content.Load<Texture2D>("zelda-sprites-bosses");
+            weaponsSpriteSheet = content.Load<Texture2D>("weapons_mod");
         }
 
 
@@ -254,6 +256,14 @@ namespace LegendOfZelda
             //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
 
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true);
+        }
+
+        public ISprite CreateBoomerangSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(weaponsSpriteSheet, new Rectangle(64, 188, 7, 11), 2, true);
         }
 
     }

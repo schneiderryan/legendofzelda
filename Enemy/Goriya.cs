@@ -8,10 +8,15 @@ namespace LegendOfZelda
 
 	public class Goriya : IEnemy
 	{
+		
+		public enum BoomerangState { Thrown, NotThrown}
+		public BoomerangState State { get; protected set; }
 		private Random randomStep = new Random();
 		public IGoriyaState state;
 		public ISprite sprite;
-		private KeyboardController keyboard;
+		public ISprite boomerangSprite;
+		public IProjectile boomerang;
+		//private KeyboardController keyboard;
 		private RandomEnemyController random;
 		public int xPos;
 		public int yPos;
@@ -23,8 +28,9 @@ namespace LegendOfZelda
 
 		public Goriya()
 		{
-
+			
 			sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
+			boomerangSprite = EnemySpriteFactory.Instance.CreateBoomerangSprite();
 			xPos = 400;
 			yPos = 200;
 			sprite.Position = new Point(xPos, yPos);
@@ -32,6 +38,14 @@ namespace LegendOfZelda
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);
 			state = new RightMovingGoriyaState(this);
+			State = BoomerangState.NotThrown;
+			//boomerang = new EnemyProjectile(boomerangSprite, new Vector2(xPos, yPos), new Vector2(0, 8f));
+		}
+
+		public void ThrowBoomerang(int xPos, int yPos)
+		{
+			State = BoomerangState.Thrown;
+			boomerang = new EnemyProjectile(boomerangSprite, new Vector2(xPos, yPos), new Vector2(0, -4f));
 		}
 
 		public void ChangeDirection()
@@ -65,6 +79,12 @@ namespace LegendOfZelda
 
 		 public void Update()
 		{
+			if(State == BoomerangState.Thrown)
+			{
+				boomerangSprite.Update();
+				boomerang.Update();
+			}
+
 			currentStep++;
 			if(currentStep > changeDirection)
 			{
@@ -80,6 +100,10 @@ namespace LegendOfZelda
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			sprite.Draw(spriteBatch, Color.White);
+			if(State == BoomerangState.Thrown)
+			{
+				boomerang.Draw(spriteBatch);
+			}
 		}
 
 		
