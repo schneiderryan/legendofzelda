@@ -56,18 +56,6 @@ namespace LegendOfZelda
             return new KeyboardController(keyBinds);
         }
 
-        public static List<IItem> GenerateItemsOnGround()
-        {
-            List<IItem> list = new List<IItem>();
-            IItem lastItem = new BlueRupee();
-            lastItem.X = 200;
-            lastItem.Y = 200;
-
-            list.Add(lastItem);
-
-            return list;
-        }
-
         public static IController CreateGeneralKeysController(LegendOfZelda game)
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
@@ -111,6 +99,7 @@ namespace LegendOfZelda
                 new Rupee(),
                 new TriforceShard(),
                 new WoodSword(),
+                new Clock()
             };
 
             foreach (IItem i in list)

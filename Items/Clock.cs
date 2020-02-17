@@ -4,11 +4,15 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class Wallet : Item
+    class Clock : Item
     {
+        public Clock()
+        {
+            sprite = ItemSpriteFactory.GetClock();
+        }
         public override void Use(IPlayer player)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

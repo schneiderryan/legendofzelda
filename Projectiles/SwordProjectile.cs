@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    class SwordProjectile : PlayerProjectile
+    class SwordProjectile : Projectile
     {
 
         public SwordProjectile(string direction, int xPos, int yPos)
@@ -23,12 +23,12 @@ namespace LegendOfZelda
             else if (direction == "right")
             {
                 base.X += 10;
-                base.Y += 10;
+                base.Y += 5;
                 this.sprite = ProjectileSpriteFactory.Instance.CreateRightSwordProjectile();
             }
             else if (direction == "left")
             {
-                base.Y += 10;
+                base.Y += 5;
                 this.sprite = ProjectileSpriteFactory.Instance.CreateLeftSwordProjectile();
             }
         }

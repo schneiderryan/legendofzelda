@@ -6,7 +6,6 @@ namespace LegendOfZelda
 {
     class EnemySpriteFactory
     {
-
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();
         
@@ -245,6 +244,5 @@ namespace LegendOfZelda
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true);
         }
 
-       
     }
 }

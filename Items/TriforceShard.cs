@@ -10,7 +10,7 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-
+            player.currentHearts = player.maxHearts;
         }
     }
 }
