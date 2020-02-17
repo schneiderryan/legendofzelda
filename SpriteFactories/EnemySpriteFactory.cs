@@ -7,7 +7,7 @@ namespace LegendOfZelda
     class EnemySpriteFactory
     {
 
-       
+
         private Texture2D weaponsSpriteSheet;
 
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
