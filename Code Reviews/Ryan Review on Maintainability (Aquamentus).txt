@@ -1,0 +1,10 @@
+﻿Reviewer: Ryan Schneider
+2/16/2020
+Sprint: 2
+File: Aquamentus.cs
+Author: Adam O'Reilly
+
+I feel like the fireballs should be their own class extending IProjectile 
+and then Aquamentus then creates three of those rather than creating 
+3 Iprojectiles and then making 3 sprites within the Aquamentus class.
+Besides the fireball issue everything else is looks great.

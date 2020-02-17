@@ -82,8 +82,5 @@ namespace LegendOfZelda
 		{
 			sprite.Draw(spriteBatch);
 		}
-
-		
-		
 	}
 }

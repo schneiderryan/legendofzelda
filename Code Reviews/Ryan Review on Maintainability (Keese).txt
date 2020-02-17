@@ -1,0 +1,11 @@
+﻿Reviewer: Ryan Schneider
+2/16/2020
+Sprint: 2
+File: Keese.cs
+Author: Will Bartlett
+
+Overall, the code looks maintainable. The class is fairly basic and all of the moving motions
+call states that can be used by any class. I think it is good that when making a Keese we have a unique
+class for them rather than making a generic Enemy class that can be any enemy. That way they can be
+customized to need and bugs can be contained within each individual enemy. Code is even kept
+under 100 lines while spacing it out to make it more readable.
