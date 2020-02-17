@@ -37,10 +37,6 @@ namespace LegendOfZelda
             sprite.Update();
         }
 
-        // todo: make this abstract to force each item to implement it
-        public virtual void Use(IPlayer player)
-        {
-
-        }
+        public abstract void Use(IPlayer player);
     }
 }

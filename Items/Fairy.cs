@@ -10,7 +10,7 @@ namespace LegendOfZelda
 
         public override void Update()
         {
-
+            sprite.Update();
         }
 
         public override void Use(IPlayer player)
