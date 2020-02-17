@@ -82,5 +82,10 @@ namespace LegendOfZelda
 		{
 			sprite.Draw(spriteBatch);
 		}
+
+		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

@@ -12,6 +12,7 @@ namespace LegendOfZelda
         void MoveUp();
         void MoveDown();
 
+        void BeStill();
         void Update();
 
         void Draw(SpriteBatch spriteBatch);

@@ -14,7 +14,7 @@ namespace LegendOfZelda
 		private Random randomStep = new Random();
 		public IGoriyaState state;
 		public ISprite sprite;
-
+		public int boomerangTimer;
 		public ISprite boomerangSprite;
 		public IProjectile boomerang;
 		//private KeyboardController keyboard;
@@ -86,7 +86,7 @@ namespace LegendOfZelda
 				boomerangSprite.Update();
 				boomerang.Update();
 			}
-
+		
 			currentStep++;
 			if(currentStep > changeDirection)
 			{
@@ -108,7 +108,9 @@ namespace LegendOfZelda
 			}
 		}
 
-		
-		
+		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
