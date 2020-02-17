@@ -21,7 +21,7 @@
 - Right now the player can be moved around, attack, and throw projectiles.  Enemies move around and those that shoot projectiles
   do so.  Items can be swapped between.  There is no collision detection.
 
-# Known Bugd
+# Known Bugs
 
 
 # Authors
