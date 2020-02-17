@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,11 @@ namespace LegendOfZelda
         private String d;
         private int itemTimer;
         private String c;
+        private int numberOfRupees;
+        private double numMaxHearts;
+        private double numCurrHearts;
+        private List<Keys> attackKeys;
+
         public int xPos
         {
             get { return x; }
@@ -38,6 +44,23 @@ namespace LegendOfZelda
         {
             get { return c; }
             set { c = value; }
+        }
+
+        public int numRupees
+        {
+            get { return numberOfRupees; }
+            set { numberOfRupees = value; }
+        }
+
+        public double maxHearts
+        {
+            get { return numMaxHearts; }
+            set { numMaxHearts = value; }
+        }
+        public double currentHearts
+        {
+            get { return numCurrHearts; }
+            set { numCurrHearts = value; }
         }
 
         public DamagedLink (IPlayer decoratedLink, LegendOfZelda game)
@@ -124,11 +147,7 @@ namespace LegendOfZelda
 
         public void UseItem(IItem item)
         {
-            if (itemTimer == 0)
-            {
-                itemTimer = 75;
-                //game.projectiles.Add(item);
-            }
+            item.Use(this);
         }
 
         public void UseProjectile(IProjectile projectile)
@@ -143,6 +162,23 @@ namespace LegendOfZelda
         public void RemoveDecorator()
         {
             game.link = decoratedLink;
+        }
+
+        public void RegisterAttackKeys(List<Keys> attackKeys)
+        {
+            this.attackKeys = attackKeys;
+        }
+
+        public bool IsAttacking()
+        {
+            foreach(Keys key in this.attackKeys)
+            {
+                if (Keyboard.GetState().IsKeyDown(key))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -7,10 +7,10 @@ namespace LegendOfZelda
     {
         protected int xVel = 0;
         protected int yVel = 0;
-        protected int initialVel = 10;
         protected ISprite sprite = ProjectileSpriteFactory.Instance.CreateUpSwordProjectile();
 
-        public PlayerProjectile(string direction, int xPos, int yPos)
+        public PlayerProjectile(string direction, int xPos, int yPos,
+            int initialVel = 8)
         {
             X = xPos;
             Y = yPos;

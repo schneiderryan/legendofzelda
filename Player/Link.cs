@@ -12,11 +12,16 @@ namespace LegendOfZelda
         public LegendOfZelda game;
         public ISprite sprite;
         public ILinkState state;
+
         private int itemTimer;
         private int x;
         private int y;
         private String d;
         private String c;
+        private int numberOfRupees;
+        private double numMaxHearts;
+        private double numCurrHearts;
+        private List<Keys> attackKeys;
 
         public int xPos
         {
@@ -42,8 +47,26 @@ namespace LegendOfZelda
             set { c = value; }
         }
 
+        public int numRupees 
+        {
+            get { return numberOfRupees; } 
+            set { numberOfRupees = value;  } 
+        }
+
+        public double maxHearts 
+        {
+            get { return numMaxHearts; }
+            set { numMaxHearts = value; }
+        }
+        public double currentHearts 
+        {
+            get { return numCurrHearts; }
+            set { numCurrHearts = value; }
+        }
+
         public GreenLink(LegendOfZelda game)
         {
+            this.game = game;
             this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
             this.d = "up";
             this.c = "green";
@@ -52,8 +75,10 @@ namespace LegendOfZelda
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
             this.state = new StillUpLinkState(this);
-            this.game = game;
             this.itemTimer = 0;
+            this.numRupees = 0;
+            this.maxHearts = 3.0;
+            this.currentHearts = 3.0;
         }
 
         public void MoveLeft()
@@ -118,6 +143,23 @@ namespace LegendOfZelda
         public void UseItem(IItem item)
         {
             item.Use(this);
+        }
+
+        public void RegisterAttackKeys(List<Keys> attackKeys)
+        {
+            this.attackKeys = attackKeys;
+        }
+
+        public bool IsAttacking()
+        {
+            foreach (Keys key in this.attackKeys)
+            {
+                if (Keyboard.GetState().IsKeyDown(key))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            this.player.BeStill();
+            player.BeStill();
         }
     }
 }

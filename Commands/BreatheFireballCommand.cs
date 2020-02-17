@@ -8,17 +8,20 @@ namespace LegendOfZelda
 {
     public class BreatheFireballCommand : ICommand
     {
-        private LegendOfZelda game1;
+        private LegendOfZelda game;
 
-        public BreatheFireballCommand(LegendOfZelda game1)
+        public BreatheFireballCommand(LegendOfZelda game)
         {
-            this.game1 = game1;
+            this.game = game;
         }
 
         public void Execute()
         {
-            ;
-            game1.aquamentus.BreatheFireball(game1.aquamentus.xPos, game1.aquamentus.yPos);
+            if (game.enemies[game.enemyIndex] is Aquamentus)
+            {
+                Aquamentus aq = game.enemies[game.enemyIndex] as Aquamentus;
+                aq.BreatheFireball(aq.xPos, aq.yPos);
+            }
         }
     }
 }

@@ -13,6 +13,9 @@ namespace LegendOfZelda
         string color { get; set; }
         int xPos { get; set; }
         int yPos { get; set; }
+        int numRupees { get; set; }
+        double maxHearts { get; set; }
+        double currentHearts { get; set; }
         void MoveLeft();
         void MoveRight();
         void MoveUp();
@@ -24,5 +27,7 @@ namespace LegendOfZelda
         void UseItem(IItem item);
         void UseProjectile(IProjectile item);
         void Draw(SpriteBatch sb, Color color);
+        void RegisterAttackKeys(List<Keys> attackKeys);
+        bool IsAttacking();
     }
 }

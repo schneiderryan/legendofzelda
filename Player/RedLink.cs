@@ -15,8 +15,15 @@ namespace LegendOfZelda
         private int itemTimer;
         private int x;
         private int y;
-        private string d;
-        private string c;
+
+        private String d;
+        private String c;
+        private int numberOfRupees;
+        private double numMaxHearts;
+        private double numCurrHearts;
+        private List<Keys> attackKeys;
+
+
         public int xPos
         {
             get { return x; }
@@ -41,8 +48,26 @@ namespace LegendOfZelda
             set { c = value; }
         }
 
+        public int numRupees
+        {
+            get { return numberOfRupees; }
+            set { numberOfRupees = value; }
+        }
+
+        public double maxHearts
+        {
+            get { return numMaxHearts; }
+            set { numMaxHearts = value; }
+        }
+        public double currentHearts
+        {
+            get { return numCurrHearts; }
+            set { numCurrHearts = value; }
+        }
+
         public RedLink(LegendOfZelda game)
         {
+            this.game = game;
             this.sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
             this.d = "up";
             this.c = "red";
@@ -50,11 +75,7 @@ namespace LegendOfZelda
             this.xPos = 400;
             this.yPos = 200;
             this.sprite.Position = new Point(xPos, yPos);
-
-            //this.keyboard = new KeyboardController(game, generateDictionary());
-
             this.state = new StillUpRedLinkState(this);
-            this.game = game;
             this.itemTimer = 0;
         }
 
@@ -120,6 +141,23 @@ namespace LegendOfZelda
         public void TakeDamage()
         {
             this.game.link = new DamagedLink(this, this.game);
+        }
+
+        public void RegisterAttackKeys(List<Keys> attackKeys)
+        {
+            this.attackKeys = attackKeys;
+        }
+
+        public bool IsAttacking()
+        {
+            foreach (Keys key in this.attackKeys)
+            {
+                if (Keyboard.GetState().IsKeyDown(key))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

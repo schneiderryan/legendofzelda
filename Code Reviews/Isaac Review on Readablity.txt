@@ -1,0 +1,13 @@
+﻿
+Reviewer: Isaac Smith
+2020-02-16
+Sprint: 2
+File: Link.cs
+Author: Taylor
+The time it took to do this: 8min
+
+The properites refering to single letter variables isn't particaully readable.
+The item timer isn't used in the UseItem method, but is used in the UseProjectile
+method, seem a bit odd. Naming the itemTimer soming like attackCooldown
+would amke more sense.
+The rest of the class is nice and readable, with lots of short methods.

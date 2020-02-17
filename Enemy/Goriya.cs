@@ -17,6 +17,7 @@ namespace LegendOfZelda
 		public ISprite boomerangSprite;
 		public IProjectile boomerang;
 		//private KeyboardController keyboard;
+
 		private RandomEnemyController random;
 		public int xPos;
 		public int yPos;
