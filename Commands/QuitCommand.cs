@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class QuitCommand : ICommand
+    class QuitCommand : ICommand
     {
         private LegendOfZelda game1;
 

@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class Heart : Item
+    class Heart : Item
     {
         public Heart()
         {

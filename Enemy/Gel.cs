@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class Gel : IEnemy
+	class Gel : IEnemy
 	{
 		private Random randomStep = new Random();
 		public IGelState state;

@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class Bow : Item
+    class Bow : Item
     {
         public bool HasArrow { get; set; } // todo: change sprite when it has the arrow
 

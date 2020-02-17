@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class Keese : IEnemy
+	class Keese : IEnemy
 	{
 		private Random randomStep = new Random();
 		public IKeeseState state;

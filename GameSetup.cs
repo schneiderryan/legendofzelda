@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public static class GameSetup
+    static class GameSetup
     {
         public static IController CreatePlayerKeysController(IPlayer player)
         {
@@ -48,9 +48,11 @@ namespace LegendOfZelda
             cmd = new PlayerStillCommand(player);
             keyBinds.Add(Keys.None, cmd);
 
-            List<Keys> attackKeys = new List<Keys>();
-            attackKeys.Add(Keys.Z);
-            attackKeys.Add(Keys.N);
+            List<Keys> attackKeys = new List<Keys>()
+            {
+                Keys.Z,
+                Keys.N
+            };
             player.RegisterAttackKeys(attackKeys);
 
             return new KeyboardController(keyBinds);

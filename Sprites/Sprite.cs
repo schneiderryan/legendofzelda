@@ -3,24 +3,32 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public class Sprite : ISprite
+    class Sprite : ISprite
     {
         private readonly Texture2D texture;
-
+        private float scale;
         protected Rectangle sourceRect;
 
         public SpriteEffects Effects { get; set; }
-
         public Point Position { get; set; }
-
-        public float Scale { get; set; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public float Scale
+        {
+            get { return scale; }
+            set
+            {
+                scale = value;
+                Width = (int)(scale * sourceRect.Width);
+                Height = (int)(scale * sourceRect.Height);
+            }
+        }
 
         public Sprite(Texture2D texture, Rectangle sourecRect)
         {
             this.texture = texture;
             this.sourceRect = sourecRect;
             Scale = 2.0f;
-            Position = new Point();
             Effects = SpriteEffects.None;
         }
 

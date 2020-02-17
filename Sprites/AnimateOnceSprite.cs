@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public class AnimateOnceSprite : AnimatedSprite
+    class AnimateOnceSprite : AnimatedSprite
     {
         private int frameCounter = 0;
 

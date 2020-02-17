@@ -6,7 +6,7 @@ using System;
 namespace LegendOfZelda
 {
 
-	public class Goriya : IEnemy
+	class Goriya : IEnemy
 	{
 		
 		public enum BoomerangState { Thrown, NotThrown}

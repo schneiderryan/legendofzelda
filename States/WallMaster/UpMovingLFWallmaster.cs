@@ -58,7 +58,7 @@ namespace LegendOfZelda
 			{
 				lfwallmaster.yPos += 480;
 			}
-			
+
 			lfwallmaster.sprite.Position = new Point(lfwallmaster.xPos, lfwallmaster.yPos);
 		}
 

@@ -4,21 +4,21 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public class LegendOfZelda : Game
+    class LegendOfZelda : Game
     {
-        public IController playerKeyboard;
+        public IController playerKeyboard { get; set; }
         private IController enemyKeyboard;
         private IController keyboard;
 
-        public List<IEnemy> enemies;
-        public int enemyIndex = 0;
-        public List<IItem> items;
-        public int itemIndex = 0;
+        public List<IEnemy> enemies { get; set; }
+        public int enemyIndex { get; set; }
+        public List<IItem> items { get; set; }
+        public int itemIndex { get; set; }
 
-        public List<IProjectile> projectiles;
-        public IPlayer link;
+        public List<IProjectile> projectiles { get; set; }
+        public IPlayer link { get; set; }
 
-        public GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics { get; set; }
 
         private SpriteBatch spriteBatch;
 

@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class Fairy : Item
+    class Fairy : Item
     {
         public Fairy()
         {
