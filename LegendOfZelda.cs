@@ -31,11 +31,13 @@ namespace LegendOfZelda
         public List<IEnemy> enemies
         {
             get { return Enemies; }
+            set { Enemies = value; }
         }
 
         public List<IProjectile> projectiles
         {
             get { return Projectiles; }
+            set { Projectiles = value; }
         }
 
         public int itemIndex
