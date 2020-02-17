@@ -18,7 +18,7 @@ namespace LegendOfZelda
         public List<IProjectile> projectiles;
         public IPlayer link;
 
-        public GraphicsDeviceManager graphics;
+        private GraphicsDeviceManager graphics;
 
         private SpriteBatch spriteBatch;
 
