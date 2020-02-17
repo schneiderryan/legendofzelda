@@ -23,7 +23,7 @@ namespace LegendOfZelda
             enemy = contentManager.Load<Texture2D>("loz_enemy_sheet");
             boss = contentManager.Load<Texture2D>("zelda-sprites-bosses");
 
-            link = contentManager.Load<Texture2D>("link");
+            link = contentManager.Load<Texture2D>("link_mod");
             linkAttackingDown = contentManager.Load<Texture2D>("downAttackingLink");
             linkAttackingUp = contentManager.Load<Texture2D>("upAttackingLink");
             redLinkAttackingDown = contentManager.Load<Texture2D>("downAttackingRedLink");
