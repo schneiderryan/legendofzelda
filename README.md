@@ -22,7 +22,8 @@
   do so.  Items can be swapped between.  There is no collision detection.
 
 # Known Bugs
-
+- When trying to move link in two directions at once, he stops animating
+- Goriya only throws boomerangs upwards for now
 
 # Authors
 Will Bartlett
