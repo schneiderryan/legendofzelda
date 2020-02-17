@@ -99,6 +99,7 @@ namespace LegendOfZelda
                 new Rupee(),
                 new TriforceShard(),
                 new WoodSword(),
+                new Clock()
             };
 
             foreach (IItem i in list)
