@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class Aquamentus : IEnemy
+	class Aquamentus : IEnemy
 	{
 		public enum FireballState { Breathed, NotBreathed}
 		public FireballState State { get; protected set; }
