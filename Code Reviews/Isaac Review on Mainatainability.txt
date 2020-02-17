@@ -1,0 +1,15 @@
+﻿
+Reviewer: Isaac Smith
+2020-02-16
+Sprint: 2
+File: Link.cs
+Author: Taylor
+
+Using keys to check if link is attacking seems a bit weird.
+Other than that, the class is pretty simple ans should be easy
+to maintain on its own.
+	However, if there was a bug in the link class, the other player
+classes would probably have the same problem. You'd have to change
+all of them to fix it. Same if you wanted to add something. If the
+player classes used an abstract class or something similar, it'd be
+easier to maintain.
