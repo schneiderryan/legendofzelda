@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class Stalfo : IEnemy
+	class Stalfo : IEnemy
 	{
 		private Random randomStep = new Random();
 		public IStalfoState state;

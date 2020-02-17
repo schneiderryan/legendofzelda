@@ -59,7 +59,7 @@ namespace LegendOfZelda
 				rfwallmaster.Y += 480;
 			}
 			
-			rfwallmaster.sprite.Position = new Point(rfwallmaster.X, rfwallmaster.X);
+			rfwallmaster.sprite.Position = new Point(rfwallmaster.X, rfwallmaster.Y);
 		}
 
 

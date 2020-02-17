@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class LFWallmaster : IEnemy
+	class LFWallmaster : IEnemy
 	{
 		private Random randomStep = new Random();
 		public IWallmasterState state;
