@@ -64,29 +64,31 @@ namespace LegendOfZelda
 
         public ISprite CreateDownSwordProjectile()
         {
-            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(4, 195, 7, 15), 4, false);
+            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(4, 195, 7, 15), 2, false);
         }
 
         public ISprite CreateUpSwordProjectile()
         {
-            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(64, 195, 7, 15), 4, false);
+            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(64, 195, 7, 15), 2, false);
         }
 
         public ISprite CreateRightSwordProjectile()
         {
-            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(90, 199, 16, 7), 4, false);
+            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(90, 199, 16, 7), 2, false);
         }
 
         public ISprite CreateLeftSwordProjectile()
         {
-            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(30, 199, 16, 7), 4, false);
+            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(30, 199, 16, 7), 2, false);
         }
 
         public ISprite CreateBoomerang()
         {
             return new AnimatedSprite(Textures.GetWeaponSheet(),
-                new Rectangle(64, 188, 7, 11), 8)
-            { AnimationDelay = 2 };
+                new Rectangle(63, 189, 8, 8), 8)
+            {
+                AnimationDelay = 2
+            };
         }
     }
 }
