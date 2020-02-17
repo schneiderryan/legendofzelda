@@ -15,12 +15,14 @@ namespace LegendOfZelda
         private int itemTimer;
         private int x;
         private int y;
+
         private String d;
         private String c;
         private int numberOfRupees;
         private double numMaxHearts;
         private double numCurrHearts;
         private List<Keys> attackKeys;
+
 
         public int xPos
         {
