@@ -12,7 +12,7 @@ namespace LegendOfZelda
 	{
 		public enum FireballState { Breathed, NotBreathed}
 		public FireballState State { get; protected set; }
-		private Random randomStep = new Random();
+		
 		public IAquamentusState state;
 		public ISprite sprite;
 		public ISprite fireballSprite0;
@@ -21,6 +21,7 @@ namespace LegendOfZelda
 		public IProjectile fireball0;
 		public IProjectile fireball1;
 		public IProjectile fireball2;
+		private Random randomStep = new Random();
 		private RandomEnemyController random;
 		protected const float VELOCITY = -8f;
 		protected const float VELOCITYYUP = -2f;
@@ -136,7 +137,9 @@ namespace LegendOfZelda
 			
 		}
 
-		
-		
+		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

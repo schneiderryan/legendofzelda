@@ -24,7 +24,7 @@ namespace LegendOfZelda
 
 		public Stalfo()
 		{
-
+			//stalfos can be hit once before they die to the next hit 
 			sprite = EnemySpriteFactory.Instance.CreateUpMovingStalfoSprite();
 			xPos = 400;
 			yPos = 200;
@@ -83,7 +83,9 @@ namespace LegendOfZelda
 			sprite.Draw(spriteBatch);
 		}
 
-		
-		
+		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
