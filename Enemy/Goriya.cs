@@ -32,7 +32,7 @@ namespace LegendOfZelda
 		{
 			
 			sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
-			boomerangSprite = EnemySpriteFactory.Instance.CreateBoomerangSprite();
+			boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
 			xPos = 400;
 			yPos = 200;
 			sprite.Position = new Point(xPos, yPos);
