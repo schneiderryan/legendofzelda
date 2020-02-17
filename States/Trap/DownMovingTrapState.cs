@@ -53,12 +53,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			trap.yPos += 1;
-			if (trap.yPos > 480)
+			trap.Y += 1;
+			if (trap.Y > 480)
 			{
-				trap.yPos -= 480;
+				trap.Y -= 480;
 			}
-			trap.sprite.Position = new Point(trap.xPos, trap.yPos);
+			trap.sprite.Position = new Point(trap.X, trap.Y);
 		}
 
 
