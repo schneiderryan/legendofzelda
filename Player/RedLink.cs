@@ -17,6 +17,7 @@ namespace LegendOfZelda
         private int y;
         private String d;
         private String c;
+        private int n;
         private List<Keys> attackKeys;
 
         public int xPos
@@ -41,6 +42,12 @@ namespace LegendOfZelda
         {
             get { return c; }
             set { c = value; }
+        }
+
+        public int numRupees 
+        {
+            get { return n; }
+            set { n = value; }
         }
 
         public RedLink(LegendOfZelda game)
