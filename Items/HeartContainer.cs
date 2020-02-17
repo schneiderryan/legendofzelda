@@ -14,8 +14,8 @@ namespace LegendOfZelda
         }
         public override void Use(IPlayer player)
         {
-            player.maxHearts+= 1.0;
-            player.currentHearts = player.maxHearts;
+            player.maxHearts += 1.0;
+            player.currentHearts += 1.0;
         }
     }
 }

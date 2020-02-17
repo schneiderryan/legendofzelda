@@ -14,8 +14,6 @@ namespace LegendOfZelda
         public int enemyIndex = 0;
         public List<IItem> items;
         public int itemIndex = 0;
-        public List<IItem> itemsOnGround;
-        public List<IItem> itemsToRemove;
 
         public List<IProjectile> projectiles;
         public IPlayer link;
@@ -44,12 +42,7 @@ namespace LegendOfZelda
             enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
             items = GameSetup.GenerateItemList();
-            itemsOnGround = GameSetup.GenerateItemsOnGround();
             enemies = GameSetup.GenerateEnemyList();
-            itemsToRemove = new List<IItem>()
-            {
-
-            };
         }
 
         protected override void LoadContent()
@@ -66,23 +59,6 @@ namespace LegendOfZelda
 
             enemies[enemyIndex].Update();
             items[itemIndex].Update();
-            foreach (IItem groundItem in itemsOnGround)
-            {
-                groundItem.Update();
-                if ((groundItem.X == link.xPos) && (groundItem.Y == link.yPos))
-                {
-                    groundItem.Use(link);
-                    itemsToRemove.Add(groundItem);
-                }
-            }
-            if (itemsToRemove != null && itemsToRemove.Count > 0)
-            {
-                foreach (IItem itemToRemove in itemsToRemove)
-                {
-                    itemsOnGround.Remove(itemToRemove);
-                }
-                itemsToRemove.Clear();
-            }
             link.Update();
 
             foreach (IProjectile projectile in projectiles)
@@ -101,10 +77,6 @@ namespace LegendOfZelda
             enemies[enemyIndex].Draw(spriteBatch);
             items[itemIndex].Draw(spriteBatch);
             link.Draw(spriteBatch, Color.White);
-            foreach (IItem groundItem in itemsOnGround)
-            {
-                groundItem.Draw(spriteBatch);
-            }
 
             foreach (IProjectile projectile in projectiles)
             {
