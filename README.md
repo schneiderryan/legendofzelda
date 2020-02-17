@@ -27,7 +27,8 @@
 - when link attacks up or left his sprite jumps and attacks continuality
 - when link attacks with another weapon there isn't different sprites 
 
-# Code Analyzer Suppressions
+
+# Code Analyzer Suppressions (80 warnings found)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
   If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 
