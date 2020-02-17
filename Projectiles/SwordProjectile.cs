@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    class SwordProjectile : Projectile
+    public class SwordProjectile : Projectile
     {
 
         public SwordProjectile(string direction, int xPos, int yPos)

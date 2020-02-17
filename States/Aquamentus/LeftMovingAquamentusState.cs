@@ -4,9 +4,7 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{
-
-	class LeftMovingAquamentusState : IAquamentusState
+{    public class LeftMovingAquamentusState : IAquamentusState
 	{
 		private Aquamentus aquamentus;
 		private int changeDirection;

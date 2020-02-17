@@ -4,9 +4,7 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{
-
-	class UpMovingStalfoState : IStalfoState
+{    public class UpMovingStalfoState : IStalfoState
 	{
 		private Stalfo stalfo;
 

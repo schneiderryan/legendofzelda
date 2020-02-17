@@ -4,9 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 
-{
-
-	class DownMovingGoriyaState : IGoriyaState
+{    public class DownMovingGoriyaState : IGoriyaState
 	{
 		private Goriya goriya;
 

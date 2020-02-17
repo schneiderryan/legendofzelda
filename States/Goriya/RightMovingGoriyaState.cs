@@ -4,9 +4,7 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{
-
-	class RightMovingGoriyaState : IGoriyaState
+{    public class RightMovingGoriyaState : IGoriyaState
 	{
 		private Goriya goriya;
 

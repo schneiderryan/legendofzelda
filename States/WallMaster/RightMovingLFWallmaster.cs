@@ -4,9 +4,7 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{
-
-	class RightMovingLFWallmasterState : IWallmasterState
+{    public class RightMovingLFWallmasterState : IWallmasterState
 	{
 		private LFWallmaster lfwallmaster;
 

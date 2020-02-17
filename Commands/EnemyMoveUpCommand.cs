@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class EnemyMoveUpCommand : ICommand
+    public class EnemyMoveUpCommand : ICommand
     {
         private IEnemy enemy;
 

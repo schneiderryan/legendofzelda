@@ -4,9 +4,7 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{
-
-	class DownMovingGelState : IGelState
+{    public class DownMovingGelState : IGelState
 	{
 		private Gel gel;
 

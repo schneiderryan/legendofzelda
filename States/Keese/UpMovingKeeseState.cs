@@ -4,9 +4,7 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{
-
-	class UpMovingKeeseState : IKeeseState
+{    public class UpMovingKeeseState : IKeeseState
 	{
 		private Keese keese;
 

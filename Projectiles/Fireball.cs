@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegendOfZelda.Projectiles
 {
-    class Fireball
+    public class Fireball
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class PlayerAttackCommand : ICommand
+    public class PlayerAttackCommand : ICommand
     {
         private IPlayer player;
 

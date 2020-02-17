@@ -7,67 +7,67 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class DamagedLink : IPlayer
+    public class DamagedLink : IPlayer
     {
-        LegendOfZelda game;
         IPlayer decoratedLink;
         int timer = 192; // to give about 3 seconds
-        private int x;
-        private int y;
-        private String d;
-        private int itemTimer;
-        private String c;
-        private int numberOfRupees;
-        private double numMaxHearts;
-        private double numCurrHearts;
-        private List<Keys> attackKeys;
+
+        public ISprite sprite
+        {
+            get { return decoratedLink.sprite; }
+            set { decoratedLink.sprite = value; }
+        }
+
+        public ILinkState state
+        {
+            get { return decoratedLink.state; }
+            set { decoratedLink.state = value; }
+        }
 
         public int xPos
         {
-            get { return x; }
-            set { x = value; }
+            get { return decoratedLink.xPos; }
+            set { decoratedLink.xPos = value; }
         }
 
         public int yPos
         {
-            get { return y; }
-            set { y = value; }
+            get { return decoratedLink.yPos; }
+            set { decoratedLink.yPos = value; }
         }
 
         public String direction
         {
-            get { return d; }
-            set { d = value; }
+            get { return decoratedLink.direction; }
+            set { decoratedLink.direction = value; }
         }
 
         public String color
         {
-            get { return c; }
-            set { c = value; }
+            get { return decoratedLink.color; }
+            set { decoratedLink.color = value; }
         }
 
         public int numRupees
         {
-            get { return numberOfRupees; }
-            set { numberOfRupees = value; }
+            get { return decoratedLink.numRupees; }
+            set { decoratedLink.numRupees = value; }
         }
 
         public double maxHearts
         {
-            get { return numMaxHearts; }
-            set { numMaxHearts = value; }
+            get { return decoratedLink.maxHearts; }
+            set { decoratedLink.maxHearts = value; }
         }
         public double currentHearts
         {
-            get { return numCurrHearts; }
-            set { numCurrHearts = value; }
+            get { return decoratedLink.currentHearts; }
+            set { decoratedLink.currentHearts = value; }
         }
 
-        public DamagedLink (IPlayer decoratedLink, LegendOfZelda game)
+        public DamagedLink (IPlayer decoratedLink)
         {
             this.decoratedLink = decoratedLink;
-            this.game = game;
-            this.itemTimer = 0;
         }
 
         public void Attack()
@@ -133,52 +133,27 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            timer--;
-            if(timer == 0)
-            {
-                RemoveDecorator();
-            }
             decoratedLink.Update();
-            if (itemTimer > 0)
-            {
-                itemTimer--;
-            }
         }
 
         public void UseItem(IItem item)
         {
-            item.Use(this);
+            decoratedLink.UseItem(item);
         }
 
         public void UseProjectile(IProjectile projectile)
         {
-            if (itemTimer == 0)
-            {
-                itemTimer = 75;
-                game.projectiles.Add(projectile);
-            }
-        }
-
-        public void RemoveDecorator()
-        {
-            game.link = decoratedLink;
+            decoratedLink.UseProjectile(projectile);
         }
 
         public void RegisterAttackKeys(List<Keys> attackKeys)
         {
-            this.attackKeys = attackKeys;
+            decoratedLink.RegisterAttackKeys(attackKeys);
         }
 
         public bool IsAttacking()
         {
-            foreach(Keys key in this.attackKeys)
-            {
-                if (Keyboard.GetState().IsKeyDown(key))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return decoratedLink.IsAttacking();
         }
     }
 }

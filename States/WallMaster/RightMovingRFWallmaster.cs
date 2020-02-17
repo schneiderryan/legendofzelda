@@ -4,9 +4,7 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{
-
-	class RightMovingRFWallmasterState : IWallmasterState
+{    public class RightMovingRFWallmasterState : IWallmasterState
 	{
 		private RFWallmaster rfwallmaster;
 

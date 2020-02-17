@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class EnemyProjectile : IProjectile
+    public class EnemyProjectile : IProjectile
     {
         protected int xVel = 0;
         protected int yVel = 0;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class PlayerMoveRightCommand : ICommand
+    public class PlayerMoveRightCommand : ICommand
     {
         private IPlayer player;
 

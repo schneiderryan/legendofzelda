@@ -3,9 +3,7 @@
 
 
 namespace LegendOfZelda
-{
-
-	class UpMovingGelState : IGelState
+{    public class UpMovingGelState : IGelState
 	{
 		private Gel gel;
 

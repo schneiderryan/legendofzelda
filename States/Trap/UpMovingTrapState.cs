@@ -4,9 +4,7 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{
-
-	class UpMovingTrapState : ITrapState
+{    public class UpMovingTrapState : ITrapState
 	{
 		private Trap trap;
 
