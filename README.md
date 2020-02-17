@@ -24,6 +24,8 @@
 # Known Bugs
 - When trying to move link in two directions at once, he stops animating
 - Goriya only throws boomerangs upwards for now
+- when link attacks up or left his sprite jumps and attacks continuality
+- when link attacks with another weapon there isn't different sprites 
 
 # Code Analyzer Suppressions
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
