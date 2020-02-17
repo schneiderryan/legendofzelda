@@ -13,6 +13,7 @@ namespace LegendOfZelda
         string color { get; set; }
         int xPos { get; set; }
         int yPos { get; set; }
+        int numRupees { get; set; }
         void MoveLeft();
         void MoveRight();
         void MoveUp();

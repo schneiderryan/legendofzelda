@@ -12,11 +12,13 @@ namespace LegendOfZelda
         public LegendOfZelda game;
         public ISprite sprite;
         public ILinkState state;
+
         private int itemTimer;
         private int x;
         private int y;
         private String d;
         private String c;
+        private int n;
         private List<Keys> attackKeys;
 
         public int xPos
@@ -43,6 +45,12 @@ namespace LegendOfZelda
             set { c = value; }
         }
 
+        public int numRupees 
+        {
+            get { return n; } 
+            set { n = value;  } 
+        }
+
         public GreenLink(LegendOfZelda game)
         {
             this.game = game;
@@ -55,6 +63,7 @@ namespace LegendOfZelda
             this.sprite.Position = new Point(xPos, yPos);
             this.state = new StillUpLinkState(this);
             this.itemTimer = 0;
+            this.numRupees = 0;
         }
 
         public void MoveLeft()
