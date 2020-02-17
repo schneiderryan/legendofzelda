@@ -1,0 +1,17 @@
+Adam O'Reilly
+February 16
+Sprint 2
+MovingDownLinkState.cs
+Tyler/Emily
+20
+
+After running code metrics in VS on the project, the MovingDownLinkState has a 79 for its maintainability index (good), 
+9 for cyclomatic complexity (good), and a 10 for coupling (okay). There may be some room to reduce the number of different types used in the class in order to lower the coupling. 
+As far as looking at the actual code, a few things stood out to me upon my initial review. 
+There are unused variables int x, int y and String c, String d in your Link class that are referenced differently in this class. It looks like they are left over 
+from a previous version of the code and should be fully replaced with xPos, yPos, direction, and color.It might make sense to use an enum for the directions and 
+color rather than a string. Is setting the scale to 2.0f in each state change useful or does it create unneccesary additional lines of code? 
+
+If you were to hypothetically change the height and width of the window in the main class you would also have to go into each state class and adjust the numbers used in the update
+class that allow for the sprite to wrap around when it reaches the edge of the screen. You would also have to manually calculate the new "center" of the screen in the Link class when you set the initial position.
+For now they are explicit integers which decreases the maintainability of the code (the enemy classes  have this issue currently as well). 

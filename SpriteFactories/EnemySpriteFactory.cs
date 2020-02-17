@@ -6,8 +6,12 @@ namespace LegendOfZelda
 {
     class EnemySpriteFactory
     {
+
+        private Texture2D weaponsSpriteSheet;
+
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();
+
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
 
         private EnemySpriteFactory() { }
@@ -19,6 +23,7 @@ namespace LegendOfZelda
                 return instance;
             }
         }
+
 
         public ISprite CreateDownMovingGoriyaSprite()
         {
@@ -247,6 +252,14 @@ namespace LegendOfZelda
             //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
 
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true);
+        }
+
+        public ISprite CreateBoomerangSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(weaponsSpriteSheet, new Rectangle(64, 188, 7, 11), 2, true);
         }
 
     }

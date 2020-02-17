@@ -12,6 +12,7 @@ namespace LegendOfZelda
 		public UpMovingGoriyaState(Goriya goriya)
 		{
 			this.goriya = goriya;
+			goriya.ThrowBoomerang(goriya.xPos, goriya.yPos);
 		}
 
 
