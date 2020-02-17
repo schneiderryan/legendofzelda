@@ -6,9 +6,12 @@ namespace LegendOfZelda
 {
     class EnemySpriteFactory
     {
-        private Texture2D enemySpriteSheet;
-        private Texture2D bossSpriteSheet;
+
         private Texture2D weaponsSpriteSheet;
+
+        private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
+        private Texture2D bossSpriteSheet = Textures.GetBossSheet();
+
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
 
         private EnemySpriteFactory() { }
@@ -19,13 +22,6 @@ namespace LegendOfZelda
             {
                 return instance;
             }
-        }
-
-        public void LoadTextures(ContentManager content)
-        {
-            enemySpriteSheet = content.Load<Texture2D>("loz_enemy_sheet");
-            bossSpriteSheet = content.Load<Texture2D>("zelda-sprites-bosses");
-            weaponsSpriteSheet = content.Load<Texture2D>("weapons_mod");
         }
 
 

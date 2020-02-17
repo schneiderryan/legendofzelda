@@ -15,7 +15,10 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            player.MoveDown();
+            if (!player.IsAttacking())
+            {
+                player.MoveDown();
+            }
         }
     }
 }

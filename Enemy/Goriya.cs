@@ -14,9 +14,11 @@ namespace LegendOfZelda
 		private Random randomStep = new Random();
 		public IGoriyaState state;
 		public ISprite sprite;
+
 		public ISprite boomerangSprite;
 		public IProjectile boomerang;
 		//private KeyboardController keyboard;
+
 		private RandomEnemyController random;
 		public int xPos;
 		public int yPos;

@@ -8,12 +8,12 @@ namespace LegendOfZelda
 {
     public class SwapItemCommand : ICommand
     {
-        private LegendOfZelda game1;
-        private String swapDirection;
+        private LegendOfZelda game;
+        private string swapDirection;
 
-        public SwapItemCommand(LegendOfZelda game1, String direction)
+        public SwapItemCommand(LegendOfZelda game, string direction)
         {
-            this.game1 = game1;
+            this.game = game;
             this.swapDirection = direction;
         }
         
@@ -21,27 +21,26 @@ namespace LegendOfZelda
         {
             if (swapDirection.Equals("next"))
             {
-                if (game1.items.Count - 1 <= game1.currentIndex)
+                if (game.items.Count - 1 == game.itemIndex)
                 {
-                    game1.currentIndex = 0;
-                } else
-                {
-
-                    game1.currentIndex++;
-                }
-            } else if (swapDirection.Equals("previous"))
-            {
-                if (0 >= game1.currentIndex)
-                {
-                    game1.currentIndex = game1.items.Count - 1;
+                    game.itemIndex = 0;
                 }
                 else
                 {
-
-                    game1.currentIndex--;
+                    game.itemIndex++;
                 }
             }
-            game1.currentItem = game1.items[game1.currentIndex];
+            else if (swapDirection.Equals("previous"))
+            {
+                if (0 == game.itemIndex)
+                {
+                    game.itemIndex = game.items.Count - 1;
+                }
+                else
+                {
+                    game.itemIndex--;
+                }
+            }
         }
     }
 }

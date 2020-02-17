@@ -1,0 +1,10 @@
+﻿Reviewer: Ryan Schneider
+2/16/2020
+Sprint: 2
+File: Keese.cs
+Author: Will Bartlett
+
+I don't think that the code could get much more readable. All of the methods have 
+self explainitory names. The only thing that had me a little confused at first is the random variable.
+Very simple change, just rename it to something like "randomDirection". Code is spaced out to
+make the code easier to read. Overall very readable.

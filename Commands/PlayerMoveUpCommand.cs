@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,7 +16,10 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            player.MoveUp();
+            if (!player.IsAttacking())
+            {
+                player.MoveUp();
+            }
         }
     }
 }
