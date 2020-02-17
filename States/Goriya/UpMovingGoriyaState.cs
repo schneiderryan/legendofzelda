@@ -8,11 +8,13 @@ namespace LegendOfZelda
 	class UpMovingGoriyaState : IGoriyaState
 	{
 		private Goriya goriya;
+		
+
 
 		public UpMovingGoriyaState(Goriya goriya)
-		{
+		{ 
 			this.goriya = goriya;
-			goriya.ThrowBoomerang(goriya.xPos, goriya.yPos);
+			
 		}
 
 
@@ -53,6 +55,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
+			goriya.boomerangTimer++;
+			if(goriya.boomerangTimer == 30)
+			{
+				goriya.ThrowBoomerang(goriya.xPos, goriya.yPos);
+				goriya.boomerangTimer++;
+			}
 			goriya.yPos -= 1;
 			if (goriya.yPos < 0)
 			{
