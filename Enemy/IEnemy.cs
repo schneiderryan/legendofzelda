@@ -4,9 +4,10 @@ namespace LegendOfZelda
 {
     public interface IEnemy
     {
-        int currentStep { get; set; }
+        int CurrentStep { get; set; }
         int changeDirection { get; set; }
-
+        int X { get; set; }
+        int Y { get; set; }
         void MoveLeft();
         void MoveRight();
         void MoveUp();
