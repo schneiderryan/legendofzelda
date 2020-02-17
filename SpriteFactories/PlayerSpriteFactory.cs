@@ -81,7 +81,7 @@ namespace LegendOfZelda
 
         public ISprite CreateUpStillLinkSprite()
         {   
-            return new Sprite(linkSpriteSheet, new Rectangle(62, 0, 12, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(60, 0, 15, 17));
         }
 
         public ISprite CreateDownStillLinkSprite()

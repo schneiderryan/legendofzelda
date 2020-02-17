@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public abstract class PlayerProjectile : IProjectile
+    public abstract class Projectile : IProjectile
     {
         protected int xVel = 0;
         protected int yVel = 0;
         protected ISprite sprite = ProjectileSpriteFactory.Instance.CreateUpSwordProjectile();
 
-        public PlayerProjectile(string direction, int xPos, int yPos,
+        public Projectile(string direction, int xPos, int yPos,
             int initialVel = 8)
         {
             X = xPos;
