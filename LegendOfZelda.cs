@@ -7,8 +7,8 @@ namespace LegendOfZelda
     public class LegendOfZelda : Game
     {
         public IController playerKeyboard;
-        public IController enemyKeyboard;
-        public IController keyboard;
+        private IController enemyKeyboard;
+        private IController keyboard;
 
         public List<IEnemy> enemies;
         public int enemyIndex = 0;

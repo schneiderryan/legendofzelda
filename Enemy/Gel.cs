@@ -16,8 +16,8 @@ namespace LegendOfZelda
 		private RandomEnemyController random;
 		public int xPos;
 		public int yPos;
-		public int currentStep;
-		public int changeDirection;
+		private int currentStep;
+		private int changeDirection;
 
 		int IEnemy.currentStep { get ; set ; }
 		int IEnemy.changeDirection { get; set; }
