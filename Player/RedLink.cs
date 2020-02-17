@@ -77,6 +77,9 @@ namespace LegendOfZelda
             this.sprite.Position = new Point(xPos, yPos);
             this.state = new StillUpRedLinkState(this);
             this.itemTimer = 0;
+            this.numRupees = 0;
+            this.maxHearts = 3.0;
+            this.currentHearts = 3.0;
         }
 
         public void MoveLeft()
