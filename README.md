@@ -25,6 +25,15 @@
 - When trying to move link in two directions at once, he stops animating
 - Goriya only throws boomerangs upwards for now
 
+# Code Analyzer Suppressions
+- CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
+  If this class is intended to contain only static members, make it static (Shared in Visual Basic).
+
+  Suppressed because we expect to intantiate red link later on in the project.
+
+- 
+
+
 # Authors
 Will Bartlett
 Taylor Benjamin

@@ -15,12 +15,12 @@ namespace LegendOfZelda
 		
 		public IAquamentusState state;
 		public ISprite sprite;
-		public ISprite fireballSprite0;
-		public ISprite fireballSprite1;
-		public ISprite fireballSprite2;
-		public IProjectile fireball0;
-		public IProjectile fireball1;
-		public IProjectile fireball2;
+		private ISprite fireballSprite0;
+		private ISprite fireballSprite1;
+		private ISprite fireballSprite2;
+		private IProjectile fireball0;
+		private IProjectile fireball1;
+		private IProjectile fireball2;
 		private Random randomStep = new Random();
 		private RandomEnemyController random;
 		protected const float VELOCITY = -8f;
