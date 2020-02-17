@@ -1,0 +1,22 @@
+﻿Reviewer: Emily Smith
+2/16/2020
+Sprint: 2
+File: Stalfo.cs
+Author: Will Bartlett
+Number of minutes: 10
+Comments:
+	Overall, I would say Will's code quality is high. The cohesion is high has the class
+	only deals with the Stalfo enemy and doesn't have all the details of function. However the
+	coupling could be looser, because the class depends on RandomEnemyController which could be
+	moved out of this class. The class does have loose coupling as the class doesn't have many
+	details on other class' fields. In addition, the class as a whole is short as well as all 
+	methods in the class. As stated in the readiability review the class has well throught out
+	method and variables names. The only other consideration is that the constructor sets xPos
+	and yPos are set to 400 and 200 and randomStep.Next(0,150). I don't think there is a good way
+	to fix this that would help with the addition sprints.
+
+Hypothetical Change:
+	A hypothetical change that could be made would be for multiple Stalfo enemy to appear on 
+	a level in different starting positions. The current implementation would be able to
+	support this functionality but it would require some changes. this could be done
+	by passing in xPos and Ypos through the constructor.

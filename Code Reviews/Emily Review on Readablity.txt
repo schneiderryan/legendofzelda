@@ -1,0 +1,13 @@
+﻿Reviewer: Emily Smith
+2/16/2020
+Sprint: 2
+File: Stalfo.cs
+Author: Will Bartlett
+Number of minutes: 10
+Comments:
+    Overall, I think Will's code is pretty readable. The variable and methods names helped me follow along 
+with what their purpose is for the most part, having the controller called random confused me for a moment. 
+The constructor makes sense as well, it is setting all the properties of the enemy. Most of the method
+functionality is absracted to the enemy's state or in the case of draw it's sprite. the Update function is
+slightly more complex as the changing of the direction is dealt with inside the method directly, but it is
+still very easy to understand what the methods are doing.
