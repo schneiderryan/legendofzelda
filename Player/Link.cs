@@ -18,7 +18,9 @@ namespace LegendOfZelda
         private int y;
         private String d;
         private String c;
-        private int n;
+        private int numberOfRupees;
+        private double numMaxHearts;
+        private double numCurrHearts;
         private List<Keys> attackKeys;
 
         public int xPos
@@ -47,8 +49,19 @@ namespace LegendOfZelda
 
         public int numRupees 
         {
-            get { return n; } 
-            set { n = value;  } 
+            get { return numberOfRupees; } 
+            set { numberOfRupees = value;  } 
+        }
+
+        public double maxHearts 
+        {
+            get { return numMaxHearts; }
+            set { numMaxHearts = value; }
+        }
+        public double currentHearts 
+        {
+            get { return numCurrHearts; }
+            set { numCurrHearts = value; }
         }
 
         public GreenLink(LegendOfZelda game)
@@ -64,6 +77,8 @@ namespace LegendOfZelda
             this.state = new StillUpLinkState(this);
             this.itemTimer = 0;
             this.numRupees = 0;
+            this.maxHearts = 3.0;
+            this.currentHearts = 3.0;
         }
 
         public void MoveLeft()

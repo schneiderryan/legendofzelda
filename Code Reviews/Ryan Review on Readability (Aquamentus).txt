@@ -1,0 +1,9 @@
+﻿Reviewer: Ryan Schneider
+2/16/2020
+Sprint: 2
+File: Aquamentus.cs
+Author: Adam O'Reilly
+
+The Aquamentus class is easily read. The names are very self explainatory so
+the variables are easily identified and its easy to know what they do. The code does exceed 100
+lines, but it is all to add in spacing so that the code is read more easily. 

@@ -8,9 +8,14 @@ namespace LegendOfZelda
             sprite = ItemSpriteFactory.GetFairy();
         }
 
-        public override void Use(IPlayer player)
+        public override void Update()
         {
 
+        }
+
+        public override void Use(IPlayer player)
+        {
+            player.currentHearts = player.maxHearts;
         }
     }
 }
