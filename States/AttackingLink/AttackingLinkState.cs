@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public abstract class AttackingLinkState : ILinkState
+    abstract class AttackingLinkState : ILinkState
     {
         protected int attackTimer = 20;
         public void MoveUp() { }

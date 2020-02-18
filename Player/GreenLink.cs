@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class GreenLink : Link
+    class GreenLink : Link
     {
         public GreenLink(LegendOfZelda game)
         {

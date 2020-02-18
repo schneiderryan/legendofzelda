@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    public class DamagedLink : IPlayer
+    class DamagedLink : IPlayer
     {
         IPlayer decoratedLink;
         int timer = 192; // to give about 3 seconds

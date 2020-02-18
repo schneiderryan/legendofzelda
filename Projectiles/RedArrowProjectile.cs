@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class RedArrowProjectile : Projectile
+    class RedArrowProjectile : Projectile
     {
         public RedArrowProjectile(string direction, int xPos, int yPos)
             : base(direction, xPos, yPos)

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    public class PlayerSpriteFactory
+    class PlayerSpriteFactory
     {
         private Texture2D linkSpriteSheet = Textures.GetLinkSheet();
         private Texture2D linkAttackingDown = Textures.GetLinkAttackingDown();

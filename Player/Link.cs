@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public abstract class Link : IPlayer
+    abstract class Link : IPlayer
     {
         public LegendOfZelda game;
 

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public class EnemySpriteFactory
+    class EnemySpriteFactory
     {
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();

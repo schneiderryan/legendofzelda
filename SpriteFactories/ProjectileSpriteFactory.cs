@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    public class ProjectileSpriteFactory
+    class ProjectileSpriteFactory
     {
         private Texture2D projectileSpriteSheet = Textures.GetLinkSheet();
         private static ProjectileSpriteFactory instance = new ProjectileSpriteFactory();

@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public class MovingDownLinkState : ILinkState
+    class MovingDownLinkState : ILinkState
     {
         private GreenLink link;
 

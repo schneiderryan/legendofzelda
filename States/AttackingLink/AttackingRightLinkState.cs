@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    public class AttackingRightLinkState : AttackingLinkState
+    class AttackingRightLinkState : AttackingLinkState
     {
         private GreenLink link;
         public AttackingRightLinkState(GreenLink link)

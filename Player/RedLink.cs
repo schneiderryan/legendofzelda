@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class RedLink : Link
+    class RedLink : Link
     {
         public RedLink(LegendOfZelda game)
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    public class PlayerUseThrowingSwordCommand : ICommand
+    class PlayerUseThrowingSwordCommand : ICommand
     {
         private IPlayer player;
 
