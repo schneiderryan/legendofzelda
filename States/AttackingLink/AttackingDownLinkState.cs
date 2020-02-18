@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class AttackingDownLinkState : ILinkState
+    class AttackingDownLinkState : AttackingLinkState
     {
         private GreenLink link;
         public AttackingDownLinkState(GreenLink link)
@@ -14,48 +14,17 @@ namespace LegendOfZelda
             this.link.direction = "down";
         }
 
-        public void MoveUp()
+        public override void Update()
         {
-            link.state = new MovingUpLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateUpWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
-        }
-
-        public void MoveDown()
-        {
-            link.state = new MovingDownLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
-        }
-
-        public void MoveRight()
-        {
-            link.state = new MovingRightLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
-        }
-
-        public void MoveLeft()
-        {
-            link.state = new MovingLeftLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
-        }
-
-        public void Attack()
-        {
-            //Nothing to do
-        }
-
-        public void BeStill()
-        {
-            link.state = new StillDownLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateDownStillLinkSprite();
-            link.sprite.Scale = 2.0f;
-        }
-
-        public void Update()
-        {
+            if (attackTimer > 0)
+            {
+                attackTimer--;
+            }
+            else
+            {
+                link.state = new StillDownLinkState(link);
+                link.sprite = PlayerSpriteFactory.Instance.CreateDownStillLinkSprite();
+            }
             link.sprite.Position = new Point(link.xPos, link.yPos);
         }
     }

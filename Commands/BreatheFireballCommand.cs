@@ -1,6 +1,6 @@
 ﻿namespace LegendOfZelda
 {
-    public class BreatheFireballCommand : ICommand
+    class BreatheFireballCommand : ICommand
     {
         private LegendOfZelda game;
 

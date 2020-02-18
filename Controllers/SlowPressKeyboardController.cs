@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public class SlowKeyboardController : IController
+    class SlowKeyboardController : IController
     {
         private Dictionary<Keys, ICommand> keyBinds;
         private Dictionary<Keys, int> heldKeys;

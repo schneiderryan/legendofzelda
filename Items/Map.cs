@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class Map : Item
+    class Map : Item
     {
         public Map()
         {

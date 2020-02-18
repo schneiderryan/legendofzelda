@@ -3,34 +3,35 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public abstract class Projectile : IProjectile
+    class Projectile : IProjectile
     {
-        protected int xVel = 0;
-        protected int yVel = 0;
-        protected ISprite sprite = ProjectileSpriteFactory.Instance.CreateUpSwordProjectile();
+        protected int VX { get; set; }
+        protected int VY { get; set; }
+        protected ISprite sprite;
 
         public Projectile(string direction, int xPos, int yPos,
             int initialVel = 8)
         {
+            VX = 0;
+            VY = 0;
             X = xPos;
             Y = yPos;
-            sprite.Position = new Point(xPos, yPos);
 
             if (direction == "up")
             {
-                this.yVel = -initialVel;
+                this.VY = -initialVel;
             }
             else if (direction == "down")
             {
-                this.yVel = initialVel;
+                this.VY = initialVel;
             }
             else if (direction == "right")
             {
-                this.xVel = initialVel;
+                this.VX = initialVel;
             }
             else if (direction == "left")
             {
-                this.xVel = -initialVel;
+                this.VX = -initialVel;
             }
         }
 
@@ -39,8 +40,8 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
-            X += xVel;
-            Y += yVel;
+            X += VX;
+            Y += VY;
             sprite.Position = new Point(X, Y);
             sprite.Update();
         }

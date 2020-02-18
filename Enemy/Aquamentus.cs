@@ -71,7 +71,8 @@ namespace LegendOfZelda
 			sprite.Position = new Point(xPos, yPos);
 			state = new LeftMovingAquamentusState(this);
 			State = FireballState.NotBreathed;
-			
+
+			breathFire = 0;
 			fireStep = 0;
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(10, 20);

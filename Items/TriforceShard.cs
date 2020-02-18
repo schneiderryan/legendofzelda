@@ -3,7 +3,7 @@ using System;
 
 namespace LegendOfZelda
 {
-    public class TriforceShard : Item
+    class TriforceShard : Item
     {
         public TriforceShard()
         {

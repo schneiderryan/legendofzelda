@@ -4,62 +4,23 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public class LegendOfZelda : Game
+    class LegendOfZelda : Game
     {
-        private IController PlayerKeyboard;
+        public IController playerKeyboard;
         private IController enemyKeyboard;
         private IController keyboard;
 
-        private List<IEnemy> Enemies;
-        private int EnemyIndex = 0;
-        private List<IItem> Items;
-        private int ItemIndex = 0;
+        public List<IEnemy> enemies;
+        public int enemyIndex;
+        public List<IItem> items;
+        public int itemIndex;
 
-        private List<IProjectile> Projectiles;
-        private IPlayer Link;
+        public List<IProjectile> projectiles;
+        public IPlayer link;
 
-        private GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
 
         private SpriteBatch spriteBatch;
-
-        public IPlayer link
-        {
-            get { return Link; }
-            set { Link = value; }
-        }
-
-        public List<IEnemy> enemies
-        {
-            get { return Enemies; }
-        }
-
-        public List<IProjectile> projectiles
-        {
-            get { return Projectiles; }
-        }
-
-        public int itemIndex
-        {
-            get { return ItemIndex; }
-            set { ItemIndex = value; }
-        }
-
-        public List<IItem> items
-        {
-            get { return Items; }
-        }
-
-        public int enemyIndex
-        {
-            get { return EnemyIndex; }
-            set { EnemyIndex = value; }
-        }
-
-        public IController playerKeyboard
-        {
-            get { return PlayerKeyboard; }
-            set { PlayerKeyboard = value; }
-        }
 
         public LegendOfZelda()
         {
@@ -73,15 +34,15 @@ namespace LegendOfZelda
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
 
-            Projectiles = new List<IProjectile>();
-            this.Link = new GreenLink(this);
+            projectiles = new List<IProjectile>();
+            this.link = new GreenLink(this);
 
             keyboard = GameSetup.CreateGeneralKeysController(this);
-            PlayerKeyboard = GameSetup.CreatePlayerKeysController(link);
+            playerKeyboard = GameSetup.CreatePlayerKeysController(link);
             enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
-            Items = GameSetup.GenerateItemList();
-            Enemies = GameSetup.GenerateEnemyList();
+            items = GameSetup.GenerateItemList();
+            enemies = GameSetup.GenerateEnemyList();
         }
 
         protected override void LoadContent()
@@ -93,14 +54,14 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
-            PlayerKeyboard.Update();
+            playerKeyboard.Update();
             enemyKeyboard.Update();
 
-            Enemies[EnemyIndex].Update();
-            Items[ItemIndex].Update();
-            Link.Update();
+            enemies[enemyIndex].Update();
+            items[itemIndex].Update();
+            link.Update();
 
-            foreach (IProjectile projectile in Projectiles)
+            foreach (IProjectile projectile in projectiles)
             {
                 projectile.Update();
             }
@@ -113,11 +74,11 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            Enemies[EnemyIndex].Draw(spriteBatch);
-            Items[ItemIndex].Draw(spriteBatch);
-            Link.Draw(spriteBatch, Color.White);
+            enemies[enemyIndex].Draw(spriteBatch);
+            items[itemIndex].Draw(spriteBatch);
+            link.Draw(spriteBatch, Color.White);
 
-            foreach (IProjectile projectile in Projectiles)
+            foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
             }

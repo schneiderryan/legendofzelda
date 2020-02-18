@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class Rupee : Item
+    class Rupee : Item
     {
         public Rupee()
         {

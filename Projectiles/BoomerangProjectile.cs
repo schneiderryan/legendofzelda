@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public class BoomerangProjectile :  Projectile
+    class BoomerangProjectile :  Projectile
     {
         public BoomerangProjectile(string direction, int xPos, int yPos)
             : base(direction, xPos, yPos)
