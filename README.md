@@ -44,12 +44,12 @@
 We fixed the remaining warnings.
 
 # Authors
-Will Bartlett
-Taylor Benjamin
-Adam O'Reilly
-Ryan Schneider
-Emily Smith
-Isaac Smith
+- Will Bartlett
+- Taylor Benjamin
+- Adam O'Reilly
+- Ryan Schneider
+- Emily Smith
+- Isaac Smith
 
 ### Spritesheet sources
 - Items: https://www.spriters-resource.com/resources/sheets/52/54720.png
