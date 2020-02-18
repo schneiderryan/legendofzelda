@@ -30,7 +30,7 @@
 
 # Code Analyzer Suppressions (80 warnings found)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
-  If this class is intended to contain only static members, make it static (Shared in Visual Basic).
+            If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 
             Suppressed because we expect to intantiate red link later on in the project.
 
@@ -44,14 +44,9 @@
 We fixed the remaining warnings.
 
 # Authors
-- Will Bartlett
-- Taylor Benjamin
-- Adam O'Reilly
-- Ryan Schneider
-- Emily Smith
-- Isaac Smith
-
-### Spritesheet sources
-- Items: https://www.spriters-resource.com/resources/sheets/52/54720.png
-- More items: https://www.spriters-resource.com/resources/sheets/8/8366.png
-- Link Sprites: http://www.zeldagalaxy.com/wp-content/img/sprites/nes/loz/link.png
+Will Bartlett
+Taylor Benjamin
+Adam O'Reilly
+Ryan Schneider
+Emily Smith
+Isaac Smith
