@@ -9,6 +9,8 @@ namespace LegendOfZelda
 {
     public interface IPlayer
     {
+        ILinkState state { get; set; }
+        ISprite sprite { get; set; }
         string direction { get; set; }
         string color { get; set; }
         int xPos { get; set; }
@@ -25,7 +27,7 @@ namespace LegendOfZelda
         void TakeDamage();
         void Update();
         void UseItem(IItem item);
-        void UseProjectile(IProjectile item);
+        void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);
         void RegisterAttackKeys(List<Keys> attackKeys);
         bool IsAttacking();

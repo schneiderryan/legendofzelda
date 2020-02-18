@@ -39,6 +39,7 @@
             Suppressed beacuse it's reasonable to assume it will not be null in this case.
 
 - CA1307    Specify StringComparison
+
             Supressed becasue the scope of the project will never extend to other countries.
 
 
