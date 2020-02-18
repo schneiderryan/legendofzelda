@@ -41,7 +41,7 @@
 - CA1307    Specify StringComparison
 
             Supressed becasue the scope of the project will never extend to other countries.
-
+We fixed the remaining warnings.
 
 # Authors
 Will Bartlett
