@@ -14,7 +14,7 @@
             if (game.enemies[game.enemyIndex] is Aquamentus)
             {
                 Aquamentus aq = game.enemies[game.enemyIndex] as Aquamentus;
-                aq.BreatheFireball(aq.xPos, aq.yPos);
+                aq.BreatheFireball(aq.X, aq.Y);
             }
         }
     }

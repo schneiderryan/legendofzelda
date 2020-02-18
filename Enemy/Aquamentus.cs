@@ -29,15 +29,33 @@ namespace LegendOfZelda
 
 
 
-		public int xPos;
-		public int yPos;
-		public int currentStep;
-		public int changeDirection;
+		private int xPos;
+		private int yPos;
+		private int currentStep;
+		private int cd;
 		public int breathFire;
 		public int fireStep;
 
-		int IEnemy.currentStep { get ; set ; }
-		int IEnemy.changeDirection { get; set; }
+		public int CurrentStep
+		{
+			get { return currentStep; }
+			set { currentStep = value; }
+		}
+		public int changeDirection
+		{
+			get { return cd; }
+			set { cd = value; }
+		}
+		public int X
+		{
+			get { return xPos; }
+			set { xPos = value; }
+		}
+		public int Y
+		{
+			get { return yPos; }
+			set { yPos = value; }
+		}
 
 		public Aquamentus()
 		{
@@ -53,7 +71,8 @@ namespace LegendOfZelda
 			sprite.Position = new Point(xPos, yPos);
 			state = new LeftMovingAquamentusState(this);
 			State = FireballState.NotBreathed;
-			
+
+			breathFire = 0;
 			fireStep = 0;
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(10, 20);

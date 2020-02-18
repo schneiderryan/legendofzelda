@@ -34,15 +34,15 @@ namespace LegendOfZelda
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
 
-            projectiles = new List<IProjectile>();
-            this.link = new GreenLink(this);
+            Projectiles = new List<IProjectile>();
+            this.Link = new GreenLink(this);
 
             keyboard = GameSetup.CreateGeneralKeysController(this);
-            playerKeyboard = GameSetup.CreatePlayerKeysController(link);
+            PlayerKeyboard = GameSetup.CreatePlayerKeysController(link);
             enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
-            items = GameSetup.GenerateItemList();
-            enemies = GameSetup.GenerateEnemyList();
+            Items = GameSetup.GenerateItemList();
+            Enemies = GameSetup.GenerateEnemyList();
         }
 
         protected override void LoadContent()
@@ -54,14 +54,14 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
-            playerKeyboard.Update();
+            PlayerKeyboard.Update();
             enemyKeyboard.Update();
 
-            enemies[enemyIndex].Update();
-            items[itemIndex].Update();
-            link.Update();
+            Enemies[EnemyIndex].Update();
+            Items[ItemIndex].Update();
+            Link.Update();
 
-            foreach (IProjectile projectile in projectiles)
+            foreach (IProjectile projectile in Projectiles)
             {
                 projectile.Update();
             }
@@ -74,11 +74,11 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            enemies[enemyIndex].Draw(spriteBatch);
-            items[itemIndex].Draw(spriteBatch);
-            link.Draw(spriteBatch, Color.White);
+            Enemies[EnemyIndex].Draw(spriteBatch);
+            Items[ItemIndex].Draw(spriteBatch);
+            Link.Draw(spriteBatch, Color.White);
 
-            foreach (IProjectile projectile in projectiles)
+            foreach (IProjectile projectile in Projectiles)
             {
                 projectile.Draw(spriteBatch);
             }
