@@ -8,19 +8,20 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class Aquamentus : IEnemy
+	class Aquamentus : IEnemy
 	{
 		public enum FireballState { Breathed, NotBreathed}
 		public FireballState State { get; protected set; }
-		private Random randomStep = new Random();
+		
 		public IAquamentusState state;
 		public ISprite sprite;
-		public ISprite fireballSprite0;
-		public ISprite fireballSprite1;
-		public ISprite fireballSprite2;
-		public IProjectile fireball0;
-		public IProjectile fireball1;
-		public IProjectile fireball2;
+		private ISprite fireballSprite0;
+		private ISprite fireballSprite1;
+		private ISprite fireballSprite2;
+		private IProjectile fireball0;
+		private IProjectile fireball1;
+		private IProjectile fireball2;
+		private Random randomStep = new Random();
 		private RandomEnemyController random;
 		protected const float VELOCITY = -8f;
 		protected const float VELOCITYYUP = -2f;
@@ -28,15 +29,33 @@ namespace LegendOfZelda
 
 
 
-		public int xPos;
-		public int yPos;
-		public int currentStep;
-		public int changeDirection;
+		private int xPos;
+		private int yPos;
+		private int currentStep;
+		private int cd;
 		public int breathFire;
 		public int fireStep;
 
-		int IEnemy.currentStep { get ; set ; }
-		int IEnemy.changeDirection { get; set; }
+		public int CurrentStep
+		{
+			get { return currentStep; }
+			set { currentStep = value; }
+		}
+		public int changeDirection
+		{
+			get { return cd; }
+			set { cd = value; }
+		}
+		public int X
+		{
+			get { return xPos; }
+			set { xPos = value; }
+		}
+		public int Y
+		{
+			get { return yPos; }
+			set { yPos = value; }
+		}
 
 		public Aquamentus()
 		{
@@ -52,7 +71,8 @@ namespace LegendOfZelda
 			sprite.Position = new Point(xPos, yPos);
 			state = new LeftMovingAquamentusState(this);
 			State = FireballState.NotBreathed;
-			
+
+			breathFire = 0;
 			fireStep = 0;
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(10, 20);
@@ -136,7 +156,9 @@ namespace LegendOfZelda
 			
 		}
 
-		
-		
+		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

@@ -4,7 +4,9 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{    public class RightMovingLFWallmasterState : IWallmasterState
+{
+
+	class RightMovingLFWallmasterState : IWallmasterState
 	{
 		private LFWallmaster lfwallmaster;
 
@@ -51,12 +53,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			lfwallmaster.xPos += 1;
-			if (lfwallmaster.xPos > 800)
+			lfwallmaster.X += 1;
+			if (lfwallmaster.X > 800)
 			{
-				lfwallmaster.xPos -= 800;
+				lfwallmaster.X -= 800;
 			}
-			lfwallmaster.sprite.Position = new Point(lfwallmaster.xPos, lfwallmaster.yPos);
+			lfwallmaster.sprite.Position = new Point(lfwallmaster.X, lfwallmaster.Y);
 		}
 
 

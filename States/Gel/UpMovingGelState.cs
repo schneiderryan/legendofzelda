@@ -3,7 +3,9 @@
 
 
 namespace LegendOfZelda
-{    public class UpMovingGelState : IGelState
+{
+
+	class UpMovingGelState : IGelState
 	{
 		private Gel gel;
 
@@ -50,13 +52,13 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			gel.yPos -= 1;
-			if (gel.yPos < 0)
+			gel.Y -= 1;
+			if (gel.X < 0)
 			{
-				gel.yPos += 480;
+				gel.Y += 480;
 			}
 			
-			gel.sprite.Position = new Point(gel.xPos, gel.yPos);
+			gel.sprite.Position = new Point(gel.X, gel.Y);
 		}
 
 

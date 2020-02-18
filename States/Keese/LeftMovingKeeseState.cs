@@ -4,7 +4,9 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{    public class LeftMovingKeeseState : IKeeseState
+{
+
+	class LeftMovingKeeseState : IKeeseState
 	{
 		private Keese keese;
 
@@ -51,12 +53,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			keese.xPos -= 1;
-			if (keese.xPos < 0)
+			keese.X -= 1;
+			if (keese.X < 0)
 			{
-				keese.xPos += 800;
+				keese.X += 800;
 			}
-			keese.sprite.Position = new Point(keese.xPos, keese.yPos);
+			keese.sprite.Position = new Point(keese.X, keese.Y);
 		}
 
 

@@ -4,7 +4,9 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{    public class UpMovingStalfoState : IStalfoState
+{
+
+	class UpMovingStalfoState : IStalfoState
 	{
 		private Stalfo stalfo;
 
@@ -51,13 +53,13 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			stalfo.yPos -= 1;
-			if (stalfo.yPos < 0)
+			stalfo.Y -= 1;
+			if (stalfo.Y < 0)
 			{
-				stalfo.yPos += 480;
+				stalfo.Y += 480;
 			}
 			
-			stalfo.sprite.Position = new Point(stalfo.xPos, stalfo.yPos);
+			stalfo.sprite.Position = new Point(stalfo.X, stalfo.Y);
 		}
 
 

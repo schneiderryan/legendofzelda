@@ -4,7 +4,9 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{    public class LeftMovingGoriyaState : IGoriyaState
+{
+
+	class LeftMovingGoriyaState : IGoriyaState
 	{
 		private Goriya goriya;
 
@@ -51,12 +53,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			goriya.xPos -= 1;
-			if (goriya.xPos < 0)
+			goriya.X -= 1;
+			if (goriya.X < 0)
 			{
-				goriya.xPos += 800;
+				goriya.X += 800;
 			}
-			goriya.sprite.Position = new Point(goriya.xPos, goriya.yPos);
+			goriya.sprite.Position = new Point(goriya.X, goriya.Y);
 		}
 
 

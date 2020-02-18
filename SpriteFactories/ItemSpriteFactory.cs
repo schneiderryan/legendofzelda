@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace LegendOfZelda
 {
@@ -9,6 +10,12 @@ namespace LegendOfZelda
             return new AnimatedSprite(Textures.GetItemSheet(),
                     new Rectangle(0, 34, 7, 8), 2)
             { AnimationDelay = 10 };
+        }
+
+        internal static ISprite GetClock()
+        {
+            return new Sprite(Textures.GetItemSheet(),
+                new Rectangle(57, 0, 12, 16));
         }
 
         public static ISprite GetHeartContainer()

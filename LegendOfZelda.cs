@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public class LegendOfZelda : Game
+    class LegendOfZelda : Game
     {
         public IController playerKeyboard;
-        public IController enemyKeyboard;
-        public IController keyboard;
+        private IController enemyKeyboard;
+        private IController keyboard;
 
         public List<IEnemy> enemies;
-        public int enemyIndex = 0;
+        public int enemyIndex;
         public List<IItem> items;
-        public int itemIndex = 0;
+        public int itemIndex;
 
         public List<IProjectile> projectiles;
         public IPlayer link;

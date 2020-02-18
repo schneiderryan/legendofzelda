@@ -4,7 +4,9 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{    public class LeftMovingTrapState : ITrapState
+{
+
+	class LeftMovingTrapState : ITrapState
 	{
 		private Trap trap;
 
@@ -51,12 +53,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			trap.xPos -= 1;
-			if (trap.xPos < 0)
+			trap.X -= 1;
+			if (trap.X < 0)
 			{
-				trap.xPos += 800;
+				trap.X += 800;
 			}
-			trap.sprite.Position = new Point(trap.xPos, trap.yPos);
+			trap.sprite.Position = new Point(trap.X, trap.Y);
 		}
 
 

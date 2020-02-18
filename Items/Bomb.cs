@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public class Bomb : Item
+    class Bomb : Item
     {
         public enum BombState { Ready, Detonated, Exploding, Used };
         public BombState State { get; private set; }

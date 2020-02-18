@@ -4,7 +4,9 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{    public class UpMovingRFWallmasterState : IWallmasterState
+{
+
+	class UpMovingRFWallmasterState : IWallmasterState
 	{
 		private RFWallmaster rfwallmaster;
 
@@ -51,13 +53,13 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			rfwallmaster.yPos -= 1;
-			if (rfwallmaster.yPos < 0)
+			rfwallmaster.Y -= 1;
+			if (rfwallmaster.Y < 0)
 			{
-				rfwallmaster.yPos += 480;
+				rfwallmaster.Y += 480;
 			}
 			
-			rfwallmaster.sprite.Position = new Point(rfwallmaster.xPos, rfwallmaster.yPos);
+			rfwallmaster.sprite.Position = new Point(rfwallmaster.X, rfwallmaster.Y);
 		}
 
 

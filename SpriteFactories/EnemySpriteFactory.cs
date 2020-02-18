@@ -8,18 +8,11 @@ namespace LegendOfZelda
     {
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();
-
-        private static EnemySpriteFactory instance = new EnemySpriteFactory();
+        
 
         private EnemySpriteFactory() { }
 
-        public static EnemySpriteFactory Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public static EnemySpriteFactory Instance { get; } = new EnemySpriteFactory();
 
 
         public ISprite CreateDownMovingGoriyaSprite()
@@ -250,5 +243,6 @@ namespace LegendOfZelda
 
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true);
         }
+
     }
 }

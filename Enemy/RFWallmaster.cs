@@ -8,19 +8,37 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class RFWallmaster : IEnemy
+	class RFWallmaster : IEnemy
 	{
 		private Random randomStep = new Random();
 		public IWallmasterState state;
 		public ISprite sprite;
 		private RandomEnemyController random;
-		public int xPos;
-		public int yPos;
-		public int currentStep;
-		public int changeDirection;
+		private int xPos;
+		private int yPos;
+		private int currentStep;
+		private int cd;
 
-		int IEnemy.currentStep { get ; set ; }
-		int IEnemy.changeDirection { get; set; }
+		public int CurrentStep
+		{
+			get { return currentStep; }
+			set { currentStep = value; }
+		}
+		public int changeDirection
+		{
+			get { return cd; }
+			set { cd = value; }
+		}
+		public int X
+		{
+			get { return xPos; }
+			set { xPos = value; }
+		}
+		public int Y
+		{
+			get { return yPos; }
+			set { yPos = value; }
+		}
 
 		public RFWallmaster()
 		{
@@ -83,7 +101,9 @@ namespace LegendOfZelda
 			sprite.Draw(spriteBatch);
 		}
 
-		
-		
+		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

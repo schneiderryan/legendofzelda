@@ -4,7 +4,9 @@ using LegendOfZelda;
 
 
 namespace LegendOfZelda
-{    public class LeftMovingGelState : IGelState
+{
+
+	class LeftMovingGelState : IGelState
 	{
 		private Gel gel;
 
@@ -51,12 +53,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			gel.xPos -= 1;
-			if (gel.xPos < 0)
+			gel.X -= 1;
+			if (gel.X < 0)
 			{
-				gel.xPos += 800;
+				gel.X += 800;
 			}
-			gel.sprite.Position = new Point(gel.xPos, gel.yPos);
+			gel.sprite.Position = new Point(gel.X, gel.Y);
 		}
 
 

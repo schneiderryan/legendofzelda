@@ -4,7 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 
-{    public class DownMovingGoriyaState : IGoriyaState
+{
+
+	class DownMovingGoriyaState : IGoriyaState
 	{
 		private Goriya goriya;
 
@@ -51,12 +53,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			goriya.yPos += 1;
-			if (goriya.yPos > 480)
+			goriya.Y += 1;
+			if (goriya.Y > 480)
 			{
-				goriya.yPos -= 480;
+				goriya.Y -= 480;
 			}
-			goriya.sprite.Position = new Point(goriya.xPos, goriya.yPos);
+			goriya.sprite.Position = new Point(goriya.X, goriya.Y);
 		}
 
 

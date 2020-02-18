@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class WoodSword : Item
+    class WoodSword : Item
     {
         public WoodSword()
         {

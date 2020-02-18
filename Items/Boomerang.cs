@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public class Boomerang : Item
+    class Boomerang : Item
     {
         public Boomerang()
         {
