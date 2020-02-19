@@ -12,7 +12,8 @@ namespace LegendOfZelda
 	{
 		public enum FireballState { Breathed, NotBreathed}
 		public FireballState State { get; protected set; }
-		
+
+		public LegendOfZelda game;
 		public IAquamentusState state;
 		public ISprite sprite;
 		public ISprite fireballSprite0;
@@ -26,11 +27,34 @@ namespace LegendOfZelda
 		protected const float VELOCITY = -8f;
 		protected const float VELOCITYYUP = -2f;
 		protected const float VELOCITYYDOWN = 2f;
+		private int x;
+		private int y;
+		private int yv;
+		private int xv;
+		public int xVel
+		{
+			get { return yv; }
+			set { yv = value; }
+		}
+		public int yVel
+		{
+			get { return yv; }
+			set { yv = value; }
+		}
+		public int xPos
+		{
+			get { return x; }
+			set { x = value; }
+		}
+		
 
+		public int yPos
+		{
+			get { return y; }
+			set { y = value; }
+		}
 
-
-		public int xPos;
-		public int yPos;
+		
 		public int currentStep;
 		public int changeDirection;
 		public int breathFire;
@@ -38,20 +62,20 @@ namespace LegendOfZelda
 
 		int IEnemy.currentStep { get ; set ; }
 		int IEnemy.changeDirection { get; set; }
-
-		public Aquamentus()
+		
+		public Aquamentus(LegendOfZelda game)
 		{
-			
+			this.game = game;
 			sprite = EnemySpriteFactory.Instance.CreateLeftMovingAquamentusSprite();
-			fireballSprite0 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
-			fireballSprite1 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
-			fireballSprite2 = EnemySpriteFactory.Instance.CreateMovingFireballSprite();
+			fireballSprite0 = ProjectileSpriteFactory.Instance.CreateMovingFireballSprite();
+			fireballSprite1 = ProjectileSpriteFactory.Instance.CreateMovingFireballSprite();
+			fireballSprite2 = ProjectileSpriteFactory.Instance.CreateMovingFireballSprite();
 
 			xPos = 400;
 			yPos = 200;
 
 			sprite.Position = new Point(xPos, yPos);
-			state = new LeftMovingAquamentusState(this);
+			state = new LeftMovingAquamentusState(this, game);
 			State = FireballState.NotBreathed;
 			
 			fireStep = 0;
@@ -60,13 +84,7 @@ namespace LegendOfZelda
 			random = new RandomEnemyController(this);
 			
 		}
-		public void BreatheFireball(int xPos, int yPos)
-		{
-			State = FireballState.Breathed;
-			fireball0 = new EnemyProjectile(fireballSprite0, new Vector2(xPos, yPos-100), new Vector2(VELOCITY, VELOCITYYUP));
-			fireball1 = new EnemyProjectile(fireballSprite1, new Vector2(xPos, yPos), new Vector2(VELOCITY, 0));
-			fireball2 = new EnemyProjectile(fireballSprite2, new Vector2(xPos, yPos+100), new Vector2(VELOCITY, VELOCITYYDOWN));
-		}
+		
 
 		public void ChangeDirection()
 		{
@@ -138,6 +156,16 @@ namespace LegendOfZelda
 		}
 
 		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void UseProjectile(IProjectile projectile)
+		{
+			game.projectiles.Add(projectile);
+		}
+
+		public void Use(IEnemy enemy)
 		{
 			throw new NotImplementedException();
 		}

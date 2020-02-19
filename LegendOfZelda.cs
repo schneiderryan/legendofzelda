@@ -14,6 +14,10 @@ namespace LegendOfZelda
         public int enemyIndex = 0;
         public List<IItem> items;
         public int itemIndex = 0;
+        public int roomIndex = 0;
+
+        Rectangle mainFrame;
+        Texture2D background;
 
         public List<IProjectile> projectiles;
         public IPlayer link;
@@ -42,13 +46,16 @@ namespace LegendOfZelda
             enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
             items = GameSetup.GenerateItemList();
-            enemies = GameSetup.GenerateEnemyList();
+            enemies = GameSetup.GenerateEnemyList(this);
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content);
+            background = Textures.GetRoomSheet();
+            mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -73,7 +80,7 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
+            spriteBatch.Draw(background, mainFrame, Color.White);
             enemies[enemyIndex].Draw(spriteBatch);
             items[itemIndex].Draw(spriteBatch);
             link.Draw(spriteBatch, Color.White);
@@ -82,6 +89,7 @@ namespace LegendOfZelda
             {
                 projectile.Draw(spriteBatch);
             }
+            
             
             spriteBatch.End();
 

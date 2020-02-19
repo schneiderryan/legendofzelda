@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class Arrow : Item
+    class Arrow : Item
     {
         public Arrow()
         {

@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class Key : Item
+    class Key : Item
     {
         public Key()
         {

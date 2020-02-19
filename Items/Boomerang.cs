@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public class Boomerang : Item
+    class Boomerang : Item
     {
         public Boomerang()
         {
@@ -15,5 +15,7 @@ namespace LegendOfZelda
                 player.xPos, player.yPos);
             player.UseProjectile(proj);
         }
+
+       
     }
 }

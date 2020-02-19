@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public abstract class Item : IItem
+    abstract class Item : IItem
     {
         protected ISprite sprite;
 
@@ -12,8 +12,7 @@ namespace LegendOfZelda
             get { return sprite.Position.X; }
             set
             {
-                sprite.Position
-                    = new Point(value, sprite.Position.Y);
+                sprite.Position = new Point(value, sprite.Position.Y);
             }
         }
 
@@ -22,8 +21,7 @@ namespace LegendOfZelda
             get { return sprite.Position.Y; }
             set
             {
-                sprite.Position
-                    = new Point(sprite.Position.X, value);
+                sprite.Position = new Point(sprite.Position.X, value);
             }
         }
 
@@ -32,11 +30,15 @@ namespace LegendOfZelda
             sprite.Draw(sb);
         }
 
+       
+
         public virtual void Update()
         {
             sprite.Update();
         }
 
         public abstract void Use(IPlayer player);
+
+
     }
 }

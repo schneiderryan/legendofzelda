@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class BlueRupee : Item
+    class BlueRupee : Item
     {
         public BlueRupee()
         {

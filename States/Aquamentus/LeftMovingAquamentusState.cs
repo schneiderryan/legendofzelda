@@ -12,9 +12,11 @@ namespace LegendOfZelda
 		private int changeDirection;
 		private bool breathe;
 		private int openMouth;
+		private LegendOfZelda game;
 
-		public LeftMovingAquamentusState(Aquamentus aquamentus)
+		public LeftMovingAquamentusState(Aquamentus aquamentus, LegendOfZelda game)
 		{
+			this.game = game;
 			this.aquamentus = aquamentus;
 			this.changeDirection = aquamentus.changeDirection;
 			this.openMouth = 0;
@@ -22,7 +24,9 @@ namespace LegendOfZelda
 			if(this.changeDirection%2 == 1)
 			{
 				aquamentus.sprite = EnemySpriteFactory.Instance.CreateLeftMovingFireAquamentusSprite();
-				this.aquamentus.BreatheFireball(aquamentus.xPos, aquamentus.yPos);
+				ICommand fire = new BreatheFireballCommand(game, this.aquamentus);
+				fire.Execute();
+				//this.aquamentus.UseProjectile(aquamentus.xPos, aquamentus.yPos);
 				breathe = true;
 			}
 			else
@@ -56,7 +60,7 @@ namespace LegendOfZelda
 
 		public void MoveRight()
 		{
-			aquamentus.state = new RightMovingAquamentusState(aquamentus);
+			aquamentus.state = new RightMovingAquamentusState(aquamentus, game);
 			
 		}
 

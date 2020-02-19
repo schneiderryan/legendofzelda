@@ -1,7 +1,9 @@
 ﻿
+using System;
+
 namespace LegendOfZelda
 {
-    public class TriforceShard : Item
+    class TriforceShard : Item
     {
         public TriforceShard()
         {
@@ -11,6 +13,6 @@ namespace LegendOfZelda
         public override void Use(IPlayer player)
         {
             player.currentHearts = player.maxHearts;
-        }
+        } 
     }
 }

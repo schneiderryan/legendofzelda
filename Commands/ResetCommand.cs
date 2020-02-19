@@ -14,7 +14,7 @@ namespace LegendOfZelda
         public void Execute()
         {
             game.enemyIndex = 0;
-            game.enemies = GameSetup.GenerateEnemyList();
+            game.enemies = GameSetup.GenerateEnemyList(game);
             game.itemIndex = 0;
             // don't need to make a new items list b/c they don't do as much
 

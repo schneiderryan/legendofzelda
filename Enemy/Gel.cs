@@ -14,13 +14,38 @@ namespace LegendOfZelda
 		public IGelState state;
 		public ISprite sprite;
 		private RandomEnemyController random;
-		public int xPos;
-		public int yPos;
+		
 		public int currentStep;
 		public int changeDirection;
 
 		int IEnemy.currentStep { get ; set ; }
 		int IEnemy.changeDirection { get; set; }
+		public int x;
+		public int y;
+		public int xPos
+		{
+			get { return x; }
+			set { x = value; }
+		}
+
+		public int yPos
+		{
+			get { return y; }
+			set { y = value; }
+		}
+		private int yv;
+		private int xv;
+		public int xVel
+		{
+			get { return yv; }
+			set { yv = value; }
+		}
+		public int yVel
+		{
+			get { return yv; }
+			set { yv = value; }
+		}
+
 
 		public Gel()
 		{
@@ -48,6 +73,10 @@ namespace LegendOfZelda
 			state.BeKilled();
 		}
 
+		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
 		public void MoveLeft()
 		{
 			state.MoveLeft();
@@ -84,7 +113,14 @@ namespace LegendOfZelda
 			sprite.Draw(spriteBatch);
 		}
 
-		public void BeStill()
+		
+
+		public void UseProjectile(IProjectile projectile)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Use(IEnemy enemy)
 		{
 			throw new NotImplementedException();
 		}

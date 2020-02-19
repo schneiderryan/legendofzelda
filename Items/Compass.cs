@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class Compass : Item
+    class Compass : Item
     {
         public Compass()
         {

@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public class HeartContainer : Item
+    class HeartContainer : Item
     {
         public HeartContainer()
         {
