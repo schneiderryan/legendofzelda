@@ -10,6 +10,8 @@ namespace LegendOfZelda
         private IController enemyKeyboard;
         private IController keyboard;
 
+        public LevelLoader levelLoader;
+        public List<IPlayer> players;
         public List<IEnemy> enemies;
         public int enemyIndex;
         public List<IItem> items;
@@ -35,14 +37,19 @@ namespace LegendOfZelda
             this.Window.Title = "The Legend of Zelda";
 
             projectiles = new List<IProjectile>();
-            this.link = new GreenLink(this);
+
+            levelLoader = new LevelLoader("TestLevel.csv", this);
+            players = levelLoader.loadPlayers();
 
             keyboard = GameSetup.CreateGeneralKeysController(this);
-            playerKeyboard = GameSetup.CreatePlayerKeysController(link);
+            foreach(IPlayer player in players)
+            {
+                playerKeyboard = GameSetup.CreatePlayerKeysController(player);
+            }
             enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
-            items = GameSetup.GenerateItemList();
-            enemies = GameSetup.GenerateEnemyList();
+            items = levelLoader.loadItems();
+            enemies = levelLoader.loadEnemies();
         }
 
         protected override void LoadContent()
@@ -55,11 +62,25 @@ namespace LegendOfZelda
         {
             keyboard.Update();
             playerKeyboard.Update();
-            enemyKeyboard.Update();
+            //enemyKeyboard.Update();
 
-            enemies[enemyIndex].Update();
-            items[itemIndex].Update();
-            link.Update();
+            foreach(IEnemy enemy in enemies)
+            {
+                enemy.Update();
+            }
+
+            foreach(IItem item in items)
+            {
+                item.Update();
+            }
+
+            //enemies[enemyIndex].Update();
+            //items[itemIndex].Update();
+
+            foreach (IPlayer player in players)
+            {
+                player.Update();
+            }
 
             foreach (IProjectile projectile in projectiles)
             {
@@ -74,9 +95,23 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            enemies[enemyIndex].Draw(spriteBatch);
-            items[itemIndex].Draw(spriteBatch);
-            link.Draw(spriteBatch, Color.White);
+            //enemies[enemyIndex].Draw(spriteBatch);
+            //items[itemIndex].Draw(spriteBatch);
+
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }
+
+            foreach (IItem item in items)
+            {
+                item.Draw(spriteBatch);
+            }
+
+            foreach (IPlayer player in players)
+            {
+                player.Draw(spriteBatch, Color.White);
+            }
 
             foreach (IProjectile projectile in projectiles)
             {
