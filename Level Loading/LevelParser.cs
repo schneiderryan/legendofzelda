@@ -19,9 +19,9 @@ namespace LegendOfZelda
             this.levelName = levelName;
         }
 
-        public Dictionary<String, Vector2> parse(List<String> desiredStrings)
+        public Dictionary<Vector2, String> parse(List<String> desiredStrings)
         {
-            Dictionary<String, Vector2> dictionary = new Dictionary<String, Vector2>();
+            Dictionary<Vector2, String> dictionary = new Dictionary<Vector2, String>();
             using(StreamReader level = new StreamReader(levelName))
             {
                 String line;
@@ -36,7 +36,7 @@ namespace LegendOfZelda
                         {
                             int xPos = X_OFFSET + (x * BOX_SIZE);
                             int yPos = Y_OFFSET + (y * BOX_SIZE);
-                            dictionary.Add(box, new Vector2(xPos, yPos));
+                            dictionary.Add(new Vector2(xPos, yPos), box);
                         }
                     }
                     y++;

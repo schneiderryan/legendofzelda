@@ -53,19 +53,19 @@ namespace LegendOfZelda
         public List<IPlayer> loadPlayers()
         {
             List<IPlayer> players = new List<IPlayer>();
-            Dictionary<String, Vector2> playerInfo = parser.parse(possiblePlayers);
-            foreach(KeyValuePair<String, Vector2> entry in playerInfo)
+            Dictionary<Vector2, String> playerInfo = parser.parse(possiblePlayers);
+            foreach(KeyValuePair<Vector2, String> entry in playerInfo)
             {
                 IPlayer player;
-                if (entry.Key.Equals("Link"))
+                if (entry.Value.Equals("Link"))
                 {
                     player = new GreenLink(this.game);
                 } else
                 {
                     player = new RedLink(this.game);
                 }
-                player.xPos = (int)entry.Value.X;
-                player.yPos = (int)entry.Value.Y;
+                player.xPos = (int)entry.Key.X;
+                player.yPos = (int)entry.Key.Y;
                 players.Add(player);
             }
             return players;
@@ -74,35 +74,35 @@ namespace LegendOfZelda
         public List<IEnemy> loadEnemies()
         {
             List<IEnemy> enemies = new List<IEnemy>();
-            Dictionary<String, Vector2> enemyInfo = parser.parse(possibleEnemies);
-            foreach (KeyValuePair<String, Vector2> entry in enemyInfo)
+            Dictionary<Vector2, String> enemyInfo = parser.parse(possibleEnemies);
+            foreach (KeyValuePair<Vector2, String> entry in enemyInfo)
             {
                 IEnemy enemy;
-                if (entry.Key.Equals("Aquamentus"))
+                if (entry.Value.Equals("Aquamentus"))
                 {
                     enemy = new Aquamentus();
                 }
-                else if(entry.Key.Equals("Gel"))
+                else if(entry.Value.Equals("Gel"))
                 {
                     enemy = new Gel();
                 }
-                else if (entry.Key.Equals("Goriya"))
+                else if (entry.Value.Equals("Goriya"))
                 {
                     enemy = new Goriya();
                 }
-                else if (entry.Key.Equals("Keese"))
+                else if (entry.Value.Equals("Keese"))
                 {
                     enemy = new Keese();
                 }
-                else if (entry.Key.Equals("LFWallmaster"))
+                else if (entry.Value.Equals("LFWallmaster"))
                 {
                     enemy = new LFWallmaster();
                 }
-                else if (entry.Key.Equals("RFWallmaster"))
+                else if (entry.Value.Equals("RFWallmaster"))
                 {
                     enemy = new RFWallmaster();
                 }
-                else if (entry.Key.Equals("Stalfo"))
+                else if (entry.Value.Equals("Stalfo"))
                 {
                     enemy = new Stalfo();
                 }
@@ -110,8 +110,8 @@ namespace LegendOfZelda
                 {
                     enemy = new Trap();
                 }
-                enemy.X = (int)entry.Value.X;
-                enemy.Y = (int)entry.Value.Y;
+                enemy.X = (int)entry.Key.X;
+                enemy.Y = (int)entry.Key.Y;
                 enemies.Add(enemy);
             }
             return enemies;
@@ -120,59 +120,59 @@ namespace LegendOfZelda
         public List<IItem> loadItems()
         {
             List<IItem> items = new List<IItem>();
-            Dictionary<String, Vector2> itemInfo = parser.parse(possibleItems);
-            foreach (KeyValuePair<String, Vector2> entry in itemInfo)
+            Dictionary<Vector2, String> itemInfo = parser.parse(possibleItems);
+            foreach (KeyValuePair<Vector2, String> entry in itemInfo)
             {
                 IItem item;
-                if (entry.Key.Equals("Arrow"))
+                if (entry.Value.Equals("Arrow"))
                 {
                     item = new Arrow();
                 }
-                else if(entry.Key.Equals("BlueRupee"))
+                else if(entry.Value.Equals("BlueRupee"))
                 {
                     item = new BlueRupee();
                 }
-                else if (entry.Key.Equals("Bomb"))
+                else if (entry.Value.Equals("Bomb"))
                 {
                     item = new Bomb();
                 }
-                else if (entry.Key.Equals("Bow"))
+                else if (entry.Value.Equals("Bow"))
                 {
                     item = new Bow();
                 }
-                else if (entry.Key.Equals("Clock"))
+                else if (entry.Value.Equals("Clock"))
                 {
                     item = new Clock();
                 }
-                else if (entry.Key.Equals("Compass"))
+                else if (entry.Value.Equals("Compass"))
                 {
                     item = new Compass();
                 }
-                else if (entry.Key.Equals("Fairy"))
+                else if (entry.Value.Equals("Fairy"))
                 {
                     item = new Fairy();
                 }
-                else if (entry.Key.Equals("Heart"))
+                else if (entry.Value.Equals("Heart"))
                 {
                     item = new Heart();
                 }
-                else if (entry.Key.Equals("HeartContainer"))
+                else if (entry.Value.Equals("HeartContainer"))
                 {
                     item = new HeartContainer();
                 }
-                else if (entry.Key.Equals("Key"))
+                else if (entry.Value.Equals("Key"))
                 {
                     item = new Key();
                 }
-                else if (entry.Key.Equals("Map"))
+                else if (entry.Value.Equals("Map"))
                 {
                     item = new Map();
                 }
-                else if (entry.Key.Equals("Rupee"))
+                else if (entry.Value.Equals("Rupee"))
                 {
                     item = new Rupee();
                 }
-                else if (entry.Key.Equals("TriforceShard"))
+                else if (entry.Value.Equals("TriforceShard"))
                 {
                     item = new TriforceShard();
                 }
@@ -180,8 +180,8 @@ namespace LegendOfZelda
                 {
                     item = new WoodSword();
                 }
-                item.X = (int)entry.Value.X;
-                item.Y = (int)entry.Value.Y;
+                item.X = (int)entry.Key.X;
+                item.Y = (int)entry.Key.Y;
                 items.Add(item);
             }
             return items;
