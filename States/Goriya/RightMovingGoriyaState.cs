@@ -53,6 +53,13 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
+			goriya.boomerangTimer++;
+			if (goriya.boomerangTimer == 250)
+			{
+				goriya.ThrowBoomerang(goriya.X, goriya.Y, 4, 0);
+				goriya.boomerangTimer = 0;
+			}
+
 			goriya.X += 1;
 			if (goriya.X > 800)
 			{
