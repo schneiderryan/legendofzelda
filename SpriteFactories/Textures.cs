@@ -16,6 +16,8 @@ namespace LegendOfZelda
         private static Texture2D enemy;
         private static Texture2D boss;
 
+        private static Texture2D blocks;
+
         public static void LoadAllTextures(ContentManager contentManager)
         {
             items = contentManager.Load<Texture2D>("items_mod");
@@ -28,6 +30,8 @@ namespace LegendOfZelda
             linkAttackingUp = contentManager.Load<Texture2D>("upAttackingLink");
             redLinkAttackingDown = contentManager.Load<Texture2D>("downAttackingRedLink");
             redLinkAttackingUp = contentManager.Load<Texture2D>("upAttackingRedLink");
+
+            blocks = contentManager.Load<Texture2D>("");
         }
 
         public static Texture2D GetItemSheet()
