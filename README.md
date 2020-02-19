@@ -1,4 +1,5 @@
 # legendofzelda
+- built with Monogame
 
 # Controls
 - W and up arrow: move player up
@@ -19,6 +20,17 @@
 # Functionality
 - Right now the player can be moved around, attack, and throw projectiles.  Enemies move around and those that shoot projectiles
   do so.  Items can be swapped between.  There is no collision detection.
+
+# Known Bugs
+
+
+# Authors
+Will Bartlett
+Taylor Benjamin
+Adam O'Reilly
+Ryan Schneider
+Emily Smith
+Isaac Smith
 
 ### Spritesheet sources
 - Items: https://www.spriters-resource.com/resources/sheets/52/54720.png

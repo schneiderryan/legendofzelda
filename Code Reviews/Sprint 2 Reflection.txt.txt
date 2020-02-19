@@ -1,0 +1,12 @@
+Sprint 2 Reflection (HyperLinks to the Past):
+Overall, we believe our group did a relatively good job on this sprint staying organized and on task as well as communicating with each 
+other in regards to what work we still had to complete. We could have done a better job splitting up the tasks into more manageable 
+subtasks so the workload would be more evenly distributed, but going into the sprint we weren't really sure how long these tasks would 
+take and how difficult they might be, so next time we believe we will do a better job with this. Additionally, we could have done a better 
+job being specific with the subtasks so each person knows exactly what they are doing if there is some overlap between tasks. We do plan 
+on doing a few things differently next sprint such as spending more time at the beginning of the sprint organizing the tasks that need
+to be completed and deciding who needs to complete those tasks. In addition, Will had a ton of problems with his Github and Visual Studio
+not running the projects, but he will be going to the office hours of the grader this week to try to sort out these issues, so hopefully
+that will be different next sprint. Overall, we believe we are off to a good start and will learn from any project management mistakes we
+may have made this sprint and will improve as a team as the project goes along. 
+ 
