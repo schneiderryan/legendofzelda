@@ -63,10 +63,10 @@ namespace LegendOfZelda
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
             ICommand cmd = new SwapItemCommand(game, "next");
-            keyBinds.Add(Keys.I, cmd);
+            /*keyBinds.Add(Keys.I, cmd);
 
             cmd = new SwapItemCommand(game, "previous");
-            keyBinds.Add(Keys.U, cmd);
+            keyBinds.Add(Keys.U, cmd);*/
 
             cmd = new ResetCommand(game);
             keyBinds.Add(Keys.R, cmd);

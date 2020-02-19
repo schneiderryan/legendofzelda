@@ -18,8 +18,10 @@ namespace LegendOfZelda
             game.itemIndex = 0;
             // don't need to make a new items list b/c they don't do as much
 
-            game.link = new GreenLink(game);
-            game.playerKeyboard = GameSetup.CreatePlayerKeysController(game.link);
+            foreach(IPlayer player in game.players)
+            {
+                game.playerKeyboard = GameSetup.CreatePlayerKeysController(player);
+            }
             //game.projectiles = new List<IProjectile>();
         }
     }
