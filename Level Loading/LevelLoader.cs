@@ -13,6 +13,7 @@ namespace LegendOfZelda
         private List<String> possiblePlayers;
         private List<String> possibleEnemies;
         private List<String> possibleItems;
+        private List<String> possibleBlocks;
         public LevelLoader(String level, LegendOfZelda game)
         {
             this.parser = new LevelParser(level);
@@ -48,6 +49,9 @@ namespace LegendOfZelda
             this.possibleItems.Add("Rupee");
             this.possibleItems.Add("TriforceShard");
             this.possibleItems.Add("WoodSword");
+
+            this.possibleBlocks = new List<String>();
+            this.possibleBlocks.Add("StillBlock");
         }
 
         public List<IPlayer> loadPlayers()
@@ -185,6 +189,28 @@ namespace LegendOfZelda
                 items.Add(item);
             }
             return items;
+        }
+
+        public List<IBlock> loadBlocks()
+        {
+            List<IBlock> blocks = new List<IBlock>();
+            Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
+            foreach (KeyValuePair<Vector2, String> entry in blockInfo)
+            {
+                IBlock block;
+                if (entry.Value.Equals("StillBlock"))
+                {
+                    block = new StillBlock();
+                }
+                else
+                {
+                    block = new StillBlock();
+                }
+                block.X = (int)entry.Key.X;
+                block.Y = (int)entry.Key.Y;
+                blocks.Add(block);
+            }
+            return blocks;
         }
     }
 }
