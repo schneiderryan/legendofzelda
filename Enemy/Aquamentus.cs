@@ -41,14 +41,14 @@ namespace LegendOfZelda
 			get { return yv; }
 			set { yv = value; }
 		}
-		public int xPos
+		public int X
 		{
 			get { return x; }
 			set { x = value; }
 		}
 		
 
-		public int yPos
+		public int Y
 		{
 			get { return y; }
 			set { y = value; }
@@ -60,7 +60,7 @@ namespace LegendOfZelda
 		public int breathFire;
 		public int fireStep;
 
-		int IEnemy.currentStep { get ; set ; }
+		int IEnemy.CurrentStep { get ; set ; }
 		int IEnemy.changeDirection { get; set; }
 		
 		public Aquamentus(LegendOfZelda game)
@@ -71,10 +71,10 @@ namespace LegendOfZelda
 			fireballSprite1 = ProjectileSpriteFactory.Instance.CreateMovingFireballSprite();
 			fireballSprite2 = ProjectileSpriteFactory.Instance.CreateMovingFireballSprite();
 
-			xPos = 400;
-			yPos = 200;
+			X = 400;
+			Y = 200;
 
-			sprite.Position = new Point(xPos, yPos);
+			sprite.Position = new Point(X, Y);
 			state = new LeftMovingAquamentusState(this, game);
 			State = FireballState.NotBreathed;
 

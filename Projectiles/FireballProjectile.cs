@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public class FireballProjectile :  Projectile
+    class FireballProjectile :  Projectile
     {
         public FireballProjectile(string direction, int xPos, int yPos, int initialVel = 2)
             : base(direction, xPos, yPos)
@@ -11,19 +11,20 @@ namespace LegendOfZelda
 
             if (direction == "leftup")
             {
-                this.xVel = -8;
-                this.yVel = initialVel;
+                
+                this.VX = -8;
+                this.VY = initialVel;
             }
             else if (direction == "leftdown")
             {
-                this.yVel = -initialVel;
-                this.xVel = -8;
+                this.VY = -initialVel;
+                this.VX = -8;
                 
             }
             else
             {
-                this.xVel = -8;
-                this.yVel = 0;
+                this.VX = -8;
+                this.VY = 0;
             }
 
 

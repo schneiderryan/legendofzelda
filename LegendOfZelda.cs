@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    class LegendOfZelda : Game
+      class LegendOfZelda : Game
     {
         public IController playerKeyboard;
 
-        public IController mouse;
-
+        private IController mouse;
         private IController enemyKeyboard;
         private IController keyboard;
 

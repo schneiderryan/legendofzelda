@@ -25,10 +25,10 @@ namespace LegendOfZelda
             }
         }
 
-        public int currentStep { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        private int currentStep;
+        
         public int changeDirection { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public int xPos { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public int yPos { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        
         
         public int xVel
         {
@@ -38,6 +38,8 @@ namespace LegendOfZelda
         {
             get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException();
         }
+        public int CurrentStep { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
         public void BeStill()
         {
             throw new System.NotImplementedException();

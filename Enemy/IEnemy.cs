@@ -6,8 +6,8 @@ namespace LegendOfZelda
     {
         int CurrentStep { get; set; }
         int changeDirection { get; set; }
-        int xPos { get; set; }
-        int yPos { get; set; }
+        int X { get; set; }
+        int Y { get; set; }
         int xVel { get; set; }
         int yVel { get; set; }
 

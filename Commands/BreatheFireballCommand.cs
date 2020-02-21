@@ -14,9 +14,9 @@
         public void Execute()
         {
 
-            aquamentus.UseProjectile(new FireballProjectile("leftup", aquamentus.xPos, aquamentus.yPos+10));
-            aquamentus.UseProjectile(new FireballProjectile("left", aquamentus.xPos, aquamentus.yPos));
-            aquamentus.UseProjectile(new FireballProjectile("leftdown", aquamentus.xPos, aquamentus.yPos-10));
+            aquamentus.UseProjectile(new FireballProjectile("leftup", aquamentus.X, aquamentus.Y+10));
+            aquamentus.UseProjectile(new FireballProjectile("left", aquamentus.X, aquamentus.Y));
+            aquamentus.UseProjectile(new FireballProjectile("leftdown", aquamentus.X, aquamentus.Y-10));
 
             //if (game.enemies[game.enemyIndex] is Aquamentus)
             //{

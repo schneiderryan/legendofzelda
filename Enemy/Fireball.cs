@@ -11,7 +11,7 @@ namespace LegendOfZelda
 
         public override void Use(IEnemy aquamentus)
         {
-            IProjectile fire = new FireballProjectile("",aquamentus.xPos, aquamentus.yPos);
+            IProjectile fire = new FireballProjectile("",aquamentus.X, aquamentus.Y);
             aquamentus.UseProjectile(fire);
         }
 

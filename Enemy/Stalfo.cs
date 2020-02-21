@@ -18,13 +18,13 @@ namespace LegendOfZelda
 		public int x;
 		public int y;
 
-		public int xPos
+		public int X
 		{
 			get { return x; }
 			set { x = value; }
 		}
 
-		public int yPos
+		public int Y
 		{
 			get { return y; }
 			set { y = value; }
@@ -42,7 +42,6 @@ namespace LegendOfZelda
 			set { yv = value; }
 		}
 		public int currentStep;
-		public int changeDirection;
 		public int cd;
 
 		public int CurrentStep
@@ -55,24 +54,15 @@ namespace LegendOfZelda
 			get { return cd; }
 			set { cd = value; }
 		}
-		public int X
-		{
-			get { return xPos; }
-			set { xPos = value; }
-		}
-		public int Y
-		{
-			get { return yPos; }
-			set { yPos = value; }
-		}
+	
 
 		public Stalfo()
 		{
 			//stalfos can be hit once before they die to the next hit 
 			sprite = EnemySpriteFactory.Instance.CreateUpMovingStalfoSprite();
-			xPos = 400;
-			yPos = 200;
-			sprite.Position = new Point(xPos, yPos);
+			X = 400;
+			Y = 200;
+			sprite.Position = new Point(X, Y);
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    public class SwapRoomCommand : ICommand
+    class SwapRoomCommand : ICommand
     {
         private LegendOfZelda game;
         private string swapDirection;

@@ -24,12 +24,12 @@ namespace LegendOfZelda
 		public int x;
 		public int y;
 
-		public int xPos
+		public int X
 		{
 			get { return x; }
 			set { x = value; }
 		}
-		public int yPos
+		public int Y
 		{
 			get { return y; }
 			set { y = value; }
@@ -69,9 +69,9 @@ namespace LegendOfZelda
 			
 			sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
 			boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
-			xPos = 400;
-			yPos = 200;
-			sprite.Position = new Point(xPos, yPos);
+			X = 400;
+			Y = 200;
+			sprite.Position = new Point(X, Y);
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);

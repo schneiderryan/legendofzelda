@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LegendOfZelda
 {
-    public class MouseController : IController
+    class MouseController : IController
     {
         ICommand cmdLeft;
         ICommand cmdRight;
