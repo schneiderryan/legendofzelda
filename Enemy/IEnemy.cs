@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public interface IEnemy
+    interface IEnemy
     {
         int CurrentStep { get; set; }
         int changeDirection { get; set; }
