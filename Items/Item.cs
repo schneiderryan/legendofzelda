@@ -31,6 +31,8 @@ namespace LegendOfZelda
             sprite.Draw(sb);
         }
 
+       
+
         public virtual void Update()
         {
             sprite.Position = new Point(X, Y);
@@ -38,5 +40,7 @@ namespace LegendOfZelda
         }
 
         public abstract void Use(IPlayer player);
+
+
     }
 }

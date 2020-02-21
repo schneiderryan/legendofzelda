@@ -19,6 +19,8 @@ namespace LegendOfZelda
 
         private static Texture2D blank;
 
+        private static Texture2D rooms;
+
         public static void LoadAllTextures(ContentManager contentManager,
                 GraphicsDevice graphics)
         {
@@ -33,8 +35,15 @@ namespace LegendOfZelda
             redLinkAttackingDown = contentManager.Load<Texture2D>("downAttackingRedLink");
             redLinkAttackingUp = contentManager.Load<Texture2D>("upAttackingRedLink");
 
+            rooms = contentManager.Load<Texture2D>("rooms");
+
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
+        }
+
+        public static Texture2D GetRoomSheet()
+        {
+            return rooms;
         }
 
         public static Texture2D GetItemSheet()

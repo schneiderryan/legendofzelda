@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    class Projectile : IProjectile
+    public class Projectile : IProjectile
     {
-        protected int VX { get; set; }
-        protected int VY { get; set; }
+       public int VX { get; set; }
+        public int VY { get; set; }
         protected ISprite sprite;
 
         public Rectangle Hitbox { get; }

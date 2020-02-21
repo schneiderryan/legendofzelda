@@ -10,6 +10,7 @@ namespace LegendOfZelda
     class ProjectileSpriteFactory
     {
         private Texture2D projectileSpriteSheet = Textures.GetLinkSheet();
+        private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private static ProjectileSpriteFactory instance = new ProjectileSpriteFactory();
 
         private ProjectileSpriteFactory() { }
@@ -89,6 +90,17 @@ namespace LegendOfZelda
             {
                 AnimationDelay = 2
             };
+        }
+
+
+        public ISprite CreateMovingFireballSprite()
+        {
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true);
+        }
+
+        public static ISprite GetMovingFireballSprite()
+        {
+            return new AnimatedSprite(Textures.GetEnemySheet(), new Rectangle(329, 0, 16, 16), 3, true);
         }
     }
 }

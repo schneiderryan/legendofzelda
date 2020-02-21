@@ -4,20 +4,27 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    class LegendOfZelda : Game
+      class LegendOfZelda : Game
     {
         public IController playerKeyboard;
+
+        private IController mouse;
         private IController keyboard;
 
         public LevelLoader levelLoader;
         public List<IPlayer> players;
+
         public List<IEnemy> enemies;
         public int enemyIndex;
+
         public List<IItem> items;
         public int itemIndex;
 
         public List<IProjectile> projectiles;
         public IPlayer link;
+        public List<IRoom> rooms;
+        public int roomIndex = 0;
+
 
         public GraphicsDeviceManager graphics;
 
@@ -26,6 +33,8 @@ namespace LegendOfZelda
         public LegendOfZelda()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 352; 
+            graphics.PreferredBackBufferWidth = 512;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -37,15 +46,19 @@ namespace LegendOfZelda
 
             projectiles = new List<IProjectile>();
 
+            rooms = GameSetup.GenerateRoomList(this);
+            this.link = new GreenLink(this);
+
             levelLoader = new LevelLoader("TestLevel.csv", this);
             players = levelLoader.loadPlayers();
 
+            mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
             foreach(IPlayer player in players)
             {
                 playerKeyboard = GameSetup.CreatePlayerKeysController(player);
             }
-
+            
             items = levelLoader.loadItems();
             enemies = levelLoader.loadEnemies();
         }
@@ -58,8 +71,11 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
+            mouse.Update();
             keyboard.Update();
             playerKeyboard.Update();
+
+            rooms[roomIndex].Update();
 
             foreach(IEnemy enemy in enemies)
             {
@@ -122,6 +138,8 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+            rooms[roomIndex].Draw(spriteBatch, Color.White);
 
             foreach (IEnemy enemy in enemies)
             {

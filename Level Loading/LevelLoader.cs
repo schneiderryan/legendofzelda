@@ -84,7 +84,7 @@ namespace LegendOfZelda
                 IEnemy enemy;
                 if (entry.Value.Equals("Aquamentus"))
                 {
-                    enemy = new Aquamentus();
+                    enemy = new Aquamentus(this.game);
                 }
                 else if(entry.Value.Equals("Gel"))
                 {
