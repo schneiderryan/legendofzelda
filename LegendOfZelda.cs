@@ -23,6 +23,7 @@ namespace LegendOfZelda
         public GraphicsDeviceManager graphics;
 
         private SpriteBatch spriteBatch;
+        private List<List<ISet<ICollideable>>> grid;
 
         public LegendOfZelda()
         {
@@ -50,6 +51,20 @@ namespace LegendOfZelda
 
             items = levelLoader.loadItems();
             enemies = levelLoader.loadEnemies();
+
+            grid = new List<List<ISet<ICollideable>>>();
+            int i = 0;
+            while (i < 12)
+            {
+                grid.Add(new List<ISet<ICollideable>>());
+                int j = 0;
+                while (j < 7)
+                {
+                    grid[i].Add(new HashSet<ICollideable>());
+                    j++;
+                }
+                i++;
+            }
         }
 
         protected override void LoadContent()
@@ -85,6 +100,14 @@ namespace LegendOfZelda
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Update();
+            }
+
+            List<ICollideable> objs = new List<ICollideable>();
+            objs.AddRange(items);
+
+            foreach (ICollideable c in objs)
+            {
+                c.Collide(link);
             }
 
             base.Update(gameTime);

@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public interface IItem
+    interface IItem : ICollideable
     {
         int X { get; set; }
         int Y { get; set; }

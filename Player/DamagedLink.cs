@@ -12,6 +12,11 @@ namespace LegendOfZelda
         IPlayer decoratedLink;
         int timer = 192; // to give about 3 seconds
 
+        public Rectangle Hitbox
+        {
+            get { return decoratedLink.Hitbox; }
+        }
+
         public ISprite sprite
         {
             get { return decoratedLink.sprite; }
@@ -154,6 +159,11 @@ namespace LegendOfZelda
         public bool IsAttacking()
         {
             return decoratedLink.IsAttacking();
+        }
+
+        public void Collide(ICollideable thing)
+        {
+            decoratedLink.Collide(thing);
         }
     }
 }
