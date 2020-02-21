@@ -75,6 +75,7 @@ namespace LegendOfZelda
             return new SlowKeyboardController(keyBinds);
         }
 
+
         public static IController CreateEnemyKeysController(LegendOfZelda game)
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
@@ -125,6 +126,17 @@ namespace LegendOfZelda
                 new LFWallmaster(),
                 new RFWallmaster(),
                 new Fireball()
+            };
+
+            return list;
+        }
+
+        public static List<IRoom> GenerateRoomList(LegendOfZelda game)
+        {
+            List<IRoom> list = new List<IRoom>()
+            {
+                new Room0(game),
+                new Room1(game),
             };
 
             return list;
