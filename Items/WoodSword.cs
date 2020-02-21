@@ -6,6 +6,7 @@ namespace LegendOfZelda
         public WoodSword()
         {
             sprite = ItemSpriteFactory.GetWoodSword();
+            Hitbox = sprite.Box;
         }
 
         public override void Use(IPlayer player)

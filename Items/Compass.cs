@@ -6,6 +6,7 @@ namespace LegendOfZelda
         public Compass()
         {
             sprite = ItemSpriteFactory.GetCompass();
+            Hitbox = sprite.Box;
         }
 
         public override void Use(IPlayer player)

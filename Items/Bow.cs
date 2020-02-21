@@ -8,6 +8,7 @@ namespace LegendOfZelda
         public Bow()
         {
             sprite = ItemSpriteFactory.GetBow();
+            Hitbox = sprite.Box;
         }
 
         public override void Use(IPlayer player)

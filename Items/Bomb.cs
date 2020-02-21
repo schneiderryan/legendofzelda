@@ -15,6 +15,7 @@ namespace LegendOfZelda
             sprite.Scale = 2;
             State = BombState.Ready;
             fuseDelay = 60;
+            Hitbox = sprite.Box;
         }
 
         public void Detonate()

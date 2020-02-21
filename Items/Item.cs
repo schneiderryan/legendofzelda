@@ -38,13 +38,5 @@ namespace LegendOfZelda
         }
 
         public abstract void Use(IPlayer player);
-
-        public void Collide(ICollideable thing)
-        {
-            if (thing is IPlayer && thing.Hitbox.Intersects(Hitbox))
-            {
-                Use(thing as IPlayer);
-            }
-        }
     }
 }

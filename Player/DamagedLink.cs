@@ -160,10 +160,5 @@ namespace LegendOfZelda
         {
             return decoratedLink.IsAttacking();
         }
-
-        public void Collide(ICollideable thing)
-        {
-            decoratedLink.Collide(thing);
-        }
     }
 }

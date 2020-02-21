@@ -154,17 +154,12 @@ namespace LegendOfZelda
             this.game = game;
             this.d = "up";
             this.sprite.Scale = 2.0f;
-            this.hitbox = new Rectangle(400, 200, 32, 32);
+            this.hitbox = sprite.Box;
             this.sprite.Position = new Point(xPos, yPos);
             this.itemTimer = 0;
             this.numRupees = 0;
             this.maxHearts = 3.0;
             this.currentHearts = 3.0;
-        }
-
-        public void Collide(ICollideable thing)
-        {
-
         }
     }
 }

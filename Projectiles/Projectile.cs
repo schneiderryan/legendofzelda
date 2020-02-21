@@ -9,6 +9,8 @@ namespace LegendOfZelda
         protected int VY { get; set; }
         protected ISprite sprite;
 
+        public Rectangle Hitbox { get; }
+
         public Projectile(string direction, int xPos, int yPos,
             int initialVel = 8)
         {

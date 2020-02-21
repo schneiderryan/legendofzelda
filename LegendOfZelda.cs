@@ -7,7 +7,6 @@ namespace LegendOfZelda
     class LegendOfZelda : Game
     {
         public IController playerKeyboard;
-        private IController enemyKeyboard;
         private IController keyboard;
 
         public LevelLoader levelLoader;
@@ -23,7 +22,6 @@ namespace LegendOfZelda
         public GraphicsDeviceManager graphics;
 
         private SpriteBatch spriteBatch;
-        private List<List<ISet<ICollideable>>> grid;
 
         public LegendOfZelda()
         {
@@ -47,37 +45,21 @@ namespace LegendOfZelda
             {
                 playerKeyboard = GameSetup.CreatePlayerKeysController(player);
             }
-            enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
             items = levelLoader.loadItems();
             enemies = levelLoader.loadEnemies();
-
-            grid = new List<List<ISet<ICollideable>>>();
-            int i = 0;
-            while (i < 12)
-            {
-                grid.Add(new List<ISet<ICollideable>>());
-                int j = 0;
-                while (j < 7)
-                {
-                    grid[i].Add(new HashSet<ICollideable>());
-                    j++;
-                }
-                i++;
-            }
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Textures.LoadAllTextures(Content);
+            Textures.LoadAllTextures(Content, GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
         {
             keyboard.Update();
             playerKeyboard.Update();
-            //enemyKeyboard.Update();
 
             foreach(IEnemy enemy in enemies)
             {
@@ -89,9 +71,6 @@ namespace LegendOfZelda
                 item.Update();
             }
 
-            //enemies[enemyIndex].Update();
-            //items[itemIndex].Update();
-
             foreach (IPlayer player in players)
             {
                 player.Update();
@@ -102,13 +81,39 @@ namespace LegendOfZelda
                 projectile.Update();
             }
 
-            List<ICollideable> objs = new List<ICollideable>();
-            objs.AddRange(items);
-
-            foreach (ICollideable c in objs)
+            // collision stuffs
+            foreach (IItem item in items)
             {
-                c.Collide(link);
+                foreach (IPlayer player in players)
+                {
+                    // check collision
+                    // if intersects then
+                    // Item.Pickup(IPlayer) ?
+                }
             }
+
+            foreach (IEnemy enemy in enemies)
+            {
+                foreach (IPlayer player in players)
+                {
+                    // check collision
+                    // if intersects then
+                    // do things
+                }
+            }
+
+            foreach (IProjectile p in projectiles)
+            {
+                foreach (IPlayer player in players)
+                {
+                    if (p.Hitbox.Intersects(player.Hitbox))
+                    {
+                        // do things
+                    }
+                }
+            }
+
+            // do wall/block collisions - this is the only one where sides matter
 
             base.Update(gameTime);
         }
@@ -118,9 +123,6 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            //enemies[enemyIndex].Draw(spriteBatch);
-            //items[itemIndex].Draw(spriteBatch);
-
             foreach (IEnemy enemy in enemies)
             {
                 enemy.Draw(spriteBatch);
@@ -129,18 +131,20 @@ namespace LegendOfZelda
             foreach (IItem item in items)
             {
                 item.Draw(spriteBatch);
+                Debug.DrawHitbox(spriteBatch, item.Hitbox);
             }
 
             foreach (IPlayer player in players)
             {
                 player.Draw(spriteBatch, Color.White);
+                Debug.DrawHitbox(spriteBatch, player.Hitbox);
             }
 
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
             }
-            
+
             spriteBatch.End();
 
             base.Draw(gameTime);

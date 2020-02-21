@@ -6,6 +6,7 @@ namespace LegendOfZelda
         public HeartContainer()
         {
             sprite = ItemSpriteFactory.GetHeartContainer();
+            Hitbox = sprite.Box;
         }
 
         public override void Update()

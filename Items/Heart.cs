@@ -7,7 +7,7 @@ namespace LegendOfZelda
         public Heart()
         {
             sprite = ItemSpriteFactory.GetHeart();
-            Hitbox = new Rectangle(200, 200, 16, 16);
+            Hitbox = sprite.Box;
         }
 
         public override void Update()

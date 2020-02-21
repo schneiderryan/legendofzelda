@@ -7,6 +7,7 @@ namespace LegendOfZelda
         public Boomerang()
         {
             sprite = ItemSpriteFactory.GetBoomerang();
+            Hitbox = sprite.Box;
         }
 
         public override void Use(IPlayer player)

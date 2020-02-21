@@ -1,5 +1,3 @@
-﻿
-using System;
 
 namespace LegendOfZelda
 {
@@ -8,11 +6,13 @@ namespace LegendOfZelda
         public TriforceShard()
         {
             sprite = ItemSpriteFactory.GetTriforceShard();
+            Hitbox = sprite.Box;
         }
 
         public override void Use(IPlayer player)
         {
-            player.currentHearts = player.maxHearts;
-        } 
+
+        }
     }
 }
+                                                                                                                                                                                                                                                                                                                                                                                        

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
@@ -16,7 +17,10 @@ namespace LegendOfZelda
         private static Texture2D enemy;
         private static Texture2D boss;
 
-        public static void LoadAllTextures(ContentManager contentManager)
+        private static Texture2D blank;
+
+        public static void LoadAllTextures(ContentManager contentManager,
+                GraphicsDevice graphics)
         {
             items = contentManager.Load<Texture2D>("items_mod");
             effects = contentManager.Load<Texture2D>("weapons_mod");
@@ -28,6 +32,9 @@ namespace LegendOfZelda
             linkAttackingUp = contentManager.Load<Texture2D>("upAttackingLink");
             redLinkAttackingDown = contentManager.Load<Texture2D>("downAttackingRedLink");
             redLinkAttackingUp = contentManager.Load<Texture2D>("upAttackingRedLink");
+
+            blank = new Texture2D(graphics, 1, 1);
+            blank.SetData(new Color[1] { Color.Red });
         }
 
         public static Texture2D GetItemSheet()
@@ -73,6 +80,11 @@ namespace LegendOfZelda
         public static Texture2D GetRedLinkAttackingDown()
         {
             return redLinkAttackingDown;
+        }
+
+        public static Texture2D GetBlankTexture()
+        {
+            return blank;
         }
     }
 }
