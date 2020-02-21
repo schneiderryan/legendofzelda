@@ -6,37 +6,25 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    abstract class Block
+    abstract class Block : IBlock
     {
-        protected ISprite sprite;
-
+        private int xPos;
+        private int yPos;
         public int X
         {
-            get { return sprite.Position.X; }
-            set
-            {
-                sprite.Position = new Point(value, sprite.Position.Y);
-            }
+            get { return xPos; }
+            set { xPos = value; }
         }
 
         public int Y
         {
-            get { return sprite.Position.Y; }
-            set
-            {
-                sprite.Position = new Point(sprite.Position.X, value);
-            }
+            get { return yPos; }
+            set { yPos = value; }
         }
 
-        public virtual void Draw(SpriteBatch sb)
-        {
-            sprite.Draw(sb);
-        }
+        public abstract void Draw(SpriteBatch sb);
 
-        public virtual void Update()
-        {
-            sprite.Update();
-        }
+        public abstract void Update();
 
     }
 }

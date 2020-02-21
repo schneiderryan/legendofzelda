@@ -62,10 +62,10 @@ namespace LegendOfZelda
 			//boomerang = new EnemyProjectile(boomerangSprite, new Vector2(xPos, yPos), new Vector2(0, 8f));
 		}
 
-		public void ThrowBoomerang(int xPos, int yPos)
+		public void ThrowBoomerang(int xPos, int yPos, int xVel, int yVel)
 		{
 			State = BoomerangState.Thrown;
-			boomerang = new EnemyProjectile(boomerangSprite, new Vector2(xPos, yPos), new Vector2(0, -4f));
+			boomerang = new EnemyProjectile(boomerangSprite, new Vector2(xPos, yPos), new Vector2(xVel, yVel));
 		}
 
 		public void ChangeDirection()
