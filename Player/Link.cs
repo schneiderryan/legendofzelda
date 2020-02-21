@@ -12,6 +12,8 @@ namespace LegendOfZelda
 
         private String d;
         private String c;
+        private int x;
+        private int y;
         private int itemTimer;
         private int numberOfRupees;
         private double numMaxHearts;
@@ -29,14 +31,22 @@ namespace LegendOfZelda
 
         public int xPos
         {
-            get { return hitbox.X; }
-            set { hitbox.X = value; }
+            get { return x; }
+            set
+            { 
+                hitbox.X = value;
+                x = value;
+            }
         }
 
         public int yPos
         {
-            get { return hitbox.Y; }
-            set { hitbox.Y = value; }
+            get { return y; }
+            set
+            {
+                hitbox.Y = value + sprite.Box.Height - hitbox.Height;
+                y = value;
+            }
         }
 
         public String direction
@@ -154,8 +164,9 @@ namespace LegendOfZelda
             this.game = game;
             this.d = "up";
             this.sprite.Scale = 2.0f;
-            this.hitbox = sprite.Box;
-            this.sprite.Position = new Point(xPos, yPos);
+            this.hitbox = new Rectangle(0, 0, sprite.Box.Width, 10);
+            this.xPos = 400;
+            this.yPos = 200;
             this.itemTimer = 0;
             this.numRupees = 0;
             this.maxHearts = 3.0;

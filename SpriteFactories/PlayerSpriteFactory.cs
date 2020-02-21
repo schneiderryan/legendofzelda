@@ -31,22 +31,22 @@ namespace LegendOfZelda
 
         public ISprite CreateLeftWalkingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(30, 0, 15, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(30, 0, 15, 16), 2, false);
         }
 
         public ISprite CreateRightWalkingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(90, 0, 15, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(90, 0, 15, 16), 2, false);
         }
 
         public ISprite CreateUpWalkingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(60, 0, 15, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(60, 0, 15, 16), 2, false);
         }
 
         public ISprite CreateDownWalkingLinkSprite()
         {
-           return new AnimatedSprite(linkSpriteSheet, new Rectangle(0, 0, 15, 15), 2, false);
+           return new AnimatedSprite(linkSpriteSheet, new Rectangle(0, 0, 15, 16), 2, false);
         }
 
         public ISprite CreateLeftAttackingLinkSprite()
@@ -71,22 +71,22 @@ namespace LegendOfZelda
 
         public ISprite CreateLeftStillLinkSprite()
         {
-            return new Sprite(linkSpriteSheet, new Rectangle(30, 0, 16, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(30, 0, 15, 16));
         }
 
         public ISprite CreateRightStillLinkSprite()
         {
-            return new Sprite(linkSpriteSheet, new Rectangle(90, 0, 15, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(90, 0, 15, 16));
         }
 
         public ISprite CreateUpStillLinkSprite()
         {   
-            return new Sprite(linkSpriteSheet, new Rectangle(60, 0, 15, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(60, 0, 15, 16));
         }
 
         public ISprite CreateDownStillLinkSprite()
         {
-            return new Sprite(linkSpriteSheet, new Rectangle(0, 0, 15, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(0, 0, 15, 16));
         }
 
         //Red Link Sprites
