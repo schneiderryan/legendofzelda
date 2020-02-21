@@ -1,4 +1,5 @@
-﻿
+﻿using Microsoft.Xna.Framework;
+
 namespace LegendOfZelda
 {
     class Heart : Item
@@ -6,6 +7,7 @@ namespace LegendOfZelda
         public Heart()
         {
             sprite = ItemSpriteFactory.GetHeart();
+            Hitbox = sprite.Box;
         }
 
         public override void Update()

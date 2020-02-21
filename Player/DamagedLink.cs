@@ -12,6 +12,11 @@ namespace LegendOfZelda
         IPlayer decoratedLink;
         int timer = 192; // to give about 3 seconds
 
+        public Rectangle Hitbox
+        {
+            get { return decoratedLink.Hitbox; }
+        }
+
         public ISprite sprite
         {
             get { return decoratedLink.sprite; }

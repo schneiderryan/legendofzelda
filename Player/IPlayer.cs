@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    public interface IPlayer
+    interface IPlayer : ICollideable
     {
         ILinkState state { get; set; }
         ISprite sprite { get; set; }

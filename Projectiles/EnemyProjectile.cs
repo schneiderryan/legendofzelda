@@ -12,6 +12,8 @@ namespace LegendOfZelda
         protected int yVel = 0;
         protected ISprite sprite;
 
+        public Rectangle Hitbox { get; }
+
         public EnemyProjectile(ISprite sprite, Vector2 position, Vector2 velocity)
         {
             this.sprite = sprite;

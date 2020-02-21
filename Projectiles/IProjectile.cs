@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    public interface IProjectile
+    interface IProjectile : ICollideable
     {
         int X { get; }
         int Y { get; }

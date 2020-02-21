@@ -6,6 +6,7 @@ namespace LegendOfZelda
         public Rupee()
         {
             sprite = ItemSpriteFactory.GetRupee();
+            Hitbox = sprite.Box;
         }
 
         public override void Update()

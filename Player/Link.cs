@@ -10,8 +10,6 @@ namespace LegendOfZelda
     {
         public LegendOfZelda game;
 
-        private int x;
-        private int y;
         private String d;
         private String c;
         private int itemTimer;
@@ -19,20 +17,26 @@ namespace LegendOfZelda
         private double numMaxHearts;
         private double numCurrHearts;
         private List<Keys> attackKeys;
+        private Rectangle hitbox;
 
         public ISprite sprite { get; set; }
         public ILinkState state { get; set; }
 
+        public Rectangle Hitbox
+        {
+            get { return hitbox; }
+        }
+
         public int xPos
         {
-            get { return x; }
-            set { x = value; }
+            get { return hitbox.X; }
+            set { hitbox.X = value; }
         }
 
         public int yPos
         {
-            get { return y; }
-            set { y = value; }
+            get { return hitbox.Y; }
+            set { hitbox.Y = value; }
         }
 
         public String direction
@@ -150,8 +154,7 @@ namespace LegendOfZelda
             this.game = game;
             this.d = "up";
             this.sprite.Scale = 2.0f;
-            this.xPos = 400;
-            this.yPos = 200;
+            this.hitbox = sprite.Box;
             this.sprite.Position = new Point(xPos, yPos);
             this.itemTimer = 0;
             this.numRupees = 0;

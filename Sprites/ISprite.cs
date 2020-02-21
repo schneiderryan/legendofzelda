@@ -7,6 +7,7 @@ namespace LegendOfZelda
     {
         SpriteEffects Effects { get; set; }
         Point Position { get; set; }
+        Rectangle Box { get; }
         float Scale { get; set; }
         void Update();
         void Draw(SpriteBatch sb, Color color);
