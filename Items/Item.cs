@@ -30,11 +30,15 @@ namespace LegendOfZelda
             sprite.Draw(sb);
         }
 
+       
+
         public virtual void Update()
         {
             sprite.Update();
         }
 
         public abstract void Use(IPlayer player);
+
+
     }
 }
