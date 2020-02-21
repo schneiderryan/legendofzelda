@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public class RandomEnemyController : IController
+    class RandomEnemyController : IController
     {
         private ICommand[] directions;
         private Random random = new Random();

@@ -51,22 +51,22 @@ namespace LegendOfZelda
 
         public ISprite CreateLeftAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(24, 60, 28, 15), 2, false);
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(24, 60, 28, 15), 2, false);
         }
 
         public ISprite CreateRightAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(84, 60, 28, 15), 2, false);
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(84, 60, 28, 15), 2, false);
         }
 
         public ISprite CreateUpAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkAttackingUp, new Rectangle(0, 0, 20, linkAttackingUp.Height), 2, true);
+            return new AnimateOnceSprite(linkAttackingUp, new Rectangle(0, 0, 20, linkAttackingUp.Height), 2, true);
         }
 
         public ISprite CreateDownAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkAttackingDown, new Rectangle(0, 0, 17, linkAttackingDown.Height), 2, true);
+            return new AnimateOnceSprite(linkAttackingDown, new Rectangle(0, 0, 17, linkAttackingDown.Height), 2, true);
         }
 
         public ISprite CreateLeftStillLinkSprite()
@@ -113,22 +113,22 @@ namespace LegendOfZelda
 
         public ISprite CreateRedLeftAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(264, 60, 28, 15), 2, false);
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(264, 60, 28, 15), 2, false);
         }
 
         public ISprite CreateRedRightAttackingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(324, 60, 28, 15), 2, false);
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(324, 60, 28, 15), 2, false);
         }
 
         public ISprite CreateRedUpAttackingLinkSprite()
         {
-            return new AnimatedSprite(redLinkAttackingUp, new Rectangle(0, 0, 20, redLinkAttackingUp.Height), 2, true);
+            return new AnimateOnceSprite(redLinkAttackingUp, new Rectangle(0, 0, 20, redLinkAttackingUp.Height), 2, true);
         }
 
         public ISprite CreateRedDownAttackingLinkSprite()
         {
-            return new AnimatedSprite(redLinkAttackingDown, new Rectangle(0, 0, 20, redLinkAttackingDown.Height), 2, true);
+            return new AnimateOnceSprite(redLinkAttackingDown, new Rectangle(0, 0, 20, redLinkAttackingDown.Height), 2, true);
         }
 
         public ISprite CreateRedLeftStillLinkSprite()

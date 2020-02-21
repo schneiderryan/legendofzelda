@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    public class AnimatedSprite : Sprite
+    class AnimatedSprite : Sprite
     {
-        protected readonly int nFrames;
+        protected int nFrames;
         private int frameCounter = 0;
         private int delayCounter = 0;
         private Rectangle firstRect;
-        private bool isRow;
+        private readonly bool isRow;
 
         public int AnimationDelay { get; set; }
 

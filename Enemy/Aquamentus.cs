@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class Aquamentus : IEnemy
+	class Aquamentus : IEnemy
 	{
 		public enum FireballState { Breathed, NotBreathed}
 		public FireballState State { get; protected set; }
@@ -16,12 +16,12 @@ namespace LegendOfZelda
 		public LegendOfZelda game;
 		public IAquamentusState state;
 		public ISprite sprite;
-		public ISprite fireballSprite0;
-		public ISprite fireballSprite1;
-		public ISprite fireballSprite2;
-		public IProjectile fireball0;
-		public IProjectile fireball1;
-		public IProjectile fireball2;
+		private ISprite fireballSprite0;
+		private ISprite fireballSprite1;
+		private ISprite fireballSprite2;
+		private IProjectile fireball0;
+		private IProjectile fireball1;
+		private IProjectile fireball2;
 		private Random randomStep = new Random();
 		private RandomEnemyController random;
 		protected const float VELOCITY = -8f;
@@ -77,7 +77,8 @@ namespace LegendOfZelda
 			sprite.Position = new Point(xPos, yPos);
 			state = new LeftMovingAquamentusState(this, game);
 			State = FireballState.NotBreathed;
-			
+
+			breathFire = 0;
 			fireStep = 0;
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(10, 20);

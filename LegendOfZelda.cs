@@ -4,19 +4,28 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    public class LegendOfZelda : Game
+    class LegendOfZelda : Game
     {
         public IController playerKeyboard;
-        public IController enemyKeyboard;
-        public IController keyboard;
+
         public IController mouse;
 
-        
+        private IController enemyKeyboard;
+        private IController keyboard;
+
+        public LevelLoader levelLoader;
+        public List<IPlayer> players;
+
         public List<IEnemy> enemies;
-        public int enemyIndex = 0;
+        public int enemyIndex;
+
         public List<IItem> items;
-        public int itemIndex = 0;
+        public int itemIndex;
+
         public int roomIndex = 0;
+
+        
+
 
         public List<IProjectile> projectiles;
         public IPlayer link;
@@ -42,16 +51,28 @@ namespace LegendOfZelda
             this.Window.Title = "The Legend of Zelda";
 
             projectiles = new List<IProjectile>();
+
             rooms = GameSetup.GenerateRoomList(this);
             this.link = new GreenLink(this);
 
+
+            levelLoader = new LevelLoader("TestLevel.csv", this);
+            players = levelLoader.loadPlayers();
+
+
             mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
-            playerKeyboard = GameSetup.CreatePlayerKeysController(link);
+            foreach(IPlayer player in players)
+            {
+                playerKeyboard = GameSetup.CreatePlayerKeysController(player);
+            }
             enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
-            items = GameSetup.GenerateItemList();
-            enemies = GameSetup.GenerateEnemyList(this);
+
+            
+            items = levelLoader.loadItems();
+            enemies = levelLoader.loadEnemies();
+
         }
 
         protected override void LoadContent()
@@ -67,12 +88,30 @@ namespace LegendOfZelda
             mouse.Update();
             keyboard.Update();
             playerKeyboard.Update();
-            enemyKeyboard.Update();
+            //enemyKeyboard.Update();
 
-            enemies[enemyIndex].Update();
-            items[itemIndex].Update();
+
             rooms[roomIndex].Update();
-            link.Update();
+           
+
+            foreach(IEnemy enemy in enemies)
+            {
+                enemy.Update();
+            }
+
+            foreach(IItem item in items)
+            {
+                item.Update();
+            }
+
+            //enemies[enemyIndex].Update();
+            //items[itemIndex].Update();
+
+            foreach (IPlayer player in players)
+            {
+                player.Update();
+            }
+
 
             foreach (IProjectile projectile in projectiles)
             {
@@ -86,10 +125,29 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
             rooms[roomIndex].Draw(spriteBatch, Color.White);
-            enemies[enemyIndex].Draw(spriteBatch);
-            items[itemIndex].Draw(spriteBatch);
-            link.Draw(spriteBatch, Color.White);
+            
+
+
+            //enemies[enemyIndex].Draw(spriteBatch);
+            //items[itemIndex].Draw(spriteBatch);
+
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }
+
+            foreach (IItem item in items)
+            {
+                item.Draw(spriteBatch);
+            }
+
+            foreach (IPlayer player in players)
+            {
+                player.Draw(spriteBatch, Color.White);
+            }
+
 
             foreach (IProjectile projectile in projectiles)
             {

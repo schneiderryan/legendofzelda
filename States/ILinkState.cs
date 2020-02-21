@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    interface ILinkState
+    public interface ILinkState
     {
         void MoveUp();
         void MoveDown();

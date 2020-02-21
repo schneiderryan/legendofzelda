@@ -53,12 +53,19 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			goriya.xPos -= 1;
-			if (goriya.xPos < 0)
+			goriya.boomerangTimer++;
+			if (goriya.boomerangTimer == 250)
 			{
-				goriya.xPos += 800;
+				goriya.ThrowBoomerang(goriya.X, goriya.Y, -4, 0);
+				goriya.boomerangTimer = 0;
 			}
-			goriya.sprite.Position = new Point(goriya.xPos, goriya.yPos);
+
+			goriya.X -= 1;
+			if (goriya.X < 0)
+			{
+				goriya.X += 800;
+			}
+			goriya.sprite.Position = new Point(goriya.X, goriya.Y);
 		}
 
 

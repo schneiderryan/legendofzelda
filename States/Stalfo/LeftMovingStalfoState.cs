@@ -53,12 +53,12 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			stalfo.xPos -= 1;
-			if (stalfo.xPos < 0)
+			stalfo.X -= 1;
+			if (stalfo.X < 0)
 			{
-				stalfo.xPos += 800;
+				stalfo.X += 800;
 			}
-			stalfo.sprite.Position = new Point(stalfo.xPos, stalfo.yPos);
+			stalfo.sprite.Position = new Point(stalfo.X, stalfo.Y);
 		}
 
 

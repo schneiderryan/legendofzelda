@@ -3,25 +3,25 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda
 {
-    class GreenLink : IPlayer
+    abstract class Link : IPlayer
     {
         public LegendOfZelda game;
-        public ISprite sprite;
-        public ILinkState state;
 
-        private int itemTimer;
         private int x;
         private int y;
         private String d;
         private String c;
+        private int itemTimer;
         private int numberOfRupees;
         private double numMaxHearts;
         private double numCurrHearts;
         private List<Keys> attackKeys;
+
+        public ISprite sprite { get; set; }
+        public ILinkState state { get; set; }
 
         public int xPos
         {
@@ -47,76 +47,59 @@ namespace LegendOfZelda
             set { c = value; }
         }
 
-        public int numRupees 
+        public int numRupees
         {
-            get { return numberOfRupees; } 
-            set { numberOfRupees = value;  } 
+            get { return numberOfRupees; }
+            set { numberOfRupees = value; }
         }
 
-        public double maxHearts 
+        public double maxHearts
         {
             get { return numMaxHearts; }
             set { numMaxHearts = value; }
         }
-        public double currentHearts 
+        public double currentHearts
         {
             get { return numCurrHearts; }
             set { numCurrHearts = value; }
         }
 
-        public GreenLink(LegendOfZelda game)
-        {
-            this.game = game;
-            this.sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
-            this.d = "up";
-            this.c = "green";
-            this.sprite.Scale = 2.0f;
-            this.xPos = 400;
-            this.yPos = 200;
-            this.sprite.Position = new Point(xPos, yPos);
-            this.state = new StillUpLinkState(this);
-            this.itemTimer = 0;
-            this.numRupees = 0;
-            this.maxHearts = 3.0;
-            this.currentHearts = 3.0;
-        }
-
-        public void MoveLeft()
+        public virtual void MoveLeft()
         {
             state.MoveLeft();
         }
 
-        public void MoveRight()
+        public virtual void MoveRight()
         {
             state.MoveRight();
         }
-        
-        public void MoveUp()
+
+        public virtual void MoveUp()
         {
             state.MoveUp();
         }
 
-        public void MoveDown()
+        public virtual void MoveDown()
         {
             state.MoveDown();
         }
 
-        public void Attack()
+        public virtual void Attack()
         {
             state.Attack();
         }
 
-        public void BeStill()
+        public virtual void BeStill()
         {
             state.BeStill();
         }
 
-        public void TakeDamage()
+        public virtual void TakeDamage()
         {
-            this.game.link = new DamagedLink(this, this.game);
+            this.game.link = new DamagedLink(this);
         }
 
-        public void Update()
+        public virtual void Update()
         {
             state.Update();
             sprite.Update();
@@ -126,31 +109,31 @@ namespace LegendOfZelda
             }
         }
 
-        public void Draw(SpriteBatch sb, Color color)
+        public virtual void Draw(SpriteBatch sb, Color color)
         {
             sprite.Draw(sb, color);
         }
 
-        public void UseProjectile(IProjectile projectile)
+        public virtual void UseProjectile(IProjectile projectile)
         {
-            if(itemTimer == 0)
+            if (itemTimer == 0)
             {
                 itemTimer = 75;
                 game.projectiles.Add(projectile);
             }
         }
 
-        public void UseItem(IItem item)
+        public virtual void UseItem(IItem item)
         {
             item.Use(this);
         }
 
-        public void RegisterAttackKeys(List<Keys> attackKeys)
+        public virtual void RegisterAttackKeys(List<Keys> attackKeys)
         {
             this.attackKeys = attackKeys;
         }
 
-        public bool IsAttacking()
+        public virtual bool IsAttacking()
         {
             foreach (Keys key in this.attackKeys)
             {
@@ -160,6 +143,20 @@ namespace LegendOfZelda
                 }
             }
             return false;
+        }
+
+        protected void Initialize(LegendOfZelda game)
+        {
+            this.game = game;
+            this.d = "up";
+            this.sprite.Scale = 2.0f;
+            this.xPos = 400;
+            this.yPos = 200;
+            this.sprite.Position = new Point(xPos, yPos);
+            this.itemTimer = 0;
+            this.numRupees = 0;
+            this.maxHearts = 3.0;
+            this.currentHearts = 3.0;
         }
     }
 }

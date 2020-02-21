@@ -6,7 +6,7 @@ using System;
 namespace LegendOfZelda
 {
 
-	public class Goriya : IEnemy
+	class Goriya : IEnemy
 	{
 		
 		public enum BoomerangState { Thrown, NotThrown}
@@ -20,21 +20,24 @@ namespace LegendOfZelda
 		//private KeyboardController keyboard;
 
 		private RandomEnemyController random;
+
 		public int x;
 		public int y;
+
 		public int xPos
 		{
 			get { return x; }
 			set { x = value; }
 		}
-
 		public int yPos
 		{
 			get { return y; }
 			set { y = value; }
 		}
+
 		private int yv;
 		private int xv;
+
 		public int xVel
 		{
 			get { return yv; }
@@ -45,11 +48,21 @@ namespace LegendOfZelda
 			get { return yv; }
 			set { yv = value; }
 		}
-		public int currentStep;
-		public int changeDirection;
+		
+		private int currentStep;
+		private int cd;
 
-		int IEnemy.currentStep { get ; set ; }
-		int IEnemy.changeDirection { get; set; }
+		public int CurrentStep
+		{
+			get { return currentStep; }
+			set { currentStep = value; }
+		}
+		public int changeDirection
+		{
+			get { return cd; }
+			set { cd = value; }
+		}
+		
 
 		public Goriya()
 		{
@@ -67,10 +80,10 @@ namespace LegendOfZelda
 			//boomerang = new EnemyProjectile(boomerangSprite, new Vector2(xPos, yPos), new Vector2(0, 8f));
 		}
 
-		public void ThrowBoomerang(int xPos, int yPos)
+		public void ThrowBoomerang(int xPos, int yPos, int xVel, int yVel)
 		{
 			State = BoomerangState.Thrown;
-			boomerang = new EnemyProjectile(boomerangSprite, new Vector2(xPos, yPos), new Vector2(0, -4f));
+			boomerang = new EnemyProjectile(boomerangSprite, new Vector2(xPos, yPos), new Vector2(xVel, yVel));
 		}
 
 		public void ChangeDirection()

@@ -8,31 +8,13 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class Gel : IEnemy
+	class Gel : IEnemy
 	{
 		private Random randomStep = new Random();
 		public IGelState state;
 		public ISprite sprite;
 		private RandomEnemyController random;
 		
-		public int currentStep;
-		public int changeDirection;
-
-		int IEnemy.currentStep { get ; set ; }
-		int IEnemy.changeDirection { get; set; }
-		public int x;
-		public int y;
-		public int xPos
-		{
-			get { return x; }
-			set { x = value; }
-		}
-
-		public int yPos
-		{
-			get { return y; }
-			set { y = value; }
-		}
 		private int yv;
 		private int xv;
 		public int xVel
@@ -46,6 +28,31 @@ namespace LegendOfZelda
 			set { yv = value; }
 		}
 
+		private int xPos;
+		private int yPos;
+		private int currentStep;
+		private int cd;
+
+		public int CurrentStep
+		{
+			get { return currentStep; }
+			set { currentStep = value; }
+		}
+		public int changeDirection
+		{
+			get { return cd; }
+			set { cd = value; }
+		}
+		public int X 
+		{
+			get { return xPos; }
+			set { xPos = value; }
+		}
+		public int Y 
+		{
+			get { return yPos; }
+			set { yPos = value; }
+		}
 
 		public Gel()
 		{

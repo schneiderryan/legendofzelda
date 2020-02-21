@@ -8,12 +8,13 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	public class RFWallmaster : IEnemy
+	class RFWallmaster : IEnemy
 	{
 		private Random randomStep = new Random();
 		public IWallmasterState state;
 		public ISprite sprite;
 		private RandomEnemyController random;
+
 		public int x;
 		public int y;
 		public int xPos
@@ -39,11 +40,32 @@ namespace LegendOfZelda
 			get { return yv; }
 			set { yv = value; }
 		}
-		public int currentStep;
-		public int changeDirection;
 
-		int IEnemy.currentStep { get ; set ; }
-		int IEnemy.changeDirection { get; set; }
+		
+		private int currentStep;
+		private int cd;
+
+
+		public int CurrentStep
+		{
+			get { return currentStep; }
+			set { currentStep = value; }
+		}
+		public int changeDirection
+		{
+			get { return cd; }
+			set { cd = value; }
+		}
+		public int X
+		{
+			get { return xPos; }
+			set { xPos = value; }
+		}
+		public int Y
+		{
+			get { return yPos; }
+			set { yPos = value; }
+		}
 
 		public RFWallmaster()
 		{
