@@ -22,58 +22,58 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="InitialRoomSetups\Room0.csv">
+    <None Update="Room0.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room1.csv">
+    <None Update="Room1.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room10.csv">
+    <None Update="Room10.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room11.csv">
+    <None Update="Room11.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room12.csv">
+    <None Update="Room12.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room13.csv">
+    <None Update="Room13.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room14.csv">
+    <None Update="Room14.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room15.csv">
+    <None Update="Room15.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room16.csv">
+    <None Update="Room16.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room2.csv">
+    <None Update="Room2.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room3.csv">
+    <None Update="Room3.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room4.csv">
+    <None Update="Room4.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room5.csv">
+    <None Update="Room5.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room6.csv">
+    <None Update="Room6.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room7.csv">
+    <None Update="Room7.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room8.csv">
+    <None Update="Room8.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\Room9.csv">
+    <None Update="Room9.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InitialRoomSetups\TestLevel.csv">
+    <None Update="TestLevel.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
