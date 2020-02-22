@@ -22,7 +22,10 @@ namespace LegendOfZelda
             
             this.sprite.Position = new Point(0, 0);
             this.state = new JustEnteredRoom1(this);
-           
+
+            LevelLoader levelLoader = new LevelLoader("InitialRoomSetups/Room1.csv", game);
+            game.enemies = levelLoader.loadEnemies();
+            game.items = levelLoader.loadItems();
         }
 
         public void Draw(SpriteBatch sb, Color color)

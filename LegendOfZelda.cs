@@ -49,8 +49,8 @@ namespace LegendOfZelda
             rooms = GameSetup.GenerateRoomList(this);
             this.link = new GreenLink(this);
 
-            levelLoader = new LevelLoader("TestLevel.csv", this);
-            players = levelLoader.loadPlayers();
+            /*levelLoader = new LevelLoader("TestLevel.csv", this);
+            players = levelLoader.loadPlayers();*/
 
             mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
@@ -59,8 +59,8 @@ namespace LegendOfZelda
                 playerKeyboard = GameSetup.CreatePlayerKeysController(player);
             }
             
-            items = levelLoader.loadItems();
-            enemies = levelLoader.loadEnemies();
+            /*items = levelLoader.loadItems();
+            enemies = levelLoader.loadEnemies();*/
         }
 
         protected override void LoadContent()
