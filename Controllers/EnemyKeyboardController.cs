@@ -18,7 +18,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            speed++;
+            /*speed++;
             if (speed % 5 == 0)
             {
                 Keys[] keys = Keyboard.GetState().GetPressedKeys();
@@ -55,7 +55,7 @@ namespace LegendOfZelda
                     }
 
                 }
-            }
+            }*/
         }
     }
 }
