@@ -6,18 +6,31 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class Room0 : IRoom
+    class Room0 : IRoom, ICollideableRoom
     {
         public LegendOfZelda game;
         public ISprite sprite;
         public IRoomState state;
         public List<IEnemy> enemies;
         public List<IItem> items;
+        public List<Rectangle> boxes;
+        private Rectangle hitboxLeft;
+        private Rectangle hitboxTop;
+        private Rectangle hitboxBottom;
+        private Rectangle hitboxRight1;
+        private Rectangle hitboxRight2;
+
+
+        public List<Rectangle> Hitboxes
+        {
+            get { return boxes; }
+            protected set { boxes = value; }
+        }
         //populate with items and enemies (and player?)
         public Room0(LegendOfZelda game)
         {
             this.game = game;
-            this.sprite = RoomSpriteFactory.Instance.CreateRoom1();
+            this.sprite = RoomSpriteFactory.Instance.CreateRoom0();
             
             this.sprite.Scale = 2.0f;
             
@@ -27,8 +40,28 @@ namespace LegendOfZelda
             LevelLoader levelLoader = new LevelLoader("Room0.csv", game);
             this.enemies = levelLoader.loadEnemies();
             this.items = levelLoader.loadItems();
+
+            boxes = new List<Rectangle>();
+            
+            
+            
+            
+            hitboxLeft = new Rectangle(0, 0, 64, 352);
+            boxes.Add(hitboxLeft);
+
+            hitboxTop = new Rectangle(0, 0, 512, 64);
+            boxes.Add(hitboxTop);
+
+            hitboxBottom = new Rectangle(0, 288, 512, 64);
+            boxes.Add(hitboxBottom);
+
+            hitboxRight1 = new Rectangle(448, 0, 64, 160);
+            hitboxRight2 = new Rectangle(448, 192, 64, 160);
+            boxes.Add(hitboxRight1);
+            boxes.Add(hitboxRight2);
         }
 
+        
         public void Draw(SpriteBatch sb, Color color)
         {
             sprite.Draw(sb, color);

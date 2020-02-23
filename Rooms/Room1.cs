@@ -13,12 +13,34 @@ namespace LegendOfZelda
         public IRoomState state;
         public List<IEnemy> enemies;
         public List<IItem> items;
+        private List<Rectangle> boxes;
+        private Rectangle hitboxLeft1;
+        private Rectangle hitboxLeft2;
+        private Rectangle hitboxRight1;
+        private Rectangle hitboxRight2;
+        private Rectangle hitboxTop1;
+        private Rectangle hitboxTop2;
+        private Rectangle hitboxBottom1;
+        private Rectangle hitboxBottom2;
+
+        public List<Rectangle> Hitboxes
+        {
+            get
+            {
+             return boxes; 
+            } 
+
+            protected set { boxes = value; }
+        }
+
+        
 
         //populate with items and enemies (and player?)
         public Room1(LegendOfZelda game)
         {
+           
             this.game = game;
-            this.sprite = RoomSpriteFactory.Instance.CreateRoom0();
+            this.sprite = RoomSpriteFactory.Instance.CreateRoom1();
             
             this.sprite.Scale = 2.0f;
             
@@ -28,7 +50,31 @@ namespace LegendOfZelda
             LevelLoader levelLoader = new LevelLoader("Room1.csv", game);
             this.enemies = levelLoader.loadEnemies();
             this.items = levelLoader.loadItems();
+
+            boxes = new List<Rectangle>();
+
+            hitboxLeft1 = new Rectangle(0, 0, 64, 160);
+            hitboxLeft2 = new Rectangle(0, 192, 64, 160);
+            boxes.Add(hitboxLeft1);
+            boxes.Add(hitboxLeft2);
+
+            hitboxRight1 = new Rectangle(448, 0, 64, 160);
+            hitboxRight2 = new Rectangle(448, 192, 64, 160);
+            boxes.Add(hitboxRight1);
+            boxes.Add(hitboxRight2);
+
+            hitboxTop1 = new Rectangle(0, 0, 240, 64);
+            hitboxTop2 = new Rectangle(272, 0, 240, 64);
+            boxes.Add(hitboxTop1);
+            boxes.Add(hitboxTop2);
+
+            hitboxBottom1 = new Rectangle(0, 288, 240, 64);
+            hitboxBottom2 = new Rectangle(272, 288, 240, 64);
+            boxes.Add(hitboxBottom1);
+            boxes.Add(hitboxBottom2);
         }
+
+       
 
         public void Draw(SpriteBatch sb, Color color)
         {

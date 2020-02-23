@@ -14,11 +14,13 @@ namespace LegendOfZelda
 		public IGelState state;
 		public ISprite sprite;
 		private RandomEnemyController random;
+
+
+		public int x;
+		public int y;
 		
 		private int yv;
 		private int xv;
-		private int y;
-		private int x;
 		public int xVel
 		{
 			get { return yv; }
@@ -30,21 +32,21 @@ namespace LegendOfZelda
 			set { yv = value; }
 		}
 
-		private int currentStep;
 		
+		private int currentStep;
+		private int cd;
 
 		public int CurrentStep
 		{
 			get { return currentStep; }
 			set { currentStep = value; }
 		}
-		private int cd;
 		public int changeDirection
 		{
 			get { return cd; }
 			set { cd = value; }
 		}
-		public int X
+		public int X 
 		{
 			get { return x; }
 			set { x = value; }
@@ -59,9 +61,9 @@ namespace LegendOfZelda
 		{
 
 			sprite = EnemySpriteFactory.Instance.CreateMovingGelSprite();
-			X = 400;
-			Y = 200;
-			sprite.Position = new Point(X, Y);
+			x = 400;
+			y = 200;
+			sprite.Position = new Point(x, y);
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController( this);

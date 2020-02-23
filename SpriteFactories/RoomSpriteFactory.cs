@@ -23,12 +23,12 @@ namespace LegendOfZelda
 
         public ISprite CreateRoom0()
         {
-            return new Sprite(roomSheet, new Rectangle(515, 886, 256, 176));
+            return new Sprite(roomSheet, new Rectangle(258, 886, 256, 176));
         }
     
         public ISprite CreateRoom1()
         {
-            return new Sprite(roomSheet, new Rectangle(258, 886, 256, 176));
+            return new Sprite(roomSheet, new Rectangle(515, 886, 256, 176));
         }
     }
     
