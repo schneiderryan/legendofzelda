@@ -12,7 +12,6 @@ namespace LegendOfZelda
         public List<IRoom> rooms;
         public int roomIndex = 0;
 
-        private List<IBlock> blocks;
         public IPlayer link;
         public List<IProjectile> projectiles;
 
@@ -101,7 +100,7 @@ namespace LegendOfZelda
                 projectile.Draw(spriteBatch);
             }
 
-            foreach (IBlock b in blocks)
+            foreach (IBlock b in rooms[0].blocks)
             {
                 Debug.DrawHitbox(spriteBatch, b.Hitbox);
             }

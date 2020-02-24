@@ -133,8 +133,8 @@ namespace LegendOfZelda
                 // do things
             }
 
-            CollisionHandler.HandlePlayerBlockCollision(game.link, blocks);
-            CollisionHandler.HandlePlayerBlockCollision
+            CollisionHandler.PlayerBlockCollision(game.link, blocks);
+            CollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
         }
     }
 }
