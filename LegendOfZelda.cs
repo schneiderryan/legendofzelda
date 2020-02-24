@@ -41,14 +41,6 @@ namespace LegendOfZelda
 
             mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
-            foreach(IPlayer player in players)
-            {
-                playerKeyboard = GameSetup.CreatePlayerKeysController(player);
-            }
-            
-            items = levelLoader.loadItems();
-            enemies = levelLoader.loadEnemies();
-            blocks = levelLoader.loadBlocks();
 
             projectiles = new List<IProjectile>();
         }
@@ -85,7 +77,6 @@ namespace LegendOfZelda
             }
 
             // do wall/block collisions - this is the only one where sides matter
-            CollisionHandler.HandlePlayerBlockCollision(players, blocks);
 
             base.Update(gameTime);
         }

@@ -14,6 +14,8 @@ namespace LegendOfZelda
         public List<IEnemy> enemies;
         public List<IItem> items;
         public List<Rectangle> boxes;
+        public List<IBlock> blocks;
+        public List<IBlock> moveableBlocks;
         private Rectangle hitboxLeft;
         private Rectangle hitboxTop;
         private Rectangle hitboxBottom;
@@ -40,6 +42,8 @@ namespace LegendOfZelda
             LevelLoader levelLoader = new LevelLoader("Room0.csv", game);
             this.enemies = levelLoader.loadEnemies();
             this.items = levelLoader.loadItems();
+            this.blocks = levelLoader.loadStillBlocks();
+            this.moveableBlocks = levelLoader.loadMoveableBlocks();
 
             boxes = new List<Rectangle>();
             
@@ -128,6 +132,9 @@ namespace LegendOfZelda
                 // if intersects then
                 // do things
             }
+
+            CollisionHandler.HandlePlayerBlockCollision(game.link, blocks);
+            CollisionHandler.HandlePlayerBlockCollision
         }
     }
 }

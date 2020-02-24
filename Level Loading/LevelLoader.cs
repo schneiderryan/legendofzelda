@@ -194,7 +194,7 @@ namespace LegendOfZelda
             return items;
         }
 
-        public List<IBlock> loadBlocks()
+        public List<IBlock> loadStillBlocks()
         {
             List<IBlock> blocks = new List<IBlock>();
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
@@ -204,14 +204,28 @@ namespace LegendOfZelda
                 if (entry.Value.Equals("StillBlock"))
                 {
                     block = new StillBlock();
+                    block.X = (int)entry.Key.X;
+                    block.Y = (int)entry.Key.Y;
+                    blocks.Add(block);
                 }
-                else
+            }
+            return blocks;
+        }
+
+        public List<IBlock> loadMoveableBlocks()
+        {
+            List<IBlock> blocks = new List<IBlock>();
+            Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
+            foreach (KeyValuePair<Vector2, String> entry in blockInfo)
+            {
+                IBlock block;
+                if (entry.Value.Equals("MoveableBlock"))
                 {
                     block = new MovableBlock();
+                    block.X = (int)entry.Key.X;
+                    block.Y = (int)entry.Key.Y;
+                    blocks.Add(block);
                 }
-                block.X = (int)entry.Key.X;
-                block.Y = (int)entry.Key.Y;
-                blocks.Add(block);
             }
             return blocks;
         }

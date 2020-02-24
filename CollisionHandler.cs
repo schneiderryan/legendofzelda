@@ -7,18 +7,15 @@ namespace LegendOfZelda
 {
     static class CollisionHandler
     {
-        public static void HandlePlayerBlockCollision(List<IPlayer> moving,
+        public static void HandlePlayerBlockCollision(IPlayer player,
                 List<IBlock> still)
         {
             foreach (ICollideable s in still)
             {
-                foreach (ICollideable m in moving)
+                Rectangle collision = Rectangle.Intersect(player.Hitbox, s.Hitbox);
+                if (!player.Hitbox.Equals(Rectangle.Empty))
                 {
-                    if (m.Hitbox.Intersects(m.Hitbox))
-                    {
-                        Rectangle collision = Rectangle.Intersect(m.Hitbox, s.Hitbox);
-                        HandleCollision(m, collision);
-                    }
+                    HandleCollision(player, collision);
                 }
             }
         }
