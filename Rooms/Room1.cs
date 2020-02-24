@@ -75,7 +75,10 @@ namespace LegendOfZelda
         }
 
        
+        public void DrawDoor(SpriteBatch sb, Color color)
+        {
 
+        }
         public void Draw(SpriteBatch sb, Color color)
         {
             sprite.Draw(sb, color);

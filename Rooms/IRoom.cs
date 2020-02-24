@@ -14,5 +14,6 @@ namespace LegendOfZelda
         void EnterRoomAbove();
         void EnterRoomLeft();
         void EnterRoomRight();
+        void DrawDoor(SpriteBatch spriteBatch, Color white);
     }
 }
