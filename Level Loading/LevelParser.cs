@@ -24,6 +24,7 @@ namespace LegendOfZelda
             using(StreamReader level = new StreamReader(levelName))
             {
                 String line = level.ReadLine();
+                level.ReadLine();
                 int y = 0;
                 while (!level.EndOfStream)
                 {
@@ -45,12 +46,25 @@ namespace LegendOfZelda
             return dictionary;
         }
 
+        public int parseRoomNumber()
+        {
+            int room;
+            using(StreamReader level = new StreamReader(levelName))
+            {
+                String line = level.ReadLine();
+                room = int.Parse(line);
+                level.Close();
+            }
+            return room;
+        }
+
         public Dictionary<String, String> parseDoors(List<String> desiredDoors)
         {
             Dictionary<String, String> dictionary = new Dictionary<String, String>();
             using(StreamReader level = new StreamReader(levelName))
             {
                 String line = level.ReadLine();
+                line = level.ReadLine();
                 String[] array = { "left", "right", "up", "down" };
                 for (int x = 0; x < 4; x++)
                 {
@@ -60,6 +74,7 @@ namespace LegendOfZelda
                         dictionary.Add(array[x], box);
                     }
                 }
+                level.Close();
             }
             return dictionary;
         }

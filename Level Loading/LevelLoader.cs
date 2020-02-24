@@ -57,6 +57,21 @@ namespace LegendOfZelda
             this.possibleDoors = new List<String>();
         }
 
+        public ISprite loadBackground()
+        {
+            ISprite background;
+            int roomNumber = parser.parseRoomNumber();
+            if(roomNumber == 0)
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom0();
+            }
+            else // room 1
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom1();
+            }
+            return background;
+        }
+
         public List<IPlayer> loadPlayers()
         {
             List<IPlayer> players = new List<IPlayer>();
