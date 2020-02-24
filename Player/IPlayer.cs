@@ -18,6 +18,7 @@ namespace LegendOfZelda
         int numRupees { get; set; }
         double maxHearts { get; set; }
         double currentHearts { get; set; }
+        int numberBombs { get; set; }
         void MoveLeft();
         void MoveRight();
         void MoveUp();

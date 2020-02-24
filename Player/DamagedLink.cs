@@ -70,6 +70,13 @@ namespace LegendOfZelda
             set { decoratedLink.currentHearts = value; }
         }
 
+        public int numberBombs
+        {
+            get { return decoratedLink.numberBombs; }
+            set { decoratedLink.numberBombs = value; }
+        }
+
+
         public DamagedLink (IPlayer decoratedLink)
         {
             this.decoratedLink = decoratedLink;
