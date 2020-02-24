@@ -4,22 +4,19 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class PlayerUseArrowCommand : ICommand
+    class PlayerUseBombCommand : ICommand
     {
         private IPlayer player;
 
-        public PlayerUseArrowCommand(IPlayer player)
+        public PlayerUseBombCommand(IPlayer player)
         {
             this.player = player;
         }
 
         public void Execute()
         {
-            Bow bow = new Bow()
-            {
-                HasArrow = true
-            };
-            player.UseItem(bow);
+            Bomb bomb = new Bomb();
+            player.UseItem(bomb);
         }
     }
 }
