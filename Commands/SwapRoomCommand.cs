@@ -32,7 +32,7 @@ namespace LegendOfZelda
             }
             else if (swapDirection.Equals("previous"))
             {
-                if (0 == game.itemIndex)
+                if (0 == game.roomIndex)
                 {
                     game.roomIndex = game.rooms.Count - 1;
                 }

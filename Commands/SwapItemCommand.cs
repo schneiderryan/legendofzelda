@@ -19,7 +19,7 @@ namespace LegendOfZelda
         
         public void Execute()
         {
-            if (swapDirection.Equals("next"))
+            /*if (swapDirection.Equals("next"))
             {
                 if (game.items.Count - 1 == game.itemIndex)
                 {
@@ -40,7 +40,7 @@ namespace LegendOfZelda
                 {
                     game.itemIndex--;
                 }
-            }
+            }*/
         }
     }
 }
