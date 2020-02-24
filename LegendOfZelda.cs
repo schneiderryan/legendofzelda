@@ -89,7 +89,9 @@ namespace LegendOfZelda
             link.Draw(spriteBatch, Color.White);
             rooms[roomIndex].DrawDoor(spriteBatch, Color.White);
 
-       
+
+
+
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
             foreach(Rectangle box in rooms[roomIndex].Hitboxes)
             {
