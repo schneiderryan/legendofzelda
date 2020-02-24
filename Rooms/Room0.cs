@@ -11,6 +11,7 @@ namespace LegendOfZelda
         public LegendOfZelda game;
         public ISprite sprite;
         public IRoomState state;
+        public List<ISprite> doors;
         public List<IEnemy> enemies;
         public List<IItem> items;
         public List<Rectangle> boxes;
@@ -40,12 +41,15 @@ namespace LegendOfZelda
             LevelLoader levelLoader = new LevelLoader("Room0.csv", game);
             this.enemies = levelLoader.loadEnemies();
             this.items = levelLoader.loadItems();
-
+            //this.doors = levelLoader.loadDoors();
+            this.doors = new List<ISprite>() { RoomSpriteFactory.Instance.CreateRightOpenDoor()
+            };
+            doors[0].Position = new Point(448, 144);
+            
+            
             boxes = new List<Rectangle>();
             
-            
-            
-            
+            //add class with method to generate hitboxes for each wall and  object GameSetup
             hitboxLeft = new Rectangle(0, 0, 64, 352);
             boxes.Add(hitboxLeft);
 
@@ -61,16 +65,24 @@ namespace LegendOfZelda
             boxes.Add(hitboxRight2);
         }
 
-        
-        public void Draw(SpriteBatch sb, Color color)
+        public void DrawDoor(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb, color);
+            foreach (ISprite door in doors)
+            {
+                door.Draw(sb, Color.White);
+            }
+        }
+            public void Draw(SpriteBatch sb, Color color)
+            {
+
+            sprite.Draw(sb);
 
             foreach (IEnemy enemy in enemies)
             {
                 enemy.Draw(sb);
             }
 
+            
             foreach (IItem item in items)
             {
                 item.Draw(sb);
@@ -103,6 +115,10 @@ namespace LegendOfZelda
             state.Update();
             sprite.Update();
 
+            foreach (ISprite door in doors)
+            {
+                door.Update();
+            }
             foreach (IItem item in items)
             {
                 item.Update();
