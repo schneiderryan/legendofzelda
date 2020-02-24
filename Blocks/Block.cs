@@ -10,6 +10,7 @@ namespace LegendOfZelda
     {
         private int xPos;
         private int yPos;
+        private ISprite blockSprite;
         public int X
         {
             get { return xPos; }
