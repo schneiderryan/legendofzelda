@@ -68,8 +68,8 @@ namespace LegendOfZelda
                 {
                     player = new RedLink(this.game);
                 }
-                player.xPos = (int)entry.Key.X;
-                player.yPos = (int)entry.Key.Y;
+                player.X = (int)entry.Key.X;
+                player.Y = (int)entry.Key.Y;
                 players.Add(player);
             }
             return players;
@@ -204,7 +204,7 @@ namespace LegendOfZelda
                 }
                 else
                 {
-                    block = new StillBlock();
+                    block = new MovableBlock();
                 }
                 block.X = (int)entry.Key.X;
                 block.Y = (int)entry.Key.Y;

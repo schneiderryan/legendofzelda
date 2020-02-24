@@ -8,23 +8,23 @@ namespace LegendOfZelda
 {
     abstract class Block : IBlock
     {
-        private int xPos;
-        private int yPos;
+        private Rectangle hitbox = new Rectangle(0, 0, 32, 32);
+
+        public Rectangle Hitbox
+        {
+            get { return hitbox; }
+        }
         public int X
         {
-            get { return xPos; }
-            set { xPos = value; }
+            get { return hitbox.X; }
+            set { hitbox.X = value; }
         }
 
         public int Y
         {
-            get { return yPos; }
-            set { yPos = value; }
+            get { return hitbox.Y; }
+            set { hitbox.Y = value; }
         }
-
-        public abstract void Draw(SpriteBatch sb);
-
-        public abstract void Update();
 
     }
 }

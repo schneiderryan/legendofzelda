@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LegendOfZelda
 {
-    class StillBlock : Block
+    class MovableBlock : Block
     {
-        public StillBlock()
+        public MovableBlock()
         {
 
         }

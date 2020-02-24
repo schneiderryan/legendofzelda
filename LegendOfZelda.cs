@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-      class LegendOfZelda : Game
+    class LegendOfZelda : Game
     {
         public IController playerKeyboard;
 
@@ -25,6 +25,7 @@ namespace LegendOfZelda
         public List<IRoom> rooms;
         public int roomIndex = 0;
 
+        private List<IBlock> blocks;
 
         public GraphicsDeviceManager graphics;
 
@@ -61,6 +62,7 @@ namespace LegendOfZelda
             
             items = levelLoader.loadItems();
             enemies = levelLoader.loadEnemies();
+            blocks = levelLoader.loadBlocks();
         }
 
         protected override void LoadContent()
@@ -130,6 +132,7 @@ namespace LegendOfZelda
             }
 
             // do wall/block collisions - this is the only one where sides matter
+            CollisionHandler.HandlePlayerBlockCollision(players, blocks);
 
             base.Update(gameTime);
         }
@@ -161,6 +164,11 @@ namespace LegendOfZelda
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
+            }
+
+            foreach (IBlock b in blocks)
+            {
+                Debug.DrawHitbox(spriteBatch, b.Hitbox);
             }
 
             spriteBatch.End();

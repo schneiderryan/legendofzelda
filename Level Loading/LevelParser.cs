@@ -9,11 +9,9 @@ namespace LegendOfZelda
     class LevelParser
     {
         private String levelName;
-        private const int X_OFFSET = 100; //offset caused by level background
-        private const int Y_OFFSET = 50; //offset caused by level background
-        private const int LEVEL_WIDTH = 12; //grid spaces across
-        private const int LEVEL_HEIGHT = 7; //grid spaes down
-        private const int BOX_SIZE = 50; //size of one of the dungeon grid spaces
+        private const int LEVEL_WIDTH = 16; //grid spaces across
+        private const int LEVEL_HEIGHT = 11; //grid spaes down
+        private const int BOX_SIZE = 32; //size of one of the dungeon grid spaces
         public LevelParser(String levelName)
         {
             this.levelName = levelName;
@@ -34,8 +32,8 @@ namespace LegendOfZelda
                         String box = nextBox(ref line);
                         if (desiredStrings.Contains(box))
                         {
-                            int xPos = X_OFFSET + (x * BOX_SIZE);
-                            int yPos = Y_OFFSET + (y * BOX_SIZE);
+                            int xPos = (x * BOX_SIZE);
+                            int yPos = (y * BOX_SIZE);
                             dictionary.Add(new Vector2(xPos, yPos), box);
                         }
                     }
