@@ -14,6 +14,7 @@ namespace LegendOfZelda
         private List<String> possibleEnemies;
         private List<String> possibleItems;
         private List<String> possibleBlocks;
+        private List<String> possibleDoors;
         public LevelLoader(String level, LegendOfZelda game)
         {
             this.parser = new LevelParser(level);
@@ -52,6 +53,23 @@ namespace LegendOfZelda
 
             this.possibleBlocks = new List<String>();
             this.possibleBlocks.Add("StillBlock");
+
+            this.possibleDoors = new List<String>();
+        }
+
+        public ISprite loadBackground()
+        {
+            ISprite background;
+            int roomNumber = parser.parseRoomNumber();
+            if(roomNumber == 0)
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom0();
+            }
+            else // room 1
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom1();
+            }
+            return background;
         }
 
         public List<IPlayer> loadPlayers()
@@ -211,6 +229,18 @@ namespace LegendOfZelda
                 blocks.Add(block);
             }
             return blocks;
+        }
+
+        public Dictionary<String, IDoor> loadDoors()
+        {
+            Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
+            Dictionary<String, String> doorInfo = parser.parseDoors(possibleDoors);
+            foreach(KeyValuePair<String, String> entry in doorInfo)
+            {
+                IDoor door;
+                //check doors and add to doors
+            }
+            return doors;
         }
     }
 }
