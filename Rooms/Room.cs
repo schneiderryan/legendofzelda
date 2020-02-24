@@ -62,6 +62,10 @@ namespace LegendOfZelda
             boxes.Add(hitboxRight2);
         }
 
+        public void DrawDoor(SpriteBatch sb, Color color)
+        {
+            //default
+        }
 
         public void Draw(SpriteBatch sb, Color color)
         {
