@@ -137,8 +137,23 @@ namespace LegendOfZelda
         {
             List<IRoom> list = new List<IRoom>()
             {
-                new Room0(game),
-                new Room1(game),
+                new Room(game, "Room0.csv"),
+                new Room(game, "Room1.csv"),
+                new Room(game, "Room2.csv"),
+                new Room(game, "Room3.csv"),
+                new Room(game, "Room4.csv"),
+                new Room(game, "Room5.csv"),
+                new Room(game, "Room6.csv"),
+                new Room(game, "Room7.csv"),
+                new Room(game, "Room8.csv"),
+                new Room(game, "Room9.csv"),
+                new Room(game, "Room10.csv"),
+                new Room(game, "Room11.csv"),
+                new Room(game, "Room12.csv"),
+                new Room(game, "Room13.csv"),
+                new Room(game, "Room14.csv"),
+                new Room(game, "Room15.csv"),
+                new Room(game, "Room16.csv"),
             };
 
             return list;
