@@ -23,8 +23,8 @@ namespace LegendOfZelda
             this.yVel = (int)velocity.Y;
         }
 
-        public virtual int X { get; protected set; }
-        public virtual int Y { get; protected set; }
+        public virtual int X { get; set; }
+        public virtual int Y { get; set; }
 
         public virtual void Update()
         {

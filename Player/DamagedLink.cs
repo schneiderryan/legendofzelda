@@ -29,16 +29,16 @@ namespace LegendOfZelda
             set { decoratedLink.state = value; }
         }
 
-        public int xPos
+        public int X
         {
-            get { return decoratedLink.xPos; }
-            set { decoratedLink.xPos = value; }
+            get { return decoratedLink.X; }
+            set { decoratedLink.X = value; }
         }
 
-        public int yPos
+        public int Y
         {
-            get { return decoratedLink.yPos; }
-            set { decoratedLink.yPos = value; }
+            get { return decoratedLink.Y; }
+            set { decoratedLink.Y = value; }
         }
 
         public String direction

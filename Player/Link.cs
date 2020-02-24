@@ -29,7 +29,7 @@ namespace LegendOfZelda
             get { return hitbox; }
         }
 
-        public int xPos
+        public int X
         {
             get { return x; }
             set
@@ -39,7 +39,7 @@ namespace LegendOfZelda
             }
         }
 
-        public int yPos
+        public int Y
         {
             get { return y; }
             set
@@ -165,8 +165,8 @@ namespace LegendOfZelda
             this.d = "up";
             this.sprite.Scale = 2.0f;
             this.hitbox = new Rectangle(0, 0, sprite.Box.Width, 10);
-            this.xPos = 400;
-            this.yPos = 200;
+            this.X = 400;
+            this.Y = 200;
             this.itemTimer = 0;
             this.numRupees = 0;
             this.maxHearts = 3.0;
