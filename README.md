@@ -32,7 +32,7 @@
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
             If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 
-            Suppressed because we expect to intantiate red link later on in the project.
+            Suppressed because we expect to instantiate red link later on in the project.
 
 - CA1062	In externally visible methods validate that the parameters are non-null before using it.
 
@@ -44,9 +44,4 @@
 We fixed the remaining warnings.
 
 # Authors
-Will Bartlett
-Taylor Benjamin
-Adam O'Reilly
-Ryan Schneider
-Emily Smith
-Isaac Smith
+Will Bartlett | Taylor Benjamin | Adam O'Reilly | Ryan Schneider | Emily Smith | Isaac Smith
