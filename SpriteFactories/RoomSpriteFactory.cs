@@ -7,6 +7,7 @@ namespace LegendOfZelda
     class RoomSpriteFactory
     {
         private Texture2D roomSheet = Textures.GetRoomSheet();
+        private Texture2D dungeonSheet = Textures.GetDungeonSheet();
         private static RoomSpriteFactory instance = new RoomSpriteFactory();
 
         private RoomSpriteFactory() {
@@ -24,6 +25,11 @@ namespace LegendOfZelda
         public ISprite CreateRoom0()
         {
             return new Sprite(roomSheet, new Rectangle(258, 886, 256, 176));
+        }
+
+        public ISprite CreateRightOpenDoor()
+        {
+            return new Sprite(dungeonSheet, new Rectangle(848, 77, 32, 32));
         }
     
         public ISprite CreateRoom1()

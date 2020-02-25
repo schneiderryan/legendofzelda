@@ -51,10 +51,28 @@ namespace LegendOfZelda
             this.possibleItems.Add("TriforceShard");
             this.possibleItems.Add("WoodSword");
 
-            this.possibleBlocks = new List<String>();
-            this.possibleBlocks.Add("StillBlock");
+            this.possibleBlocks = new List<String>()
+            {
+                "StillBlock",
+                "MoveableBlock"
+            };
 
             this.possibleDoors = new List<String>();
+        }
+
+        public ISprite loadBackground()
+        {
+            ISprite background;
+            int roomNumber = parser.parseRoomNumber();
+            if(roomNumber == 0)
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom0();
+            }
+            else // room 1
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom1();
+            }
+            return background;
         }
 
         public List<IPlayer> loadPlayers()
@@ -212,13 +230,13 @@ namespace LegendOfZelda
             return blocks;
         }
 
-        public List<IBlock> loadMoveableBlocks()
+        public List<IMoveableBlock> loadMoveableBlocks()
         {
-            List<IBlock> blocks = new List<IBlock>();
+            List<IMoveableBlock> blocks = new List<IMoveableBlock>();
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
-                IBlock block;
+                IMoveableBlock block;
                 if (entry.Value.Equals("MoveableBlock"))
                 {
                     block = new MovableBlock();

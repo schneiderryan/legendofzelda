@@ -6,16 +6,18 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class Room0 : IRoom, ICollideableRoom
+    class Room : IRoom, ICollideableRoom
     {
         public LegendOfZelda game;
         public ISprite sprite;
-        public IRoomState state;
         public List<IEnemy> enemies;
         public List<IItem> items;
-        public List<Rectangle> boxes;
-        public List<IBlock> blocks;
-        public List<IBlock> moveableBlocks;
+
+        private List<Rectangle> boxes;
+        private List<IDoor> doors;
+
+        private List<IBlock> blocks;
+        private List<IMoveableBlock> moveableBlocks;
         private Rectangle hitboxLeft;
         private Rectangle hitboxTop;
         private Rectangle hitboxBottom;
@@ -29,27 +31,26 @@ namespace LegendOfZelda
             protected set { boxes = value; }
         }
         //populate with items and enemies (and player?)
-        public Room0(LegendOfZelda game)
+        public Room(LegendOfZelda game, String levelName)
         {
             this.game = game;
-            this.sprite = RoomSpriteFactory.Instance.CreateRoom0();
-            
-            this.sprite.Scale = 2.0f;
-            
-            this.sprite.Position = new Point(0, 0);
-            this.state = new JustEnteredRoom0(this);
 
-            LevelLoader levelLoader = new LevelLoader("Room0.csv", game);
+            LevelLoader levelLoader = new LevelLoader(levelName, game);
+            this.sprite = levelLoader.loadBackground();
+
+            this.sprite.Scale = 2.0f;
+
+            this.sprite.Position = new Point(0, 0);
+
             this.enemies = levelLoader.loadEnemies();
             this.items = levelLoader.loadItems();
             this.blocks = levelLoader.loadStillBlocks();
             this.moveableBlocks = levelLoader.loadMoveableBlocks();
 
             boxes = new List<Rectangle>();
-            
-            
-            
-            
+
+
+
             hitboxLeft = new Rectangle(0, 0, 64, 352);
             boxes.Add(hitboxLeft);
 
@@ -65,7 +66,14 @@ namespace LegendOfZelda
             boxes.Add(hitboxRight2);
         }
 
-        
+        public void DrawDoor(SpriteBatch sb, Color color)
+        {
+            foreach (ISprite door in doors)
+            {
+                door.Draw(sb, Color.White);
+            }
+        }
+
         public void Draw(SpriteBatch sb, Color color)
         {
             sprite.Draw(sb, color);
@@ -80,39 +88,50 @@ namespace LegendOfZelda
                 item.Draw(sb);
                 Debug.DrawHitbox(sb, item.Hitbox);
             }
+
+            foreach (IBlock b in blocks)
+            {
+                Debug.DrawHitbox(sb, b.Hitbox);
+            }
+
+            foreach (IMoveableBlock b in moveableBlocks)
+            {
+                b.Draw(sb);
+                Debug.DrawHitbox(sb, b.Hitbox);
+            }
         }
 
         public void EnterRoomAbove()
         {
-            state.EnterRoomAbove();
+            //state.EnterRoomAbove();
         }
 
         public void EnterRoomBelow()
         {
-            state.EnterRoomBelow();
+            //state.EnterRoomBelow();
         }
 
         public void EnterRoomLeft()
         {
-            state.EnterRoomLeft();
+            //state.EnterRoomLeft();
         }
 
         public void EnterRoomRight()
         {
-            state.EnterRoomRight();
+            //state.EnterRoomRight();
         }
 
         public void Update()
         {
-            state.Update();
             sprite.Update();
+            
 
             foreach (IItem item in items)
             {
                 item.Update();
             }
 
-            foreach(IEnemy enemy in enemies)
+            foreach (IEnemy enemy in enemies)
             {
                 enemy.Update();
             }
@@ -120,7 +139,6 @@ namespace LegendOfZelda
             // collision stuffs
             foreach (IItem item in items)
             {
-
                 // check collision
                 // if intersects then
                 // Item.Pickup(IPlayer) ?

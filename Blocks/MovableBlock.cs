@@ -11,7 +11,7 @@ namespace LegendOfZelda
 
         public MovableBlock()
         {
-            
+            sprite = RoomElementsSpriteFactory.GetBlockSprite();
         }
 
         public void Draw(SpriteBatch sb)

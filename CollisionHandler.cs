@@ -21,7 +21,7 @@ namespace LegendOfZelda
         }
 
         public static void PlayerMoveableBlockCollision(IPlayer player,
-        List<IBlock> moveable)
+                List<IMoveableBlock> moveable)
         {
             foreach (ICollideable m in moveable)
             {

@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda
+namespace LegendOfZelda.Blocks
 {
-    interface IBlock : ICollideable
+    interface IMoveableBlock : IBlock
     {
-
+        void Draw(SpriteBatch sb);
     }
 }

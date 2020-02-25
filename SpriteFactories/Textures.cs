@@ -20,6 +20,8 @@ namespace LegendOfZelda
         private static Texture2D blank;
 
         private static Texture2D rooms;
+        private static Texture2D dungeon;
+        private static Texture2D tiles;
 
         public static void LoadAllTextures(ContentManager contentManager,
                 GraphicsDevice graphics)
@@ -36,6 +38,8 @@ namespace LegendOfZelda
             redLinkAttackingUp = contentManager.Load<Texture2D>("upAttackingRedLink");
 
             rooms = contentManager.Load<Texture2D>("rooms");
+            dungeon = contentManager.Load<Texture2D>("dungeon");
+            tiles = contentManager.Load<Texture2D>("tiles");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -44,6 +48,11 @@ namespace LegendOfZelda
         public static Texture2D GetRoomSheet()
         {
             return rooms;
+        }
+
+        public static Texture2D GetDungeonSheet()
+        {
+            return dungeon;
         }
 
         public static Texture2D GetItemSheet()
@@ -94,6 +103,11 @@ namespace LegendOfZelda
         public static Texture2D GetBlankTexture()
         {
             return blank;
+        }
+
+        public static Texture2D GetTileSheet()
+        {
+            return tiles;
         }
     }
 }

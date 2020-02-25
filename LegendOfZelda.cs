@@ -86,8 +86,9 @@ namespace LegendOfZelda
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             rooms[roomIndex].Draw(spriteBatch, Color.White);
-
             link.Draw(spriteBatch, Color.White);
+
+       
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
             foreach(Rectangle box in rooms[roomIndex].Hitboxes)
             {
@@ -98,11 +99,6 @@ namespace LegendOfZelda
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
-            }
-
-            foreach (IBlock b in rooms[0].blocks)
-            {
-                Debug.DrawHitbox(spriteBatch, b.Hitbox);
             }
 
             spriteBatch.End();

@@ -137,8 +137,8 @@ namespace LegendOfZelda
         {
             List<IRoom> list = new List<IRoom>()
             {
-                new Room0(game),
-                new Room1(game),
+                new Room(game, "Room0.csv"),
+                new Room(game, "Room1.csv"),
             };
 
             return list;
