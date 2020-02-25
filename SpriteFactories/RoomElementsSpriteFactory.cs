@@ -12,7 +12,7 @@ namespace LegendOfZelda
 
         public static ISprite GetBlockSprite()
         {
-            return new Sprite(sheet, new Rectangle(0, 0, 16, 16));
+            return new Sprite(sheet, new Rectangle(16, 0, 16, 16));
         }
     }
 }

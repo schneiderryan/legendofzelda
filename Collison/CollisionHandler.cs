@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    static class CollisionHandler
+    static class BlockCollisionHandler
     {
         public static void PlayerBlockCollision(IPlayer player,
                 List<IBlock> still)
@@ -23,12 +23,23 @@ namespace LegendOfZelda
         public static void PlayerMoveableBlockCollision(IPlayer player,
                 List<IMoveableBlock> moveable)
         {
-            foreach (ICollideable m in moveable)
+            foreach (IMoveableBlock m in moveable)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, m.Hitbox);
                 if (!collision.Equals(Rectangle.Empty))
                 {
-                    HandleCollision(m, collision);
+                    if (collision.Width > collision.Height)
+                    {
+                        if (collision.Y == player.Hitbox.Y)
+                        {
+                            m.MoveOnceUp();
+                        }
+                        else
+                        {
+                            m.MoveOnceDown();
+                        }
+                    }
+                    HandleCollision(player, collision);
                 }
             }
         }

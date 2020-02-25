@@ -9,10 +9,12 @@ namespace LegendOfZelda
     class LevelParser
     {
         private String levelName;
-        private const int X_OFFSET = 32; //offset caused by level background
-        private const int Y_OFFSET = 32; //offset caused by level background
+        public const int TILE_SIZE = 32;
+        private const int X_OFFSET = TILE_SIZE; //offset caused by level background
+        private const int Y_OFFSET = TILE_SIZE; //offset caused by level background
         private const int LEVEL_WIDTH = 12; //grid spaces across
         private const int BOX_SIZE = 16; //size of one of the dungeon grid spaces
+
         public LevelParser(String levelName)
         {
             this.levelName = levelName;

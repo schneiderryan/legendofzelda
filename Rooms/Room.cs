@@ -69,17 +69,6 @@ namespace LegendOfZelda
         public void Draw(SpriteBatch sb, Color color)
         {
             background.Draw(sb);
-            foreach (IEnemy enemy in enemies)
-            {
-                enemy.Draw(sb);
-            }
-
-            foreach (IItem item in items)
-            {
-                item.Draw(sb);
-                Debug.DrawHitbox(sb, item.Hitbox);
-            }
-
             foreach (IBlock b in blocks)
             {
                 Debug.DrawHitbox(sb, b.Hitbox);
@@ -89,6 +78,17 @@ namespace LegendOfZelda
             {
                 b.Draw(sb);
                 Debug.DrawHitbox(sb, b.Hitbox);
+            }
+
+            foreach (IItem item in items)
+            {
+                item.Draw(sb);
+                Debug.DrawHitbox(sb, item.Hitbox);
+            }
+
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.Draw(sb);
             }
 
             foreach (Rectangle box in hitboxes)
@@ -133,6 +133,10 @@ namespace LegendOfZelda
             {
                 enemy.Update();
             }
+            foreach (IMoveableBlock b in moveableBlocks)
+            {
+                b.Update();
+            }
 
             // collision stuffs
             foreach (IItem item in items)
@@ -149,8 +153,8 @@ namespace LegendOfZelda
                 // do things
             }
 
-            CollisionHandler.PlayerBlockCollision(game.link, blocks);
-            CollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
+            BlockCollisionHandler.PlayerBlockCollision(game.link, blocks);
+            BlockCollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
         }
     }
 }
