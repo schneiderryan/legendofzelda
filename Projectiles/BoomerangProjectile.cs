@@ -6,7 +6,7 @@ namespace LegendOfZelda
 
     class BoomerangProjectile :  Projectile
     {
-        public enum BoomerangState { thrown, returning, pocket};
+        public enum BoomerangState { Thrown, Returning, Pocket};
         public BoomerangState State { get; private set; }
 
         protected ICollideable source;
@@ -43,14 +43,14 @@ namespace LegendOfZelda
 
         public override void Update()
         {
-            if (State == BoomerangState.thrown)
+            if (State == BoomerangState.Thrown)
             {
                 if (sprite.Position.X == finalPosition.X && finalPosition.Y == sprite.Position.Y)
                 {
-                    State = BoomerangState.returning;
+                    State = BoomerangState.Returning;
                 }
             }
-            else if (State == BoomerangState.returning)
+            else if (State == BoomerangState.Returning)
             {
                 int LinksXPos = this.source.X + 5;
                 int LinksYPos = this.source.Y + 5;

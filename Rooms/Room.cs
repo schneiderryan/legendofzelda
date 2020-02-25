@@ -30,16 +30,16 @@ namespace LegendOfZelda
 
             LevelLoader levelLoader = new LevelLoader(levelName, game);
 
-            this.background = levelLoader.loadBackground();
+            this.background = levelLoader.LoadBackground();
             this.background.Scale = 2.0f;
             this.background.Position = new Point(0, 0);
 
-            this.enemies = levelLoader.loadEnemies();
-            this.items = levelLoader.loadItems();
-            this.blocks = levelLoader.loadStillBlocks();
-            this.moveableBlocks = levelLoader.loadMoveableBlocks();
+            this.enemies = levelLoader.LoadEnemies();
+            this.items = levelLoader.LoadItems();
+            this.blocks = levelLoader.LoadStillBlocks();
+            this.moveableBlocks = levelLoader.LoadMoveableBlocks();
 
-            this.doors = levelLoader.loadDoors();
+            this.doors = levelLoader.LoadDoors();
 
             hitboxes = new List<Rectangle>();
 

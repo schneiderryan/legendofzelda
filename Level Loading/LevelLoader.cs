@@ -65,7 +65,7 @@ namespace LegendOfZelda
             this.possibleDoors.Add("Exploded");
         }
 
-        public ISprite loadBackground()
+        public ISprite LoadBackground()
         {
             ISprite background;
             int roomNumber = parser.parseRoomNumber();
@@ -140,7 +140,7 @@ namespace LegendOfZelda
             return background;
         }
 
-        public List<IPlayer> loadPlayers()
+        public List<IPlayer> LoadPlayers()
         {
             List<IPlayer> players = new List<IPlayer>();
             Dictionary<Vector2, String> playerInfo = parser.parse(possiblePlayers);
@@ -161,7 +161,7 @@ namespace LegendOfZelda
             return players;
         }
 
-        public List<IEnemy> loadEnemies()
+        public List<IEnemy> LoadEnemies()
         {
             List<IEnemy> enemies = new List<IEnemy>();
             Dictionary<Vector2, String> enemyInfo = parser.parse(possibleEnemies);
@@ -207,7 +207,7 @@ namespace LegendOfZelda
             return enemies;
         }
 
-        public List<IItem> loadItems()
+        public List<IItem> LoadItems()
         {
             List<IItem> items = new List<IItem>();
             Dictionary<Vector2, String> itemInfo = parser.parse(possibleItems);
@@ -277,7 +277,7 @@ namespace LegendOfZelda
             return items;
         }
 
-        public List<IBlock> loadStillBlocks()
+        public List<IBlock> LoadStillBlocks()
         {
             List<IBlock> blocks = new List<IBlock>();
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
@@ -295,7 +295,7 @@ namespace LegendOfZelda
             return blocks;
         }
 
-        public List<IMoveableBlock> loadMoveableBlocks()
+        public List<IMoveableBlock> LoadMoveableBlocks()
         {
             List<IMoveableBlock> blocks = new List<IMoveableBlock>();
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
@@ -313,7 +313,7 @@ namespace LegendOfZelda
             return blocks;
         }
 
-        public Dictionary<String, IDoor> loadDoors()
+        public Dictionary<String, IDoor> LoadDoors()
         {
             Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
             Dictionary<String, String> doorInfo = parser.parseDoors(possibleDoors);
