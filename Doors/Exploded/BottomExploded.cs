@@ -7,7 +7,7 @@ using System.Text;
 namespace LegendOfZelda
 {
 
-    class LeftWall : IDoor
+    class BottomExploded : IDoor
     {
         private Rectangle hitbox;
         public ISprite door;
@@ -18,11 +18,11 @@ namespace LegendOfZelda
         }
 
 
-        public LeftWall()
+        public BottomExploded()
         {
-            door = RoomSpriteFactory.Instance.CreateLeftWall();
+            door = RoomSpriteFactory.Instance.CreateBottomExploded();
             door.Scale = 2.0f;
-            door.Position = new Point(0, 145);
+            door.Position = new Point(224, 288);
         }
 
 

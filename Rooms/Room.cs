@@ -15,9 +15,12 @@ namespace LegendOfZelda
         public List<IItem> items;
         public List<IBlock> blocks;
         public List<Rectangle> boxes;
-        private Rectangle hitboxLeft;
-        private Rectangle hitboxTop;
-        private Rectangle hitboxBottom;
+        private Rectangle hitboxLeft1;
+        private Rectangle hitboxLeft2;
+        private Rectangle hitboxTop1;
+        private Rectangle hitboxTop2;
+        private Rectangle hitboxBottom1;
+        private Rectangle hitboxBottom2;
         private Rectangle hitboxRight1;
         private Rectangle hitboxRight2;
 
@@ -48,17 +51,23 @@ namespace LegendOfZelda
             boxes = new List<Rectangle>();
 
 
-            hitboxLeft = new Rectangle(0, 0, 64, 352);
-            boxes.Add(hitboxLeft);
+            hitboxLeft1 = new Rectangle(0, 0, 64, 144);
+            hitboxLeft2 = new Rectangle(0, 209, 64, 144);
+            boxes.Add(hitboxLeft1);
+            boxes.Add(hitboxLeft2);
 
-            hitboxTop = new Rectangle(0, 0, 512, 64);
-            boxes.Add(hitboxTop);
+            hitboxTop1 = new Rectangle(0, 0, 224, 64);
+            hitboxTop2 = new Rectangle(289, 0, 224, 64);
+            boxes.Add(hitboxTop1);
+            boxes.Add(hitboxTop2);
 
-            hitboxBottom = new Rectangle(0, 288, 512, 64);
-            boxes.Add(hitboxBottom);
+            hitboxBottom1 = new Rectangle(0, 289, 224, 64);
+            hitboxBottom2 = new Rectangle(289, 289, 224, 64);
+            boxes.Add(hitboxBottom1);
+            boxes.Add(hitboxBottom2);
 
-            hitboxRight1 = new Rectangle(448, 0, 64, 160);
-            hitboxRight2 = new Rectangle(448, 192, 64, 160);
+            hitboxRight1 = new Rectangle(448, 0, 64, 144);
+            hitboxRight2 = new Rectangle(448, 209, 64, 144);
             boxes.Add(hitboxRight1);
             boxes.Add(hitboxRight2);
 
