@@ -9,7 +9,6 @@ namespace LegendOfZelda
     class Door : CollideableObject, IDoor
     {
         protected ISprite door;
-        
 
         public virtual void Draw(SpriteBatch sb)
         {

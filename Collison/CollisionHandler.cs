@@ -20,6 +20,22 @@ namespace LegendOfZelda
             }
         }
 
+        public static void PlayerDoorCollision(IPlayer player,
+                Dictionary<String, IDoor> doors)
+        {
+            foreach(KeyValuePair<String, IDoor> door in doors)
+            {
+
+                    Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
+                    if (!collision.Equals(Rectangle.Empty))
+                    {
+                        HandleCollision(player, collision);
+                    }
+                
+            }
+            
+        }
+
         public static void PlayerWallCollision(IPlayer player,
                 Room room)
         {

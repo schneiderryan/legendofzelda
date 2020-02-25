@@ -175,6 +175,7 @@ namespace LegendOfZelda
                 // do things
             }
             CollisionHandler.PlayerWallCollision(game.link, this);
+            CollisionHandler.PlayerDoorCollision(game.link, doors);
             CollisionHandler.PlayerBlockCollision(game.link, blocks);
             CollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
         }
