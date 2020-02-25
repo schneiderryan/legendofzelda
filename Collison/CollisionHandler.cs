@@ -20,6 +20,23 @@ namespace LegendOfZelda
             }
         }
 
+        public static void PlayerWallCollision(IPlayer player,
+                Room room)
+        {
+            
+                foreach(Rectangle hitbox in room.hitboxes)
+                {
+                    
+                    Rectangle collision = Rectangle.Intersect(player.Hitbox, hitbox);
+                    if (!collision.Equals(Rectangle.Empty))
+                    {
+                        HandleCollision(player, collision);
+                    }
+                }
+                
+            
+        }
+
         public static void PlayerMoveableBlockCollision(IPlayer player,
                 List<IMoveableBlock> moveable)
         {

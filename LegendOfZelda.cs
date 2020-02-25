@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace LegendOfZelda
@@ -39,7 +40,7 @@ namespace LegendOfZelda
 
             rooms = GameSetup.GenerateRoomList(this);
             //doors = GameSetup.GenerateDoorList(this);
-
+            
             mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
 
@@ -84,11 +85,13 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
+            
             rooms[roomIndex].Draw(spriteBatch, Color.White);
             link.Draw(spriteBatch, Color.White);
-
+            rooms[roomIndex].DrawDoor(spriteBatch, Color.White);
+            
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
+            
 
             foreach (IProjectile projectile in projectiles)
             {

@@ -1,5 +1,5 @@
 ﻿0
-Wall,Wall,Wall,Wall
+Open,Open,Wall,Wall
 Key,Block,Null,Null,Null,Null,Null,Null,Null,Null,Null,Key
 Null,Keese,MoveableBlock,Null,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Null,Null,Keese,Null,Null,Null,Null,Null,Null,Null,Null

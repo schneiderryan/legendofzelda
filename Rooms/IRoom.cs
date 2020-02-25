@@ -4,13 +4,10 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    interface IRoom
+    interface IRoom : ICollideable
     {
         void Update();
         void Draw(SpriteBatch sb, Color color);
-        void EnterRoomBelow();
-        void EnterRoomAbove();
-        void EnterRoomLeft();
-        void EnterRoomRight();
+        void DrawDoor(SpriteBatch sb, Color color);
     }
 }

@@ -4,20 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Doors
+namespace LegendOfZelda
 {
-    class Door : IDoor
+    class Door : CollideableObject, IDoor
     {
-        public Rectangle Hitbox => throw new NotImplementedException();
+        protected ISprite door;
+        
 
-        public void Draw(SpriteBatch sb, Color color)
+        public virtual void Draw(SpriteBatch sb)
         {
-            throw new NotImplementedException();
+            door.Draw(sb);
         }
 
-        public void Update()
+        
+        public virtual void Update()
         {
-            throw new NotImplementedException();
+            door.Update();
         }
     }
 }

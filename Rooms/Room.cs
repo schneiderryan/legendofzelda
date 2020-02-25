@@ -13,14 +13,26 @@ namespace LegendOfZelda
         public Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
         public List<IEnemy> enemies;
         public List<IItem> items;
-        public List<IBlock> blocks;
-        public List<Rectangle> boxes;
-        private Rectangle hitboxLeft;
-        private Rectangle hitboxTop;
-        private Rectangle hitboxBottom;
+
+        private Rectangle hitboxLeft1;
+        private Rectangle hitboxLeft2;
+        private Rectangle hitboxTop1;
+        private Rectangle hitboxTop2;
+        private Rectangle hitboxBottom1;
+        private Rectangle hitboxBottom2;
         private Rectangle hitboxRight1;
         private Rectangle hitboxRight2;
-        private List<Rectangle> hitboxes;
+
+        private List<IBlock> blocks;
+        private List<IMoveableBlock> moveableBlocks;
+       
+        public List<Rectangle> hitboxes;
+
+        public Rectangle Hitbox => throw new NotImplementedException();
+
+        public int X { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Y { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
 
         //populate with items and enemies (and player?)
         public Room(LegendOfZelda game, String levelName)
@@ -42,29 +54,39 @@ namespace LegendOfZelda
 
             hitboxes = new List<Rectangle>();
 
+            hitboxLeft1 = new Rectangle(0, 0, 64, 144);
+            hitboxLeft2 = new Rectangle(0, 209, 64, 144);
+            hitboxes.Add(hitboxLeft1);
+            hitboxes.Add(hitboxLeft2);
 
-            hitboxLeft = new Rectangle(0, 0, 64, 352);
-            boxes.Add(hitboxLeft);
+            hitboxTop1 = new Rectangle(0, 0, 224, 64);
+            hitboxTop2 = new Rectangle(289, 0, 224, 64);
+            hitboxes.Add(hitboxTop1);
+            hitboxes.Add(hitboxTop2);
 
-            hitboxTop = new Rectangle(0, 0, 512, 64);
-            boxes.Add(hitboxTop);
+            hitboxBottom1 = new Rectangle(0, 289, 224, 64);
+            hitboxBottom2 = new Rectangle(289, 289, 224, 64);
+            hitboxes.Add(hitboxBottom1);
+            hitboxes.Add(hitboxBottom2);
 
-            hitboxBottom = new Rectangle(0, 288, 512, 64);
-            boxes.Add(hitboxBottom);
+            hitboxRight1 = new Rectangle(448, 0, 64, 144);
+            hitboxRight2 = new Rectangle(448, 209, 64, 144);
+            hitboxes.Add(hitboxRight1);
+            hitboxes.Add(hitboxRight2);
 
-            hitboxRight1 = new Rectangle(448, 0, 64, 160);
-            hitboxRight2 = new Rectangle(448, 192, 64, 160);
-            boxes.Add(hitboxRight1);
-            boxes.Add(hitboxRight2);
-
-            collisions = new List<ICollision>();
         }
 
+
+        public Dictionary<String, IDoor> getDoor()
+        {
+            return doors;
+    }
         public void DrawDoor(SpriteBatch sb, Color color)
         {
             foreach(KeyValuePair<String, IDoor> door in doors)
             {
-               door.Value.Draw(sb, color);
+                door.Value.Draw(sb);
+                Debug.DrawHitbox(sb, door.Value.Hitbox);
             }
         }
         public void Draw(SpriteBatch sb, Color color)
@@ -74,6 +96,8 @@ namespace LegendOfZelda
             {
                 enemy.Draw(sb);
             }
+
+            
 
             foreach (IItem item in items)
             {
@@ -96,6 +120,7 @@ namespace LegendOfZelda
             {
                 Debug.DrawHitbox(sb, box);
             }
+
         }
 
         public void EnterRoomAbove()
@@ -149,7 +174,7 @@ namespace LegendOfZelda
                 // if intersects then
                 // do things
             }
-
+            CollisionHandler.PlayerWallCollision(game.link, this);
             CollisionHandler.PlayerBlockCollision(game.link, blocks);
             CollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
         }
