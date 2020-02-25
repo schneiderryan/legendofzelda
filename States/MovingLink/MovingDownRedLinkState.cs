@@ -57,12 +57,12 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            link.yPos += 2;
-            if (link.yPos > 480)
+            link.Y += 2;
+            if (link.Y > 480)
             {
-                link.yPos -= 480;
+                link.Y -= 480;
             }
-            link.sprite.Position = new Point(link.xPos, link.yPos);
+            link.sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

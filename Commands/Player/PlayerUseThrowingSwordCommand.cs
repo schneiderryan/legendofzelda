@@ -15,7 +15,7 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            player.UseProjectile(new SwordProjectile(player.direction, player.xPos, player.yPos));
+            player.UseProjectile(new SwordProjectile(player.direction, player.X, player.Y));
         }
     }
 }

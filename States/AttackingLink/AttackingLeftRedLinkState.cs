@@ -24,7 +24,7 @@ namespace LegendOfZelda
                 link.state = new StillLeftRedLinkState(link);
                 link.sprite = PlayerSpriteFactory.Instance.CreateRedLeftStillLinkSprite();
             }
-            link.sprite.Position = new Point(link.xPos, link.yPos);
+            link.sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

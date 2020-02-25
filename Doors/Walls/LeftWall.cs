@@ -6,17 +6,9 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-
-    class LeftWall : IDoor
+    class LeftWall : CollideableObject, IDoor
     {
-        private Rectangle hitbox;
         public ISprite door;
-        public Rectangle Hitbox
-        {
-            get { return hitbox; }
-            protected set { hitbox = value; }
-        }
-
 
         public LeftWall()
         {
@@ -24,7 +16,6 @@ namespace LegendOfZelda
             door.Scale = 2.0f;
             door.Position = new Point(0, 144);
         }
-
 
         public void Draw(SpriteBatch sb, Color color)
         {

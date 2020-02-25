@@ -51,8 +51,11 @@ namespace LegendOfZelda
             this.possibleItems.Add("TriforceShard");
             this.possibleItems.Add("WoodSword");
 
-            this.possibleBlocks = new List<String>();
-            this.possibleBlocks.Add("Block");
+            this.possibleBlocks = new List<String>()
+            {
+                "Block",
+                "MoveableBlock"
+            };
 
             this.possibleDoors = new List<String>();
             this.possibleDoors.Add("Wall");
@@ -62,7 +65,7 @@ namespace LegendOfZelda
             this.possibleDoors.Add("Exploded");
         }
 
-        public ISprite loadBackground()
+        public ISprite LoadBackground()
         {
             ISprite background;
             int roomNumber = parser.parseRoomNumber();
@@ -137,7 +140,7 @@ namespace LegendOfZelda
             return background;
         }
 
-        public List<IPlayer> loadPlayers()
+        public List<IPlayer> LoadPlayers()
         {
             List<IPlayer> players = new List<IPlayer>();
             Dictionary<Vector2, String> playerInfo = parser.parse(possiblePlayers);
@@ -151,14 +154,14 @@ namespace LegendOfZelda
                 {
                     player = new RedLink(this.game);
                 }
-                player.xPos = (int)entry.Key.X;
-                player.yPos = (int)entry.Key.Y;
+                player.X = (int)entry.Key.X;
+                player.Y = (int)entry.Key.Y;
                 players.Add(player);
             }
             return players;
         }
 
-        public List<IEnemy> loadEnemies()
+        public List<IEnemy> LoadEnemies()
         {
             List<IEnemy> enemies = new List<IEnemy>();
             Dictionary<Vector2, String> enemyInfo = parser.parse(possibleEnemies);
@@ -204,7 +207,7 @@ namespace LegendOfZelda
             return enemies;
         }
 
-        public List<IItem> loadItems()
+        public List<IItem> LoadItems()
         {
             List<IItem> items = new List<IItem>();
             Dictionary<Vector2, String> itemInfo = parser.parse(possibleItems);
@@ -274,7 +277,7 @@ namespace LegendOfZelda
             return items;
         }
 
-        public List<IBlock> loadBlocks()
+        public List<IBlock> LoadStillBlocks()
         {
             List<IBlock> blocks = new List<IBlock>();
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
@@ -283,20 +286,34 @@ namespace LegendOfZelda
                 IBlock block;
                 if (entry.Value.Equals("Block"))
                 {
-                    block = new StillBlock();
+                    block = new InvisibleBlock();
+                    block.X = (int)entry.Key.X;
+                    block.Y = (int)entry.Key.Y;
+                    blocks.Add(block);
                 }
-                else
-                {
-                    block = new StillBlock();
-                }
-                block.X = (int)entry.Key.X;
-                block.Y = (int)entry.Key.Y;
-                blocks.Add(block);
             }
             return blocks;
         }
 
-        public Dictionary<String, IDoor> loadDoors()
+        public List<IMoveableBlock> LoadMoveableBlocks()
+        {
+            List<IMoveableBlock> blocks = new List<IMoveableBlock>();
+            Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
+            foreach (KeyValuePair<Vector2, String> entry in blockInfo)
+            {
+                IMoveableBlock block;
+                if (entry.Value.Equals("MoveableBlock"))
+                {
+                    block = new MovableBlock();
+                    block.X = (int)entry.Key.X;
+                    block.Y = (int)entry.Key.Y;
+                    blocks.Add(block);
+                }
+            }
+            return blocks;
+        }
+
+        public Dictionary<String, IDoor> LoadDoors()
         {
             Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
             Dictionary<String, String> doorInfo = parser.parseDoors(possibleDoors);

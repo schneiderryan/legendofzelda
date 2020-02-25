@@ -6,14 +6,14 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class Room : IRoom, ICollideableRoom
+    class Room : IRoom
     {
         public LegendOfZelda game;
         public ISprite background;
         public Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
         public List<IEnemy> enemies;
         public List<IItem> items;
-        public List<IBlock> blocks;
+
         public List<Rectangle> boxes;
         private Rectangle hitboxLeft1;
         private Rectangle hitboxLeft2;
@@ -21,16 +21,16 @@ namespace LegendOfZelda
         private Rectangle hitboxTop2;
         private Rectangle hitboxBottom1;
         private Rectangle hitboxBottom2;
+
+
+        private List<IBlock> blocks;
+        private List<IMoveableBlock> moveableBlocks;
+       
+
         private Rectangle hitboxRight1;
         private Rectangle hitboxRight2;
+        private List<Rectangle> hitboxes;
 
-        private List<ICollision> collisions;
-
-        public List<Rectangle> Hitboxes
-        {
-            get { return boxes; }
-            protected set { boxes = value; }
-        }
         //populate with items and enemies (and player?)
         public Room(LegendOfZelda game, String levelName)
         {
@@ -38,17 +38,19 @@ namespace LegendOfZelda
 
             LevelLoader levelLoader = new LevelLoader(levelName, game);
 
-            this.background = levelLoader.loadBackground();
+            this.background = levelLoader.LoadBackground();
             this.background.Scale = 2.0f;
             this.background.Position = new Point(0, 0);
 
-            this.enemies = levelLoader.loadEnemies();
-            this.items = levelLoader.loadItems();
-            this.blocks = levelLoader.loadBlocks();
+            this.enemies = levelLoader.LoadEnemies();
+            this.items = levelLoader.LoadItems();
+            this.blocks = levelLoader.LoadStillBlocks();
+            this.moveableBlocks = levelLoader.LoadMoveableBlocks();
 
-           this.doors = levelLoader.loadDoors();
-           
-            boxes = new List<Rectangle>();
+            this.doors = levelLoader.LoadDoors();
+
+            hitboxes = new List<Rectangle>();
+
 
 
             hitboxLeft1 = new Rectangle(0, 0, 64, 144);
@@ -71,7 +73,8 @@ namespace LegendOfZelda
             boxes.Add(hitboxRight1);
             boxes.Add(hitboxRight2);
 
-            collisions = new List<ICollision>();
+            
+
         }
 
         public void DrawDoor(SpriteBatch sb, Color color)
@@ -93,6 +96,22 @@ namespace LegendOfZelda
             {
                 item.Draw(sb);
                 Debug.DrawHitbox(sb, item.Hitbox);
+            }
+
+            foreach (IBlock b in blocks)
+            {
+                Debug.DrawHitbox(sb, b.Hitbox);
+            }
+
+            foreach (IMoveableBlock b in moveableBlocks)
+            {
+                b.Draw(sb);
+                Debug.DrawHitbox(sb, b.Hitbox);
+            }
+
+            foreach (Rectangle box in hitboxes)
+            {
+                Debug.DrawHitbox(sb, box);
             }
         }
 
@@ -118,13 +137,11 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            //state.Update();
-            background.Update();
-
             foreach (KeyValuePair<String, IDoor> door in doors)
             {
                 door.Value.Update();
             }
+
             foreach (IItem item in items)
             {
                 item.Update();
@@ -135,25 +152,9 @@ namespace LegendOfZelda
                 enemy.Update();
             }
 
-            foreach (IBlock block in blocks)
-            {
-                block.Update();
-                if (game.link.Hitbox.Intersects(block.Hitbox))
-                {
-                    collisions.Add(new PlayerBlockCollision(game.link, block));
-                }
-            }
-
-            foreach(ICollision collision in collisions)
-            {
-                collision.Handle();
-            }
-            collisions = new List<ICollision>();
-
             // collision stuffs
             foreach (IItem item in items)
             {
-
                 // check collision
                 // if intersects then
                 // Item.Pickup(IPlayer) ?
@@ -165,6 +166,9 @@ namespace LegendOfZelda
                 // if intersects then
                 // do things
             }
+
+            CollisionHandler.PlayerBlockCollision(game.link, blocks);
+            CollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
         }
     }
 }
