@@ -2,9 +2,8 @@
 
 namespace LegendOfZelda
 {
-    interface IProjectile : ICollideable
+    interface IMoveableBlock : IBlock
     {
-        void Update();
         void Draw(SpriteBatch sb);
     }
 }

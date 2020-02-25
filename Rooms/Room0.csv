@@ -1,7 +1,7 @@
 ﻿0
 Wall,Wall,Wall,Wall
-Key,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Key
-Null,Keese,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
+Key,Block,Null,Null,Null,Null,Null,Null,Null,Null,Null,Key
+Null,Keese,MoveableBlock,Null,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Null,Null,Keese,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null

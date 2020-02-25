@@ -6,5 +6,8 @@ namespace LegendOfZelda
     interface ICollideable
     {
         Rectangle Hitbox { get; }
+
+        int X { get; set; }
+        int Y { get; set; }
     }
 }
