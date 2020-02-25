@@ -55,6 +55,11 @@ namespace LegendOfZelda
             this.possibleBlocks.Add("StillBlock");
 
             this.possibleDoors = new List<String>();
+            this.possibleDoors.Add("Wall");
+            this.possibleDoors.Add("Open");
+            this.possibleDoors.Add("Key");
+            this.possibleDoors.Add("Other");
+            this.possibleDoors.Add("Exploded");
         }
 
         public ISprite loadBackground()
@@ -298,6 +303,102 @@ namespace LegendOfZelda
             foreach(KeyValuePair<String, String> entry in doorInfo)
             {
                 IDoor door;
+                if (entry.Key.Equals("left"))
+                {
+
+                    if (entry.Value.Equals("Wall"))
+                    {
+                        door = new LeftWall();
+                        doors.Add(entry.Key, door);
+                    }
+                    else if (entry.Value.Equals("Open"))
+                    {
+                        //door = new LeftWall();
+                    }
+                    else if (entry.Value.Equals("Key"))
+                    {
+                       // door = new LeftKeyDoor();
+                    }
+                    else if (entry.Value.Equals("Other"))
+                    {
+                        //door = new LeftOtherDoor();
+                    }
+                    else {
+                       // door = new LeftExplodedDoor();
+                    }
+                    
+                }
+                else if (entry.Key.Equals("right"))
+                {
+                    if (entry.Value.Equals("Wall"))
+                    {
+                        //door = new RightWall();
+                    }
+                    else if (entry.Value.Equals("Open"))
+                    {
+                        //door = new RightOpenDoor();
+                    }
+                    else if (entry.Value.Equals("Key"))
+                    {
+                       // door = new RightKeyDoor();
+                    }
+                    else if (entry.Value.Equals("Other"))
+                    {
+                        //door = new RightOtherDoor();
+                    }
+                    else
+                    {
+                        //door = new RightExplodedDoor();
+                    }
+                }
+                else if (entry.Key.Equals("up"))
+                {
+                    if (entry.Value.Equals("Wall"))
+                    {
+                        //door = new UpWall();
+                    }
+                    else if (entry.Value.Equals("Open"))
+                    {
+                        //door = new UpOpenDoor();
+                    }
+                    else if (entry.Value.Equals("Key"))
+                    {
+                        //door = new UpKeyDoor();
+                    }
+                    else if (entry.Value.Equals("Other"))
+                    {
+                        //door = new UpOtherDoor();
+                    }
+                    else
+                    {
+                       //door = new UpExplodedDoor();
+                    }
+                }
+                else 
+                {
+                    if (entry.Value.Equals("Wall"))
+                    {
+                        //door = new DownWall();
+                    }
+                    else if (entry.Value.Equals("Open"))
+                    {
+                        //door = new DownOpenDoor();
+                    }
+                    else if (entry.Value.Equals("Key"))
+                    {
+                        //door = new DownKeyDoor();
+                    }
+                    else if (entry.Value.Equals("Other"))
+                    {
+                        //door = new DownOtherDoor();
+                    }
+                    else
+                    {
+                        //door = new DownExplodedDoor();
+                    }
+                }
+                
+
                 //check doors and add to doors
             }
             return doors;

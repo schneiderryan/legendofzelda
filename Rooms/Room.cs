@@ -9,8 +9,8 @@ namespace LegendOfZelda
     class Room : IRoom, ICollideableRoom
     {
         public LegendOfZelda game;
-        public ISprite sprite;
-        public IRoomState state;
+        public ISprite background;
+        public Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
         public List<IEnemy> enemies;
         public List<IItem> items;
         public List<Rectangle> boxes;
@@ -32,19 +32,18 @@ namespace LegendOfZelda
             this.game = game;
 
             LevelLoader levelLoader = new LevelLoader(levelName, game);
-            this.sprite = levelLoader.loadBackground();
 
-            this.sprite.Scale = 2.0f;
-
-            this.sprite.Position = new Point(0, 0);
-            //this.state = new JustEnteredRoom0(this);
+            this.background = levelLoader.loadBackground();
+            this.background.Scale = 2.0f;
+            this.background.Position = new Point(0, 0);
 
             this.enemies = levelLoader.loadEnemies();
             this.items = levelLoader.loadItems();
 
+
+           this.doors = levelLoader.loadDoors();
+           
             boxes = new List<Rectangle>();
-
-
 
 
             hitboxLeft = new Rectangle(0, 0, 64, 352);
@@ -64,13 +63,14 @@ namespace LegendOfZelda
 
         public void DrawDoor(SpriteBatch sb, Color color)
         {
-            //default
+            foreach(KeyValuePair<String, IDoor> door in doors)
+            {
+               door.Value.Draw(sb, color);
+            }
         }
-
         public void Draw(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb, color);
-
+            background.Draw(sb);
             foreach (IEnemy enemy in enemies)
             {
                 enemy.Draw(sb);
@@ -106,8 +106,12 @@ namespace LegendOfZelda
         public void Update()
         {
             //state.Update();
-            sprite.Update();
+            background.Update();
 
+            foreach (KeyValuePair<String, IDoor> door in doors)
+            {
+                door.Value.Update();
+            }
             foreach (IItem item in items)
             {
                 item.Update();

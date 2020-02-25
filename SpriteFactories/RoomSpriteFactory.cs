@@ -31,7 +31,12 @@ namespace LegendOfZelda
         {
             return new Sprite(dungeonSheet, new Rectangle(848, 77, 32, 32));
         }
-    
+
+        public ISprite CreateLeftWall()
+        {
+            return new Sprite(dungeonSheet, new Rectangle(815, 44, 32, 32));
+        }
+
         public ISprite CreateRoom1()
         {
             return new Sprite(roomSheet, new Rectangle(515, 886, 256, 176));
