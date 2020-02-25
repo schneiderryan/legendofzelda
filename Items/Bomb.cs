@@ -55,7 +55,10 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-
+            if (player.numberBombs > 0)
+            {
+                //place bomb the direction that the player is facing and let it detonate;
+            }
         }
     }
 }

@@ -102,6 +102,7 @@ namespace LegendOfZelda
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
+                Debug.DrawHitbox(spriteBatch, projectile.Hitbox);
             }
 
             spriteBatch.End();
