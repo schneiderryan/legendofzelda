@@ -13,8 +13,6 @@ namespace LegendOfZelda
         ISprite sprite { get; set; }
         string direction { get; set; }
         string color { get; set; }
-        int xPos { get; set; }
-        int yPos { get; set; }
         int numRupees { get; set; }
         double maxHearts { get; set; }
         double currentHearts { get; set; }
