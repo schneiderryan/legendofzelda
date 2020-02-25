@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class MovableBlock : Block, IMoveableBlock
+    class MovableBlock : InvisibleBlock, IMoveableBlock
     {
         private ISprite sprite;
 

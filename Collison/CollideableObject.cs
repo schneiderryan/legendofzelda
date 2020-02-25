@@ -1,30 +1,26 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda
 {
-    abstract class Block : IBlock
+    abstract class CollideableObject : ICollideable
     {
         private Rectangle hitbox = new Rectangle(0, 0, 32, 32);
 
-        public Rectangle Hitbox
+        public virtual Rectangle Hitbox
         {
             get { return hitbox; }
+            protected set { hitbox = value; }
         }
-        public int X
+        public virtual int X
         {
             get { return hitbox.X; }
             set { hitbox.X = value; }
         }
 
-        public int Y
+        public virtual int Y
         {
             get { return hitbox.Y; }
             set { hitbox.Y = value; }
         }
-
     }
 }

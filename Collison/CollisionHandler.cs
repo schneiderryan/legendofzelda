@@ -13,7 +13,7 @@ namespace LegendOfZelda
             foreach (ICollideable s in still)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, s.Hitbox);
-                if (!player.Hitbox.Equals(Rectangle.Empty))
+                if (!collision.Equals(Rectangle.Empty))
                 {
                     HandleCollision(player, collision);
                 }
@@ -26,7 +26,7 @@ namespace LegendOfZelda
             foreach (ICollideable m in moveable)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, m.Hitbox);
-                if (!player.Hitbox.Equals(Rectangle.Empty))
+                if (!collision.Equals(Rectangle.Empty))
                 {
                     HandleCollision(m, collision);
                 }

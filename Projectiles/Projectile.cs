@@ -3,13 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    class Projectile : IProjectile
+    abstract class Projectile : CollideableObject, IProjectile
     {
         public int VX { get; set; }
         public int VY { get; set; }
         protected ISprite sprite;
-
-        public Rectangle Hitbox { get; }
 
         public Projectile(string direction, int xPos, int yPos,
             int initialVel = 8)
@@ -36,9 +34,6 @@ namespace LegendOfZelda
                 this.VX = -initialVel;
             }
         }
-
-        public virtual int X { get; set; }
-        public virtual int Y { get; set; }
 
         public virtual void Update()
         {

@@ -11,7 +11,6 @@ namespace LegendOfZelda
 
             if (direction == "leftup")
             {
-                
                 this.VX = -8;
                 this.VY = initialVel;
             }
@@ -19,16 +18,12 @@ namespace LegendOfZelda
             {
                 this.VY = -initialVel;
                 this.VX = -8;
-                
             }
             else
             {
                 this.VX = -8;
                 this.VY = 0;
             }
-
-
-
         }
     }
 }

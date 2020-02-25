@@ -16,14 +16,15 @@ namespace LegendOfZelda
         int numRupees { get; set; }
         double maxHearts { get; set; }
         double currentHearts { get; set; }
+        int numberBombs { get; set; }
+        void MoveLeft();
+        void MoveRight();
+        void MoveUp();
+        void MoveDown();
         void Attack();
         void BeStill();
         void TakeDamage();
         void Update();
-        void MoveUp();
-        void MoveRight();
-        void MoveDown();
-        void MoveLeft();
         void UseItem(IItem item);
         void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);

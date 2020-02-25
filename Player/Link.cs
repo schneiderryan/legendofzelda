@@ -18,6 +18,7 @@ namespace LegendOfZelda
         private int numberOfRupees;
         private double numMaxHearts;
         private double numCurrHearts;
+        private int numberOfBombs;
         private List<Keys> attackKeys;
         private Rectangle hitbox;
 
@@ -76,6 +77,12 @@ namespace LegendOfZelda
         {
             get { return numCurrHearts; }
             set { numCurrHearts = value; }
+        }
+
+        public int numberBombs
+        {
+            get { return numberOfBombs; }
+            set { numberOfBombs = value; }
         }
 
         public virtual void MoveLeft()

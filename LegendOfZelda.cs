@@ -57,6 +57,12 @@ namespace LegendOfZelda
             playerKeyboard.Update();
 
             rooms[roomIndex].Update();
+            link.Update();
+
+            foreach(IProjectile projectile in projectiles)
+            {
+                projectile.Update();
+            }
 
             // collision stuffs
 
@@ -68,14 +74,6 @@ namespace LegendOfZelda
                 }
             }
 
-            link.Update();
-
-            foreach(IProjectile projectile in projectiles)
-            {
-                projectile.Update();
-            }
-
-            // do wall/block collisions - this is the only one where sides matter
 
             base.Update(gameTime);
         }
@@ -88,17 +86,12 @@ namespace LegendOfZelda
             rooms[roomIndex].Draw(spriteBatch, Color.White);
             link.Draw(spriteBatch, Color.White);
 
-       
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
-            foreach(Rectangle box in rooms[roomIndex].Hitboxes)
-            {
-                Debug.DrawHitbox(spriteBatch, box);
-            }
-            
 
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
+                Debug.DrawHitbox(spriteBatch, projectile.Hitbox);
             }
 
             spriteBatch.End();

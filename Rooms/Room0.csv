@@ -1,6 +1,6 @@
 ﻿0
-Door,Door,Door,Door
-Key,StillBlock,Null,Null,Null,Null,Null,Null,Null,Null,Null,Key
+Wall,Wall,Wall,Wall
+Key,Block,Null,Null,Null,Null,Null,Null,Null,Null,Null,Key
 Null,Keese,MoveableBlock,Null,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Null,Null,Keese,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null

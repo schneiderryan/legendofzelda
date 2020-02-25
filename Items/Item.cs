@@ -3,35 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    abstract class Item : IItem
+    abstract class Item : CollideableObject, IItem
     {
         protected ISprite sprite;
-        private Rectangle hitbox;
-
-        public Rectangle Hitbox
-        {
-            get { return hitbox; }
-            protected set { hitbox = value; }
-        }
-
-        public int X
-        {
-            get { return hitbox.X; }
-            set { hitbox.X = value; }
-        }
-
-        public int Y
-        {
-            get { return hitbox.Y; }
-            set { hitbox.Y = value; }
-        }
 
         public virtual void Draw(SpriteBatch sb)
         {
             sprite.Draw(sb);
         }
-
-       
 
         public virtual void Update()
         {
@@ -40,7 +19,5 @@ namespace LegendOfZelda
         }
 
         public abstract void Use(IPlayer player);
-
-
     }
 }

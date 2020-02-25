@@ -45,6 +45,10 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.D3, cmd);
             keyBinds.Add(Keys.NumPad3, cmd);
 
+            cmd = new PlayerUseBombCommand(player);
+            keyBinds.Add(Keys.D4, cmd);
+            keyBinds.Add(Keys.NumPad4, cmd);
+
             cmd = new PlayerStillCommand(player);
             keyBinds.Add(Keys.None, cmd);
 
@@ -137,8 +141,23 @@ namespace LegendOfZelda
         {
             List<IRoom> list = new List<IRoom>()
             {
-                new Room(game, "Room0.csv"),
-                new Room(game, "Room1.csv"),
+                new Room(game, "Rooms/Room0.csv"),
+                new Room(game, "Rooms/Room1.csv"),
+                new Room(game, "Rooms/Room2.csv"),
+                new Room(game, "Rooms/Room3.csv"),
+                new Room(game, "Rooms/Room4.csv"),
+                new Room(game, "Rooms/Room5.csv"),
+                new Room(game, "Rooms/Room6.csv"),
+                new Room(game, "Rooms/Room7.csv"),
+                new Room(game, "Rooms/Room8.csv"),
+                new Room(game, "Rooms/Room9.csv"),
+                new Room(game, "Rooms/Room10.csv"),
+                new Room(game, "Rooms/Room11.csv"),
+                new Room(game, "Rooms/Room12.csv"),
+                new Room(game, "Rooms/Room13.csv"),
+                new Room(game, "Rooms/Room14.csv"),
+                new Room(game, "Rooms/Room15.csv"),
+                new Room(game, "Rooms/Room16.csv"),
             };
 
             return list;
