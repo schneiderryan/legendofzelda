@@ -52,7 +52,7 @@ namespace LegendOfZelda
             this.possibleItems.Add("WoodSword");
 
             this.possibleBlocks = new List<String>();
-            this.possibleBlocks.Add("StillBlock");
+            this.possibleBlocks.Add("Block");
 
             this.possibleDoors = new List<String>();
             this.possibleDoors.Add("Wall");
@@ -281,7 +281,7 @@ namespace LegendOfZelda
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
                 IBlock block;
-                if (entry.Value.Equals("StillBlock"))
+                if (entry.Value.Equals("Block"))
                 {
                     block = new StillBlock();
                 }

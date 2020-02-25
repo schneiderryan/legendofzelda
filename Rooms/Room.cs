@@ -13,6 +13,7 @@ namespace LegendOfZelda
         public Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
         public List<IEnemy> enemies;
         public List<IItem> items;
+        public List<IBlock> blocks;
         public List<Rectangle> boxes;
         private Rectangle hitboxLeft;
         private Rectangle hitboxTop;
@@ -20,6 +21,7 @@ namespace LegendOfZelda
         private Rectangle hitboxRight1;
         private Rectangle hitboxRight2;
 
+        private List<ICollision> collisions;
 
         public List<Rectangle> Hitboxes
         {
@@ -39,7 +41,7 @@ namespace LegendOfZelda
 
             this.enemies = levelLoader.loadEnemies();
             this.items = levelLoader.loadItems();
-
+            this.blocks = levelLoader.loadBlocks();
 
            this.doors = levelLoader.loadDoors();
            
@@ -59,6 +61,8 @@ namespace LegendOfZelda
             hitboxRight2 = new Rectangle(448, 192, 64, 160);
             boxes.Add(hitboxRight1);
             boxes.Add(hitboxRight2);
+
+            collisions = new List<ICollision>();
         }
 
         public void DrawDoor(SpriteBatch sb, Color color)
@@ -121,6 +125,21 @@ namespace LegendOfZelda
             {
                 enemy.Update();
             }
+
+            foreach (IBlock block in blocks)
+            {
+                block.Update();
+                if (game.link.Hitbox.Intersects(block.Hitbox))
+                {
+                    collisions.Add(new PlayerBlockCollision(game.link, block));
+                }
+            }
+
+            foreach(ICollision collision in collisions)
+            {
+                collision.Handle();
+            }
+            collisions = new List<ICollision>();
 
             // collision stuffs
             foreach (IItem item in items)
