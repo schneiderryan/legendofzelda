@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	class Dodongo : IEnemy
+	class Dodongo : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
 		public IDodongoState state;

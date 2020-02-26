@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	class Snake : IEnemy
+	class Snake : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
 		public ISnakeState state;

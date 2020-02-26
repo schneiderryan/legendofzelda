@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	class Trap : IEnemy
+	class Trap : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
 		public ITrapState state;
