@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda;
-
+using System;
 
 namespace LegendOfZelda
 {
@@ -53,7 +53,25 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
+			Random random = new Random();
+			int direction = random.Next(0, 3);
 			keese.Y += 1;
+			if (direction == 1)
+			{
+				keese.X -= 1;
+			}
+			else if (direction == 2)
+			{
+				keese.X += 1;
+			}
+			if (keese.X > 800)
+			{
+				keese.X -= 800;
+			}
+			if (keese.X < 0)
+			{
+				keese.X += 800;
+			}
 			if (keese.Y > 480)
 			{
 				keese.Y -= 480;
