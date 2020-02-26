@@ -13,6 +13,7 @@ namespace LegendOfZelda
             EnemyBlockCollision(enemies, room.blocks);
             EnemyPlayerCollision(enemies, player);
             EnemyEnemyCollision(enemies);
+            EnemyDoorCollision(enemies, room.doors);
         }
 
         private static void EnemyWallCollision(List<IEnemy> enemies, Room room)
@@ -66,6 +67,21 @@ namespace LegendOfZelda
                     if (!collision.Equals(Rectangle.Empty))
                     {
                         EnemyCollisionHandler.HandleEnemyEnemyCollision(enemies[i], enemies[j], collision);
+                    }
+                }
+            }
+        }
+
+        private static void EnemyDoorCollision(List<IEnemy> enemies, Dictionary<String, IDoor> doors)
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                foreach (KeyValuePair<String, IDoor> door in doors)
+                {
+                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, door.Value.Hitbox);
+                    if (!collision.Equals(Rectangle.Empty))
+                    {
+                        EnemyCollisionHandler.HandleEnemyDoorCollision(enemy, collision);
                     }
                 }
             }
