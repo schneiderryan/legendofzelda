@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	class Keese : IEnemy
+	class Keese : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
 		public IKeeseState state;
@@ -17,6 +17,12 @@ namespace LegendOfZelda
 
 		public int x;
 		public int y;
+
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
+
 		public int X
 		{
 			get { return x; }

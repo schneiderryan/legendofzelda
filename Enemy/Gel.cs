@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	class Gel : IEnemy
+	class Gel : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
 		public IGelState state;
@@ -18,9 +18,15 @@ namespace LegendOfZelda
 
 		public int x;
 		public int y;
-		
+
 		private int yv;
 		private int xv;
+
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
+
 		public int xVel
 		{
 			get { return yv; }

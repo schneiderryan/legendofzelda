@@ -17,6 +17,11 @@ namespace LegendOfZelda
 
 		public int x;
 		public int y;
+
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
 		public int X
 		{
 			get { return x; }
@@ -28,6 +33,7 @@ namespace LegendOfZelda
 			get { return y; }
 			set { y = value; }
 		}
+		
 		private int yv;
 		private int xv;
 		public int xVel

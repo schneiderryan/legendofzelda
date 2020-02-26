@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	class Aquamentus : IEnemy
+	class Aquamentus : IEnemy, ICollideable
 	{
 		public enum FireballState { Breathed, NotBreathed}
 		public FireballState State { get; protected set; }
@@ -31,6 +31,12 @@ namespace LegendOfZelda
 		private int y;
 		private int yv;
 		private int xv;
+
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
+
 		public int xVel
 		{
 			get { return yv; }

@@ -19,6 +19,11 @@ namespace LegendOfZelda
 		private int currentStep;
 		private int cd;
 
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
+
 		public int CurrentStep
 		{
 			get { return currentStep; }
@@ -78,16 +83,16 @@ namespace LegendOfZelda
 			state.MoveRight();
 		}
 
-		 public void MoveUp()
+		public void MoveUp()
 		{
 			state.MoveUp();
 		}
-		 public void MoveDown()
+		public void MoveDown()
 		{
 			state.MoveDown();
 		}
 
-		 public void Update()
+		public void Update()
 		{
 			currentStep++;
 			if(currentStep > changeDirection)

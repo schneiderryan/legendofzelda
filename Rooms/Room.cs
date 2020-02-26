@@ -23,7 +23,7 @@ namespace LegendOfZelda
         private Rectangle hitboxRight1;
         private Rectangle hitboxRight2;
 
-        private List<IBlock> blocks;
+        public List<IBlock> blocks;
         private List<IMoveableBlock> moveableBlocks;
        
         public List<Rectangle> hitboxes;
@@ -75,11 +75,11 @@ namespace LegendOfZelda
             hitboxes.Add(hitboxRight2);
         }
 
-
         public Dictionary<String, IDoor> getDoor()
         {
             return doors;
-    }
+        }
+
         private void DrawDoor(SpriteBatch sb)
         {
             foreach(KeyValuePair<String, IDoor> door in doors)
@@ -113,6 +113,7 @@ namespace LegendOfZelda
             foreach (IEnemy enemy in enemies)
             {
                 enemy.Draw(sb);
+                Debug.DrawHitbox(sb, enemy.Hitbox);
             }
 
             foreach (Rectangle box in hitboxes)
@@ -182,6 +183,7 @@ namespace LegendOfZelda
             PlayerCollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
             PlayerCollisionHandler.PlayerWallCollision(game.link, this);
             PlayerCollisionHandler.PlayerDoorCollision(game.link, doors);
+            EnemyCollisionDetector.HandleEnemyCollisions(enemies, this);
         }
     }
 }

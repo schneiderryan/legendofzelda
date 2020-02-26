@@ -17,6 +17,12 @@ namespace LegendOfZelda
 
 		public int x;
 		public int y;
+
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
+
 		public int xPos
 		{
 			get { return x; }
