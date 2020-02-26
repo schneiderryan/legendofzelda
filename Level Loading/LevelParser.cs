@@ -36,8 +36,8 @@ namespace LegendOfZelda
                         String box = nextBox(ref line);
                         if (desiredStrings.Contains(box))
                         {
-                            int xPos = 2 *(X_OFFSET + (x * BOX_SIZE));
-                            int yPos = 2*(Y_OFFSET + (y * BOX_SIZE));
+                            int xPos = 2 * (X_OFFSET + (x * BOX_SIZE));
+                            int yPos = 2 * (Y_OFFSET + (y * BOX_SIZE));
                             dictionary.Add(new Vector2(xPos, yPos), box);
                         }
                     }

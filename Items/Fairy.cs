@@ -9,11 +9,6 @@ namespace LegendOfZelda
             Hitbox = sprite.Box;
         }
 
-        public override void Update()
-        {
-            sprite.Update();
-        }
-
         public override void Use(IPlayer player)
         {
             player.currentHearts = player.maxHearts;

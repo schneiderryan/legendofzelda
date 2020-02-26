@@ -133,6 +133,10 @@ namespace LegendOfZelda
             {
                 background = RoomSpriteFactory.Instance.CreateRoom15();
             }
+            else if (roomNumber == 17) // The test room with all the stuffs
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom0();
+            }
             else // room 16
             {
                 background = RoomSpriteFactory.Instance.CreateRoom16();
@@ -229,6 +233,10 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("Bow"))
                 {
                     item = new Bow();
+                }
+                else if (entry.Value.Equals("Boomerang"))
+                {
+                    item = new Boomerang();
                 }
                 else if (entry.Value.Equals("Clock"))
                 {
