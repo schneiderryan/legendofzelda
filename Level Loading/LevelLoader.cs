@@ -26,11 +26,13 @@ namespace LegendOfZelda
 
             this.possibleEnemies = new List<String>();
             possibleEnemies.Add("Aquamentus");
+            possibleEnemies.Add("Dodongo");
             possibleEnemies.Add("Gel");
             possibleEnemies.Add("Goriya");
             possibleEnemies.Add("Keese");
             possibleEnemies.Add("LFWallmaster");
             possibleEnemies.Add("RFWallmaster");
+            possibleEnemies.Add("Snake");
             possibleEnemies.Add("Stalfo");
             possibleEnemies.Add("Trap");
 
@@ -195,6 +197,14 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("Stalfo"))
                 {
                     enemy = new Stalfo();
+                }
+                else if (entry.Value.Equals("Snake"))
+                {
+                    enemy = new Snake();
+                }
+                else if (entry.Value.Equals("Dodongo"))
+                {
+                    enemy = new Dodongo();
                 }
                 else //trap
                 {
