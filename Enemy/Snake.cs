@@ -19,6 +19,11 @@ namespace LegendOfZelda
 		private int currentStep;
 		private int cd;
 
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
+
 		public int CurrentStep
 		{
 			get { return currentStep; }

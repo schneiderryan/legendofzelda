@@ -3,9 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    abstract class Enemy    : IEnemy
+    abstract class Enemy : IEnemy
     {
         protected ISprite sprite;
+        private Rectangle hitbox;
+
+        public Rectangle Hitbox
+        {
+            get { return hitbox; }
+        }
 
         public int X
         {
@@ -13,6 +19,7 @@ namespace LegendOfZelda
             set
             {
                 sprite.Position = new Point(value, sprite.Position.Y);
+                hitbox.X = value;
             }
         }
 
@@ -22,6 +29,7 @@ namespace LegendOfZelda
             set
             {
                 sprite.Position = new Point(sprite.Position.X, value);
+                hitbox.Y = value;
             }
         }
 

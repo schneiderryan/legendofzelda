@@ -6,17 +6,19 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class LeftWall : Door
+
+    class RightExploded : Door
     {
-       
-        public LeftWall()
+        
+        public RightExploded()
         {
-            door = RoomSpriteFactory.Instance.CreateLeftWall();
+            door = RoomSpriteFactory.Instance.CreateRightExploded();
             door.Scale = 2.0f;
-            door.Position = new Point(0, 144);
+            door.Position = new Point(448, 145);
             Hitbox = door.Box;
         }
 
-       
+
+        
     }
 }

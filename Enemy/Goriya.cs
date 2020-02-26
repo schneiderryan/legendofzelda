@@ -6,7 +6,7 @@ using System;
 namespace LegendOfZelda
 {
 
-	class Goriya : IEnemy
+	class Goriya : IEnemy, ICollideable
 	{
 		
 		public enum BoomerangState { Thrown, NotThrown}
@@ -23,6 +23,11 @@ namespace LegendOfZelda
 
 		public int x;
 		public int y;
+
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
 
 		public int X
 		{

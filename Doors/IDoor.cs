@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    interface IDoor : ICollideable
+    interface IDoor: ICollideable
     {
         //fields for types of objects that can spawn
 
         void Update();
-        void Draw(SpriteBatch sb, Color color);
+        void Draw(SpriteBatch sb);
+
         
     }
 }

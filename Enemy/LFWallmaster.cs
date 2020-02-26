@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	class LFWallmaster : IEnemy
+	class LFWallmaster : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
 		public IWallmasterState state;
@@ -17,6 +17,11 @@ namespace LegendOfZelda
 
 		public int x;
 		public int y;
+
+		public Rectangle Hitbox
+		{
+			get { return sprite.Box; }
+		}
 		public int X
 		{
 			get { return x; }

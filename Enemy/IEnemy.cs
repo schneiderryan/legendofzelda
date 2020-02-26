@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda
 {
-    interface IEnemy
+    interface IEnemy : ICollideable
     {
         int CurrentStep { get; set; }
         int changeDirection { get; set; }
