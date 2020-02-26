@@ -325,7 +325,8 @@ namespace LegendOfZelda
         {
             Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
             Dictionary<String, String> doorInfo = parser.parseDoors(possibleDoors);
-            foreach(KeyValuePair<String, String> entry in doorInfo)
+            
+            foreach (KeyValuePair<String, String> entry in doorInfo)
             {
                 IDoor door;
                 if (entry.Key.Equals("left"))
@@ -334,22 +335,21 @@ namespace LegendOfZelda
                     if (entry.Value.Equals("Wall"))
                     {
                         door = new LeftWall();
-                        doors.Add(entry.Key, door);
                     }
                     else if (entry.Value.Equals("Open"))
                     {
-                        //door = new LeftWall();
+                        door = new LeftWall();
                     }
                     else if (entry.Value.Equals("Key"))
                     {
-                       // door = new LeftKeyDoor();
+                        door = new LeftKey();
                     }
                     else if (entry.Value.Equals("Other"))
                     {
-                        //door = new LeftOtherDoor();
+                        door = new LeftOther();
                     }
                     else {
-                       // door = new LeftExplodedDoor();
+                        door = new LeftExploded();
                     }
                     
                 }
@@ -357,73 +357,73 @@ namespace LegendOfZelda
                 {
                     if (entry.Value.Equals("Wall"))
                     {
-                        //door = new RightWall();
+                        door = new RightWall();
                     }
                     else if (entry.Value.Equals("Open"))
                     {
-                        //door = new RightOpenDoor();
+                        door = new RightOpen();
                     }
                     else if (entry.Value.Equals("Key"))
                     {
-                       // door = new RightKeyDoor();
+                        door = new RightKey();
                     }
                     else if (entry.Value.Equals("Other"))
                     {
-                        //door = new RightOtherDoor();
+                        door = new RightOther();
                     }
                     else
                     {
-                        //door = new RightExplodedDoor();
+                        door = new RightExploded();
                     }
                 }
                 else if (entry.Key.Equals("up"))
                 {
                     if (entry.Value.Equals("Wall"))
                     {
-                        //door = new UpWall();
+                        door = new TopWall();
                     }
                     else if (entry.Value.Equals("Open"))
                     {
-                        //door = new UpOpenDoor();
+                        door = new TopOpen();
                     }
                     else if (entry.Value.Equals("Key"))
                     {
-                        //door = new UpKeyDoor();
+                        door = new TopKey();
                     }
                     else if (entry.Value.Equals("Other"))
                     {
-                        //door = new UpOtherDoor();
+                        door = new TopOther();
                     }
                     else
                     {
-                       //door = new UpExplodedDoor();
+                       door = new TopExploded();
                     }
                 }
                 else 
                 {
                     if (entry.Value.Equals("Wall"))
                     {
-                        //door = new DownWall();
+                        door = new BottomWall();
                     }
                     else if (entry.Value.Equals("Open"))
                     {
-                        //door = new DownOpenDoor();
+                        door = new BottomOpen();
                     }
                     else if (entry.Value.Equals("Key"))
                     {
-                        //door = new DownKeyDoor();
+                        door = new BottomKey();
                     }
                     else if (entry.Value.Equals("Other"))
                     {
-                        //door = new DownOtherDoor();
+                        door = new BottomOther();
                     }
                     else
                     {
-                        //door = new DownExplodedDoor();
+                        door = new BottomExploded();
                     }
                 }
-                
 
+                doors.Add(entry.Key, door);
                 //check doors and add to doors
             }
             return doors;
