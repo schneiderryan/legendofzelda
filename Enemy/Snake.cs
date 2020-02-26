@@ -40,6 +40,9 @@ namespace LegendOfZelda
 			set { yPos = value; }
 		}
 
+		public int xVel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public int yVel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
 		public Snake()
 		{
 			 
@@ -102,6 +105,16 @@ namespace LegendOfZelda
 		}
 
 		public void BeStill()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void UseProjectile(IProjectile projectile)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Use(IEnemy enemy)
 		{
 			throw new NotImplementedException();
 		}
