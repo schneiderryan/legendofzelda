@@ -12,7 +12,6 @@ namespace LegendOfZelda
             EnemyWallCollision(enemies, room);
             EnemyBlockCollision(enemies, room.blocks);
             EnemyPlayerCollision(enemies, player);
-            EnemyEnemyCollision(enemies);
             EnemyDoorCollision(enemies, room.doors);
         }
 
@@ -24,7 +23,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        EnemyCollisionHandler.HandleEnemyWallCollision(enemy, collision);
+                        EnemyCollisionHandler.HandleEnemyBasicCollision(enemy, collision);
                     }
                 }
             }
@@ -39,7 +38,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, block.Hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        EnemyCollisionHandler.HandleEnemyBlockCollision(enemy, collision);
+                        EnemyCollisionHandler.HandleEnemyBasicCollision(enemy, collision);
                     }
                 }
             }
@@ -52,22 +51,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
                 if (!collision.Equals(Rectangle.Empty))
                 {
-                    EnemyCollisionHandler.HandleEnemyBlockCollision(enemy, collision);
-                }
-            }
-        }
-
-        private static void EnemyEnemyCollision(List<IEnemy> enemies)
-        {
-            for(int i = 0; i < enemies.Count - 1; i++)
-            {
-                for(int j = i + 1; j < enemies.Count; j++)
-                {
-                    Rectangle collision = Rectangle.Intersect(enemies[i].Hitbox, enemies[j].Hitbox);
-                    if (!collision.Equals(Rectangle.Empty))
-                    {
-                        EnemyCollisionHandler.HandleEnemyEnemyCollision(enemies[i], enemies[j], collision);
-                    }
+                    EnemyCollisionHandler.HandleEnemyBasicCollision(enemy, collision);
                 }
             }
         }
@@ -81,7 +65,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, door.Value.Hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        EnemyCollisionHandler.HandleEnemyDoorCollision(enemy, collision);
+                        EnemyCollisionHandler.HandleEnemyBasicCollision(enemy, collision);
                     }
                 }
             }
