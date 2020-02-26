@@ -179,7 +179,7 @@ namespace LegendOfZelda
             CollisionHandler.PlayerDoorCollision(game.link, doors);
             CollisionHandler.PlayerBlockCollision(game.link, blocks);
             CollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
-            EnemyCollisionDetector.HandleEnemyCollisions(enemies, this);
+            EnemyCollisionDetector.HandleEnemyCollisions(enemies, this, this.game.link);
         }
     }
 }
