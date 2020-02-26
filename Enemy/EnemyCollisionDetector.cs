@@ -7,10 +7,12 @@ namespace LegendOfZelda
 {
     static class EnemyCollisionDetector
     {
-        public static void HandleEnemyCollisions(List<IEnemy> enemies, Room room)
+        public static void HandleEnemyCollisions(List<IEnemy> enemies, Room room, IPlayer player)
         {
             EnemyWallCollision(enemies, room);
             EnemyBlockCollision(enemies, room.blocks);
+            EnemyPlayerCollision(enemies, player);
+            EnemyEnemyCollision(enemies);
         }
 
         private static void EnemyWallCollision(List<IEnemy> enemies, Room room)
@@ -38,6 +40,30 @@ namespace LegendOfZelda
                     {
                         EnemyCollisionHandler.HandleEnemyBlockCollision(enemy, collision);
                     }
+                }
+            }
+        }
+
+        private static void EnemyPlayerCollision(List<IEnemy> enemies, IPlayer player)
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyBlockCollision(enemy, collision);
+                }
+            }
+        }
+
+        private static void EnemyEnemyCollision(List<IEnemy> enemies)
+        {
+            for(int i = 0; i < enemies.Count - 1; i++)
+            {
+                Rectangle collision = Rectangle.Intersect(enemies[i].Hitbox, enemies[i + 1].Hitbox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyEnemyCollision(enemies[i], enemies[i + 1], collision);
                 }
             }
         }
