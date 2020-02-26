@@ -11,7 +11,6 @@ namespace LegendOfZelda
         private IController keyboard;
         private IController playerKeyboard;
         public List<IRoom> rooms;
-        public List<IDoor> doors;
         public int roomIndex = 0;
 
         public IPlayer link;
@@ -86,9 +85,8 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             
-            rooms[roomIndex].Draw(spriteBatch, Color.White);
+            rooms[roomIndex].Draw(spriteBatch);
             link.Draw(spriteBatch, Color.White);
-            rooms[roomIndex].DrawDoor(spriteBatch, Color.White);
             
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
             

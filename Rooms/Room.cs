@@ -80,7 +80,7 @@ namespace LegendOfZelda
         {
             return doors;
     }
-        public void DrawDoor(SpriteBatch sb, Color color)
+        private void DrawDoor(SpriteBatch sb)
         {
             foreach(KeyValuePair<String, IDoor> door in doors)
             {
@@ -88,9 +88,11 @@ namespace LegendOfZelda
                 Debug.DrawHitbox(sb, door.Value.Hitbox);
             }
         }
-        public void Draw(SpriteBatch sb, Color color)
+
+        public void Draw(SpriteBatch sb)
         {
             background.Draw(sb);
+            DrawDoor(sb);
             foreach (IBlock b in blocks)
             {
                 Debug.DrawHitbox(sb, b.Hitbox);
@@ -101,8 +103,6 @@ namespace LegendOfZelda
                 b.Draw(sb);
                 Debug.DrawHitbox(sb, b.Hitbox);
             }
-
-            
 
             foreach (IItem item in items)
             {

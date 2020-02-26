@@ -7,7 +7,6 @@ namespace LegendOfZelda
     interface IRoom : ICollideable
     {
         void Update();
-        void Draw(SpriteBatch sb, Color color);
-        void DrawDoor(SpriteBatch sb, Color color);
+        void Draw(SpriteBatch sb);
     }
 }
