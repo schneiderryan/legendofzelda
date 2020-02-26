@@ -60,10 +60,13 @@ namespace LegendOfZelda
         {
             for(int i = 0; i < enemies.Count - 1; i++)
             {
-                Rectangle collision = Rectangle.Intersect(enemies[i].Hitbox, enemies[i + 1].Hitbox);
-                if (!collision.Equals(Rectangle.Empty))
+                for(int j = i + 1; j < enemies.Count; j++)
                 {
-                    EnemyCollisionHandler.HandleEnemyEnemyCollision(enemies[i], enemies[i + 1], collision);
+                    Rectangle collision = Rectangle.Intersect(enemies[i].Hitbox, enemies[j].Hitbox);
+                    if (!collision.Equals(Rectangle.Empty))
+                    {
+                        EnemyCollisionHandler.HandleEnemyEnemyCollision(enemies[i], enemies[j], collision);
+                    }
                 }
             }
         }
