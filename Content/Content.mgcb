@@ -145,6 +145,18 @@
 /processorParam:TextureFormat=Color
 /build:loz_enemy_sheet.png
 
+#begin loz_new_npc_sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:loz_new_npc_sheet.png
+
 #begin loz_npc_sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -156,6 +168,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:loz_npc_sheet.png
+
+#begin loz_tryagain_npc_sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:loz_tryagain_npc_sheet.png
+
+#begin loz_tryagain2_npc_sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:loz_tryagain2_npc_sheet.png
+
+#begin loz_updated_npc_sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:loz_updated_npc_sheet.png
 
 #begin rooms.png
 /importer:TextureImporter

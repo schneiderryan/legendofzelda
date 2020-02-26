@@ -35,6 +35,7 @@ namespace LegendOfZelda
             possibleEnemies.Add("Snake");
             possibleEnemies.Add("Stalfo");
             possibleEnemies.Add("Trap");
+            possibleEnemies.Add("OldMan");
 
             this.possibleItems = new List<String>();
             this.possibleItems.Add("Arrow");
@@ -205,6 +206,10 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("Dodongo"))
                 {
                     enemy = new Dodongo();
+                }
+                else if (entry.Value.Equals("OldMan"))
+                {
+                    enemy = new OldMan(235,133);
                 }
                 else //trap
                 {
