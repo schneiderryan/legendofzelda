@@ -8,19 +8,28 @@ namespace LegendOfZelda
         private readonly Texture2D texture;
         private float scale;
         protected Rectangle sourceRect;
+        private Rectangle box;
 
         public SpriteEffects Effects { get; set; }
-        public Point Position { get; set; }
-        public int Width { get; private set; }
-        public int Height { get; private set; }
+        public Point Position
+        {
+            get { return box.Location; }
+            set { box.Location = value; }
+        }
+
+        public Rectangle Box
+        {
+            get { return box; }
+        }
+
         public float Scale
         {
             get { return scale; }
             set
             {
                 scale = value;
-                Width = (int)(scale * sourceRect.Width);
-                Height = (int)(scale * sourceRect.Height);
+                box.Width = (int)(scale * sourceRect.Width);
+                box.Height = (int)(scale * sourceRect.Height);
             }
         }
 

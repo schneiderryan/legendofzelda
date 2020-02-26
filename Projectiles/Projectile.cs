@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    class Projectile : IProjectile
+    abstract class Projectile : CollideableObject, IProjectile
     {
-        protected int VX { get; set; }
-        protected int VY { get; set; }
+        public int VX { get; set; }
+        public int VY { get; set; }
         protected ISprite sprite;
 
         public Projectile(string direction, int xPos, int yPos,
@@ -34,9 +34,6 @@ namespace LegendOfZelda
                 this.VX = -initialVel;
             }
         }
-
-        public virtual int X { get; protected set; }
-        public virtual int Y { get; protected set; }
 
         public virtual void Update()
         {

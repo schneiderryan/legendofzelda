@@ -6,6 +6,7 @@ namespace LegendOfZelda
 {
     class EnemySpriteFactory
     {
+
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();
         private Texture2D bossModSpriteSheet = Textures.GetBossModSheet();

@@ -6,6 +6,7 @@ namespace LegendOfZelda
         public Rupee()
         {
             sprite = ItemSpriteFactory.GetRupee();
+            Hitbox = sprite.Box;
         }
 
         public override void Update()
@@ -16,7 +17,7 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-            player.numRupees = player.numRupees + 5;
+            player.numRupees = player.numRupees + 1;
         }
     }
 }

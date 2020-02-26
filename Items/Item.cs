@@ -3,27 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    abstract class Item : IItem
+    abstract class Item : CollideableObject, IItem
     {
         protected ISprite sprite;
-
-        public int X
-        {
-            get { return sprite.Position.X; }
-            set
-            {
-                sprite.Position = new Point(value, sprite.Position.Y);
-            }
-        }
-
-        public int Y
-        {
-            get { return sprite.Position.Y; }
-            set
-            {
-                sprite.Position = new Point(sprite.Position.X, value);
-            }
-        }
 
         public virtual void Draw(SpriteBatch sb)
         {
@@ -32,6 +14,7 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
+            sprite.Position = new Point(X, Y);
             sprite.Update();
         }
 

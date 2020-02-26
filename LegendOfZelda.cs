@@ -6,19 +6,14 @@ namespace LegendOfZelda
 {
     class LegendOfZelda : Game
     {
-        public IController playerKeyboard;
-        private IController enemyKeyboard;
+        private IController mouse;
         private IController keyboard;
+        private IController playerKeyboard;
+        public List<IRoom> rooms;
+        public int roomIndex = 0;
 
-        public LevelLoader levelLoader;
-        public List<IPlayer> players;
-        public List<IEnemy> enemies;
-        public int enemyIndex;
-        public List<IItem> items;
-        public int itemIndex;
-
-        public List<IProjectile> projectiles;
         public IPlayer link;
+        public List<IProjectile> projectiles;
 
         public GraphicsDeviceManager graphics;
 
@@ -27,6 +22,8 @@ namespace LegendOfZelda
         public LegendOfZelda()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 352; 
+            graphics.PreferredBackBufferWidth = 512;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -36,56 +33,47 @@ namespace LegendOfZelda
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
 
-            projectiles = new List<IProjectile>();
+            this.link = new GreenLink(this);
+            playerKeyboard = GameSetup.CreatePlayerKeysController(link);
 
-            levelLoader = new LevelLoader("TestLevel.csv", this);
-            players = levelLoader.loadPlayers();
+            rooms = GameSetup.GenerateRoomList(this);
 
+            mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
-            foreach(IPlayer player in players)
-            {
-                playerKeyboard = GameSetup.CreatePlayerKeysController(player);
-            }
-            enemyKeyboard = GameSetup.CreateEnemyKeysController(this);
 
-            items = levelLoader.loadItems();
-            enemies = levelLoader.loadEnemies();
+            projectiles = new List<IProjectile>();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Textures.LoadAllTextures(Content);
+            Textures.LoadAllTextures(Content, GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
         {
+            mouse.Update();
             keyboard.Update();
             playerKeyboard.Update();
-            //enemyKeyboard.Update();
 
-            foreach(IEnemy enemy in enemies)
-            {
-                enemy.Update();
-            }
+            rooms[roomIndex].Update();
+            link.Update();
 
-            foreach(IItem item in items)
-            {
-                item.Update();
-            }
-
-            //enemies[enemyIndex].Update();
-            //items[itemIndex].Update();
-
-            foreach (IPlayer player in players)
-            {
-                player.Update();
-            }
-
-            foreach (IProjectile projectile in projectiles)
+            foreach(IProjectile projectile in projectiles)
             {
                 projectile.Update();
             }
+
+            // collision stuffs
+
+            foreach (IProjectile p in projectiles)
+            {
+                if (p.Hitbox.Intersects(link.Hitbox))
+                {
+                    // do things
+                }
+            }
+
 
             base.Update(gameTime);
         }
@@ -95,29 +83,17 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            //enemies[enemyIndex].Draw(spriteBatch);
-            //items[itemIndex].Draw(spriteBatch);
+            rooms[roomIndex].Draw(spriteBatch, Color.White);
+            link.Draw(spriteBatch, Color.White);
 
-            foreach (IEnemy enemy in enemies)
-            {
-                enemy.Draw(spriteBatch);
-            }
-
-            foreach (IItem item in items)
-            {
-                item.Draw(spriteBatch);
-            }
-
-            foreach (IPlayer player in players)
-            {
-                player.Draw(spriteBatch, Color.White);
-            }
+            Debug.DrawHitbox(spriteBatch, link.Hitbox);
 
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
+                Debug.DrawHitbox(spriteBatch, projectile.Hitbox);
             }
-            
+
             spriteBatch.End();
 
             base.Draw(gameTime);

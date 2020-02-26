@@ -10,29 +10,44 @@ namespace LegendOfZelda
     {
         public LegendOfZelda game;
 
-        private int x;
-        private int y;
         private String d;
         private String c;
+        private int x;
+        private int y;
         private int itemTimer;
         private int numberOfRupees;
         private double numMaxHearts;
         private double numCurrHearts;
+        private int numberOfBombs;
         private List<Keys> attackKeys;
+        private Rectangle hitbox;
 
         public ISprite sprite { get; set; }
         public ILinkState state { get; set; }
 
-        public int xPos
+        public Rectangle Hitbox
         {
-            get { return x; }
-            set { x = value; }
+            get { return hitbox; }
         }
 
-        public int yPos
+        public int X
+        {
+            get { return x; }
+            set
+            { 
+                hitbox.X = value;
+                x = value;
+            }
+        }
+
+        public int Y
         {
             get { return y; }
-            set { y = value; }
+            set
+            {
+                hitbox.Y = value + sprite.Box.Height - hitbox.Height;
+                y = value;
+            }
         }
 
         public String direction
@@ -62,6 +77,12 @@ namespace LegendOfZelda
         {
             get { return numCurrHearts; }
             set { numCurrHearts = value; }
+        }
+
+        public int numberBombs
+        {
+            get { return numberOfBombs; }
+            set { numberOfBombs = value; }
         }
 
         public virtual void MoveLeft()
@@ -150,9 +171,9 @@ namespace LegendOfZelda
             this.game = game;
             this.d = "up";
             this.sprite.Scale = 2.0f;
-            this.xPos = 400;
-            this.yPos = 200;
-            this.sprite.Position = new Point(xPos, yPos);
+            this.hitbox = new Rectangle(0, 0, sprite.Box.Width, 10);
+            this.X = 400;
+            this.Y = 200;
             this.itemTimer = 0;
             this.numRupees = 0;
             this.maxHearts = 3.0;

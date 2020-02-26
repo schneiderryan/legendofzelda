@@ -6,6 +6,7 @@ namespace LegendOfZelda
         public Fairy()
         {
             sprite = ItemSpriteFactory.GetFairy();
+            Hitbox = sprite.Box;
         }
 
         public override void Update()

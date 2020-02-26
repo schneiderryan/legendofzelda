@@ -6,6 +6,7 @@ namespace LegendOfZelda
         public BlueRupee()
         {
             sprite = ItemSpriteFactory.GetBlueRupee();
+            Hitbox = sprite.Box;
         }
 
         public override void Use(IPlayer player)

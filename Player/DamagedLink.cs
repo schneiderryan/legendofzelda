@@ -12,6 +12,11 @@ namespace LegendOfZelda
         IPlayer decoratedLink;
         int timer = 192; // to give about 3 seconds
 
+        public Rectangle Hitbox
+        {
+            get { return decoratedLink.Hitbox; }
+        }
+
         public ISprite sprite
         {
             get { return decoratedLink.sprite; }
@@ -24,16 +29,16 @@ namespace LegendOfZelda
             set { decoratedLink.state = value; }
         }
 
-        public int xPos
+        public int X
         {
-            get { return decoratedLink.xPos; }
-            set { decoratedLink.xPos = value; }
+            get { return decoratedLink.X; }
+            set { decoratedLink.X = value; }
         }
 
-        public int yPos
+        public int Y
         {
-            get { return decoratedLink.yPos; }
-            set { decoratedLink.yPos = value; }
+            get { return decoratedLink.Y; }
+            set { decoratedLink.Y = value; }
         }
 
         public String direction
@@ -64,6 +69,13 @@ namespace LegendOfZelda
             get { return decoratedLink.currentHearts; }
             set { decoratedLink.currentHearts = value; }
         }
+
+        public int numberBombs
+        {
+            get { return decoratedLink.numberBombs; }
+            set { decoratedLink.numberBombs = value; }
+        }
+
 
         public DamagedLink (IPlayer decoratedLink)
         {

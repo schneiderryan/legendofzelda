@@ -66,6 +66,7 @@ namespace LegendOfZelda
             };
         }
 
+        
         public static ISprite GetBoomerang()
         {
             return new Sprite(Textures.GetItemSheet(),

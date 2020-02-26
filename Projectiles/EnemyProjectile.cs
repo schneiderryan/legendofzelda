@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class EnemyProjectile : IProjectile
+    class EnemyProjectile : CollideableObject, IProjectile
     {
         protected int xVel = 0;
         protected int yVel = 0;
@@ -20,9 +20,6 @@ namespace LegendOfZelda
             this.xVel = (int)velocity.X;
             this.yVel = (int)velocity.Y;
         }
-
-        public virtual int X { get; protected set; }
-        public virtual int Y { get; protected set; }
 
         public virtual void Update()
         {
