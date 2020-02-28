@@ -14,7 +14,7 @@ namespace LegendOfZelda
 		public ITrapState state;
 		public ISprite sprite;
 		private RandomEnemyController random;
-
+		public LegendOfZelda game;
 		public int x;
 		public int y;
 
@@ -71,7 +71,7 @@ namespace LegendOfZelda
 			set { yPos = value; }
 		}
 
-		public Trap()
+		public Trap(LegendOfZelda loz)
 		{
 
 			sprite = EnemySpriteFactory.Instance.CreateMovingTrapSprite();
@@ -79,6 +79,7 @@ namespace LegendOfZelda
 			yPos = 200;
 			sprite.Position = new Point(xPos, yPos);
 			currentStep = 0;
+			game = loz;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);
 			state = new RightMovingTrapState(this);

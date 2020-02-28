@@ -218,7 +218,7 @@ namespace LegendOfZelda
                 }
                 else //trap
                 {
-                    enemy = new Trap();
+                    enemy = new Trap(game);
                 }
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y;
