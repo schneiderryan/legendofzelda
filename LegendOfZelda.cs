@@ -87,6 +87,7 @@ namespace LegendOfZelda
             
             rooms[roomIndex].Draw(spriteBatch);
             link.Draw(spriteBatch, Color.White);
+            rooms[roomIndex].DrawOverlay(spriteBatch);
             
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
             

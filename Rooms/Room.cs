@@ -28,12 +28,6 @@ namespace LegendOfZelda
        
         public List<Rectangle> hitboxes;
 
-        public Rectangle Hitbox => throw new NotImplementedException();
-
-        public int X { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Y { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-
         //populate with items and enemies (and player?)
         public Room(LegendOfZelda game, String levelName)
         {
@@ -47,8 +41,9 @@ namespace LegendOfZelda
 
             this.enemies = levelLoader.LoadEnemies();
             this.items = levelLoader.LoadItems();
-            this.blocks = levelLoader.LoadStillBlocks();
             this.moveableBlocks = levelLoader.LoadMoveableBlocks();
+            this.blocks = levelLoader.LoadStillBlocks();
+            this.blocks.AddRange(moveableBlocks);
 
             this.doors = levelLoader.LoadDoors();
 
@@ -80,19 +75,21 @@ namespace LegendOfZelda
             return doors;
         }
 
-        private void DrawDoor(SpriteBatch sb)
+        public void DrawOverlay(SpriteBatch sb)
         {
-            foreach(KeyValuePair<String, IDoor> door in doors)
-            {
-                door.Value.Draw(sb);
-                Debug.DrawHitbox(sb, door.Value.Hitbox);
-            }
+            // draw door frames?
         }
 
         public void Draw(SpriteBatch sb)
         {
             background.Draw(sb);
-            DrawDoor(sb);
+
+            foreach (KeyValuePair<String, IDoor> door in doors)
+            {
+                door.Value.Draw(sb);
+                Debug.DrawHitbox(sb, door.Value.Hitbox);
+            }
+
             foreach (IBlock b in blocks)
             {
                 Debug.DrawHitbox(sb, b.Hitbox);
@@ -120,27 +117,6 @@ namespace LegendOfZelda
             {
                 Debug.DrawHitbox(sb, box);
             }
-
-        }
-
-        public void EnterRoomAbove()
-        {
-            //state.EnterRoomAbove();
-        }
-
-        public void EnterRoomBelow()
-        {
-            //state.EnterRoomBelow();
-        }
-
-        public void EnterRoomLeft()
-        {
-            //state.EnterRoomLeft();
-        }
-
-        public void EnterRoomRight()
-        {
-            //state.EnterRoomRight();
         }
 
         public void Update()
@@ -172,15 +148,9 @@ namespace LegendOfZelda
                 // Item.Pickup(IPlayer) ?
             }
 
-            foreach (IEnemy enemy in enemies)
-            {
-                // check collision
-                // if intersects then
-                // do things
-            }
-
-            PlayerCollisionHandler.PlayerBlockCollision(game.link, blocks);
+            // order matters, for the blocks and moveable blocks at least
             PlayerCollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
+            PlayerCollisionHandler.PlayerBlockCollision(game.link, blocks);
             PlayerCollisionHandler.PlayerWallCollision(game.link, this);
             PlayerCollisionHandler.PlayerDoorCollision(game.link, doors);
             EnemyCollisionDetector.HandleEnemyCollisions(enemies, this, game.link);

@@ -6,17 +6,18 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class MovableBlock : InvisibleBlock, IMoveableBlock
+    class MoveableBlock : InvisibleBlock, IMoveableBlock
     {
         private ISprite sprite;
         private enum BlockState { Ready, Moved }
         private BlockState state = BlockState.Ready;
-        private int vy = 0;
+        protected int vy = 0;
+        protected int vx = 0;
         private int moveCounter = 0;
 
-        public MovableBlock()
+        public MoveableBlock()
         {
-            sprite = RoomElementsSpriteFactory.GetBlockSprite();
+            sprite = RoomSpriteFactory.Instance.CreateBlock();
         }
 
         public void Draw(SpriteBatch sb)
@@ -42,13 +43,36 @@ namespace LegendOfZelda
             }
         }
 
+        public void MoveOnceLeft()
+        {
+            if (state == BlockState.Ready)
+            {
+                vx = -1;
+                moveCounter += 2;
+            }
+        }
+
+        public void MoveOnceRight()
+        {
+            if (state == BlockState.Ready)
+            {
+                vx = 1;
+                moveCounter += 2;
+            }
+        }
+
         public void Update()
         {
-            if (moveCounter > 20 || Y % LevelParser.TILE_SIZE != 0)
+            // check if the block has been pushed on for a bit,
+            // or if the block is currently moving
+            if (moveCounter > 20 || X % LevelParser.TILE_SIZE != 0
+                    || Y % LevelParser.TILE_SIZE != 0)
             {
                 Y += vy;
+                X += vx;
                 state = BlockState.Moved;
             }
+
             if (moveCounter > 0)
             {
                 moveCounter -= 1;

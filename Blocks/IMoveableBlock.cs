@@ -8,5 +8,7 @@ namespace LegendOfZelda
         void Update();
         void MoveOnceUp();
         void MoveOnceDown();
+        void MoveOnceLeft();
+        void MoveOnceRight();
     }
 }

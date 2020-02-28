@@ -3,7 +3,7 @@ Door,Door,Door,Door
 Trap,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Trap
 Null,Null,Null,Null,Null,Null,Block,Null,Null,Null,Null,Null
 Null,Null,Null,Null,Null,Block,Null,Block,Null,Null,Null,Null
-Null,Null,Null,Null,MoveableBlock,Null,Null,Null,Block,Null,Null,Null
+Null,Null,Null,Null,MoveableBlockVertical,Null,Null,Null,Block,Null,Null,Null
 Null,Null,Null,Null,Null,Block,Null,Block,Null,Null,Null,Null
 Null,Null,Null,Null,Null,Null,Block,Null,Null,Null,Null,Null
 Trap,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Trap
