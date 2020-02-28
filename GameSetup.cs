@@ -66,11 +66,7 @@ namespace LegendOfZelda
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
-            ICommand cmd = new SwapItemCommand(game, "next");
-            /*keyBinds.Add(Keys.I, cmd);
-
-            cmd = new SwapItemCommand(game, "previous");
-            keyBinds.Add(Keys.U, cmd);*/
+            ICommand cmd;
 
             cmd = new ResetCommand(game);
             keyBinds.Add(Keys.R, cmd);
@@ -80,7 +76,6 @@ namespace LegendOfZelda
 
             return new SlowKeyboardController(keyBinds);
         }
-
 
         public static IController CreateEnemyKeysController(LegendOfZelda game)
         {
@@ -142,6 +137,7 @@ namespace LegendOfZelda
         {
             List<IRoom> list = new List<IRoom>()
             {
+                new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
                 new Room(game, "Rooms/Room1.csv"),
                 new Room(game, "Rooms/Room2.csv"),
