@@ -9,16 +9,16 @@ namespace LegendOfZelda
     {
         public static void HandleEnemyCollisions(List<IEnemy> enemies, Room room, IPlayer player)
         {
-            EnemyWallCollision(enemies, room);
+            EnemyWallCollision(enemies, room.hitboxes);
             EnemyBlockCollision(enemies, room.blocks);
             EnemyPlayerCollision(enemies, player);
             EnemyDoorCollision(enemies, room.doors);
         }
 
-        private static void EnemyWallCollision(List<IEnemy> enemies, Room room)
+        private static void EnemyWallCollision(List<IEnemy> enemies, List<Rectangle> hitboxes)
         {
             foreach (IEnemy enemy in enemies) {
-                foreach (Rectangle hitbox in room.hitboxes)
+                foreach (Rectangle hitbox in hitboxes)
                 {
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, hitbox);
                     if (!collision.Equals(Rectangle.Empty))

@@ -1,13 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda
 {
     static class PlayerCollisionHandler
     {
-        public static void PlayerBlockCollision(IPlayer player,
+
+        public static void HandlePlayerCollisions(IPlayer player, Room room)
+        {
+            // order matters, for the blocks and moveable blocks at least
+            PlayerMoveableBlockCollision(player, room.moveableBlocks);
+            PlayerBlockCollision(player, room.blocks);
+            PlayerWallCollision(player, room.hitboxes);
+            PlayerDoorCollision(player, room.doors);
+        }
+
+        private static void PlayerBlockCollision(IPlayer player,
                 List<IBlock> still)
         {
             foreach (ICollideable s in still)
@@ -17,7 +26,7 @@ namespace LegendOfZelda
             }
         }
 
-        public static void PlayerDoorCollision(IPlayer player,
+        private static void PlayerDoorCollision(IPlayer player,
                 Dictionary<String, IDoor> doors)
         {
             foreach(KeyValuePair<String, IDoor> door in doors)
@@ -27,16 +36,16 @@ namespace LegendOfZelda
             }
         }
 
-        public static void PlayerWallCollision(IPlayer player, Room room)
+        private static void PlayerWallCollision(IPlayer player, List<Rectangle> walls)
         {
-            foreach(Rectangle hitbox in room.hitboxes)
+            foreach(Rectangle wall in walls)
             {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, hitbox);
+                Rectangle collision = Rectangle.Intersect(player.Hitbox, wall);
                 CollisionHandler.HandleBasicCollision(player, collision);
             }
         }
 
-        public static void PlayerMoveableBlockCollision(IPlayer player,
+        private static void PlayerMoveableBlockCollision(IPlayer player,
                 List<IMoveableBlock> moveable)
         {
             foreach (IMoveableBlock m in moveable)
