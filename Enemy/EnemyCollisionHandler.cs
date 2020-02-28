@@ -11,50 +11,58 @@ namespace LegendOfZelda
         {
             if (collision.Width > collision.Height)
             {
-                if (collision.Y == enemy.Hitbox.Y)
+                if (collision.Y != enemy.Hitbox.Y)
                 {
+                    enemy.Y -= collision.Height;
                     enemy.MoveLeft();
                 }
                 else
                 {
+                    enemy.Y += collision.Height;
                     enemy.MoveRight();
                 }
             }
             else
             {
-                if (collision.X == enemy.Hitbox.X)
+                if (collision.X != enemy.Hitbox.X)
                 {
+                    enemy.X -= collision.Width;
                     enemy.MoveDown();
                 }
                 else
                 {
+                    enemy.X += collision.Width;
                     enemy.MoveUp();
                 }
             }
         }
 
-        public static void HandleEnemySmartCollision(IEnemy enemy, in Rectangle collision)
+        public static void HandleEnemyPlayerCollision(IEnemy enemy, in Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {
-                if (collision.Y != moveable.Hitbox.Y)
+                if (collision.Y != enemy.Hitbox.Y)
                 {
-                    moveable.Y -= collision.Height;
+                    enemy.Y -= collision.Height;
+                    //Take damage
                 }
                 else
                 {
-                    moveable.Y += collision.Height;
+                    enemy.Y += collision.Height;
+                    //Take damage
                 }
             }
             else
             {
-                if (collision.X > moveable.Hitbox.X)
+                if (collision.X != enemy.Hitbox.X)
                 {
-                    moveable.X -= collision.Width;
+                    enemy.X -= collision.Width;
+                    //Take damage
                 }
                 else
                 {
-                    moveable.X += collision.Width;
+                    enemy.X += collision.Width;
+                    //Take damage
                 }
             }
         }

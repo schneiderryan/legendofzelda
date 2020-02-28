@@ -57,7 +57,8 @@ namespace LegendOfZelda
             this.possibleBlocks = new List<String>()
             {
                 "Block",
-                "MoveableBlock"
+                "MoveableBlockVertical",
+                "MoveableBlockRight"
             };
 
             this.possibleDoors = new List<String>();

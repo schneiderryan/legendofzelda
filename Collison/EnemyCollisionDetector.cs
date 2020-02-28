@@ -23,7 +23,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        CollisionHandler.HandleBasicCollision(enemy, collision);
+                        EnemyCollisionHandler.HandleEnemyWallBlockCollision(enemy, collision);
                     }
                 }
             }
@@ -38,7 +38,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, block.Hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        CollisionHandler.HandleBasicCollision(enemy, collision);
+                        EnemyCollisionHandler.HandleEnemyWallBlockCollision(enemy, collision);
                     }
                 }
             }
@@ -51,7 +51,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
                 if (!collision.Equals(Rectangle.Empty))
                 {
-                    CollisionHandler.HandleBasicCollision(enemy, collision);
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(enemy, collision);
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, door.Value.Hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        CollisionHandler.HandleBasicCollision(enemy, collision);
+                        EnemyCollisionHandler.HandleEnemyWallBlockCollision(enemy, collision);
                     }
                 }
             }
