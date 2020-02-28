@@ -9,7 +9,7 @@ namespace LegendOfZelda
 
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();
-        private Texture2D bossModSpriteSheet = Textures.GetBossModSheet();
+        private Texture2D npcSpriteSheet = Textures.GetNPCSheet();
 
 
         private EnemySpriteFactory() { }
@@ -310,6 +310,14 @@ namespace LegendOfZelda
             //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
 
             return new AnimatedSprite(bossSpriteSheet, new Rectangle(83, 90, 30, 18), 2, false);
+        }
+
+        public ISprite CreateOldManSprite()
+        {
+            //Crop spritesheet to contain only desired sprites
+            //Help from https://gamedev.stackexchange.com/questions/35358/create-a-texture2d-from-larger-image
+
+            return new AnimatedSprite(npcSpriteSheet, new Rectangle(154, 134, 20, 19), 1, false);
         }
     }
 }

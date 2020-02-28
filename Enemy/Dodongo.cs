@@ -8,14 +8,14 @@ using System.Collections.Generic;
 namespace LegendOfZelda
 {
 
-	class Dodongo : IEnemy
+	class Dodongo : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
 		public IDodongoState state;
 		public ISprite sprite;
 		private RandomEnemyController random;
-		private int xPos;
-		private int yPos;
+		private int x;
+		private int y;
 		private int currentStep;
 		private int cd;
 
@@ -36,13 +36,13 @@ namespace LegendOfZelda
 		}
 		public int X
 		{
-			get { return xPos; }
-			set { xPos = value; }
+			get { return x; }
+			set { x = value; }
 		}
 		public int Y
 		{
-			get { return yPos; }
-			set { yPos = value; }
+			get { return y; }
+			set { y = value; }
 		}
 
 		public int xVel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -54,9 +54,9 @@ namespace LegendOfZelda
 		{
 			//dodongos eat bombs then they explode and the dodongo is hurt but not dead yet, takes 3 bombs 
 			sprite = EnemySpriteFactory.Instance.CreateUpMovingDodongoSprite();
-			xPos = 400;
-			yPos = 200;
-			sprite.Position = new Point(xPos, yPos);
+			x = 400;
+			y = 200;
+			sprite.Position = new Point(x, y);
 			currentStep = 0;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);

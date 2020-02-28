@@ -15,7 +15,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, s.Hitbox);
                 if (!collision.Equals(Rectangle.Empty))
                 {
-                    HandleCollision(player, collision);
+                    CollisionHandler.HandleBasicCollision(player, collision);
                 }
             }
         }
@@ -29,22 +29,21 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        HandleCollision(player, collision);
+                        CollisionHandler.HandleBasicCollision(player, collision);
                     }
                 
             }
             
         }
 
-        public static void PlayerWallCollision(IPlayer player,
-                Room room)
+        public static void PlayerWallCollision(IPlayer player, Room room)
         {
                 foreach(Rectangle hitbox in room.hitboxes)
                 {
                     Rectangle collision = Rectangle.Intersect(player.Hitbox, hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        HandleCollision(player, collision);
+                        CollisionHandler.HandleBasicCollision(player, collision);
                     }
                 }
         }
@@ -68,38 +67,9 @@ namespace LegendOfZelda
                             m.MoveOnceDown();
                         }
                     }
-                    HandleCollision(player, collision);
+                    CollisionHandler.HandleBasicCollision(player, collision);
                 }
             }
-        }
-
-        private static void HandleCollision(ICollideable moveable,
-                in Rectangle collision)
-        {
-            if (collision.Width > collision.Height)
-            {
-                if (collision.Y != moveable.Hitbox.Y)
-                {
-                    moveable.Y -= collision.Height;
-                }
-                else
-                {
-                    moveable.Y += collision.Height;
-                }
-            }
-            else
-            {
-                if (collision.X > moveable.Hitbox.X)
-                {
-                    moveable.X -= collision.Width;
-                }
-                else
-                {
-                    moveable.X += collision.Width;
-                }
-            }
-
-
         }
     }
 }
