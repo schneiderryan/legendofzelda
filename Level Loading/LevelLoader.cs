@@ -58,7 +58,7 @@ namespace LegendOfZelda
             {
                 "Block",
                 "MoveableBlockVertical",
-                "MoveableBlockRight",
+                "MoveableBlockRight"
             };
 
             this.possibleDoors = new List<String>();
@@ -137,13 +137,13 @@ namespace LegendOfZelda
             {
                 background = RoomSpriteFactory.Instance.CreateRoom15();
             }
-            else if (roomNumber == 17) // The test room with all the stuffs
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom0();
-            }
-            else // room 16
+            else if(roomNumber == 16)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom16();
+            }
+            else // room 17
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom17();
             }
             return background;
         }
@@ -250,10 +250,6 @@ namespace LegendOfZelda
                 {
                     item = new Bow();
                 }
-                else if (entry.Value.Equals("Boomerang"))
-                {
-                    item = new Boomerang();
-                }
                 else if (entry.Value.Equals("Clock"))
                 {
                     item = new Clock();
@@ -307,9 +303,10 @@ namespace LegendOfZelda
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
+                IBlock block;
                 if (entry.Value.Equals("Block"))
                 {
-                    IBlock block = new InvisibleBlock();
+                    block = new InvisibleBlock();
                     block.X = (int)entry.Key.X;
                     block.Y = (int)entry.Key.Y;
                     blocks.Add(block);

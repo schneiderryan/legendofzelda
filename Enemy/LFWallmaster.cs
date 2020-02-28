@@ -86,23 +86,27 @@ namespace LegendOfZelda
 		public void MoveLeft()
 		{
 			state.MoveLeft();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
 		public void MoveRight()
 		{
 			state.MoveRight();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
-		 public void MoveUp()
+		public void MoveUp()
 		{
 			state.MoveUp();
+			sprite.Position = new Point(this.X, this.Y);
 		}
-		 public void MoveDown()
+		public void MoveDown()
 		{
 			state.MoveDown();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
-		 public void Update()
+		public void Update()
 		{
 			currentStep++;
 			if(currentStep > changeDirection)

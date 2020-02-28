@@ -7,64 +7,92 @@ namespace LegendOfZelda
 {
     static class PlayerCollisionHandler
     {
-        public static void PlayerBlockCollision(IPlayer player,
-                List<IBlock> still)
+        public static void HandlePlayerWallBlockCollision(IPlayer player, in Rectangle collision)
         {
-            foreach (ICollideable s in still)
+            if (collision.Width > collision.Height)
             {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, s.Hitbox);
-                CollisionHandler.HandleBasicCollision(player, collision);
-            }
-        }
-
-        public static void PlayerDoorCollision(IPlayer player,
-                Dictionary<String, IDoor> doors)
-        {
-            foreach(KeyValuePair<String, IDoor> door in doors)
-            {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
-                CollisionHandler.HandleBasicCollision(player, collision);
-            }
-        }
-
-        public static void PlayerWallCollision(IPlayer player, Room room)
-        {
-            foreach(Rectangle hitbox in room.hitboxes)
-            {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, hitbox);
-                CollisionHandler.HandleBasicCollision(player, collision);
-            }
-        }
-
-        public static void PlayerMoveableBlockCollision(IPlayer player,
-                List<IMoveableBlock> moveable)
-        {
-            foreach (IMoveableBlock m in moveable)
-            {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, m.Hitbox);
-                if (!collision.IsEmpty)
+                if (collision.Y != player.Hitbox.Y)
                 {
-                    if (collision.Width > collision.Height)
+                    player.Y -= collision.Height;
+                }
+                else
+                {
+                    player.Y += collision.Height;
+                }
+            }
+            else
+            {
+                if (collision.X != player.Hitbox.X)
+                {
+                    player.X -= collision.Width;
+                }
+                else
+                {
+                    player.X += collision.Width;
+                }
+            }
+        }
+
+        public static void HandlePlayerMoveableBlockCollision(IPlayer player, IMoveableBlock m,
+                                                                            in Rectangle collision)
+        {
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y == player.Hitbox.Y)
+                {
+                    m.MoveOnceUp();
+                }
+                else
+                {
+                    m.MoveOnceDown();
+                }
+            }
+            else
+            {
+                if (collision.X == player.Hitbox.X)
+                {
+                    m.MoveOnceLeft();
+                }
+                else
+                {
+                    m.MoveOnceRight();
+                }
+            }
+        }
+
+        public static void HandlePlayerEnemyCollision(IPlayer player, in Rectangle collision)
+        {
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y == player.Hitbox.Y)
+                {
+                    if(!player.direction.Equals("up") || !player.IsAttacking())
                     {
-                        if (collision.Y == player.Hitbox.Y)
-                        {
-                            m.MoveOnceUp();
-                        }
-                        else
-                        {
-                            m.MoveOnceDown();
-                        }
+                        player.TakeDamage();
                     }
-                    else
+                }
+                else
+                {
+                    if (!player.direction.Equals("down") || !player.IsAttacking())
                     {
-                        if (collision.X == player.Hitbox.X)
-                        {
-                            m.MoveOnceLeft();
-                        }
-                        else
-                        {
-                            m.MoveOnceRight();
-                        }
+                        player.TakeDamage();
+                    }
+                }
+            }
+            else
+            {
+                if (collision.X == player.Hitbox.X)
+                {
+                    if (!player.direction.Equals("left") || !player.IsAttacking())
+                    {
+                        player.TakeDamage();
+                    }
+                }
+                else
+                {
+                    if (!player.direction.Equals("right") || !player.IsAttacking())
+                    {
+                        player.TakeDamage();
                     }
                 }
             }
