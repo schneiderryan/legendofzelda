@@ -65,12 +65,11 @@ namespace LegendOfZelda
                 Scale = 3
             };
         }
-
         
         public static ISprite GetBoomerang()
         {
             return new Sprite(Textures.GetItemSheet(),
-                    new Rectangle(128, 2, 8, 8))
+                    new Rectangle(128, 3, 5, 7))
             { Scale = 3f };
         }
 

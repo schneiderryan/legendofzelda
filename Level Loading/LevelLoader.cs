@@ -57,7 +57,8 @@ namespace LegendOfZelda
             this.possibleBlocks = new List<String>()
             {
                 "Block",
-                "MoveableBlock"
+                "MoveableBlockVertical",
+                "MoveableBlockRight",
             };
 
             this.possibleDoors = new List<String>();
@@ -136,6 +137,10 @@ namespace LegendOfZelda
             {
                 background = RoomSpriteFactory.Instance.CreateRoom15();
             }
+            else if (roomNumber == 17) // The test room with all the stuffs
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom0();
+            }
             else // room 16
             {
                 background = RoomSpriteFactory.Instance.CreateRoom16();
@@ -201,7 +206,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Snake"))
                 {
-                    enemy = new Snake();
+                    enemy = new Snake(game);
                 }
                 else if (entry.Value.Equals("Dodongo"))
                 {
@@ -244,6 +249,10 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("Bow"))
                 {
                     item = new Bow();
+                }
+                else if (entry.Value.Equals("Boomerang"))
+                {
+                    item = new Boomerang();
                 }
                 else if (entry.Value.Equals("Clock"))
                 {
@@ -298,10 +307,9 @@ namespace LegendOfZelda
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
-                IBlock block;
                 if (entry.Value.Equals("Block"))
                 {
-                    block = new InvisibleBlock();
+                    IBlock block = new InvisibleBlock();
                     block.X = (int)entry.Key.X;
                     block.Y = (int)entry.Key.Y;
                     blocks.Add(block);
@@ -316,10 +324,17 @@ namespace LegendOfZelda
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
-                IMoveableBlock block;
-                if (entry.Value.Equals("MoveableBlock"))
+                IMoveableBlock block = null;
+                if (entry.Value.Equals("MoveableBlockVertical"))
                 {
-                    block = new MovableBlock();
+                    block = new MoveableBlockVertical();
+                }
+                else if (entry.Value.Equals("MoveableBlockRight"))
+                {
+                    block = new MoveableBlockRight();
+                }
+                if (block != null)
+                {
                     block.X = (int)entry.Key.X;
                     block.Y = (int)entry.Key.Y;
                     blocks.Add(block);
