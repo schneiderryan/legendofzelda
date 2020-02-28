@@ -13,6 +13,7 @@ namespace LegendOfZelda
             PlayerBlockCollision(player, room.blocks);
             PlayerDoorCollision(player, room.doors);
             PlayerWallCollision(player, room);
+            PlayerEnemyCollision(player, room.enemies);
         }
 
         private static void PlayerBlockCollision(IPlayer player,
@@ -53,6 +54,18 @@ namespace LegendOfZelda
                 if (!collision.Equals(Rectangle.Empty))
                 {
                     PlayerCollisionHandler.HandlePlayerMoveableBlockCollision(player, m, collision);
+                }
+            }
+        }
+
+        private static void PlayerEnemyCollision(IPlayer player, List<IEnemy> enemies)
+        {
+            foreach(IEnemy enemy in enemies)
+            {
+                Rectangle collision = Rectangle.Intersect(player.Hitbox, enemy.Hitbox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    PlayerCollisionHandler.HandlePlayerEnemyCollision(player, collision);
                 }
             }
         }

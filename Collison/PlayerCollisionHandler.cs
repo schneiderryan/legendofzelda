@@ -59,5 +59,43 @@ namespace LegendOfZelda
                 }
             }
         }
+
+        public static void HandlePlayerEnemyCollision(IPlayer player, in Rectangle collision)
+        {
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y == player.Hitbox.Y)
+                {
+                    if(!player.direction.Equals("up") || !player.IsAttacking())
+                    {
+                        player.TakeDamage();
+                    }
+                }
+                else
+                {
+                    if (!player.direction.Equals("down") || !player.IsAttacking())
+                    {
+                        player.TakeDamage();
+                    }
+                }
+            }
+            else
+            {
+                if (collision.X == player.Hitbox.X)
+                {
+                    if (!player.direction.Equals("left") || !player.IsAttacking())
+                    {
+                        player.TakeDamage();
+                    }
+                }
+                else
+                {
+                    if (!player.direction.Equals("right") || !player.IsAttacking())
+                    {
+                        player.TakeDamage();
+                    }
+                }
+            }
+        }
     }
 }

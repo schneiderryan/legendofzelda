@@ -57,10 +57,8 @@ namespace LegendOfZelda
             keyboard.Update();
             playerKeyboard.Update();
 
-            currentRoom.Update();
             link.Update();
-            
-
+            currentRoom.Update();
 
             base.Update(gameTime);
         }
@@ -72,7 +70,7 @@ namespace LegendOfZelda
             
             currentRoom.Draw(spriteBatch);
             link.Draw(spriteBatch, Color.White);
-            rooms[roomIndex].DrawOverlay(spriteBatch);
+            currentRoom.DrawOverlay(spriteBatch);
             
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
 
