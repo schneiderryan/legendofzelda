@@ -54,7 +54,6 @@ namespace LegendOfZelda
 		public void Update()
 		{
 			snake.X -= 1;
-
 			if (snake.X < 0)
 			{
 				snake.X += 800;
