@@ -60,7 +60,7 @@ namespace LegendOfZelda
 				if (linkXPos < snake.X)
 				{
 					snake.X -= 4;
-					snake.state = new LeftMovingSnakeState(snake);
+					MoveLeft();
 				}
 				else
 				{

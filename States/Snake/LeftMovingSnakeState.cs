@@ -65,7 +65,7 @@ namespace LegendOfZelda
 				else
 				{
 					snake.X += 4;
-					snake.state = new RightMovingSnakeState(snake);
+					MoveRight();
 				}
 			}
 			else
