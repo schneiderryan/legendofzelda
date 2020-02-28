@@ -43,12 +43,12 @@ namespace LegendOfZelda
             {
                 if (collision.Y != enemy.Hitbox.Y)
                 {
-                    enemy.Y -= collision.Height;
+                    enemy.Y -= collision.Height + 15;
                     //Take damage
                 }
                 else
                 {
-                    enemy.Y += collision.Height;
+                    enemy.Y += collision.Height + 15;
                     //Take damage
                 }
             }
@@ -56,12 +56,12 @@ namespace LegendOfZelda
             {
                 if (collision.X != enemy.Hitbox.X)
                 {
-                    enemy.X -= collision.Width;
+                    enemy.X -= collision.Width + 15;
                     //Take damage
                 }
                 else
                 {
-                    enemy.X += collision.Width;
+                    enemy.X += collision.Width + 15;
                     //Take damage
                 }
             }
