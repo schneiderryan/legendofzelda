@@ -159,6 +159,7 @@ namespace LegendOfZelda
                 new Room(game, "Rooms/Room14.csv"),
                 new Room(game, "Rooms/Room15.csv"),
                 new Room(game, "Rooms/Room16.csv"),
+                new Room(game, "Rooms/Room17.csv"),
             };
 
             return list;

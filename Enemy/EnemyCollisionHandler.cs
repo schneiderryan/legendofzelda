@@ -7,7 +7,33 @@ namespace LegendOfZelda
 {
     static class EnemyCollisionHandler
     {
-        public static void HandleEnemyBasicCollision(ICollideable moveable, in Rectangle collision)
+        public static void HandleEnemyWallBlockCollision(IEnemy enemy, in Rectangle collision)
+        {
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y == enemy.Hitbox.Y)
+                {
+                    enemy.MoveLeft();
+                }
+                else
+                {
+                    enemy.MoveRight();
+                }
+            }
+            else
+            {
+                if (collision.X == enemy.Hitbox.X)
+                {
+                    enemy.MoveDown();
+                }
+                else
+                {
+                    enemy.MoveUp();
+                }
+            }
+        }
+
+        public static void HandleEnemySmartCollision(IEnemy enemy, in Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {

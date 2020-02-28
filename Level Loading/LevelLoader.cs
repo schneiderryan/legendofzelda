@@ -136,9 +136,13 @@ namespace LegendOfZelda
             {
                 background = RoomSpriteFactory.Instance.CreateRoom15();
             }
-            else // room 16
+            else if(roomNumber == 16)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom16();
+            }
+            else // room 17
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom17();
             }
             return background;
         }
