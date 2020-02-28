@@ -22,10 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Rooms\Room0.csv">
+    <None Update="Rooms\TestLevel.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Room1 - Copy.csv">
+    <None Update="Rooms\Room0.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Rooms\Room1.csv">
@@ -35,9 +35,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Rooms\Room11.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Room12 - Copy.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Rooms\Room12.csv">
@@ -64,9 +61,6 @@
     <None Update="Rooms\Room3.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Room4 - Copy.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Rooms\Room4.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -76,19 +70,10 @@
     <None Update="Rooms\Room6.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Room7 - Copy - Copy.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Room7 - Copy.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Rooms\Room7.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Rooms\Room8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Room9 - Copy.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Rooms\Room9.csv">
