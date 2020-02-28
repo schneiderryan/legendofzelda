@@ -14,12 +14,12 @@ namespace LegendOfZelda
                 if (collision.Y != enemy.Hitbox.Y)
                 {
                     enemy.Y -= collision.Height;
-                    enemy.MoveLeft();
+                    enemy.MoveUp();
                 }
                 else
                 {
                     enemy.Y += collision.Height;
-                    enemy.MoveRight();
+                    enemy.MoveLeft();
                 }
             }
             else
@@ -32,7 +32,7 @@ namespace LegendOfZelda
                 else
                 {
                     enemy.X += collision.Width;
-                    enemy.MoveUp();
+                    enemy.MoveRight();
                 }
             }
         }
