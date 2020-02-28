@@ -320,10 +320,17 @@ namespace LegendOfZelda
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
-                IMoveableBlock block;
-                if (entry.Value.Equals("MoveableBlock"))
+                IMoveableBlock block = null;
+                if (entry.Value.Equals("MoveableBlockVertical"))
                 {
-                    block = new MovableBlock();
+                    block = new MoveableBlockVertical();
+                }
+                else if (entry.Value.Equals("MoveableBlockRight"))
+                {
+                    block = new MoveableBlockRight();
+                }
+                if (block != null)
+                {
                     block.X = (int)entry.Key.X;
                     block.Y = (int)entry.Key.Y;
                     blocks.Add(block);
