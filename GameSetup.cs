@@ -124,7 +124,7 @@ namespace LegendOfZelda
                 new Keese(),
                 new Stalfo(),
                 new Trap(),
-                new Snake(),
+                new Snake(game),
                 new LFWallmaster(),
                 new RFWallmaster(),
                 new Fireball()

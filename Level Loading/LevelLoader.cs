@@ -206,7 +206,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Snake"))
                 {
-                    enemy = new Snake();
+                    enemy = new Snake(game);
                 }
                 else if (entry.Value.Equals("Dodongo"))
                 {

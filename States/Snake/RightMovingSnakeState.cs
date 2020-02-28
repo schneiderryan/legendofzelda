@@ -53,7 +53,26 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			snake.X += 1;
+			int linkYPos = snake.game.link.Y;
+			int linkXPos = snake.game.link.X;
+			if ((linkYPos < (snake.Y + 10)) && (linkYPos > (snake.Y - 10)))
+			{
+				if (linkXPos < snake.X)
+				{
+					snake.X -= 4;
+					snake.state = new LeftMovingSnakeState(snake);
+				}
+				else
+				{
+					snake.X += 4;
+					snake.state = this;
+				}
+			}
+			else
+			{
+				snake.X += 1;
+			}
+			
 
 			if (snake.X > 800)
 			{
