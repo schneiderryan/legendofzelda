@@ -140,7 +140,7 @@ namespace LegendOfZelda
             if (itemTimer == 0)
             {
                 itemTimer = 75;
-                game.projectiles.Add(projectile);
+                game.currentRoom.projectiles.Add(projectile);
             }
         }
 

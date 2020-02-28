@@ -173,7 +173,7 @@ namespace LegendOfZelda
 
 		public void UseProjectile(IProjectile projectile)
 		{
-			game.projectiles.Add(projectile);
+			game.currentRoom.projectiles.Add(projectile);
 		}
 
 		public void Use(IEnemy enemy)

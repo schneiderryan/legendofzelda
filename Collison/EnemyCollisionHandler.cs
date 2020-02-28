@@ -66,5 +66,35 @@ namespace LegendOfZelda
                 }
             }
         }
+
+        public static void HandleEnemyProjectileCollision(IEnemy enemy, in Rectangle collision)
+        {
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y != enemy.Hitbox.Y)
+                {
+                    enemy.Y -= collision.Height;
+                    //Take damage
+                }
+                else
+                {
+                    enemy.Y += collision.Height;
+                    //Take damage
+                }
+            }
+            else
+            {
+                if (collision.X != enemy.Hitbox.X)
+                {
+                    enemy.X -= collision.Width;
+                    //Take damage
+                }
+                else
+                {
+                    enemy.X += collision.Width;
+                    //Take damage
+                }
+            }
+        }
     }
 }

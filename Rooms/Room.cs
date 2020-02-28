@@ -13,6 +13,7 @@ namespace LegendOfZelda
         public Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
         public List<IEnemy> enemies;
         public List<IItem> items;
+        public List<IProjectile> projectiles;
 
         private Rectangle hitboxLeft1;
         private Rectangle hitboxLeft2;
@@ -24,7 +25,7 @@ namespace LegendOfZelda
         private Rectangle hitboxRight2;
 
         public List<IBlock> blocks;
-        private List<IMoveableBlock> moveableBlocks;
+        public List<IMoveableBlock> moveableBlocks;
        
         public List<Rectangle> hitboxes;
 
@@ -41,6 +42,7 @@ namespace LegendOfZelda
 
             this.enemies = levelLoader.LoadEnemies();
             this.items = levelLoader.LoadItems();
+            this.projectiles = new List<IProjectile>();
             this.moveableBlocks = levelLoader.LoadMoveableBlocks();
             this.blocks = levelLoader.LoadStillBlocks();
             this.blocks.AddRange(moveableBlocks);
@@ -113,6 +115,12 @@ namespace LegendOfZelda
                 Debug.DrawHitbox(sb, enemy.Hitbox);
             }
 
+            foreach (IProjectile projectile in projectiles)
+            {
+                projectile.Draw(sb);
+                Debug.DrawHitbox(sb, projectile.Hitbox);
+            }
+
             foreach (Rectangle box in hitboxes)
             {
                 Debug.DrawHitbox(sb, box);
@@ -140,6 +148,11 @@ namespace LegendOfZelda
                 b.Update();
             }
 
+            foreach (IProjectile projectile in projectiles)
+            {
+                projectile.Update();
+            }
+
             // collision stuffs
             foreach (IItem item in items)
             {
@@ -148,12 +161,17 @@ namespace LegendOfZelda
                 // Item.Pickup(IPlayer) ?
             }
 
+            foreach (IProjectile p in projectiles)
+            {
+                if (p.Hitbox.Intersects(game.link.Hitbox))
+                {
+                    // do things
+                }
+            }
+
             // order matters, for the blocks and moveable blocks at least
-            PlayerCollisionHandler.PlayerMoveableBlockCollision(game.link, moveableBlocks);
-            PlayerCollisionHandler.PlayerBlockCollision(game.link, blocks);
-            PlayerCollisionHandler.PlayerWallCollision(game.link, this);
-            PlayerCollisionHandler.PlayerDoorCollision(game.link, doors);
-            EnemyCollisionDetector.HandleEnemyCollisions(enemies, this, game.link);
+            PlayerCollisionDetector.HandlePlayerCollisions(game.link, this);
+            EnemyCollisionDetector.HandleEnemyCollisions(this, game.link);
         }
     }
 }
