@@ -63,7 +63,7 @@ namespace LegendOfZelda
 
 		public OldMan(int xpos, int ypos)
 		{
-			//oldmans can be hit once before they die to the next hit 
+			 
 			sprite = EnemySpriteFactory.Instance.CreateOldManSprite();
 			X = xpos;
 			Y = ypos;
@@ -109,6 +109,7 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
+			/*
 			currentStep++;
 			if(currentStep > changeDirection)
 			{
@@ -119,6 +120,7 @@ namespace LegendOfZelda
 			
 			state.Update();
 			sprite.Update();
+			*/
 		}
 
 		public void Draw(SpriteBatch spriteBatch)

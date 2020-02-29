@@ -68,6 +68,19 @@ namespace LegendOfZelda
 					MoveRight();
 				}
 			}
+			else if ((linkXPos < (snake.X + 10)) && (linkXPos > (snake.X - 10)))
+			{
+				if (linkYPos < snake.Y)
+				{
+					snake.Y -= 4;
+					MoveUp();
+				}
+				else
+				{
+					snake.Y += 4;
+					MoveDown();
+				}
+			}
 			else
 			{
 				snake.X -= 1;
