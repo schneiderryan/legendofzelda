@@ -7,70 +7,65 @@ namespace LegendOfZelda
 {
     static class PlayerCollisionDetector
     {
-        public static void HandlePlayerCollisions(IPlayer player, Room room)
+        public static void HandlePlayerCollisions(IRoom room, IPlayer player)
         {
-            PlayerMoveableBlockCollision(player, room.moveableBlocks);
-            PlayerBlockCollision(player, room.blocks);
-            PlayerDoorCollision(player, room.doors);
-            PlayerWallCollision(player, room);
-            PlayerEnemyCollision(player, room.enemies);
+            // order matters, for the blocks and moveable blocks at least
+            PlayerMoveableBlockCollision(player, room.MoveableBlocks);
+            PlayerBlockCollision(player, room.Blocks);
+            PlayerWallCollision(player, room.Hitboxes);
+            PlayerDoorCollision(player, room.Doors);
+            PlayerEnemyCollision(player, room.Enemies);
         }
 
         private static void PlayerBlockCollision(IPlayer player,
-                List<IBlock> still)
+                IList<IBlock> still)
         {
             foreach (ICollideable s in still)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, s.Hitbox);
-                if (!collision.Equals(Rectangle.Empty))
-                {
-                    PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
-                }
+                PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
             }
         }
 
         private static void PlayerDoorCollision(IPlayer player,
-                Dictionary<String, IDoor> doors)
+                IDictionary<string, IDoor> doors)
         {
-            foreach(KeyValuePair<String, IDoor> door in doors)
+            foreach (KeyValuePair<string, IDoor> door in doors)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
-                if (!collision.Equals(Rectangle.Empty))
+                if (door.Key.Equals("Open") && !collision.IsEmpty)
                 {
-                    if (door.Key.Equals("Open"))
-                    {
-                        PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
-                    }
-                }  
+                    PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
+                }
             }
         }
 
-        private static void PlayerWallCollision(IPlayer player, Room room)
+        private static void PlayerWallCollision(IPlayer player, IList<Rectangle> walls)
         {
-            foreach(Rectangle hitbox in room.hitboxes)
+            foreach (Rectangle wall in walls)
             {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, hitbox);
-                if (!collision.Equals(Rectangle.Empty))
+                Rectangle collision = Rectangle.Intersect(player.Hitbox, wall);
+                if (!collision.IsEmpty)
                 {
-                    PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
+                    PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
                 }
             }
         }
 
         private static void PlayerMoveableBlockCollision(IPlayer player,
-                List<IMoveableBlock> moveable)
+                IList<IMoveableBlock> moveable)
         {
             foreach (IMoveableBlock m in moveable)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, m.Hitbox);
-                if (!collision.Equals(Rectangle.Empty))
+                if (!collision.IsEmpty)
                 {
-                    PlayerCollisionHandler.HandlePlayerMoveableBlockCollision(player, m, collision);
+                    PlayerCollisionHandler.PlayerMoveableBlockCollision(player, m, collision);
                 }
             }
         }
 
-        private static void PlayerEnemyCollision(IPlayer player, List<IEnemy> enemies)
+        private static void PlayerEnemyCollision(IPlayer player, IList<IEnemy> enemies)
         {
             foreach(IEnemy enemy in enemies)
             {

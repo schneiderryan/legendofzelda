@@ -12,7 +12,7 @@ namespace LegendOfZelda
         public override void Use(IPlayer player)
         {
             IProjectile proj = new SwordProjectile(player.direction,
-                player.X, player.Y);
+                player.SpriteBox);
             player.UseProjectile(proj);
         }
     }

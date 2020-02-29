@@ -18,6 +18,8 @@ namespace LegendOfZelda
             get { return decoratedLink.Hitbox; }
         }
 
+        public Rectangle SpriteBox { get => decoratedLink.SpriteBox; }
+
         public ISprite sprite
         {
             get { return decoratedLink.sprite; }

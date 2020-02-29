@@ -8,28 +8,17 @@ namespace LegendOfZelda
 {
     class Room : IRoom
     {
-        public LegendOfZelda game;
-        public ISprite background;
-        public Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
-        public List<IEnemy> enemies;
-        public List<IItem> items;
-        public List<IProjectile> projectiles;
+        public IDictionary<string, IDoor> Doors { get; private set; }
+        public IList<Rectangle> Hitboxes { get; private set; }
+        public IList<IBlock> Blocks { get => blocks; }
+        public IList<IMoveableBlock> MoveableBlocks { get; private set; }
+        public IList<IEnemy> Enemies { get; private set; }
 
-        private Rectangle hitboxLeft1;
-        private Rectangle hitboxLeft2;
-        private Rectangle hitboxTop1;
-        private Rectangle hitboxTop2;
-        private Rectangle hitboxBottom1;
-        private Rectangle hitboxBottom2;
-        private Rectangle hitboxRight1;
-        private Rectangle hitboxRight2;
+        private List<IBlock> blocks;
+        private IList<IItem> items;
+        private LegendOfZelda game;
+        private ISprite background;
 
-        public List<IBlock> blocks;
-        public List<IMoveableBlock> moveableBlocks;
-       
-        public List<Rectangle> hitboxes;
-
-        //populate with items and enemies (and player?)
         public Room(LegendOfZelda game, String levelName)
         {
             this.game = game;
@@ -40,64 +29,65 @@ namespace LegendOfZelda
             this.background.Scale = 2.0f;
             this.background.Position = new Point(0, 0);
 
-            this.enemies = levelLoader.LoadEnemies();
+            this.Enemies = levelLoader.LoadEnemies();
             this.items = levelLoader.LoadItems();
-            this.projectiles = new List<IProjectile>();
-            this.moveableBlocks = levelLoader.LoadMoveableBlocks();
+            this.MoveableBlocks = levelLoader.LoadMoveableBlocks();
             this.blocks = levelLoader.LoadStillBlocks();
-            this.blocks.AddRange(moveableBlocks);
+            this.blocks.AddRange(MoveableBlocks);
 
-            this.doors = levelLoader.LoadDoors();
+            this.Doors = levelLoader.LoadDoors();
 
-            hitboxes = new List<Rectangle>();
+            Hitboxes = new List<Rectangle>()
+            {
+                // left hitboxes
+                new Rectangle(0, 0, 64, 172),
+                new Rectangle(0, 193, 64, 160),
 
-            hitboxLeft1 = new Rectangle(0, 0, 64, 144);
-            hitboxLeft2 = new Rectangle(0, 209, 64, 144);
-            hitboxes.Add(hitboxLeft1);
-            hitboxes.Add(hitboxLeft2);
+                // top hitboxes
+                new Rectangle(0, 0, 240, 64),
+                new Rectangle(273, 0, 240, 64),
 
-            hitboxTop1 = new Rectangle(0, 0, 224, 64);
-            hitboxTop2 = new Rectangle(289, 0, 224, 64);
-            hitboxes.Add(hitboxTop1);
-            hitboxes.Add(hitboxTop2);
+                // bottom hitboxes
+                new Rectangle(0, 289, 240, 64),
+                new Rectangle(273, 289, 240, 64),
 
-            hitboxBottom1 = new Rectangle(0, 289, 224, 64);
-            hitboxBottom2 = new Rectangle(289, 289, 224, 64);
-            hitboxes.Add(hitboxBottom1);
-            hitboxes.Add(hitboxBottom2);
-
-            hitboxRight1 = new Rectangle(448, 0, 64, 144);
-            hitboxRight2 = new Rectangle(448, 209, 64, 144);
-            hitboxes.Add(hitboxRight1);
-            hitboxes.Add(hitboxRight2);
-        }
-
-        public Dictionary<String, IDoor> getDoor()
-        {
-            return doors;
+                // right hitboxes
+                new Rectangle(448, 0, 64, 172),
+                new Rectangle(448, 190, 64, 160),
+            };
         }
 
         public void DrawOverlay(SpriteBatch sb)
         {
-            // draw door frames?
+            foreach (KeyValuePair<String, IDoor> door in Doors)
+            {
+                if((!(door.Key == "up")) || door.Value is TopOpen )
+                {
+                    door.Value.Draw(sb);
+                    Debug.DrawHitbox(sb, door.Value.Hitbox);
+                }
+            }
         }
 
         public void Draw(SpriteBatch sb)
         {
             background.Draw(sb);
 
-            foreach (KeyValuePair<String, IDoor> door in doors)
+            foreach (KeyValuePair<String, IDoor> door in Doors)
             {
-                door.Value.Draw(sb);
-                Debug.DrawHitbox(sb, door.Value.Hitbox);
+                if (door.Key == "up")
+                {
+                    Debug.DrawHitbox(sb, door.Value.Hitbox);
+                    door.Value.Draw(sb);
+                }
             }
 
-            foreach (IBlock b in blocks)
+            foreach (IBlock b in Blocks)
             {
                 Debug.DrawHitbox(sb, b.Hitbox);
             }
 
-            foreach (IMoveableBlock b in moveableBlocks)
+            foreach (IMoveableBlock b in MoveableBlocks)
             {
                 b.Draw(sb);
                 Debug.DrawHitbox(sb, b.Hitbox);
@@ -109,19 +99,13 @@ namespace LegendOfZelda
                 Debug.DrawHitbox(sb, item.Hitbox);
             }
 
-            foreach (IEnemy enemy in enemies)
+            foreach (IEnemy enemy in Enemies)
             {
                 enemy.Draw(sb);
                 Debug.DrawHitbox(sb, enemy.Hitbox);
             }
 
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Draw(sb);
-                Debug.DrawHitbox(sb, projectile.Hitbox);
-            }
-
-            foreach (Rectangle box in hitboxes)
+            foreach (Rectangle box in Hitboxes)
             {
                 Debug.DrawHitbox(sb, box);
             }
@@ -129,31 +113,24 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            foreach (KeyValuePair<String, IDoor> door in doors)
+            foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();
+            }
+            foreach (IMoveableBlock b in MoveableBlocks)
+            {
+                b.Update();
             }
 
             foreach (IItem item in items)
             {
                 item.Update();
             }
-
-            foreach (IEnemy enemy in enemies)
+            foreach (IEnemy enemy in Enemies)
             {
                 enemy.Update();
             }
-            foreach (IMoveableBlock b in moveableBlocks)
-            {
-                b.Update();
-            }
 
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Update();
-            }
-
-            // collision stuffs
             foreach (IItem item in items)
             {
                 // check collision
@@ -161,17 +138,8 @@ namespace LegendOfZelda
                 // Item.Pickup(IPlayer) ?
             }
 
-            foreach (IProjectile p in projectiles)
-            {
-                if (p.Hitbox.Intersects(game.link.Hitbox))
-                {
-                    // do things
-                }
-            }
-
-            // order matters, for the blocks and moveable blocks at least
-            PlayerCollisionDetector.HandlePlayerCollisions(game.link, this);
-            EnemyCollisionDetector.HandleEnemyCollisions(this, game.link);
+            PlayerCollisionDetector.HandlePlayerCollisions(this, game.link);
+            EnemyCollisionDetector.HandleEnemyCollisions(this);
         }
     }
 }

@@ -5,8 +5,8 @@ namespace LegendOfZelda
 {
     abstract class Projectile : CollideableObject, IProjectile
     {
-        public int VX { get; set; }
-        public int VY { get; set; }
+        public int VX { get; protected set; }
+        public int VY { get; protected set; }
         protected ISprite sprite;
 
         public Projectile(string direction, int xPos, int yPos,
@@ -47,5 +47,7 @@ namespace LegendOfZelda
         {
             sprite.Draw(sb, Color.White);
         }
+
+        public virtual IDespawnEffect GetDespawnEffect() { return null; }
     }
 }

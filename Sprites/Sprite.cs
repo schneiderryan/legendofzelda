@@ -22,6 +22,9 @@ namespace LegendOfZelda
             get { return box; }
         }
 
+        public int X { get => box.X; set => box.X = value; }
+        public int Y { get => box.Y; set => box.Y = value; }
+
         public float Scale
         {
             get { return scale; }

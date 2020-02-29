@@ -133,9 +133,9 @@ namespace LegendOfZelda
             return list;
         }
 
-        public static List<Room> GenerateRoomList(LegendOfZelda game)
+        public static List<IRoom> GenerateRoomList(LegendOfZelda game)
         {
-            List<Room> list = new List<Room>()
+            List<IRoom> list = new List<IRoom>()
             {
                 new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
