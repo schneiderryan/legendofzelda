@@ -58,7 +58,7 @@ namespace LegendOfZelda
             {
                 "Block",
                 "MoveableBlockVertical",
-                "MoveableBlockRight",
+                "MoveableBlockLeft",
             };
 
             this.possibleDoors = new List<String>();
@@ -329,9 +329,9 @@ namespace LegendOfZelda
                 {
                     block = new MoveableBlockVertical();
                 }
-                else if (entry.Value.Equals("MoveableBlockRight"))
+                else if (entry.Value.Equals("MoveableBlockLeft"))
                 {
-                    block = new MoveableBlockRight();
+                    block = new MoveableBlockLeft();
                 }
                 if (block != null)
                 {

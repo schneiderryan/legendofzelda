@@ -8,13 +8,13 @@ namespace LegendOfZelda
 {
     class Room : IRoom
     {
-        public Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
-        public List<Rectangle> hitboxes;
-        public List<IBlock> blocks;
-        public List<IMoveableBlock> moveableBlocks;
+        public Dictionary<string, IDoor> Doors { get; private set; }
+        public List<Rectangle> Hitboxes { get; private set; }
+        public List<IBlock> Blocks { get; private set; }
+        public List<IMoveableBlock> MoveableBlocks { get; private set; }
 
-        private List<IItem> items;
-        private List<IEnemy> enemies;
+        private IList<IItem> items;
+        private IList<IEnemy> enemies;
         private LegendOfZelda game;
         private ISprite background;
 
@@ -30,13 +30,14 @@ namespace LegendOfZelda
 
             this.enemies = levelLoader.LoadEnemies();
             this.items = levelLoader.LoadItems();
-            this.moveableBlocks = levelLoader.LoadMoveableBlocks();
-            this.blocks = levelLoader.LoadStillBlocks();
-            this.blocks.AddRange(moveableBlocks);
+            this.MoveableBlocks = levelLoader.LoadMoveableBlocks();
+            this.Blocks = levelLoader.LoadStillBlocks();
+            this.Blocks.AddRange(MoveableBlocks);
+            
 
-            this.doors = levelLoader.LoadDoors();
+            this.Doors = levelLoader.LoadDoors();
 
-            hitboxes = new List<Rectangle>()
+            Hitboxes = new List<Rectangle>()
             {
                 // left hitboxes
                 new Rectangle(0, 0, 64, 144),
@@ -58,7 +59,7 @@ namespace LegendOfZelda
 
         public Dictionary<String, IDoor> getDoor()
         {
-            return doors;
+            return Doors;
         }
 
         public void DrawOverlay(SpriteBatch sb)
@@ -70,18 +71,18 @@ namespace LegendOfZelda
         {
             background.Draw(sb);
 
-            foreach (KeyValuePair<String, IDoor> door in doors)
+            foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Draw(sb);
                 Debug.DrawHitbox(sb, door.Value.Hitbox);
             }
 
-            foreach (IBlock b in blocks)
+            foreach (IBlock b in Blocks)
             {
                 Debug.DrawHitbox(sb, b.Hitbox);
             }
 
-            foreach (IMoveableBlock b in moveableBlocks)
+            foreach (IMoveableBlock b in MoveableBlocks)
             {
                 b.Draw(sb);
                 Debug.DrawHitbox(sb, b.Hitbox);
@@ -99,7 +100,7 @@ namespace LegendOfZelda
                 Debug.DrawHitbox(sb, enemy.Hitbox);
             }
 
-            foreach (Rectangle box in hitboxes)
+            foreach (Rectangle box in Hitboxes)
             {
                 Debug.DrawHitbox(sb, box);
             }
@@ -107,7 +108,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            foreach (KeyValuePair<String, IDoor> door in doors)
+            foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();
             }
@@ -121,7 +122,7 @@ namespace LegendOfZelda
             {
                 enemy.Update();
             }
-            foreach (IMoveableBlock b in moveableBlocks)
+            foreach (IMoveableBlock b in MoveableBlocks)
             {
                 b.Update();
             }
@@ -134,7 +135,7 @@ namespace LegendOfZelda
             }
 
             PlayerCollisionHandler.HandlePlayerCollisions(game.link, this);
-            EnemyCollisionDetector.HandleEnemyCollisions(enemies, this, game.link);
+            EnemyCollisionHandler.HandleEnemyCollisions(enemies, this, game.link);
         }
     }
 }

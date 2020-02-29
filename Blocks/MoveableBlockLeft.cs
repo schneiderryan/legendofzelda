@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    class MoveableBlockRight : IMoveableBlock
+    class MoveableBlockLeft : IMoveableBlock
     {
         private readonly IMoveableBlock block;
 
-        public MoveableBlockRight()
+        public MoveableBlockLeft()
         {
             block = new MoveableBlock();
         }
