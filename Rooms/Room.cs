@@ -141,7 +141,7 @@ namespace LegendOfZelda
             foreach (KeyValuePair<String, IDoor> door in doors)
             {
 
-                if(!(door.Key == "up"))
+                if((!(door.Key == "up")) || door.Value is TopOpen )
                 {
                     door.Value.Draw(sb);
                     Debug.DrawHitbox(sb, door.Value.Hitbox);
