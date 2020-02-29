@@ -33,7 +33,10 @@ namespace LegendOfZelda
             foreach (KeyValuePair<string, IDoor> door in doors)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
-                PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
+                if (door.Key.Equals("Open") && !collision.IsEmpty)
+                {
+                    PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
+                }
             }
         }
 
