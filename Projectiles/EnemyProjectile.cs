@@ -12,6 +12,10 @@ namespace LegendOfZelda
         protected int yVel = 0;
         protected ISprite sprite;
 
+        public int VX => throw new NotImplementedException();
+
+        public int VY => throw new NotImplementedException();
+
         public EnemyProjectile(ISprite sprite, Vector2 position, Vector2 velocity)
         {
             this.sprite = sprite;
@@ -32,6 +36,11 @@ namespace LegendOfZelda
         public virtual void Draw(SpriteBatch sb)
         {
             sprite.Draw(sb, Color.White);
+        }
+
+        public IDespawnEffect GetDespawnEffect()
+        {
+            return null;
         }
     }
 }

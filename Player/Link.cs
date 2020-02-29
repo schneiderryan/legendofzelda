@@ -22,6 +22,11 @@ namespace LegendOfZelda
         private List<Keys> attackKeys;
         private Rectangle hitbox;
 
+
+        public Rectangle SpriteBox
+        {
+            get => sprite.Box;
+        }
         public ISprite sprite { get; set; }
         public ILinkState state { get; set; }
 
@@ -171,7 +176,7 @@ namespace LegendOfZelda
             this.game = game;
             this.d = "up";
             this.sprite.Scale = 2.0f;
-            this.hitbox = new Rectangle(0, 0, sprite.Box.Width, 10);
+            this.hitbox = new Rectangle(0, 0, sprite.Box.Width, sprite.Box.Height / 2);
             this.X = 400;
             this.Y = 200;
             this.itemTimer = 0;

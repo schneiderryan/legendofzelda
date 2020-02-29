@@ -5,17 +5,17 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    static class EnemyCollisionDetector
+    static class EnemyCollisionHandler
     {
-        public static void HandleEnemyCollisions(List<IEnemy> enemies, Room room, IPlayer player)
+        public static void HandleEnemyCollisions(IList<IEnemy> enemies, IRoom room, IPlayer player)
         {
-            EnemyWallCollision(enemies, room.hitboxes);
-            EnemyBlockCollision(enemies, room.blocks);
+            EnemyWallCollision(enemies, room.Hitboxes);
+            EnemyBlockCollision(enemies, room.Blocks);
             EnemyPlayerCollision(enemies, player);
-            EnemyDoorCollision(enemies, room.doors);
+            EnemyDoorCollision(enemies, room.Doors);
         }
 
-        private static void EnemyWallCollision(List<IEnemy> enemies, List<Rectangle> hitboxes)
+        private static void EnemyWallCollision(IList<IEnemy> enemies, IList<Rectangle> hitboxes)
         {
             foreach (IEnemy enemy in enemies) {
                 foreach (Rectangle hitbox in hitboxes)
@@ -29,7 +29,7 @@ namespace LegendOfZelda
             }
         }
 
-        private static void EnemyBlockCollision(List<IEnemy> enemies, List<IBlock> blocks)
+        private static void EnemyBlockCollision(IList<IEnemy> enemies, IList<IBlock> blocks)
         {
             foreach (IEnemy enemy in enemies)
             {
@@ -44,7 +44,7 @@ namespace LegendOfZelda
             }
         }
 
-        private static void EnemyPlayerCollision(List<IEnemy> enemies, IPlayer player)
+        private static void EnemyPlayerCollision(IList<IEnemy> enemies, IPlayer player)
         {
             foreach (IEnemy enemy in enemies)
             {
@@ -56,7 +56,7 @@ namespace LegendOfZelda
             }
         }
 
-        private static void EnemyDoorCollision(List<IEnemy> enemies, Dictionary<String, IDoor> doors)
+        private static void EnemyDoorCollision(IList<IEnemy> enemies, IDictionary<String, IDoor> doors)
         {
             foreach (IEnemy enemy in enemies)
             {

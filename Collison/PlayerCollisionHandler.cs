@@ -7,13 +7,13 @@ namespace LegendOfZelda
     static class PlayerCollisionHandler
     {
 
-        public static void HandlePlayerCollisions(IPlayer player, Room room)
+        public static void HandlePlayerCollisions(IPlayer player, IRoom room)
         {
             // order matters, for the blocks and moveable blocks at least
-            PlayerMoveableBlockCollision(player, room.moveableBlocks);
-            PlayerBlockCollision(player, room.blocks);
-            PlayerWallCollision(player, room.hitboxes);
-            PlayerDoorCollision(player, room.doors);
+            PlayerMoveableBlockCollision(player, room.MoveableBlocks);
+            PlayerBlockCollision(player, room.Blocks);
+            PlayerWallCollision(player, room.Hitboxes);
+            PlayerDoorCollision(player, room.Doors);
         }
 
         private static void PlayerBlockCollision(IPlayer player,

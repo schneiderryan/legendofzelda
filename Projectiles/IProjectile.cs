@@ -6,5 +6,9 @@ namespace LegendOfZelda
     {
         void Update();
         void Draw(SpriteBatch sb);
+        IDespawnEffect GetDespawnEffect();
+
+        int VX { get; }
+        int VY { get; }
     }
 }
