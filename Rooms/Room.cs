@@ -34,38 +34,39 @@ namespace LegendOfZelda
             this.MoveableBlocks = levelLoader.LoadMoveableBlocks();
             this.blocks = levelLoader.LoadStillBlocks();
             this.blocks.AddRange(MoveableBlocks);
-            
 
             this.Doors = levelLoader.LoadDoors();
 
             Hitboxes = new List<Rectangle>()
             {
                 // left hitboxes
-                new Rectangle(0, 0, 64, 144),
-                new Rectangle(0, 209, 64, 144),
+                new Rectangle(0, 0, 64, 172),
+                new Rectangle(0, 193, 64, 160),
 
                 // top hitboxes
-                new Rectangle(0, 0, 224, 64),
-                new Rectangle(289, 0, 224, 64),
+                new Rectangle(0, 0, 240, 64),
+                new Rectangle(273, 0, 240, 64),
 
                 // bottom hitboxes
-                new Rectangle(0, 289, 224, 64),
-                new Rectangle(289, 289, 224, 64),
+                new Rectangle(0, 289, 240, 64),
+                new Rectangle(273, 289, 240, 64),
 
                 // right hitboxes
-                new Rectangle(448, 0, 64, 144),
-                new Rectangle(448, 209, 64, 144),
+                new Rectangle(448, 0, 64, 172),
+                new Rectangle(448, 190, 64, 160),
             };
-        }
-
-        public IDictionary<string, IDoor> getDoor()
-        {
-            return Doors;
         }
 
         public void DrawOverlay(SpriteBatch sb)
         {
-            // draw door frames?
+            foreach (KeyValuePair<String, IDoor> door in Doors)
+            {
+                if((!(door.Key == "up")) || door.Value is TopOpen )
+                {
+                    door.Value.Draw(sb);
+                    Debug.DrawHitbox(sb, door.Value.Hitbox);
+                }
+            }
         }
 
         public void Draw(SpriteBatch sb)
@@ -74,8 +75,11 @@ namespace LegendOfZelda
 
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
-                door.Value.Draw(sb);
-                Debug.DrawHitbox(sb, door.Value.Hitbox);
+                if (door.Key == "up")
+                {
+                    Debug.DrawHitbox(sb, door.Value.Hitbox);
+                    door.Value.Draw(sb);
+                }
             }
 
             foreach (IBlock b in Blocks)

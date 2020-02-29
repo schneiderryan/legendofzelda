@@ -373,7 +373,7 @@ namespace LegendOfZelda
                     }
                     else if (entry.Value.Equals("Open"))
                     {
-                        door = new LeftWall();
+                        door = new LeftOpen();
                     }
                     else if (entry.Value.Equals("Key"))
                     {
@@ -459,7 +459,6 @@ namespace LegendOfZelda
                 }
 
                 doors.Add(entry.Key, door);
-                //check doors and add to doors
             }
             return doors;
         }

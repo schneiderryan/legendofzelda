@@ -45,7 +45,10 @@ namespace LegendOfZelda
             foreach (Rectangle wall in walls)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, wall);
-                PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
+                if (!collision.IsEmpty)
+                {
+                    PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
+                }
             }
         }
 
