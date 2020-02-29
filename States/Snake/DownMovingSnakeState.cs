@@ -53,7 +53,26 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			snake.Y += 1;
+			int linkYPos = snake.game.link.Y;
+			int linkXPos = snake.game.link.X;
+			if ((linkYPos < (snake.Y + 10)) && (linkYPos > (snake.Y - 10)))
+			{
+				if (linkXPos < snake.X)
+				{
+					snake.X -= 4;
+					MoveLeft();
+				}
+				else
+				{
+					snake.X += 4;
+					MoveRight();
+				}
+			}
+			else
+			{
+				snake.Y += 1;
+			}
+			
 
 			if (snake.Y > 480)
 			{

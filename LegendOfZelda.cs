@@ -10,12 +10,11 @@ namespace LegendOfZelda
         private IController mouse;
         private IController keyboard;
         private IController playerKeyboard;
-        public List<IRoom> rooms;
-        public List<IDoor> doors;
+        public List<Room> rooms;
+        public Room currentRoom;
         public int roomIndex = 0;
 
         public IPlayer link;
-        public List<IProjectile> projectiles;
 
         public GraphicsDeviceManager graphics;
 
@@ -39,12 +38,11 @@ namespace LegendOfZelda
             playerKeyboard = GameSetup.CreatePlayerKeysController(link);
 
             rooms = GameSetup.GenerateRoomList(this);
+            currentRoom = rooms[0];
             //doors = GameSetup.GenerateDoorList(this);
             
             mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
-
-            projectiles = new List<IProjectile>();
         }
 
         protected override void LoadContent()
@@ -59,24 +57,8 @@ namespace LegendOfZelda
             keyboard.Update();
             playerKeyboard.Update();
 
-            rooms[roomIndex].Update();
             link.Update();
-
-            foreach(IProjectile projectile in projectiles)
-            {
-                projectile.Update();
-            }
-
-            // collision stuffs
-
-            foreach (IProjectile p in projectiles)
-            {
-                if (p.Hitbox.Intersects(link.Hitbox))
-                {
-                    // do things
-                }
-            }
-
+            currentRoom.Update();
 
             base.Update(gameTime);
         }
@@ -86,18 +68,11 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             
-            rooms[roomIndex].Draw(spriteBatch, Color.White);
+            currentRoom.Draw(spriteBatch);
             link.Draw(spriteBatch, Color.White);
-            rooms[roomIndex].DrawDoor(spriteBatch, Color.White);
+            currentRoom.DrawOverlay(spriteBatch);
             
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
-            
-
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Draw(spriteBatch);
-                Debug.DrawHitbox(spriteBatch, projectile.Hitbox);
-            }
 
             spriteBatch.End();
 

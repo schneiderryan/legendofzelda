@@ -7,7 +7,7 @@ namespace LegendOfZelda
     {
         public InvisibleBlock()
         {
-            Hitbox = new Rectangle(0, 0, 32, 32);
+            Hitbox = new Rectangle(0, 0, LevelParser.TILE_SIZE, LevelParser.TILE_SIZE);
         }
     }
 }

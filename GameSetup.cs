@@ -66,11 +66,7 @@ namespace LegendOfZelda
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
 
-            ICommand cmd = new SwapItemCommand(game, "next");
-            /*keyBinds.Add(Keys.I, cmd);
-
-            cmd = new SwapItemCommand(game, "previous");
-            keyBinds.Add(Keys.U, cmd);*/
+            ICommand cmd;
 
             cmd = new ResetCommand(game);
             keyBinds.Add(Keys.R, cmd);
@@ -80,7 +76,6 @@ namespace LegendOfZelda
 
             return new SlowKeyboardController(keyBinds);
         }
-
 
         public static IController CreateEnemyKeysController(LegendOfZelda game)
         {
@@ -128,8 +123,8 @@ namespace LegendOfZelda
                 new Goriya(),
                 new Keese(),
                 new Stalfo(),
-                new Trap(),
-                new Snake(),
+                new Trap(game),
+                new Snake(game),
                 new LFWallmaster(),
                 new RFWallmaster(),
                 new Fireball()
@@ -138,10 +133,11 @@ namespace LegendOfZelda
             return list;
         }
 
-        public static List<IRoom> GenerateRoomList(LegendOfZelda game)
+        public static List<Room> GenerateRoomList(LegendOfZelda game)
         {
-            List<IRoom> list = new List<IRoom>()
+            List<Room> list = new List<Room>()
             {
+                new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
                 new Room(game, "Rooms/Room1.csv"),
                 new Room(game, "Rooms/Room2.csv"),
@@ -159,6 +155,7 @@ namespace LegendOfZelda
                 new Room(game, "Rooms/Room14.csv"),
                 new Room(game, "Rooms/Room15.csv"),
                 new Room(game, "Rooms/Room16.csv"),
+                new Room(game, "Rooms/Room17.csv"),
             };
 
             return list;

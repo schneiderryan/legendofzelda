@@ -106,20 +106,24 @@ namespace LegendOfZelda
 		public void MoveLeft()
 		{
 			state.MoveLeft();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
 		public void MoveRight()
 		{
 			state.MoveRight();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
 		 public void MoveUp()
 		{
 			state.MoveUp();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 		 public void MoveDown()
 		{
 			state.MoveDown();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
 		 public void Update()
@@ -169,7 +173,7 @@ namespace LegendOfZelda
 
 		public void UseProjectile(IProjectile projectile)
 		{
-			game.projectiles.Add(projectile);
+			game.currentRoom.projectiles.Add(projectile);
 		}
 
 		public void Use(IEnemy enemy)

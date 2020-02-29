@@ -1,9 +1,9 @@
 ﻿15
-Door,Door,Door,Door
-Trap,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Trap
-Null,Null,Null,Null,Null,Null,Block,Null,Null,Null,Null,Null
-Null,Null,Null,Null,Null,Block,Null,Block,Null,Null,Null,Null
-Null,Null,Null,Null,Block,Null,Null,Null,Block,Null,Null,Null
-Null,Null,Null,Null,Null,Block,Null,Block,Null,Null,Null,Null
-Null,Null,Null,Null,Null,Null,Block,Null,Null,Null,Null,Null
-Trap,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Trap
+Null,Null,Null,Null
+Block,Null,Block,Block,Block,Block,Block,Block,Block,Block,Block,Block
+Block,Null,Block,Block,Block,Block,Block,Block,Block,Block,Block,Block
+Block,Null,Block,Block,Block,Null,Null,Null,Null,Null,Null,Null
+Block,Null,Block,Block,Block,Block,Block,Block,Block,Null,Block,Block
+Block,Null,Block,Block,Block,Block,Block,Block,Block,Null,Block,Block
+Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
+Block,Block,Block,Block,Block,Block,Block,Block,Block,Block,Block,Block

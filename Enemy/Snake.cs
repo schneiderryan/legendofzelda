@@ -14,6 +14,7 @@ namespace LegendOfZelda
 		public ISnakeState state;
 		public ISprite sprite;
 		private RandomEnemyController random;
+		public LegendOfZelda game;
 		private int x;
 		private int y;
 		private int currentStep;
@@ -48,7 +49,7 @@ namespace LegendOfZelda
 		public int xVel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public int yVel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-		public Snake()
+		public Snake(LegendOfZelda loz)
 		{
 			 
 			sprite = EnemySpriteFactory.Instance.CreateUpMovingSnakeSprite();
@@ -56,6 +57,7 @@ namespace LegendOfZelda
 			y = 200;
 			sprite.Position = new Point(x, y);
 			currentStep = 0;
+			game = loz;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);
 			state = new DownMovingSnakeState(this);
@@ -74,23 +76,27 @@ namespace LegendOfZelda
 		public void MoveLeft()
 		{
 			state.MoveLeft();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
 		public void MoveRight()
 		{
 			state.MoveRight();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
-		 public void MoveUp()
+		public void MoveUp()
 		{
 			state.MoveUp();
+			sprite.Position = new Point(this.X, this.Y);
 		}
-		 public void MoveDown()
+		public void MoveDown()
 		{
 			state.MoveDown();
+			sprite.Position = new Point(this.X, this.Y);
 		}
 
-		 public void Update()
+		public void Update()
 		{
 			currentStep++;
 			if(currentStep > changeDirection)

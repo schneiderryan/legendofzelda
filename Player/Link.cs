@@ -117,7 +117,7 @@ namespace LegendOfZelda
 
         public virtual void TakeDamage()
         {
-            this.game.link = new DamagedLink(this);
+            this.game.link = new DamagedLink(game);
         }
 
         public virtual void Update()
@@ -140,7 +140,7 @@ namespace LegendOfZelda
             if (itemTimer == 0)
             {
                 itemTimer = 75;
-                game.projectiles.Add(projectile);
+                game.currentRoom.projectiles.Add(projectile);
             }
         }
 

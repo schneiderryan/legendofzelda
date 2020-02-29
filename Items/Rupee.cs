@@ -9,12 +9,6 @@ namespace LegendOfZelda
             Hitbox = sprite.Box;
         }
 
-        public override void Update()
-        {
-            base.Update();
-
-        }
-
         public override void Use(IPlayer player)
         {
             player.numRupees = player.numRupees + 1;
