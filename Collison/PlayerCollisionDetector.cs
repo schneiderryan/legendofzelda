@@ -22,7 +22,10 @@ namespace LegendOfZelda
             foreach (ICollideable s in still)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, s.Hitbox);
-                PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
+                }
             }
         }
 
@@ -32,7 +35,13 @@ namespace LegendOfZelda
             foreach(KeyValuePair<String, IDoor> door in doors)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
-                CollisionHandler.HandleBasicCollision(player, collision);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    if (door.Key.Equals("Open"))
+                    {
+                        PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
+                    }
+                }  
             }
         }
 
@@ -41,7 +50,10 @@ namespace LegendOfZelda
             foreach(Rectangle hitbox in room.hitboxes)
             {
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, hitbox);
-                PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
+                }
             }
         }
 
