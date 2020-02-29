@@ -123,8 +123,8 @@ namespace LegendOfZelda
                 new Goriya(),
                 new Keese(),
                 new Stalfo(),
-                new Trap(),
-                new Snake(),
+                new Trap(game),
+                new Snake(game),
                 new LFWallmaster(),
                 new RFWallmaster(),
                 new Fireball()
@@ -155,6 +155,7 @@ namespace LegendOfZelda
                 new Room(game, "Rooms/Room14.csv"),
                 new Room(game, "Rooms/Room15.csv"),
                 new Room(game, "Rooms/Room16.csv"),
+                new Room(game, "Rooms/Room17.csv"),
             };
 
             return list;

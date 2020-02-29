@@ -41,6 +41,7 @@ namespace LegendOfZelda
                     game.roomIndex--;
                 }
             }
+            game.projectiles.Clear();
         }
     }
 }

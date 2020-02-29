@@ -54,5 +54,57 @@ namespace LegendOfZelda
             }
             ProjectileCollision(hitboxes);
         }
+
+
+/*        private static void EnemyProjectileCollision(List<IEnemy> enemies, List<IProjectile> projectiles)
+        {
+            List<IProjectile> projectilesToRemove = new List<IProjectile>();
+            foreach (IEnemy enemy in enemies)
+            {
+                foreach (IProjectile projectile in projectiles)
+                {
+                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
+                    if (!collision.Equals(Rectangle.Empty))
+                    {
+                        EnemyCollisionHandler.HandleEnemyProjectileCollision(enemy, collision);
+                        projectilesToRemove.Add(projectile);
+                    }
+                }
+            }
+            foreach (IProjectile toRemove in projectilesToRemove)
+            {
+                projectiles.Remove(toRemove);
+            }
+        }*/
+
+        public static void HandleEnemyProjectileCollision(IEnemy enemy, in Rectangle collision)
+        {
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y != enemy.Hitbox.Y)
+                {
+                    enemy.Y -= collision.Height;
+                    //Take damage
+                }
+                else
+                {
+                    enemy.Y += collision.Height;
+                    //Take damage
+                }
+            }
+            else
+            {
+                if (collision.X != enemy.Hitbox.X)
+                {
+                    enemy.X -= collision.Width;
+                    //Take damage
+                }
+                else
+                {
+                    enemy.X += collision.Width;
+                    //Take damage
+                }
+            }
+        }
     }
 }

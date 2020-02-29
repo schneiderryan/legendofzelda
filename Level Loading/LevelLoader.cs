@@ -73,11 +73,11 @@ namespace LegendOfZelda
         {
             ISprite background;
             int roomNumber = parser.parseRoomNumber();
-            if(roomNumber == 0)
+            if (roomNumber == 0)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom0();
             }
-            else if(roomNumber == 1)
+            else if (roomNumber == 1)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom1();
             }
@@ -137,13 +137,17 @@ namespace LegendOfZelda
             {
                 background = RoomSpriteFactory.Instance.CreateRoom15();
             }
-            else if (roomNumber == 17) // The test room with all the stuffs
+            else if (roomNumber == 16)
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom16();
+            }
+            else if (roomNumber == 18) // test room
             {
                 background = RoomSpriteFactory.Instance.CreateRoom0();
             }
-            else // room 16
+            else // room 17
             {
-                background = RoomSpriteFactory.Instance.CreateRoom16();
+                background = RoomSpriteFactory.Instance.CreateRoom17();
             }
             return background;
         }
@@ -206,7 +210,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Snake"))
                 {
-                    enemy = new Snake();
+                    enemy = new Snake(game);
                 }
                 else if (entry.Value.Equals("Dodongo"))
                 {
@@ -218,7 +222,7 @@ namespace LegendOfZelda
                 }
                 else //trap
                 {
-                    enemy = new Trap();
+                    enemy = new Trap(game);
                 }
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y;

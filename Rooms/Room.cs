@@ -8,13 +8,14 @@ namespace LegendOfZelda
 {
     class Room : IRoom
     {
-        public Dictionary<string, IDoor> Doors { get; private set; }
-        public List<Rectangle> Hitboxes { get; private set; }
-        public List<IBlock> Blocks { get; private set; }
-        public List<IMoveableBlock> MoveableBlocks { get; private set; }
+        public IDictionary<string, IDoor> Doors { get; private set; }
+        public IList<Rectangle> Hitboxes { get; private set; }
+        public IList<IBlock> Blocks { get => blocks; }
+        public IList<IMoveableBlock> MoveableBlocks { get; private set; }
+        public IList<IEnemy> Enemies { get; private set; }
 
+        private List<IBlock> blocks;
         private IList<IItem> items;
-        private IList<IEnemy> enemies;
         private LegendOfZelda game;
         private ISprite background;
 
@@ -28,11 +29,11 @@ namespace LegendOfZelda
             this.background.Scale = 2.0f;
             this.background.Position = new Point(0, 0);
 
-            this.enemies = levelLoader.LoadEnemies();
+            this.Enemies = levelLoader.LoadEnemies();
             this.items = levelLoader.LoadItems();
             this.MoveableBlocks = levelLoader.LoadMoveableBlocks();
-            this.Blocks = levelLoader.LoadStillBlocks();
-            this.Blocks.AddRange(MoveableBlocks);
+            this.blocks = levelLoader.LoadStillBlocks();
+            this.blocks.AddRange(MoveableBlocks);
             
 
             this.Doors = levelLoader.LoadDoors();
@@ -57,7 +58,7 @@ namespace LegendOfZelda
             };
         }
 
-        public Dictionary<String, IDoor> getDoor()
+        public IDictionary<string, IDoor> getDoor()
         {
             return Doors;
         }
@@ -94,7 +95,7 @@ namespace LegendOfZelda
                 Debug.DrawHitbox(sb, item.Hitbox);
             }
 
-            foreach (IEnemy enemy in enemies)
+            foreach (IEnemy enemy in Enemies)
             {
                 enemy.Draw(sb);
                 Debug.DrawHitbox(sb, enemy.Hitbox);
@@ -112,19 +113,18 @@ namespace LegendOfZelda
             {
                 door.Value.Update();
             }
+            foreach (IMoveableBlock b in MoveableBlocks)
+            {
+                b.Update();
+            }
 
             foreach (IItem item in items)
             {
                 item.Update();
             }
-
-            foreach (IEnemy enemy in enemies)
+            foreach (IEnemy enemy in Enemies)
             {
                 enemy.Update();
-            }
-            foreach (IMoveableBlock b in MoveableBlocks)
-            {
-                b.Update();
             }
 
             foreach (IItem item in items)
@@ -134,8 +134,8 @@ namespace LegendOfZelda
                 // Item.Pickup(IPlayer) ?
             }
 
-            PlayerCollisionHandler.HandlePlayerCollisions(game.link, this);
-            EnemyCollisionHandler.HandleEnemyCollisions(enemies, this, game.link);
+            PlayerCollisionDetector.HandlePlayerCollisions(this, game.link);
+            EnemyCollisionDetector.HandleEnemyCollisions(this);
         }
     }
 }

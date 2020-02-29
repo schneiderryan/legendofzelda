@@ -122,7 +122,7 @@ namespace LegendOfZelda
 
         public virtual void TakeDamage()
         {
-            this.game.link = new DamagedLink(this);
+            this.game.link = new DamagedLink(game);
         }
 
         public virtual void Update()

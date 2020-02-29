@@ -7,66 +7,32 @@ namespace LegendOfZelda
 {
     static class EnemyCollisionHandler
     {
-        public static void HandleEnemyCollisions(IList<IEnemy> enemies, IRoom room, IPlayer player)
+        public static void HandleEnemyWallBlockCollision(IEnemy enemy, in Rectangle collision)
         {
-            EnemyWallCollision(enemies, room.Hitboxes);
-            EnemyBlockCollision(enemies, room.Blocks);
-            EnemyPlayerCollision(enemies, player);
-            EnemyDoorCollision(enemies, room.Doors);
-        }
-
-        private static void EnemyWallCollision(IList<IEnemy> enemies, IList<Rectangle> hitboxes)
-        {
-            foreach (IEnemy enemy in enemies) {
-                foreach (Rectangle hitbox in hitboxes)
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y != enemy.Hitbox.Y)
                 {
-                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, hitbox);
-                    if (!collision.Equals(Rectangle.Empty))
-                    {
-                        CollisionHandler.HandleBasicCollision(enemy, collision);
-                    }
+                    enemy.Y -= collision.Height;
+                    enemy.MoveUp();
+                }
+                else
+                {
+                    enemy.Y += collision.Height;
+                    enemy.MoveLeft();
                 }
             }
-        }
-
-        private static void EnemyBlockCollision(IList<IEnemy> enemies, IList<IBlock> blocks)
-        {
-            foreach (IEnemy enemy in enemies)
+            else
             {
-                foreach (ICollideable block in blocks)
+                if (collision.X != enemy.Hitbox.X)
                 {
-                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, block.Hitbox);
-                    if (!collision.Equals(Rectangle.Empty))
-                    {
-                        CollisionHandler.HandleBasicCollision(enemy, collision);
-                    }
+                    enemy.X -= collision.Width;
+                    enemy.MoveDown();
                 }
-            }
-        }
-
-        private static void EnemyPlayerCollision(IList<IEnemy> enemies, IPlayer player)
-        {
-            foreach (IEnemy enemy in enemies)
-            {
-                Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
-                if (!collision.Equals(Rectangle.Empty))
+                else
                 {
-                    CollisionHandler.HandleBasicCollision(enemy, collision);
-                }
-            }
-        }
-
-        private static void EnemyDoorCollision(IList<IEnemy> enemies, IDictionary<String, IDoor> doors)
-        {
-            foreach (IEnemy enemy in enemies)
-            {
-                foreach (KeyValuePair<String, IDoor> door in doors)
-                {
-                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, door.Value.Hitbox);
-                    if (!collision.Equals(Rectangle.Empty))
-                    {
-                        CollisionHandler.HandleBasicCollision(enemy, collision);
-                    }
+                    enemy.X += collision.Width;
+                    enemy.MoveRight();
                 }
             }
         }

@@ -10,6 +10,7 @@ namespace LegendOfZelda
     class DamagedLink : IPlayer
     {
         IPlayer decoratedLink;
+        LegendOfZelda game;
         int timer = 192; // to give about 3 seconds
 
         public Rectangle Hitbox
@@ -79,9 +80,10 @@ namespace LegendOfZelda
         }
 
 
-        public DamagedLink (IPlayer decoratedLink)
+        public DamagedLink (LegendOfZelda game)
         {
-            this.decoratedLink = decoratedLink;
+            this.game = game;
+            this.decoratedLink = game.link;
         }
 
         public void Attack()
@@ -147,6 +149,11 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            timer--;
+            if (timer == 0)
+            {
+                game.link = decoratedLink;
+            }
             decoratedLink.Update();
         }
 

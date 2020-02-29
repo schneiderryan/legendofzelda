@@ -9,9 +9,10 @@ namespace LegendOfZelda
         void Update();
         void Draw(SpriteBatch sb);
         void DrawOverlay(SpriteBatch sb);
-        List<Rectangle> Hitboxes { get; }
-        Dictionary<string, IDoor> Doors { get; }
-        List<IBlock> Blocks { get; }
-        List<IMoveableBlock> MoveableBlocks { get; }
+        IList<Rectangle> Hitboxes { get; }
+        IDictionary<string, IDoor> Doors { get; }
+        IList<IBlock> Blocks { get; }
+        IList<IMoveableBlock> MoveableBlocks { get; }
+        IList<IEnemy> Enemies { get; }
     }
 }

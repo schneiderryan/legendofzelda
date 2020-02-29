@@ -185,10 +185,15 @@ namespace LegendOfZelda
 
         public ISprite CreateRoom15()
         {
-            return new Sprite(roomSheet, new Rectangle(258, 1, 256, 176));
+            return new Sprite(roomSheet, new Rectangle(1, 1, 256, 176));
         }
 
         public ISprite CreateRoom16()
+        {
+            return new Sprite(roomSheet, new Rectangle(258, 1, 256, 176));
+        }
+
+        public ISprite CreateRoom17()
         {
             return new Sprite(roomSheet, new Rectangle(515, 1, 256, 176));
         }
