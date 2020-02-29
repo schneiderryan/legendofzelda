@@ -15,44 +15,51 @@ namespace LegendOfZelda
         private List<String> possibleItems;
         private List<String> possibleBlocks;
         private List<String> possibleDoors;
+
         public LevelLoader(String level, LegendOfZelda game)
         {
             this.parser = new LevelParser(level);
             this.game = game;
 
-            this.possiblePlayers = new List<String>();
-            possiblePlayers.Add("Link");
-            possiblePlayers.Add("RedLink");
+            this.possiblePlayers = new List<String>()
+            {
+                "Link",
+                "RedLink",
+            };
 
-            this.possibleEnemies = new List<String>();
-            possibleEnemies.Add("Aquamentus");
-            possibleEnemies.Add("Dodongo");
-            possibleEnemies.Add("Gel");
-            possibleEnemies.Add("Goriya");
-            possibleEnemies.Add("Keese");
-            possibleEnemies.Add("LFWallmaster");
-            possibleEnemies.Add("RFWallmaster");
-            possibleEnemies.Add("Snake");
-            possibleEnemies.Add("Stalfo");
-            possibleEnemies.Add("Trap");
-            possibleEnemies.Add("OldMan");
+            this.possibleEnemies = new List<String>()
+            {
+                "Aquamentus",
+                "Dodongo",
+                "Gel",
+                "Goriya",
+                "Keese",
+                "LFWallmaster",
+                "RFWallmaster",
+                "Snake",
+                "Stalfo",
+                "Trap",
+                "OldMan",
+            };
 
-            this.possibleItems = new List<String>();
-            this.possibleItems.Add("Arrow");
-            this.possibleItems.Add("BlueRupee");
-            this.possibleItems.Add("Bomb");
-            this.possibleItems.Add("Boomerang");
-            this.possibleItems.Add("Bow");
-            this.possibleItems.Add("Clock");
-            this.possibleItems.Add("Compass");
-            this.possibleItems.Add("Fairy");
-            this.possibleItems.Add("Heart");
-            this.possibleItems.Add("HeartContainer");
-            this.possibleItems.Add("Key");
-            this.possibleItems.Add("Map");
-            this.possibleItems.Add("Rupee");
-            this.possibleItems.Add("TriforceShard");
-            this.possibleItems.Add("WoodSword");
+            this.possibleItems = new List<String>()
+            {
+                "Arrow",
+                "BlueRupee",
+                "Bomb",
+                "Boomerang",
+                "Bow",
+                "Clock",
+                "Compass",
+                "Fairy",
+                "Heart",
+                "HeartContainer",
+                "Key",
+                "Map",
+                "Rupee",
+                "TriforceShard",
+                "WoodSword",
+            };
 
             this.possibleBlocks = new List<String>()
             {
@@ -61,12 +68,14 @@ namespace LegendOfZelda
                 "MoveableBlockLeft",
             };
 
-            this.possibleDoors = new List<String>();
-            this.possibleDoors.Add("Wall");
-            this.possibleDoors.Add("Open");
-            this.possibleDoors.Add("Key");
-            this.possibleDoors.Add("Other");
-            this.possibleDoors.Add("Exploded");
+            this.possibleDoors = new List<String>()
+            {
+                "Wall",
+                "Open",
+                "Key",
+                "Other",
+                "Exploded",
+            };
         }
 
         public ISprite LoadBackground()
