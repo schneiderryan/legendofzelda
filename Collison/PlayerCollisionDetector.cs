@@ -37,7 +37,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
                 if (!collision.Equals(Rectangle.Empty))
                 {
-                    if (door.Key.Equals("Open"))
+                    if (!door.Key.Equals("Open"))
                     {
                         PlayerCollisionHandler.HandlePlayerWallBlockCollision(player, collision);
                     }

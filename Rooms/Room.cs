@@ -54,8 +54,8 @@ namespace LegendOfZelda
                 {
                     if (door.Value is RightOpen)
                     {
-                        hitboxRight1 = new Rectangle(448, 0, 64, 154);
-                        hitboxRight2 = new Rectangle(448, 199, 64, 144);
+                        hitboxRight1 = new Rectangle(448, 0, 64, 172);
+                        hitboxRight2 = new Rectangle(448, 190, 64, 160);
                     }
                     else
                     {
@@ -68,8 +68,8 @@ namespace LegendOfZelda
                 {
                     if (door.Value is LeftOpen)
                     {
-                        hitboxLeft1 = new Rectangle(0, 0, 64, 144);
-                        hitboxLeft2 = new Rectangle(0, 209, 64, 144);
+                        hitboxLeft1 = new Rectangle(0, 0, 64, 172);
+                        hitboxLeft2 = new Rectangle(0, 193, 64, 160);
                     }
                     else
                     {
@@ -82,8 +82,8 @@ namespace LegendOfZelda
                 {
                     if (door.Value is TopOpen)
                     {
-                        hitboxTop1 = new Rectangle(0, 0, 224, 64);
-                        hitboxTop2 = new Rectangle(289, 0, 224, 64);
+                        hitboxTop1 = new Rectangle(0, 0, 240, 64);
+                        hitboxTop2 = new Rectangle(273, 0, 240, 64);
                     }
                     else
                     {
@@ -96,8 +96,8 @@ namespace LegendOfZelda
                 {
                     if (door.Value is BottomOpen)
                     {
-                        hitboxBottom1 = new Rectangle(0, 289, 224, 64);
-                        hitboxBottom2 = new Rectangle(289, 289, 224, 64);
+                        hitboxBottom1 = new Rectangle(0, 289, 240, 64);
+                        hitboxBottom2 = new Rectangle(273, 289, 240, 64);
                     }
                     else
                     {
@@ -111,22 +111,17 @@ namespace LegendOfZelda
 
             }
             
-
             hitboxes = new List<Rectangle>();
-
             
             hitboxes.Add(hitboxLeft1);
             hitboxes.Add(hitboxLeft2);
 
-            
             hitboxes.Add(hitboxTop1);
             hitboxes.Add(hitboxTop2);
 
-           
             hitboxes.Add(hitboxBottom1);
             hitboxes.Add(hitboxBottom2);
 
-            
             hitboxes.Add(hitboxRight1);
             hitboxes.Add(hitboxRight2);
         }
@@ -138,7 +133,20 @@ namespace LegendOfZelda
 
         public void DrawOverlay(SpriteBatch sb)
         {
-            // draw door frames?
+            
+        }
+
+        public void DrawDoors(SpriteBatch sb)
+        {
+            foreach (KeyValuePair<String, IDoor> door in doors)
+            {
+                if(!(door.Key == "up"))
+                {
+                    door.Value.Draw(sb);
+                    Debug.DrawHitbox(sb, door.Value.Hitbox);
+                }
+                
+            }
         }
 
         public void Draw(SpriteBatch sb)
@@ -147,8 +155,12 @@ namespace LegendOfZelda
 
             foreach (KeyValuePair<String, IDoor> door in doors)
             {
-                door.Value.Draw(sb);
-                Debug.DrawHitbox(sb, door.Value.Hitbox);
+                if (door.Key == "up")
+                {
+                    door.Value.Draw(sb);
+                    Debug.DrawHitbox(sb, door.Value.Hitbox);
+                }
+
             }
 
             foreach (IBlock b in blocks)

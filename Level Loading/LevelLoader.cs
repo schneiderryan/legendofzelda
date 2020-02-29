@@ -357,7 +357,7 @@ namespace LegendOfZelda
                     }
                     else if (entry.Value.Equals("Open"))
                     {
-                        door = new LeftWall();
+                        door = new LeftOpen();
                     }
                     else if (entry.Value.Equals("Key"))
                     {

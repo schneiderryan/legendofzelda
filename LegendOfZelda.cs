@@ -70,6 +70,7 @@ namespace LegendOfZelda
             
             currentRoom.Draw(spriteBatch);
             link.Draw(spriteBatch, Color.White);
+            currentRoom.DrawDoors(spriteBatch);
             currentRoom.DrawOverlay(spriteBatch);
             
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
