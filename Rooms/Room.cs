@@ -51,26 +51,85 @@ namespace LegendOfZelda
             this.moveableBlocks = levelLoader.LoadMoveableBlocks();
 
             this.doors = levelLoader.LoadDoors();
+            foreach (KeyValuePair<String, IDoor> door in this.doors)
+            {
+                if (door.Key == "right")
+                {
+                    if (door.Value is RightOpen)
+                    {
+                        hitboxRight1 = new Rectangle(448, 0, 64, 154);
+                        hitboxRight2 = new Rectangle(448, 199, 64, 144);
+                    }
+                    else
+                    {
+                        hitboxRight1 = new Rectangle(448, 0, 64, 144);
+                        hitboxRight2 = new Rectangle(448, 209, 64, 144);
+                    }
+                }
+
+                if (door.Key == "left")
+                {
+                    if (door.Value is LeftOpen)
+                    {
+                        hitboxLeft1 = new Rectangle(0, 0, 64, 144);
+                        hitboxLeft2 = new Rectangle(0, 209, 64, 144);
+                    }
+                    else
+                    {
+                        hitboxLeft1 = new Rectangle(0, 0, 64, 144);
+                        hitboxLeft2 = new Rectangle(0, 209, 64, 144);
+                    }
+                }
+
+                if (door.Key == "up")
+                {
+                    if (door.Value is TopOpen)
+                    {
+                        hitboxTop1 = new Rectangle(0, 0, 224, 64);
+                        hitboxTop2 = new Rectangle(289, 0, 224, 64);
+                    }
+                    else
+                    {
+                        hitboxTop1 = new Rectangle(0, 0, 224, 64);
+                        hitboxTop2 = new Rectangle(289, 0, 224, 64);
+                    }
+
+                }
+                if (door.Key == "down")
+                {
+                    if (door.Value is BottomOpen)
+                    {
+                        hitboxBottom1 = new Rectangle(0, 289, 224, 64);
+                        hitboxBottom2 = new Rectangle(289, 289, 224, 64);
+                    }
+                    else
+                    {
+                        hitboxBottom1 = new Rectangle(0, 289, 224, 64);
+                        hitboxBottom2 = new Rectangle(289, 289, 224, 64);
+                    }
+
+                }
+
+
+
+            }
+            
 
             hitboxes = new List<Rectangle>();
 
-            hitboxLeft1 = new Rectangle(0, 0, 64, 144);
-            hitboxLeft2 = new Rectangle(0, 209, 64, 144);
+            
             hitboxes.Add(hitboxLeft1);
             hitboxes.Add(hitboxLeft2);
 
-            hitboxTop1 = new Rectangle(0, 0, 224, 64);
-            hitboxTop2 = new Rectangle(289, 0, 224, 64);
+            
             hitboxes.Add(hitboxTop1);
             hitboxes.Add(hitboxTop2);
 
-            hitboxBottom1 = new Rectangle(0, 289, 224, 64);
-            hitboxBottom2 = new Rectangle(289, 289, 224, 64);
+           
             hitboxes.Add(hitboxBottom1);
             hitboxes.Add(hitboxBottom2);
 
-            hitboxRight1 = new Rectangle(448, 0, 64, 144);
-            hitboxRight2 = new Rectangle(448, 209, 64, 144);
+            
             hitboxes.Add(hitboxRight1);
             hitboxes.Add(hitboxRight2);
 

@@ -25,12 +25,16 @@ namespace LegendOfZelda
         {
             foreach(KeyValuePair<String, IDoor> door in doors)
             {
-
+                    if(!(door.Value is BottomOpen || door.Value is TopOpen ||door.Value is RightOpen || door.Value is BottomOpen))
+                {
                     Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
                         HandleCollision(player, collision);
                     }
+                }
+                    
+                   
                 
             }
             
