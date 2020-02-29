@@ -140,6 +140,7 @@ namespace LegendOfZelda
         {
             foreach (KeyValuePair<String, IDoor> door in doors)
             {
+
                 if(!(door.Key == "up"))
                 {
                     door.Value.Draw(sb);
@@ -155,10 +156,12 @@ namespace LegendOfZelda
 
             foreach (KeyValuePair<String, IDoor> door in doors)
             {
+                
                 if (door.Key == "up")
                 {
-                    door.Value.Draw(sb);
                     Debug.DrawHitbox(sb, door.Value.Hitbox);
+                    door.Value.Draw(sb);
+                    
                 }
 
             }

@@ -39,7 +39,7 @@ namespace LegendOfZelda
 
             rooms = GameSetup.GenerateRoomList(this);
             currentRoom = rooms[0];
-            //doors = GameSetup.GenerateDoorList(this);
+            
             
             mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
@@ -72,6 +72,10 @@ namespace LegendOfZelda
             link.Draw(spriteBatch, Color.White);
             currentRoom.DrawDoors(spriteBatch);
             currentRoom.DrawOverlay(spriteBatch);
+            foreach(Rectangle hitbox in currentRoom.hitboxes)
+            {
+                Debug.DrawHitbox(spriteBatch,hitbox);
+            }
             
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
 

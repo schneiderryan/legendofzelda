@@ -443,7 +443,6 @@ namespace LegendOfZelda
                 }
 
                 doors.Add(entry.Key, door);
-                //check doors and add to doors
             }
             return doors;
         }
