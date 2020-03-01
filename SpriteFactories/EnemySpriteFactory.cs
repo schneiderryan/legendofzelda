@@ -6,7 +6,7 @@ namespace LegendOfZelda
 {
     class EnemySpriteFactory
     {
-
+        private const int ANIMATION_DELAY = 10;
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();
         private Texture2D npcSpriteSheet = Textures.GetNPCSheet();
@@ -19,22 +19,26 @@ namespace LegendOfZelda
 
         public ISprite CreateDownMovingGoriyaSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(0, 60, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(0, 60, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateUpMovingGoriyaSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(60, 60, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(60, 60, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateLeftMovingGoriyaSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(30, 60, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(30, 60, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateRightMovingGoriyaSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(90, 60, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(90, 60, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
 
@@ -46,7 +50,7 @@ namespace LegendOfZelda
         
         public ISprite CreateMovingTrapSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(270, 330, 16, 16),1, false);
+            return new Sprite(enemySpriteSheet, new Rectangle(270, 330, 16, 16));
         }
 
         public ISprite CreateMovingKeeseSprite()
@@ -56,7 +60,8 @@ namespace LegendOfZelda
 
         public ISprite CreateMovingStalfoSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(420, 120, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(420, 120, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateMovingLFWallmasterSprite()
