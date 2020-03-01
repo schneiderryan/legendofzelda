@@ -31,7 +31,7 @@ namespace LegendOfZelda
             effects = contentManager.Load<Texture2D>("weapons_mod");
             enemy = contentManager.Load<Texture2D>("loz_enemy_sheet");
             boss = contentManager.Load<Texture2D>("zelda-sprites-bosses");
-            npc = contentManager.Load<Texture2D>("loz_tryagain2_npc_sheet");
+            npc = contentManager.Load<Texture2D>("loz_anothertry_npc_sheet");
 
             link = contentManager.Load<Texture2D>("link_mod");
             linkAttackingDown = contentManager.Load<Texture2D>("downAttackingLink");
