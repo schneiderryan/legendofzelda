@@ -1,66 +1,36 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda;
-
-
+﻿
 namespace LegendOfZelda
 {
-
-	class RightMovingDodongoState : IDodongoState
+	class RightMovingDodongoState : EnemyState
 	{
-		private Dodongo dodongo;
-
-		public RightMovingDodongoState(Dodongo dodongo)
+		public RightMovingDodongoState(IEnemy enemy)
+			: base(enemy)
 		{
-			this.dodongo = dodongo;
+			enemy.Sprite = EnemySpriteFactory.Instance.CreateRightMovingDodongoSprite();
 		}
 
-
-		public void ChangeDirection()
+		public override void MoveUp()
 		{
-			//dodongo.state = new RightMovingdodongoState(dodongo);
-			//add up and down directions based on a random number
+			base.MoveUp();
+			enemy.State = new UpMovingDodongoState(enemy);
 		}
 
-		public void BeKilled()
+		public override void MoveDown()
 		{
-			//dodongo.state = new KilledEnemyState(dodongo);
+			base.MoveDown();
+			enemy.State = new DownMovingDodongoState(enemy);
 		}
 
-		public void MoveUp()
+		public override void MoveRight()
 		{
-			dodongo.state = new UpMovingDodongoState(dodongo);
-			dodongo.sprite = EnemySpriteFactory.Instance.CreateUpMovingDodongoSprite();
+			// do nothing
 		}
 
-		public void MoveDown()
+		public override void MoveLeft()
 		{
-			dodongo.state = new DownMovingDodongoState(dodongo);
-			dodongo.sprite = EnemySpriteFactory.Instance.CreateDownMovingDodongoSprite();
+			base.MoveLeft();
+			enemy.State = new LeftMovingDodongoState(enemy);
 		}
-
-		public void MoveRight()
-		{
-			
-		}
-
-
-		public void MoveLeft()
-		{
-			dodongo.state = new LeftMovingDodongoState(dodongo);
-			dodongo.sprite = EnemySpriteFactory.Instance.CreateLeftMovingDodongoSprite();
-		}
-
-		public void Update()
-		{
-			dodongo.X += 1;
-			if (dodongo.X > 800)
-			{
-				dodongo.X -= 800;
-			}
-			dodongo.sprite.Position = new Point(dodongo.X, dodongo.Y);
-		}
-
 
 	}
 }

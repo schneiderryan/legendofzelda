@@ -98,9 +98,5 @@ namespace LegendOfZelda
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true);
         }
 
-        public static ISprite GetMovingFireballSprite()
-        {
-            return new AnimatedSprite(Textures.GetEnemySheet(), new Rectangle(329, 0, 16, 16), 3, true);
-        }
     }
 }

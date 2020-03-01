@@ -120,14 +120,13 @@ namespace LegendOfZelda
             {
                 new Gel(),
                 new Aquamentus(game),
-                new Goriya(),
+                new Goriya(game.projectiles),
                 new Keese(),
                 new Stalfo(),
-                new Trap(game),
+                new Trap(),
                 new Snake(game),
                 new LFWallmaster(),
                 new RFWallmaster(),
-                new Fireball()
             };
 
             return list;

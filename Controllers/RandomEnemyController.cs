@@ -12,19 +12,17 @@ namespace LegendOfZelda
 
         public RandomEnemyController(IEnemy enemy)
         {
-            this.directions = new ICommand[] { 
+            directions = new ICommand[] { 
                 new EnemyMoveUpCommand(enemy),
                 new EnemyMoveDownCommand(enemy),
                 new EnemyMoveLeftCommand(enemy),
                 new EnemyMoveRightCommand(enemy)
-                    };
+            };
         }
 
         public void Update()
         {
-
             directions[random.Next(0, 4)].Execute();
-          
         }
     }
 }
