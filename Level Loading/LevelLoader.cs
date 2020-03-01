@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -10,24 +9,25 @@ namespace LegendOfZelda
     {
         private LevelParser parser;
         private LegendOfZelda game;
-        private List<String> possiblePlayers;
-        private List<String> possibleEnemies;
-        private List<String> possibleItems;
-        private List<String> possibleBlocks;
-        private List<String> possibleDoors;
+        private IList<string> possiblePlayers;
+        private IList<string> possibleEnemies;
+        private IList<string> possibleItems;
+        private IList<string> possibleBlocks;
+        private IList<string> possibleDoors;
+        private IList<string> possibleNPCs;
 
-        public LevelLoader(String level, LegendOfZelda game)
+        public LevelLoader(string level, LegendOfZelda game)
         {
             this.parser = new LevelParser(level);
             this.game = game;
 
-            this.possiblePlayers = new List<String>()
+            this.possiblePlayers = new List<string>()
             {
                 "Link",
                 "RedLink",
             };
 
-            this.possibleEnemies = new List<String>()
+            this.possibleEnemies = new List<string>()
             {
                 "Aquamentus",
                 "Dodongo",
@@ -42,7 +42,12 @@ namespace LegendOfZelda
                 "OldMan",
             };
 
-            this.possibleItems = new List<String>()
+            this.possibleNPCs = new List<string>()
+            {
+                "OldMan",
+            };
+
+            this.possibleItems = new List<string>()
             {
                 "Arrow",
                 "BlueRupee",
@@ -61,14 +66,14 @@ namespace LegendOfZelda
                 "WoodSword",
             };
 
-            this.possibleBlocks = new List<String>()
+            this.possibleBlocks = new List<string>()
             {
                 "Block",
                 "MoveableBlockVertical",
                 "MoveableBlockLeft",
             };
 
-            this.possibleDoors = new List<String>()
+            this.possibleDoors = new List<string>()
             {
                 "Wall",
                 "Open",
@@ -182,7 +187,7 @@ namespace LegendOfZelda
             return players;
         }
 
-        public List<IEnemy> LoadEnemies()
+        public IList<IEnemy> LoadEnemies()
         {
             List<IEnemy> enemies = new List<IEnemy>();
             Dictionary<Vector2, String> enemyInfo = parser.parse(possibleEnemies);
@@ -199,7 +204,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Goriya"))
                 {
-                    enemy = new Goriya();
+                    enemy = new Goriya(this.game.projectiles);
                 }
                 else if (entry.Value.Equals("Keese"))
                 {
@@ -225,13 +230,9 @@ namespace LegendOfZelda
                 {
                     enemy = new Dodongo();
                 }
-                else if (entry.Value.Equals("OldMan"))
-                {
-                    enemy = new OldMan(235,133);
-                }
                 else //trap
                 {
-                    enemy = new Trap(game);
+                    enemy = new Trap();
                 }
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y;
@@ -240,7 +241,7 @@ namespace LegendOfZelda
             return enemies;
         }
 
-        public List<IItem> LoadItems()
+        public IList<IItem> LoadItems()
         {
             List<IItem> items = new List<IItem>();
             Dictionary<Vector2, String> itemInfo = parser.parse(possibleItems);
@@ -462,5 +463,24 @@ namespace LegendOfZelda
             }
             return doors;
         }
+
+        public IList<INPC> LoadNPCs()
+        {
+            IList<INPC> npcs = new List<INPC>();
+            Dictionary<Vector2, String> info = parser.parse(possibleNPCs);
+            foreach (KeyValuePair<Vector2, String> entry in info)
+            {
+                if (entry.Value.Equals("OldMan"))
+                {
+                    INPC npc = new OldMan(235, 133);
+                    npc.X = (int)entry.Key.X;
+                    npc.Y = (int)entry.Key.Y;
+                    npcs.Add(npc);
+                }
+            }
+
+            return npcs;
+        }
+
     }
 }

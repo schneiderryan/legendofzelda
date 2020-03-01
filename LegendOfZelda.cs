@@ -38,15 +38,14 @@ namespace LegendOfZelda
 
             this.link = new GreenLink(this);
             playerKeyboard = GameSetup.CreatePlayerKeysController(link);
-
-            rooms = GameSetup.GenerateRoomList(this);
-            
             mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
 
             projectiles = new List<IProjectile>();
             effects = new List<IDespawnEffect>();
             projectileCollisionHandler = new ProjectileCollisionHandler(projectiles, effects);
+
+            rooms = GameSetup.GenerateRoomList(this);
         }
 
         protected override void LoadContent()
