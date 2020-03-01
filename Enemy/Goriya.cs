@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Diagnostics;
+
 
 
 namespace LegendOfZelda
@@ -13,8 +15,8 @@ namespace LegendOfZelda
 		public BoomerangState State { get; protected set; }
 		
 		private Random randomStep = new Random();
-
 		public LegendOfZelda game;
+		public int timer = 192; // to give about 3 seconds
 		public int boomerangTimer;
 		public ISprite boomerangSprite;
 		public IProjectile boomerang;
@@ -24,7 +26,7 @@ namespace LegendOfZelda
 
 		public int x;
 		public int y;
-		private double numCurrHearts;
+		public double numCurrHearts;
 
 		public double currentHearts
 		{
@@ -122,10 +124,16 @@ namespace LegendOfZelda
 			
 			if(!isDead)
 			{
-				if(currentHearts == 0)
+				if (isBeingAttacked)
 				{
-					isDead = true;
+					timer--;
+					if (timer == 0)
+					{
+						isBeingAttacked = false;
+					}
+				
 				}
+				
 				
 				if (State == BoomerangState.Thrown)
 				{
@@ -151,7 +159,30 @@ namespace LegendOfZelda
 		{
 			if (!isDead)
 			{
-				sprite.Draw(spriteBatch, color);
+				if (isBeingAttacked)
+				{
+					Color hurt1 = new Color(83, 68, 198);
+					Color hurt2 = new Color(184, 101, 22);
+					Color hurt3 = new Color(76, 80, 69);
+
+					if (timer <= 8 || timer >= 33 && timer <= 40 || timer >= 65 && timer <= 72 || timer >= 97 && timer <= 104 || timer >= 129 && timer <= 136 || timer >= 161 && timer <= 168)
+					{
+						sprite.Draw(spriteBatch, hurt1);
+					}
+					else if (timer <= 16 || timer >= 41 && timer <= 48 || timer >= 73 && timer <= 80 || timer >= 105 && timer <= 112 || timer >= 137 && timer <= 144 || timer >= 169 && timer <= 176)
+					{
+						sprite.Draw(spriteBatch, hurt2);
+					}
+					else if (timer <= 24 || timer >= 49 && timer <= 56 || timer >= 81 && timer <= 88 || timer >= 113 && timer <= 120 || timer >= 145 && timer <= 152 || timer >= 177 && timer <= 184)
+					{
+						sprite.Draw(spriteBatch, hurt3);
+					}
+				}
+				else
+				{
+					sprite.Draw(spriteBatch, Color.White);
+				}
+				
 
 
 				if (State == BoomerangState.Thrown)
@@ -179,8 +210,12 @@ namespace LegendOfZelda
 		public void TakeDamage()
 		{
 			currentHearts--;
+			if (currentHearts == 0)
+			{
+				isDead = true;
+			}
 			isBeingAttacked = true;
-			this.game.currentRoom.enemies[listIndex] = new DamagedGoriya(game);	
+			
 
 		}
 		}

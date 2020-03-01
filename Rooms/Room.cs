@@ -217,6 +217,10 @@ namespace LegendOfZelda
             foreach (IEnemy enemy in enemies.ToList())
             {
                 enemy.Update();
+                if(enemy.isDead)
+                {
+                    enemies.Remove(enemy);
+                }
             }
             foreach (IMoveableBlock b in moveableBlocks)
             {

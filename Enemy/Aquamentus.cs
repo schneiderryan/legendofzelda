@@ -19,6 +19,7 @@ namespace LegendOfZelda
 			get { return numCurrHearts; }
 			set { numCurrHearts = value; }
 		}
+		public bool isDead { get; set; }
 		public ISprite sprite { get; set; }
 		public IEnemyState state { get; set; }
 		private ISprite fireballSprite0;

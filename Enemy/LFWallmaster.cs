@@ -15,6 +15,7 @@ namespace LegendOfZelda
 		public bool isBeingAttacked { get; set; }
 		private Random randomStep = new Random();
 		private double numCurrHearts;
+		public bool isDead { get; set; }
 		public double currentHearts
 		{
 			get { return numCurrHearts; }

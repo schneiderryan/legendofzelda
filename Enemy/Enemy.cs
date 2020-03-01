@@ -5,6 +5,7 @@ namespace LegendOfZelda
 {
     abstract class Enemy : IEnemy
     {
+        public bool isDead { get; set; }
         private double numCurrHearts;
         public double currentHearts
         {

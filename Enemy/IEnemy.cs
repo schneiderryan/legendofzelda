@@ -9,9 +9,8 @@ namespace LegendOfZelda
         int CurrentStep { get; set; }
         int listIndex { get; set; }
         bool isBeingAttacked { get; set; }
+        bool isDead { get; set; }
         int changeDirection { get; set; }
-        int X { get; set; }
-        int Y { get; set; }
         int xVel { get; set; }
         int yVel { get; set; }
         IEnemyState state { get; set; }

@@ -37,19 +37,28 @@ namespace LegendOfZelda
             }
         }
 
-        public static void HandleEnemyPlayerCollision(IEnemy enemy, in Rectangle collision)
+        public static void HandleEnemyPlayerCollision(IPlayer player, IEnemy enemy, in Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {
                 if (collision.Y != enemy.Hitbox.Y)
                 {
                     enemy.Y -= collision.Height + 15;
-                    enemy.TakeDamage();
+                    if (player.IsAttacking())
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                    }
+                    
                 }
                 else
                 {
                     enemy.Y += collision.Height + 15;
-                    enemy.TakeDamage();
+                    if (player.IsAttacking())
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                    }
                 }
             }
             else
@@ -57,12 +66,20 @@ namespace LegendOfZelda
                 if (collision.X != enemy.Hitbox.X)
                 {
                     enemy.X -= collision.Width + 15;
-                    enemy.TakeDamage();
+                    if (player.IsAttacking())
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                    }
                 }
                 else
                 {
                     enemy.X += collision.Width + 15;
-                    enemy.TakeDamage(); 
+                    if (player.IsAttacking())
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                    }
                 }
             }
         }
@@ -74,12 +91,12 @@ namespace LegendOfZelda
                 if (collision.Y != enemy.Hitbox.Y)
                 {
                     enemy.Y -= collision.Height;
-                    //Take damage
+                    enemy.TakeDamage();
                 }
                 else
                 {
                     enemy.Y += collision.Height;
-                    //Take damage
+                    enemy.TakeDamage();
                 }
             }
             else
@@ -87,12 +104,12 @@ namespace LegendOfZelda
                 if (collision.X != enemy.Hitbox.X)
                 {
                     enemy.X -= collision.Width;
-                    //Take damage
+                    enemy.TakeDamage();
                 }
                 else
                 {
                     enemy.X += collision.Width;
-                    //Take damage
+                    enemy.TakeDamage();
                 }
             }
         }

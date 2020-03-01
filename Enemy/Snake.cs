@@ -9,6 +9,7 @@ namespace LegendOfZelda
 
 	class Snake : IEnemy, ICollideable
 	{
+		public bool isDead { get; set; }
 		public int listIndex { get; set; }
 		public bool isBeingAttacked { get; set; }
 		private Random randomStep = new Random();

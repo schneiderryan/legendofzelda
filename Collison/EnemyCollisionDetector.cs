@@ -51,9 +51,9 @@ namespace LegendOfZelda
             foreach (IEnemy enemy in enemies.ToList())
             {
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
-                if (!collision.Equals(Rectangle.Empty) && player.IsAttacking())
+                if (!collision.Equals(Rectangle.Empty))
                 {
-                    EnemyCollisionHandler.HandleEnemyPlayerCollision(enemy, collision);
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, collision);
                 }
             }
         }

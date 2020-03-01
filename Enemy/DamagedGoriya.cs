@@ -11,7 +11,7 @@ namespace LegendOfZelda
     {
         public IEnemy decoratedGoriya;
         LegendOfZelda game;
-
+        public bool isDead { get; set; }
         int timer = 192; // to give about 3 seconds
 
         public Rectangle Hitbox
@@ -134,7 +134,7 @@ namespace LegendOfZelda
                     if (enemy.isBeingAttacked)
                     {
                         this.game.currentRoom.enemies[enemy.listIndex] = decoratedGoriya;
-                        isBeingAttacked = false;
+                        
                     }
                     
                 }
@@ -161,7 +161,7 @@ namespace LegendOfZelda
 
         public void TakeDamage()
         {
-            //nothing
+            System.Diagnostics.Debug.WriteLine("damagedGoriya take damage");
         }
     }
 }
