@@ -6,11 +6,7 @@ namespace LegendOfZelda
 {
     interface IDoor: ICollideable
     {
-        //fields for types of objects that can spawn
-
         void Update();
         void Draw(SpriteBatch sb);
-
-        
     }
 }

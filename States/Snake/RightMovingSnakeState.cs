@@ -1,86 +1,36 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda;
-using System;
-
+﻿
 namespace LegendOfZelda
 {
 
-	class RightMovingSnakeState : IEnemyState
+	class RightMovingSnakeState : EnemyState
+
 	{
-		private Snake snake;
-
-		public RightMovingSnakeState(Snake snake)
+		public RightMovingSnakeState(IEnemy snake) : base(snake)
 		{
-			this.snake = snake;
+			this.enemy = snake;
+			enemy.Sprite = EnemySpriteFactory.Instance.CreateRightMovingSnakeSprite();
+			base.MoveRight();
 		}
 
-
-		public void ChangeDirection()
+		public override void MoveUp()
 		{
-			//snake.state = new RightMovingSnakeState(snake);
-			//add up and down directions based on a random number
+			enemy.State = new UpMovingSnakeState(enemy);
 		}
 
-		public void BeKilled()
+		public override void MoveDown()
 		{
-			//snake.state = new KilledEnemyState(snake);
+			enemy.State = new DownMovingSnakeState(enemy);
 		}
 
-		public void MoveUp()
+		public override void MoveRight()
 		{
-			snake.state = new UpMovingSnakeState(snake);
-			snake.sprite = EnemySpriteFactory.Instance.CreateUpMovingSnakeSprite();
+			// do nothing
 		}
 
-		public void MoveDown()
+		public override void MoveLeft()
 		{
-			snake.state = new DownMovingSnakeState(snake);
-			snake.sprite = EnemySpriteFactory.Instance.CreateDownMovingSnakeSprite();
+			enemy.State = new LeftMovingSnakeState(enemy);
 		}
-
-		public void MoveRight()
-		{
-			
-		}
-
-
-		public void MoveLeft()
-		{
-			snake.state = new LeftMovingSnakeState(snake);
-			snake.sprite = EnemySpriteFactory.Instance.CreateLeftMovingSnakeSprite();
-		}
-
-		public void Update()
-		{
-			int linkYPos = snake.game.link.Y;
-			int linkXPos = snake.game.link.X;
-			if ((linkYPos < (snake.Y + 10)) && (linkYPos > (snake.Y - 10)))
-			{
-				if (linkXPos < snake.X)
-				{
-					snake.X -= 4;
-					MoveLeft();
-				}
-				else
-				{
-					snake.X += 4;
-					snake.state = this;
-				}
-			}
-			else
-			{
-				snake.X += 1;
-			}
-			
-
-			if (snake.X > 800)
-			{
-				snake.X -= 800;
-			}
-			snake.sprite.Position = new Point(snake.X, snake.Y);
-		}
-
 
 	}
 }

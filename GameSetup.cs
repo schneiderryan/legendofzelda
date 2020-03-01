@@ -123,20 +123,20 @@ namespace LegendOfZelda
                 new Goriya(game),
                 new Keese(),
                 new Stalfo(),
-                new Trap(game),
+                new Trap(),
                 new Snake(game),
                 new LFWallmaster(),
                 new RFWallmaster(),
-                new Fireball()
             };
 
             return list;
         }
 
-        public static List<Room> GenerateRoomList(LegendOfZelda game)
+        public static List<IRoom> GenerateRoomList(LegendOfZelda game)
         {
-            List<Room> list = new List<Room>()
+            List<IRoom> list = new List<IRoom>()
             {
+                new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
                 new Room(game, "Rooms/Room1.csv"),
                 new Room(game, "Rooms/Room2.csv"),
@@ -155,7 +155,6 @@ namespace LegendOfZelda
                 new Room(game, "Rooms/Room15.csv"),
                 new Room(game, "Rooms/Room16.csv"),
                 new Room(game, "Rooms/Room17.csv"),
-                new Room(game, "Rooms/TestLevel.csv")
             };
 
             return list;

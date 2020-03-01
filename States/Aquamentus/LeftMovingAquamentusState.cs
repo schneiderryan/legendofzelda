@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda;
 
 
 namespace LegendOfZelda
@@ -9,95 +7,66 @@ namespace LegendOfZelda
 	class LeftMovingAquamentusState : IEnemyState
 	{
 		private Aquamentus aquamentus;
-		private int changeDirection;
-		private bool breathe;
 		private int openMouth;
-		private LegendOfZelda game;
 
-		public LeftMovingAquamentusState(Aquamentus aquamentus, LegendOfZelda game)
+		public LeftMovingAquamentusState(Aquamentus aquamentus)
 		{
-			this.game = game;
 			this.aquamentus = aquamentus;
-			this.changeDirection = aquamentus.changeDirection;
 			this.openMouth = 0;
 
-			if(this.changeDirection%2 == 1)
+			if (aquamentus.CurrentStep % 2 == 1)
 			{
-				aquamentus.sprite = EnemySpriteFactory.Instance.CreateLeftMovingFireAquamentusSprite();
-
-				ICommand fire = new BreatheFireballCommand(game, this.aquamentus);
+				aquamentus.Sprite = EnemySpriteFactory.Instance.CreateMovingFireAquamentusSprite();
+				ICommand fire = new BreatheFireballCommand(aquamentus.game.projectiles, this.aquamentus);
 				fire.Execute();
-				breathe = true;
+				aquamentus.Breathed = true;
 			}
 			else
 			{
-				aquamentus.sprite = EnemySpriteFactory.Instance.CreateLeftMovingAquamentusSprite();
+				this.aquamentus.Sprite = EnemySpriteFactory.Instance.CreateMovingAquamentusSprite();
 			}
-
-		}
-
-		public void ChangeDirection()
-		{
-			//aquamentus.state = new RightMovingAquamentusState(aquamentus);
-			//add up and down directions based on a random number
-		}
-
-		public void BeKilled()
-		{
-			//aquamentus.state = new KilledEnemyState(aquamentus);
 		}
 
 		public void MoveDown()
 		{
-			//aquamentus.state = new KilledEnemyState(aquamentus);
+			// do nothing
+		}
+
+		public void MoveLeft()
+		{
+			// do nothing
+		}
+
+		public void MoveRight()
+		{
+			aquamentus.State = new RightMovingAquamentusState(aquamentus);
 		}
 
 		public void MoveUp()
 		{
-			//aquamentus.state = new KilledEnemyState(aquamentus);
-		}
-
-
-		public void MoveRight()
-		{
-			aquamentus.state = new RightMovingAquamentusState(aquamentus, game);
-			
-		}
-
-
-		public void MoveLeft()
-		{
-			
+			// do nothing
 		}
 
 		public void Update()
 		{
-			if (breathe)
+			if (aquamentus.Breathed)
 			{
 				openMouth++;
-				
-				if (openMouth >20)
+				if (openMouth > 20)
 				{
-					breathe = false;
-					aquamentus.sprite = EnemySpriteFactory.Instance.CreateLeftMovingAquamentusSprite();
+					aquamentus.Sprite = EnemySpriteFactory.Instance.CreateMovingAquamentusSprite();
 					openMouth = 0;
+					aquamentus.Breathed = false;
 				}
-				
 			}
-
 			aquamentus.X -= 1;
-			if (aquamentus.X < 0)
-			{
-				aquamentus.X += 800;
-			}
-			aquamentus.sprite.Position = new Point(aquamentus.X, aquamentus.Y);
-			
-
+			aquamentus.Sprite.Position = new Point(aquamentus.X, aquamentus.Y);
 		}
 
 		public void TakeDamage()
 		{
 			throw new System.NotImplementedException();
 		}
+
 	}
 }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -20,7 +20,7 @@ namespace LegendOfZelda
             this.levelName = levelName;
         }
 
-        public Dictionary<Vector2, String> parse(List<String> desiredStrings)
+        public Dictionary<Vector2, String> parse(IList<string> desiredStrings)
         {
             Dictionary<Vector2, String> dictionary = new Dictionary<Vector2, String>();
             using(StreamReader level = new StreamReader(levelName))
@@ -60,7 +60,7 @@ namespace LegendOfZelda
             return room;
         }
 
-        public Dictionary<String, String> parseDoors(List<String> desiredDoors)
+        public Dictionary<String, String> parseDoors(IList<String> desiredDoors)
         {
             Dictionary<String, String> dictionary = new Dictionary<String, String>();
             using(StreamReader level = new StreamReader(levelName))

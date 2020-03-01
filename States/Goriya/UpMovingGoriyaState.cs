@@ -1,78 +1,38 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-
+﻿
 namespace LegendOfZelda
 {
 
-	class UpMovingGoriyaState : IEnemyState
+	class UpMovingGoriyaState : EnemyState
+
 	{
-		private Goriya goriya;
-		
-
-
-		public UpMovingGoriyaState(Goriya goriya)
-		{ 
-			this.goriya = goriya;
-			
+		public UpMovingGoriyaState(IEnemy goriya)
+			: base(goriya)
+		{
+			enemy.Sprite = EnemySpriteFactory.Instance.CreateUpMovingGoriyaSprite();
+			(enemy as Goriya).direction = "up";
 		}
 
-
-		public void ChangeDirection()
+		public override void MoveUp()
 		{
-			//trap.state = new RightMovingGoriyaState(trap);
-			//add up and down directions based on a random number
+			// do nothing
 		}
 
-		public void BeKilled()
+		public override void MoveDown()
 		{
-			//trap.state = new KilledEnemyState(trap);
+			base.MoveDown();
+			enemy.State = new DownMovingGoriyaState(enemy);
 		}
 
-		public void MoveUp()
+		public override void MoveRight()
 		{
-			//nothing
+			base.MoveRight();
+			enemy.State = new RightMovingGoriyaState(enemy);
 		}
 
-		public void MoveDown()
+		public override void MoveLeft()
 		{
-			goriya.state = new DownMovingGoriyaState(goriya);
-			goriya.sprite = EnemySpriteFactory.Instance.CreateDownMovingGoriyaSprite();
-		}
-
-		public void MoveRight()
-		{
-			goriya.state = new RightMovingGoriyaState(goriya);
-			goriya.sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
-		}
-
-
-		public void MoveLeft()
-		{
-			goriya.state = new LeftMovingGoriyaState(goriya);
-			goriya.sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
-		}
-
-		public void TakeDamage()
-		{
-
-		}
-
-		public void Update()
-		{
-			goriya.boomerangTimer++;
-			if(goriya.boomerangTimer == 250)
-			{
-				goriya.ThrowBoomerang(goriya.X, goriya.Y, 0, -4);
-				goriya.boomerangTimer = 0;
-			}
-			goriya.Y -= 1;
-			if (goriya.Y < 0)
-			{
-				goriya.Y += 480;
-			}
-			
-			goriya.sprite.Position = new Point(goriya.X, goriya.Y);
+			base.MoveLeft();
+			enemy.State = new LeftMovingGoriyaState(enemy);
 		}
 
 

@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -10,74 +9,89 @@ namespace LegendOfZelda
     {
         private LevelParser parser;
         private LegendOfZelda game;
-        private List<String> possiblePlayers;
-        private List<String> possibleEnemies;
-        private List<String> possibleItems;
-        private List<String> possibleBlocks;
-        private List<String> possibleDoors;
-        public LevelLoader(String level, LegendOfZelda game)
+        private IList<string> possiblePlayers;
+        private IList<string> possibleEnemies;
+        private IList<string> possibleItems;
+        private IList<string> possibleBlocks;
+        private IList<string> possibleDoors;
+        private IList<string> possibleNPCs;
+
+        public LevelLoader(string level, LegendOfZelda game)
         {
             this.parser = new LevelParser(level);
             this.game = game;
 
-            this.possiblePlayers = new List<String>();
-            possiblePlayers.Add("Link");
-            possiblePlayers.Add("RedLink");
+            this.possiblePlayers = new List<string>()
+            {
+                "Link",
+                "RedLink",
+            };
 
-            this.possibleEnemies = new List<String>();
-            possibleEnemies.Add("Aquamentus");
-            possibleEnemies.Add("Dodongo");
-            possibleEnemies.Add("Gel");
-            possibleEnemies.Add("Goriya");
-            possibleEnemies.Add("Keese");
-            possibleEnemies.Add("LFWallmaster");
-            possibleEnemies.Add("RFWallmaster");
-            possibleEnemies.Add("Snake");
-            possibleEnemies.Add("Stalfo");
-            possibleEnemies.Add("Trap");
-            possibleEnemies.Add("OldMan");
+            this.possibleEnemies = new List<string>()
+            {
+                "Aquamentus",
+                "Dodongo",
+                "Gel",
+                "Goriya",
+                "Keese",
+                "LFWallmaster",
+                "RFWallmaster",
+                "Snake",
+                "Stalfo",
+                "Trap",
+                "OldMan",
+            };
 
-            this.possibleItems = new List<String>();
-            this.possibleItems.Add("Arrow");
-            this.possibleItems.Add("BlueRupee");
-            this.possibleItems.Add("Bomb");
-            this.possibleItems.Add("Boomerang");
-            this.possibleItems.Add("Bow");
-            this.possibleItems.Add("Clock");
-            this.possibleItems.Add("Compass");
-            this.possibleItems.Add("Fairy");
-            this.possibleItems.Add("Heart");
-            this.possibleItems.Add("HeartContainer");
-            this.possibleItems.Add("Key");
-            this.possibleItems.Add("Map");
-            this.possibleItems.Add("Rupee");
-            this.possibleItems.Add("TriforceShard");
-            this.possibleItems.Add("WoodSword");
+            this.possibleNPCs = new List<string>()
+            {
+                "OldMan",
+            };
 
-            this.possibleBlocks = new List<String>()
+            this.possibleItems = new List<string>()
+            {
+                "Arrow",
+                "BlueRupee",
+                "Bomb",
+                "Boomerang",
+                "Bow",
+                "Clock",
+                "Compass",
+                "Fairy",
+                "Heart",
+                "HeartContainer",
+                "Key",
+                "Map",
+                "Rupee",
+                "TriforceShard",
+                "WoodSword",
+            };
+
+            this.possibleBlocks = new List<string>()
             {
                 "Block",
                 "MoveableBlockVertical",
-                "MoveableBlockRight"
+                "MoveableBlockLeft",
             };
 
-            this.possibleDoors = new List<String>();
-            this.possibleDoors.Add("Wall");
-            this.possibleDoors.Add("Open");
-            this.possibleDoors.Add("Key");
-            this.possibleDoors.Add("Other");
-            this.possibleDoors.Add("Exploded");
+            this.possibleDoors = new List<string>()
+            {
+                "Wall",
+                "Open",
+                "Key",
+                "Other",
+                "Exploded",
+            };
         }
 
         public ISprite LoadBackground()
         {
             ISprite background;
             int roomNumber = parser.parseRoomNumber();
-            if(roomNumber == 0)
+            if (roomNumber == 0)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom0();
             }
-            else if(roomNumber == 1)
+            else if (roomNumber == 1)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom1();
             }
@@ -137,9 +151,13 @@ namespace LegendOfZelda
             {
                 background = RoomSpriteFactory.Instance.CreateRoom15();
             }
-            else if(roomNumber == 16)
+            else if (roomNumber == 16)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom16();
+            }
+            else if (roomNumber == 18) // test room
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom0();
             }
             else // room 17
             {
@@ -169,7 +187,7 @@ namespace LegendOfZelda
             return players;
         }
 
-        public List<IEnemy> LoadEnemies()
+        public IList<IEnemy> LoadEnemies()
         {
             List<IEnemy> enemies = new List<IEnemy>();
             Dictionary<Vector2, String> enemyInfo = parser.parse(possibleEnemies);
@@ -212,13 +230,9 @@ namespace LegendOfZelda
                 {
                     enemy = new Dodongo();
                 }
-                else if (entry.Value.Equals("OldMan"))
-                {
-                    enemy = new OldMan(235,133);
-                }
                 else //trap
                 {
-                    enemy = new Trap(game);
+                    enemy = new Trap();
                 }
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y;
@@ -229,7 +243,7 @@ namespace LegendOfZelda
             return enemies;
         }
 
-        public List<IItem> LoadItems()
+        public IList<IItem> LoadItems()
         {
             List<IItem> items = new List<IItem>();
             Dictionary<Vector2, String> itemInfo = parser.parse(possibleItems);
@@ -251,6 +265,10 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("Bow"))
                 {
                     item = new Bow();
+                }
+                else if (entry.Value.Equals("Boomerang"))
+                {
+                    item = new Boomerang();
                 }
                 else if (entry.Value.Equals("Clock"))
                 {
@@ -305,10 +323,9 @@ namespace LegendOfZelda
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
-                IBlock block;
                 if (entry.Value.Equals("Block"))
                 {
-                    block = new InvisibleBlock();
+                    IBlock block = new InvisibleBlock();
                     block.X = (int)entry.Key.X;
                     block.Y = (int)entry.Key.Y;
                     blocks.Add(block);
@@ -328,9 +345,9 @@ namespace LegendOfZelda
                 {
                     block = new MoveableBlockVertical();
                 }
-                else if (entry.Value.Equals("MoveableBlockRight"))
+                else if (entry.Value.Equals("MoveableBlockLeft"))
                 {
-                    block = new MoveableBlockRight();
+                    block = new MoveableBlockLeft();
                 }
                 if (block != null)
                 {
@@ -448,5 +465,24 @@ namespace LegendOfZelda
             }
             return doors;
         }
+
+        public IList<INPC> LoadNPCs()
+        {
+            IList<INPC> npcs = new List<INPC>();
+            Dictionary<Vector2, String> info = parser.parse(possibleNPCs);
+            foreach (KeyValuePair<Vector2, String> entry in info)
+            {
+                if (entry.Value.Equals("OldMan"))
+                {
+                    INPC npc = new OldMan(235, 133);
+                    npc.X = (int)entry.Key.X;
+                    npc.Y = (int)entry.Key.Y;
+                    npcs.Add(npc);
+                }
+            }
+
+            return npcs;
+        }
+
     }
 }

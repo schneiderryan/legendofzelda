@@ -16,7 +16,6 @@ namespace LegendOfZelda
         private static Texture2D items;
         private static Texture2D enemy;
         private static Texture2D boss;
-        private static Texture2D bossmod;
         private static Texture2D npc;
 
         private static Texture2D blank;
@@ -32,7 +31,6 @@ namespace LegendOfZelda
             effects = contentManager.Load<Texture2D>("weapons_mod");
             enemy = contentManager.Load<Texture2D>("loz_enemy_sheet");
             boss = contentManager.Load<Texture2D>("zelda-sprites-bosses");
-            bossmod = contentManager.Load<Texture2D>("zelda-sprites-bosses-willmod");
             npc = contentManager.Load<Texture2D>("loz_tryagain2_npc_sheet");
 
             link = contentManager.Load<Texture2D>("link_mod");
@@ -77,11 +75,6 @@ namespace LegendOfZelda
         public static Texture2D GetBossSheet()
         {
             return boss;
-        }
-
-        public static Texture2D GetBossModSheet()
-        {
-            return bossmod;
         }
 
         public static Texture2D GetLinkSheet()

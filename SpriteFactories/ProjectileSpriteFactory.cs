@@ -75,12 +75,12 @@ namespace LegendOfZelda
 
         public ISprite CreateRightSwordProjectile()
         {
-            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(90, 195, 16, 16), 2, false);
+            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(90, 195, 16, 7), 2, false);
         }
 
         public ISprite CreateLeftSwordProjectile()
         {
-            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(30, 195, 16, 16), 2, false);
+            return new AnimatedSprite(projectileSpriteSheet, new Rectangle(30, 195, 16, 7), 2, false);
         }
 
         public ISprite CreateBoomerang()
@@ -98,9 +98,5 @@ namespace LegendOfZelda
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true);
         }
 
-        public static ISprite GetMovingFireballSprite()
-        {
-            return new AnimatedSprite(Textures.GetEnemySheet(), new Rectangle(329, 0, 16, 16), 3, true);
-        }
     }
 }

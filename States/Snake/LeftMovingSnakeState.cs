@@ -1,48 +1,35 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda;
-using System;
-
+﻿
 namespace LegendOfZelda
 {
 
-	class LeftMovingSnakeState : IEnemyState
+	class LeftMovingSnakeState : EnemyState
+
 	{
-		private Snake snake;
-
-		public LeftMovingSnakeState(Snake snake)
+		public LeftMovingSnakeState(IEnemy snake) : base(snake)
 		{
-			this.snake = snake;
+			this.enemy = snake;
+			enemy.Sprite = EnemySpriteFactory.Instance.CreateLeftMovingSnakeSprite();
+			base.MoveLeft();
 		}
 
-
-		public void ChangeDirection()
+		public override void MoveUp()
 		{
-			//snake.state = new RightMovingsnakeState(snake);
-			//add up and down directions based on a random number
+			enemy.State = new UpMovingSnakeState(enemy);
 		}
 
-		public void BeKilled()
+		public override void MoveDown()
 		{
-			//snake.state = new KilledEnemyState(snake);
+			enemy.State = new DownMovingSnakeState(enemy);
 		}
 
-		public void MoveUp()
+		public override void MoveRight()
 		{
-			snake.state = new UpMovingSnakeState(snake);
-			snake.sprite = EnemySpriteFactory.Instance.CreateUpMovingSnakeSprite();
+			enemy.State = new RightMovingSnakeState(enemy);
 		}
 
-		public void MoveDown()
+		public override void MoveLeft()
 		{
-			snake.state = new DownMovingSnakeState(snake);
-			snake.sprite = EnemySpriteFactory.Instance.CreateDownMovingSnakeSprite();
-		}
-
-		public void MoveRight()
-		{
-			snake.state = new RightMovingSnakeState(snake);
-			snake.sprite = EnemySpriteFactory.Instance.CreateRightMovingSnakeSprite();
+			// do nothing
 		}
 
 
@@ -79,9 +66,6 @@ namespace LegendOfZelda
 			snake.sprite.Position = new Point(snake.X, snake.Y);
 		}
 
-		public void TakeDamage()
-		{
-			throw new NotImplementedException();
-		}
+		
 	}
 }

@@ -1,61 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda
 {
     static class PlayerCollisionHandler
     {
-        public static void HandlePlayerWallBlockCollision(IPlayer player, in Rectangle collision)
-        {
-            if (collision.Width > collision.Height)
-            {
-                if (collision.Y != player.Hitbox.Y)
-                {
-                    player.Y -= collision.Height;
-                }
-                else
-                {
-                    player.Y += collision.Height;
-                }
-            }
-            else
-            {
-                if (collision.X != player.Hitbox.X)
-                {
-                    player.X -= collision.Width;
-                }
-                else
-                {
-                    player.X += collision.Width;
-                }
-            }
-        }
-
-        public static void HandlePlayerMoveableBlockCollision(IPlayer player, IMoveableBlock m,
-                                                                            in Rectangle collision)
+        public static void PlayerMoveableBlockCollision(IPlayer player,
+                IMoveableBlock block, in Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {
                 if (collision.Y == player.Hitbox.Y)
                 {
-                    m.MoveOnceUp();
+                    block.MoveOnceUp();
                 }
                 else
                 {
-                    m.MoveOnceDown();
+                    block.MoveOnceDown();
                 }
             }
             else
             {
                 if (collision.X == player.Hitbox.X)
                 {
-                    m.MoveOnceLeft();
+                    block.MoveOnceLeft();
                 }
                 else
                 {
-                    m.MoveOnceRight();
+                    block.MoveOnceRight();
                 }
             }
         }
@@ -66,7 +39,7 @@ namespace LegendOfZelda
             {
                 if (collision.Y == player.Hitbox.Y)
                 {
-                    if(!player.direction.Equals("up") || !player.IsAttacking())
+                    if (!player.direction.Equals("up") || !player.IsAttacking())
                     {
                         player.TakeDamage();
                     }
@@ -94,6 +67,33 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
+                }
+            }
+        }
+
+        public static void MoveableAndNonMoveableCollision(ICollideable moveable,
+                in Rectangle collision)
+        {
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y != moveable.Hitbox.Y)
+                {
+                    moveable.Y -= collision.Height;
+                }
+                else
+                {
+                    moveable.Y += collision.Height;
+                }
+            }
+            else
+            {
+                if (collision.X > moveable.Hitbox.X)
+                {
+                    moveable.X -= collision.Width;
+                }
+                else
+                {
+                    moveable.X += collision.Width;
                 }
             }
         }

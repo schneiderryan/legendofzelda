@@ -1,15 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-
     class BoomerangProjectile :  Projectile
     {
         public enum BoomerangState { Thrown, Returning, Pocket};
         public BoomerangState State { get; private set; }
 
-        protected ICollideable source;
+        private ICollideable source;
         private int finalPositionX;
         private int finalPositionY;
         private Point finalPosition;
@@ -17,27 +15,29 @@ namespace LegendOfZelda
         public BoomerangProjectile(string direction, ICollideable source, int initialVel = 6)
             : base(direction, source.X, source.Y, initialVel)
         {
-            this.sprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
+            sprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
+            sprite.Position = new Point(X, Y);
             finalPositionX = X;
             finalPositionY = Y;
             Hitbox = sprite.Box;
             this.source = source;
+            State = BoomerangState.Thrown;
 
             if (direction == "up")
             {
-                finalPosition = new Point(finalPositionX, finalPositionY -= 144);
+                finalPosition = new Point(finalPositionX, finalPositionY - 144);
             }
             else if (direction == "down")
             {
-                finalPosition = new Point(finalPositionX, finalPositionY += 144);
+                finalPosition = new Point(finalPositionX, finalPositionY + 144);
             }
             else if (direction == "right")
             {
-                finalPosition = new Point(finalPositionX += 144, finalPositionY);
+                finalPosition = new Point(finalPositionX + 144, finalPositionY);
             }
             else if (direction == "left")
             {
-                finalPosition = new Point(finalPositionX -= 144, finalPositionY);
+                finalPosition = new Point(finalPositionX - 144, finalPositionY);
             }
         }
 
