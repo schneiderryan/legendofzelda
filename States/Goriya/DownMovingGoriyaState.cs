@@ -6,7 +6,7 @@ namespace LegendOfZelda
 
 {
 
-	class DownMovingGoriyaState : IGoriyaState
+	class DownMovingGoriyaState : IEnemyState
 	{
 		private Goriya goriya;
 
@@ -49,6 +49,11 @@ namespace LegendOfZelda
 		{
 			goriya.state = new LeftMovingGoriyaState(goriya);
 			goriya.sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
+		}
+
+		public void TakeDamage()
+		{
+
 		}
 
 		public void Update()

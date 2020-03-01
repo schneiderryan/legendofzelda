@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace LegendOfZelda
 {
 
-	class UpMovingGoriyaState : IGoriyaState
+	class UpMovingGoriyaState : IEnemyState
 	{
 		private Goriya goriya;
 		
@@ -51,6 +51,11 @@ namespace LegendOfZelda
 		{
 			goriya.state = new LeftMovingGoriyaState(goriya);
 			goriya.sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
+		}
+
+		public void TakeDamage()
+		{
+
 		}
 
 		public void Update()

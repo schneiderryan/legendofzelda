@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class UpMovingTrapState : ITrapState
+	class UpMovingTrapState : IEnemyState
 	{
 		private Trap trap;
 

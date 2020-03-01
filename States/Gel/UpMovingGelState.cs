@@ -5,7 +5,7 @@
 namespace LegendOfZelda
 {
 
-	class UpMovingGelState : IGelState
+	class UpMovingGelState : IEnemyState
 	{
 		private Gel gel;
 
@@ -61,6 +61,9 @@ namespace LegendOfZelda
 			gel.sprite.Position = new Point(gel.X, gel.Y);
 		}
 
-
+		public void TakeDamage()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

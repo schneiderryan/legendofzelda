@@ -6,7 +6,7 @@ using System;
 namespace LegendOfZelda
 {
 
-	class DownMovingKeeseState : IKeeseState
+	class DownMovingKeeseState : IEnemyState
 	{
 		private Keese keese;
 

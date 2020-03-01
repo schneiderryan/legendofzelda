@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-public interface IWallmasterState
+public interface IEnemyState
 {
 	void ChangeDirection();
 	void BeKilled();

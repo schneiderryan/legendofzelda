@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class LeftMovingGoriyaState : IGoriyaState
+	class LeftMovingGoriyaState : IEnemyState
 	{
 		private Goriya goriya;
 
@@ -51,6 +51,10 @@ namespace LegendOfZelda
 			
 		}
 
+		public void TakeDamage()
+		{
+
+		}
 		public void Update()
 		{
 			goriya.boomerangTimer++;

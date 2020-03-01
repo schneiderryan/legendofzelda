@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class UpMovingStalfoState : IStalfoState
+	class UpMovingStalfoState : IEnemyState
 	{
 		private Stalfo stalfo;
 

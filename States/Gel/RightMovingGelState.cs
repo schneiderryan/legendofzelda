@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class RightMovingGelState : IGelState
+	class RightMovingGelState : IEnemyState
 	{
 		private Gel gel;
 
@@ -61,6 +61,9 @@ namespace LegendOfZelda
 			gel.sprite.Position = new Point(gel.X, gel.Y);
 		}
 
-
+		public void TakeDamage()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

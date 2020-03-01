@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+
 using LegendOfZelda;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
@@ -11,13 +11,20 @@ namespace LegendOfZelda
 	class Dodongo : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
-		public IDodongoState state;
-		public ISprite sprite;
+		private double numCurrHearts;
+		public double currentHearts
+		{
+			get { return numCurrHearts; }
+			set { numCurrHearts = value; }
+		}
+		public ISprite sprite { get; set; }
+		public IEnemyState state { get; set; }
 		private RandomEnemyController random;
 		private int x;
 		private int y;
 		private int currentStep;
 		private int cd;
+		
 
 		public Rectangle Hitbox
 		{
@@ -110,7 +117,7 @@ namespace LegendOfZelda
 			sprite.Update();
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, Color color)
 		{
 			sprite.Draw(spriteBatch);
 		}
@@ -126,6 +133,16 @@ namespace LegendOfZelda
 		}
 
 		public void Use(IEnemy enemy)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void TakeDamage()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void TakeDamage(IEnemy enemy)
 		{
 			throw new NotImplementedException();
 		}

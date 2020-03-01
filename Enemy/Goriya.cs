@@ -11,9 +11,10 @@ namespace LegendOfZelda
 		
 		public enum BoomerangState { Thrown, NotThrown}
 		public BoomerangState State { get; protected set; }
+		
 		private Random randomStep = new Random();
-		public IGoriyaState state;
-		public ISprite sprite;
+		
+		
 		public int boomerangTimer;
 		public ISprite boomerangSprite;
 		public IProjectile boomerang;
@@ -23,7 +24,15 @@ namespace LegendOfZelda
 
 		public int x;
 		public int y;
+		private double numCurrHearts;
 
+		public double currentHearts
+		{
+			get { return numCurrHearts; }
+			set { numCurrHearts = value; }
+		}
+		public ISprite sprite { get; set; }
+		public IEnemyState state { get; set; }
 		public Rectangle Hitbox
 		{
 			get { return sprite.Box; }
@@ -40,36 +49,14 @@ namespace LegendOfZelda
 			set { y = value; }
 		}
 
-		private int yv;
-		private int xv;
+		public int xVel { get; set; }
+        public int yVel { get; set; }
 
-		public int xVel
-		{
-			get { return yv; }
-			set { yv = value; }
-		}
-		public int yVel
-		{
-			get { return yv; }
-			set { yv = value; }
-		}
-		
-		private int currentStep;
-		private int cd;
+		public int CurrentStep { get; set; }
+        public int changeDirection { get; set; }
 
-		public int CurrentStep
-		{
-			get { return currentStep; }
-			set { currentStep = value; }
-		}
-		public int changeDirection
-		{
-			get { return cd; }
-			set { cd = value; }
-		}
-		
 
-		public Goriya()
+        public Goriya()
 		{
 			
 			sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
@@ -77,7 +64,7 @@ namespace LegendOfZelda
 			X = 400;
 			Y = 200;
 			sprite.Position = new Point(X, Y);
-			currentStep = 0;
+			CurrentStep = 0;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);
 			state = new RightMovingGoriyaState(this);
@@ -132,11 +119,11 @@ namespace LegendOfZelda
 				boomerang.Update();
 			}
 		
-			currentStep++;
-			if(currentStep > changeDirection)
+			CurrentStep++;
+			if(CurrentStep > changeDirection)
 			{
 				random.Update();
-				currentStep = 0;
+				CurrentStep = 0;
 				changeDirection = this.randomStep.Next(0, 150);
 			}
 			
@@ -144,7 +131,7 @@ namespace LegendOfZelda
 			sprite.Update();
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, Color color)
 		{
 			sprite.Draw(spriteBatch, Color.White);
 			if(State == BoomerangState.Thrown)
@@ -166,6 +153,12 @@ namespace LegendOfZelda
 		public void Use(IEnemy enemy)
 		{
 			throw new NotImplementedException();
+		}
+
+		public void TakeDamage()
+		{
+			//still need to figure this out 
+			
 		}
 	}
 }

@@ -185,7 +185,7 @@ namespace LegendOfZelda
 
             foreach (IEnemy enemy in enemies)
             {
-                enemy.Draw(sb);
+                enemy.Draw(sb, Color.White);
                 Debug.DrawHitbox(sb, enemy.Hitbox);
             }
 

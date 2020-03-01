@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class DownMovingDodongoState : IDodongoState
+	class DownMovingDodongoState : IEnemyState
 	{
 		private Dodongo dodongo;
 
@@ -61,6 +61,9 @@ namespace LegendOfZelda
 			dodongo.sprite.Position = new Point(dodongo.X, dodongo.Y);
 		}
 
-
+		public void TakeDamage()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

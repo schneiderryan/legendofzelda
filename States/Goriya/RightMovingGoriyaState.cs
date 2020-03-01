@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class RightMovingGoriyaState : IGoriyaState
+	class RightMovingGoriyaState : IEnemyState
 	{
 		private Goriya goriya;
 
@@ -51,6 +51,10 @@ namespace LegendOfZelda
 			goriya.sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
 		}
 
+		public void TakeDamage()
+		{
+
+		}
 		public void Update()
 		{
 			goriya.boomerangTimer++;

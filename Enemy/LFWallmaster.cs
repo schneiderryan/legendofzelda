@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+
 using LegendOfZelda;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
@@ -11,8 +11,14 @@ namespace LegendOfZelda
 	class LFWallmaster : IEnemy, ICollideable
 	{
 		private Random randomStep = new Random();
-		public IWallmasterState state;
-		public ISprite sprite;
+		private double numCurrHearts;
+		public double currentHearts
+		{
+			get { return numCurrHearts; }
+			set { numCurrHearts = value; }
+		}
+		public ISprite sprite { get; set; }
+		public IEnemyState state { get; set; }
 		private RandomEnemyController random;
 
 		public int x;
@@ -120,7 +126,7 @@ namespace LegendOfZelda
 			sprite.Update();
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, Color color)
 		{
 			sprite.Draw(spriteBatch);
 		}
@@ -139,5 +145,12 @@ namespace LegendOfZelda
 		{
 			throw new NotImplementedException();
 		}
+
+		public void TakeDamage()
+		{
+			throw new NotImplementedException();
+		}
+
+		
 	}
 }

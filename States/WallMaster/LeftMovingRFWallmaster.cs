@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class LeftMovingRFWallmasterState : IWallmasterState
+	class LeftMovingRFWallmasterState : IEnemyState
 	{
 		private RFWallmaster rfwallmaster;
 

@@ -5,7 +5,14 @@ namespace LegendOfZelda
 {
     abstract class Enemy : IEnemy
     {
-        protected ISprite sprite;
+        private double numCurrHearts;
+        public double currentHearts
+        {
+            get { return numCurrHearts; }
+            set { numCurrHearts = value; }
+        }
+        public ISprite sprite { get; set; }
+        public IEnemyState state { get; set; }
         private Rectangle hitbox;
 
         public Rectangle Hitbox
@@ -53,9 +60,9 @@ namespace LegendOfZelda
             throw new System.NotImplementedException();
         }
 
-        public virtual void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb);
+            sprite.Draw(sb, color);
         }
 
         public void MoveDown()
@@ -86,6 +93,13 @@ namespace LegendOfZelda
         public abstract void Use(IEnemy enemy);
 
         public void UseProjectile(IProjectile projectile)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        
+
+        public void TakeDamage()
         {
             throw new System.NotImplementedException();
         }

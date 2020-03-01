@@ -6,7 +6,7 @@ using System;
 namespace LegendOfZelda
 {
 
-	class UpMovingSnakeState : ISnakeState
+	class UpMovingSnakeState : IEnemyState
 	{
 		private Snake snake;
 

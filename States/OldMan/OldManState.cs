@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class OldManState : IOldManState
+	class OldManState : IEnemyState
 	{
 		private OldMan oldman;
 

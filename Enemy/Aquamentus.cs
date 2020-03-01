@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using LegendOfZelda;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
@@ -14,8 +13,13 @@ namespace LegendOfZelda
 		public FireballState State { get; protected set; }
 
 		public LegendOfZelda game;
-		public IAquamentusState state;
-		public ISprite sprite;
+		public double currentHearts
+		{
+			get { return numCurrHearts; }
+			set { numCurrHearts = value; }
+		}
+		public ISprite sprite { get; set; }
+		public IEnemyState state { get; set; }
 		private ISprite fireballSprite0;
 		private ISprite fireballSprite1;
 		private ISprite fireballSprite2;
@@ -65,7 +69,8 @@ namespace LegendOfZelda
 		public int changeDirection;
 		public int breathFire;
 		public int fireStep;
-
+		private double numCurrHearts;
+		
 		int IEnemy.CurrentStep { get ; set ; }
 		int IEnemy.changeDirection { get; set; }
 		
@@ -153,7 +158,7 @@ namespace LegendOfZelda
 			
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, Color color)
 		{
 			sprite.Draw(spriteBatch);
 			if (State == FireballState.Breathed)
@@ -180,5 +185,12 @@ namespace LegendOfZelda
 		{
 			throw new NotImplementedException();
 		}
+
+		public void TakeDamage()
+		{
+			throw new NotImplementedException();
+		}
+
+		
 	}
 }

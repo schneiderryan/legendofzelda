@@ -6,7 +6,7 @@ using LegendOfZelda;
 namespace LegendOfZelda
 {
 
-	class LeftMovingAquamentusState : IAquamentusState
+	class LeftMovingAquamentusState : IEnemyState
 	{
 		private Aquamentus aquamentus;
 		private int changeDirection;
@@ -95,6 +95,9 @@ namespace LegendOfZelda
 
 		}
 
-
+		public void TakeDamage()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

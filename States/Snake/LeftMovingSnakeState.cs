@@ -6,7 +6,7 @@ using System;
 namespace LegendOfZelda
 {
 
-	class LeftMovingSnakeState : ISnakeState
+	class LeftMovingSnakeState : IEnemyState
 	{
 		private Snake snake;
 
@@ -79,6 +79,9 @@ namespace LegendOfZelda
 			snake.sprite.Position = new Point(snake.X, snake.Y);
 		}
 
-
+		public void TakeDamage()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
