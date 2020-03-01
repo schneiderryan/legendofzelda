@@ -1,39 +1,33 @@
 ﻿
 namespace LegendOfZelda
 {
-	class LeftMovingSnakeState : IEnemyState
+	class LeftMovingSnakeState : EnemyState
 	{
-		private Snake snake;
-
-		public LeftMovingSnakeState(Snake snake)
+		public LeftMovingSnakeState(IEnemy snake) : base(snake)
 		{
-			this.snake = snake;
-			snake.Sprite = EnemySpriteFactory.Instance.CreateLeftMovingSnakeSprite();
+			this.enemy = snake;
+			enemy.Sprite = EnemySpriteFactory.Instance.CreateLeftMovingSnakeSprite();
+			base.MoveLeft();
 		}
 
-		public void MoveUp()
+		public override void MoveUp()
 		{
-			snake.State = new UpMovingSnakeState(snake);
+			enemy.State = new UpMovingSnakeState(enemy);
 		}
 
-		public void MoveDown()
+		public override void MoveDown()
 		{
-			snake.State = new DownMovingSnakeState(snake);
+			enemy.State = new DownMovingSnakeState(enemy);
 		}
 
-		public void MoveRight()
+		public override void MoveRight()
 		{
-			snake.State = new RightMovingSnakeState(snake);
+			enemy.State = new RightMovingSnakeState(enemy);
 		}
 
-		public void MoveLeft()
+		public override void MoveLeft()
 		{
 			// do nothing
-		}
-
-		public void Update()
-		{
-			// nothing to do
 		}
 
 	}
