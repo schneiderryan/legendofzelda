@@ -121,7 +121,12 @@ namespace LegendOfZelda
 
         public ISprite CreateOldManSprite()
         {
-            return new AnimatedSprite(npcSpriteSheet, new Rectangle(154, 134, 20, 19), 1, false);
+            return new AnimatedSprite(npcSpriteSheet, new Rectangle(154, 134, 15, 15), 1, false);
+        }
+
+        public ISprite CreateFireSprite()
+        {
+            return new AnimatedSprite(npcSpriteSheet, new Rectangle(101, 134, 15, 15), 2, true);
         }
     }
 }

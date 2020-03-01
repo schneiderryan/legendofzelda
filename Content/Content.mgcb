@@ -97,6 +97,18 @@
 /processorParam:TextureFormat=Color
 /build:link_mod.png
 
+#begin loz_anothertry_npc_sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:loz_anothertry_npc_sheet.png
+
 #begin loz_boss_sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -120,6 +132,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:loz_enemy_sheet.png
+
+#begin loz_finaltry_npc_sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:loz_finaltry_npc_sheet.png
 
 #begin loz_tryagain2_npc_sheet.png
 /importer:TextureImporter

@@ -7,12 +7,12 @@ namespace LegendOfZelda
 	{
 		private ISprite sprite;
 
-		public OldMan(int x, int y)
+		public OldMan()
 		{
 			sprite = EnemySpriteFactory.Instance.CreateOldManSprite();
 			Hitbox = sprite.Box;
-			X = x;
-			Y = y;
+			X = 240;
+			Y = 130;
 			sprite.Position = new Point(X, Y);
 		}
 

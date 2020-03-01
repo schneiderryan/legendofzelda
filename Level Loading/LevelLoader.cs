@@ -38,8 +38,8 @@ namespace LegendOfZelda
                 "RFWallmaster",
                 "Snake",
                 "Stalfo",
+                "Fire",
                 "Trap",
-                "OldMan",
             };
 
             this.possibleNPCs = new List<string>()
@@ -229,6 +229,10 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("Dodongo"))
                 {
                     enemy = new Dodongo();
+                }
+                else if (entry.Value.Equals("Fire"))
+                {
+                    enemy = new Fire();
                 }
                 else //trap
                 {
@@ -472,7 +476,7 @@ namespace LegendOfZelda
             {
                 if (entry.Value.Equals("OldMan"))
                 {
-                    INPC npc = new OldMan(235, 133);
+                    INPC npc = new OldMan();
                     npc.X = (int)entry.Key.X;
                     npc.Y = (int)entry.Key.Y;
                     npcs.Add(npc);
