@@ -15,69 +15,78 @@ namespace LegendOfZelda
         private List<String> possibleItems;
         private List<String> possibleBlocks;
         private List<String> possibleDoors;
+
         public LevelLoader(String level, LegendOfZelda game)
         {
             this.parser = new LevelParser(level);
             this.game = game;
 
-            this.possiblePlayers = new List<String>();
-            possiblePlayers.Add("Link");
-            possiblePlayers.Add("RedLink");
+            this.possiblePlayers = new List<String>()
+            {
+                "Link",
+                "RedLink",
+            };
 
-            this.possibleEnemies = new List<String>();
-            possibleEnemies.Add("Aquamentus");
-            possibleEnemies.Add("Dodongo");
-            possibleEnemies.Add("Gel");
-            possibleEnemies.Add("Goriya");
-            possibleEnemies.Add("Keese");
-            possibleEnemies.Add("LFWallmaster");
-            possibleEnemies.Add("RFWallmaster");
-            possibleEnemies.Add("Snake");
-            possibleEnemies.Add("Stalfo");
-            possibleEnemies.Add("Trap");
-            possibleEnemies.Add("OldMan");
+            this.possibleEnemies = new List<String>()
+            {
+                "Aquamentus",
+                "Dodongo",
+                "Gel",
+                "Goriya",
+                "Keese",
+                "LFWallmaster",
+                "RFWallmaster",
+                "Snake",
+                "Stalfo",
+                "Trap",
+                "OldMan",
+            };
 
-            this.possibleItems = new List<String>();
-            this.possibleItems.Add("Arrow");
-            this.possibleItems.Add("BlueRupee");
-            this.possibleItems.Add("Bomb");
-            this.possibleItems.Add("Boomerang");
-            this.possibleItems.Add("Bow");
-            this.possibleItems.Add("Clock");
-            this.possibleItems.Add("Compass");
-            this.possibleItems.Add("Fairy");
-            this.possibleItems.Add("Heart");
-            this.possibleItems.Add("HeartContainer");
-            this.possibleItems.Add("Key");
-            this.possibleItems.Add("Map");
-            this.possibleItems.Add("Rupee");
-            this.possibleItems.Add("TriforceShard");
-            this.possibleItems.Add("WoodSword");
+            this.possibleItems = new List<String>()
+            {
+                "Arrow",
+                "BlueRupee",
+                "Bomb",
+                "Boomerang",
+                "Bow",
+                "Clock",
+                "Compass",
+                "Fairy",
+                "Heart",
+                "HeartContainer",
+                "Key",
+                "Map",
+                "Rupee",
+                "TriforceShard",
+                "WoodSword",
+            };
 
             this.possibleBlocks = new List<String>()
             {
                 "Block",
                 "MoveableBlockVertical",
-                "MoveableBlockRight"
+                "MoveableBlockLeft",
             };
 
-            this.possibleDoors = new List<String>();
-            this.possibleDoors.Add("Wall");
-            this.possibleDoors.Add("Open");
-            this.possibleDoors.Add("Key");
-            this.possibleDoors.Add("Other");
-            this.possibleDoors.Add("Exploded");
+            this.possibleDoors = new List<String>()
+            {
+                "Wall",
+                "Open",
+                "Key",
+                "Other",
+                "Exploded",
+            };
         }
 
         public ISprite LoadBackground()
         {
             ISprite background;
             int roomNumber = parser.parseRoomNumber();
-            if(roomNumber == 0)
+            if (roomNumber == 0)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom0();
             }
-            else if(roomNumber == 1)
+            else if (roomNumber == 1)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom1();
             }
@@ -137,9 +146,13 @@ namespace LegendOfZelda
             {
                 background = RoomSpriteFactory.Instance.CreateRoom15();
             }
-            else if(roomNumber == 16)
+            else if (roomNumber == 16)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom16();
+            }
+            else if (roomNumber == 18) // test room
+            {
+                background = RoomSpriteFactory.Instance.CreateRoom0();
             }
             else // room 17
             {
@@ -250,6 +263,10 @@ namespace LegendOfZelda
                 {
                     item = new Bow();
                 }
+                else if (entry.Value.Equals("Boomerang"))
+                {
+                    item = new Boomerang();
+                }
                 else if (entry.Value.Equals("Clock"))
                 {
                     item = new Clock();
@@ -303,10 +320,9 @@ namespace LegendOfZelda
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
-                IBlock block;
                 if (entry.Value.Equals("Block"))
                 {
-                    block = new InvisibleBlock();
+                    IBlock block = new InvisibleBlock();
                     block.X = (int)entry.Key.X;
                     block.Y = (int)entry.Key.Y;
                     blocks.Add(block);
@@ -326,9 +342,9 @@ namespace LegendOfZelda
                 {
                     block = new MoveableBlockVertical();
                 }
-                else if (entry.Value.Equals("MoveableBlockRight"))
+                else if (entry.Value.Equals("MoveableBlockLeft"))
                 {
-                    block = new MoveableBlockRight();
+                    block = new MoveableBlockLeft();
                 }
                 if (block != null)
                 {
@@ -357,7 +373,7 @@ namespace LegendOfZelda
                     }
                     else if (entry.Value.Equals("Open"))
                     {
-                        door = new LeftWall();
+                        door = new LeftOpen();
                     }
                     else if (entry.Value.Equals("Key"))
                     {
@@ -443,7 +459,6 @@ namespace LegendOfZelda
                 }
 
                 doors.Add(entry.Key, door);
-                //check doors and add to doors
             }
             return doors;
         }

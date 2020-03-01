@@ -1,5 +1,5 @@
 ﻿16
-Door,Door,Door,Door
+Wall,Open,Wall,Wall
 Trap,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Trap
 Null,Null,Null,Null,Null,Null,Block,Null,Null,Null,Null,Null
 Null,Null,Null,Null,Null,Block,Null,Block,Null,Null,Null,Null

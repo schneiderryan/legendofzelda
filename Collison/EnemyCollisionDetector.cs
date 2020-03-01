@@ -7,19 +7,17 @@ namespace LegendOfZelda
 {
     static class EnemyCollisionDetector
     {
-        public static void HandleEnemyCollisions(Room room, IPlayer player)
+        public static void HandleEnemyCollisions(IRoom room)
         {
-            EnemyWallCollision(room.enemies, room);
-            EnemyBlockCollision(room.enemies, room.blocks);
-            EnemyPlayerCollision(room.enemies, player);
-            EnemyDoorCollision(room.enemies, room.doors);
-            EnemyProjectileCollision(room.enemies, room.projectiles);
+            EnemyWallCollision(room.Enemies, room.Hitboxes);
+            EnemyBlockCollision(room.Enemies, room.Blocks);
+            EnemyDoorCollision(room.Enemies, room.Doors);
         }
 
-        private static void EnemyWallCollision(List<IEnemy> enemies, Room room)
+        private static void EnemyWallCollision(IList<IEnemy> enemies, IList<Rectangle> hitboxes)
         {
             foreach (IEnemy enemy in enemies) {
-                foreach (Rectangle hitbox in room.hitboxes)
+                foreach (Rectangle hitbox in hitboxes)
                 {
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, hitbox);
                     if (!collision.Equals(Rectangle.Empty))
@@ -30,7 +28,7 @@ namespace LegendOfZelda
             }
         }
 
-        private static void EnemyBlockCollision(List<IEnemy> enemies, List<IBlock> blocks)
+        private static void EnemyBlockCollision(IList<IEnemy> enemies, IList<IBlock> blocks)
         {
             foreach (IEnemy enemy in enemies)
             {
@@ -45,19 +43,7 @@ namespace LegendOfZelda
             }
         }
 
-        private static void EnemyPlayerCollision(List<IEnemy> enemies, IPlayer player)
-        {
-            foreach (IEnemy enemy in enemies)
-            {
-                Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
-                if (!collision.Equals(Rectangle.Empty))
-                {
-                    EnemyCollisionHandler.HandleEnemyPlayerCollision(enemy, collision);
-                }
-            }
-        }
-
-        private static void EnemyDoorCollision(List<IEnemy> enemies, Dictionary<String, IDoor> doors)
+        private static void EnemyDoorCollision(IList<IEnemy> enemies, IDictionary<String, IDoor> doors)
         {
             foreach (IEnemy enemy in enemies)
             {
@@ -69,27 +55,6 @@ namespace LegendOfZelda
                         EnemyCollisionHandler.HandleEnemyWallBlockCollision(enemy, collision);
                     }
                 }
-            }
-        }
-
-        private static void EnemyProjectileCollision(List<IEnemy> enemies, List<IProjectile> projectiles)
-        {
-            List<IProjectile> projectilesToRemove = new List<IProjectile>();
-            foreach(IEnemy enemy in enemies)
-            {
-                foreach(IProjectile projectile in projectiles)
-                {
-                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
-                    if (!collision.Equals(Rectangle.Empty))
-                    {
-                        EnemyCollisionHandler.HandleEnemyProjectileCollision(enemy, collision);
-                        projectilesToRemove.Add(projectile);
-                    }
-                }
-            }
-            foreach(IProjectile toRemove in projectilesToRemove)
-            {
-                projectiles.Remove(toRemove);
             }
         }
     }
