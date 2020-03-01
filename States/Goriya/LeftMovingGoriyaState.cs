@@ -1,73 +1,37 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda;
-
-
+﻿
 namespace LegendOfZelda
 {
-
-	class LeftMovingGoriyaState : IGoriyaState
+	class LeftMovingGoriyaState : EnemyState
 	{
-		private Goriya goriya;
-
-		public LeftMovingGoriyaState(Goriya goriya)
+		public LeftMovingGoriyaState(IEnemy goriya)
+			: base(goriya)
 		{
-			this.goriya = goriya;
+			enemy.Sprite = EnemySpriteFactory.Instance.CreateLeftMovingGoriyaSprite();
+			(enemy as Goriya).direction = "left";
 		}
 
-
-		public void ChangeDirection()
+		public override void MoveUp()
 		{
-			//trap.state = new RightMovingGoriyaState(trap);
-			//add up and down directions based on a random number
+			base.MoveUp();
+			enemy.State = new UpMovingGoriyaState(enemy);
 		}
 
-		public void BeKilled()
+		public override void MoveDown()
 		{
-			//trap.state = new KilledEnemyState(trap);
+			base.MoveDown();
+			enemy.State = new DownMovingGoriyaState(enemy);
 		}
 
-		public void MoveUp()
+		public override void MoveRight()
 		{
-			goriya.state = new UpMovingGoriyaState(goriya);
-			goriya.sprite = EnemySpriteFactory.Instance.CreateUpMovingGoriyaSprite();
+			base.MoveRight();
+			enemy.State = new RightMovingGoriyaState(enemy);
 		}
 
-		public void MoveDown()
+		public override void MoveLeft()
 		{
-			goriya.state = new DownMovingGoriyaState(goriya);
-			goriya.sprite = EnemySpriteFactory.Instance.CreateDownMovingGoriyaSprite();
+			// do nothing
 		}
-
-		public void MoveRight()
-		{
-			goriya.state = new RightMovingGoriyaState(goriya);
-			goriya.sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
-		}
-
-
-		public void MoveLeft()
-		{
-			
-		}
-
-		public void Update()
-		{
-			goriya.boomerangTimer++;
-			if (goriya.boomerangTimer == 250)
-			{
-				goriya.ThrowBoomerang(goriya.X, goriya.Y, -4, 0);
-				goriya.boomerangTimer = 0;
-			}
-
-			goriya.X -= 1;
-			if (goriya.X < 0)
-			{
-				goriya.X += 800;
-			}
-			goriya.sprite.Position = new Point(goriya.X, goriya.Y);
-		}
-
 
 	}
 }

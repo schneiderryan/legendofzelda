@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -15,6 +15,7 @@ namespace LegendOfZelda
         public IList<IEnemy> Enemies { get; private set; }
 
         private List<IBlock> blocks;
+        private IList<INPC> npcs;
         private IList<IItem> items;
         private LegendOfZelda game;
         private ISprite background;
@@ -34,7 +35,7 @@ namespace LegendOfZelda
             this.MoveableBlocks = levelLoader.LoadMoveableBlocks();
             this.blocks = levelLoader.LoadStillBlocks();
             this.blocks.AddRange(MoveableBlocks);
-
+            this.npcs = levelLoader.LoadNPCs();
             this.Doors = levelLoader.LoadDoors();
 
             Hitboxes = new List<Rectangle>()
@@ -99,6 +100,12 @@ namespace LegendOfZelda
                 Debug.DrawHitbox(sb, item.Hitbox);
             }
 
+            foreach (INPC npc in npcs)
+            {
+                npc.Draw(sb);
+                Debug.DrawHitbox(sb, npc.Hitbox);
+            }
+
             foreach (IEnemy enemy in Enemies)
             {
                 enemy.Draw(sb);
@@ -126,6 +133,12 @@ namespace LegendOfZelda
             {
                 item.Update();
             }
+
+            foreach (INPC npc in npcs)
+            {
+                npc.Update();
+            }
+
             foreach (IEnemy enemy in Enemies)
             {
                 enemy.Update();
