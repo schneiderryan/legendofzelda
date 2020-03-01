@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LegendOfZelda
@@ -9,7 +10,7 @@ namespace LegendOfZelda
     class DamagedGoriya : IEnemy
     {
         public IEnemy decoratedGoriya;
-       
+        LegendOfZelda game;
 
         int timer = 192; // to give about 3 seconds
 
@@ -54,10 +55,22 @@ namespace LegendOfZelda
         public int changeDirection { get; set ; }
         public int xVel { get ; set ; }
         public int yVel { get ; set ; }
+        public bool isBeingAttacked { get ; set; }
+        public int listIndex { get ; set ; }
 
-        public DamagedGoriya(IEnemy goriya)
+        public DamagedGoriya(LegendOfZelda game)
         {
-            this.decoratedGoriya = goriya;
+
+            this.game = game;
+            foreach(IEnemy enemy in game.currentRoom.enemies)
+            {
+                if (enemy.isBeingAttacked)
+                {
+                   
+                    this.decoratedGoriya = enemy;
+                }
+            }
+            
         }
 
 
@@ -116,34 +129,39 @@ namespace LegendOfZelda
             timer--;
             if (timer == 0)
             {
-                //goriya = decoratedGoriya;
+                foreach (IEnemy enemy in game.currentRoom.enemies.ToList())
+                {
+                    if (enemy.isBeingAttacked)
+                    {
+                        this.game.currentRoom.enemies[enemy.listIndex] = decoratedGoriya;
+                        isBeingAttacked = false;
+                    }
+                    
+                }
             }
             decoratedGoriya.Update();
         }
 
         public void BeStill()
         {
-            throw new NotImplementedException();
+            decoratedGoriya.BeStill();
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public void UseProjectile(IProjectile projectile)
         {
-            throw new NotImplementedException();
+            decoratedGoriya.UseProjectile(projectile);
         }
 
         public void Use(IEnemy enemy)
         {
-            throw new NotImplementedException();
+            decoratedGoriya.Use(enemy);
         }
 
         public void TakeDamage()
         {
-            throw new NotImplementedException();
+            //nothing
         }
     }
 }

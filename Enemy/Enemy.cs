@@ -11,6 +11,8 @@ namespace LegendOfZelda
             get { return numCurrHearts; }
             set { numCurrHearts = value; }
         }
+        public int listIndex { get; set; }
+        public bool isBeingAttacked { get; set; }
         public ISprite sprite { get; set; }
         public IEnemyState state { get; set; }
         private Rectangle hitbox;

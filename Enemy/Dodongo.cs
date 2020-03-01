@@ -24,7 +24,8 @@ namespace LegendOfZelda
 		private int y;
 		private int currentStep;
 		private int cd;
-		
+		public int listIndex { get; set; }
+		public bool isBeingAttacked { get; set; }
 
 		public Rectangle Hitbox
 		{

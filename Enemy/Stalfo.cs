@@ -9,6 +9,8 @@ namespace LegendOfZelda
 
 	class Stalfo : IEnemy, ICollideable
 	{
+		public int listIndex { get; set; }
+		public bool isBeingAttacked { get; set; }
 		private Random randomStep = new Random();
 		private double numCurrHearts;
 		public double currentHearts

@@ -9,6 +9,7 @@ namespace LegendOfZelda
 
 	class Aquamentus : IEnemy, ICollideable
 	{
+		
 		public enum FireballState { Breathed, NotBreathed}
 		public FireballState State { get; protected set; }
 
@@ -66,14 +67,16 @@ namespace LegendOfZelda
 
 		
 		public int currentStep;
-		public int changeDirection;
+		
 		public int breathFire;
 		public int fireStep;
 		private double numCurrHearts;
 		
-		int IEnemy.CurrentStep { get ; set ; }
-		int IEnemy.changeDirection { get; set; }
-		
+		public int CurrentStep { get ; set ; }
+		public int changeDirection { get; set; }
+		public int listIndex { get ; set ; }
+		public bool isBeingAttacked { get ; set ; }
+
 		public Aquamentus(LegendOfZelda game)
 		{
 			this.game = game;

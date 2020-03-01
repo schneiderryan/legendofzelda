@@ -13,8 +13,8 @@ namespace LegendOfZelda
 		public BoomerangState State { get; protected set; }
 		
 		private Random randomStep = new Random();
-		
-		
+
+		public LegendOfZelda game;
 		public int boomerangTimer;
 		public ISprite boomerangSprite;
 		public IProjectile boomerang;
@@ -54,11 +54,17 @@ namespace LegendOfZelda
 
 		public int CurrentStep { get; set; }
         public int changeDirection { get; set; }
+		public bool isBeingAttacked { get ; set ; }
+		public bool isDead { get; set; }
+		public int listIndex { get; set ; }
 
-
-        public Goriya()
+		public Goriya(LegendOfZelda game)
 		{
-			
+
+			this.game = game;
+			isBeingAttacked = false;
+			isDead = false;
+			currentHearts = 2.0;
 			sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
 			boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
 			X = 400;
@@ -113,30 +119,45 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			if(State == BoomerangState.Thrown)
+			
+			if(!isDead)
 			{
-				boomerangSprite.Update();
-				boomerang.Update();
-			}
-		
-			CurrentStep++;
-			if(CurrentStep > changeDirection)
-			{
-				random.Update();
-				CurrentStep = 0;
-				changeDirection = this.randomStep.Next(0, 150);
+				if(currentHearts == 0)
+				{
+					isDead = true;
+				}
+				
+				if (State == BoomerangState.Thrown)
+				{
+					boomerangSprite.Update();
+					boomerang.Update();
+				}
+
+				CurrentStep++;
+				if (CurrentStep > changeDirection)
+				{
+					random.Update();
+					CurrentStep = 0;
+					changeDirection = this.randomStep.Next(0, 150);
+				}
+
+				state.Update();
+				sprite.Update();
 			}
 			
-			state.Update();
-			sprite.Update();
 		}
 
 		public void Draw(SpriteBatch spriteBatch, Color color)
 		{
-			sprite.Draw(spriteBatch, Color.White);
-			if(State == BoomerangState.Thrown)
+			if (!isDead)
 			{
-				boomerang.Draw(spriteBatch);
+				sprite.Draw(spriteBatch, color);
+
+
+				if (State == BoomerangState.Thrown)
+				{
+					boomerang.Draw(spriteBatch);
+				}
 			}
 		}
 
@@ -157,8 +178,10 @@ namespace LegendOfZelda
 
 		public void TakeDamage()
 		{
-			//still need to figure this out 
-			
+			currentHearts--;
+			isBeingAttacked = true;
+			this.game.currentRoom.enemies[listIndex] = new DamagedGoriya(game);	
+
+		}
 		}
 	}
-}

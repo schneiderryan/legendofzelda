@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LegendOfZelda
@@ -47,10 +48,10 @@ namespace LegendOfZelda
 
         private static void EnemyPlayerCollision(List<IEnemy> enemies, IPlayer player)
         {
-            foreach (IEnemy enemy in enemies)
+            foreach (IEnemy enemy in enemies.ToList())
             {
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
-                if (!collision.Equals(Rectangle.Empty))
+                if (!collision.Equals(Rectangle.Empty) && player.IsAttacking())
                 {
                     EnemyCollisionHandler.HandleEnemyPlayerCollision(enemy, collision);
                 }
