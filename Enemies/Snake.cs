@@ -3,7 +3,7 @@
 namespace LegendOfZelda
 {
 
-	class Snake : Enemy
+	class Snake : RandomMovingEnemy
 	{
 		LegendOfZelda game;
 
