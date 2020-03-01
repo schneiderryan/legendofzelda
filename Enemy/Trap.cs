@@ -17,6 +17,11 @@ namespace LegendOfZelda
 		public LegendOfZelda game;
 		public int x;
 		public int y;
+		private bool attacking;
+		private bool retreating;
+		//private int attackvel;
+		private string direction;
+		private int attacktimer;
 
 		public Rectangle Hitbox
 		{
@@ -38,8 +43,8 @@ namespace LegendOfZelda
 		private int xv;
 		public int xVel
 		{
-			get { return yv; }
-			set { yv = value; }
+			get { return xv; }
+			set { xv = value; }
 		}
 		public int yVel
 		{
@@ -71,6 +76,9 @@ namespace LegendOfZelda
 			set { yPos = value; }
 		}
 
+		public bool Attacking { get => attacking; set => attacking = value; }
+		public bool Retreating { get => retreating; set => retreating = value; }
+
 		public Trap(LegendOfZelda loz)
 		{
 
@@ -80,6 +88,9 @@ namespace LegendOfZelda
 			sprite.Position = new Point(xPos, yPos);
 			currentStep = 0;
 			game = loz;
+			attacktimer = 0;
+			attacking = false;
+			retreating = false;
 			changeDirection = this.randomStep.Next(0, 150);
 			random = new RandomEnemyController(this);
 			state = new RightMovingTrapState(this);
@@ -118,16 +129,115 @@ namespace LegendOfZelda
 			sprite.Position = new Point(this.X, this.Y);
 		}
 
+		public void Attack(string dir)
+		{
+	
+				switch (dir)
+				{
+					case "up":
+						Y -= 3;
+						break;
+					case "down":
+						Y += 3;
+						break;
+					case "left":
+						X -= 3;
+						break;
+					case "right":
+						X += 3;
+						break;
+					default:
+						break;
+				}					
+		}
+
 		public void Update()
 		{
-			currentStep++;
+			/*currentStep++;
 			if(currentStep > changeDirection)
 			{
 				random.Update();
 				currentStep = 0;
 				changeDirection = this.randomStep.Next(0, 150);
 			}
-			
+			*/
+			int linkXPos = game.link.X;
+			int linkYPos = game.link.Y;
+			if(((linkYPos < (Y + 10)) && (linkYPos > (Y - 10))))
+			{
+				if (attacktimer == 0)
+				{
+					attacking = true;
+					//attacktimer++;
+					if(linkXPos<X)
+					{
+						direction = "left";
+					}
+					else
+					{
+						direction = "right";
+					}
+				}	
+				/*
+				attacking = true;
+				if(linkXPos<X)
+				{
+					direction = "left";
+					//Attack("left");
+				}
+				else
+				{
+					direction = "right";
+					//Attack("right");
+				}
+				*/
+			}
+			else if ((linkXPos < (X + 10)) && (linkXPos > (X - 10)))
+			{
+				/*
+				if ((attacktimer == 0) && (retreating = false))
+				{
+					attacking = true;
+					if (linkYPos < Y)
+					{
+						direction = "up";
+					}
+					else
+					{
+						direction = "down";
+					}
+				}
+				*/
+				if (attacktimer == 0)
+				{
+					attacking = true;
+					//attacktimer++;
+					if (linkYPos < Y)
+					{
+						direction = "up";
+						//Attack("left");
+					}
+					else
+					{
+						direction = "down";
+						//Attack("right");
+					}
+				}
+				
+			}
+
+
+			if(attacking)
+			{
+				attacktimer++;
+				Attack(direction);
+			}
+			if(attacktimer==10)
+			{
+				attacking = false;
+				attacktimer = 0;
+			}
+
 			state.Update();
 			sprite.Update();
 		}

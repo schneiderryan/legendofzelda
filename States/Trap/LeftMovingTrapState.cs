@@ -53,7 +53,7 @@ namespace LegendOfZelda
 
 		public void Update()
 		{
-			trap.X -= 1;
+			//trap.X -= 1;
 			if (trap.X < 0)
 			{
 				trap.X += 800;
