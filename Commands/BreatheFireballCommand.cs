@@ -6,9 +6,9 @@ namespace LegendOfZelda
     class BreatheFireballCommand : ICommand
     {
         private IEnemy aquamentus;
-        private IList<IProjectile> projectiles;
+        private ICollection<IProjectile> projectiles;
 
-        public BreatheFireballCommand(IList<IProjectile> projectiles, IEnemy aquamentus)
+        public BreatheFireballCommand(ICollection<IProjectile> projectiles, IEnemy aquamentus)
         {
             this.projectiles = projectiles;
             this.aquamentus = aquamentus;

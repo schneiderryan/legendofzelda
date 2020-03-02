@@ -13,23 +13,21 @@ namespace LegendOfZelda
         LegendOfZelda game;
         int timer = 192;
 
-        public Rectangle Hitbox
+        public Rectangle Footbox
         {
-            get { return decoratedLink.Hitbox; }
+            get { return decoratedLink.Footbox; }
         }
 
-        public Rectangle SpriteBox { get => decoratedLink.SpriteBox; }
-
-        public ISprite sprite
+        public ISprite Sprite
         {
-            get { return decoratedLink.sprite; }
-            set { decoratedLink.sprite = value; }
+            get { return decoratedLink.Sprite; }
+            set { decoratedLink.Sprite = value; }
         }
 
-        public ILinkState state
+        public ILinkState State
         {
-            get { return decoratedLink.state; }
-            set { decoratedLink.state = value; }
+            get { return decoratedLink.State; }
+            set { decoratedLink.State = value; }
         }
 
         public int X
@@ -44,41 +42,46 @@ namespace LegendOfZelda
             set { decoratedLink.Y = value; }
         }
 
-        public String direction
+        public String Direction
         {
-            get { return decoratedLink.direction; }
-            set { decoratedLink.direction = value; }
+            get { return decoratedLink.Direction; }
+            set { decoratedLink.Direction = value; }
         }
 
-        public String color
+        public String Color
         {
-            get { return decoratedLink.color; }
-            set { decoratedLink.color = value; }
+            get { return decoratedLink.Color; }
+            set { decoratedLink.Color = value; }
         }
 
-        public int numRupees
+        public int NumRupees
         {
-            get { return decoratedLink.numRupees; }
-            set { decoratedLink.numRupees = value; }
+            get { return decoratedLink.NumRupees; }
+            set { decoratedLink.NumRupees = value; }
         }
 
-        public double maxHearts
+        public double MaxHearts
         {
-            get { return decoratedLink.maxHearts; }
-            set { decoratedLink.maxHearts = value; }
+            get { return decoratedLink.MaxHearts; }
+            set { decoratedLink.MaxHearts = value; }
         }
-        public double currentHearts
+        public double CurrentHearts
         {
-            get { return decoratedLink.currentHearts; }
-            set { decoratedLink.currentHearts = value; }
-        }
-
-        public int numberBombs
-        {
-            get { return decoratedLink.numberBombs; }
-            set { decoratedLink.numberBombs = value; }
+            get { return decoratedLink.CurrentHearts; }
+            set { decoratedLink.CurrentHearts = value; }
         }
 
+        public int NumberBombs
+        {
+            get { return decoratedLink.NumberBombs; }
+            set { decoratedLink.NumberBombs = value; }
+        }
+
+        public Team Team { get => decoratedLink.Team; set => decoratedLink.Team = value; }
+
+        public Point Center => decoratedLink.Center;
+
+        public Rectangle Hitbox => decoratedLink.Hitbox;
 
         public DamagedLink (LegendOfZelda game)
         {
@@ -117,7 +120,7 @@ namespace LegendOfZelda
             }
             else
             {
-                decoratedLink.Draw(sb, Color.White);
+                decoratedLink.Draw(sb, Microsoft.Xna.Framework.Color.White);
             }
             
         }

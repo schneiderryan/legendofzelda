@@ -44,16 +44,17 @@ namespace LegendOfZelda
             Effects = SpriteEffects.None;
         }
 
-        public virtual void Draw(SpriteBatch sb, Color color)
+        public virtual void Draw(SpriteBatch sb, Color color, Vector2 origin)
         {
             Vector2 pos = new Vector2(Position.X, Position.Y);
             sb.Draw(texture, pos, sourceRect, color,
-                0, new Vector2(), Scale, Effects, 0);
+                0, origin, Scale, Effects, 0);
         }
 
         public virtual void Draw(SpriteBatch sb)
         {
-            this.Draw(sb, Color.White);
+            Vector2 origin = new Vector2(0, 0);
+            this.Draw(sb, Color.White, origin);
         }
 
         public virtual void Update() { /* no code needed */ }

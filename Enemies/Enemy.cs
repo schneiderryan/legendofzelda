@@ -14,6 +14,9 @@ namespace LegendOfZelda
         public int listIndex { get; set; }
         public int VX { get; set; }
         public int VY { get; set; }
+        public Team Team { get; set; } = Team.Enemy;
+
+        public Point Center => Sprite.Box.Center;
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {

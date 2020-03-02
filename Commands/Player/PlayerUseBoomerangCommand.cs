@@ -15,7 +15,7 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            player.UseProjectile(new BoomerangProjectile(player.direction, player));
+            player.UseProjectile(new BoomerangProjectile(player.Direction, player));
         }
     }
 }
