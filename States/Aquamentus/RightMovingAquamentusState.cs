@@ -3,7 +3,6 @@
 
 namespace LegendOfZelda
 {
-
 	class RightMovingAquamentusState : IEnemyState
 	{
 		private Aquamentus aquamentus;
@@ -63,6 +62,5 @@ namespace LegendOfZelda
 			aquamentus.Sprite.Position = new Point(aquamentus.X, aquamentus.Y);
 		}
 
-		
 	}
 }

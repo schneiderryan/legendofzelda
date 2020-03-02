@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-using static LegendOfZelda.BoomerangProjectile;
-
 
 namespace LegendOfZelda
 {
@@ -11,26 +9,26 @@ namespace LegendOfZelda
 		public string direction;
 
 		private int boomerangTimer;
-		private BoomerangState boomerangState;
+		private bool canThrowBoomerang;
 		private BoomerangProjectile boomerang;
-		private IList<IProjectile> projectiles;
+		private ICollection<IProjectile> projectiles;
 
-		public Goriya(LegendOfZelda game)
+		public Goriya(ICollection<IProjectile> projectiles)
 		{
-			this.projectiles = game.projectiles;
+			this.projectiles = projectiles;
 			Sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
 			direction = "right";
 			X = 400;
 			Y = 200;
 			Sprite.Position = new Point(X, Y);
 			State = new RightMovingGoriyaState(this);
-			boomerangState = BoomerangState.Pocket;
-			currentHearts = 2;
+			canThrowBoomerang = true;
+			boomerang = new BoomerangProjectile(direction, this);
 		}
 
 		public override void Update()
 		{
-			if (boomerangState == BoomerangState.Pocket)
+			if (canThrowBoomerang)
 			{
 				boomerangTimer++;
 				if (boomerangTimer == 250)
@@ -40,17 +38,21 @@ namespace LegendOfZelda
 				}
 				base.Update();
 			}
-			Sprite.Update();
+			else
+			{
+				// if count = 0 then the room got cleared
+				canThrowBoomerang = boomerang.Returned || projectiles.Count == 0;
+				Sprite.Update();
+			}
 		}
 
 		private void ThrowBoomerang()
 		{
 			boomerang = new BoomerangProjectile(direction, this);
+			Projectile.CenterProjectile(Sprite.Box, direction, boomerang);
 			projectiles.Add(boomerang);
-			boomerangState = BoomerangState.Thrown;
+			canThrowBoomerang = false;
 		}
-
-
 
 	}
 }

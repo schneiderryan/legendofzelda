@@ -1,9 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-
 	class RightMovingDodongoState : EnemyState
-
 	{
 		public RightMovingDodongoState(IEnemy enemy)
 			: base(enemy)
@@ -33,7 +31,6 @@ namespace LegendOfZelda
 			base.MoveLeft();
 			enemy.State = new LeftMovingDodongoState(enemy);
 		}
-
 
 	}
 }
