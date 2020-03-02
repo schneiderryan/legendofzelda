@@ -11,7 +11,7 @@ namespace LegendOfZelda
     {
         IPlayer decoratedLink;
         LegendOfZelda game;
-        int timer = 192;
+        int timer = 192; // to give about 3 seconds
 
         public Rectangle Footbox
         {
