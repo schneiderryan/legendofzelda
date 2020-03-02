@@ -24,6 +24,7 @@ namespace LegendOfZelda
 			State = new RightMovingGoriyaState(this);
 			canThrowBoomerang = true;
 			boomerang = new BoomerangProjectile(direction, this);
+			currentHearts = 2;
 		}
 
 		public override void Update()
