@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 
@@ -72,16 +73,20 @@ namespace LegendOfZelda
             WallProjectileCollision(hitboxes);
         }
 
+       
+
         private static void EnemyProjectileCollision(ICollection<IEnemy> enemies)
         {
             ICollection<IProjectile> projectilesToRemove = new List<IProjectile>();
             foreach (IEnemy enemy in enemies)
             {
-                foreach (IProjectile projectile in projectiles)
+                foreach (IProjectile projectile in projectiles.ToList())
                 {
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
-                    if (!collision.IsEmpty)
+                    if (!collision.Equals(Rectangle.Empty))
                     {
+
+                        Handler.EnemyProjectileCollision(enemy, projectile, collision);
                         if (Handler.CharacterProjectile(enemy, projectile))
                         {
                             projectilesToRemove.Add(projectile);
@@ -89,7 +94,7 @@ namespace LegendOfZelda
                     }
                 }
             }
-
+            System.Diagnostics.Debug.WriteLine("despawn");
             Handler.Despawn(projectilesToRemove);
         }
 

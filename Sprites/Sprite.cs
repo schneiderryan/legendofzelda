@@ -57,6 +57,12 @@ namespace LegendOfZelda
             this.Draw(sb, Color.White, origin);
         }
 
+        public virtual void Draw(SpriteBatch sb, Color color)
+        {
+            Vector2 origin = new Vector2(0, 0);
+            this.Draw(sb, color, origin);
+        }
+
         public virtual void Update() { /* no code needed */ }
     }
 }

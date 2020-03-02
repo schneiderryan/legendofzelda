@@ -15,10 +15,10 @@ namespace LegendOfZelda
             ProjectileCollisionHandler.effects = effects;
         }
 
-        public static void EnemyProjectileCollision(IEnemy enemy, in Rectangle collision)
-        {
+        //public static void EnemyProjectileCollision(IEnemy enemy, in Rectangle collision)
+        //{
             // do things
-        }
+        //}
 
         public static void ProjectileCharacterCollision(ICharacter character)
         {
@@ -28,34 +28,48 @@ namespace LegendOfZelda
         public static void EnemyProjectileCollision(IEnemy enemy,
                 IProjectile projectile, in Rectangle collision)
         {
-            if (projectile.OwningTeam == enemy.Team)
-            {
-                return;
-            }
-
+           //if (projectile.OwningTeam.Equals(enemy.Team))
+           // {
+              //  return;
+            //}
+            System.Diagnostics.Debug.WriteLine("call take damage");
+            //enemy.TakeDamage();
             Despawn(projectile);
 
-            //Take damage
             if (collision.Width > collision.Height)
             {
                 if (collision.Y != enemy.Hitbox.Y)
                 {
-                    enemy.Y -= collision.Height;
+                    
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                        enemy.Y -= collision.Height + 15;
+
+
                 }
                 else
                 {
-                    enemy.Y += collision.Height;
+                    System.Diagnostics.Debug.WriteLine("call take damage");
+                    enemy.TakeDamage();
+                    enemy.Y += collision.Height + 15;
+
                 }
             }
             else
             {
                 if (collision.X != enemy.Hitbox.X)
                 {
-                    enemy.X -= collision.Width;
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                        enemy.X -= collision.Width + 15;
+
                 }
                 else
                 {
-                    enemy.X += collision.Width;
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                        enemy.X += collision.Width + 15;
+
                 }
             }
         }
