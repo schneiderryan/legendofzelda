@@ -22,6 +22,7 @@ namespace LegendOfZelda
         private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
+        private Vector2 origin;
 
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
@@ -137,7 +138,21 @@ namespace LegendOfZelda
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {
-            Sprite.Draw(sb, color);
+            if (State is AttackingUpLinkState)
+            {
+                this.origin = new Vector2(0, 15);
+                Sprite.Draw(sb, color, origin);
+            }
+            if (State is AttackingLeftLinkState)
+            {
+                this.origin = new Vector2(15, 0);
+                Sprite.Draw(sb, color, origin);
+            }
+            else
+            {
+                this.origin = new Vector2(0, 0);
+                Sprite.Draw(sb, color, origin);
+            }
         }
 
         public virtual void UseProjectile(IProjectile projectile)
@@ -186,6 +201,7 @@ namespace LegendOfZelda
             this.NumRupees = 0;
             this.MaxHearts = 3.0;
             this.CurrentHearts = 3.0;
+            this.origin = new Vector2(0, 0);
         }
     }
 }
