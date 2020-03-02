@@ -143,9 +143,9 @@ namespace LegendOfZelda
                 this.origin = new Vector2(0, 15);
                 Sprite.Draw(sb, color, origin);
             }
-            if (State is AttackingLeftLinkState)
+            else if (State is AttackingLeftLinkState)
             {
-                this.origin = new Vector2(15, 0);
+                this.origin = new Vector2(10, 0);
                 Sprite.Draw(sb, color, origin);
             }
             else
