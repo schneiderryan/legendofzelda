@@ -40,7 +40,8 @@ namespace LegendOfZelda
 			}
 			else
 			{
-				canThrowBoomerang = boomerang.Returned;
+				// if count = 0 then the room got cleared
+				canThrowBoomerang = boomerang.Returned || projectiles.Count == 0;
 				Sprite.Update();
 			}
 		}
