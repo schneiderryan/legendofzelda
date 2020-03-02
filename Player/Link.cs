@@ -28,7 +28,7 @@ namespace LegendOfZelda
             get => Sprite.Box;
         }
         public ISprite Sprite { get; set; }
-        public ILinkState state { get; set; }
+        public ILinkState State { get; set; }
 
         public Rectangle Hitbox
         {
@@ -55,36 +55,36 @@ namespace LegendOfZelda
             }
         }
 
-        public String direction
+        public String Direction
         {
             get { return d; }
             set { d = value; }
         }
 
-        public String color
+        public String Color
         {
             get { return c; }
             set { c = value; }
         }
 
-        public int numRupees
+        public int NumRupees
         {
             get { return numberOfRupees; }
             set { numberOfRupees = value; }
         }
 
-        public double maxHearts
+        public double MaxHearts
         {
             get { return numMaxHearts; }
             set { numMaxHearts = value; }
         }
-        public double currentHearts
+        public double CurrentHearts
         {
             get { return numCurrHearts; }
             set { numCurrHearts = value; }
         }
 
-        public int numberBombs
+        public int NumberBombs
         {
             get { return numberOfBombs; }
             set { numberOfBombs = value; }
@@ -94,32 +94,32 @@ namespace LegendOfZelda
 
         public virtual void MoveLeft()
         {
-            state.MoveLeft();
+            State.MoveLeft();
         }
 
         public virtual void MoveRight()
         {
-            state.MoveRight();
+            State.MoveRight();
         }
 
         public virtual void MoveUp()
         {
-            state.MoveUp();
+            State.MoveUp();
         }
 
         public virtual void MoveDown()
         {
-            state.MoveDown();
+            State.MoveDown();
         }
 
         public virtual void Attack()
         {
-            state.Attack();
+            State.Attack();
         }
 
         public virtual void BeStill()
         {
-            state.BeStill();
+            State.BeStill();
         }
 
         public virtual void TakeDamage()
@@ -129,7 +129,7 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
-            state.Update();
+            State.Update();
             Sprite.Update();
             if (itemTimer > 0)
             {
@@ -147,7 +147,7 @@ namespace LegendOfZelda
             if (itemTimer == 0)
             {
                 itemTimer = 75;
-                Projectile.CenterProjectile(Sprite.Box, direction, projectile);
+                Projectile.CenterProjectile(Sprite.Box, Direction, projectile);
                 game.projectiles.Add(projectile);
 
             }
@@ -184,9 +184,9 @@ namespace LegendOfZelda
             this.X = 400;
             this.Y = 200;
             this.itemTimer = 0;
-            this.numRupees = 0;
-            this.maxHearts = 3.0;
-            this.currentHearts = 3.0;
+            this.NumRupees = 0;
+            this.MaxHearts = 3.0;
+            this.CurrentHearts = 3.0;
         }
     }
 }

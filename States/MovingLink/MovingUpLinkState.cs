@@ -12,7 +12,7 @@ namespace LegendOfZelda
         public MovingUpLinkState(GreenLink link)
         {
             this.link = link;
-            this.link.direction = "up";
+            this.link.Direction = "up";
         }
 
         public void MoveUp()
@@ -22,35 +22,35 @@ namespace LegendOfZelda
 
         public void MoveDown()
         {
-            link.state = new MovingDownLinkState(link);
+            link.State = new MovingDownLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
         {
-            link.state = new MovingRightLinkState(link);
+            link.State = new MovingRightLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
         {
-            link.state = new MovingLeftLinkState(link);
+            link.State = new MovingLeftLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void Attack()
         {
-            link.state = new AttackingUpLinkState(link);
+            link.State = new AttackingUpLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateUpAttackingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void BeStill()
         {
-            link.state = new StillUpLinkState(link);
+            link.State = new StillUpLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
             link.Sprite.Scale = 2.0f;
         }

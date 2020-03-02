@@ -12,40 +12,40 @@ namespace LegendOfZelda
         public StillRightRedLinkState(RedLink link)
         {
             this.link = link;
-            this.link.direction = "right";
+            this.link.Direction = "right";
         }
 
         public void MoveUp()
         {
-            link.state = new MovingUpRedLinkState(link);
+            link.State = new MovingUpRedLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void MoveDown()
         {
-            link.state = new MovingDownRedLinkState(link);
+            link.State = new MovingDownRedLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
         {
-            link.state = new MovingRightRedLinkState(link);
+            link.State = new MovingRightRedLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
         {
-            link.state = new MovingLeftRedLinkState(link);
+            link.State = new MovingLeftRedLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void Attack()
         {
-            link.state = new AttackingRightRedLinkState(link);
+            link.State = new AttackingRightRedLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightAttackingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }

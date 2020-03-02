@@ -11,7 +11,7 @@ namespace LegendOfZelda
         public AttackingRightLinkState(GreenLink link)
         {
             this.link = link;
-            this.link.direction = "right";
+            this.link.Direction = "right";
         }
 
         public override void Update()
@@ -22,7 +22,7 @@ namespace LegendOfZelda
             }
             else
             {
-                link.state = new StillRightLinkState(link);
+                link.State = new StillRightLinkState(link);
                 link.Sprite = PlayerSpriteFactory.Instance.CreateRightStillLinkSprite();
             }
             link.Sprite.Position = new Point(link.X, link.Y);

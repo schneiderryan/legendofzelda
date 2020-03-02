@@ -6,8 +6,8 @@ namespace LegendOfZelda
         public RedLink(LegendOfZelda game)
         {
             this.Sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
-            this.color = "red";
-            this.state = new StillUpRedLinkState(this);
+            this.Color = "red";
+            this.State = new StillUpRedLinkState(this);
             this.Initialize(game);
         }
     }

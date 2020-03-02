@@ -11,7 +11,7 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-            IProjectile proj = new SwordProjectile(player.direction, player);
+            IProjectile proj = new SwordProjectile(player.Direction, player);
             player.UseProjectile(proj);
         }
     }

@@ -11,7 +11,7 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-            player.numRupees = player.numRupees + 5;
+            player.NumRupees = player.NumRupees + 5;
         }
     }
 }

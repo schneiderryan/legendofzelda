@@ -9,15 +9,14 @@ namespace LegendOfZelda
 {
     interface IPlayer : ICharacter
     {
-        ILinkState state { get; set; }
-        string direction { get; set; }
-        string color { get; set; }
-        int numRupees { get; set; }
-        double maxHearts { get; set; }
-        double currentHearts { get; set; }
-        int numberBombs { get; set; }
+        ILinkState State { get; set; }
+        string Direction { get; set; }
+        string Color { get; set; }
+        int NumRupees { get; set; }
+        double MaxHearts { get; set; }
+        double CurrentHearts { get; set; }
+        int NumberBombs { get; set; }
         Rectangle SpriteBox { get; }
-        Team Team { get; set; }
         void Attack();
         void BeStill();
         void TakeDamage();

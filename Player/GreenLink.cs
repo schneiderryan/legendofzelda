@@ -6,8 +6,8 @@ namespace LegendOfZelda
         public GreenLink(LegendOfZelda game)
         {
             this.Sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
-            this.color = "green";
-            this.state = new StillUpLinkState(this);
+            this.Color = "green";
+            this.State = new StillUpLinkState(this);
             this.Initialize(game);
         }
     }
