@@ -16,6 +16,7 @@ namespace LegendOfZelda
 			State = new EnemyState(this);
 			random = new Random();
 			currentHearts = 1;
+			
 		}
 
 		public override void Update()
