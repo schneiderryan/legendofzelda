@@ -3,93 +3,48 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    class ProjectileCollisionHandler
+    static class ProjectileCollisionHandler
     {
-        private IList<IProjectile> projectiles;
-        private IList<IDespawnEffect> effects;
+        private static ICollection<IProjectile> projectiles;
+        private static ICollection<IDespawnEffect> effects;
 
-        public ProjectileCollisionHandler(IList<IProjectile> projectiles,
-                IList<IDespawnEffect> effects)
+        public static void Register(ICollection<IProjectile> projectiles,
+                ICollection<IDespawnEffect> effects)
         {
-            this.projectiles = projectiles;
-            this.effects = effects;
+            ProjectileCollisionHandler.projectiles = projectiles;
+            ProjectileCollisionHandler.effects = effects;
         }
 
-        public void HandleCollisions(IRoom room)
+        public static void EnemyProjectileCollision(IEnemy enemy, in Rectangle collision)
         {
-            ProjectileCollision(room.Hitboxes);
-            ProjectileDoorCollision(room.Doors.Values);
+            // do things
         }
 
-        private void ProjectileCollision(IList<Rectangle> boxes)
+        public static void ProjectilePlayerCollision(IPlayer player)
         {
-            IList<int> despawn = new List<int>();
-            for (int pos = 0; pos < projectiles.Count; pos++)
-            {
-                foreach (Rectangle box in boxes)
-                {
-                    IProjectile p = projectiles[pos];
-                    // wait for the projcetile to inside a wall before despawning
-                    if (box.Contains(p.Hitbox.Center))
-                    {
-                        despawn.Add(pos);
-                        break;
-                    }
-                }
-            }
-
-            for (int i = despawn.Count - 1; i >= 0; i--)
-            {
-                effects.Add(projectiles[despawn[i]].GetDespawnEffect());
-                projectiles.RemoveAt(despawn[i]);
-            }
+            player.TakeDamage();
         }
 
-        private void ProjectileDoorCollision(ICollection<IDoor> doors)
+        public static void EnemyProjectileCollision(IEnemy enemy,
+                IProjectile projectile, in Rectangle collision)
         {
-            IList<Rectangle> hitboxes = new List<Rectangle>();
-            foreach (IDoor door in doors)
+            if (projectile.OwningTeam == enemy.Team)
             {
-                hitboxes.Add(door.Hitbox);
+                return;
             }
-            ProjectileCollision(hitboxes);
-        }
 
+            Despawn(projectile);
 
-/*        private static void EnemyProjectileCollision(List<IEnemy> enemies, List<IProjectile> projectiles)
-        {
-            List<IProjectile> projectilesToRemove = new List<IProjectile>();
-            foreach (IEnemy enemy in enemies)
-            {
-                foreach (IProjectile projectile in projectiles)
-                {
-                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
-                    if (!collision.Equals(Rectangle.Empty))
-                    {
-                        EnemyCollisionHandler.HandleEnemyProjectileCollision(enemy, collision);
-                        projectilesToRemove.Add(projectile);
-                    }
-                }
-            }
-            foreach (IProjectile toRemove in projectilesToRemove)
-            {
-                projectiles.Remove(toRemove);
-            }
-        }*/
-
-        public static void HandleEnemyProjectileCollision(IEnemy enemy, in Rectangle collision)
-        {
+            //Take damage
             if (collision.Width > collision.Height)
             {
                 if (collision.Y != enemy.Hitbox.Y)
                 {
                     enemy.Y -= collision.Height;
-                    //Take damage
                 }
                 else
                 {
                     enemy.Y += collision.Height;
-                    //Take damage
                 }
             }
             else
@@ -97,14 +52,25 @@ namespace LegendOfZelda
                 if (collision.X != enemy.Hitbox.X)
                 {
                     enemy.X -= collision.Width;
-                    //Take damage
                 }
                 else
                 {
                     enemy.X += collision.Width;
-                    //Take damage
                 }
             }
+        }
+        public static void Despawn(ICollection<IProjectile> despawn)
+        {
+            foreach (IProjectile deadProjectile in despawn)
+            {
+                Despawn(deadProjectile);
+            }
+        }
+
+        private static void Despawn(IProjectile projectile)
+        {
+            projectiles.Remove(projectile);
+            effects.Add(projectile.GetDespawnEffect());
         }
     }
 }

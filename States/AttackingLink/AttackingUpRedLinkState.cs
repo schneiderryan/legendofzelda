@@ -11,7 +11,7 @@ namespace LegendOfZelda
         public AttackingUpRedLinkState(RedLink link)
         {
             this.link = link;
-            this.link.direction = "up";
+            this.link.Direction = "up";
         }
 
         public override void Update()
@@ -22,10 +22,10 @@ namespace LegendOfZelda
             }
             else
             {
-                link.state = new StillUpRedLinkState(link);
-                link.sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
+                link.State = new StillUpRedLinkState(link);
+                link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
             }
-            link.sprite.Position = new Point(link.X, link.Y);
+            link.Sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

@@ -17,12 +17,12 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-            if ((player.maxHearts - player.currentHearts) < 1)
+            if ((player.MaxHearts - player.CurrentHearts) < 1)
             {
-                player.currentHearts = player.maxHearts;
+                player.CurrentHearts = player.MaxHearts;
             } else
             {
-                player.currentHearts++;
+                player.CurrentHearts++;
             }
         }
     }

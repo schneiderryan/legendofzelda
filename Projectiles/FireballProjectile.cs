@@ -1,12 +1,16 @@
-﻿
+﻿using Microsoft.Xna.Framework;
+
+
 namespace LegendOfZelda
 {
     class FireballProjectile :  Projectile
     {
-        public FireballProjectile(string direction, int xPos, int yPos, int initialVel = 2)
-            : base(direction, xPos, yPos)
+        public FireballProjectile(string direction, int x, int y, int initialVel = 2)
+            : base(direction, x, y, initialVel)
         {
             this.sprite = ProjectileSpriteFactory.Instance.CreateMovingFireballSprite();
+            sprite.Position = new Point(X, Y);
+            Hitbox = sprite.Box;
 
             if (direction == "leftup")
             {
