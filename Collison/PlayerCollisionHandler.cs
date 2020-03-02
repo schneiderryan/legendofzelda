@@ -11,7 +11,7 @@ namespace LegendOfZelda
         {
             if (collision.Width > collision.Height)
             {
-                if (collision.Y == player.Hitbox.Y)
+                if (collision.Y == player.Footbox.Y)
                 {
                     block.MoveOnceUp();
                 }
@@ -22,7 +22,7 @@ namespace LegendOfZelda
             }
             else
             {
-                if (collision.X == player.Hitbox.X)
+                if (collision.X == player.Footbox.X)
                 {
                     block.MoveOnceLeft();
                 }
@@ -39,14 +39,14 @@ namespace LegendOfZelda
             {
                 if (collision.Y == player.Hitbox.Y)
                 {
-                    if (!player.direction.Equals("up") || !player.IsAttacking())
+                    if (!player.Direction.Equals("up") || !player.IsAttacking())
                     {
                         player.TakeDamage();
                     }
                 }
                 else
                 {
-                    if (!player.direction.Equals("down") || !player.IsAttacking())
+                    if (!player.Direction.Equals("down") || !player.IsAttacking())
                     {
                         player.TakeDamage();
                     }
@@ -56,14 +56,14 @@ namespace LegendOfZelda
             {
                 if (collision.X == player.Hitbox.X)
                 {
-                    if (!player.direction.Equals("left") || !player.IsAttacking())
+                    if (!player.Direction.Equals("left") || !player.IsAttacking())
                     {
                         player.TakeDamage();
                     }
                 }
                 else
                 {
-                    if (!player.direction.Equals("right") || !player.IsAttacking())
+                    if (!player.Direction.Equals("right") || !player.IsAttacking())
                     {
                         player.TakeDamage();
                     }

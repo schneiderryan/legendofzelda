@@ -12,7 +12,7 @@ namespace LegendOfZelda
         int Y { get; set; }
         float Scale { get; set; }
         void Update();
-        void Draw(SpriteBatch sb, Color color);
+        void Draw(SpriteBatch sb, Color color, Vector2 origin);
         void Draw(SpriteBatch sb);
     }
 }

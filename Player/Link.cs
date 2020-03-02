@@ -20,26 +20,22 @@ namespace LegendOfZelda
         private double numCurrHearts;
         private int numberOfBombs;
         private List<Keys> attackKeys;
+        private Rectangle footbox;
         private Rectangle hitbox;
+        private Vector2 origin;
 
+        public ISprite Sprite { get; set; }
+        public ILinkState State { get; set; }
 
-        public Rectangle SpriteBox
-        {
-            get => sprite.Box;
-        }
-        public ISprite sprite { get; set; }
-        public ILinkState state { get; set; }
-
-        public Rectangle Hitbox
-        {
-            get { return hitbox; }
-        }
+        public Rectangle Footbox => footbox;
+        public Rectangle Hitbox => hitbox;
 
         public int X
         {
             get { return x; }
             set
             { 
+                footbox.X = value;
                 hitbox.X = value;
                 x = value;
             }
@@ -50,74 +46,79 @@ namespace LegendOfZelda
             get { return y; }
             set
             {
-                hitbox.Y = value + sprite.Box.Height - hitbox.Height;
+                footbox.Y = value + Sprite.Box.Height - footbox.Height;
+                hitbox.Y = value;
                 y = value;
             }
         }
 
-        public String direction
+        public String Direction
         {
             get { return d; }
             set { d = value; }
         }
 
-        public String color
+        public String Color
         {
             get { return c; }
             set { c = value; }
         }
 
-        public int numRupees
+        public int NumRupees
         {
             get { return numberOfRupees; }
             set { numberOfRupees = value; }
         }
 
-        public double maxHearts
+        public double MaxHearts
         {
             get { return numMaxHearts; }
             set { numMaxHearts = value; }
         }
-        public double currentHearts
+        public double CurrentHearts
         {
             get { return numCurrHearts; }
             set { numCurrHearts = value; }
         }
 
-        public int numberBombs
+        public int NumberBombs
         {
             get { return numberOfBombs; }
             set { numberOfBombs = value; }
         }
 
+        public Team Team { get; set; } = Team.Link;
+
+        public Point Center => Sprite.Box.Center;
+
         public virtual void MoveLeft()
         {
-            state.MoveLeft();
+            State.MoveLeft();
         }
 
         public virtual void MoveRight()
         {
-            state.MoveRight();
+            State.MoveRight();
         }
 
         public virtual void MoveUp()
         {
-            state.MoveUp();
+            State.MoveUp();
         }
 
         public virtual void MoveDown()
         {
-            state.MoveDown();
+            State.MoveDown();
         }
 
         public virtual void Attack()
         {
-            state.Attack();
+            State.Attack();
         }
 
         public virtual void BeStill()
         {
-            state.BeStill();
+            State.BeStill();
         }
 
         public virtual void TakeDamage()
@@ -127,8 +128,8 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
-            state.Update();
-            sprite.Update();
+            State.Update();
+            Sprite.Update();
             if (itemTimer > 0)
             {
                 itemTimer--;
@@ -137,7 +138,21 @@ namespace LegendOfZelda
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb, color);
+            if (State is AttackingUpLinkState)
+            {
+                this.origin = new Vector2(0, 15);
+                Sprite.Draw(sb, color, origin);
+            }
+            else if (State is AttackingLeftLinkState)
+            {
+                this.origin = new Vector2(10, 0);
+                Sprite.Draw(sb, color, origin);
+            }
+            else
+            {
+                this.origin = new Vector2(0, 0);
+                Sprite.Draw(sb, color, origin);
+            }
         }
 
         public virtual void UseProjectile(IProjectile projectile)
@@ -145,7 +160,9 @@ namespace LegendOfZelda
             if (itemTimer == 0)
             {
                 itemTimer = 75;
+                Projectile.CenterProjectile(Sprite.Box, Direction, projectile);
                 game.projectiles.Add(projectile);
+
             }
         }
 
@@ -175,14 +192,16 @@ namespace LegendOfZelda
         {
             this.game = game;
             this.d = "up";
-            this.sprite.Scale = 2.0f;
-            this.hitbox = new Rectangle(0, 0, sprite.Box.Width, sprite.Box.Height / 2);
+            this.Sprite.Scale = 2.0f;
+            this.footbox = new Rectangle(0, 0, Sprite.Box.Width, Sprite.Box.Height / 2);
+            this.hitbox = Sprite.Box;
             this.X = 400;
             this.Y = 200;
             this.itemTimer = 0;
-            this.numRupees = 0;
-            this.maxHearts = 3.0;
-            this.currentHearts = 3.0;
+            this.NumRupees = 0;
+            this.MaxHearts = 3.0;
+            this.CurrentHearts = 3.0;
+            this.origin = new Vector2(0, 0);
         }
     }
 }

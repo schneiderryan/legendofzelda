@@ -12,21 +12,21 @@ namespace LegendOfZelda
         public MovingRightLinkState(GreenLink link)
         {
             this.link = link;
-            this.link.direction = "right";
+            this.link.Direction = "right";
         }
 
         public void MoveUp()
         {
-            link.state = new MovingUpLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateUpWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.State = new MovingUpLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateUpWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void MoveDown()
         {
-            link.state = new MovingDownLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.State = new MovingDownLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
@@ -36,23 +36,23 @@ namespace LegendOfZelda
 
         public void MoveLeft()
         {
-            link.state = new MovingLeftLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.State = new MovingLeftLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void Attack()
         {
-            link.state = new AttackingRightLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRightAttackingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.State = new AttackingRightLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRightAttackingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void BeStill()
         {
-            link.state = new StillRightLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRightStillLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.State = new StillRightLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRightStillLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void Update()
@@ -62,7 +62,7 @@ namespace LegendOfZelda
             {
                 link.X -= 800;
             }
-            link.sprite.Position = new Point(link.X, link.Y);
+            link.Sprite.Position = new Point(link.X, link.Y);
         }
 
     }

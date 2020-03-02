@@ -22,7 +22,7 @@ namespace LegendOfZelda
         {
             foreach (ICollideable s in still)
             {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, s.Hitbox);
+                Rectangle collision = Rectangle.Intersect(player.Footbox, s.Hitbox);
                 PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
             }
         }
@@ -32,7 +32,7 @@ namespace LegendOfZelda
         {
             foreach (KeyValuePair<string, IDoor> door in doors)
             {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, door.Value.Hitbox);
+                Rectangle collision = Rectangle.Intersect(player.Footbox, door.Value.Hitbox);
                 if (door.Key.Equals("Open") && !collision.IsEmpty)
                 {
                     PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
@@ -44,7 +44,7 @@ namespace LegendOfZelda
         {
             foreach (Rectangle wall in walls)
             {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, wall);
+                Rectangle collision = Rectangle.Intersect(player.Footbox, wall);
                 if (!collision.IsEmpty)
                 {
                     PlayerCollisionHandler.MoveableAndNonMoveableCollision(player, collision);
@@ -57,7 +57,7 @@ namespace LegendOfZelda
         {
             foreach (IMoveableBlock m in moveable)
             {
-                Rectangle collision = Rectangle.Intersect(player.Hitbox, m.Hitbox);
+                Rectangle collision = Rectangle.Intersect(player.Footbox, m.Hitbox);
                 if (!collision.IsEmpty)
                 {
                     PlayerCollisionHandler.PlayerMoveableBlockCollision(player, m, collision);

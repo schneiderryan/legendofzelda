@@ -83,9 +83,9 @@ namespace LegendOfZelda
             return new EnemyKeyboardController(game, keyBinds);
         }
 
-        public static List<IItem> GenerateItemList()
+        public static ICollection<IItem> GenerateItemList()
         {
-            List<IItem> list = new List<IItem>()
+            IList<IItem> list = new List<IItem>()
             {
                 new Arrow(),
                 new BlueRupee(),
@@ -114,9 +114,9 @@ namespace LegendOfZelda
             return list;
         }
 
-        public static List<IEnemy> GenerateEnemyList(LegendOfZelda game)
+        public static ICollection<IEnemy> GenerateEnemyList(LegendOfZelda game)
         {
-            List<IEnemy> list = new List<IEnemy>()
+            IList<IEnemy> list = new List<IEnemy>()
             {
                 new Gel(),
                 new Aquamentus(game),
@@ -132,9 +132,9 @@ namespace LegendOfZelda
             return list;
         }
 
-        public static List<IRoom> GenerateRoomList(LegendOfZelda game)
+        public static IList<IRoom> GenerateRoomList(LegendOfZelda game)
         {
-            List<IRoom> list = new List<IRoom>()
+            IList<IRoom> list = new List<IRoom>()
             {
                 new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
