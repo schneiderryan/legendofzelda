@@ -68,7 +68,7 @@ namespace LegendOfZelda
             }
             for (int i = 0; i < effects.Count; i++)
             {
-                if (effects[i] == null || effects[i].Finished)
+                if (effects[i].Finished)
                 {
                     effects.RemoveAt(i);
                     i--;
@@ -92,6 +92,7 @@ namespace LegendOfZelda
             link.Draw(spriteBatch, Color.White);
             rooms[roomIndex].DrawOverlay(spriteBatch);
             
+            Debug.DrawHitbox(spriteBatch, link.Footbox);
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
 
             foreach (IProjectile projectile in projectiles)

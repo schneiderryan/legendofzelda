@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 
 
 namespace LegendOfZelda
 {
     interface ICharacter : ICollideable
     {
+        Point Center { get; }
         Team Team { get; set; }
         ISprite Sprite { get; set; }
         void MoveLeft();

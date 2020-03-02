@@ -16,7 +16,7 @@ namespace LegendOfZelda
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }
         int NumberBombs { get; set; }
-        Rectangle SpriteBox { get; }
+        Rectangle Footbox { get; }
         void Attack();
         void BeStill();
         void TakeDamage();

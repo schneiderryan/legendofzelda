@@ -20,26 +20,21 @@ namespace LegendOfZelda
         private double numCurrHearts;
         private int numberOfBombs;
         private List<Keys> attackKeys;
+        private Rectangle footbox;
         private Rectangle hitbox;
 
-
-        public Rectangle SpriteBox
-        {
-            get => Sprite.Box;
-        }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
 
-        public Rectangle Hitbox
-        {
-            get { return hitbox; }
-        }
+        public Rectangle Footbox => footbox;
+        public Rectangle Hitbox => hitbox;
 
         public int X
         {
             get { return x; }
             set
             { 
+                footbox.X = value;
                 hitbox.X = value;
                 x = value;
             }
@@ -50,7 +45,8 @@ namespace LegendOfZelda
             get { return y; }
             set
             {
-                hitbox.Y = value + Sprite.Box.Height - hitbox.Height;
+                footbox.Y = value + Sprite.Box.Height - footbox.Height;
+                hitbox.Y = value;
                 y = value;
             }
         }
@@ -91,6 +87,8 @@ namespace LegendOfZelda
         }
 
         public Team Team { get; set; } = Team.Link;
+
+        public Point Center => Sprite.Box.Center;
 
         public virtual void MoveLeft()
         {
@@ -180,7 +178,8 @@ namespace LegendOfZelda
             this.game = game;
             this.d = "up";
             this.Sprite.Scale = 2.0f;
-            this.hitbox = new Rectangle(0, 0, Sprite.Box.Width, Sprite.Box.Height / 2);
+            this.footbox = new Rectangle(0, 0, Sprite.Box.Width, Sprite.Box.Height / 2);
+            this.hitbox = Sprite.Box;
             this.X = 400;
             this.Y = 200;
             this.itemTimer = 0;

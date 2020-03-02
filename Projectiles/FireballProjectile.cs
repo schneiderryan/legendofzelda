@@ -5,8 +5,8 @@ namespace LegendOfZelda
 {
     class FireballProjectile :  Projectile
     {
-        public FireballProjectile(string direction, ICollideable source, int initialVel = 2)
-            : base(direction, source, initialVel)
+        public FireballProjectile(string direction, int x, int y, int initialVel = 2)
+            : base(direction, x, y, initialVel)
         {
             this.sprite = ProjectileSpriteFactory.Instance.CreateMovingFireballSprite();
             sprite.Position = new Point(X, Y);

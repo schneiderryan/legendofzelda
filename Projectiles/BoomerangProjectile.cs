@@ -5,70 +5,40 @@ namespace LegendOfZelda
 {
     class BoomerangProjectile :  Projectile
     {
-        public bool Returned { get => state == BoomerangState.Pocket; }
+        public bool Returned => state is PocketBoomerangState;
 
-        private enum BoomerangState { Thrown, Returning, Pocket }
-        private BoomerangState state = BoomerangState.Thrown;
+        public IBoomerangState state;
+        public Point finalPosition;
+        public string direction;
+        public readonly int velocity;
+        public ICharacter source;
 
-        private int finalPositionX;
-        private int finalPositionY;
-        private Point finalPosition;
-
-        public BoomerangProjectile(string direction, ICollideable source, int initialVel = 6)
-            : base(direction, source, initialVel)
+        public BoomerangProjectile(string direction, ICharacter source, int velocity = 5)
+            : base(direction, source.X, source.Y, velocity)
         {
             sprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
             sprite.Position = new Point(X, Y);
-            finalPositionX = X;
-            finalPositionY = Y;
             Hitbox = sprite.Box;
-
-            if (direction == "up")
-            {
-                finalPosition = new Point(finalPositionX, finalPositionY - 144);
-            }
-            else if (direction == "down")
-            {
-                finalPosition = new Point(finalPositionX, finalPositionY + 144);
-            }
-            else if (direction == "right")
-            {
-                finalPosition = new Point(finalPositionX + 144, finalPositionY);
-            }
-            else if (direction == "left")
-            {
-                finalPosition = new Point(finalPositionX - 144, finalPositionY);
-            }
+            this.direction = direction;
+            this.velocity = velocity;
+            this.source = source;
+            state = new PocketBoomerangState(this);
         }
 
         public override void Update()
         {
-            if (state == BoomerangState.Thrown
-                    && X == finalPosition.X && finalPosition.Y == Y)
-            {
-                Return();
-            }
-            else if (state == BoomerangState.Returning)
-            {
-                this.VX = (source.X - X) / 20;
-                this.VY = (source.Y - Y) / 20;
-                if (VX == 0 && VY == 0)
-                {
-                    state = BoomerangState.Pocket;
-                }
-            }
-
+            state.Update();
             base.Update();
-        }
-
-        public void Return()
-        {
-            state = BoomerangState.Returning;
         }
 
         public override IDespawnEffect GetDespawnEffect()
         {
             return new NoDespawnEffect();
+        }
+
+        public bool IsOwner(object o)
+        {
+            return source == o;
         }
 
     }

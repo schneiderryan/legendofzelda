@@ -4,8 +4,8 @@ namespace LegendOfZelda
 {
     class SwordProjectile : Projectile
     {
-        public SwordProjectile(string direction, ICollideable source)
-            : base(direction, source)
+        public SwordProjectile(string direction, int x, int y)
+            : base(direction, x, y)
         {
             if (direction == "up")
             {

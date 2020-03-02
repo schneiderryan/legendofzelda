@@ -7,7 +7,7 @@ namespace LegendOfZelda
         void Update();
         void Draw(SpriteBatch sb);
         IDespawnEffect GetDespawnEffect();
-        Team Owner { get; set; }
+        Team OwningTeam { get; set; }
 
         int VX { get; }
         int VY { get; }

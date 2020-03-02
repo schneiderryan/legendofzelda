@@ -5,8 +5,8 @@ namespace LegendOfZelda
 {
     class RedArrowProjectile : Projectile
     {
-        public RedArrowProjectile(string direction, ICollideable source)
-            : base(direction, source)
+        public RedArrowProjectile(string direction, int x, int y)
+            : base(direction, x, y)
         {
             if(direction == "up")
             {

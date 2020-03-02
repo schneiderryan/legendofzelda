@@ -12,6 +12,8 @@ namespace LegendOfZelda
         public int VY { get; set; }
         public Team Team { get; set; } = Team.Enemy;
 
+        public Point Center => Sprite.Box.Center;
+
         public virtual void Draw(SpriteBatch sb)
         {
             Sprite.Draw(sb);

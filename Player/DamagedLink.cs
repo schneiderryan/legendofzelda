@@ -13,12 +13,10 @@ namespace LegendOfZelda
         LegendOfZelda game;
         int timer = 192; // to give about 3 seconds
 
-        public Rectangle Hitbox
+        public Rectangle Footbox
         {
-            get { return decoratedLink.Hitbox; }
+            get { return decoratedLink.Footbox; }
         }
-
-        public Rectangle SpriteBox { get => decoratedLink.SpriteBox; }
 
         public ISprite Sprite
         {
@@ -80,6 +78,10 @@ namespace LegendOfZelda
         }
 
         public Team Team { get => decoratedLink.Team; set => decoratedLink.Team = value; }
+
+        public Point Center => decoratedLink.Center;
+
+        public Rectangle Hitbox => decoratedLink.Hitbox;
 
         public DamagedLink (LegendOfZelda game)
         {

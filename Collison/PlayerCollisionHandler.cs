@@ -11,7 +11,7 @@ namespace LegendOfZelda
         {
             if (collision.Width > collision.Height)
             {
-                if (collision.Y == player.Hitbox.Y)
+                if (collision.Y == player.Footbox.Y)
                 {
                     block.MoveOnceUp();
                 }
@@ -22,7 +22,7 @@ namespace LegendOfZelda
             }
             else
             {
-                if (collision.X == player.Hitbox.X)
+                if (collision.X == player.Footbox.X)
                 {
                     block.MoveOnceLeft();
                 }

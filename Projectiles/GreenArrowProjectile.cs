@@ -5,8 +5,8 @@ namespace LegendOfZelda
 {
     class GreenArrowProjectile : Projectile
     {
-        public GreenArrowProjectile(string direction, ICollideable source)
-            : base(direction, source)
+        public GreenArrowProjectile(string direction, int x, int y)
+            : base(direction, x, y)
         {
             if (direction == "up")
             {

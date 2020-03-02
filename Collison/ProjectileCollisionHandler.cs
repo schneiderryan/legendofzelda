@@ -15,40 +15,10 @@ namespace LegendOfZelda
             ProjectileCollisionHandler.effects = effects;
         }
 
-        public static void Despawn(ICollection<IProjectile> despawn)
+        public static void EnemyProjectileCollision(IEnemy enemy, in Rectangle collision)
         {
-            foreach (IProjectile deadProjectile in despawn)
-            {
-                Despawn(deadProjectile);
-            }
+            // do things
         }
-
-        private static void Despawn(IProjectile projectile)
-        {
-            projectiles.Remove(projectile);
-            effects.Add(projectile.GetDespawnEffect());
-        }
-
-/*        private static void EnemyProjectileCollision(List<IEnemy> enemies, List<IProjectile> projectiles)
-        {
-            List<IProjectile> projectilesToRemove = new List<IProjectile>();
-            foreach (IEnemy enemy in enemies)
-            {
-                foreach (IProjectile projectile in projectiles)
-                {
-                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
-                    if (!collision.Equals(Rectangle.Empty))
-                    {
-                        EnemyCollisionHandler.HandleEnemyProjectileCollision(enemy, collision);
-                        projectilesToRemove.Add(projectile);
-                    }
-                }
-            }
-            foreach (IProjectile toRemove in projectilesToRemove)
-            {
-                projectiles.Remove(toRemove);
-            }
-        }*/
 
         public static void ProjectilePlayerCollision(IPlayer player)
         {
@@ -58,7 +28,7 @@ namespace LegendOfZelda
         public static void EnemyProjectileCollision(IEnemy enemy,
                 IProjectile projectile, in Rectangle collision)
         {
-            if (projectile.Owner == enemy.Team)
+            if (projectile.OwningTeam == enemy.Team)
             {
                 return;
             }
@@ -88,6 +58,19 @@ namespace LegendOfZelda
                     enemy.X += collision.Width;
                 }
             }
+        }
+        public static void Despawn(ICollection<IProjectile> despawn)
+        {
+            foreach (IProjectile deadProjectile in despawn)
+            {
+                Despawn(deadProjectile);
+            }
+        }
+
+        private static void Despawn(IProjectile projectile)
+        {
+            projectiles.Remove(projectile);
+            effects.Add(projectile.GetDespawnEffect());
         }
     }
 }

@@ -21,9 +21,10 @@ namespace LegendOfZelda
 
         public static void HandleCollisions(IRoom room, IPlayer player)
         {
-            ProjectileWallCollision(room.Hitboxes);
-            ProjectileDoorCollision(room.Doors.Values);
+            WallProjectileCollision(room.Hitboxes);
+            DoorProjectileCollision(room.Doors.Values);
             PlayerProjectileCollision(player);
+            EnemyProjectileCollision(room.Enemies);
         }
 
         private static void PlayerProjectileCollision(IPlayer player)
@@ -31,20 +32,24 @@ namespace LegendOfZelda
             ICollection<IProjectile> despawn = new List<IProjectile>();
             foreach (IProjectile p in projectiles)
             {
-                if (player.Hitbox.Intersects(p.Hitbox)
-                        && p.Owner != player.Team)
+                if (player.Hitbox.Intersects(p.Hitbox))
                 {
-                    Handler.ProjectilePlayerCollision(player);
-                    if (!(p is BoomerangProjectile))
+                    if (p is BoomerangProjectile
+                            && (p as BoomerangProjectile).IsOwner(player))
                     {
                         despawn.Add(p);
+                    }
+                    else if (p.OwningTeam != player.Team)
+                    {
+                        despawn.Add(p);
+                        Handler.ProjectilePlayerCollision(player);
                     }
                 }
             }
             Handler.Despawn(despawn);
         }
 
-        private static void ProjectileWallCollision(IEnumerable<Rectangle> boxes)
+        private static void WallProjectileCollision(IEnumerable<Rectangle> boxes)
         {
             ICollection<IProjectile> collisions = new List<IProjectile>();
             foreach (IProjectile p in projectiles)
@@ -63,14 +68,36 @@ namespace LegendOfZelda
             Handler.Despawn(collisions);
         }
 
-        private static void ProjectileDoorCollision(ICollection<IDoor> doors)
+        private static void DoorProjectileCollision(ICollection<IDoor> doors)
         {
             ICollection<Rectangle> hitboxes = new List<Rectangle>();
             foreach (IDoor door in doors)
             {
                 hitboxes.Add(door.Hitbox);
             }
-            ProjectileWallCollision(hitboxes);
+            WallProjectileCollision(hitboxes);
+        }
+
+        private static void EnemyProjectileCollision(ICollection<IEnemy> enemies)
+        {
+            ICollection<IProjectile> projectilesToRemove = new List<IProjectile>();
+            foreach (IEnemy enemy in enemies)
+            {
+                foreach (IProjectile projectile in projectiles)
+                {
+                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
+                    if (!collision.IsEmpty)
+                    {
+                        if (projectile.OwningTeam != enemy.Team)
+                        {
+                            Handler.EnemyProjectileCollision(enemy, collision);
+                        }
+                        projectilesToRemove.Add(projectile);
+                    }
+                }
+            }
+
+            Handler.Despawn(projectilesToRemove);
         }
 
     }

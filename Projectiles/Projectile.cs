@@ -5,21 +5,19 @@ namespace LegendOfZelda
 {
     abstract class Projectile : CollideableObject, IProjectile
     {
-        public int VX { get; protected set; }
-        public int VY { get; protected set; }
-        public Team Owner { get; set; } = Team.Enemy;
+        public int VX { get; set; }
+        public int VY { get; set; }
+        public Team OwningTeam { get; set; } = Team.Enemy;
 
         protected ISprite sprite;
-        protected ICollideable source;
 
-        public Projectile(string direction, ICollideable source,
+        public Projectile(string direction, int x, int y,
             int initialVel = 8)
         {
             VX = 0;
             VY = 0;
-            X = source.X;
-            Y = source.Y;
-            this.source = source;
+            X = x;
+            Y = y;
 
             if (direction == "up")
             {

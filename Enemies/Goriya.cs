@@ -49,6 +49,7 @@ namespace LegendOfZelda
 		private void ThrowBoomerang()
 		{
 			boomerang = new BoomerangProjectile(direction, this);
+			Projectile.CenterProjectile(Sprite.Box, direction, boomerang);
 			projectiles.Add(boomerang);
 			canThrowBoomerang = false;
 		}
