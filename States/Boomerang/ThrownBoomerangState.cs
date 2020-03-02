@@ -10,6 +10,7 @@ namespace LegendOfZelda
         public ThrownBoomerangState(BoomerangProjectile boom)
         {
             this.boom = boom;
+            boom.Returned = false;
         }
 
         public void Update()

@@ -34,15 +34,9 @@ namespace LegendOfZelda
             {
                 if (player.Hitbox.Intersects(p.Hitbox))
                 {
-                    if (p is BoomerangProjectile
-                            && (p as BoomerangProjectile).IsOwner(player))
+                    if (Handler.CharacterProjectile(player, p))
                     {
                         despawn.Add(p);
-                    }
-                    else if (p.OwningTeam != player.Team)
-                    {
-                        despawn.Add(p);
-                        Handler.ProjectilePlayerCollision(player);
                     }
                 }
             }
@@ -88,11 +82,10 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
                     if (!collision.IsEmpty)
                     {
-                        if (projectile.OwningTeam != enemy.Team)
+                        if (Handler.CharacterProjectile(enemy, projectile))
                         {
-                            Handler.EnemyProjectileCollision(enemy, collision);
+                            projectilesToRemove.Add(projectile);
                         }
-                        projectilesToRemove.Add(projectile);
                     }
                 }
             }

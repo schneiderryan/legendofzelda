@@ -10,6 +10,7 @@ namespace LegendOfZelda
         public PocketBoomerangState(BoomerangProjectile boom)
         {
             this.boom = boom;
+            boom.Returned = true;
         }
 
         public void Update()

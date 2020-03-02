@@ -71,29 +71,29 @@ namespace LegendOfZelda
             }
         }
 
-        public static void MoveableAndNonMoveableCollision(ICollideable moveable,
+        public static void PlayerWallCollision(IPlayer player,
                 in Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {
-                if (collision.Y != moveable.Hitbox.Y)
+                if (collision.Y != player.Footbox.Y)
                 {
-                    moveable.Y -= collision.Height;
+                    player.Y -= collision.Height;
                 }
                 else
                 {
-                    moveable.Y += collision.Height;
+                    player.Y += collision.Height;
                 }
             }
             else
             {
-                if (collision.X > moveable.Hitbox.X)
+                if (collision.X > player.Footbox.X)
                 {
-                    moveable.X -= collision.Width;
+                    player.X -= collision.Width;
                 }
                 else
                 {
-                    moveable.X += collision.Width;
+                    player.X += collision.Width;
                 }
             }
         }
