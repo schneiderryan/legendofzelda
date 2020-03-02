@@ -21,6 +21,7 @@ namespace LegendOfZelda
 			Sprite.Position = new Point(X, Y);
 			State = new LeftMovingAquamentusState(this);
 			Breathed = false;
+			attackTimer = 100;
 		}
 
 	}
