@@ -109,7 +109,7 @@ namespace LegendOfZelda
 
             foreach (IEnemy enemy in Enemies)
             {
-                enemy.Draw(sb);
+                enemy.Draw(sb, Color.White);
                 Debug.DrawHitbox(sb, enemy.Hitbox);
             }
 
@@ -136,20 +136,16 @@ namespace LegendOfZelda
             }
 
 
-            foreach (IEnemy enemy in enemies.ToList())
+            foreach (IEnemy enemy in Enemies.ToList())
             {
                 enemy.Update();
                 if(enemy.isDead)
                 {
-                    enemies.Remove(enemy);
+                    Enemies.Remove(enemy);
                 }
             }
 
-            foreach (IMoveableBlock b in moveableBlocks)
-            {
-                b.Draw(sb);
-                Debug.DrawHitbox(sb, b.Hitbox);
-            }
+           
 
 
             foreach (INPC npc in npcs)
@@ -162,7 +158,8 @@ namespace LegendOfZelda
 
 
             PlayerCollisionDetector.HandlePlayerCollisions(this, game.link);
-            EnemyCollisionDetector.HandleEnemyCollisions(this);
+            EnemyCollisionDetector.HandleEnemyCollisions(this, game.link);
+            
         }
     }
 }

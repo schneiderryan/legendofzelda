@@ -33,38 +33,7 @@ namespace LegendOfZelda
 		}
 
 
-		public void MoveLeft()
-		{
-			
-		}
-
-		public void Update()
-		{
-			int linkYPos = snake.game.link.Y;
-			int linkXPos = snake.game.link.X;
-			if ((linkYPos < (snake.Y + 10)) && (linkYPos > (snake.Y - 10)))
-			{
-				if(linkXPos < snake.X)
-				{
-					snake.X -= 4;
-					snake.state = this;
-				}
-				else
-				{
-					snake.X += 4;
-					MoveRight();
-				}
-			}
-			else
-			{
-				snake.X -= 1;
-			}
-			if (snake.X < 0)
-			{
-				snake.X += 800;
-			}
-			snake.sprite.Position = new Point(snake.X, snake.Y);
-		}
+	
 
 		
 	}

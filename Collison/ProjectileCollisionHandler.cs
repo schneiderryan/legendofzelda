@@ -17,8 +17,12 @@ namespace LegendOfZelda
 
         public void HandleCollisions(IRoom room)
         {
+            ProjectileEnemyCollision(room.Enemies);
             ProjectileCollision(room.Hitboxes);
             ProjectileDoorCollision(room.Doors.Values);
+            EnemyProjectileCollision(room.Enemies, projectiles);
+            
+            
         }
 
         private void ProjectileCollision(IList<Rectangle> boxes)
@@ -55,8 +59,20 @@ namespace LegendOfZelda
             ProjectileCollision(hitboxes);
         }
 
+        private void ProjectileEnemyCollision(ICollection<IEnemy> enemies)
+        {
+            IList<Rectangle> hitboxes = new List<Rectangle>();
+            foreach (IEnemy enemy in enemies)
+            {
+                hitboxes.Add(enemy.Hitbox);
+                
+            }
+            ProjectileCollision(hitboxes);
+            
+        }
 
-/*        private static void EnemyProjectileCollision(List<IEnemy> enemies, List<IProjectile> projectiles)
+
+        private static void EnemyProjectileCollision(IList<IEnemy> enemies, IList<IProjectile> projectiles)
         {
             List<IProjectile> projectilesToRemove = new List<IProjectile>();
             foreach (IEnemy enemy in enemies)
@@ -66,7 +82,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
                     if (!collision.Equals(Rectangle.Empty))
                     {
-                        EnemyCollisionHandler.HandleEnemyProjectileCollision(enemy, collision);
+                        HandleEnemyProjectileCollision(enemy, collision);
                         projectilesToRemove.Add(projectile);
                     }
                 }
@@ -75,7 +91,7 @@ namespace LegendOfZelda
             {
                 projectiles.Remove(toRemove);
             }
-        }*/
+        }
 
         public static void HandleEnemyProjectileCollision(IEnemy enemy, in Rectangle collision)
         {
@@ -84,12 +100,16 @@ namespace LegendOfZelda
                 if (collision.Y != enemy.Hitbox.Y)
                 {
                     enemy.Y -= collision.Height;
-                    //Take damage
+                    System.Diagnostics.Debug.WriteLine("take damage");
+                    enemy.TakeDamage();
+
+
                 }
                 else
                 {
                     enemy.Y += collision.Height;
-                    //Take damage
+                    System.Diagnostics.Debug.WriteLine("take damage");
+                    enemy.TakeDamage();
                 }
             }
             else
@@ -97,12 +117,14 @@ namespace LegendOfZelda
                 if (collision.X != enemy.Hitbox.X)
                 {
                     enemy.X -= collision.Width;
-                    //Take damage
+                    System.Diagnostics.Debug.WriteLine("take damage");
+                    enemy.TakeDamage();
                 }
                 else
                 {
                     enemy.X += collision.Width;
-                    //Take damage
+                    System.Diagnostics.Debug.WriteLine("take damage");
+                    enemy.TakeDamage();
                 }
             }
         }

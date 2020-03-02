@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
@@ -6,6 +7,11 @@ namespace LegendOfZelda
     {
         ISprite Sprite { get; set; }
         IEnemyState State { get; set; }
+        bool isDead { get; set; }
+        bool isBeingAttacked { get; set; }
+        int attackTimer { get; set; }
+        double currentHearts { get; set; }
+        int listIndex { get; set; }
         int VX { get; set; }
         int VY { get; set; }
         void MoveLeft();
@@ -13,6 +19,7 @@ namespace LegendOfZelda
         void MoveUp();
         void MoveDown();
         void Update();
-        void Draw(SpriteBatch spriteBatch);
+        void Draw(SpriteBatch spriteBatch, Color color);
+        void TakeDamage();
     }
 }

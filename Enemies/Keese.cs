@@ -15,6 +15,7 @@ namespace LegendOfZelda
 			Sprite.Position = new Point(X, Y);
 			State = new EnemyState(this);
 			random = new Random();
+			currentHearts = 1;
 		}
 
 		public override void Update()

@@ -15,9 +15,9 @@ namespace LegendOfZelda
 		private BoomerangProjectile boomerang;
 		private IList<IProjectile> projectiles;
 
-		public Goriya(IList<IProjectile> projectiles)
+		public Goriya(LegendOfZelda game)
 		{
-			this.projectiles = projectiles;
+			this.projectiles = game.projectiles;
 			Sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
 			direction = "right";
 			X = 400;
@@ -25,6 +25,7 @@ namespace LegendOfZelda
 			Sprite.Position = new Point(X, Y);
 			State = new RightMovingGoriyaState(this);
 			boomerangState = BoomerangState.Pocket;
+			currentHearts = 2;
 		}
 
 		public override void Update()
@@ -48,6 +49,8 @@ namespace LegendOfZelda
 			projectiles.Add(boomerang);
 			boomerangState = BoomerangState.Thrown;
 		}
+
+
 
 	}
 }

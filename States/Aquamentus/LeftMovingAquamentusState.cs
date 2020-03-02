@@ -63,10 +63,7 @@ namespace LegendOfZelda
 			aquamentus.Sprite.Position = new Point(aquamentus.X, aquamentus.Y);
 		}
 
-		public void TakeDamage()
-		{
-			throw new System.NotImplementedException();
-		}
+		
 
 	}
 }

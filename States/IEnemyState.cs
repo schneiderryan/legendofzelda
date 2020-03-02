@@ -2,8 +2,6 @@
 
 public interface IEnemyState
 {
-	void ChangeDirection();
-	void BeKilled();
 	void Update();
     void MoveDown();
     void MoveUp();
