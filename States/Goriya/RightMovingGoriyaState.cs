@@ -1,6 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
+
 	class RightMovingGoriyaState : EnemyState
 	{
 		public RightMovingGoriyaState(IEnemy goriya)
@@ -32,6 +33,7 @@ namespace LegendOfZelda
 			base.MoveLeft();
 			enemy.State = new LeftMovingGoriyaState(enemy);
 		}
+
 
 	}
 }

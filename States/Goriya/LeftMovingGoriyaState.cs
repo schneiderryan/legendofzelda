@@ -1,7 +1,9 @@
 ﻿
 namespace LegendOfZelda
 {
+
 	class LeftMovingGoriyaState : EnemyState
+
 	{
 		public LeftMovingGoriyaState(IEnemy goriya)
 			: base(goriya)
@@ -32,6 +34,7 @@ namespace LegendOfZelda
 		{
 			// do nothing
 		}
+
 
 	}
 }

@@ -120,7 +120,7 @@ namespace LegendOfZelda
             {
                 new Gel(),
                 new Aquamentus(game),
-                new Goriya(game.projectiles),
+                new Goriya(game),
                 new Keese(),
                 new Stalfo(),
                 new Trap(),

@@ -1,7 +1,9 @@
 ﻿
 namespace LegendOfZelda
 {
+
 	class LeftMovingDodongoState : EnemyState
+
 	{
 		public LeftMovingDodongoState(IEnemy enemy)
 			: base(enemy)
@@ -31,5 +33,9 @@ namespace LegendOfZelda
 		{
 			// do nothing
 		}
+
+
+		
+
 	}
 }

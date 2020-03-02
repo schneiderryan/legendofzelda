@@ -37,5 +37,57 @@ namespace LegendOfZelda
             }
         }
 
+        public static void HandleEnemyPlayerCollision(IPlayer player, IEnemy enemy, in Rectangle collision)
+        {
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y != enemy.Hitbox.Y)
+                {
+                    if (player.IsAttacking())
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                    }
+                    enemy.Y -= collision.Height + 15;
+                    
+
+                }
+                else
+                {
+                    if (player.IsAttacking())
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                    }
+                    enemy.Y += collision.Height + 15;
+                    
+                }
+            }
+            else
+            {
+                if (collision.X != enemy.Hitbox.X)
+                {
+                    if (player.IsAttacking())
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                    }
+                    enemy.X -= collision.Width + 15;
+                    
+                }
+                else
+                {
+                    if (player.IsAttacking())
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                    }
+                    enemy.X += collision.Width + 15;
+                    
+                }
+            }
+        }
+
+        
     }
 }

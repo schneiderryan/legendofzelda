@@ -209,7 +209,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Goriya"))
                 {
-                    enemy = new Goriya(this.game.projectiles);
+                    enemy = new Goriya(this.game);
                 }
                 else if (entry.Value.Equals("Keese"))
                 {
@@ -245,7 +245,9 @@ namespace LegendOfZelda
                 }
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y;
+                enemy.listIndex = enemies.Count;
                 enemies.Add(enemy);
+                
             }
             return enemies;
         }

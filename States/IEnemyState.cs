@@ -1,12 +1,10 @@
-﻿
-namespace LegendOfZelda
+﻿using Microsoft.Xna.Framework.Graphics;
+
+public interface IEnemyState
 {
-    interface IEnemyState
-    {
-        void Update();
-        void MoveDown();
-        void MoveUp();
-        void MoveRight();
-        void MoveLeft();
-    }
+	void Update();
+    void MoveDown();
+    void MoveUp();
+    void MoveRight();
+    void MoveLeft();
 }

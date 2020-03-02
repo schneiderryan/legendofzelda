@@ -1,7 +1,9 @@
 ﻿
 namespace LegendOfZelda
 {
+
 	class LeftMovingSnakeState : EnemyState
+
 	{
 		public LeftMovingSnakeState(IEnemy snake) : base(snake)
 		{
@@ -30,5 +32,9 @@ namespace LegendOfZelda
 			// do nothing
 		}
 
+
+	
+
+		
 	}
 }
