@@ -7,19 +7,18 @@ namespace LegendOfZelda
 {
     class LegendOfZelda : Game
     {
-        public List<IRoom> rooms;
+        public IList<IRoom> rooms;
         public int roomIndex = 0;
 
         public IPlayer link;
-        public List<IProjectile> projectiles;
+        public ISet<IProjectile> projectiles;
         public GraphicsDeviceManager graphics;
 
         private IController mouse;
         private IController keyboard;
         private IController playerKeyboard;
 
-        private List<IDespawnEffect> effects;
-        private ProjectileCollisionHandler projectileCollisionHandler;
+        private IList<IDespawnEffect> effects;
         private SpriteBatch spriteBatch;
 
         public LegendOfZelda()
@@ -41,9 +40,9 @@ namespace LegendOfZelda
             mouse = new MouseController(this);
             keyboard = GameSetup.CreateGeneralKeysController(this);
 
-            projectiles = new List<IProjectile>();
+            projectiles = new HashSet<IProjectile>();
             effects = new List<IDespawnEffect>();
-            projectileCollisionHandler = new ProjectileCollisionHandler(projectiles, effects);
+            ProjectileCollisionDetector.Register(projectiles, effects);
 
             rooms = GameSetup.GenerateRoomList(this);
         }
@@ -80,8 +79,7 @@ namespace LegendOfZelda
                 }
             }
 
-            projectileCollisionHandler.HandleCollisions(rooms[roomIndex]);
-
+            ProjectileCollisionDetector.HandleCollisions(rooms[roomIndex], link);
             base.Update(gameTime);
         }
 

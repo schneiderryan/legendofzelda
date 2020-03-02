@@ -1,10 +1,12 @@
-﻿
+﻿using Microsoft.Xna.Framework;
+
+
 namespace LegendOfZelda
 {
     class RedArrowProjectile : Projectile
     {
-        public RedArrowProjectile(string direction, int xPos, int yPos)
-            : base(direction, xPos, yPos)
+        public RedArrowProjectile(string direction, ICollideable source)
+            : base(direction, source)
         {
             if(direction == "up")
             {
@@ -18,10 +20,12 @@ namespace LegendOfZelda
             {
                 this.sprite = ProjectileSpriteFactory.Instance.CreateRedRightArrow();
             } 
-            else if(direction == "left")
+            else // left
             {
                 this.sprite = ProjectileSpriteFactory.Instance.CreateRedLeftArrow();
             }
+            sprite.Position = new Point(X, Y);
+            Hitbox = sprite.Box;
         }
     }
 }

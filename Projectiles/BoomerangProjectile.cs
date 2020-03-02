@@ -1,27 +1,27 @@
 ﻿using Microsoft.Xna.Framework;
 
+
 namespace LegendOfZelda
 {
     class BoomerangProjectile :  Projectile
     {
-        public enum BoomerangState { Thrown, Returning, Pocket};
-        public BoomerangState State { get; private set; }
+        public bool Returned { get => state == BoomerangState.Pocket; }
 
-        private ICollideable source;
+        private enum BoomerangState { Thrown, Returning, Pocket }
+        private BoomerangState state = BoomerangState.Thrown;
+
         private int finalPositionX;
         private int finalPositionY;
         private Point finalPosition;
 
         public BoomerangProjectile(string direction, ICollideable source, int initialVel = 6)
-            : base(direction, source.X, source.Y, initialVel)
+            : base(direction, source, initialVel)
         {
             sprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
             sprite.Position = new Point(X, Y);
             finalPositionX = X;
             finalPositionY = Y;
             Hitbox = sprite.Box;
-            this.source = source;
-            State = BoomerangState.Thrown;
 
             if (direction == "up")
             {
@@ -43,22 +43,33 @@ namespace LegendOfZelda
 
         public override void Update()
         {
-            if (State == BoomerangState.Thrown)
+            if (state == BoomerangState.Thrown
+                    && X == finalPosition.X && finalPosition.Y == Y)
             {
-                if (sprite.Position.X == finalPosition.X && finalPosition.Y == sprite.Position.Y)
-                {
-                    State = BoomerangState.Returning;
-                }
+                Return();
             }
-            else if (State == BoomerangState.Returning)
+            else if (state == BoomerangState.Returning)
             {
-                int LinksXPos = this.source.X + 5;
-                int LinksYPos = this.source.Y + 5;
-                this.VX = (LinksXPos - X) / 20;
-                this.VY = (LinksYPos - Y) / 20;
+                this.VX = (source.X - X) / 20;
+                this.VY = (source.Y - Y) / 20;
+                if (VX == 0 && VY == 0)
+                {
+                    state = BoomerangState.Pocket;
+                }
             }
 
             base.Update();
         }
+
+        public void Return()
+        {
+            state = BoomerangState.Returning;
+        }
+
+        public override IDespawnEffect GetDespawnEffect()
+        {
+            return new NoDespawnEffect();
+        }
+
     }
 }

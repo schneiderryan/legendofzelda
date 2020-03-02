@@ -23,9 +23,9 @@ namespace LegendOfZelda
             else
             {
                 link.state = new StillLeftLinkState(link);
-                link.sprite = PlayerSpriteFactory.Instance.CreateLeftStillLinkSprite();
+                link.Sprite = PlayerSpriteFactory.Instance.CreateLeftStillLinkSprite();
             }
-            link.sprite.Position = new Point(link.X, link.Y);
+            link.Sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

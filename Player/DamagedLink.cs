@@ -20,10 +20,10 @@ namespace LegendOfZelda
 
         public Rectangle SpriteBox { get => decoratedLink.SpriteBox; }
 
-        public ISprite sprite
+        public ISprite Sprite
         {
-            get { return decoratedLink.sprite; }
-            set { decoratedLink.sprite = value; }
+            get { return decoratedLink.Sprite; }
+            set { decoratedLink.Sprite = value; }
         }
 
         public ILinkState state
@@ -79,6 +79,7 @@ namespace LegendOfZelda
             set { decoratedLink.numberBombs = value; }
         }
 
+        public Team Team { get => decoratedLink.Team; set => decoratedLink.Team = value; }
 
         public DamagedLink (LegendOfZelda game)
         {

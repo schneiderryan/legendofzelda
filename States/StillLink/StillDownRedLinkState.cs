@@ -18,36 +18,36 @@ namespace LegendOfZelda
         public void MoveUp()
         {
             link.state = new MovingUpRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void MoveDown()
         {
             link.state = new MovingDownRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
         {
             link.state = new MovingRightRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
         {
             link.state = new MovingLeftRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void Attack()
         {
             link.state = new AttackingDownRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownAttackingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownAttackingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void BeStill()
@@ -57,7 +57,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            link.sprite.Position = new Point(link.X, link.Y);
+            link.Sprite.Position = new Point(link.X, link.Y);
         }
 
     }

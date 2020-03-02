@@ -18,22 +18,22 @@ namespace LegendOfZelda
         public void MoveUp()
         {
             link.state = new MovingUpRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void MoveDown()
         {
             link.state = new MovingDownRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
         {
             link.state = new MovingRightRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
@@ -44,15 +44,15 @@ namespace LegendOfZelda
         public void Attack()
         {
             link.state = new AttackingLeftRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedLeftAttackingLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftAttackingLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void BeStill()
         {
             link.state = new StillLeftRedLinkState(link);
-            link.sprite = PlayerSpriteFactory.Instance.CreateRedLeftStillLinkSprite();
-            link.sprite.Scale = 2.0f;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftStillLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
 
         public void Update()
@@ -62,7 +62,7 @@ namespace LegendOfZelda
             {
                 link.X += 800;
             }
-            link.sprite.Position = new Point(link.X, link.Y);
+            link.Sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

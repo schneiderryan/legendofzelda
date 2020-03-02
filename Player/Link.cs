@@ -25,9 +25,9 @@ namespace LegendOfZelda
 
         public Rectangle SpriteBox
         {
-            get => sprite.Box;
+            get => Sprite.Box;
         }
-        public ISprite sprite { get; set; }
+        public ISprite Sprite { get; set; }
         public ILinkState state { get; set; }
 
         public Rectangle Hitbox
@@ -50,7 +50,7 @@ namespace LegendOfZelda
             get { return y; }
             set
             {
-                hitbox.Y = value + sprite.Box.Height - hitbox.Height;
+                hitbox.Y = value + Sprite.Box.Height - hitbox.Height;
                 y = value;
             }
         }
@@ -90,6 +90,8 @@ namespace LegendOfZelda
             set { numberOfBombs = value; }
         }
 
+        public Team Team { get; set; } = Team.Link;
+
         public virtual void MoveLeft()
         {
             state.MoveLeft();
@@ -128,7 +130,7 @@ namespace LegendOfZelda
         public virtual void Update()
         {
             state.Update();
-            sprite.Update();
+            Sprite.Update();
             if (itemTimer > 0)
             {
                 itemTimer--;
@@ -137,7 +139,7 @@ namespace LegendOfZelda
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb, color);
+            Sprite.Draw(sb, color);
         }
 
         public virtual void UseProjectile(IProjectile projectile)
@@ -145,7 +147,9 @@ namespace LegendOfZelda
             if (itemTimer == 0)
             {
                 itemTimer = 75;
+                Projectile.CenterProjectile(Sprite.Box, direction, projectile);
                 game.projectiles.Add(projectile);
+
             }
         }
 
@@ -175,8 +179,8 @@ namespace LegendOfZelda
         {
             this.game = game;
             this.d = "up";
-            this.sprite.Scale = 2.0f;
-            this.hitbox = new Rectangle(0, 0, sprite.Box.Width, sprite.Box.Height / 2);
+            this.Sprite.Scale = 2.0f;
+            this.hitbox = new Rectangle(0, 0, Sprite.Box.Width, Sprite.Box.Height / 2);
             this.X = 400;
             this.Y = 200;
             this.itemTimer = 0;

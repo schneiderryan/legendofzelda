@@ -1,21 +1,34 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    abstract class DespawnEffect : IDespawnEffect
+    class DespawnEffect : IDespawnEffect
     {
-        protected ISprite sprite;
+        private ISprite sprite;
+        private int timer;
+        private const int DURATION = 4;
 
         public bool Finished { get; private set; }
 
-        public virtual void Draw(SpriteBatch sb)
+        public DespawnEffect(Point position)
+        {
+            sprite = DespawnEffectSpriteFactory.GenericProjectileDespawn();
+            sprite.Position = position;
+            timer = -DURATION;
+        }
+
+        public void Draw(SpriteBatch sb)
         {
             sprite.Draw(sb);
         }
 
-        public virtual void Update()
+        public void Update()
         {
+            timer = (timer + 1) % DURATION;
+            Finished = timer >= 0;
             sprite.Update();
         }
+
     }
 }

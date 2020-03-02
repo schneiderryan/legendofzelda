@@ -18,13 +18,11 @@ namespace LegendOfZelda
                 IProjectile proj;
                 if (player.color == "red")
                 {
-                    proj = new RedArrowProjectile(player.direction,
-                        player.X, player.Y);
+                    proj = new RedArrowProjectile(player.direction, player);
                 }
                 else
                 {
-                    proj = new GreenArrowProjectile(player.direction,
-                        player.X, player.Y);
+                    proj = new GreenArrowProjectile(player.direction, player);
                 }
                 player.UseProjectile(proj);
             }

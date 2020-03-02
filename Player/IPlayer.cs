@@ -7,10 +7,9 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    interface IPlayer : ICollideable
+    interface IPlayer : ICharacter
     {
         ILinkState state { get; set; }
-        ISprite sprite { get; set; }
         string direction { get; set; }
         string color { get; set; }
         int numRupees { get; set; }
@@ -18,14 +17,10 @@ namespace LegendOfZelda
         double currentHearts { get; set; }
         int numberBombs { get; set; }
         Rectangle SpriteBox { get; }
-        void MoveLeft();
-        void MoveRight();
-        void MoveUp();
-        void MoveDown();
+        Team Team { get; set; }
         void Attack();
         void BeStill();
         void TakeDamage();
-        void Update();
         void UseItem(IItem item);
         void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);

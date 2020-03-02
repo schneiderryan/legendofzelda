@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-using static LegendOfZelda.BoomerangProjectile;
-
 
 namespace LegendOfZelda
 {
@@ -11,11 +9,11 @@ namespace LegendOfZelda
 		public string direction;
 
 		private int boomerangTimer;
-		private BoomerangState boomerangState;
+		private bool canThrowBoomerang;
 		private BoomerangProjectile boomerang;
-		private IList<IProjectile> projectiles;
+		private ICollection<IProjectile> projectiles;
 
-		public Goriya(IList<IProjectile> projectiles)
+		public Goriya(ICollection<IProjectile> projectiles)
 		{
 			this.projectiles = projectiles;
 			Sprite = EnemySpriteFactory.Instance.CreateRightMovingGoriyaSprite();
@@ -24,12 +22,13 @@ namespace LegendOfZelda
 			Y = 200;
 			Sprite.Position = new Point(X, Y);
 			State = new RightMovingGoriyaState(this);
-			boomerangState = BoomerangState.Pocket;
+			canThrowBoomerang = true;
+			boomerang = new BoomerangProjectile(direction, this);
 		}
 
 		public override void Update()
 		{
-			if (boomerangState == BoomerangState.Pocket)
+			if (canThrowBoomerang)
 			{
 				boomerangTimer++;
 				if (boomerangTimer == 250)
@@ -39,14 +38,18 @@ namespace LegendOfZelda
 				}
 				base.Update();
 			}
-			Sprite.Update();
+			else
+			{
+				canThrowBoomerang = boomerang.Returned;
+				Sprite.Update();
+			}
 		}
 
 		private void ThrowBoomerang()
 		{
 			boomerang = new BoomerangProjectile(direction, this);
 			projectiles.Add(boomerang);
-			boomerangState = BoomerangState.Thrown;
+			canThrowBoomerang = false;
 		}
 
 	}
