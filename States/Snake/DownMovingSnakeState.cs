@@ -1,9 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-
 	class DownMovingSnakeState : EnemyState
-
 	{
 		public DownMovingSnakeState(IEnemy snake) : base(snake)
 		{

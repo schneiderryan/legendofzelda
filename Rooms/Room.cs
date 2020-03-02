@@ -2,8 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -133,7 +132,7 @@ namespace LegendOfZelda
 
             foreach (IEnemy enemy in Enemies)
             {
-                enemy.Draw(sb, Color.White);
+                enemy.Draw(sb);
                 Debug.DrawHitbox(sb, enemy.Hitbox);
             }
 
@@ -159,31 +158,25 @@ namespace LegendOfZelda
                 item.Update();
             }
 
-
-            foreach (IEnemy enemy in Enemies.ToList())
-            {
-                enemy.Update();
-                if(enemy.isDead)
-                {
-                    Enemies.Remove(enemy);
-                }
-            }
-
-           
-
-
             foreach (INPC npc in npcs)
-
             {
                 npc.Update();
             }
 
-           
+            foreach (IEnemy enemy in Enemies)
+            {
+                enemy.Update();
+            }
 
+            foreach (IItem item in items)
+            {
+                // check collision
+                // if intersects then
+                // Item.Pickup(IPlayer) ?
+            }
 
             PlayerCollisionDetector.HandlePlayerCollisions(this, game.link);
-            EnemyCollisionDetector.HandleEnemyCollisions(this, game.link);
-            
+            EnemyCollisionDetector.HandleEnemyCollisions(this);
         }
     }
 }
