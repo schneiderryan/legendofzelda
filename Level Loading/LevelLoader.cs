@@ -83,6 +83,11 @@ namespace LegendOfZelda
             };
         }
 
+        public int RoomNumber()
+        {
+            return parser.parseRoomNumber();
+        }
+
         public ISprite LoadBackground()
         {
             ISprite background;
