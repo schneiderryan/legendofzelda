@@ -56,6 +56,21 @@ namespace LegendOfZelda
                 new Rectangle(448, 0, 64, 172),
                 new Rectangle(448, 190, 64, 160),
             };
+
+            if (levelLoader.RoomNumber() == 15)
+            {
+                Hitboxes.Clear();
+                Hitboxes.Add(new Rectangle(0, 0, 94, 190));
+                Hitboxes.Add(new Rectangle(0, 190, 64, 130));
+                Hitboxes.Add(new Rectangle(62, 256, 448, 64));
+                Hitboxes.Add(new Rectangle(130, 2, 376, 142));
+                Hitboxes.Add(new Rectangle(448, 106, 64, 150));
+                Hitboxes.Add(new Rectangle(62, 192, 30, 47));
+                Hitboxes.Add(new Rectangle(130, 192, 222, 47));
+                Hitboxes.Add(new Rectangle(386, 164, 64, 77));
+                Hitboxes.Add(new Rectangle(130, 144, 92, 48));
+                Hitboxes.Add(new Rectangle(130, 160, 222, 32));
+            }
         }
 
         public void DrawOverlay(SpriteBatch sb)
