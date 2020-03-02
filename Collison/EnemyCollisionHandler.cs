@@ -43,7 +43,7 @@ namespace LegendOfZelda
             {
                 if (collision.Y != enemy.Hitbox.Y)
                 {
-                    if (player.IsAttacking())
+                    if (player.IsAttacking() && player.Direction == "up")
                     {
                         System.Diagnostics.Debug.WriteLine("call take damage");
                         enemy.TakeDamage();
@@ -54,7 +54,7 @@ namespace LegendOfZelda
                 }
                 else
                 {
-                    if (player.IsAttacking())
+                    if (player.IsAttacking() && player.Direction == "down")
                     {
                         System.Diagnostics.Debug.WriteLine("call take damage");
                         enemy.TakeDamage();
@@ -67,7 +67,7 @@ namespace LegendOfZelda
             {
                 if (collision.X != enemy.Hitbox.X)
                 {
-                    if (player.IsAttacking())
+                    if (player.IsAttacking() && player.Direction == "left")
                     {
                         System.Diagnostics.Debug.WriteLine("call take damage");
                         enemy.TakeDamage();
@@ -77,7 +77,7 @@ namespace LegendOfZelda
                 }
                 else
                 {
-                    if (player.IsAttacking())
+                    if (player.IsAttacking() && player.Direction == "right")
                     {
                         System.Diagnostics.Debug.WriteLine("call take damage");
                         enemy.TakeDamage();
