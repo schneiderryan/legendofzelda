@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class BoomerangProjectile :  Projectile
     {
-        public bool Returned => state is PocketBoomerangState;
+        public bool Returned { get; set; }
 
         public IBoomerangState state;
         public Point finalPosition;

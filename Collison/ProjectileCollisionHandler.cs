@@ -20,9 +20,9 @@ namespace LegendOfZelda
             // do things
         }
 
-        public static void ProjectilePlayerCollision(IPlayer player)
+        public static void ProjectileCharacterCollision(ICharacter character)
         {
-            player.TakeDamage();
+            //character.TakeDamage();
         }
 
         public static void EnemyProjectileCollision(IEnemy enemy,
@@ -59,6 +59,25 @@ namespace LegendOfZelda
                 }
             }
         }
+
+        public static bool CharacterProjectile(ICharacter character,
+                IProjectile projectile)
+        {
+            bool result = false;
+            if (projectile is BoomerangProjectile)
+            {
+                BoomerangProjectile bp = projectile as BoomerangProjectile;
+                bp.Returned = true;
+                result = bp.IsOwner(character);
+            }
+            if (projectile.OwningTeam != character.Team)
+            {
+                result = true;
+                ProjectileCharacterCollision(character);
+            }
+            return result;
+        }
+
         public static void Despawn(ICollection<IProjectile> despawn)
         {
             foreach (IProjectile deadProjectile in despawn)
