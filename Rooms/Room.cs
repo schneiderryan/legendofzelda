@@ -48,7 +48,7 @@ namespace LegendOfZelda
 
                     // top hitboxes
                     new Rectangle(0, 0, 240, 64),
-                    new Rectangle(273, 0, 240, 64),
+                    new Rectangle(272, 0, 240, 64),
 
                     // bottom hitboxes
                     new Rectangle(0, 289, 240, 64),
