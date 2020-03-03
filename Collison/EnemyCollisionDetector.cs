@@ -7,11 +7,12 @@ namespace LegendOfZelda
 {
     static class EnemyCollisionDetector
     {
-        public static void HandleEnemyCollisions(IRoom room)
+        public static void HandleEnemyCollisions(IRoom room, IPlayer player)
         {
             EnemyWallCollision(room.Enemies, room.Hitboxes);
             EnemyBlockCollision(room.Enemies, room.Blocks);
             EnemyDoorCollision(room.Enemies, room.Doors);
+            EnemyPlayerCollision(room.Enemies, player);
         }
 
         private static void EnemyWallCollision(IList<IEnemy> enemies, IList<Rectangle> hitboxes)
@@ -57,5 +58,33 @@ namespace LegendOfZelda
                 }
             }
         }
+
+        private static void EnemyPlayerCollision(IList<IEnemy> enemies, IPlayer player)
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.LeftAttackBox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, "left");
+                }
+                collision = Rectangle.Intersect(enemy.Hitbox, player.RightAttackBox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, "right");
+                }
+                collision = Rectangle.Intersect(enemy.Hitbox, player.UpAttackBox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, "up");
+                }
+                collision = Rectangle.Intersect(enemy.Hitbox, player.DownAttackBox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, "down");
+                }
+            }
+        }
+
     }
 }

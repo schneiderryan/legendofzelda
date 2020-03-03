@@ -37,5 +37,28 @@ namespace LegendOfZelda
             }
         }
 
+        public static void HandleEnemyPlayerCollision(IPlayer player, IEnemy enemy, String side)
+        {
+            if (player.Direction.Equals(side) && player.IsAttacking())
+            {
+                enemy.TakeDamage();
+                switch (side)
+                {
+                    case "left":
+                        enemy.X -= 5;
+                        break;
+                    case "right":
+                        enemy.X += 5;
+                        break;
+                    case "up":
+                        enemy.Y -= 5;
+                        break;
+                    case "down":
+                        enemy.Y += 5;
+                        break;
+                }
+            }
+        }
+
     }
 }

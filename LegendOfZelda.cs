@@ -42,8 +42,6 @@ namespace LegendOfZelda
 
             projectiles = new HashSet<IProjectile>();
             effects = new List<IDespawnEffect>();
-            ProjectileDespawner.Register(projectiles, effects);
-
             rooms = GameSetup.GenerateRoomList(this);
         }
 
@@ -61,25 +59,8 @@ namespace LegendOfZelda
 
             rooms[roomIndex].Update();
             link.Update();
+            UpdateProjectiles();
 
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Update();
-            }
-            for (int i = 0; i < effects.Count; i++)
-            {
-                if (effects[i].Finished)
-                {
-                    effects.RemoveAt(i);
-                    i--;
-                }
-                else
-                {
-                    effects[i].Update();
-                }
-            }
-
-            ProjectileDespawner.DespawnProjectiles(rooms[roomIndex], link);
             base.Update(gameTime);
         }
 
@@ -94,6 +75,10 @@ namespace LegendOfZelda
             
             Debug.DrawHitbox(spriteBatch, link.Footbox);
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
+            Debug.DrawHitbox(spriteBatch, link.LeftAttackBox);
+            Debug.DrawHitbox(spriteBatch, link.RightAttackBox);
+            Debug.DrawHitbox(spriteBatch, link.UpAttackBox);
+            Debug.DrawHitbox(spriteBatch, link.DownAttackBox);
 
             foreach (IProjectile projectile in projectiles)
             {
@@ -111,6 +96,30 @@ namespace LegendOfZelda
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void UpdateProjectiles()
+        {
+            foreach (IProjectile projectile in projectiles)
+            {
+                projectile.Update();
+            }
+
+            for (int i = 0; i < effects.Count; i++)
+            {
+                if (effects[i].Finished)
+                {
+                    effects.RemoveAt(i);
+                    i--;
+                }
+                else
+                {
+                    effects[i].Update();
+                }
+            }
+
+            ProjectileCollisionDetector.HandleCollisions(projectiles,
+                    effects, rooms[roomIndex], link);
         }
     }
 }

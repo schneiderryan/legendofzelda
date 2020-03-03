@@ -43,6 +43,7 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
+                    player.Y += 5;
                 }
                 else
                 {
@@ -50,6 +51,7 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
+                    player.Y -= 5;
                 }
             }
             else
@@ -60,6 +62,7 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
+                    player.X += 5;
                 }
                 else
                 {
@@ -67,6 +70,7 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
+                    player.X -= 5;
                 }
             }
         }
@@ -98,9 +102,5 @@ namespace LegendOfZelda
             }
         }
 
-        public static void PlayerDoorCollision(IPlayer player, in Rectangle collision)
-        {
-
-        }
     }
 }

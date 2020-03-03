@@ -28,8 +28,18 @@ namespace LegendOfZelda
             {
                 this.VY = initialVel;
             }
+            else if (direction == "downleft")
+            {
+                this.VY = initialVel;
+                this.VX = -initialVel;
+            }
             else if (direction == "right")
             {
+                this.VX = initialVel;
+            }
+            else if (direction == "downright")
+            {
+                this.VY = initialVel;
                 this.VX = initialVel;
             }
             else if (direction == "left")

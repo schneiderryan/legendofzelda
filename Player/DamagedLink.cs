@@ -18,6 +18,26 @@ namespace LegendOfZelda
             get { return decoratedLink.Footbox; }
         }
 
+        public Rectangle LeftAttackBox
+        {
+            get { return decoratedLink.LeftAttackBox; }
+        }
+
+        public Rectangle RightAttackBox
+        {
+            get { return decoratedLink.RightAttackBox; }
+        }
+
+        public Rectangle DownAttackBox
+        {
+            get { return decoratedLink.DownAttackBox; }
+        }
+
+        public Rectangle UpAttackBox
+        {
+            get { return decoratedLink.UpAttackBox; }
+        }
+
         public ISprite Sprite
         {
             get { return decoratedLink.Sprite; }

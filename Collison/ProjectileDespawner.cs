@@ -11,15 +11,11 @@ namespace LegendOfZelda
         private static ICollection<IProjectile> projectiles;
         private static ICollection<IDespawnEffect> effects;
 
-        public static void Register(ICollection<IProjectile> projectiles,
-                ICollection<IDespawnEffect> effects)
+        public static void DespawnProjectiles(IRoom room, IPlayer player,
+                ICollection<IProjectile> projectiles, ICollection<IDespawnEffect> effects)
         {
             ProjectileDespawner.projectiles = projectiles;
             ProjectileDespawner.effects = effects;
-        }
-
-        public static void DespawnProjectiles(IRoom room, IPlayer player)
-        {
             WallProjectileCollision(room.Hitboxes);
             DoorProjectileCollision(room.Doors.Values);
             CharacterProjectileCollision(player);
@@ -96,10 +92,13 @@ namespace LegendOfZelda
             foreach (IProjectile projectile in despawn)
             {
                 projectiles.Remove(projectile);
-                effects.Add(projectile.GetDespawnEffect());
                 if (projectile is BoomerangProjectile)
                 {
                     (projectile as BoomerangProjectile).Returned = true;
+                }
+                else
+                {
+                    effects.Add(projectile.GetDespawnEffect());
                 }
             }
         }
