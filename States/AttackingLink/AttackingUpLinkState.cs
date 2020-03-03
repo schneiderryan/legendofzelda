@@ -14,6 +14,11 @@ namespace LegendOfZelda
             this.link.Direction = "up";
         }
 
+        public override void Attack()
+        {
+            this.link.UseProjectile(new SwordProjectile("up", this.link.X, this.link.Y));
+        }
+
         public override void Update()
         {
             if (attackTimer > 0)

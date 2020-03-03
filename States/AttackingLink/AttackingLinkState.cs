@@ -9,7 +9,7 @@ namespace LegendOfZelda
         public void MoveDown() { }
         public void MoveRight() { }
         public void MoveLeft() { }
-        public void Attack() { }
+        public abstract void Attack();
         public void BeStill() { }
         public abstract void Update();
     }
