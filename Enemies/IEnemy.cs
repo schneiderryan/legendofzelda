@@ -15,6 +15,5 @@ namespace LegendOfZelda
         int VX { get; set; }
         int VY { get; set; }
         void Draw(SpriteBatch spriteBatch, Color color);
-        void TakeDamage();
     }
 }

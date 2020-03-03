@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class BoomerangProjectile :  Projectile
     {
-        public bool Returned { get; set; }
+        public bool Returned => state is PocketBoomerangState;
 
         public IBoomerangState state;
         public Point finalPosition;
@@ -16,6 +16,7 @@ namespace LegendOfZelda
         public BoomerangProjectile(string direction, ICharacter source, int velocity = 5)
             : base(direction, source.X, source.Y, velocity)
         {
+            OwningTeam = source.Team;
             sprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
             sprite.Position = new Point(X, Y);
             Hitbox = sprite.Box;
@@ -31,6 +32,14 @@ namespace LegendOfZelda
             base.Update();
         }
 
+        public void BeginReturning()
+        {
+            if (state is ThrownBoomerangState)
+            {
+                state = new HoveringBoomerangState(this);
+            }
+        }
+
         public override IDespawnEffect GetDespawnEffect()
         {
             return new NoDespawnEffect();
@@ -38,7 +47,7 @@ namespace LegendOfZelda
 
         public bool IsOwner(object o)
         {
-            return source == o;
+            return o.Equals(source);
         }
 
     }

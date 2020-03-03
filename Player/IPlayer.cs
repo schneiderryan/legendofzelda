@@ -23,7 +23,6 @@ namespace LegendOfZelda
         Rectangle LeftAttackBox { get; }
         void Attack();
         void BeStill();
-        void TakeDamage();
         void UseItem(IItem item);
         void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);

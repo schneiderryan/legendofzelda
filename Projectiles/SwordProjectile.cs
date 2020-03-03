@@ -7,6 +7,7 @@ namespace LegendOfZelda
         public SwordProjectile(string direction, int x, int y)
             : base(direction, x, y)
         {
+            OwningTeam = Team.Link;
             if (direction == "up")
             {
                 this.sprite = ProjectileSpriteFactory.Instance.CreateUpSwordProjectile();
