@@ -42,7 +42,7 @@ namespace LegendOfZelda
 
             projectiles = new HashSet<IProjectile>();
             effects = new List<IDespawnEffect>();
-            ProjectileCollisionDetector.Register(projectiles, effects);
+            ProjectileDespawner.Register(projectiles, effects);
 
             rooms = GameSetup.GenerateRoomList(this);
         }
@@ -79,7 +79,7 @@ namespace LegendOfZelda
                 }
             }
 
-            ProjectileCollisionDetector.HandleCollisions(rooms[roomIndex], link);
+            ProjectileDespawner.DespawnProjectiles(rooms[roomIndex], link);
             base.Update(gameTime);
         }
 

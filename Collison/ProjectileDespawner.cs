@@ -1,46 +1,50 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 
 namespace LegendOfZelda
 {
-    using Handler = ProjectileCollisionHandler;
 
-    static class ProjectileCollisionDetector
+    static class ProjectileDespawner
     {
         private static ICollection<IProjectile> projectiles;
+        private static ICollection<IDespawnEffect> effects;
 
         public static void Register(ICollection<IProjectile> projectiles,
                 ICollection<IDespawnEffect> effects)
         {
-            ProjectileCollisionDetector.projectiles = projectiles;
-            Handler.Register(projectiles, effects);
+            ProjectileDespawner.projectiles = projectiles;
+            ProjectileDespawner.effects = effects;
         }
 
-        public static void HandleCollisions(IRoom room, IPlayer player)
+        public static void DespawnProjectiles(IRoom room, IPlayer player)
         {
             WallProjectileCollision(room.Hitboxes);
             DoorProjectileCollision(room.Doors.Values);
-            PlayerProjectileCollision(player);
+            CharacterProjectileCollision(player);
             EnemyProjectileCollision(room.Enemies);
         }
 
-        private static void PlayerProjectileCollision(IPlayer player)
+        private static bool CanDespawn(IProjectile projectile, ICharacter character)
+        {
+            return projectile.OwningTeam != character.Team
+                || (projectile is BoomerangProjectile
+                    && (projectile as BoomerangProjectile).IsOwner(character));
+        }
+
+        private static void CharacterProjectileCollision(ICharacter character)
         {
             ICollection<IProjectile> despawn = new List<IProjectile>();
             foreach (IProjectile p in projectiles)
             {
-                if (player.Hitbox.Intersects(p.Hitbox))
+                if (character.Hitbox.Intersects(p.Hitbox)
+                        && CanDespawn(p, character))
                 {
-                    if (Handler.CharacterProjectile(player, p))
-                    {
-                        despawn.Add(p);
-                    }
+                    despawn.Add(p);
                 }
             }
-            Handler.Despawn(despawn);
+            Despawn(despawn);
         }
 
         private static void WallProjectileCollision(IEnumerable<Rectangle> boxes)
@@ -51,15 +55,22 @@ namespace LegendOfZelda
                 foreach (Rectangle box in boxes)
                 {
                     // wait for the projcetile to inside a wall before despawning
-                    if (box.Contains(p.Hitbox.Center) && !(p is BoomerangProjectile))
+                    if (box.Contains(p.Hitbox.Center))
                     {
-                        collisions.Add(p);
+                        if (p is BoomerangProjectile)
+                        {
+                            (p as BoomerangProjectile).BeginReturning();
+                        }
+                        else
+                        {
+                            collisions.Add(p);
+                        }
                         break;
                     }
                 }
             }
 
-            Handler.Despawn(collisions);
+            Despawn(collisions);
         }
 
         private static void DoorProjectileCollision(ICollection<IDoor> doors)
@@ -74,23 +85,23 @@ namespace LegendOfZelda
 
         private static void EnemyProjectileCollision(ICollection<IEnemy> enemies)
         {
-            ICollection<IProjectile> projectilesToRemove = new List<IProjectile>();
             foreach (IEnemy enemy in enemies)
             {
-                foreach (IProjectile projectile in projectiles)
+                CharacterProjectileCollision(enemy);
+            }
+        }
+
+        private static void Despawn(ICollection<IProjectile> despawn)
+        {
+            foreach (IProjectile projectile in despawn)
+            {
+                projectiles.Remove(projectile);
+                effects.Add(projectile.GetDespawnEffect());
+                if (projectile is BoomerangProjectile)
                 {
-                    Rectangle collision = Rectangle.Intersect(enemy.Hitbox, projectile.Hitbox);
-                    if (!collision.IsEmpty)
-                    {
-                        if (Handler.CharacterProjectile(enemy, projectile))
-                        {
-                            projectilesToRemove.Add(projectile);
-                        }
-                    }
+                    (projectile as BoomerangProjectile).Returned = true;
                 }
             }
-
-            Handler.Despawn(projectilesToRemove);
         }
 
     }
