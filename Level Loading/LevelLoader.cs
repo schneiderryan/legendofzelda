@@ -237,11 +237,11 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Fire"))
                 {
-                    enemy = new Fire();
+                    enemy = new Fire(game);
                 }
                 else //trap
                 {
-                    enemy = new Trap();
+                    enemy = new Trap(game);
                 }
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y;
