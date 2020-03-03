@@ -47,7 +47,7 @@ namespace LegendOfZelda
 
         public bool IsOwner(object o)
         {
-            return source == o;
+            return o.Equals(source);
         }
 
     }

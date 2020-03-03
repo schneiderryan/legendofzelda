@@ -34,10 +34,25 @@ namespace LegendOfZelda
             ICollection<IProjectile> despawn = new List<IProjectile>();
             foreach (IProjectile p in projectiles)
             {
-                if (character.Hitbox.Intersects(p.Hitbox)
-                        && CanDespawn(p, character))
+                if (character.Hitbox.Intersects(p.Hitbox))
                 {
-                    despawn.Add(p);
+                    if (p is BoomerangProjectile)
+                    {
+                        BoomerangProjectile bp = p as BoomerangProjectile;
+                        if (bp.IsOwner(character))
+                        {
+                            bp.Returned = true;
+                            despawn.Add(p);
+                        }
+                        else
+                        {
+                            bp.BeginReturning();
+                        }
+                    }
+                    else
+                    {
+                        despawn.Add(p);
+                    }
                 }
             }
             Despawn(despawn);
