@@ -37,53 +37,25 @@ namespace LegendOfZelda
             }
         }
 
-        public static void HandleEnemyPlayerCollision(IPlayer player, IEnemy enemy, in Rectangle collision)
+        public static void HandleEnemyPlayerCollision(IPlayer player, IEnemy enemy, String side)
         {
-            if (collision.Width > collision.Height)
+            if(player.Direction.Equals(side) && player.IsAttacking())
             {
-                if (collision.Y != enemy.Hitbox.Y)
+                enemy.TakeDamage();
+                switch (side)
                 {
-                    if (player.IsAttacking() && player.Direction == "up")
-                    {
-                        System.Diagnostics.Debug.WriteLine("call take damage");
-                        enemy.TakeDamage();
-                    }
-                    enemy.Y -= collision.Height + 15;
-
-
-                }
-                else
-                {
-                    if (player.IsAttacking() && player.Direction == "down")
-                    {
-                        System.Diagnostics.Debug.WriteLine("call take damage");
-                        enemy.TakeDamage();
-                    }
-                    enemy.Y += collision.Height + 15;
-
-                }
-            }
-            else
-            {
-                if (collision.X != enemy.Hitbox.X)
-                {
-                    if (player.IsAttacking() && player.Direction == "left")
-                    {
-                        System.Diagnostics.Debug.WriteLine("call take damage");
-                        enemy.TakeDamage();
-                    }
-                    enemy.X -= collision.Width + 15;
-
-                }
-                else
-                {
-                    if (player.IsAttacking() && player.Direction == "right")
-                    {
-                        System.Diagnostics.Debug.WriteLine("call take damage");
-                        enemy.TakeDamage();
-                    }
-                    enemy.X += collision.Width + 15;
-
+                    case "left":
+                        enemy.X -= 5;
+                        break;
+                    case "right":
+                        enemy.X += 5;
+                        break;
+                    case "up":
+                        enemy.Y -= 5;
+                        break;
+                    case "down":
+                        enemy.Y += 5;
+                        break;
                 }
             }
         }

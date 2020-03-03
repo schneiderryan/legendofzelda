@@ -63,10 +63,25 @@ namespace LegendOfZelda
         {
             foreach (IEnemy enemy in enemies)
             {
-                Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
+                Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.LeftAttackBox);
                 if (!collision.Equals(Rectangle.Empty))
                 {
-                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, collision);
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, "left");
+                }
+                collision = Rectangle.Intersect(enemy.Hitbox, player.RightAttackBox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, "right");
+                }
+                collision = Rectangle.Intersect(enemy.Hitbox, player.UpAttackBox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, "up");
+                }
+                collision = Rectangle.Intersect(enemy.Hitbox, player.DownAttackBox);
+                if (!collision.Equals(Rectangle.Empty))
+                {
+                    EnemyCollisionHandler.HandleEnemyPlayerCollision(player, enemy, "down");
                 }
             }
         }

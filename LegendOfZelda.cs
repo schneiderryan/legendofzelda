@@ -94,6 +94,10 @@ namespace LegendOfZelda
             
             Debug.DrawHitbox(spriteBatch, link.Footbox);
             Debug.DrawHitbox(spriteBatch, link.Hitbox);
+            Debug.DrawHitbox(spriteBatch, link.LeftAttackBox);
+            Debug.DrawHitbox(spriteBatch, link.RightAttackBox);
+            Debug.DrawHitbox(spriteBatch, link.UpAttackBox);
+            Debug.DrawHitbox(spriteBatch, link.DownAttackBox);
 
             foreach (IProjectile projectile in projectiles)
             {
