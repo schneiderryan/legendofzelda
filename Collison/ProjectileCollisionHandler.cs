@@ -18,30 +18,45 @@ namespace LegendOfZelda
 
             System.Diagnostics.Debug.WriteLine("call take damage");
             enemy.TakeDamage();
+            Knockback(enemy, collision);
+        }
 
+        public static void PlayerProjectileCollision(IPlayer player,
+                IProjectile projectile, in Rectangle collision)
+        {
+            if (projectile.OwningTeam.Equals(player.Team))
+            {
+                return;
+            }
+
+            player.TakeDamage();
+            Knockback(player, collision);
+        }
+
+        private static void Knockback(ICharacter character, in Rectangle collision)
+        {
             if (collision.Width > collision.Height)
             {
-                if (collision.Y != enemy.Hitbox.Y)
+                if (collision.Y != character.Hitbox.Y)
                 {
-                    enemy.Y -= collision.Height + 15;
+                    character.Y -= character.Hitbox.Height / 2;
                 }
                 else
                 {
-                    enemy.Y += collision.Height + 15;
+                    character.Y += character.Hitbox.Height / 2;
                 }
             }
             else
             {
-                if (collision.X != enemy.Hitbox.X)
+                if (collision.X != character.Hitbox.X)
                 {
-                    enemy.X -= collision.Width + 15;
+                    character.X -= character.Hitbox.Width / 2;
                 }
                 else
                 {
-                    enemy.X += collision.Width + 15;
+                    character.X += character.Hitbox.Width / 2;
                 }
             }
-
         }
     }
 }

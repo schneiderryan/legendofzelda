@@ -194,7 +194,7 @@ namespace LegendOfZelda
 
         public IList<IEnemy> LoadEnemies()
         {
-            List<IEnemy> enemies = new List<IEnemy>();
+            IList<IEnemy> enemies = new List<IEnemy>();
             Dictionary<Vector2, String> enemyInfo = parser.parse(possibleEnemies);
             foreach (KeyValuePair<Vector2, String> entry in enemyInfo)
             {

@@ -7,10 +7,10 @@ namespace LegendOfZelda
     static class ProjectileCollisionDetector
     {
         public static void HandleCollisions(ICollection<IProjectile> projectiles,
-            ICollection<IDespawnEffect> effects, IRoom room, IPlayer player)
+                IRoom room, IPlayer player)
         {
             EnemyProjectileCollision(projectiles, room.Enemies);
-            ProjectileDespawner.DespawnProjectiles(room, player, projectiles, effects);
+            PlayerProjectileCollision(projectiles, player);
         }
 
         private static void EnemyProjectileCollision(IEnumerable<IProjectile> projectiles,
@@ -25,6 +25,19 @@ namespace LegendOfZelda
                     {
                         ProjectileCollisionHandler.EnemyProjectileCollision(enemy, projectile, collision);
                     }
+                }
+            }
+        }
+
+        private static void PlayerProjectileCollision(IEnumerable<IProjectile> projectiles,
+            IPlayer player)
+        {
+            foreach (IProjectile projectile in projectiles)
+            {
+                Rectangle collision = Rectangle.Intersect(player.Hitbox, projectile.Hitbox);
+                if (!collision.IsEmpty)
+                {
+                    ProjectileCollisionHandler.PlayerProjectileCollision(player, projectile, collision);
                 }
             }
         }

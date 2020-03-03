@@ -12,13 +12,14 @@ namespace LegendOfZelda
 
         public IPlayer link;
         public ISet<IProjectile> projectiles;
+        public IList<IDespawnEffect> effects;
         public GraphicsDeviceManager graphics;
 
         private IController mouse;
         private IController keyboard;
         private IController playerKeyboard;
 
-        private IList<IDespawnEffect> effects;
+        private Despawner despawner;
         private SpriteBatch spriteBatch;
 
         public LegendOfZelda()
@@ -42,6 +43,7 @@ namespace LegendOfZelda
 
             projectiles = new HashSet<IProjectile>();
             effects = new List<IDespawnEffect>();
+            despawner = new Despawner(ref projectiles, ref effects);
             rooms = GameSetup.GenerateRoomList(this);
         }
 
@@ -59,7 +61,20 @@ namespace LegendOfZelda
 
             rooms[roomIndex].Update();
             link.Update();
-            UpdateProjectiles();
+
+            foreach (IProjectile projectile in projectiles)
+            {
+                projectile.Update();
+            }
+            foreach (IDespawnEffect effect in effects)
+            {
+                effect.Update();
+            }
+
+            ProjectileCollisionDetector.HandleCollisions(projectiles,
+                    rooms[roomIndex], link);
+
+            despawner.Execute(rooms[roomIndex], link);
 
             base.Update(gameTime);
         }
@@ -87,10 +102,7 @@ namespace LegendOfZelda
             }
             foreach (IDespawnEffect effect in effects)
             {
-                if (effect != null)
-                {
-                    effect.Draw(spriteBatch);
-                }
+                effect.Draw(spriteBatch);
             }
 
             spriteBatch.End();
@@ -98,28 +110,5 @@ namespace LegendOfZelda
             base.Draw(gameTime);
         }
 
-        private void UpdateProjectiles()
-        {
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Update();
-            }
-
-            for (int i = 0; i < effects.Count; i++)
-            {
-                if (effects[i].Finished)
-                {
-                    effects.RemoveAt(i);
-                    i--;
-                }
-                else
-                {
-                    effects[i].Update();
-                }
-            }
-
-            ProjectileCollisionDetector.HandleCollisions(projectiles,
-                    effects, rooms[roomIndex], link);
-        }
     }
 }

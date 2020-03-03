@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class BoomerangProjectile :  Projectile
     {
-        public bool Returned { get; set; }
+        public bool Returned => state is PocketBoomerangState;
 
         public IBoomerangState state;
         public Point finalPosition;
@@ -42,7 +42,7 @@ namespace LegendOfZelda
 
         public override IDespawnEffect GetDespawnEffect()
         {
-            return new DespawnEffect(Hitbox.Center);
+            return new NoDespawnEffect();
         }
 
         public bool IsOwner(object o)

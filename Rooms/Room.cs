@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
 
 namespace LegendOfZelda
 {
@@ -163,13 +163,9 @@ namespace LegendOfZelda
                 npc.Update();
             }
 
-            foreach (IEnemy enemy in Enemies.ToList())
+            foreach (IEnemy enemy in Enemies)
             {
                 enemy.Update();
-                if (enemy.isDead)
-                {
-                    Enemies.Remove(enemy);
-                }
             }
 
 
