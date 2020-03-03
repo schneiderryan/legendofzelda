@@ -123,7 +123,7 @@ namespace LegendOfZelda
                 new Goriya(game.projectiles),
                 new Keese(),
                 new Stalfo(),
-                new Trap(),
+                new Trap(game),
                 new Snake(game),
                 new LFWallmaster(),
                 new RFWallmaster(),
