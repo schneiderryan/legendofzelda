@@ -6,8 +6,14 @@ namespace LegendOfZelda
     abstract class Enemy : CollideableObject, IEnemy
     {
         public ISprite Sprite { get; set; }
+        public ISprite TempSprite { get; set; }
         public IEnemyState State { get; set; }
         public bool isDead { get; set; }
+        public bool isDying { get; set; }
+        public int dieTimer = 13;
+        public bool isSpawning { get; set; }
+        public bool hasSpawned { get; set; }
+        public int spawnTimer = 25;
         public bool isBeingAttacked { get; set; }
         public int attackTimer { get; set; }
         public double currentHearts { get; set; }
@@ -20,28 +26,36 @@ namespace LegendOfZelda
 
         public void Draw(SpriteBatch sb, Color color)
         {
-            if (isBeingAttacked)
+            if (!isDead)
             {
-                Color hurt1 = new Color(83, 68, 198);
-                Color hurt2 = new Color(184, 101, 22);
-                Color hurt3 = new Color(76, 80, 69);
-
-                if (attackTimer <= 8 || attackTimer >= 33 && attackTimer <= 40 || attackTimer >= 65 && attackTimer <= 72 || attackTimer >= 97 && attackTimer <= 104 || attackTimer >= 129 && attackTimer <= 136 || attackTimer >= 161 && attackTimer <= 168)
+                if (isBeingAttacked)
                 {
-                    Sprite.Draw(sb, hurt1);
+                    
+                    Color hurt1 = new Color(83, 68, 198);
+                    Color hurt2 = new Color(184, 101, 22);
+                    Color hurt3 = new Color(76, 80, 69);
+                    if (isDying)
+                    {
+                        Sprite.Draw(sb, Color.White);
+                    }
+                    else if (attackTimer <= 8 || attackTimer >= 33 && attackTimer <= 40 || attackTimer >= 65 && attackTimer <= 72 || attackTimer >= 97 && attackTimer <= 104 || attackTimer >= 129 && attackTimer <= 136 || attackTimer >= 161 && attackTimer <= 168)
+                    {
+                        Sprite.Draw(sb, hurt1);
+                    }
+                    else if (attackTimer <= 16 || attackTimer >= 41 && attackTimer <= 48 || attackTimer >= 73 && attackTimer <= 80 || attackTimer >= 105 && attackTimer <= 112 || attackTimer >= 137 && attackTimer <= 144 || attackTimer >= 169 && attackTimer <= 176)
+                    {
+                        Sprite.Draw(sb, hurt2);
+                    }
+                    else if (attackTimer <= 24 || attackTimer >= 49 && attackTimer <= 56 || attackTimer >= 81 && attackTimer <= 88 || attackTimer >= 113 && attackTimer <= 120 || attackTimer >= 145 && attackTimer <= 152 || attackTimer >= 177 && attackTimer <= 184)
+                    {
+                        Sprite.Draw(sb, hurt3);
+                    }
                 }
-                else if (attackTimer <= 16 || attackTimer >= 41 && attackTimer <= 48 || attackTimer >= 73 && attackTimer <= 80 || attackTimer >= 105 && attackTimer <= 112 || attackTimer >= 137 && attackTimer <= 144 || attackTimer >= 169 && attackTimer <= 176)
+                else
                 {
-                    Sprite.Draw(sb, hurt2);
+                    Sprite.Draw(sb, Color.White);
                 }
-                else if (attackTimer <= 24 || attackTimer >= 49 && attackTimer <= 56 || attackTimer >= 81 && attackTimer <= 88 || attackTimer >= 113 && attackTimer <= 120 || attackTimer >= 145 && attackTimer <= 152 || attackTimer >= 177 && attackTimer <= 184)
-                {
-                    Sprite.Draw(sb, hurt3);
-                }
-            }
-            else
-            {
-                Sprite.Draw(sb, Color.White);
+                
             }
         }
 
@@ -75,33 +89,76 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
-            if (isBeingAttacked)
+            if (!isDead)
             {
-                attackTimer--;
-                if (attackTimer == 0)
+                if (!hasSpawned && !isSpawning)
                 {
-                    isBeingAttacked = false;
+                    TempSprite = this.Sprite;
+                    this.Spawn();
                 }
+                if (isSpawning)
+                {
+                    spawnTimer--;
+                    if(spawnTimer == 0)
+                    {
+                        hasSpawned = true;
+                        isSpawning = false;
+                        this.Sprite = TempSprite;
+                    }
+                }
+                if (isBeingAttacked)
+                {
+                    attackTimer--;
+                    if (attackTimer == 0)
+                    {
+                        isBeingAttacked = false;
+                    }
 
+                }
+                if (currentHearts == 0 && !isDying)
+                {
+                    this.Die();
+                }
+                if (isDying)
+                {
+                    dieTimer--;
+                    if(dieTimer == 0)
+                    {
+                        isDead = true;
+                    }
+                }
+                
+                State.Update();
+                Sprite.Position = new Point(X, Y);
+                Hitbox = Sprite.Box;
+                Sprite.Update();
             }
-            State.Update();
-            Sprite.Position = new Point(X, Y);
-            Hitbox = Sprite.Box;
-            Sprite.Update();
         }
 
-        public virtual void TakeDamage()
+        public void TakeDamage()
         {
-            System.Diagnostics.Debug.WriteLine("take damage");
+            
             isBeingAttacked = true;
             currentHearts--;
-            System.Diagnostics.Debug.WriteLine("hearts: " + currentHearts);
-            if (currentHearts <= 0)
-            {
-                System.Diagnostics.Debug.WriteLine("die");
-                isDead = true;
-            }
+            
+
         }
 
+        public void Die()
+        {
+            isDying = true;
+            this.Sprite = EnemySpriteFactory.Instance.CreateDeadEnemy();
+        }
+
+        public void Spawn()
+        {
+            
+            isSpawning = true;
+            this.Sprite = EnemySpriteFactory.Instance.CreateNewEnemy();
+            
+            
+            
+            
+        }
     }
 }
