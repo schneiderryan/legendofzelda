@@ -66,6 +66,15 @@ namespace LegendOfZelda
                 }
             }
 
+            foreach (IDoor door in room.Doors.Values)
+            {
+                Rectangle collision = Rectangle.Intersect(door.Hitbox, player.Footbox);
+                if (!collision.IsEmpty)
+                {
+                    playerWallCollision.Handle(player, collision);
+                }
+            }
+
             foreach (IBlock block in room.Blocks)
             {
                 Rectangle collision = Rectangle.Intersect(block.Hitbox, player.Footbox);
@@ -101,6 +110,15 @@ namespace LegendOfZelda
                 foreach (Rectangle wall in room.Hitboxes)
                 {
                     Rectangle collision = Rectangle.Intersect(wall, enemy.Hitbox);
+                    if (!collision.IsEmpty)
+                    {
+                        enemyWallBlockCollision.Handle(enemy, collision);
+                    }
+                }
+
+                foreach (IDoor door in room.Doors.Values)
+                {
+                    Rectangle collision = Rectangle.Intersect(door.Hitbox, enemy.Hitbox);
                     if (!collision.IsEmpty)
                     {
                         enemyWallBlockCollision.Handle(enemy, collision);
