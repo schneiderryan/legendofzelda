@@ -6,8 +6,14 @@ namespace LegendOfZelda
     abstract class Enemy : CollideableObject, IEnemy
     {
         public ISprite Sprite { get; set; }
+        public ISprite TempSprite { get; set; }
         public IEnemyState State { get; set; }
         public bool isDead { get; set; }
+        public bool isDying { get; set; }
+        public int dieTimer = 13;
+        public bool isSpawning { get; set; }
+        public bool hasSpawned { get; set; }
+        public int spawnTimer = 25;
         public bool isBeingAttacked { get; set; }
         public int attackTimer { get; set; }
         public double currentHearts { get; set; }
@@ -24,11 +30,15 @@ namespace LegendOfZelda
             {
                 if (isBeingAttacked)
                 {
+                    
                     Color hurt1 = new Color(83, 68, 198);
                     Color hurt2 = new Color(184, 101, 22);
                     Color hurt3 = new Color(76, 80, 69);
-
-                    if (attackTimer <= 8 || attackTimer >= 33 && attackTimer <= 40 || attackTimer >= 65 && attackTimer <= 72 || attackTimer >= 97 && attackTimer <= 104 || attackTimer >= 129 && attackTimer <= 136 || attackTimer >= 161 && attackTimer <= 168)
+                    if (isDying)
+                    {
+                        Sprite.Draw(sb, Color.White);
+                    }
+                    else if (attackTimer <= 8 || attackTimer >= 33 && attackTimer <= 40 || attackTimer >= 65 && attackTimer <= 72 || attackTimer >= 97 && attackTimer <= 104 || attackTimer >= 129 && attackTimer <= 136 || attackTimer >= 161 && attackTimer <= 168)
                     {
                         Sprite.Draw(sb, hurt1);
                     }
@@ -45,6 +55,7 @@ namespace LegendOfZelda
                 {
                     Sprite.Draw(sb, Color.White);
                 }
+                
             }
         }
 
@@ -80,6 +91,21 @@ namespace LegendOfZelda
         {
             if (!isDead)
             {
+                if (!hasSpawned && !isSpawning)
+                {
+                    TempSprite = this.Sprite;
+                    this.Spawn();
+                }
+                if (isSpawning)
+                {
+                    spawnTimer--;
+                    if(spawnTimer == 0)
+                    {
+                        hasSpawned = true;
+                        isSpawning = false;
+                        this.Sprite = TempSprite;
+                    }
+                }
                 if (isBeingAttacked)
                 {
                     attackTimer--;
@@ -89,6 +115,19 @@ namespace LegendOfZelda
                     }
 
                 }
+                if (currentHearts == 0 && !isDying)
+                {
+                    this.Die();
+                }
+                if (isDying)
+                {
+                    dieTimer--;
+                    if(dieTimer == 0)
+                    {
+                        isDead = true;
+                    }
+                }
+                
                 State.Update();
                 Sprite.Position = new Point(X, Y);
                 Hitbox = Sprite.Box;
@@ -98,17 +137,28 @@ namespace LegendOfZelda
 
         public void TakeDamage()
         {
-            System.Diagnostics.Debug.WriteLine("take damage");
+            
             isBeingAttacked = true;
             currentHearts--;
-            if (currentHearts == 0)
-            {
-                System.Diagnostics.Debug.WriteLine("die");
-                isDead = true;
-            }
+            
 
         }
 
-       
+        public void Die()
+        {
+            isDying = true;
+            this.Sprite = EnemySpriteFactory.Instance.CreateDeadEnemy();
+        }
+
+        public void Spawn()
+        {
+            
+            isSpawning = true;
+            this.Sprite = EnemySpriteFactory.Instance.CreateNewEnemy();
+            
+            
+            
+            
+        }
     }
 }

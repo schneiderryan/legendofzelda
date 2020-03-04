@@ -165,11 +165,12 @@ namespace LegendOfZelda
 
             foreach (IEnemy enemy in Enemies.ToList())
             {
-                enemy.Update();
+                
                 if (enemy.isDead)
                 {
                     Enemies.Remove(enemy);
                 }
+                enemy.Update();
             }
 
 

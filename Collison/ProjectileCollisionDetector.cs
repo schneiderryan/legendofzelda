@@ -94,7 +94,7 @@ namespace LegendOfZelda
                     }
                 }
             }
-            System.Diagnostics.Debug.WriteLine("despawn");
+            
             Handler.Despawn(projectilesToRemove);
         }
 

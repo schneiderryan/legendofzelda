@@ -32,7 +32,7 @@ namespace LegendOfZelda
            // {
               //  return;
             //}
-            System.Diagnostics.Debug.WriteLine("call take damage");
+            
             //enemy.TakeDamage();
             Despawn(projectile);
 
@@ -41,7 +41,7 @@ namespace LegendOfZelda
                 if (collision.Y != enemy.Hitbox.Y)
                 {
                     
-                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        
                         enemy.TakeDamage();
                         enemy.Y -= collision.Height + 15;
 
@@ -49,7 +49,7 @@ namespace LegendOfZelda
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("call take damage");
+                    
                     enemy.TakeDamage();
                     enemy.Y += collision.Height + 15;
 
@@ -59,14 +59,14 @@ namespace LegendOfZelda
             {
                 if (collision.X != enemy.Hitbox.X)
                 {
-                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        
                         enemy.TakeDamage();
                         enemy.X -= collision.Width + 15;
 
                 }
                 else
                 {
-                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        
                         enemy.TakeDamage();
                         enemy.X += collision.Width + 15;
 
