@@ -63,7 +63,7 @@ namespace LegendOfZelda
 
         public virtual IDespawnEffect GetDespawnEffect()
         {
-            return new DespawnEffect(Hitbox.Center);
+            return new NoDespawnEffect();
         }
 
 

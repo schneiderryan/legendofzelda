@@ -40,15 +40,5 @@ namespace LegendOfZelda
             }
         }
 
-        public override IDespawnEffect GetDespawnEffect()
-        {
-            return new NoDespawnEffect();
-        }
-
-        public bool IsOwner(object o)
-        {
-            return o.Equals(source);
-        }
-
     }
 }

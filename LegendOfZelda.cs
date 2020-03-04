@@ -19,7 +19,7 @@ namespace LegendOfZelda
         private IController keyboard;
         private IController playerKeyboard;
 
-        private Despawner despawner;
+        private CollisionHandler collisionHandler;
         private SpriteBatch spriteBatch;
 
         public LegendOfZelda()
@@ -43,7 +43,7 @@ namespace LegendOfZelda
 
             projectiles = new HashSet<IProjectile>();
             effects = new List<IDespawnEffect>();
-            despawner = new Despawner(ref projectiles, ref effects);
+            collisionHandler = new CollisionHandler(effects);
             rooms = GameSetup.GenerateRoomList(this);
         }
 
@@ -71,10 +71,7 @@ namespace LegendOfZelda
                 effect.Update();
             }
 
-            ProjectileCollisionDetector.HandleCollisions(projectiles,
-                    rooms[roomIndex], link);
-
-            despawner.Execute(rooms[roomIndex], link);
+            collisionHandler.Handle(rooms[roomIndex], projectiles, link);
 
             base.Update(gameTime);
         }
