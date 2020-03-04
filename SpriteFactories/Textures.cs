@@ -12,6 +12,7 @@ namespace LegendOfZelda
         private static Texture2D redLinkAttackingDown;
         private static Texture2D redLinkAttackingUp;
 
+        private static Texture2D misc;
         private static Texture2D effects;
         private static Texture2D items;
         private static Texture2D enemy;
@@ -24,9 +25,11 @@ namespace LegendOfZelda
         private static Texture2D dungeon;
         private static Texture2D tiles;
 
+
         public static void LoadAllTextures(ContentManager contentManager,
                 GraphicsDevice graphics)
         {
+            misc = contentManager.Load<Texture2D>("misc");
             items = contentManager.Load<Texture2D>("items_mod");
             effects = contentManager.Load<Texture2D>("weapons_mod");
             enemy = contentManager.Load<Texture2D>("loz_enemy_sheet");
@@ -47,6 +50,10 @@ namespace LegendOfZelda
             blank.SetData(new Color[1] { Color.Red });
         }
 
+        public static Texture2D GetMiscSheet()
+        {
+            return misc;
+        }
         public static Texture2D GetRoomSheet()
         {
             return rooms;

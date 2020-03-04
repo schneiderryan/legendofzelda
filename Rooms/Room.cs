@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace LegendOfZelda
 {
@@ -19,7 +19,7 @@ namespace LegendOfZelda
 
         private void LoadRoomLayout(int roomNumber)
         {
-            if (roomNumber == 15) // that weird room where the bow is
+            if (roomNumber == 15)
             {
                 Hitboxes = new List<Rectangle>
                 {
@@ -148,8 +148,13 @@ namespace LegendOfZelda
                 npc.Update();
             }
 
-            foreach (IEnemy enemy in Enemies)
+            foreach (IEnemy enemy in Enemies.ToList())
             {
+                
+                if (enemy.isDead)
+                {
+                    Enemies.Remove(enemy);
+                }
                 enemy.Update();
             }
 
