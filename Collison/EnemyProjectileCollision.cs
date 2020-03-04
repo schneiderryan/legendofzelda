@@ -18,10 +18,9 @@ namespace LegendOfZelda
         public void Handle(IEnemy enemy, IProjectile projectile, in Rectangle collision)
         {
             HandleProjectileCollision(enemy, projectile);
-            if ((projectile is BoomerangProjectile
-                    && enemy is Goriya) // goriya is immune to boomerangs
-                || (projectile is FireballProjectile
-                    && enemy is Aquamentus)) // make aquamentus immune to his own fire
+            if ((projectile.OwningTeam == enemy.Team)
+                || (projectile is BoomerangProjectile
+                    && enemy is Goriya)) // goriya is immune to boomerangs
             {
                 return;
             }
