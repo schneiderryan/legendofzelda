@@ -39,22 +39,22 @@ namespace LegendOfZelda
             {
                 if (collision.Y != character.Hitbox.Y)
                 {
-                    character.Y -= character.Hitbox.Height / 2;
+                    character.Y -= 5;
                 }
                 else
                 {
-                    character.Y += character.Hitbox.Height / 2;
+                    character.Y += 5;
                 }
             }
             else
             {
                 if (collision.X != character.Hitbox.X)
                 {
-                    character.X -= character.Hitbox.Width / 2;
+                    character.X -= 5;
                 }
                 else
                 {
-                    character.X += character.Hitbox.Width / 2;
+                    character.X += 5;
                 }
             }
         }
