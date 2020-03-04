@@ -40,10 +40,5 @@ namespace LegendOfZelda
             }
         }
 
-        public bool IsOwner(object o)
-        {
-            return o.Equals(source);
-        }
-
     }
 }
