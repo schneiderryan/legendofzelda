@@ -102,9 +102,5 @@ namespace LegendOfZelda
             }
         }
 
-        public static void PlayerDoorCollision(IPlayer player, in Rectangle collision)
-        {
-
-        }
     }
 }

@@ -13,5 +13,6 @@ namespace LegendOfZelda
         void MoveUp();
         void MoveDown();
         void Update();
+        void TakeDamage();
     }
 }
