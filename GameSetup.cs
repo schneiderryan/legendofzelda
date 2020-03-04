@@ -77,12 +77,6 @@ namespace LegendOfZelda
             return new SlowKeyboardController(keyBinds);
         }
 
-        public static IController CreateEnemyKeysController(LegendOfZelda game)
-        {
-            Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
-            return new EnemyKeyboardController(game, keyBinds);
-        }
-
         public static ICollection<IItem> GenerateItemList()
         {
             IList<IItem> list = new List<IItem>()
@@ -123,7 +117,7 @@ namespace LegendOfZelda
                 new Goriya(game.projectiles),
                 new Keese(),
                 new Stalfo(),
-                new Trap(),
+                new Trap(game),
                 new Snake(game),
                 new LFWallmaster(),
                 new RFWallmaster(),

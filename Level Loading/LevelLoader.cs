@@ -9,7 +9,6 @@ namespace LegendOfZelda
     {
         private LevelParser parser;
         private LegendOfZelda game;
-        private IList<string> possiblePlayers;
         private IList<string> possibleEnemies;
         private IList<string> possibleItems;
         private IList<string> possibleBlocks;
@@ -20,12 +19,6 @@ namespace LegendOfZelda
         {
             this.parser = new LevelParser(level);
             this.game = game;
-
-            this.possiblePlayers = new List<string>()
-            {
-                "Link",
-                "RedLink",
-            };
 
             this.possibleEnemies = new List<string>()
             {
@@ -171,30 +164,9 @@ namespace LegendOfZelda
             return background;
         }
 
-        public List<IPlayer> LoadPlayers()
+        public ISet<IEnemy> LoadEnemies()
         {
-            List<IPlayer> players = new List<IPlayer>();
-            Dictionary<Vector2, String> playerInfo = parser.parse(possiblePlayers);
-            foreach(KeyValuePair<Vector2, String> entry in playerInfo)
-            {
-                IPlayer player;
-                if (entry.Value.Equals("Link"))
-                {
-                    player = new GreenLink(this.game);
-                } else
-                {
-                    player = new RedLink(this.game);
-                }
-                player.X = (int)entry.Key.X;
-                player.Y = (int)entry.Key.Y;
-                players.Add(player);
-            }
-            return players;
-        }
-
-        public IList<IEnemy> LoadEnemies()
-        {
-            List<IEnemy> enemies = new List<IEnemy>();
+            ISet<IEnemy> enemies = new HashSet<IEnemy>();
             Dictionary<Vector2, String> enemyInfo = parser.parse(possibleEnemies);
             foreach (KeyValuePair<Vector2, String> entry in enemyInfo)
             {
@@ -237,11 +209,11 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Fire"))
                 {
-                    enemy = new Fire();
+                    enemy = new Fire(game);
                 }
                 else //trap
                 {
-                    enemy = new Trap();
+                    enemy = new Trap(game);
                 }
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y;
@@ -324,31 +296,18 @@ namespace LegendOfZelda
             return items;
         }
 
-        public List<IBlock> LoadStillBlocks()
+        public IList<IBlock> LoadBlocks()
         {
-            List<IBlock> blocks = new List<IBlock>();
+            IList<IBlock> blocks = new List<IBlock>();
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
+                IBlock block = null;
                 if (entry.Value.Equals("Block"))
                 {
-                    IBlock block = new InvisibleBlock();
-                    block.X = (int)entry.Key.X;
-                    block.Y = (int)entry.Key.Y;
-                    blocks.Add(block);
+                    block = new InvisibleBlock();
                 }
-            }
-            return blocks;
-        }
-
-        public List<IMoveableBlock> LoadMoveableBlocks()
-        {
-            List<IMoveableBlock> blocks = new List<IMoveableBlock>();
-            Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
-            foreach (KeyValuePair<Vector2, String> entry in blockInfo)
-            {
-                IMoveableBlock block = null;
-                if (entry.Value.Equals("MoveableBlockVertical"))
+                else if (entry.Value.Equals("MoveableBlockVertical"))
                 {
                     block = new MoveableBlockVertical();
                 }
@@ -356,6 +315,7 @@ namespace LegendOfZelda
                 {
                     block = new MoveableBlockLeft();
                 }
+
                 if (block != null)
                 {
                     block.X = (int)entry.Key.X;

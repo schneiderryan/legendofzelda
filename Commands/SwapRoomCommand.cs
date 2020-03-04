@@ -42,6 +42,8 @@ namespace LegendOfZelda
                 }
             }
             game.projectiles.Clear();
+            game.effects.Clear();
+            System.Diagnostics.Debug.WriteLine("switching rooms");
         }
     }
 }

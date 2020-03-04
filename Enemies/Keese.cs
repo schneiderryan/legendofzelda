@@ -15,31 +15,34 @@ namespace LegendOfZelda
 			Sprite.Position = new Point(X, Y);
 			State = new EnemyState(this);
 			random = new Random();
+			currentHearts = 1;
+			
 		}
 
 		public override void Update()
 		{
 			int direction = random.Next(0, 3);
+			int velocity = random.Next(0, 3);
 			if (VY > 0)
 			{
 				if (direction == 1)
 				{
-					X -= 1;
+					X -= velocity;
 				}
 				else if (direction == 2)
 				{
-					X += 1;
+					X += velocity;
 				}
 			}
 			else
 			{
 				if (direction == 1)
 				{
-					Y -= 1;
+					Y -= velocity;
 				}
 				else if (direction == 2)
 				{
-					Y += 1;
+					Y += velocity;
 				}
 			}
 			base.Update();

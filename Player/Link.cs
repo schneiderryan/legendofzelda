@@ -22,6 +22,10 @@ namespace LegendOfZelda
         private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
+        private Rectangle attackBoxLeft;
+        private Rectangle attackBoxRight;
+        private Rectangle attackBoxUp;
+        private Rectangle attackBoxDown;
         private Vector2 origin;
 
         public ISprite Sprite { get; set; }
@@ -29,12 +33,20 @@ namespace LegendOfZelda
 
         public Rectangle Footbox => footbox;
         public Rectangle Hitbox => hitbox;
+        public Rectangle LeftAttackBox => attackBoxLeft;
+        public Rectangle RightAttackBox => attackBoxRight;
+        public Rectangle DownAttackBox => attackBoxDown;
+        public Rectangle UpAttackBox => attackBoxUp;
 
         public int X
         {
             get { return x; }
             set
-            { 
+            {
+                attackBoxLeft.X += value - hitbox.X;
+                attackBoxRight.X += value - hitbox.X;
+                attackBoxDown.X += value - hitbox.X;
+                attackBoxUp.X += value - hitbox.X;
                 footbox.X = value;
                 hitbox.X = value;
                 x = value;
@@ -46,6 +58,10 @@ namespace LegendOfZelda
             get { return y; }
             set
             {
+                attackBoxLeft.Y += value - hitbox.Y;
+                attackBoxRight.Y += value - hitbox.Y;
+                attackBoxDown.Y += value - hitbox.Y;
+                attackBoxUp.Y += value - hitbox.Y;
                 footbox.Y = value + Sprite.Box.Height - footbox.Height;
                 hitbox.Y = value;
                 y = value;
@@ -197,6 +213,10 @@ namespace LegendOfZelda
             this.hitbox = Sprite.Box;
             this.X = 400;
             this.Y = 200;
+            this.attackBoxLeft = new Rectangle(x - 25, y + Sprite.Box.Height/4, 25, Sprite.Box.Height/2);
+            this.attackBoxRight = new Rectangle(x + Sprite.Box.Width, y + Sprite.Box.Height / 4, 25, Sprite.Box.Height / 2);
+            this.attackBoxUp = new Rectangle(x + Sprite.Box.Width/4, y - 25, Sprite.Box.Width/2, 25);
+            this.attackBoxDown = new Rectangle(x + Sprite.Box.Width / 4, y + Sprite.Box.Height, Sprite.Box.Width / 2, 25);
             this.itemTimer = 0;
             this.NumRupees = 0;
             this.MaxHearts = 3.0;

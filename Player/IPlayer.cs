@@ -17,9 +17,12 @@ namespace LegendOfZelda
         double CurrentHearts { get; set; }
         int NumberBombs { get; set; }
         Rectangle Footbox { get; }
+        Rectangle UpAttackBox { get; }
+        Rectangle DownAttackBox { get; }
+        Rectangle RightAttackBox { get; }
+        Rectangle LeftAttackBox { get; }
         void Attack();
         void BeStill();
-        void TakeDamage();
         void UseItem(IItem item);
         void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);

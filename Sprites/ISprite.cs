@@ -14,5 +14,7 @@ namespace LegendOfZelda
         void Update();
         void Draw(SpriteBatch sb, Color color, Vector2 origin);
         void Draw(SpriteBatch sb);
+        void Draw(SpriteBatch sb, Color color);
+
     }
 }

@@ -13,7 +13,8 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-            if (HasArrow)
+            int tempRupees = player.NumRupees;
+            if (HasArrow && tempRupees>0)
             {
                 IProjectile proj;
                 if (player.Color == "red")
@@ -24,6 +25,7 @@ namespace LegendOfZelda
                 {
                     proj = new GreenArrowProjectile(player.Direction, player.X, player.Y);
                 }
+                player.NumRupees = tempRupees - 1;
                 player.UseProjectile(proj);
             }
         }

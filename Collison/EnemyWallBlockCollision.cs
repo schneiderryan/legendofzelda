@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
-    static class EnemyCollisionHandler
+    class EnemyWallBlockCollision
     {
-        public static void HandleEnemyWallBlockCollision(IEnemy enemy, in Rectangle collision)
+        public void Handle(IEnemy enemy, in Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {
@@ -36,6 +34,5 @@ namespace LegendOfZelda
                 }
             }
         }
-
     }
 }

@@ -16,6 +16,7 @@ namespace LegendOfZelda
         public BoomerangProjectile(string direction, ICharacter source, int velocity = 5)
             : base(direction, source.X, source.Y, velocity)
         {
+            OwningTeam = source.Team;
             sprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
             sprite.Position = new Point(X, Y);
             Hitbox = sprite.Box;
@@ -31,14 +32,12 @@ namespace LegendOfZelda
             base.Update();
         }
 
-        public override IDespawnEffect GetDespawnEffect()
+        public void BeginReturning()
         {
-            return new NoDespawnEffect();
-        }
-
-        public bool IsOwner(object o)
-        {
-            return source == o;
+            if (state is ThrownBoomerangState)
+            {
+                state = new HoveringBoomerangState(this);
+            }
         }
 
     }
