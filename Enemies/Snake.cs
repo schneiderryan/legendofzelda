@@ -15,13 +15,15 @@ namespace LegendOfZelda
 			X = 400;
 			Y = 200;
 			Sprite.Position = new Point(X, Y);
-			State = new UpMovingSnakeState(this);
+			State = new UpMovingSnakeState(this, game.link);
 			attackTimer = 100;
-			currentHearts = 2; 
+			currentHearts = 2;
+			Name = "Snake";
 		}
-
+/*
 		public override void Update()
 		{
+			/*
 			int linkYPos = game.link.Y;
 			int linkXPos = game.link.X;
 			if ((linkYPos < (Y + 10)) && (linkYPos > (Y - 10)))
@@ -29,12 +31,12 @@ namespace LegendOfZelda
 				if (linkXPos < X)
 				{
 					X -= 4;
-					MoveLeft();
+					//MoveLeft();
 				}
-				else
+				if(linkXPos>X)
 				{
 					X += 4;
-					MoveRight();
+					//MoveRight();
 				}
 			}
 			else if ((linkXPos < (X + 10)) && (linkXPos > (X - 10)))
@@ -42,16 +44,18 @@ namespace LegendOfZelda
 				if (linkYPos < Y)
 				{
 					Y -= 4;
-					MoveUp();
+					//MoveUp();
 				}
 				else
 				{
 					Y += 4;
-					MoveDown();
+					//MoveDown();
 				}
 			}
 			base.Update();
+			
 		}
-
+		*/
+		
 	}
 }

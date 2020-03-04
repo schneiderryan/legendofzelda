@@ -16,6 +16,7 @@ namespace LegendOfZelda
 			State = new EnemyState(this);
 			currentHearts = 2;
 			attackTimer = 100;
+			Name = "Stalfo";
 		}
 
 	}

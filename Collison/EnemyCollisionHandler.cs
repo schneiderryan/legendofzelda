@@ -39,7 +39,7 @@ namespace LegendOfZelda
 
         public static void HandleEnemyPlayerCollision(IPlayer player, IEnemy enemy, String side)
         {
-            if(player.Direction.Equals(side) && player.IsAttacking())
+            if (player.Direction.Equals(side) && player.IsAttacking() && !enemy.Name.Equals("Trap"))
             {
                 enemy.TakeDamage();
                 switch (side)

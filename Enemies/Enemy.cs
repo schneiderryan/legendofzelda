@@ -15,6 +15,7 @@ namespace LegendOfZelda
         public int VX { get; set; }
         public int VY { get; set; }
         public Team Team { get; set; } = Team.Enemy;
+        public string Name { get; set; }
 
         public Point Center => Sprite.Box.Center;
 
@@ -96,7 +97,7 @@ namespace LegendOfZelda
             }
         }
 
-        public void TakeDamage()
+        public virtual void TakeDamage()
         {
             System.Diagnostics.Debug.WriteLine("take damage");
             isBeingAttacked = true;

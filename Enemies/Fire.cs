@@ -17,6 +17,7 @@ namespace LegendOfZelda
 			State = new EnemyState(this);
 			timer = 0;
 			game = loz;
+			Name = "Fire";
 		}
 		
 		public override void Update()

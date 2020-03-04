@@ -32,46 +32,50 @@ namespace LegendOfZelda
            // {
               //  return;
             //}
-            System.Diagnostics.Debug.WriteLine("call take damage");
-            //enemy.TakeDamage();
-            Despawn(projectile);
-
-            if (collision.Width > collision.Height)
+            if(!enemy.Name.Equals("Trap"))
             {
-                if (collision.Y != enemy.Hitbox.Y)
+                System.Diagnostics.Debug.WriteLine("call take damage");
+                //enemy.TakeDamage();
+                Despawn(projectile);
+
+                if (collision.Width > collision.Height)
                 {
-                    
+                    if (collision.Y != enemy.Hitbox.Y)
+                    {
+
                         System.Diagnostics.Debug.WriteLine("call take damage");
                         enemy.TakeDamage();
                         enemy.Y -= collision.Height + 15;
 
 
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("call take damage");
+                        enemy.TakeDamage();
+                        enemy.Y += collision.Height + 15;
+
+                    }
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("call take damage");
-                    enemy.TakeDamage();
-                    enemy.Y += collision.Height + 15;
-
-                }
-            }
-            else
-            {
-                if (collision.X != enemy.Hitbox.X)
-                {
+                    if (collision.X != enemy.Hitbox.X)
+                    {
                         System.Diagnostics.Debug.WriteLine("call take damage");
                         enemy.TakeDamage();
                         enemy.X -= collision.Width + 15;
 
-                }
-                else
-                {
+                    }
+                    else
+                    {
                         System.Diagnostics.Debug.WriteLine("call take damage");
                         enemy.TakeDamage();
                         enemy.X += collision.Width + 15;
 
+                    }
                 }
             }
+            
         }
 
         public static bool CharacterProjectile(ICharacter character,

@@ -26,6 +26,7 @@ namespace LegendOfZelda
 			boomerang = new BoomerangProjectile(direction, this);
 			currentHearts = 2;
 			attackTimer = 100;
+			Name = "Goriya";
 		}
 
 		public override void Update()

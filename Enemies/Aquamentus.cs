@@ -22,6 +22,7 @@ namespace LegendOfZelda
 			State = new LeftMovingAquamentusState(this);
 			Breathed = false;
 			attackTimer = 100;
+			Name = "Aqamentus";
 		}
 
 	}

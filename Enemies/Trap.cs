@@ -18,10 +18,7 @@ namespace LegendOfZelda
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateMovingTrapSprite();
 			Hitbox = Sprite.Box;
-			//X = 400;
-			//Y = 200;
 			Sprite.Position = new Point(X, Y);
-			//TrapState
 			State = new EnemyState(this);
 			this.VX = 0;
 			timer = 0;
@@ -29,32 +26,32 @@ namespace LegendOfZelda
 			startY = Y;
 			game = loz;
 			BeStill();
+			this.Name = "Trap";
 		}
-
 		public void ChaseRight()
 		{
 			X += 3;
 		}
-
 		public void ChaseUp()
 		{
 			Y -= 3;
 		}
-
 		public void ChaseDown()
 		{
 			Y += 3;
 		}
-
 		public void ChaseLeft()
 		{
 			X -= 3;
 		}
-
 		public void BeStill()
 		{
 			VY = 0;
 			VX = 0;
+		}
+		public override void TakeDamage()
+		{
+			//
 		}
 
 		public override void Update()
@@ -62,7 +59,6 @@ namespace LegendOfZelda
 			if(timer==0)
 			{
 				startX = X;
-				System.Diagnostics.Debug.WriteLine("X is set to {0}", X);
 				startY = Y;
 			}
 			timer++;
@@ -139,7 +135,6 @@ namespace LegendOfZelda
 				{
 					retreat = false;
 					BeStill();
-					System.Diagnostics.Debug.WriteLine("Got one to retreat.");
 				}
 			}
 			int linkXPos = game.link.X;
@@ -171,10 +166,7 @@ namespace LegendOfZelda
 					}
 				}
 			}
-			
-			
 			base.Update();
 		}
-
 	}
 }
