@@ -17,13 +17,12 @@ namespace LegendOfZelda
                 in Rectangle collision)
         {
             HandleProjectileCollision(player, projectile);
-            if (projectile.OwningTeam == player.Team)
+            if (projectile.OwningTeam != player.Team)
             {
-                return;
+                player.TakeDamage();
+                Knockback(player, collision);
             }
-
-            player.TakeDamage();
-            Knockback(player, collision);
         }
+
     }
 }
