@@ -104,6 +104,7 @@ namespace LegendOfZelda
 
             foreach (IBlock b in Blocks)
             {
+                b.Draw(sb);
                 Debug.DrawHitbox(sb, b.Hitbox);
             }
 
@@ -136,6 +137,11 @@ namespace LegendOfZelda
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();
+            }
+
+            foreach (IBlock block in Blocks)
+            {
+                block.Update();
             }
 
             foreach (IItem item in items)

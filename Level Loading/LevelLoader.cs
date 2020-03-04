@@ -9,7 +9,6 @@ namespace LegendOfZelda
     {
         private LevelParser parser;
         private LegendOfZelda game;
-        private IList<string> possiblePlayers;
         private IList<string> possibleEnemies;
         private IList<string> possibleItems;
         private IList<string> possibleBlocks;
@@ -20,12 +19,6 @@ namespace LegendOfZelda
         {
             this.parser = new LevelParser(level);
             this.game = game;
-
-            this.possiblePlayers = new List<string>()
-            {
-                "Link",
-                "RedLink",
-            };
 
             this.possibleEnemies = new List<string>()
             {
