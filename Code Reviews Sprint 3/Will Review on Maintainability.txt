@@ -1,0 +1,14 @@
+Will Bartlett (Review on Maintainability)
+03/05/2020
+Sprint 3
+LevelLoader.cs
+Taylor Benjamin
+Comments: Overall, I think this class is very maintainable. The class is long, but that makes sense because it contains almost
+all of the code and logic for level setup, which is a lot to cover. However, the class is as concise as it can be given the circumstances,
+and is very easy to edit in order to add new parts to the game. For example, adding a new Enemy type is very straightforward, you simply
+need to add that enemy to the list of possible enemies as well as a check for that enemy in the LoadEnemies() method, but as I said, this 
+is a pretty simple process, which makes adding new enemies and features such as different types of items, doors, etc. to the game
+much easier. One hypothetical change to the game would be a new type of wall or block, such as if we begin to work on the outer world
+of the game, but theoretically it should not be too difficult to create a new type of block with a different texture and add that to 
+possibleBlocks or possibleDoors depending on the behavior. For example, in the outside environments there actually aren't doors,
+there is just open space for the player to walk through, but I think this class could be modified relatively easily to deal with this change.
