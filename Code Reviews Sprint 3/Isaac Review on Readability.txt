@@ -1,0 +1,15 @@
+﻿Author: Isaac Smith
+Date: 3/5/20
+Sprint: 3
+File: Trap.cs
+File Author: Will Bartlett
+Time to complete this review: 5min
+
+Bad things:
+It's not clear what the timer variable is for.
+It's not clear what the magic numbers mean.
+The update method is long.
+
+Good things:
+The chase methods are very clear and short.
+The class has a whole is short and has a small number of properties.

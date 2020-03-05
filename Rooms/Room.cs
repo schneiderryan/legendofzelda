@@ -168,14 +168,7 @@ namespace LegendOfZelda
                 }
                 enemy.Update();
             }
-
-
-            foreach (IItem item in Items)
-            {
-                // check collision
-                // if intersects then
-                // Item.Pickup(IPlayer) ?
-            }
         }
+
     }
 }
