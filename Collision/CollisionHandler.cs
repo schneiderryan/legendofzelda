@@ -8,7 +8,6 @@ namespace LegendOfZelda
     {
         private ISet<IProjectile> projectilesToDespawn;
         private ISet<IEnemy> enemiesToDespawn;
-        private SortedList<IItem, int> itemsToDespawn;
         private List<int> itemsToDespawnPositions;
 
         private PlayerWallCollision playerWallCollision;
@@ -34,7 +33,6 @@ namespace LegendOfZelda
         {
             projectilesToDespawn = new HashSet<IProjectile>();
             enemiesToDespawn = new HashSet<IEnemy>();
-            itemsToDespawn = new SortedList<IItem, int>();
             itemsToDespawnPositions = new List<int>();
 
             playerDoorCollision = new PlayerDoorCollision();
@@ -79,15 +77,6 @@ namespace LegendOfZelda
             foreach (Rectangle wall in room.Hitboxes)
             {
                 Rectangle collision = Rectangle.Intersect(wall, player.Footbox);
-                if (!collision.IsEmpty)
-                {
-                    playerWallCollision.Handle(player, collision);
-                }
-            }
-
-            foreach (IDoor door in room.Doors.Values)
-            {
-                Rectangle collision = Rectangle.Intersect(door.Hitbox, player.Footbox);
                 if (!collision.IsEmpty)
                 {
                     playerWallCollision.Handle(player, collision);
