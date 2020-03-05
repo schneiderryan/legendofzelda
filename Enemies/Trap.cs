@@ -6,13 +6,15 @@ namespace LegendOfZelda
 	class Trap : Enemy
 	{
 		private int timer;
-		private int starttimer;
+
 		private LegendOfZelda game;
 		private int startY;
 		private int startX;
 		private bool attack;
 		private bool retreat;
 		private string dir;
+		private int roommidheight;
+		private int roommidwidth;
 
 		public Trap(LegendOfZelda loz)
 		{
@@ -27,6 +29,9 @@ namespace LegendOfZelda
 			game = loz;
 			BeStill();
 			this.Name = "Trap";
+			currentHearts = 1;
+			roommidheight = 156;
+			roommidwidth = 240;
 		}
 		public void ChaseRight()
 		{
@@ -66,7 +71,7 @@ namespace LegendOfZelda
 			{
 				if(dir.Equals("up"))
 				{
-					if (Y > 163 && !retreat)
+					if (Y > roommidheight+6 && !retreat)
 					{
 						ChaseUp();
 					}
@@ -78,7 +83,7 @@ namespace LegendOfZelda
 				}
 				else if(dir.Equals("down"))
 				{
-					if (Y < 150 && !retreat)
+					if (Y < roommidheight-6 && !retreat)
 					{
 						ChaseDown();
 					}
@@ -90,7 +95,7 @@ namespace LegendOfZelda
 				}
 				else if (dir.Equals("right"))
 				{
-					if (X < 230 && !retreat)
+					if (X < roommidwidth-10 && !retreat)
 					{
 						ChaseRight();
 					}
@@ -102,7 +107,7 @@ namespace LegendOfZelda
 				}
 				else //must be going left
 				{
-					if (X > 250 && !retreat)
+					if (X > roommidwidth+10 && !retreat)
 					{
 						ChaseLeft();
 					}
