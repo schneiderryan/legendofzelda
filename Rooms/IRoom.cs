@@ -13,5 +13,6 @@ namespace LegendOfZelda
         IDictionary<string, IDoor> Doors { get; }
         IList<IBlock> Blocks { get; }
         ISet<IEnemy> Enemies { get; }
+        IList<IItem> Items { get; }
     }
 }

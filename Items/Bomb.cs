@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
@@ -55,9 +56,12 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-            if (player.NumberBombs > 0)
+            if (player.NumberBombs >= 0)
             {
-                //place bomb the direction that the player is facing and let it detonate;
+
+                //place bomb the direction that the player is facing and let it detonate
+                IProjectile proj = new BombPlaced(player.Direction, player, 0);
+                player.UseProjectile(proj);
             }
         }
     }
