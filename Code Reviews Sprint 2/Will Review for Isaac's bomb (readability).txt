@@ -1,0 +1,15 @@
+Code Review (Readability)
+Author of Code Review: Will Bartlett
+Date of Code Review: 2/14/2020
+Sprint #2
+Name of .cs file being reviewed: Bomb.cs
+Author of .cs file being reviewed: Isaac Smith
+Number of Minutes: 7
+Overall, I'd say the readability of Isaac's bomb class is very solid. Variables have names that are accurate to their function, makes code very 
+easy to understand. Method size kept to a minimum, class is not very cluttered at all, which makes reading through
+the code much easier. Additionally, method names are accurate to their purpose similarly to the variable names, which adds
+to the ease of understanding what the code is doing when, for example, the fuse delay is counting down until the bomb
+finally detonates. I did struggle for maybe a few seconds to see what was happening in the draw method, but I was 
+quickly able to put together that this logic is for if the bomb has been used, which means it is finished detonating,
+then it is no longer needed to be drawn by the spritebatch.
+ 

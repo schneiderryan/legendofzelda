@@ -1,0 +1,11 @@
+﻿Taylor Benjamin
+3-4-2020
+3
+Enemy.cs
+Adam O'Reilly
+10 minutes
+
+I think that overall the code has good readability.  The only methods that aren't super straight forward are
+draw and update, but after you look at each of them for a little longer it isn't that hard to figure out what 
+is going on.  All other methods are short and simple which makes being able to figure out what they do fairly
+simple.

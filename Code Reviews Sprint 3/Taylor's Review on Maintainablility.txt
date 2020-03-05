@@ -1,0 +1,15 @@
+﻿Taylor Benjamin
+3-4-2020
+3
+Enemy.cs
+Adam O'Reilly
+10 minutes
+
+I think that this class is very maintainable.  The main reason why this is the case is because of the fact
+that this is an abstract class.  That means that it contains code that is common to many concrete classes.
+This means a few things.  For one, since the code is common to many classes, chances are it is generic and 
+won't need to much changing.  Also, even if changing is required, the changes can all be made in one place,
+either within this class or just by overriding a method in a concrete class.  In the case that more enemies 
+were to be added or even enemies from a completely different game, this class would hold up well.  It contains
+very generic methods for any given type of enemy and thus any enemy could likely use the functionality of 
+this class just the way that it is.

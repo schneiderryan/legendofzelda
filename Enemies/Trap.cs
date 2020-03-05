@@ -29,6 +29,7 @@ namespace LegendOfZelda
 			startY = Y;
 			game = loz;
 			BeStill();
+			currentHearts = 1000;
 		}
 
 		public void ChaseRight()
