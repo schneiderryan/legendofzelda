@@ -12,8 +12,8 @@ namespace LegendOfZelda
         public IList<Rectangle> Hitboxes { get; private set; }
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
+        public IList<IItem> Items { get; private set; }
         private IList<INPC> npcs;
-        private IList<IItem> items;
         private LegendOfZelda game;
         private ISprite background;
 
@@ -70,7 +70,7 @@ namespace LegendOfZelda
 
             this.Enemies = levelLoader.LoadEnemies();
             this.Blocks = levelLoader.LoadBlocks();
-            this.items = levelLoader.LoadItems();
+            this.Items = levelLoader.LoadItems();
             this.npcs = levelLoader.LoadNPCs();
             this.Doors = levelLoader.LoadDoors();
 
@@ -108,7 +108,7 @@ namespace LegendOfZelda
                 Debug.DrawHitbox(sb, b.Hitbox);
             }
 
-            foreach (IItem item in items)
+            foreach (IItem item in Items)
             {
                 item.Draw(sb);
                 Debug.DrawHitbox(sb, item.Hitbox);
@@ -144,7 +144,7 @@ namespace LegendOfZelda
                 block.Update();
             }
 
-            foreach (IItem item in items)
+            foreach (IItem item in Items)
             {
                 item.Update();
             }
@@ -165,7 +165,7 @@ namespace LegendOfZelda
             }
 
 
-            foreach (IItem item in items)
+            foreach (IItem item in Items)
             {
                 // check collision
                 // if intersects then

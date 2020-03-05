@@ -62,7 +62,7 @@ namespace LegendOfZelda
                 new Rectangle(138, 203, 16, 16), 4)
             {
                 AnimationDelay = 20,
-                Scale = 3
+                Scale = 2
             };
         }
         

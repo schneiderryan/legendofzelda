@@ -7,61 +7,71 @@ namespace LegendOfZelda
 {
     class BombPlaced : Projectile
     {
-        public enum Bomb { Thrown, Returning, Pocket };
-        public Bomb State { get; private set; }
+        public enum BombState { Placed, Detonated, Exploding, Used };
+        public BombState State { get; private set; }
+        private int fuseDelay;
+        private int timer;
 
         private ICollideable source;
-        private int finalPositionX;
-        private int finalPositionY;
-        private Point finalPosition;
 
         public BombPlaced(string direction, ICollideable source, int initialVel = 6)
             : base(direction, source.X, source.Y, initialVel)
         {
-            sprite = ProjectileSpriteFactory.Instance.CreateBoomerang();
-            sprite.Position = new Point(X, Y);
-            finalPositionX = X;
-            finalPositionY = Y;
+            sprite = ItemSpriteFactory.GetBomb();
             Hitbox = sprite.Box;
             this.source = source;
-            State = BoomerangState.Thrown;
+            State = BombState.Detonated;
+            fuseDelay = 60;
+            timer = 60;
 
             if (direction == "up")
             {
-                finalPosition = new Point(finalPositionX, finalPositionY - 144);
+                this.Y -= 30;
             }
             else if (direction == "down")
             {
-                finalPosition = new Point(finalPositionX, finalPositionY + 144);
+                this.Y += 30;
             }
             else if (direction == "right")
             {
-                finalPosition = new Point(finalPositionX + 144, finalPositionY);
+                this.X += 30;
             }
             else if (direction == "left")
             {
-                finalPosition = new Point(finalPositionX - 144, finalPositionY);
+                this.X -= 30;
             }
         }
 
         public override void Update()
         {
-            if (State == BoomerangState.Thrown)
+            if (State == BombState.Detonated)
             {
-                if (sprite.Position.X == finalPosition.X && finalPosition.Y == sprite.Position.Y)
+                if (fuseDelay > 0)
                 {
-                    State = BoomerangState.Returning;
+                    sprite = ItemSpriteFactory.GetBomb();
+                    sprite.Position = new Point(this.X, this.Y);
+                    fuseDelay--;
+                }
+                else
+                {
+                    State = BombState.Exploding;
+                    sprite = ItemSpriteFactory.GetExplodingBomb();
+                    sprite.Position = new Point(this.X, this.Y);
+                    Hitbox = sprite.Box;
                 }
             }
-            else if (State == BoomerangState.Returning)
+            else if (State == BombState.Exploding)
             {
-                int LinksXPos = this.source.X + 5;
-                int LinksYPos = this.source.Y + 5;
-                this.VX = (LinksXPos - X) / 20;
-                this.VY = (LinksYPos - Y) / 20;
+                if (timer > 0)
+                {
+                    timer--;
+                } else
+                {
+                    State = BombState.Used;
+                    
+                }
             }
-
-            base.Update();
         }
+
     }
 }
