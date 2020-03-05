@@ -24,12 +24,9 @@ namespace LegendOfZelda
 
         private IList<IDespawnEffect> effects;
 
-<<<<<<< HEAD:Collison/CollisionHandler.cs
         private int currentPosition;
-=======
         public bool playerTouchingBlockorWall;
         public bool enemyTouchingBlockorWall;
->>>>>>> 60a25d043621553b9f43736a720a30d370a10b53:Collision/CollisionHandler.cs
 
         public CollisionHandler(IList<IDespawnEffect> effects)
         {
@@ -40,14 +37,9 @@ namespace LegendOfZelda
 
             playerWallCollision = new PlayerWallCollision();
             playerBlockCollision = new PlayerBlockCollision();
-<<<<<<< HEAD:Collison/CollisionHandler.cs
-            playerEnemyCollision = new PlayerEnemyCollision(enemiesToDespawn);
-            playerProjectileCollision = new PlayerProjectileCollision(projectilesToDespawn);
             itemCollision = new ItemCollision(itemsToDespawnPositions);
-=======
             playerEnemyCollision = new PlayerEnemyCollision(enemiesToDespawn, this);
             playerProjectileCollision = new PlayerProjectileCollision(projectilesToDespawn, this);
->>>>>>> 60a25d043621553b9f43736a720a30d370a10b53:Collision/CollisionHandler.cs
 
             enemyWallBlockCollision = new EnemyWallBlockCollision();
             enemyProjectileCollision = new EnemyProjectileCollision(projectilesToDespawn, enemiesToDespawn, this);
