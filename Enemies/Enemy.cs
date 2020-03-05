@@ -145,5 +145,10 @@ namespace LegendOfZelda
             isSpawning = true;
             this.Sprite = EnemySpriteFactory.Instance.CreateNewEnemy();
         }
+
+        public void KnockBack()
+        {
+
+        }
     }
 }

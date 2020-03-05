@@ -1,5 +1,5 @@
 ﻿18
-Wall,Exploded,Key,Open
+Wall,Open,Wall,Wall
 Trap,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Trap
 Null,Keese,Goriya,Gel,Null,Null,LFWallmaster,RFWallmaster,Stalfo,Dodongo,Snake,Null
 Null,Null,Null,MoveableBlockLeft,Null,Map,MoveableBlockVertical,Null,Aquamentus,Null,Null,Null

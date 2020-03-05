@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace LegendOfZelda
 {
@@ -92,12 +92,17 @@ namespace LegendOfZelda
                 }
             }
 
-            foreach (KeyValuePair<string, IDoor> door in room.Doors)
+            foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
             {
                 Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
                 if (!collision.IsEmpty)
                 {
                     if(!(door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)){
+                        if (door.Value is TopKey)
+                        {
+                            room.Doors.Remove(door);
+                            room.Doors.Add("top", new TopOpen());
+                        }
                         playerDoorCollision.Handle(player, door.Value, collision);
                     }
                     
@@ -107,7 +112,7 @@ namespace LegendOfZelda
             foreach (IEnemy enemy in room.Enemies)
             {
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
-                if (!collision.IsEmpty)
+                if (!collision.IsEmpty && !(enemy is Trap))
                 {
                     playerEnemyCollision.Handle(player, enemy, collision);
                 }
@@ -159,7 +164,7 @@ namespace LegendOfZelda
                 foreach (Rectangle wall in room.Hitboxes)
                 {
                     Rectangle collision = Rectangle.Intersect(wall, enemy.Hitbox);
-                    if (!collision.IsEmpty)
+                    if (!collision.IsEmpty && !(enemy is LFWallmaster || enemy is RFWallmaster))
                     {
                         enemyWallBlockDoorCollision.Handle(enemy, collision);
                     }
@@ -189,7 +194,7 @@ namespace LegendOfZelda
                 foreach (IProjectile projectile in projectiles)
                 {
                     Rectangle collision = Rectangle.Intersect(projectile.Hitbox, enemy.Hitbox);
-                    if (!collision.IsEmpty)
+                    if (!collision.IsEmpty && !(enemy is Trap))
                     {
                         enemyProjectileCollision.Handle(enemy, projectile, collision);
                     }

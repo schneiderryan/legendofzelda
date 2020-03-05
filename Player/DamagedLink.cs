@@ -85,6 +85,7 @@ namespace LegendOfZelda
             get { return decoratedLink.MaxHearts; }
             set { decoratedLink.MaxHearts = value; }
         }
+        
         public double CurrentHearts
         {
             get { return decoratedLink.CurrentHearts; }
@@ -95,6 +96,11 @@ namespace LegendOfZelda
         {
             get { return decoratedLink.NumberBombs; }
             set { decoratedLink.NumberBombs = value; }
+        }
+        public int NumberKeys
+        {
+            get { return decoratedLink.NumberKeys; }
+            set { decoratedLink.NumberKeys = value; }
         }
 
         public Team Team { get => decoratedLink.Team; set => decoratedLink.Team = value; }
