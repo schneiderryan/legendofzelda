@@ -16,11 +16,14 @@ namespace LegendOfZelda
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }
         int NumberBombs { get; set; }
+        int NumberKeys { get; set; }
         Rectangle Footbox { get; }
         Rectangle UpAttackBox { get; }
         Rectangle DownAttackBox { get; }
         Rectangle RightAttackBox { get; }
         Rectangle LeftAttackBox { get; }
+        
+
         void Attack();
         void BeStill();
         void UseItem(IItem item);

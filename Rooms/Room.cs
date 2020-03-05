@@ -8,15 +8,19 @@ namespace LegendOfZelda
 {
     class Room : IRoom
     {
-        public IDictionary<string, IDoor> Doors { get; private set; }
+        public IDictionary<string, IDoor> doors;
         public IList<Rectangle> Hitboxes { get; private set; }
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
+        public IList<IItem> Items { get; private set; }
         private IList<INPC> npcs;
-        private IList<IItem> items;
         private LegendOfZelda game;
         private ISprite background;
-
+        public IDictionary<string, IDoor> Doors
+        {
+            get { return doors; }
+            set { doors = value; }
+        }
         private void LoadRoomLayout(int roomNumber)
         {
             if (roomNumber == 15)
@@ -44,12 +48,12 @@ namespace LegendOfZelda
                     new Rectangle(0, 193, 64, 160),
 
                     // top hitboxes
-                    new Rectangle(0, 0, 240, 64),
-                    new Rectangle(272, 0, 240, 64),
+                    new Rectangle(0, 0, 224, 64),
+                    new Rectangle(289, 0, 224, 64),
 
                     // bottom hitboxes
-                    new Rectangle(0, 289, 240, 64),
-                    new Rectangle(273, 289, 240, 64),
+                    new Rectangle(0, 289, 224, 64),
+                    new Rectangle(289, 289, 224, 64),
 
                     // right hitboxes
                     new Rectangle(448, 0, 64, 172),
@@ -70,9 +74,10 @@ namespace LegendOfZelda
 
             this.Enemies = levelLoader.LoadEnemies();
             this.Blocks = levelLoader.LoadBlocks();
-            this.items = levelLoader.LoadItems();
+            this.Items = levelLoader.LoadItems();
             this.npcs = levelLoader.LoadNPCs();
             this.Doors = levelLoader.LoadDoors();
+ 
 
             LoadRoomLayout(levelLoader.RoomNumber());
         }
@@ -108,7 +113,7 @@ namespace LegendOfZelda
                 Debug.DrawHitbox(sb, b.Hitbox);
             }
 
-            foreach (IItem item in items)
+            foreach (IItem item in Items)
             {
                 item.Draw(sb);
                 Debug.DrawHitbox(sb, item.Hitbox);
@@ -144,7 +149,7 @@ namespace LegendOfZelda
                 block.Update();
             }
 
-            foreach (IItem item in items)
+            foreach (IItem item in Items)
             {
                 item.Update();
             }
@@ -163,14 +168,7 @@ namespace LegendOfZelda
                 }
                 enemy.Update();
             }
-
-
-            foreach (IItem item in items)
-            {
-                // check collision
-                // if intersects then
-                // Item.Pickup(IPlayer) ?
-            }
         }
+
     }
 }

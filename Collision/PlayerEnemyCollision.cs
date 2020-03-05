@@ -7,13 +7,17 @@ namespace LegendOfZelda
     class PlayerEnemyCollision
     {
         private ISet<IEnemy> enemiesToDepsawn;
+        private CollisionHandler handler;
 
-        public PlayerEnemyCollision(ISet<IEnemy> enemiesToDepsawn)
+        public PlayerEnemyCollision(ISet<IEnemy> enemiesToDepsawn, CollisionHandler handler)
         {
             this.enemiesToDepsawn = enemiesToDepsawn;
+            this.handler = handler;
         }
         public void Handle(IPlayer player, IEnemy enemy, in Rectangle collision)
         {
+            int playerXKnockback = 0;
+            int playerYKnockback = 0;
             if (collision.Width > collision.Height)
             {
                 if (collision.Y == player.Hitbox.Y)
@@ -22,7 +26,7 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
-                    player.Y += 5;
+                    playerYKnockback = 5;
                 }
                 else
                 {
@@ -30,7 +34,7 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
-                    player.Y -= 5;
+                    playerYKnockback = -5;
                 }
             }
             else
@@ -41,7 +45,7 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
-                    player.X += 5;
+                    playerXKnockback = 5;
                 }
                 else
                 {
@@ -49,33 +53,13 @@ namespace LegendOfZelda
                     {
                         player.TakeDamage();
                     }
-                    player.X -= 5;
+                    playerXKnockback = -5;
                 }
             }
-
-            if (player.Direction.Equals(player.Direction) && player.IsAttacking())
+            if (!this.handler.playerTouchingBlockorWall)
             {
-                enemy.TakeDamage();
-                switch (player.Direction)
-                {
-                    case "left":
-                        enemy.X -= 5;
-                        break;
-                    case "right":
-                        enemy.X += 5;
-                        break;
-                    case "up":
-                        enemy.Y -= 5;
-                        break;
-                    case "down":
-                        enemy.Y += 5;
-                        break;
-                }
-
-                if (enemy.isDead)
-                {
-                    enemiesToDepsawn.Add(enemy);
-                }
+                player.X += playerXKnockback;
+                player.Y += playerYKnockback;
             }
         }
 

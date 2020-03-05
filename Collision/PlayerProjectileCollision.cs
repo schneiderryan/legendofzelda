@@ -6,24 +6,26 @@ namespace LegendOfZelda
 {
     class PlayerProjectileCollision : CharacterProjectileCollision
     {
-
-        public PlayerProjectileCollision(ISet<IProjectile> projectilesToDespawn)
+        private CollisionHandler handler;
+        public PlayerProjectileCollision(ISet<IProjectile> projectilesToDespawn, CollisionHandler handler)
             : base (projectilesToDespawn)
         {
-            // nothing needed here
+            this.handler = handler;
         }
 
         public void Handle(IPlayer player, IProjectile projectile,
                 in Rectangle collision)
         {
             HandleProjectileCollision(player, projectile);
-            if (projectile.OwningTeam == player.Team)
+            if (projectile.OwningTeam != player.Team)
             {
-                return;
+                player.TakeDamage();
+                if (!handler.playerTouchingBlockorWall)
+                {
+                    Knockback(player, collision);
+                }
             }
-
-            player.TakeDamage();
-            Knockback(player, collision);
         }
+
     }
 }

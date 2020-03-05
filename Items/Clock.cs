@@ -12,7 +12,7 @@ namespace LegendOfZelda
         }
         public override void Use(IPlayer player)
         {
-            throw new NotImplementedException();
+            //
         }
     }
 }

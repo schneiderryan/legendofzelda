@@ -23,7 +23,7 @@ namespace LegendOfZelda
                 {
                     projectilesToDespawn.Add(projectile);
                 }
-                else
+                else if (projectile.OwningTeam != character.Team)
                 {
                     bp.BeginReturning();
                 }
