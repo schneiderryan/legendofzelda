@@ -23,6 +23,11 @@ namespace LegendOfZelda
             }
         }
 
+        internal ISprite CreateBomb()
+        {
+            throw new NotImplementedException();
+        }
+
         public ISprite CreateLeftArrow()
         {
             return new Sprite(projectileSpriteSheet, new Rectangle(150, 199, 17, 6));

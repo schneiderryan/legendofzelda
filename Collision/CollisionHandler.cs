@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace LegendOfZelda
 {
@@ -8,13 +8,17 @@ namespace LegendOfZelda
     {
         private ISet<IProjectile> projectilesToDespawn;
         private ISet<IEnemy> enemiesToDespawn;
+        private SortedList<IItem, int> itemsToDespawn;
+        private List<int> itemsToDespawnPositions;
 
         private PlayerWallCollision playerWallCollision;
+        private PlayerDoorCollision playerDoorCollision;
         private PlayerBlockCollision playerBlockCollision;
         private PlayerEnemyCollision playerEnemyCollision;
         private PlayerProjectileCollision playerProjectileCollision;
+        private ItemCollision itemCollision;
 
-        private EnemyWallBlockCollision enemyWallBlockCollision;
+        private EnemyWallBlockDoorCollision enemyWallBlockDoorCollision;
         private EnemyProjectileCollision enemyProjectileCollision;
         private EnemyAttackCollision enemyAttackCollision;
 
@@ -22,6 +26,7 @@ namespace LegendOfZelda
 
         private IList<IDespawnEffect> effects;
 
+        private int currentPosition;
         public bool playerTouchingBlockorWall;
         public bool enemyTouchingBlockorWall;
 
@@ -29,19 +34,24 @@ namespace LegendOfZelda
         {
             projectilesToDespawn = new HashSet<IProjectile>();
             enemiesToDespawn = new HashSet<IEnemy>();
+            itemsToDespawn = new SortedList<IItem, int>();
+            itemsToDespawnPositions = new List<int>();
 
+            playerDoorCollision = new PlayerDoorCollision();
             playerWallCollision = new PlayerWallCollision();
             playerBlockCollision = new PlayerBlockCollision();
+            itemCollision = new ItemCollision(itemsToDespawnPositions);
             playerEnemyCollision = new PlayerEnemyCollision(enemiesToDespawn, this);
             playerProjectileCollision = new PlayerProjectileCollision(projectilesToDespawn, this);
 
-            enemyWallBlockCollision = new EnemyWallBlockCollision();
+            enemyWallBlockDoorCollision = new EnemyWallBlockDoorCollision();
             enemyProjectileCollision = new EnemyProjectileCollision(projectilesToDespawn, enemiesToDespawn, this);
             enemyAttackCollision = new EnemyAttackCollision(enemiesToDespawn, this);
 
             wallProjectileCollision = new WallProjectileCollision(projectilesToDespawn);
 
             this.effects = effects;
+            currentPosition= 0;
         }
 
         public void Handle(IRoom room, ISet<IProjectile> projectiles, IPlayer player)
@@ -59,7 +69,7 @@ namespace LegendOfZelda
             // handle whatever's left
             HandleProjectileCollisions(room, projectiles);
 
-            Despawn(projectiles, room.Enemies);
+            Despawn(projectiles, room.Enemies, room.Items);
             RemoveFinshedEffects();
         }
 
@@ -84,10 +94,27 @@ namespace LegendOfZelda
                 }
             }
 
+            foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
+            {
+                Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
+                if (!collision.IsEmpty)
+                {
+                    if(!(door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)){
+                        if (door.Value is TopKey)
+                        {
+                            room.Doors.Remove(door);
+                            room.Doors.Add("top", new TopOpen());
+                        }
+                        playerDoorCollision.Handle(player, door.Value, collision);
+                    }
+                    
+                }
+            }
+
             foreach (IEnemy enemy in room.Enemies)
             {
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
-                if (!collision.IsEmpty)
+                if (!collision.IsEmpty && !(enemy is Trap))
                 {
                     playerEnemyCollision.Handle(player, enemy, collision);
                 }
@@ -100,6 +127,35 @@ namespace LegendOfZelda
                 {
                     playerProjectileCollision.Handle(player, projectile, collision);
                 }
+
+                //Boomerang Item Pickup Code
+                if (projectile.GetType().ToString().Equals("LegendOfZelda.BoomerangProjectile") && projectile.OwningTeam.ToString().Equals("Link"))
+                {
+                    currentPosition = 0;
+                    foreach (IItem item in room.Items)
+                    {
+                        collision = Rectangle.Intersect(item.Hitbox, projectile.Hitbox);
+                        if (!collision.IsEmpty)
+                        {
+                            itemCollision.Handle(player, item, currentPosition);
+                        }
+                        currentPosition++;
+                    }
+                }
+                
+
+            }
+
+
+            currentPosition= 0;
+            foreach (IItem item in room.Items)
+            {
+                Rectangle collision = Rectangle.Intersect(item.Hitbox, player.Hitbox);
+                if (!collision.IsEmpty)
+                {
+                    itemCollision.Handle(player, item, currentPosition);
+                }
+                currentPosition++;
             }
         }
 
@@ -110,9 +166,18 @@ namespace LegendOfZelda
                 foreach (Rectangle wall in room.Hitboxes)
                 {
                     Rectangle collision = Rectangle.Intersect(wall, enemy.Hitbox);
+                    if (!collision.IsEmpty && !(enemy is LFWallmaster || enemy is RFWallmaster))
+                    {
+                        enemyWallBlockDoorCollision.Handle(enemy, collision);
+                    }
+                }
+
+                foreach (KeyValuePair<string, IDoor> door in room.Doors)
+                {
+                    Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, enemy.Hitbox);
                     if (!collision.IsEmpty)
                     {
-                        enemyWallBlockCollision.Handle(enemy, collision);
+                            enemyWallBlockDoorCollision.Handle(enemy, collision);
                     }
                 }
 
@@ -121,14 +186,17 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(block.Hitbox, enemy.Hitbox);
                     if (!collision.IsEmpty)
                     {
-                        enemyWallBlockCollision.Handle(enemy, collision);
+                        if(!(enemy is Keese)){
+                           enemyWallBlockDoorCollision.Handle(enemy, collision);
+                        }
+                           
                     }
                 }
 
                 foreach (IProjectile projectile in projectiles)
                 {
                     Rectangle collision = Rectangle.Intersect(projectile.Hitbox, enemy.Hitbox);
-                    if (!collision.IsEmpty)
+                    if (!collision.IsEmpty && !(enemy is Trap))
                     {
                         enemyProjectileCollision.Handle(enemy, projectile, collision);
                     }
@@ -190,7 +258,7 @@ namespace LegendOfZelda
             }
         }
 
-        private void Despawn(ISet<IProjectile> projectiles, ISet<IEnemy> enemies)
+        private void Despawn(ISet<IProjectile> projectiles, ISet<IEnemy> enemies, IList<IItem> items)
         {
             foreach (IProjectile projectile in projectilesToDespawn)
             {
@@ -201,6 +269,20 @@ namespace LegendOfZelda
             enemiesToDespawn.Clear();
             projectiles.ExceptWith(projectilesToDespawn);
             projectilesToDespawn.Clear();
+            currentPosition= 0;
+            foreach (int itemPosition in itemsToDespawnPositions)
+            {
+                if (items.Count == itemPosition)
+                {
+                    items.RemoveAt(itemPosition - 1);
+                }
+                else
+                {
+                    items.RemoveAt(itemPosition);
+                }
+            }
+            itemsToDespawnPositions.Clear();
+            
         }
 
         private void RemoveFinshedEffects()
