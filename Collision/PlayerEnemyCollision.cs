@@ -61,39 +61,6 @@ namespace LegendOfZelda
                 player.X += playerXKnockback;
                 player.Y += playerYKnockback;
             }
-
-            if (player.Direction.Equals(player.Direction) && player.IsAttacking())
-            {
-                int enemyXKnockback = 0;
-                int enemyYKnockback = 0;
-
-                enemy.TakeDamage();
-                switch (player.Direction)
-                {
-                    case "left":
-                        enemyXKnockback = -5;
-                        break;
-                    case "right":
-                        enemyXKnockback = 5;
-                        break;
-                    case "up":
-                        enemyYKnockback = -5;
-                        break;
-                    case "down":
-                        enemyYKnockback = 5;
-                        break;
-                }
-                if (!this.handler.enemyTouchingBlockorWall)
-                {
-                    enemy.X += enemyXKnockback;
-                    enemy.Y += enemyYKnockback;
-                }
-
-                if (enemy.isDead)
-                {
-                    enemiesToDepsawn.Add(enemy);
-                }
-            }
         }
 
     }
