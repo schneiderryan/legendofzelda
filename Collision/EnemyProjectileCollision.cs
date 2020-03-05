@@ -7,12 +7,14 @@ namespace LegendOfZelda
     class EnemyProjectileCollision : CharacterProjectileCollision
     {
         private ISet<IEnemy> enemiesToDepsawn;
+        private CollisionHandler handler;
 
         public EnemyProjectileCollision(ISet<IProjectile> projectilesToDespawn,
-                ISet<IEnemy> enemiesToDepsawn)
+                ISet<IEnemy> enemiesToDepsawn, CollisionHandler handler)
             : base(projectilesToDespawn)
         {
             this.enemiesToDepsawn = enemiesToDepsawn;
+            this.handler = handler;
         }
 
         public void Handle(IEnemy enemy, IProjectile projectile, in Rectangle collision)
@@ -27,7 +29,10 @@ namespace LegendOfZelda
 
             System.Diagnostics.Debug.WriteLine("call take damage");
             enemy.TakeDamage();
-            Knockback(enemy, collision);
+            if (!handler.playerTouchingBlockorWall)
+            {
+                Knockback(enemy, collision);
+            }
 
             if (enemy.isDead)
             {

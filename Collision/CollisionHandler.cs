@@ -21,6 +21,9 @@ namespace LegendOfZelda
 
         private IList<IDespawnEffect> effects;
 
+        public bool playerTouchingBlockorWall;
+        public bool enemyTouchingBlockorWall;
+
         public CollisionHandler(IList<IDespawnEffect> effects)
         {
             projectilesToDespawn = new HashSet<IProjectile>();
@@ -28,11 +31,11 @@ namespace LegendOfZelda
 
             playerWallCollision = new PlayerWallCollision();
             playerBlockCollision = new PlayerBlockCollision();
-            playerEnemyCollision = new PlayerEnemyCollision(enemiesToDespawn);
-            playerProjectileCollision = new PlayerProjectileCollision(projectilesToDespawn);
+            playerEnemyCollision = new PlayerEnemyCollision(enemiesToDespawn, this);
+            playerProjectileCollision = new PlayerProjectileCollision(projectilesToDespawn, this);
 
             enemyWallBlockCollision = new EnemyWallBlockCollision();
-            enemyProjectileCollision = new EnemyProjectileCollision(projectilesToDespawn, enemiesToDespawn);
+            enemyProjectileCollision = new EnemyProjectileCollision(projectilesToDespawn, enemiesToDespawn, this);
 
             wallProjectileCollision = new WallProjectileCollision(projectilesToDespawn);
 
@@ -41,6 +44,10 @@ namespace LegendOfZelda
 
         public void Handle(IRoom room, ISet<IProjectile> projectiles, IPlayer player)
         {
+            // check if player and enemies are touching walls and blocks
+            CheckPlayerTouchingWallBlock(player, room);
+            CheckEnemyTouchingWallBlock(room);
+
             // handle all things player first
             HandlePlayerCollisions(room, projectiles, player);
 
@@ -181,6 +188,55 @@ namespace LegendOfZelda
                     effects.RemoveAt(i);
                 }
             }
+        }
+
+        private void CheckPlayerTouchingWallBlock(IPlayer player, IRoom room)
+        {
+            this.playerTouchingBlockorWall = false;
+            foreach(IBlock block in room.Blocks)
+            {
+                Rectangle collision = Rectangle.Intersect(player.Footbox, block.Hitbox);
+                if (!collision.IsEmpty)
+                {
+                    playerTouchingBlockorWall = true;
+                }
+            }
+            foreach (Rectangle wall in room.Hitboxes)
+            {
+                Rectangle collision = Rectangle.Intersect(player.Footbox, wall);
+                if (!collision.IsEmpty)
+                {
+                    playerTouchingBlockorWall = true;
+                }
+            }
+        }
+
+        private void CheckEnemyTouchingWallBlock(IRoom room)
+        {
+            this.enemyTouchingBlockorWall = false;
+            foreach (IEnemy enemy in room.Enemies)
+            {
+                if (this.enemyTouchingBlockorWall == true)
+                {
+                    foreach (IBlock block in room.Blocks)
+                    {
+                        Rectangle collision = Rectangle.Intersect(enemy.Hitbox, block.Hitbox);
+                        if (!collision.IsEmpty)
+                        {
+                            enemyTouchingBlockorWall = true;
+                        }
+                    }
+                    foreach (Rectangle wall in room.Hitboxes)
+                    {
+                        Rectangle collision = Rectangle.Intersect(enemy.Hitbox, wall);
+                        if (!collision.IsEmpty)
+                        {
+                            enemyTouchingBlockorWall = true;
+                        }
+                    }
+                }
+            }
+            
         }
 
     }
