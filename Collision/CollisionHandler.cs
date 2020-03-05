@@ -10,11 +10,12 @@ namespace LegendOfZelda
         private ISet<IEnemy> enemiesToDespawn;
 
         private PlayerWallCollision playerWallCollision;
+        private PlayerDoorCollision playerDoorCollision;
         private PlayerBlockCollision playerBlockCollision;
         private PlayerEnemyCollision playerEnemyCollision;
         private PlayerProjectileCollision playerProjectileCollision;
 
-        private EnemyWallBlockCollision enemyWallBlockCollision;
+        private EnemyWallBlockDoorCollision enemyWallBlockDoorCollision;
         private EnemyProjectileCollision enemyProjectileCollision;
 
         private WallProjectileCollision wallProjectileCollision;
@@ -29,12 +30,13 @@ namespace LegendOfZelda
             projectilesToDespawn = new HashSet<IProjectile>();
             enemiesToDespawn = new HashSet<IEnemy>();
 
+            playerDoorCollision = new PlayerDoorCollision();
             playerWallCollision = new PlayerWallCollision();
             playerBlockCollision = new PlayerBlockCollision();
             playerEnemyCollision = new PlayerEnemyCollision(enemiesToDespawn, this);
             playerProjectileCollision = new PlayerProjectileCollision(projectilesToDespawn, this);
 
-            enemyWallBlockCollision = new EnemyWallBlockCollision();
+            enemyWallBlockDoorCollision = new EnemyWallBlockDoorCollision();
             enemyProjectileCollision = new EnemyProjectileCollision(projectilesToDespawn, enemiesToDespawn, this);
 
             wallProjectileCollision = new WallProjectileCollision(projectilesToDespawn);
@@ -82,6 +84,18 @@ namespace LegendOfZelda
                 }
             }
 
+            foreach (KeyValuePair<string, IDoor> door in room.Doors)
+            {
+                Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
+                if (!collision.IsEmpty)
+                {
+                    if(!(door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)){
+                        playerDoorCollision.Handle(player, door.Value, collision);
+                    }
+                    
+                }
+            }
+
             foreach (IEnemy enemy in room.Enemies)
             {
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
@@ -110,7 +124,16 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(wall, enemy.Hitbox);
                     if (!collision.IsEmpty)
                     {
-                        enemyWallBlockCollision.Handle(enemy, collision);
+                        enemyWallBlockDoorCollision.Handle(enemy, collision);
+                    }
+                }
+
+                foreach (KeyValuePair<string, IDoor> door in room.Doors)
+                {
+                    Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, enemy.Hitbox);
+                    if (!collision.IsEmpty)
+                    {
+                            enemyWallBlockDoorCollision.Handle(enemy, collision);
                     }
                 }
 
@@ -119,7 +142,10 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(block.Hitbox, enemy.Hitbox);
                     if (!collision.IsEmpty)
                     {
-                        enemyWallBlockCollision.Handle(enemy, collision);
+                        if(!(enemy is Keese)){
+                           enemyWallBlockDoorCollision.Handle(enemy, collision);
+                        }
+                           
                     }
                 }
 

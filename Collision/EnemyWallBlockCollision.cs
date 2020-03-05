@@ -3,7 +3,7 @@
 
 namespace LegendOfZelda
 {
-    class EnemyWallBlockCollision
+    class EnemyWallBlockDoorCollision
     {
         public void Handle(IEnemy enemy, in Rectangle collision)
         {
