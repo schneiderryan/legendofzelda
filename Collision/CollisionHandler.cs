@@ -8,11 +8,14 @@ namespace LegendOfZelda
     {
         private ISet<IProjectile> projectilesToDespawn;
         private ISet<IEnemy> enemiesToDespawn;
+        private SortedList<IItem, int> itemsToDespawn;
+        private List<int> itemsToDespawnPositions;
 
         private PlayerWallCollision playerWallCollision;
         private PlayerBlockCollision playerBlockCollision;
         private PlayerEnemyCollision playerEnemyCollision;
         private PlayerProjectileCollision playerProjectileCollision;
+        private ItemCollision itemCollision;
 
         private EnemyWallBlockCollision enemyWallBlockCollision;
         private EnemyProjectileCollision enemyProjectileCollision;
@@ -21,6 +24,7 @@ namespace LegendOfZelda
 
         private IList<IDespawnEffect> effects;
 
+        private int currentPosition;
         public bool playerTouchingBlockorWall;
         public bool enemyTouchingBlockorWall;
 
@@ -28,9 +32,12 @@ namespace LegendOfZelda
         {
             projectilesToDespawn = new HashSet<IProjectile>();
             enemiesToDespawn = new HashSet<IEnemy>();
+            itemsToDespawn = new SortedList<IItem, int>();
+            itemsToDespawnPositions = new List<int>();
 
             playerWallCollision = new PlayerWallCollision();
             playerBlockCollision = new PlayerBlockCollision();
+            itemCollision = new ItemCollision(itemsToDespawnPositions);
             playerEnemyCollision = new PlayerEnemyCollision(enemiesToDespawn, this);
             playerProjectileCollision = new PlayerProjectileCollision(projectilesToDespawn, this);
 
@@ -40,6 +47,7 @@ namespace LegendOfZelda
             wallProjectileCollision = new WallProjectileCollision(projectilesToDespawn);
 
             this.effects = effects;
+            currentPosition= 0;
         }
 
         public void Handle(IRoom room, ISet<IProjectile> projectiles, IPlayer player)
@@ -57,7 +65,7 @@ namespace LegendOfZelda
             // handle whatever's left
             HandleProjectileCollisions(room, projectiles);
 
-            Despawn(projectiles, room.Enemies);
+            Despawn(projectiles, room.Enemies, room.Items);
             RemoveFinshedEffects();
         }
 
@@ -98,6 +106,35 @@ namespace LegendOfZelda
                 {
                     playerProjectileCollision.Handle(player, projectile, collision);
                 }
+
+                //Boomerang Item Pickup Code
+                if (projectile.GetType().ToString().Equals("LegendOfZelda.BoomerangProjectile") && projectile.OwningTeam.ToString().Equals("Link"))
+                {
+                    currentPosition = 0;
+                    foreach (IItem item in room.Items)
+                    {
+                        collision = Rectangle.Intersect(item.Hitbox, projectile.Hitbox);
+                        if (!collision.IsEmpty)
+                        {
+                            itemCollision.Handle(player, item, currentPosition);
+                        }
+                        currentPosition++;
+                    }
+                }
+                
+
+            }
+
+
+            currentPosition= 0;
+            foreach (IItem item in room.Items)
+            {
+                Rectangle collision = Rectangle.Intersect(item.Hitbox, player.Hitbox);
+                if (!collision.IsEmpty)
+                {
+                    itemCollision.Handle(player, item, currentPosition);
+                }
+                currentPosition++;
             }
         }
 
@@ -166,7 +203,7 @@ namespace LegendOfZelda
             }
         }
 
-        private void Despawn(ISet<IProjectile> projectiles, ISet<IEnemy> enemies)
+        private void Despawn(ISet<IProjectile> projectiles, ISet<IEnemy> enemies, IList<IItem> items)
         {
             foreach (IProjectile projectile in projectilesToDespawn)
             {
@@ -177,6 +214,20 @@ namespace LegendOfZelda
             enemiesToDespawn.Clear();
             projectiles.ExceptWith(projectilesToDespawn);
             projectilesToDespawn.Clear();
+            currentPosition= 0;
+            foreach (int itemPosition in itemsToDespawnPositions)
+            {
+                if (items.Count == itemPosition)
+                {
+                    items.RemoveAt(itemPosition - 1);
+                }
+                else
+                {
+                    items.RemoveAt(itemPosition);
+                }
+            }
+            itemsToDespawnPositions.Clear();
+            
         }
 
         private void RemoveFinshedEffects()
