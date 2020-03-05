@@ -19,6 +19,7 @@ namespace LegendOfZelda
         private double numMaxHearts;
         private double numCurrHearts;
         private int numberOfBombs;
+        private int numberOfKeys;
         private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
@@ -103,9 +104,17 @@ namespace LegendOfZelda
             set { numberOfBombs = value; }
         }
 
+        public int NumberKeys
+        {
+            get { return numberOfKeys; }
+            set { numberOfKeys = value; }
+        }
+
         public Team Team { get; set; } = Team.Link;
 
         public Point Center => Sprite.Box.Center;
+
+        
 
         public virtual void MoveLeft()
         {
@@ -222,6 +231,7 @@ namespace LegendOfZelda
             this.MaxHearts = 3.0;
             this.CurrentHearts = 3.0;
             this.origin = new Vector2(0, 0);
+            this.NumberKeys = 1;
         }
     }
 }
