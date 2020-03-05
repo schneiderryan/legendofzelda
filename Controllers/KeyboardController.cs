@@ -20,10 +20,10 @@ namespace LegendOfZelda
 
             foreach (Keys k in keys)
             {
-                if (keyBinds.TryGetValue(k, out a))
-                {
-                    a.Execute();
-                }
+                    if (keyBinds.TryGetValue(k, out a))
+                    {
+                        a.Execute();
+                    }
             }
 
             if (keys.Length == 0 && keyBinds.TryGetValue(Keys.None, out a))
