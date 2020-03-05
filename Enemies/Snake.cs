@@ -20,42 +20,6 @@ namespace LegendOfZelda
 			currentHearts = 2;
 			Name = "Snake";
 		}
-/*
-		public override void Update()
-		{
-			/*
-			int linkYPos = game.link.Y;
-			int linkXPos = game.link.X;
-			if ((linkYPos < (Y + 10)) && (linkYPos > (Y - 10)))
-			{
-				if (linkXPos < X)
-				{
-					X -= 4;
-					//MoveLeft();
-				}
-				if(linkXPos>X)
-				{
-					X += 4;
-					//MoveRight();
-				}
-			}
-			else if ((linkXPos < (X + 10)) && (linkXPos > (X - 10)))
-			{
-				if (linkYPos < Y)
-				{
-					Y -= 4;
-					//MoveUp();
-				}
-				else
-				{
-					Y += 4;
-					//MoveDown();
-				}
-			}
-			base.Update();
-			
-		}
-		*/
 		
 	}
 }
