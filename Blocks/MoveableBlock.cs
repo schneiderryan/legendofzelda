@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -20,7 +18,7 @@ namespace LegendOfZelda
             sprite = RoomSpriteFactory.Instance.CreateBlock();
         }
 
-        public void Draw(SpriteBatch sb)
+        public override void Draw(SpriteBatch sb)
         {
             sprite.Draw(sb);
         }
@@ -61,7 +59,7 @@ namespace LegendOfZelda
             }
         }
 
-        public void Update()
+        public override void Update()
         {
             // check if the block has been pushed on for a bit,
             // or if the block is currently moving

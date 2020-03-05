@@ -200,9 +200,5 @@ namespace LegendOfZelda
             return decoratedLink.IsAttacking();
         }
 
-        public override bool Equals(object obj)
-        {
-            return decoratedLink.Equals(obj);
-        }
     }
 }

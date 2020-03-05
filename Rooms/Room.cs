@@ -10,11 +10,8 @@ namespace LegendOfZelda
     {
         public IDictionary<string, IDoor> Doors { get; private set; }
         public IList<Rectangle> Hitboxes { get; private set; }
-        public IList<IBlock> Blocks { get => blocks; }
-        public IList<IMoveableBlock> MoveableBlocks { get; private set; }
-        public IList<IEnemy> Enemies { get; private set; }
-
-        private List<IBlock> blocks;
+        public IList<IBlock> Blocks { get; private set; }
+        public ISet<IEnemy> Enemies { get; private set; }
         private IList<INPC> npcs;
         private IList<IItem> items;
         private LegendOfZelda game;
@@ -72,10 +69,8 @@ namespace LegendOfZelda
             this.background.Position = new Point(0, 0);
 
             this.Enemies = levelLoader.LoadEnemies();
+            this.Blocks = levelLoader.LoadBlocks();
             this.items = levelLoader.LoadItems();
-            this.MoveableBlocks = levelLoader.LoadMoveableBlocks();
-            this.blocks = levelLoader.LoadStillBlocks();
-            this.blocks.AddRange(MoveableBlocks);
             this.npcs = levelLoader.LoadNPCs();
             this.Doors = levelLoader.LoadDoors();
 
@@ -108,11 +103,6 @@ namespace LegendOfZelda
             }
 
             foreach (IBlock b in Blocks)
-            {
-                Debug.DrawHitbox(sb, b.Hitbox);
-            }
-
-            foreach (IMoveableBlock b in MoveableBlocks)
             {
                 b.Draw(sb);
                 Debug.DrawHitbox(sb, b.Hitbox);
@@ -148,9 +138,10 @@ namespace LegendOfZelda
             {
                 door.Value.Update();
             }
-            foreach (IMoveableBlock b in MoveableBlocks)
+
+            foreach (IBlock block in Blocks)
             {
-                b.Update();
+                block.Update();
             }
 
             foreach (IItem item in items)
@@ -180,9 +171,6 @@ namespace LegendOfZelda
                 // if intersects then
                 // Item.Pickup(IPlayer) ?
             }
-
-            PlayerCollisionDetector.HandlePlayerCollisions(this, game.link);
-            EnemyCollisionDetector.HandleEnemyCollisions(this, game.link);
         }
     }
 }

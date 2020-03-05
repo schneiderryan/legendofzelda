@@ -29,12 +29,12 @@ namespace LegendOfZelda
 
         public void MoveOnceLeft()
         {
-            // no op
+            block.MoveOnceLeft();
         }
 
         public void MoveOnceRight()
         {
-            block.MoveOnceRight();
+            // no op
         }
 
         public void MoveOnceUp()
