@@ -18,7 +18,6 @@ namespace LegendOfZelda
 			State = new UpMovingSnakeState(this, game.link);
 			attackTimer = 100;
 			currentHearts = 2;
-			Name = "Snake";
 		}
 		
 	}

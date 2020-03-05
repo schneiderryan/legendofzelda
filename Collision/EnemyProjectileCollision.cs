@@ -19,25 +19,33 @@ namespace LegendOfZelda
 
         public void Handle(IEnemy enemy, IProjectile projectile, in Rectangle collision)
         {
-            HandleProjectileCollision(enemy, projectile);
-            if ((projectile.OwningTeam == enemy.Team)
-                || (projectile is BoomerangProjectile
-                    && enemy is Goriya)) // goriya is immune to boomerangs
+            if(!(enemy is Trap) && !(enemy is Fire))
             {
-                return;
-            }
+                HandleProjectileCollision(enemy, projectile);
+                if ((projectile.OwningTeam == enemy.Team)
+                    || (projectile is BoomerangProjectile
+                        && enemy is Goriya)) // goriya is immune to boomerangs
+                {
+                    return;
+                }
 
-            System.Diagnostics.Debug.WriteLine("call take damage");
-            enemy.TakeDamage();
-            if (!handler.playerTouchingBlockorWall)
-            {
-                Knockback(enemy, collision);
-            }
+                System.Diagnostics.Debug.WriteLine("call take damage");
+                enemy.TakeDamage();
+                if (!handler.playerTouchingBlockorWall)
+                {
+                    Knockback(enemy, collision);
+                }
 
-            if (enemy.isDead)
-            {
-                enemiesToDepsawn.Add(enemy);
+                if (enemy.isDead)
+                {
+                    enemiesToDepsawn.Add(enemy);
+                }
             }
+            if(enemy is Fire)
+            {
+                enemy.currentHearts--;
+            }
+            
 
         }
     }

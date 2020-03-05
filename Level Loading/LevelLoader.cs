@@ -207,10 +207,11 @@ namespace LegendOfZelda
                 {
                     enemy = new Dodongo();
                 }
-                else if (entry.Value.Equals("Fire"))
+               
+/*                else if (entry.Value.Equals("Fire"))
                 {
                     enemy = new Fire(game);
-                }
+                } */
                 else //trap
                 {
                     enemy = new Trap(game);

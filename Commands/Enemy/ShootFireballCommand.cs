@@ -18,7 +18,7 @@ namespace LegendOfZelda
 
         public void Execute()
         {         
-            projectiles.Add(new FireballProjectile("leftdown", fire.X, fire.Y));
+            projectiles.Add(new FireballProjectile(dir, fire.X, fire.Y));
         }
 
     }

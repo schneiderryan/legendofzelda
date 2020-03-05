@@ -7,45 +7,48 @@ namespace LegendOfZelda
 		private int timer;
 		private LegendOfZelda game;
 		private string dir;
-		public Fire(LegendOfZelda loz)
+		public Fire(LegendOfZelda loz, int xPos, int yPos)
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateFireSprite();
 			Hitbox = Sprite.Box;
-			X = 400;
-			Y = 200;
+			//X = 400;
+			//Y = 200;
 			Sprite.Position = new Point(X, Y);
 			State = new EnemyState(this);
 			timer = 0;
 			game = loz;
-			Name = "Fire";
+			currentHearts = 100;
 		}
 		
 		public override void Update()
 		{
-			if(timer%10==0)
+			if(currentHearts<100)
 			{
-				int linkXPos = game.link.X;
-				int linkYPos = game.link.Y;
-				if(linkYPos>Y)
+				if (timer % 200 == 0)
 				{
-					if(linkXPos<(X+10)&& linkXPos>(X-10))
+					int linkXPos = game.link.X;
+					int linkYPos = game.link.Y;
+					if (linkYPos > Y)
 					{
-						dir = "down";
+						if (linkXPos < (X + 10) && linkXPos > (X - 10))
+						{
+							dir = "down";
+						}
+						else if (linkXPos > X)
+						{
+							dir = "rightdown";
+						}
+						else
+						{
+							dir = "leftdown";
+						}
 					}
-					else if(linkXPos>X)
-					{
-						dir = "rightdown"; 
-					}
-					else
-					{
-						dir = "leftdown";
-					}
+					ICommand fire = new ShootFireballCommand(game.projectiles, this, dir);
+					fire.Execute();
 				}
-				ICommand fire = new BreatheFireballCommand(game.projectiles, this);
-				fire.Execute();
+				timer++;
 			}
-			timer++;
-
+			//currentHearts = 100;
 			base.Update();
 		}
 		

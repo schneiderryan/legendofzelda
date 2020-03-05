@@ -14,13 +14,13 @@ namespace LegendOfZelda
 
             if (direction.Equals("leftup"))
             {
-                this.VX = -6;
-                this.VY = initialVel;
+                this.VX = -2;
+                this.VY = -2;
             }
             else if (direction.Equals("leftdown"))
             {
-                this.VY = -initialVel;
-                this.VX = -6;
+                this.VY = 2;
+                this.VX = -2;
             }
             else if(direction.Equals("rightdown"))
             {
@@ -29,8 +29,8 @@ namespace LegendOfZelda
             }
             else
             {
-                this.VX = -6;
-                this.VY = 0;
+                this.VX = 0;
+                this.VY = 2;
             }
         }
     }

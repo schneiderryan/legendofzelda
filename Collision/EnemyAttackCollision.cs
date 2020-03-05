@@ -17,7 +17,7 @@ namespace LegendOfZelda
 
         public void Handle(IEnemy enemy, IPlayer player, String attackDirection)
         {
-            if (player.Direction.Equals(attackDirection) && player.IsAttacking())
+            if (player.Direction.Equals(attackDirection) && player.IsAttacking() && !(enemy is Trap) && !(enemy is Fire))
             {
                 enemy.TakeDamage();
                 int xKnockback = 0;

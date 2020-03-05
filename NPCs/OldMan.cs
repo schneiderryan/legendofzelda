@@ -19,6 +19,7 @@ namespace LegendOfZelda
 		public void Update()
 		{
 			sprite.Update();
+			
 		}
 
 		public void Draw(SpriteBatch spriteBatch)
