@@ -12,13 +12,14 @@ namespace LegendOfZelda
 
         public IPlayer link;
         public ISet<IProjectile> projectiles;
+        public IList<IDespawnEffect> effects;
         public GraphicsDeviceManager graphics;
 
         private IController mouse;
         private IController keyboard;
         private IController playerKeyboard;
 
-        private IList<IDespawnEffect> effects;
+        private CollisionHandler collisionHandler;
         private SpriteBatch spriteBatch;
 
         public LegendOfZelda()
@@ -42,8 +43,7 @@ namespace LegendOfZelda
 
             projectiles = new HashSet<IProjectile>();
             effects = new List<IDespawnEffect>();
-            ProjectileCollisionDetector.Register(projectiles, effects);
-
+            collisionHandler = new CollisionHandler(effects);
             rooms = GameSetup.GenerateRoomList(this);
         }
 
@@ -66,20 +66,13 @@ namespace LegendOfZelda
             {
                 projectile.Update();
             }
-            for (int i = 0; i < effects.Count; i++)
+            foreach (IDespawnEffect effect in effects)
             {
-                if (effects[i].Finished)
-                {
-                    effects.RemoveAt(i);
-                    i--;
-                }
-                else
-                {
-                    effects[i].Update();
-                }
+                effect.Update();
             }
 
-            ProjectileCollisionDetector.HandleCollisions(rooms[roomIndex], link);
+            collisionHandler.Handle(rooms[roomIndex], projectiles, link);
+
             base.Update(gameTime);
         }
 
@@ -106,15 +99,13 @@ namespace LegendOfZelda
             }
             foreach (IDespawnEffect effect in effects)
             {
-                if (effect != null)
-                {
-                    effect.Draw(spriteBatch);
-                }
+                effect.Draw(spriteBatch);
             }
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
     }
 }

@@ -199,5 +199,6 @@ namespace LegendOfZelda
         {
             return decoratedLink.IsAttacking();
         }
+
     }
 }

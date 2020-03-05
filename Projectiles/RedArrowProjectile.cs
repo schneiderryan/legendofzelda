@@ -27,5 +27,11 @@ namespace LegendOfZelda
             sprite.Position = new Point(X, Y);
             Hitbox = sprite.Box;
         }
+
+        public override IDespawnEffect GetDespawnEffect()
+        {
+            return new DespawnEffect(Hitbox.Center);
+        }
+
     }
 }

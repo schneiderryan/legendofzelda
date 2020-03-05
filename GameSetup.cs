@@ -77,12 +77,6 @@ namespace LegendOfZelda
             return new SlowKeyboardController(keyBinds);
         }
 
-        public static IController CreateEnemyKeysController(LegendOfZelda game)
-        {
-            Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
-            return new EnemyKeyboardController(game, keyBinds);
-        }
-
         public static ICollection<IItem> GenerateItemList()
         {
             IList<IItem> list = new List<IItem>()

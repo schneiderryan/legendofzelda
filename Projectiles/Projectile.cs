@@ -7,13 +7,14 @@ namespace LegendOfZelda
     {
         public int VX { get; set; }
         public int VY { get; set; }
-        public Team OwningTeam { get; set; } = Team.Enemy;
+        public Team OwningTeam { get; set; }
 
         protected ISprite sprite;
 
         public Projectile(string direction, int x, int y,
-            int initialVel = 8)
+                int initialVel = 8, Team team = Team.Enemy)
         {
+            OwningTeam = team;
             VX = 0;
             VY = 0;
             X = x;
@@ -62,7 +63,7 @@ namespace LegendOfZelda
 
         public virtual IDespawnEffect GetDespawnEffect()
         {
-            return new DespawnEffect(Hitbox.Center);
+            return new NoDespawnEffect();
         }
 
 
