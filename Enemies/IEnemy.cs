@@ -17,5 +17,6 @@ namespace LegendOfZelda
         void Draw(SpriteBatch spriteBatch, Color color);
         void TakeDamage();
         void Die();
+        void Spawn();
     }
 }
