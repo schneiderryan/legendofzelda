@@ -188,15 +188,6 @@ namespace LegendOfZelda
                     }
                 }
 
-                foreach (IDoor door in room.Doors.Values)
-                {
-                    Rectangle collision = Rectangle.Intersect(door.Hitbox, enemy.Hitbox);
-                    if (!collision.IsEmpty)
-                    {
-                        enemyWallBlockCollision.Handle(enemy, collision);
-                    }
-                }
-
                 foreach (IBlock block in room.Blocks)
                 {
                     Rectangle collision = Rectangle.Intersect(block.Hitbox, enemy.Hitbox);
