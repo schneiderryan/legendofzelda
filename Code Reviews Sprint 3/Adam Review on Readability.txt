@@ -1,0 +1,12 @@
+Adam O'Reilly
+3-5-2020
+3
+ItemCollision.cs
+Ryan Schneider
+5 minutes
+
+Specific comments on what is readable and what is not:
+
+Everything in the ItemCollision is extremely readable. There's not a whole lot of functionality listed in the class but it provides
+crucial functionality for using items. It follows the same format as the other Collision classes and is called from CollisionHandler. cs
+in an equivalant way. 

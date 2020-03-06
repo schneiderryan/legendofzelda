@@ -1,0 +1,17 @@
+Adam O'Reilly
+3-5-2020
+3
+ItemCollision.cs
+Ryan Schneider
+10 minutes
+
+Specific comments on code quality:
+Everything looks great with regards to code quality for ItemCollision.cs. It handles different functionality than the other Collision classes
+but is structured in a logical way to handle picking up items and also handles the potential for an item to be a projectile. Despawn animations after the collision are handled in the order they occur in. 
+All of the functionality is contained in one class that can be passed any current or new type of Item that exists in a room. 
+
+A hypothetical change to make to the game related to file being reviewed and how the current implementation
+could or could not easily support that change: If we wanted to add a new kind of item, it would have to implement the Item
+interface. The new item would be an additional iterable object during the foreach loop in CollisionHandler, and would be passed
+as an IITem object to the ItemCollision.Handle() method. Your code is maintainable in a way that requires no further changes
+to the Collision class(es) in order to handle the new Item. 
