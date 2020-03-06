@@ -13,7 +13,7 @@ namespace LegendOfZelda
 			Y = 200;
 			Sprite.Position = new Point(X, Y);
 			State = new EnemyState(this);
-			currentHearts = 1;
+			currentHearts = 2;
 			attackTimer = 100;
 		}
 	}
