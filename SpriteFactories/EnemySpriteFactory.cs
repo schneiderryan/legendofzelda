@@ -10,13 +10,26 @@ namespace LegendOfZelda
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();
         private Texture2D npcSpriteSheet = Textures.GetNPCSheet();
+        private Texture2D miscSpriteSheet = Textures.GetMiscSheet();
+        private Texture2D spawnSpriteSheet = Textures.GetWeaponSheet();
+        private Texture2D merchantSpriteSheet = Textures.GetMerchantSheet();
 
 
         private EnemySpriteFactory() { }
 
         public static EnemySpriteFactory Instance { get; } = new EnemySpriteFactory();
 
+        public ISprite CreateDeadEnemy()
+        {
+            return new AnimatedSprite(miscSpriteSheet, new Rectangle(102, 1, 15, 16), 2, true)
+            { AnimationDelay = ANIMATION_DELAY };
+        }
 
+        public ISprite CreateNewEnemy()
+        {
+            return new AnimatedSprite(spawnSpriteSheet, new Rectangle(135, 204, 15, 16), 2, true)
+            { AnimationDelay = ANIMATION_DELAY };
+        }
         public ISprite CreateDownMovingGoriyaSprite()
         {
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(0, 60, 15, 15), 2, false)
@@ -47,7 +60,11 @@ namespace LegendOfZelda
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(400, 180, 14, 15), 2, false);
         }
 
-        
+        public ISprite CreateMovingZolSprite()
+        {
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(381, 180, 15, 15), 2, false);
+        }
+
         public ISprite CreateMovingTrapSprite()
         {
             return new Sprite(enemySpriteSheet, new Rectangle(270, 330, 16, 16));
@@ -132,6 +149,11 @@ namespace LegendOfZelda
         public ISprite CreateFireSprite()
         {
             return new AnimatedSprite(npcSpriteSheet, new Rectangle(101, 134, 15, 15), 2, true);
+        }
+
+        public ISprite CreateMerchantSprite()
+        {
+            return new AnimatedSprite(merchantSpriteSheet, new Rectangle(0, 0, 15, 15), 1, false);
         }
     }
 }

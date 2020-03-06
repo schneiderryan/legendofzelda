@@ -7,9 +7,9 @@ namespace LegendOfZelda
     {
         private readonly IMoveableBlock block;
 
-        public MoveableBlockLeft()
+        public MoveableBlockLeft(IRoom room)
         {
-            block = new MoveableBlock();
+            block = new MoveableBlock(room);
         }
 
         public Rectangle Hitbox => block.Hitbox;
@@ -29,12 +29,12 @@ namespace LegendOfZelda
 
         public void MoveOnceLeft()
         {
-            // no op
+            block.MoveOnceLeft();
         }
 
         public void MoveOnceRight()
         {
-            block.MoveOnceRight();
+            // no op
         }
 
         public void MoveOnceUp()

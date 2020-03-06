@@ -1,0 +1,12 @@
+Will Bartlett (Review on Readability)
+03/05/2020
+Sprint 3
+LevelLoader.cs
+Taylor Benjamin
+Number of Minutes: 15
+This class did take a little time to read through, but that is a result of how long it is rather than it being particularly
+difficult to read. The names of all variables such as lists of possible items, enemies, doors, etc. make sense and make
+the code generally easy to follow. The methods do have a lot to do, so at first it can seem daunting to read the class, but
+once you start going through everything makes perfect sense. Thankfully this class is readable because whenever I have had
+to create and add a new NPC or Enemy to our game, this class makes it relatively easy and simple, which I think reflects very 
+well on the readability of the class.

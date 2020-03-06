@@ -6,8 +6,10 @@ namespace LegendOfZelda
 	class OldMan : CollideableObject, INPC
 	{
 		private ISprite sprite;
+		private Fire leftFire;
+		private Fire rightFire;
 
-		public OldMan()
+		public OldMan(LegendOfZelda loz)
 		{
 			sprite = EnemySpriteFactory.Instance.CreateOldManSprite();
 			Hitbox = sprite.Box;
@@ -19,6 +21,7 @@ namespace LegendOfZelda
 		public void Update()
 		{
 			sprite.Update();
+			
 		}
 
 		public void Draw(SpriteBatch spriteBatch)

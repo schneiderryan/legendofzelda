@@ -1,0 +1,9 @@
+Sprint 3 Reflection (HyperLinks to the Past):
+Overall, our team again did a pretty good job organizing ourselves this sprint, but there is definitely still room for improvement.
+Our communication as a team could have been better, as there have been times where multiple people have been working on a similar 
+aspect of the project but maybe in different spots or in different ways, which has caused some problems with merging and causing bugs
+that didn't exist before. However, we were able to work through these bugs and combine the parts into a whole. Additionally, creating the 
+burndown chart has been more problematic than expected, but we figured out a way to make it work. We did do a significantly
+better job this sprint making more specific subtasks within the larger overall tasks so it was clear what needed to be completed
+before the next sprint. In the end, we believe that we improved in our team management this sprint compared to last sprint but still 
+have room to grow as a team as the project continues.

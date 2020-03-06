@@ -13,6 +13,12 @@ namespace LegendOfZelda
             this.link = link;
             this.link.Direction = "left";
         }
+
+        public override void Attack()
+        {
+            this.link.UseProjectile(new SwordProjectile("left", this.link.X, this.link.Y));
+        }
+
         public override void Update()
         {
             if (attackTimer > 0)

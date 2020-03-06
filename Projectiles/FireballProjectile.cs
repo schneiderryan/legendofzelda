@@ -12,20 +12,25 @@ namespace LegendOfZelda
             sprite.Position = new Point(X, Y);
             Hitbox = sprite.Box;
 
-            if (direction == "leftup")
+            if (direction.Equals("leftup"))
             {
-                this.VX = -8;
-                this.VY = initialVel;
+                this.VX = -2;
+                this.VY = -2;
             }
-            else if (direction == "leftdown")
+            else if (direction.Equals("leftdown"))
             {
-                this.VY = -initialVel;
-                this.VX = -8;
+                this.VY = 2;
+                this.VX = -2;
+            }
+            else if(direction.Equals("rightdown"))
+            {
+                this.VX = 2;
+                this.VY = 2;
             }
             else
             {
-                this.VX = -8;
-                this.VY = 0;
+                this.VX = 0;
+                this.VY = 2;
             }
         }
     }

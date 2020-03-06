@@ -12,7 +12,7 @@ namespace LegendOfZelda
         IList<Rectangle> Hitboxes { get; }
         IDictionary<string, IDoor> Doors { get; }
         IList<IBlock> Blocks { get; }
-        IList<IMoveableBlock> MoveableBlocks { get; }
-        IList<IEnemy> Enemies { get; }
+        ISet<IEnemy> Enemies { get; }
+        IList<IItem> Items { get; }
     }
 }

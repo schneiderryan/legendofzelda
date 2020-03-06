@@ -18,6 +18,26 @@ namespace LegendOfZelda
             get { return decoratedLink.Footbox; }
         }
 
+        public Rectangle LeftAttackBox
+        {
+            get { return decoratedLink.LeftAttackBox; }
+        }
+
+        public Rectangle RightAttackBox
+        {
+            get { return decoratedLink.RightAttackBox; }
+        }
+
+        public Rectangle DownAttackBox
+        {
+            get { return decoratedLink.DownAttackBox; }
+        }
+
+        public Rectangle UpAttackBox
+        {
+            get { return decoratedLink.UpAttackBox; }
+        }
+
         public ISprite Sprite
         {
             get { return decoratedLink.Sprite; }
@@ -65,6 +85,7 @@ namespace LegendOfZelda
             get { return decoratedLink.MaxHearts; }
             set { decoratedLink.MaxHearts = value; }
         }
+        
         public double CurrentHearts
         {
             get { return decoratedLink.CurrentHearts; }
@@ -75,6 +96,11 @@ namespace LegendOfZelda
         {
             get { return decoratedLink.NumberBombs; }
             set { decoratedLink.NumberBombs = value; }
+        }
+        public int NumberKeys
+        {
+            get { return decoratedLink.NumberKeys; }
+            set { decoratedLink.NumberKeys = value; }
         }
 
         public Team Team { get => decoratedLink.Team; set => decoratedLink.Team = value; }
@@ -179,5 +205,6 @@ namespace LegendOfZelda
         {
             return decoratedLink.IsAttacking();
         }
+
     }
 }

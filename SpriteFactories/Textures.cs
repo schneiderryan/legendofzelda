@@ -12,11 +12,13 @@ namespace LegendOfZelda
         private static Texture2D redLinkAttackingDown;
         private static Texture2D redLinkAttackingUp;
 
+        private static Texture2D misc;
         private static Texture2D effects;
         private static Texture2D items;
         private static Texture2D enemy;
         private static Texture2D boss;
         private static Texture2D npc;
+        private static Texture2D merchant;
 
         private static Texture2D blank;
 
@@ -24,14 +26,17 @@ namespace LegendOfZelda
         private static Texture2D dungeon;
         private static Texture2D tiles;
 
+
         public static void LoadAllTextures(ContentManager contentManager,
                 GraphicsDevice graphics)
         {
+            misc = contentManager.Load<Texture2D>("misc");
             items = contentManager.Load<Texture2D>("items_mod");
             effects = contentManager.Load<Texture2D>("weapons_mod");
             enemy = contentManager.Load<Texture2D>("loz_enemy_sheet");
             boss = contentManager.Load<Texture2D>("zelda-sprites-bosses");
             npc = contentManager.Load<Texture2D>("loz_anothertry_npc_sheet");
+            merchant = contentManager.Load<Texture2D>("ZeldaSpriteMerchant");
 
             link = contentManager.Load<Texture2D>("link_mod");
             linkAttackingDown = contentManager.Load<Texture2D>("downAttackingLink");
@@ -47,6 +52,10 @@ namespace LegendOfZelda
             blank.SetData(new Color[1] { Color.Red });
         }
 
+        public static Texture2D GetMiscSheet()
+        {
+            return misc;
+        }
         public static Texture2D GetRoomSheet()
         {
             return rooms;
@@ -115,6 +124,11 @@ namespace LegendOfZelda
         public static Texture2D GetNPCSheet()
         {
             return npc;
+        }
+
+        public static Texture2D GetMerchantSheet()
+        {
+            return merchant;
         }
     }
 }
