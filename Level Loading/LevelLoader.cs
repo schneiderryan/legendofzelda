@@ -38,6 +38,7 @@ namespace LegendOfZelda
             this.possibleNPCs = new List<string>()
             {
                 "OldMan",
+                "Merchant",
             };
 
             this.possibleItems = new List<string>()
@@ -208,10 +209,10 @@ namespace LegendOfZelda
                     enemy = new Dodongo();
                 }
                
-/*                else if (entry.Value.Equals("Fire"))
+                else if (entry.Value.Equals("Fire"))
                 {
                     enemy = new Fire(game);
-                } */
+                } 
                 else //trap
                 {
                     enemy = new Trap(game);
@@ -442,7 +443,14 @@ namespace LegendOfZelda
             {
                 if (entry.Value.Equals("OldMan"))
                 {
-                    INPC npc = new OldMan();
+                    INPC npc = new OldMan(game);
+                    npc.X = (int)entry.Key.X;
+                    npc.Y = (int)entry.Key.Y;
+                    npcs.Add(npc);
+                }
+                else
+                {
+                    INPC npc = new Merchant(game);
                     npc.X = (int)entry.Key.X;
                     npc.Y = (int)entry.Key.Y;
                     npcs.Add(npc);

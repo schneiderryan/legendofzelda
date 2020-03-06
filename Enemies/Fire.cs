@@ -7,7 +7,7 @@ namespace LegendOfZelda
 		private int timer;
 		private LegendOfZelda game;
 		private string dir;
-		public Fire(LegendOfZelda loz, int xPos, int yPos)
+		public Fire(LegendOfZelda loz)
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateFireSprite();
 			Hitbox = Sprite.Box;

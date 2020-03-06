@@ -18,6 +18,7 @@ namespace LegendOfZelda
         private static Texture2D enemy;
         private static Texture2D boss;
         private static Texture2D npc;
+        private static Texture2D merchant;
 
         private static Texture2D blank;
 
@@ -35,6 +36,7 @@ namespace LegendOfZelda
             enemy = contentManager.Load<Texture2D>("loz_enemy_sheet");
             boss = contentManager.Load<Texture2D>("zelda-sprites-bosses");
             npc = contentManager.Load<Texture2D>("loz_anothertry_npc_sheet");
+            merchant = contentManager.Load<Texture2D>("ZeldaSpriteMerchant");
 
             link = contentManager.Load<Texture2D>("link_mod");
             linkAttackingDown = contentManager.Load<Texture2D>("downAttackingLink");
@@ -122,6 +124,11 @@ namespace LegendOfZelda
         public static Texture2D GetNPCSheet()
         {
             return npc;
+        }
+
+        public static Texture2D GetMerchantSheet()
+        {
+            return merchant;
         }
     }
 }

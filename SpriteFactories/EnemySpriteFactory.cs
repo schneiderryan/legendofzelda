@@ -12,6 +12,7 @@ namespace LegendOfZelda
         private Texture2D npcSpriteSheet = Textures.GetNPCSheet();
         private Texture2D miscSpriteSheet = Textures.GetMiscSheet();
         private Texture2D spawnSpriteSheet = Textures.GetWeaponSheet();
+        private Texture2D merchantSpriteSheet = Textures.GetMerchantSheet();
 
 
         private EnemySpriteFactory() { }
@@ -144,6 +145,11 @@ namespace LegendOfZelda
         public ISprite CreateFireSprite()
         {
             return new AnimatedSprite(npcSpriteSheet, new Rectangle(101, 134, 15, 15), 2, true);
+        }
+
+        public ISprite CreateMerchantSprite()
+        {
+            return new AnimatedSprite(merchantSpriteSheet, new Rectangle(0, 0, 15, 15), 1, false);
         }
     }
 }
