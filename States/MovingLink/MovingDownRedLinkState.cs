@@ -51,7 +51,7 @@ namespace LegendOfZelda
         public void BeStill()
         {
             link.State = new StillDownRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownStillLinkSprite();
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownProjectileLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
@@ -63,6 +63,13 @@ namespace LegendOfZelda
                 link.Y -= 480;
             }
             link.Sprite.Position = new Point(link.X, link.Y);
+        }
+
+        public void Projectile()
+        {
+            link.State = new ProjectileDownRedLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownProjectileLinkSprite();
+            link.Sprite.Scale = 2.0f;
         }
     }
 }

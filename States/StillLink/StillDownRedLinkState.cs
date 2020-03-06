@@ -60,5 +60,11 @@ namespace LegendOfZelda
             link.Sprite.Position = new Point(link.X, link.Y);
         }
 
+        public void Projectile()
+        {
+            link.State = new ProjectileDownRedLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownProjectileLinkSprite();
+            link.Sprite.Scale = 2.0f;
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace LegendOfZelda
         void Attack();
         void BeStill();
         void Update();
+        void Projectile();
     }
 }
