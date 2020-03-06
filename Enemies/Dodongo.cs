@@ -15,7 +15,6 @@ namespace LegendOfZelda
 			Sprite.Position = new Point(X, Y);
 			State = new DownMovingDodongoState(this);
 			attackTimer = 100;
-			Name = "Dodongo";
 		}
 	}
 }

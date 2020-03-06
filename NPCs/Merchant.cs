@@ -3,18 +3,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-	class OldMan : CollideableObject, INPC
+	class Merchant : CollideableObject, INPC
 	{
 		private ISprite sprite;
 		private Fire leftFire;
 		private Fire rightFire;
 
-		public OldMan(LegendOfZelda loz)
+		public Merchant(LegendOfZelda loz)
 		{
-			sprite = EnemySpriteFactory.Instance.CreateOldManSprite();
+			sprite = EnemySpriteFactory.Instance.CreateMerchantSprite();
 			Hitbox = sprite.Box;
-			X = 240;
-			Y = 130;
+			X = 260;
+			Y = 150;
 			sprite.Position = new Point(X, Y);
 		}
 
