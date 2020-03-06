@@ -17,6 +17,5 @@ namespace LegendOfZelda
         void Draw(SpriteBatch spriteBatch, Color color);
         void Die();
         void Spawn();
-        void KnockBack();
     }
 }

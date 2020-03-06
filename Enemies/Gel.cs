@@ -15,7 +15,7 @@ namespace LegendOfZelda
 			State = new EnemyState(this);
 			currentHearts = 1;
 			attackTimer = 100;
-
+			Name = "Gel";
 		}
 	}
 }

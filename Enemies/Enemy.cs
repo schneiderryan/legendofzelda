@@ -21,6 +21,7 @@ namespace LegendOfZelda
         public int VX { get; set; }
         public int VY { get; set; }
         public Team Team { get; set; } = Team.Enemy;
+        public string Name { get; set; }
 
         public Point Center => Sprite.Box.Center;
 
@@ -128,7 +129,7 @@ namespace LegendOfZelda
             Sprite.Update();
         }
 
-        public void TakeDamage()
+        public virtual void TakeDamage()
         {
             isBeingAttacked = true;
             currentHearts--;
@@ -144,11 +145,6 @@ namespace LegendOfZelda
         {
             isSpawning = true;
             this.Sprite = EnemySpriteFactory.Instance.CreateNewEnemy();
-        }
-
-        public void KnockBack()
-        {
-
         }
     }
 }

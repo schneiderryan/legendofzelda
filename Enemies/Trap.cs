@@ -6,22 +6,21 @@ namespace LegendOfZelda
 	class Trap : Enemy
 	{
 		private int timer;
-		private int starttimer;
+
 		private LegendOfZelda game;
 		private int startY;
 		private int startX;
 		private bool attack;
 		private bool retreat;
 		private string dir;
+		private int roommidheight;
+		private int roommidwidth;
 
 		public Trap(LegendOfZelda loz)
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateMovingTrapSprite();
 			Hitbox = Sprite.Box;
-			//X = 400;
-			//Y = 200;
 			Sprite.Position = new Point(X, Y);
-			//TrapState
 			State = new EnemyState(this);
 			this.VX = 0;
 			timer = 0;
@@ -29,33 +28,35 @@ namespace LegendOfZelda
 			startY = Y;
 			game = loz;
 			BeStill();
-			currentHearts = 1000;
+			this.Name = "Trap";
+			currentHearts = 1;
+			roommidheight = 156;
+			roommidwidth = 240;
 		}
-
 		public void ChaseRight()
 		{
 			X += 3;
 		}
-
 		public void ChaseUp()
 		{
 			Y -= 3;
 		}
-
 		public void ChaseDown()
 		{
 			Y += 3;
 		}
-
 		public void ChaseLeft()
 		{
 			X -= 3;
 		}
-
 		public void BeStill()
 		{
 			VY = 0;
 			VX = 0;
+		}
+		public override void TakeDamage()
+		{
+			//
 		}
 
 		public override void Update()
@@ -63,7 +64,6 @@ namespace LegendOfZelda
 			if(timer==0)
 			{
 				startX = X;
-				System.Diagnostics.Debug.WriteLine("X is set to {0}", X);
 				startY = Y;
 			}
 			timer++;
@@ -71,7 +71,7 @@ namespace LegendOfZelda
 			{
 				if(dir.Equals("up"))
 				{
-					if (Y > 163 && !retreat)
+					if (Y > roommidheight+6 && !retreat)
 					{
 						ChaseUp();
 					}
@@ -83,7 +83,7 @@ namespace LegendOfZelda
 				}
 				else if(dir.Equals("down"))
 				{
-					if (Y < 150 && !retreat)
+					if (Y < roommidheight-6 && !retreat)
 					{
 						ChaseDown();
 					}
@@ -95,7 +95,7 @@ namespace LegendOfZelda
 				}
 				else if (dir.Equals("right"))
 				{
-					if (X < 230 && !retreat)
+					if (X < roommidwidth-10 && !retreat)
 					{
 						ChaseRight();
 					}
@@ -107,7 +107,7 @@ namespace LegendOfZelda
 				}
 				else //must be going left
 				{
-					if (X > 250 && !retreat)
+					if (X > roommidwidth+10 && !retreat)
 					{
 						ChaseLeft();
 					}
@@ -140,7 +140,6 @@ namespace LegendOfZelda
 				{
 					retreat = false;
 					BeStill();
-					System.Diagnostics.Debug.WriteLine("Got one to retreat.");
 				}
 			}
 			int linkXPos = game.link.X;
@@ -172,10 +171,7 @@ namespace LegendOfZelda
 					}
 				}
 			}
-			
-			
 			base.Update();
 		}
-
 	}
 }
