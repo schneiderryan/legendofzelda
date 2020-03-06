@@ -26,9 +26,6 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.Down, cmd);
             keyBinds.Add(Keys.S, cmd);
 
-            cmd = new PlayerDamagedCommand(player);
-            keyBinds.Add(Keys.E, cmd);
-
             cmd = new PlayerAttackCommand(player);
             keyBinds.Add(Keys.Z, cmd);
             keyBinds.Add(Keys.N, cmd);
