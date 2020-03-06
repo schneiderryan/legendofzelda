@@ -7,9 +7,9 @@ namespace LegendOfZelda
     {
         private readonly IMoveableBlock block;
 
-        public MoveableBlockVertical()
+        public MoveableBlockVertical(IRoom room)
         {
-            block = new MoveableBlock();
+            block = new MoveableBlock(room);
         }
 
         public Rectangle Hitbox => block.Hitbox;
