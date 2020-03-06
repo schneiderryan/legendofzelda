@@ -23,7 +23,6 @@ namespace LegendOfZelda
 			Breathed = false;
 			currentHearts = 4;
 			attackTimer = 100;
-			Name = "Aqamentus";
 		}
 
 	}

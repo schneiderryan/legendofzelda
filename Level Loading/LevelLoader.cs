@@ -32,6 +32,7 @@ namespace LegendOfZelda
                 "Snake",
                 "Stalfo",
                 "Fire",
+                "Zol",
                 "Trap",
             };
 
@@ -208,11 +209,14 @@ namespace LegendOfZelda
                 {
                     enemy = new Dodongo();
                 }
-               
                 else if (entry.Value.Equals("Fire"))
                 {
                     enemy = new Fire(game);
-                } 
+                }
+                else if (entry.Value.Equals("Zol"))
+                {
+                    enemy = new Zol();
+                }
                 else //trap
                 {
                     enemy = new Trap(game);

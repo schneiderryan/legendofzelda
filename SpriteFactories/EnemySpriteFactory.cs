@@ -60,7 +60,11 @@ namespace LegendOfZelda
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(400, 180, 14, 15), 2, false);
         }
 
-        
+        public ISprite CreateMovingZolSprite()
+        {
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(381, 180, 15, 15), 2, false);
+        }
+
         public ISprite CreateMovingTrapSprite()
         {
             return new Sprite(enemySpriteSheet, new Rectangle(270, 330, 16, 16));
