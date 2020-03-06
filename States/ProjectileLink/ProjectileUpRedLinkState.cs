@@ -1,16 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LegendOfZelda
 {
-    class StillUpRedLinkState : ILinkState
+    internal class ProjectileUpRedLinkState : ILinkState
     {
         private RedLink link;
 
-        public StillUpRedLinkState(RedLink link)
+        public ProjectileUpRedLinkState(RedLink link)
         {
             this.link = link;
             this.link.Direction = "up";
@@ -19,35 +18,35 @@ namespace LegendOfZelda
         public void MoveUp()
         {
             link.State = new MovingUpRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
+            link.Sprite = PlayerSpriteFactory.Instance.CreateUpWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void MoveDown()
         {
             link.State = new MovingDownRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
+            link.Sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void MoveRight()
         {
             link.State = new MovingRightRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void MoveLeft()
         {
             link.State = new MovingLeftRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
+            link.Sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
         public void Attack()
         {
-            link.State = new AttackingUpRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpAttackingLinkSprite();
+            link.State = new AttackingDownRedLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateDownAttackingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
@@ -63,10 +62,7 @@ namespace LegendOfZelda
 
         public void Projectile()
         {
-            link.State = new ProjectileUpRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpProjectileLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
 
+        }
     }
 }

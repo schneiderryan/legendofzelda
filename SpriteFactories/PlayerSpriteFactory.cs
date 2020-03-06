@@ -59,6 +59,8 @@ namespace LegendOfZelda
             return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(84, 60, 28, 15), 2, false);
         }
 
+        
+
         public ISprite CreateUpAttackingLinkSprite()
         {
             return new AnimateOnceSprite(linkAttackingUp, new Rectangle(0, 0, 20, linkAttackingUp.Height), 2, true);
@@ -87,6 +89,27 @@ namespace LegendOfZelda
         public ISprite CreateDownStillLinkSprite()
         {
             return new Sprite(linkSpriteSheet, new Rectangle(0, 0, 15, 16));
+        }
+
+        public ISprite CreateLeftProjectileLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(30, 60, 14, 14));
+        }
+
+
+        public ISprite CreateDownProjectileLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(0, 60, 15, 14));
+        }
+
+        public ISprite CreateUpProjectileLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(60, 60, 15, 15));
+        }
+
+        public ISprite CreateRightProjectileLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(90, 60, 14, 14));
         }
 
         //Red Link Sprites
@@ -149,6 +172,26 @@ namespace LegendOfZelda
         public ISprite CreateRedDownStillLinkSprite()
         {
             return new Sprite(linkSpriteSheet, new Rectangle(240, 0, 15, 17));
+        }
+
+        public ISprite CreateRedLeftProjectileLinkSprite()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISprite CreateRedRightProjectileLinkSprite()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISprite CreateRedUpProjectileLinkSprite()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISprite CreateRedDownProjectileLinkSprite()
+        {
+            throw new NotImplementedException();
         }
     }
 }
