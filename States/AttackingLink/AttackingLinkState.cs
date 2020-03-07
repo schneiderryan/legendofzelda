@@ -11,6 +11,9 @@ namespace LegendOfZelda
         public void MoveLeft() { }
         public abstract void Attack();
         public void BeStill() { }
+        public void Projectile() { }
         public abstract void Update();
+
+        
     }
 }

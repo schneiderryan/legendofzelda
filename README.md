@@ -6,25 +6,29 @@
 - A and left arrow: move player left
 - S and down arrow: move player down
 - P and right up: move player right
-- U: swap between items
-- I: swap between items in other direction
-- O: swap between enemies
-- P: swap between enemies in other direction
 - Q: quit game
-- R: reset game to initial state
-- E: damage link
 - 1: throw sword
 - 2: throw arrow
 - 3: throw boomerang
+- 4: throw bomb
+- Left Click: Iterate forward through rooms
+- Right Click: Iterate backwards through rooms
 
 # Functionality
-- Right now the player can be moved around, attack, and throw projectiles.  Enemies move around and those that shoot projectiles
-  do so.  Items can be swapped between.  There is no collision detection.
+- Room switching using mouse
+- Player moves around and fires projectiles
+- Player picks up items
+- Player collides with enemies and takes damage from enemies
+- Enemies take damage when link attacks and fires projectiles
+- Enemies die and despawn
+- Enemies and player collide with walls and blocks
+- Player can move moveable blocks
+- Player can walk through doors (doesn't change room though)
+- Rooms loaded using csv files
+- Spawning/despawing animations for enemies and projectiles implemented
 
 # Known Bugs
 - When trying to move link in two directions at once, he stops animating
-- Goriya only throws boomerangs upwards for now
-- when link attacks up or left his sprite jumps and attacks continuality
 - when link attacks with another weapon there isn't different sprites 
 
 
