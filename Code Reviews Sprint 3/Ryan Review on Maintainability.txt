@@ -1,0 +1,9 @@
+﻿Author: Ryan Schneider
+Date: 3/6/20
+Sprint: 3
+File: Door.cs
+File Author: Adam OReilly
+
+The class is very short, but it is still good. It provides alot of reuseablitity to the door classes as each other
+door class inherits the others. Could possibly make 4 different sub door classes that are then inherited so that way
+position can also be set. so like have bottomdoor : door
