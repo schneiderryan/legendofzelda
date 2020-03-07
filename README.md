@@ -29,7 +29,8 @@
 
 # Known Bugs
 - When trying to move link in two directions at once, he stops animating
-- when link attacks with another weapon there isn't different sprites 
+- when link attacks with another weapon there isn't different sprites
+- Sometimes enemies are drawn as damaged until they get hit again.
 
 
 # Code Analyzer Suppressions (80 warnings found)
