@@ -1,0 +1,11 @@
+﻿Author: Isaac Smith
+Date: 3/23/20
+Sprint: 3
+File: ProjectileDownLinkState.cs
+File Author: Emily Smith
+Time to complete this review: 5min
+
+Things that make the file readable:
+The class is very short. The methods in the class are very short and only do one thing.
+
+I didn't see anything that stood out as unreadable.

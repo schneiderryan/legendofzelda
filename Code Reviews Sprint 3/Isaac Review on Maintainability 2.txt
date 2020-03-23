@@ -1,0 +1,14 @@
+﻿Author: Isaac Smith
+Date: 3/23/20
+Sprint: 3
+File: ProjectileDownLinkState.cs
+File Author: Emily Smith
+
+The class is very short and simple, which is good for maintainability.
+All the state changing methods have a small degree of code duplication
+with both eachother and the other state classes. If one thing about
+state changing needs to be changed, it would have to be changed in multiple
+methods in multiple files. 
+If the state changing logic, like setting the sprite, was in the constructor
+for each of the state classes instead, potential changes would be more manageable.
+
