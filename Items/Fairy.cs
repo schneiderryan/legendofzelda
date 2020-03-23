@@ -7,7 +7,7 @@ namespace LegendOfZelda
     class Fairy : Item, IMovingItem
     {
         private int ticks = 0;
-        private Random rng;
+        private readonly Random rng;
 
         private double vx = 0;
         private double vy = 0;

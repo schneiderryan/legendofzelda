@@ -8,19 +8,19 @@ namespace LegendOfZelda
 {
     class LevelParser
     {
-        private String levelName;
         public const int TILE_SIZE = 32;
         private const int X_OFFSET = TILE_SIZE; //offset caused by level background
         private const int Y_OFFSET = TILE_SIZE; //offset caused by level background
         private const int LEVEL_WIDTH = 12; //grid spaces across
         private const int BOX_SIZE = 16; //size of one of the dungeon grid spaces
+        private String levelName;
 
         public LevelParser(String levelName)
         {
             this.levelName = levelName;
         }
 
-        public Dictionary<Vector2, String> parse(IList<string> desiredStrings)
+        public Dictionary<Vector2, String> Parse(IList<string> desiredStrings)
         {
             Dictionary<Vector2, String> dictionary = new Dictionary<Vector2, String>();
             using(StreamReader level = new StreamReader(levelName))
@@ -33,7 +33,7 @@ namespace LegendOfZelda
                     line = level.ReadLine();
                     for(int x = 0; x < LEVEL_WIDTH; x++)
                     {
-                        String box = nextBox(ref line);
+                        String box = NextBox(ref line);
                         if (desiredStrings.Contains(box))
                         {
                             int xPos = 2 * (X_OFFSET + (x * BOX_SIZE));
@@ -48,7 +48,7 @@ namespace LegendOfZelda
             return dictionary;
         }
 
-        public int parseRoomNumber()
+        public int ParseRoomNumber()
         {
             int room;
             using(StreamReader level = new StreamReader(levelName))
@@ -60,7 +60,7 @@ namespace LegendOfZelda
             return room;
         }
 
-        public Dictionary<String, String> parseDoors(IList<String> desiredDoors)
+        public Dictionary<String, String> ParseDoors(IList<String> desiredDoors)
         {
             Dictionary<String, String> dictionary = new Dictionary<String, String>();
             using(StreamReader level = new StreamReader(levelName))
@@ -70,7 +70,7 @@ namespace LegendOfZelda
                 String[] array = { "left", "right", "up", "down" };
                 for (int x = 0; x < 4; x++)
                 {
-                    String box = nextBox(ref line);
+                    String box = NextBox(ref line);
                     if (desiredDoors.Contains(box))
                     {
                         dictionary.Add(array[x], box);
@@ -81,7 +81,7 @@ namespace LegendOfZelda
             return dictionary;
         }
 
-        private static String nextBox(ref String line)
+        private static String NextBox(ref String line)
         {
             int index = line.IndexOf(",");
             if(index == -1)

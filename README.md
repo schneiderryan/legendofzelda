@@ -1,11 +1,12 @@
 # legendofzelda
 - built with Monogame
+- The first room is total chaos, and exists solely for the ease of testing
 
 # Controls
 - W and up arrow: move player up
 - A and left arrow: move player left
 - S and down arrow: move player down
-- P and right up: move player right
+- D and right up: move player right
 - Q: quit game
 - 1: throw sword
 - 2: throw arrow
@@ -29,11 +30,14 @@
 
 # Known Bugs
 - When trying to move link in two directions at once, he stops animating
-- when link attacks with another weapon there isn't different sprites
-- Sometimes enemies are drawn as damaged until they get hit again.
+- When link attacks with another weapon there aren't different sprites
+- Some enemy/npc functionality isn't fully implemented yet (Wallmasters, old man, merchant)
+- Some items are not fully implemented yet (rings, candle, clock, compass)
+- When the attack key is held, link attacks repeatedly
+- Bomb does not work correctly
+- Aqumentus' fireballs are not directed at link
 
-
-# Code Analyzer Suppressions (80 warnings found)
+# Code Analyzer Suppressions (20)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
             If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 
@@ -46,6 +50,12 @@
 - CA1307    Specify StringComparison
 
             Supressed becasue the scope of the project will never extend to other countries.
+
+- CA1305    Specify IFormatProvider for int.Parse
+
+            Supressed becasue our expected users are english-speaking, so their locale settings should
+            all be the same or very similar.
+
 We fixed the remaining warnings.
 
 # Authors

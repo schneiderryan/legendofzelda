@@ -192,7 +192,7 @@ namespace LegendOfZelda
             this.attackBoxUp = new Rectangle(x + Sprite.Box.Width/4, y - 25, Sprite.Box.Width/2, 25);
             this.attackBoxDown = new Rectangle(x + Sprite.Box.Width / 4, y + Sprite.Box.Height, Sprite.Box.Width / 2, 25);
             this.itemTimer = 0;
-            this.NumRupees = 0;
+            this.NumRupees = 999; // for testing, remove l8r
             this.MaxHearts = 3.0;
             this.CurrentHearts = 3.0;
             this.origin = new Vector2(0, 0);

@@ -5,12 +5,7 @@ namespace LegendOfZelda
 {
     class ItemWallCollision
     {
-        public ItemWallCollision()
-        {
-            // nothing needed
-        }
-
-        public void Handle(IMovingItem item, Rectangle collision)
+        public static void Handle(IMovingItem item, Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {
