@@ -116,7 +116,7 @@ namespace LegendOfZelda
             foreach (IEnemy enemy in room.Enemies)
             {
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
-                if (!collision.IsEmpty)
+                if (!collision.IsEmpty && !(enemy is Trap))
                 {
                     playerEnemyCollision.Handle(player, enemy, collision);
                 }
