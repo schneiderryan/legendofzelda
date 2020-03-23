@@ -46,6 +46,7 @@ namespace LegendOfZelda
                 if (enemy.isDead)
                 {
                     enemiesToDespawn.Add(enemy);
+                    
                 }
             }
         }
