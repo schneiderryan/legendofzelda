@@ -10,16 +10,9 @@ namespace LegendOfZelda
     {
         public LegendOfZelda game;
 
-        private String d;
-        private String c;
         private int x;
         private int y;
         private int itemTimer;
-        private int numberOfRupees;
-        private double numMaxHearts;
-        private double numCurrHearts;
-        private int numberOfBombs;
-        private int numberOfKeys;
         private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
@@ -69,46 +62,18 @@ namespace LegendOfZelda
             }
         }
 
-        public String Direction
-        {
-            get { return d; }
-            set { d = value; }
-        }
+        public String Direction { get; set; }
 
-        public String Color
-        {
-            get { return c; }
-            set { c = value; }
-        }
+        public String Color { get; set; }
 
-        public int NumRupees
-        {
-            get { return numberOfRupees; }
-            set { numberOfRupees = value; }
-        }
+        public int NumRupees { get; set; }
 
-        public double MaxHearts
-        {
-            get { return numMaxHearts; }
-            set { numMaxHearts = value; }
-        }
-        public double CurrentHearts
-        {
-            get { return numCurrHearts; }
-            set { numCurrHearts = value; }
-        }
+        public double MaxHearts { get; set; }
+        public double CurrentHearts { get; set; }
 
-        public int NumberBombs
-        {
-            get { return numberOfBombs; }
-            set { numberOfBombs = value; }
-        }
+        public int NumberBombs { get; set; }
 
-        public int NumberKeys
-        {
-            get { return numberOfKeys; }
-            set { numberOfKeys = value; }
-        }
+        public int NumberKeys { get; set; }
 
         public Team Team { get; set; } = Team.Link;
 
@@ -216,7 +181,7 @@ namespace LegendOfZelda
         protected void Initialize(LegendOfZelda game)
         {
             this.game = game;
-            this.d = "up";
+            this.Direction = "up";
             this.Sprite.Scale = 2.0f;
             this.footbox = new Rectangle(0, 0, Sprite.Box.Width, Sprite.Box.Height / 2);
             this.hitbox = Sprite.Box;
