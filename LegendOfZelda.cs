@@ -17,12 +17,12 @@ namespace LegendOfZelda
         public IList<IDespawnEffect> effects;
         public GraphicsDeviceManager graphics;
 
-        private IController mouse;
-        private IController keyboard;
-        private IController playerKeyboard;
+        public IController mouse;
+        public IController keyboard;
+        public IController playerKeyboard;
 
-        private CollisionHandler collisionHandler;
-        private SpriteBatch spriteBatch;
+        public CollisionHandler collisionHandler;
+        public SpriteBatch spriteBatch;
 
         public LegendOfZelda()
         {
@@ -37,6 +37,8 @@ namespace LegendOfZelda
         {
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
+
+            state = new StartMenuState(this);
 
             this.link = new GreenLink(this);
             playerKeyboard = GameSetup.CreatePlayerKeysController(link);
@@ -57,25 +59,7 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
-            mouse.Update();
-            keyboard.Update();
-            playerKeyboard.Update();
-
-            //state.Update();
-
-            rooms[roomIndex].Update();
-            link.Update();
-
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Update();
-            }
-            foreach (IDespawnEffect effect in effects)
-            {
-                effect.Update();
-            }
-
-            collisionHandler.Handle(rooms[roomIndex], projectiles, link);
+            state.Update();
 
             base.Update(gameTime);
         }
@@ -84,27 +68,8 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            
-            rooms[roomIndex].Draw(spriteBatch);
-            link.Draw(spriteBatch, Color.White);
-            rooms[roomIndex].DrawOverlay(spriteBatch);
-            
-            Debug.DrawHitbox(spriteBatch, link.Footbox);
-            Debug.DrawHitbox(spriteBatch, link.Hitbox);
-            Debug.DrawHitbox(spriteBatch, link.LeftAttackBox);
-            Debug.DrawHitbox(spriteBatch, link.RightAttackBox);
-            Debug.DrawHitbox(spriteBatch, link.UpAttackBox);
-            Debug.DrawHitbox(spriteBatch, link.DownAttackBox);
 
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Draw(spriteBatch);
-                Debug.DrawHitbox(spriteBatch, projectile.Hitbox);
-            }
-            foreach (IDespawnEffect effect in effects)
-            {
-                effect.Draw(spriteBatch);
-            }
+            state.Draw();
 
             spriteBatch.End();
 

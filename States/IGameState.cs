@@ -14,5 +14,6 @@ namespace LegendOfZelda
         void LoseGame();
         void SelectItem();
         void Update();
+        void Draw();
     }
 }

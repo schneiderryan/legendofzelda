@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LegendOfZelda
 {
-    class ChangeRoomState : IGameState
+    class StartMenuState : IGameState
     {
         private LegendOfZelda game;
-        public ChangeRoomState(LegendOfZelda game)
+        public StartMenuState(LegendOfZelda game)
         {
             this.game = game;
         }
@@ -19,12 +20,12 @@ namespace LegendOfZelda
 
         public void PauseGame()
         {
-            game.state = new PauseState(game);
+            //Nothing to do
         }
 
         public void ResumeGame()
         {
-            game.state = new PlayState(game);
+            //Nothing to do
         }
 
         public void ChangeRoom()
@@ -49,12 +50,15 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            //Figure out later
+            if (Mouse.GetState().LeftButton.HasFlag(ButtonState.Pressed))
+            {
+                game.state = new PlayState(game);
+            }
         }
 
         public void Draw()
         {
-
+            
         }
     }
 }
