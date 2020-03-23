@@ -5,11 +5,11 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class StillRightLinkState : ILinkState
+    internal class ProjectileRightLinkState : ILinkState
     {
         private GreenLink link;
 
-        public StillRightLinkState(GreenLink link)
+        public ProjectileRightLinkState(GreenLink link)
         {
             this.link = link;
             this.link.Direction = "right";
@@ -45,8 +45,8 @@ namespace LegendOfZelda
 
         public void Attack()
         {
-            link.State = new AttackingRightLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRightAttackingLinkSprite();
+            link.State = new AttackingDownLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateDownAttackingLinkSprite();
             link.Sprite.Scale = 2.0f;
         }
 
@@ -59,11 +59,10 @@ namespace LegendOfZelda
         {
             link.Sprite.Position = new Point(link.X, link.Y);
         }
+
         public void Projectile()
         {
-            link.State = new ProjectileRightLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRightProjectileLinkSprite();
-            link.Sprite.Scale = 2.0f;
+
         }
     }
 }

@@ -302,7 +302,7 @@ namespace LegendOfZelda
             return items;
         }
 
-        public IList<IBlock> LoadBlocks()
+        public IList<IBlock> LoadBlocks(IRoom room)
         {
             IList<IBlock> blocks = new List<IBlock>();
             Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
@@ -315,11 +315,11 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("MoveableBlockVertical"))
                 {
-                    block = new MoveableBlockVertical();
+                    block = new MoveableBlockVertical(room);
                 }
                 else if (entry.Value.Equals("MoveableBlockLeft"))
                 {
-                    block = new MoveableBlockLeft();
+                    block = new MoveableBlockLeft(room);
                 }
 
                 if (block != null)

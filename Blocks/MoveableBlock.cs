@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LegendOfZelda
 {
@@ -11,10 +13,12 @@ namespace LegendOfZelda
         private BlockState state = BlockState.Ready;
         protected int vy = 0;
         protected int vx = 0;
-        private int moveCounter = 0;
+        protected int moveCounter = 0;
+        protected IRoom room;
 
-        public MoveableBlock()
+        public MoveableBlock(IRoom room)
         {
+            this.room = room;
             sprite = RoomSpriteFactory.Instance.CreateBlock();
         }
 
@@ -48,6 +52,8 @@ namespace LegendOfZelda
                 vx = -1;
                 moveCounter += 2;
             }
+            
+            
         }
 
         public void MoveOnceRight()
@@ -61,6 +67,17 @@ namespace LegendOfZelda
 
         public override void Update()
         {
+            if (state == BlockState.Moved && X % LevelParser.TILE_SIZE == 0 && Y % LevelParser.TILE_SIZE == 0 )
+            {
+                foreach (KeyValuePair<String, IDoor> door in room.Doors.ToList())
+                {
+                    if (door.Key == "left" && door.Value is LeftOther)
+                    {
+                        room.Doors.Remove("left");
+                        room.Doors.Add("left", new LeftOpen());
+                    }
+                }
+            }
             // check if the block has been pushed on for a bit,
             // or if the block is currently moving
             if (moveCounter > 20 || X % LevelParser.TILE_SIZE != 0

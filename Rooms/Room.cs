@@ -73,7 +73,7 @@ namespace LegendOfZelda
             this.background.Position = new Point(0, 0);
 
             this.Enemies = levelLoader.LoadEnemies();
-            this.Blocks = levelLoader.LoadBlocks();
+            this.Blocks = levelLoader.LoadBlocks(this);
             this.Items = levelLoader.LoadItems();
             this.npcs = levelLoader.LoadNPCs();
             this.Doors = levelLoader.LoadDoors();
@@ -110,6 +110,7 @@ namespace LegendOfZelda
             foreach (IBlock b in Blocks)
             {
                 b.Draw(sb);
+                
                 Debug.DrawHitbox(sb, b.Hitbox);
             }
 

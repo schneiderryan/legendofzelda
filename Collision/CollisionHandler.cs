@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -88,7 +89,8 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(block.Hitbox, player.Footbox);
                 if (!collision.IsEmpty)
                 {
-                    playerBlockCollision.Handle(player, block, collision);
+                    playerBlockCollision.Handle(room, player, block, collision);
+                    
                 }
             }
 
@@ -98,12 +100,14 @@ namespace LegendOfZelda
                 if (!collision.IsEmpty)
                 {
                     if(!(door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)){
+                        
+                        playerDoorCollision.Handle(player, door.Value, collision);
                         if (door.Value is TopKey)
                         {
+                            
                             room.Doors.Remove(door);
                             room.Doors.Add("top", new TopOpen());
                         }
-                        playerDoorCollision.Handle(player, door.Value, collision);
                     }
                     
                 }

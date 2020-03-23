@@ -110,7 +110,7 @@ namespace LegendOfZelda
                 }
 
             }
-            if (currentHearts == 0 && !isDying)
+            if (currentHearts <= 0 && !isDying)
             {
                 this.Die();
             }

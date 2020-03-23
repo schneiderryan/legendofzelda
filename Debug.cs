@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace LegendOfZelda
 {
@@ -19,6 +20,11 @@ namespace LegendOfZelda
                 line,
                 new Rectangle(1, 1, 1, 1),
                 Color.White);
+        }
+
+        internal static void WriteLine()
+        {
+            throw new NotImplementedException();
         }
     }
 }

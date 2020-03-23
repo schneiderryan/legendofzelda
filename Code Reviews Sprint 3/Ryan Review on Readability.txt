@@ -1,0 +1,8 @@
+﻿Author: Ryan Schneider
+Date: 3/6/20
+Sprint: 3
+File: Door.cs (and following subdoors)
+File Author: Adam OReilly
+
+The class is extremely readable, with only the bare minimum content in the methods. Alot of the code for the doors
+seem very similar but it is still very self explainitory.

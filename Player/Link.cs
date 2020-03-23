@@ -187,7 +187,7 @@ namespace LegendOfZelda
                 itemTimer = 75;
                 Projectile.CenterProjectile(Sprite.Box, Direction, projectile);
                 game.projectiles.Add(projectile);
-
+                State.Projectile();
             }
         }
 
