@@ -7,6 +7,8 @@ namespace LegendOfZelda
 {
     class LegendOfZelda : Game
     {
+        public IGameState state;
+
         public IList<IRoom> rooms;
         public int roomIndex = 0;
 
@@ -59,6 +61,8 @@ namespace LegendOfZelda
             keyboard.Update();
             playerKeyboard.Update();
 
+            //state.Update();
+
             rooms[roomIndex].Update();
             link.Update();
 
@@ -105,6 +109,41 @@ namespace LegendOfZelda
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void PlayGame()
+        {
+            state.PlayGame();
+        }
+
+        public void PauseGame()
+        {
+            state.PauseGame();
+        }
+
+        public void ResumeGame()
+        {
+            state.ResumeGame();
+        }
+
+        public void ChangeRoom()
+        {
+            state.ChangeRoom();
+        }
+
+        public void WinGame()
+        {
+            state.WinGame();
+        }
+
+        public void LoseGame()
+        {
+            state.LoseGame();
+        }
+
+        public void SelectItem()
+        {
+            state.SelectItem();
         }
 
     }

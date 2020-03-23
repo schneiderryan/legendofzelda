@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LegendOfZelda
 {
@@ -65,11 +67,16 @@ namespace LegendOfZelda
 
         public override void Update()
         {
-            if (state == BlockState.Moved && X % LevelParser.TILE_SIZE == 0 && Y % LevelParser.TILE_SIZE == 0)
+            if (state == BlockState.Moved && X % LevelParser.TILE_SIZE == 0 && Y % LevelParser.TILE_SIZE == 0 )
             {
-
-                room.Doors.Remove("left");
-                room.Doors.Add("left", new LeftOpen());
+                foreach (KeyValuePair<String, IDoor> door in room.Doors.ToList())
+                {
+                    if (door.Key == "left" && door.Value is LeftOther)
+                    {
+                        room.Doors.Remove("left");
+                        room.Doors.Add("left", new LeftOpen());
+                    }
+                }
             }
             // check if the block has been pushed on for a bit,
             // or if the block is currently moving
