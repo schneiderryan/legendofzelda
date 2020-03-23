@@ -1,0 +1,13 @@
+﻿Author of the code review: Emily Smith
+Date of the code review: 3/23/2020
+Sprint number: 3
+MoveableBlock.cs
+File Author: Isaac Smith
+10 minutes
+
+I think Isaac's code is very readable. The variable and methods names helped me follow along with what their purpose is for the most 
+part, having the moveCounter += 2 when moved once confused me at first then I looked at the update method. The constructor makes sense 
+as well, it is transferring the IRoom and creating a block sprite. The most complex method is Update with checks if should open a door 
+because of a moved block, change the blockstate to moved when needed and updates the sprite's position. I was confused with how checking 
+these if statements worked because they relay on the level parser's tile size which I didn't understand well. Overall, I would say this 
+code is readable.
