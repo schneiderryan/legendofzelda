@@ -17,18 +17,15 @@ namespace LegendOfZelda
                 if (item.Hitbox.Y == collision.Y)
                 {
                     item.Y += collision.Height;
-                    System.Diagnostics.Debug.WriteLine("aaaaaaaa");
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("hfgdfgh");
                     item.Y -= collision.Height;
                 }
                 item.FlipVY();
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("hhhhhh");
                 if (item.Hitbox.X == collision.X)
                 {
                     item.X += collision.Width;

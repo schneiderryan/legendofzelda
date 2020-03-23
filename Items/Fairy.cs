@@ -83,7 +83,6 @@ namespace LegendOfZelda
             {
                 vy = -vy;
             }
-            System.Diagnostics.Debug.WriteLine("vy:" + vy + "vx:" + vx);
         }
     }
 }
