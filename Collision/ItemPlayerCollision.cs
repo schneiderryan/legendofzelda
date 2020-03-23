@@ -5,11 +5,11 @@ using System.Text;
 
 namespace LegendOfZelda
 {
-    class ItemCollision
+    class ItemPlayerCollision
     {
         private List<int> itemsToDespawnPositions;
 
-        public ItemCollision(List<int> itemsToDespawnPositions)
+        public ItemPlayerCollision(List<int> itemsToDespawnPositions)
         {
             this.itemsToDespawnPositions = itemsToDespawnPositions;
         }

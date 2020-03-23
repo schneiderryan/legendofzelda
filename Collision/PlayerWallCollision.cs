@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class PlayerWallCollision
     {
-        public void Handle(IPlayer player, in Rectangle collision)
+        public static void Handle(IPlayer player, in Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {
