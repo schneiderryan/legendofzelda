@@ -68,6 +68,7 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            GraphicsDevice.Clear(Color.White);
 
             state.Draw();
 
