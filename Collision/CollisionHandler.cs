@@ -16,7 +16,8 @@ namespace LegendOfZelda
         private PlayerBlockCollision playerBlockCollision;
         private PlayerEnemyCollision playerEnemyCollision;
         private PlayerProjectileCollision playerProjectileCollision;
-        private ItemCollision itemCollision;
+        private ItemPlayerCollision itemPlayerCollision;
+        private ItemWallCollision itemWallCollision;
 
         private EnemyWallBlockDoorCollision enemyWallBlockDoorCollision;
         private EnemyProjectileCollision enemyProjectileCollision;
@@ -39,7 +40,8 @@ namespace LegendOfZelda
             playerDoorCollision = new PlayerDoorCollision();
             playerWallCollision = new PlayerWallCollision();
             playerBlockCollision = new PlayerBlockCollision();
-            itemCollision = new ItemCollision(itemsToDespawnPositions);
+            itemPlayerCollision = new ItemPlayerCollision(itemsToDespawnPositions);
+            itemWallCollision = new ItemWallCollision();
             playerEnemyCollision = new PlayerEnemyCollision(enemiesToDespawn, this);
             playerProjectileCollision = new PlayerProjectileCollision(projectilesToDespawn, this);
 
@@ -139,23 +141,48 @@ namespace LegendOfZelda
                         collision = Rectangle.Intersect(item.Hitbox, projectile.Hitbox);
                         if (!collision.IsEmpty)
                         {
-                            itemCollision.Handle(player, item, currentPosition);
+                            itemPlayerCollision.Handle(player, item, currentPosition);
                         }
                         currentPosition++;
                     }
                 }
-                
-
             }
 
 
-            currentPosition= 0;
+            currentPosition = 0;
             foreach (IItem item in room.Items)
             {
                 Rectangle collision = Rectangle.Intersect(item.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
                 {
-                    itemCollision.Handle(player, item, currentPosition);
+                    itemPlayerCollision.Handle(player, item, currentPosition);
+                }
+                if (item is IMovingItem)
+                {
+                    foreach (Rectangle wall in room.Hitboxes)
+                    {
+                        collision = Rectangle.Intersect(item.Hitbox, wall);
+                        if (!collision.IsEmpty)
+                        {
+                            itemWallCollision.Handle(item as IMovingItem, collision);
+                        }
+                    }
+                    foreach (IDoor door in room.Doors.Values)
+                    {
+                        collision = Rectangle.Intersect(item.Hitbox, door.Hitbox);
+                        if (!collision.IsEmpty)
+                        {
+                            itemWallCollision.Handle(item as IMovingItem, collision);
+                        }
+                    }
+                    foreach (IBlock block in room.Blocks)
+                    {
+                        collision = Rectangle.Intersect(item.Hitbox, block.Hitbox);
+                        if (!collision.IsEmpty)
+                        {
+                            itemWallCollision.Handle(item as IMovingItem, collision);
+                        }
+                    }
                 }
                 currentPosition++;
             }
