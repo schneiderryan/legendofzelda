@@ -89,7 +89,6 @@ namespace LegendOfZelda
                 if((!(door.Key == "up")) || door.Value is TopOpen )
                 {
                     door.Value.Draw(sb);
-                    Debug.DrawHitbox(sb, door.Value.Hitbox);
                 }
             }
         }
@@ -102,7 +101,6 @@ namespace LegendOfZelda
             {
                 if (door.Key == "up")
                 {
-                    Debug.DrawHitbox(sb, door.Value.Hitbox);
                     door.Value.Draw(sb);
                 }
             }
@@ -110,31 +108,21 @@ namespace LegendOfZelda
             foreach (IBlock b in Blocks)
             {
                 b.Draw(sb);
-                
-                Debug.DrawHitbox(sb, b.Hitbox);
             }
 
             foreach (IItem item in Items)
             {
                 item.Draw(sb);
-                Debug.DrawHitbox(sb, item.Hitbox);
             }
 
             foreach (INPC npc in npcs)
             {
                 npc.Draw(sb);
-                Debug.DrawHitbox(sb, npc.Hitbox);
             }
 
             foreach (IEnemy enemy in Enemies)
             {
                 enemy.Draw(sb, Color.White);
-                Debug.DrawHitbox(sb, enemy.Hitbox);
-            }
-
-            foreach (Rectangle box in Hitboxes)
-            {
-                Debug.DrawHitbox(sb, box);
             }
         }
 

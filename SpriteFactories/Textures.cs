@@ -26,6 +26,8 @@ namespace LegendOfZelda
         private static Texture2D dungeon;
         private static Texture2D tiles;
 
+        private static Texture2D StartMenu;
+
 
         public static void LoadAllTextures(ContentManager contentManager,
                 GraphicsDevice graphics)
@@ -47,6 +49,8 @@ namespace LegendOfZelda
             rooms = contentManager.Load<Texture2D>("rooms");
             dungeon = contentManager.Load<Texture2D>("dungeon");
             tiles = contentManager.Load<Texture2D>("tiles");
+
+            StartMenu = contentManager.Load<Texture2D>("StartMenu");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -129,6 +133,11 @@ namespace LegendOfZelda
         public static Texture2D GetMerchantSheet()
         {
             return merchant;
+        }
+
+        public static Texture2D GetStartMenu()
+        {
+            return StartMenu;
         }
     }
 }

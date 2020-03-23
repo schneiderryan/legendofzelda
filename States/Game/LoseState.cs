@@ -51,5 +51,10 @@ namespace LegendOfZelda
         {
             //Figure out later
         }
+
+        public void Draw()
+        {
+
+        }
     }
 }
