@@ -1,20 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
 {
     class PlayerEnemyCollision
     {
-        private ISet<IEnemy> enemiesToDepsawn;
         private CollisionHandler handler;
 
-        public PlayerEnemyCollision(ISet<IEnemy> enemiesToDepsawn, CollisionHandler handler)
+        public PlayerEnemyCollision(CollisionHandler handler)
         {
-            this.enemiesToDepsawn = enemiesToDepsawn;
             this.handler = handler;
         }
-        public void Handle(IPlayer player, IEnemy enemy, in Rectangle collision)
+
+        public void Handle(IPlayer player, in Rectangle collision)
         {
             int playerXKnockback = 0;
             int playerYKnockback = 0;

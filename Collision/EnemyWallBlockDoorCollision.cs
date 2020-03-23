@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class EnemyWallBlockDoorCollision
     {
-        public void Handle(IEnemy enemy, in Rectangle collision)
+        public static void Handle(IEnemy enemy, in Rectangle collision)
         {
             if (collision.Width > collision.Height)
             {

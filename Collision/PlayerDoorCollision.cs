@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class PlayerDoorCollision
     {
-        public void Handle(IPlayer player, IDoor door, in Rectangle collision)
+        public static void Handle(IPlayer player, in Rectangle collision)
         {
 
             if (collision.Width > collision.Height)
