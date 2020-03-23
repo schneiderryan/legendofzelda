@@ -37,7 +37,7 @@
 - Bomb does not work correctly
 - Aqumentus' fireballs are not directed at link
 
-# Code Analyzer Suppressions (20)
+# Code Analyzer Suppressions (17 warnings found this sprint)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
             If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 
