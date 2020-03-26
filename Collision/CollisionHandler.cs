@@ -102,13 +102,14 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
                 if (!collision.IsEmpty)
                 {
-                    playerDoorCollision.HandleEdge(player, door.Value, collision, game);
-                    
-
-
-                    if (!(door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen))
+             
+                    if (door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)
+                    {
+                        System.Diagnostics.Debug.WriteLine("edge collision");
+                        playerDoorCollision.HandleEdge(player, door.Value, collision, game);
+                    }
+                    else 
                         {
-                        
                             playerDoorCollision.Handle(player, door.Value, collision);
                             if (door.Value is TopKey)
                             {
@@ -321,6 +322,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(player.Footbox, wall);
                 if (!collision.IsEmpty)
                 {
+                    System.Diagnostics.Debug.WriteLine("wall collision");
                     playerTouchingBlockorWall = true;
                 }
             }

@@ -11,32 +11,35 @@ namespace LegendOfZelda
         ICommand cmdDown;
         public void Handle(IPlayer player, IDoor door, in Rectangle collision)
         {
-
-            if (collision.Width > collision.Height)
+            if(!(player.X > 449 && (door is RightWall || door is RightOther)))
             {
-                if (collision.Y != player.Footbox.Y)
+                if (collision.Width > collision.Height)
                 {
-                    player.Y -= collision.Height;
+                    if (collision.Y != player.Footbox.Y)
+                    {
+                        player.Y -= collision.Height;
+                    }
+                    else
+                    {
+                        player.Y += collision.Height;
+                    }
                 }
                 else
                 {
-                    player.Y += collision.Height;
+                    if (collision.X > player.Footbox.X)
+                    {
+                        player.X -= collision.Width;
+                    }
+                    else
+                    {
+                        player.X += collision.Width;
+                    }
                 }
             }
-            else
-            {
-                if (collision.X > player.Footbox.X)
-                {
-                    player.X -= collision.Width;
-                }
-                else
-                {
-                    player.X += collision.Width;
-                }
-            }
+            
         }
 
-        internal void HandleEdge(IPlayer player, IDoor door, Rectangle collision, LegendOfZelda game)
+        public void HandleEdge(IPlayer player, IDoor door, Rectangle collision, LegendOfZelda game)
         {
             cmdRight = new SwapRoomCommand(game, "next");
             cmdLeft = new SwapRoomCommand(game, "previous");
@@ -45,13 +48,12 @@ namespace LegendOfZelda
             //change rooms based on door collision
             if (door is TopOpen)
             {
-                
                 player.Y = 315;
                 cmdUp.Execute();
             }
             if (door is BottomOpen)
             {
-                
+                System.Diagnostics.Debug.WriteLine("walk through bottom door");
                 player.Y = 2;
                 cmdDown.Execute();
             }
@@ -59,7 +61,8 @@ namespace LegendOfZelda
             {
                 System.Diagnostics.Debug.WriteLine("walk through left door");
                 cmdLeft.Execute();
-                player.X = 475;
+                player.X = 465;
+                
             }
             if (door is RightOpen)
             {

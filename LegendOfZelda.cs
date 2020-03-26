@@ -55,7 +55,9 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
+            
             rooms[roomIndex].Update();
+            
             mouse.Update();
             keyboard.Update();
             playerKeyboard.Update();

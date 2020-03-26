@@ -43,7 +43,6 @@ namespace LegendOfZelda
             }
             else if (swapDirection.Equals("up"))
             {
-                System.Diagnostics.Debug.WriteLine("walk through top door");
                 if (game.roomIndex == 2 || game.roomIndex == 4 ||  game.roomIndex == 12)
                 {
                     game.roomIndex += 2;
@@ -63,15 +62,12 @@ namespace LegendOfZelda
             }
             else if (swapDirection.Equals("down"))
             {
-                System.Diagnostics.Debug.WriteLine(game.roomIndex);
-                System.Diagnostics.Debug.WriteLine("walk through bottomdoor");
-
+                
                 if (game.roomIndex == 4 || game.roomIndex == 6 || game.roomIndex == 14)
                 {
                     game.roomIndex -= 2;
                 }
                
-                
                 else if (game.roomIndex == 13)
                 {
                     game.roomIndex -= 3;
@@ -88,7 +84,6 @@ namespace LegendOfZelda
             }
             game.projectiles.Clear();
             game.effects.Clear();
-            System.Diagnostics.Debug.WriteLine("switching rooms");
         }
     }
 }

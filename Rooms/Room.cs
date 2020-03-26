@@ -44,12 +44,12 @@ namespace LegendOfZelda
                 Hitboxes = new List<Rectangle>()
                 {
                     // left wall hitboxes
-                    new Rectangle(0, 0, 64, 160),
-                    new Rectangle(0, 190, 64, 160),
+                    new Rectangle(0, 0, 64, 168),
+                    new Rectangle(0, 192, 64, 160),
                    
                     // right wall hitboxes
-                    new Rectangle(449, 0, 64, 160),
-                    new Rectangle(449, 190, 64, 160),
+                    new Rectangle(449, 0, 64, 168),
+                    new Rectangle(449, 192, 64, 160),
 
                     // top wall hitboxes
                     new Rectangle(0, 0, 240, 64),
@@ -58,10 +58,6 @@ namespace LegendOfZelda
                     // bottom wall hitboxes
                     new Rectangle(0, 289, 240, 64),
                     new Rectangle(272, 289, 224, 64),
-
-                    
-
-                    
                 };
             }
         }
@@ -145,6 +141,11 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            
+            foreach (KeyValuePair<String, IDoor> door in Doors)
+            {
+                door.Value.Update();
+            }
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();
