@@ -43,21 +43,25 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>()
                 {
-                    // left hitboxes
-                    new Rectangle(0, 0, 64, 172),
-                    new Rectangle(0, 193, 64, 160),
+                    // left wall hitboxes
+                    new Rectangle(0, 0, 64, 160),
+                    new Rectangle(0, 190, 64, 160),
+                   
+                    // right wall hitboxes
+                    new Rectangle(449, 0, 64, 160),
+                    new Rectangle(449, 190, 64, 160),
 
-                    // top hitboxes
-                    new Rectangle(0, 0, 224, 64),
-                    new Rectangle(289, 0, 224, 64),
+                    // top wall hitboxes
+                    new Rectangle(0, 0, 240, 64),
+                    new Rectangle(272, 0, 224, 64),
 
-                    // bottom hitboxes
-                    new Rectangle(0, 289, 224, 64),
-                    new Rectangle(289, 289, 224, 64),
+                    // bottom wall hitboxes
+                    new Rectangle(0, 289, 240, 64),
+                    new Rectangle(272, 289, 224, 64),
 
-                    // right hitboxes
-                    new Rectangle(448, 0, 64, 172),
-                    new Rectangle(448, 190, 64, 160),
+                    
+
+                    
                 };
             }
         }
@@ -72,11 +76,12 @@ namespace LegendOfZelda
             this.background.Scale = 2.0f;
             this.background.Position = new Point(0, 0);
 
+            this.Doors = levelLoader.LoadDoors();
             this.Enemies = levelLoader.LoadEnemies();
             this.Blocks = levelLoader.LoadBlocks(this);
             this.Items = levelLoader.LoadItems();
             this.npcs = levelLoader.LoadNPCs();
-            this.Doors = levelLoader.LoadDoors();
+            
  
 
             LoadRoomLayout(levelLoader.RoomNumber());

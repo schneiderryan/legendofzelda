@@ -55,11 +55,12 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
+            rooms[roomIndex].Update();
             mouse.Update();
             keyboard.Update();
             playerKeyboard.Update();
 
-            rooms[roomIndex].Update();
+            
             link.Update();
 
             foreach (IProjectile projectile in projectiles)
@@ -71,7 +72,7 @@ namespace LegendOfZelda
                 effect.Update();
             }
 
-            collisionHandler.Handle(rooms[roomIndex], projectiles, link);
+            collisionHandler.Handle(this, projectiles, link);
 
             base.Update(gameTime);
         }
