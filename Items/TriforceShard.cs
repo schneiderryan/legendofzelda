@@ -3,15 +3,17 @@ namespace LegendOfZelda
 {
     class TriforceShard : Item
     {
-        public TriforceShard()
+        private LegendOfZelda game;
+        public TriforceShard(LegendOfZelda game)
         {
             sprite = ItemSpriteFactory.GetTriforceShard();
             Hitbox = sprite.Box;
+            this.game = game;
         }
 
         public override void Use(IPlayer player)
         {
-
+            game.WinGame();
         }
     }
 }
