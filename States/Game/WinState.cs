@@ -84,10 +84,10 @@ namespace LegendOfZelda
             }
             if (timer > 200)
             {
-                if(rightPos > -20)
+                if(rightPos <= -20)
                 {
-                    rightPos += 5;
-                    leftPos -= 5;
+                    rightPos += 3;
+                    leftPos -= 3;
                 }
             }
             if(rightPos > -20)
@@ -96,7 +96,7 @@ namespace LegendOfZelda
             }
             if(finalDelay > 75)
             {
-                game.
+                game.ToStart();
             }
             timer++;
         }
