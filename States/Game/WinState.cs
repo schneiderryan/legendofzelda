@@ -13,11 +13,30 @@ namespace LegendOfZelda
         private bool bw;
         private int delay = 10;
         private int timer;
+        private Texture2D RightCurtain;
+        private Texture2D LeftCurtain;
+        private int rightPos;
+        private int leftPos;
+        private int CurtainWidth;
+        private int CurtainHeight;
+        private int finalDelay;
         public WinState(LegendOfZelda game)
         {
             this.game = game;
             bw = false;
             timer = 0;
+            RightCurtain = Textures.GetWinCurtain();
+            LeftCurtain = Textures.GetWinCurtain();
+            rightPos = -game.GraphicsDevice.Viewport.Width / 2 - 20;
+            leftPos = game.GraphicsDevice.Viewport.Width;
+            CurtainWidth = game.GraphicsDevice.Viewport.Width / 2 + 20;
+            CurtainHeight = game.GraphicsDevice.Viewport.Height;
+            finalDelay = 0;
+        }
+
+        public void ToStart()
+        {
+            this.game.state = new StartMenuState(this.game);
         }
 
         public void PlayGame()
@@ -63,12 +82,28 @@ namespace LegendOfZelda
                 bw = !bw;
                 delay = 8;
             }
+            if (timer > 200)
+            {
+                if(rightPos > -20)
+                {
+                    rightPos += 5;
+                    leftPos -= 5;
+                }
+            }
+            if(rightPos > -20)
+            {
+                finalDelay++;
+            }
+            if(finalDelay > 75)
+            {
+                game.
+            }
             timer++;
         }
 
         public void Draw()
         {
-            if (!bw || timer > 100)
+            if (!bw || timer > 150)
             {
                 game.rooms[game.roomIndex].Draw(game.spriteBatch);
             }
@@ -77,6 +112,8 @@ namespace LegendOfZelda
                 Texture2D bwroom = Textures.GetBWRoom();
                 game.spriteBatch.Draw(bwroom, new Rectangle(0, -1, game.GraphicsDevice.Viewport.Width+2, game.GraphicsDevice.Viewport.Height+2), new Rectangle(0, 0, bwroom.Width, bwroom.Height), Color.White);
             }
+            game.spriteBatch.Draw(RightCurtain, new Rectangle(rightPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, RightCurtain.Width, RightCurtain.Height), Color.Black);
+            game.spriteBatch.Draw(LeftCurtain, new Rectangle(leftPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, LeftCurtain.Width, LeftCurtain.Height), Color.Black);
             game.link.Draw(game.spriteBatch, Color.White);
         }
     }

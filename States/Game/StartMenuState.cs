@@ -21,6 +21,10 @@ namespace LegendOfZelda
             delay = 7;
         }
 
+        public void ToStart()
+        {
+            //Nothing to do
+        }
         public void PlayGame()
         {
             game.state = new PlayState(game);

@@ -77,6 +77,11 @@ namespace LegendOfZelda
             base.Draw(gameTime);
         }
 
+        public void ToStart()
+        {
+            state.ToStart();
+        }
+
         public void PlayGame()
         {
             state.PlayGame();

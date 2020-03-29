@@ -28,6 +28,7 @@ namespace LegendOfZelda
         private static Texture2D tiles;
 
         private static Texture2D StartMenu;
+        private static Texture2D WinCurtain;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -53,6 +54,7 @@ namespace LegendOfZelda
             tiles = contentManager.Load<Texture2D>("tiles");
 
             StartMenu = contentManager.Load<Texture2D>("StartMenu");
+            WinCurtain = contentManager.Load<Texture2D>("winCurtain");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -145,6 +147,11 @@ namespace LegendOfZelda
         public static Texture2D GetBWRoom()
         {
             return BWRoom;
+        }
+
+        public static Texture2D GetWinCurtain()
+        {
+            return WinCurtain;
         }
     }
 }
