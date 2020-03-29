@@ -289,7 +289,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("TriforceShard"))
                 {
-                    item = new TriforceShard();
+                    item = new TriforceShard(game);
                 }
                 else //wood sword
                 {

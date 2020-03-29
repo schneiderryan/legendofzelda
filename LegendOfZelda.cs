@@ -10,7 +10,7 @@ namespace LegendOfZelda
         public IGameState state;
 
         public IList<IRoom> rooms;
-        public int roomIndex = 0;
+        public int roomIndex;
 
         public IPlayer link;
         public ISet<IProjectile> projectiles;
@@ -39,16 +39,6 @@ namespace LegendOfZelda
             this.Window.Title = "The Legend of Zelda";
 
             state = new StartMenuState(this);
-
-            this.link = new GreenLink(this);
-            playerKeyboard = GameSetup.CreatePlayerKeysController(link);
-            mouse = new MouseController(this);
-            keyboard = GameSetup.CreateGeneralKeysController(this);
-
-            projectiles = new HashSet<IProjectile>();
-            effects = new List<IDespawnEffect>();
-            collisionHandler = new CollisionHandler(effects);
-            rooms = GameSetup.GenerateRoomList(this);
         }
 
         protected override void LoadContent()
@@ -75,6 +65,11 @@ namespace LegendOfZelda
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void ToStart()
+        {
+            state.ToStart();
         }
 
         public void PlayGame()

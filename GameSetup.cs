@@ -90,7 +90,7 @@ namespace LegendOfZelda
                 new Key(),
                 new Map(),
                 new Rupee(),
-                new TriforceShard(),
+                //new TriforceShard(),
                 new WoodSword(),
                 new Clock()
             };

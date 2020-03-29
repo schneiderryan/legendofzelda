@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,11 @@ namespace LegendOfZelda
         public PlayState(LegendOfZelda game)
         {
             this.game = game;
+        }
+
+        public void ToStart()
+        {
+            //Nothing to do
         }
 
         public void PlayGame()

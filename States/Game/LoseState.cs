@@ -12,6 +12,10 @@ namespace LegendOfZelda
             this.game = game;
         }
 
+        public void ToStart()
+        {
+            this.game.state = new StartMenuState(this.game);
+        }
         public void PlayGame()
         {
             //Nothing to do

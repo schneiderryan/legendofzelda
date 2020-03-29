@@ -95,8 +95,7 @@ namespace LegendOfZelda
 
         public void Draw(SpriteBatch sb)
         {
-            background.Draw(sb);
-
+            background.Draw(sb, Color.LightCyan);
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 if (door.Key == "up")
