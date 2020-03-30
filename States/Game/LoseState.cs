@@ -60,20 +60,23 @@ namespace LegendOfZelda
         {
             if(tintTimer < 30)
             {
-                tint = Color.LightYellow;
+                tint = Color.YellowGreen;
             } else if(tintTimer < 60)
             {
-                tint = Color.GreenYellow;
+                tint = Color.LightGreen;
             } else if(tintTimer < 90)
             {
-                tint = Color.LightGreen;
+                tint = Color.Green;
             } else if(tintTimer < 120)
             {
-                tint = Color.Green;
+                tint = Color.DarkGreen;
+            } else if(tintTimer < 210)
+            {
+                tint = Color.Black;
             }
             else
             {
-                tint = Color.Black;
+                game.ToStart();
             }
             tintTimer++;
         }

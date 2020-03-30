@@ -27,6 +27,7 @@ namespace LegendOfZelda
         void Attack();
         void BeStill();
         void UseItem(IItem item);
+        void PickupItem(IItem item, int time);
         void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);
         void RegisterAttackKeys(List<Keys> attackKeys);

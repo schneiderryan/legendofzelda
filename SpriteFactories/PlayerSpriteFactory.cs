@@ -193,5 +193,15 @@ namespace LegendOfZelda
         {
             throw new NotImplementedException();
         }
+
+        public ISprite CreateLinkPickup1()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(1, 150, 13, 16));
+        }
+
+        public ISprite CreateLinkPickup2()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(31, 150, 14, 16));
+        }
     }
 }

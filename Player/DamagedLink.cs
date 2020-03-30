@@ -125,6 +125,11 @@ namespace LegendOfZelda
             decoratedLink.BeStill();
         }
 
+        public void PickupItem(IItem item, int time)
+        {
+            decoratedLink.PickupItem(item, time);
+        }
+
         public void Draw(SpriteBatch sb, Color color)
         {
             // rgba

@@ -13,6 +13,7 @@ namespace LegendOfZelda
         private int x;
         private int y;
         private int itemTimer;
+        private List<IItem> pickedUpItem;
         private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
@@ -111,6 +112,14 @@ namespace LegendOfZelda
             State.BeStill();
         }
 
+        public virtual void PickupItem(IItem item, int time)
+        {
+            State.PickupItem(time);
+            item.X = this.game.link.X;
+            item.Y = this.game.link.Y + item.Hitbox.Height;
+            pickedUpItem.Add(item);
+        }
+
         public virtual void TakeDamage()
         {
             this.game.link = new DamagedLink(game);
@@ -128,6 +137,11 @@ namespace LegendOfZelda
             if (itemTimer > 0)
             {
                 itemTimer--;
+            }
+
+            if (pickedUpItem.Count != 0)
+            {
+                pickedUpItem[0].Update();
             }
         }
 
@@ -147,6 +161,11 @@ namespace LegendOfZelda
             {
                 this.origin = new Vector2(0, 0);
                 Sprite.Draw(sb, color, origin);
+            }
+
+            if(pickedUpItem.Count != 0)
+            {
+                pickedUpItem[0].Draw(sb, Microsoft.Xna.Framework.Color.White);
             }
         }
 
@@ -202,6 +221,7 @@ namespace LegendOfZelda
             this.CurrentHearts = 3.0;
             this.origin = new Vector2(0, 0);
             this.NumberKeys = 1;
+            this.pickedUpItem = new List<IItem>();
         }
     }
 }
