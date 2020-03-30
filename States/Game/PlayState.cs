@@ -77,9 +77,9 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            game.rooms[game.roomIndex].Draw(game.spriteBatch);
+            game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.link.Draw(game.spriteBatch, Color.White);
-            game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch);
+            game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
 
             foreach (IProjectile projectile in game.projectiles)
             {

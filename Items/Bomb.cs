@@ -46,11 +46,11 @@ namespace LegendOfZelda
             }
         }
 
-        public override void Draw(SpriteBatch sb)
+        public override void Draw(SpriteBatch sb, Color color)
         {
             if (State != BombState.Used)
             {
-                base.Draw(sb);
+                base.Draw(sb, color);
             }
         }
 

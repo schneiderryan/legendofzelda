@@ -105,7 +105,7 @@ namespace LegendOfZelda
         {
             if (!bw || timer > 150)
             {
-                game.rooms[game.roomIndex].Draw(game.spriteBatch);
+                game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             }
             else
             {

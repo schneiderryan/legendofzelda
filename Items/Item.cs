@@ -7,9 +7,9 @@ namespace LegendOfZelda
     {
         protected ISprite sprite;
 
-        public virtual void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb);
+            sprite.Draw(sb, color);
         }
 
         public virtual void Update()

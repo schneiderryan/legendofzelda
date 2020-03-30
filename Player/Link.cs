@@ -114,6 +114,11 @@ namespace LegendOfZelda
         public virtual void TakeDamage()
         {
             this.game.link = new DamagedLink(game);
+            CurrentHearts -= 0.5;
+            if(CurrentHearts == 0)
+            {
+                game.LoseGame();
+            }
         }
 
         public virtual void Update()
