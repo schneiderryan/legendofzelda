@@ -66,20 +66,14 @@ namespace LegendOfZelda
 
         public String Color { get; set; }
 
-        public int NumRupees { get; set; }
-
         public double MaxHearts { get; set; }
         public double CurrentHearts { get; set; }
 
-        public int NumberBombs { get; set; }
-
-        public int NumberKeys { get; set; }
+        public IInventory Inventory { get; protected set; }
 
         public Team Team { get; set; } = Team.Link;
 
         public Point Center => Sprite.Box.Center;
-
-        
 
         public virtual void MoveLeft()
         {
@@ -156,11 +150,6 @@ namespace LegendOfZelda
             }
         }
 
-        public virtual void UseItem(IItem item)
-        {
-            item.Use(this);
-        }
-
         public virtual void RegisterAttackKeys(List<Keys> attackKeys)
         {
             this.attackKeys = attackKeys;
@@ -192,11 +181,10 @@ namespace LegendOfZelda
             this.attackBoxUp = new Rectangle(x + Sprite.Box.Width/4, y - 25, Sprite.Box.Width/2, 25);
             this.attackBoxDown = new Rectangle(x + Sprite.Box.Width / 4, y + Sprite.Box.Height, Sprite.Box.Width / 2, 25);
             this.itemTimer = 0;
-            this.NumRupees = 999; // for testing, remove l8r
             this.MaxHearts = 3.0;
             this.CurrentHearts = 3.0;
             this.origin = new Vector2(0, 0);
-            this.NumberKeys = 1;
+            this.Inventory = new Inventory();
         }
     }
 }

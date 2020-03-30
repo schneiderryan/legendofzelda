@@ -42,7 +42,7 @@ namespace LegendOfZelda
             NewTrajectory();
         }
 
-        public override void Use(IPlayer player)
+        public override void Pickup(IPlayer player)
         {
             player.CurrentHearts = player.MaxHearts;
         }

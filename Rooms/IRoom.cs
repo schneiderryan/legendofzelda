@@ -4,10 +4,8 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    interface IRoom
+    interface IRoom : IDrawable, IUpdateable
     {
-        void Update();
-        void Draw(SpriteBatch sb);
         void DrawOverlay(SpriteBatch sb);
         IList<Rectangle> Hitboxes { get; }
         IDictionary<string, IDoor> Doors { get; }

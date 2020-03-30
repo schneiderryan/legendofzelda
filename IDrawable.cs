@@ -2,10 +2,8 @@
 
 namespace LegendOfZelda
 {
-    interface IItem : ICollideable
+    interface IDrawable
     {
-        void Update();
-        void Use(IPlayer player);
         void Draw(SpriteBatch sb);
     }
 }

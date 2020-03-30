@@ -13,7 +13,8 @@ namespace LegendOfZelda
         {
             base.Update();
         }
-        public override void Use(IPlayer player)
+
+        public override void Pickup(IPlayer player)
         {
             player.MaxHearts += 1.0;
             player.CurrentHearts += 1.0;

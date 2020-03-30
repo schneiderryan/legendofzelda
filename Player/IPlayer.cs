@@ -12,11 +12,9 @@ namespace LegendOfZelda
         ILinkState State { get; set; }
         string Direction { get; set; }
         string Color { get; set; }
-        int NumRupees { get; set; }
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }
-        int NumberBombs { get; set; }
-        int NumberKeys { get; set; }
+        IInventory Inventory { get; }
         Rectangle Footbox { get; }
         Rectangle UpAttackBox { get; }
         Rectangle DownAttackBox { get; }
@@ -26,7 +24,6 @@ namespace LegendOfZelda
 
         void Attack();
         void BeStill();
-        void UseItem(IItem item);
         void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);
         void RegisterAttackKeys(List<Keys> attackKeys);

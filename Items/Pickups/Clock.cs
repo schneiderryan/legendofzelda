@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿
 
 namespace LegendOfZelda
 {
@@ -10,7 +9,7 @@ namespace LegendOfZelda
             sprite = ItemSpriteFactory.GetClock();
             Hitbox = sprite.Box;
         }
-        public override void Use(IPlayer player)
+        public override void Pickup(IPlayer player)
         {
             //
         }

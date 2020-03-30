@@ -15,7 +15,7 @@ namespace LegendOfZelda
             base.Update();
         }
 
-        public override void Use(IPlayer player)
+        public override void Pickup(IPlayer player)
         {
             if ((player.MaxHearts - player.CurrentHearts) < 1)
             {

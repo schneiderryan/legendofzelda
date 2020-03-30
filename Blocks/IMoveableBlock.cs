@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-
+﻿
 namespace LegendOfZelda
 {
     interface IMoveableBlock : IBlock

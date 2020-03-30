@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace LegendOfZelda
 {
@@ -15,8 +13,12 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            Bomb bomb = new Bomb();
-            player.UseItem(bomb);
+            if (player.Inventory.Bombs > 0)
+            {
+                IProjectile proj = new BombPlaced(player.Direction, player);
+                player.UseProjectile(proj);
+                player.Inventory.Bombs -= 1;
+            }
         }
     }
 }

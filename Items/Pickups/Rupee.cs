@@ -9,9 +9,9 @@ namespace LegendOfZelda
             Hitbox = sprite.Box;
         }
 
-        public override void Use(IPlayer player)
+        public override void Pickup(IPlayer player)
         {
-            player.NumRupees = player.NumRupees + 1;
+            player.Inventory.Rupees += 1;
         }
     }
 }

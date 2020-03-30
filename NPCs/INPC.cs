@@ -2,9 +2,8 @@
 
 namespace LegendOfZelda
 {
-    interface INPC : ICollideable
+    interface INPC : ICollideable, IDrawable, IUpdateable
     {
-        void Update();
-        void Draw(SpriteBatch sb);
+
     }
 }

@@ -74,12 +74,6 @@ namespace LegendOfZelda
             set { decoratedLink.Color = value; }
         }
 
-        public int NumRupees
-        {
-            get { return decoratedLink.NumRupees; }
-            set { decoratedLink.NumRupees = value; }
-        }
-
         public double MaxHearts
         {
             get { return decoratedLink.MaxHearts; }
@@ -92,16 +86,7 @@ namespace LegendOfZelda
             set { decoratedLink.CurrentHearts = value; }
         }
 
-        public int NumberBombs
-        {
-            get { return decoratedLink.NumberBombs; }
-            set { decoratedLink.NumberBombs = value; }
-        }
-        public int NumberKeys
-        {
-            get { return decoratedLink.NumberKeys; }
-            set { decoratedLink.NumberKeys = value; }
-        }
+        public IInventory Inventory => decoratedLink.Inventory;
 
         public Team Team { get => decoratedLink.Team; set => decoratedLink.Team = value; }
 
@@ -184,11 +169,6 @@ namespace LegendOfZelda
                 game.link = decoratedLink;
             }
             decoratedLink.Update();
-        }
-
-        public void UseItem(IItem item)
-        {
-            decoratedLink.UseItem(item);
         }
 
         public void UseProjectile(IProjectile projectile)
