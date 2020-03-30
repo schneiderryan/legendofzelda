@@ -55,12 +55,13 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            if(delay > 5)
+            if(delay > 20)
             {
                 link.Sprite = PlayerSpriteFactory.Instance.CreateLinkPickup2();
             }
             if(delay == time)
             {
+                this.link.PickedUpItem.Clear();
                 link.State = new StillDownLinkState(link);
                 link.Sprite = PlayerSpriteFactory.Instance.CreateDownStillLinkSprite();
                 link.Sprite.Scale = 2.0f;

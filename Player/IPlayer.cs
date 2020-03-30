@@ -12,6 +12,7 @@ namespace LegendOfZelda
         ILinkState State { get; set; }
         string Direction { get; set; }
         string Color { get; set; }
+        bool HasBow { get; set; }
         int NumRupees { get; set; }
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }

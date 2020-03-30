@@ -55,7 +55,7 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
-        public void PickupItem()
+        public void PickupItem(int time)
         {
             //link.State = new LinkPickupState(link);
             //link.Sprite = PlayerSpriteFactory.Instance.CreateLinkPickup1();

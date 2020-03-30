@@ -74,6 +74,12 @@ namespace LegendOfZelda
             set { decoratedLink.Color = value; }
         }
 
+        public bool HasBow
+        {
+            get { return decoratedLink.HasBow; }
+            set { decoratedLink.HasBow = value; }
+        }
+
         public int NumRupees
         {
             get { return decoratedLink.NumRupees; }

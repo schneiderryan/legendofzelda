@@ -57,9 +57,9 @@ namespace LegendOfZelda
             link.Sprite.Scale = 2.0f;
         }
 
-        public void PickupItem()
+        public void PickupItem(int time)
         {
-            link.State = new LinkPickupState(link);
+            link.State = new LinkPickupState(link, time);
             link.Sprite = PlayerSpriteFactory.Instance.CreateLinkPickup1();
             link.Sprite.Scale = 2.0f;
         }
