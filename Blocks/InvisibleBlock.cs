@@ -15,7 +15,7 @@ namespace LegendOfZelda
             // nothing to update
         }
 
-        public virtual void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb, Color color)
         {
             // do nothing, it's invisible
         }

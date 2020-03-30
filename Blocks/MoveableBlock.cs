@@ -22,9 +22,9 @@ namespace LegendOfZelda
             sprite = RoomSpriteFactory.Instance.CreateBlock();
         }
 
-        public override void Draw(SpriteBatch sb)
+        public override void Draw(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb);
+            sprite.Draw(sb, color);
         }
 
         public void MoveOnceUp()

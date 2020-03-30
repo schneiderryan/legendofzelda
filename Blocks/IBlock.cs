@@ -9,6 +9,6 @@ namespace LegendOfZelda
     interface IBlock : ICollideable
     {
         void Update();
-        void Draw(SpriteBatch sb);
+        void Draw(SpriteBatch sb, Color color);
     }
 }

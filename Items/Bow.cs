@@ -13,20 +13,28 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
-            int tempRupees = player.NumRupees;
-            if (HasArrow && tempRupees>0)
+            if (!player.HasBow)
             {
-                IProjectile proj;
-                if (player.Color == "red")
+                player.PickupItem(new Bow(), 50);
+                player.HasBow = true;
+            }
+            else
+            {
+                int tempRupees = player.NumRupees;
+                if (HasArrow && tempRupees > 0)
                 {
-                    proj = new RedArrowProjectile(player.Direction, player.X, player.Y);
+                    IProjectile proj;
+                    if (player.Color == "red")
+                    {
+                        proj = new RedArrowProjectile(player.Direction, player.X, player.Y);
+                    }
+                    else
+                    {
+                        proj = new GreenArrowProjectile(player.Direction, player.X, player.Y);
+                    }
+                    player.NumRupees = tempRupees - 1;
+                    player.UseProjectile(proj);
                 }
-                else
-                {
-                    proj = new GreenArrowProjectile(player.Direction, player.X, player.Y);
-                }
-                player.NumRupees = tempRupees - 1;
-                player.UseProjectile(proj);
             }
         }
     }

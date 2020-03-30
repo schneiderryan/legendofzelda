@@ -13,6 +13,7 @@ namespace LegendOfZelda
 
         public override void Use(IPlayer player)
         {
+            player.PickupItem(new TriforceShard(game), -1);
             game.WinGame();
         }
     }

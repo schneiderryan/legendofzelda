@@ -11,9 +11,9 @@ namespace LegendOfZelda
         public ISprite door;
 
 
-        public virtual void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb, Color color)
         {
-            door.Draw(sb);
+            door.Draw(sb, color);
         }
 
         

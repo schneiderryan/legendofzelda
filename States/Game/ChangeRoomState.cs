@@ -24,7 +24,7 @@ namespace LegendOfZelda
 
         public void PauseGame()
         {
-            game.state = new PauseState(game);
+            //Nothing to do
         }
 
         public void ResumeGame()

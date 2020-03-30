@@ -7,6 +7,6 @@ namespace LegendOfZelda
     interface IDoor: ICollideable
     {
         void Update();
-        void Draw(SpriteBatch sb);
+        void Draw(SpriteBatch sb, Color color);
     }
 }

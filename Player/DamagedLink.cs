@@ -74,6 +74,12 @@ namespace LegendOfZelda
             set { decoratedLink.Color = value; }
         }
 
+        public bool HasBow
+        {
+            get { return decoratedLink.HasBow; }
+            set { decoratedLink.HasBow = value; }
+        }
+
         public int NumRupees
         {
             get { return decoratedLink.NumRupees; }
@@ -123,6 +129,11 @@ namespace LegendOfZelda
         public void BeStill()
         {
             decoratedLink.BeStill();
+        }
+
+        public void PickupItem(IItem item, int time)
+        {
+            decoratedLink.PickupItem(item, time);
         }
 
         public void Draw(SpriteBatch sb, Color color)

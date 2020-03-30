@@ -9,6 +9,7 @@ namespace LegendOfZelda
         void MoveLeft();
         void Attack();
         void BeStill();
+        void PickupItem(int time);
         void Update();
         void Projectile();
     }

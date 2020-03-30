@@ -21,9 +21,9 @@ namespace LegendOfZelda
 			sprite.Update();
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, Color color)
 		{
-			sprite.Draw(spriteBatch);
+			sprite.Draw(spriteBatch, color);
 		}
 	}
 }

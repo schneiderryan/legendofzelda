@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
@@ -6,6 +7,6 @@ namespace LegendOfZelda
     {
         void Update();
         void Use(IPlayer player);
-        void Draw(SpriteBatch sb);
+        void Draw(SpriteBatch sb, Color color);
     }
 }

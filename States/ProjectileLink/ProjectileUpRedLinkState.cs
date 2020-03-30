@@ -55,6 +55,13 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void PickupItem(int time)
+        {
+            //link.State = new LinkPickupState(link);
+            //link.Sprite = PlayerSpriteFactory.Instance.CreateLinkPickup1();
+            //link.Sprite.Scale = 2.0f;
+        }
+
         public void Update()
         {
             link.Sprite.Position = new Point(link.X, link.Y);
