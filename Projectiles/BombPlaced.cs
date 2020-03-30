@@ -1,12 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
     class BombPlaced : Projectile
     {
+        public override double Damage => 4;
         public enum BombState { Placed, Detonated, Exploding, Used };
         public BombState State { get; private set; }
         private int fuseDelay;

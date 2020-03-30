@@ -19,7 +19,7 @@ namespace LegendOfZelda
             HandleProjectileCollision(player, projectile);
             if (projectile.OwningTeam != player.Team)
             {
-                player.TakeDamage();
+                player.TakeDamage(projectile.Damage);
                 if (!handler.playerTouchingBlockorWall)
                 {
                     Knockback(player, collision);

@@ -20,6 +20,7 @@ namespace LegendOfZelda
         private Rectangle attackBoxUp;
         private Rectangle attackBoxDown;
         private Vector2 origin;
+        private double damageResistance;
 
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
@@ -67,6 +68,7 @@ namespace LegendOfZelda
 
         public double MaxHearts { get; set; }
         public double CurrentHearts { get; set; }
+        public double DamageResistance { get; set; }
 
         public IInventory Inventory { get; protected set; }
 
@@ -104,8 +106,11 @@ namespace LegendOfZelda
             State.BeStill();
         }
 
-        public virtual void TakeDamage()
+        public virtual void TakeDamage(double amount)
         {
+            double actual = amount * (1.0 - damageResistance);
+            System.Diagnostics.Debug.WriteLine("link took: " + actual + " damage");
+            CurrentHearts -= actual;
             this.game.link = new DamagedLink(game);
         }
 
@@ -169,10 +174,12 @@ namespace LegendOfZelda
         public void WearRedRing()
         {
             game.link = new RedLink(this);
+            damageResistance = 0.25;
         }
 
         public void WearBlueRing()
         {
+            damageResistance = 0.5;
             throw new NotImplementedException();
         }
 
@@ -192,6 +199,7 @@ namespace LegendOfZelda
             this.itemTimer = 0;
             this.MaxHearts = 3.0;
             this.CurrentHearts = 3.0;
+            this.damageResistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
         }

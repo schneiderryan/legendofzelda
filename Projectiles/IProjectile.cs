@@ -6,7 +6,7 @@ namespace LegendOfZelda
     {
         IDespawnEffect GetDespawnEffect();
         Team OwningTeam { get; set; }
-
+        double Damage { get; }
         int VX { get; }
         int VY { get; }
     }

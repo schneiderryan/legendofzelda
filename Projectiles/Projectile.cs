@@ -8,6 +8,7 @@ namespace LegendOfZelda
         public int VX { get; set; }
         public int VY { get; set; }
         public Team OwningTeam { get; set; }
+        public abstract double Damage { get; }
 
         protected ISprite sprite;
 

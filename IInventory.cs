@@ -11,6 +11,7 @@ namespace LegendOfZelda
         int Rupees { get; set; }
         int Bombs { get; set; }
         int Keys { get; set; }
+        int MaxBombs { get; set; }
 
         ILeveledItem Boomerang { get; set; }
         ILeveledItem Sword { get; set; }

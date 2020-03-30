@@ -28,6 +28,7 @@ namespace LegendOfZelda
                     link.State = new StillRightRedLinkState(this);
                     break;
             }
+            link.Sprite.Position = new Point(link.X, link.Y);
         }
 
         public ILinkState State { get => link.State; set => link.State = value; }
@@ -103,9 +104,9 @@ namespace LegendOfZelda
             link.RegisterAttackKeys(attackKeys);
         }
 
-        public void TakeDamage()
+        public void TakeDamage(double amount)
         {
-            link.TakeDamage();
+            link.TakeDamage(amount);
         }
 
         public void Update()

@@ -12,7 +12,10 @@ namespace LegendOfZelda
 
         public override void Pickup(IPlayer player)
         {
-            player.WearRedRing();
+            if (!(player is RedLink))
+            {
+                player.WearRedRing();
+            }
         }
     }
 }

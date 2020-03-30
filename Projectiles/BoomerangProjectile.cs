@@ -5,6 +5,7 @@ namespace LegendOfZelda
 {
     class BoomerangProjectile :  Projectile
     {
+        public override double Damage => 0.5;
         public bool Returned => state is PocketBoomerangState;
 
         public IBoomerangState state;

@@ -129,10 +129,10 @@ namespace LegendOfZelda
             Sprite.Update();
         }
 
-        public virtual void TakeDamage()
+        public virtual void TakeDamage(double amount)
         {
             isBeingAttacked = true;
-            currentHearts--;
+            currentHearts -= amount;
         }
 
         public void Die()

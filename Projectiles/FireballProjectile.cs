@@ -5,6 +5,8 @@ namespace LegendOfZelda
 {
     class FireballProjectile :  Projectile
     {
+        public override double Damage => 0.5;
+
         public FireballProjectile(string direction, int x, int y, int initialVel = 2)
             : base(direction, x, y, initialVel)
         {

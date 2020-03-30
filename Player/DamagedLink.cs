@@ -133,7 +133,6 @@ namespace LegendOfZelda
             {
                 decoratedLink.Draw(sb, Microsoft.Xna.Framework.Color.White);
             }
-            
         }
 
         public void MoveDown()
@@ -156,7 +155,7 @@ namespace LegendOfZelda
             decoratedLink.MoveUp();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(double amount)
         {
             // does not take damage
         }
@@ -189,11 +188,15 @@ namespace LegendOfZelda
         public void WearRedRing()
         {
             decoratedLink.WearRedRing();
+            decoratedLink = game.link;
+            game.link = this;
         }
 
         public void WearBlueRing()
         {
             decoratedLink.WearBlueRing();
+            decoratedLink = game.link;
+            game.link = this;
         }
     }
 }

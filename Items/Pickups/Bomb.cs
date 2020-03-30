@@ -13,7 +13,11 @@ namespace LegendOfZelda
 
         public override void Pickup(IPlayer player)
         {
-            player.Inventory.Bombs += 1;
+            player.Inventory.Bombs += 4;
+            if (player.Inventory.Bombs > player.Inventory.MaxBombs)
+            {
+                player.Inventory.Bombs = player.Inventory.MaxBombs;
+            }
         }
     }
 }
