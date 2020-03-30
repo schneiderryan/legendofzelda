@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -12,6 +10,9 @@ namespace LegendOfZelda
         {
             this.link = link;
             this.link.Direction = "up";
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpAttackingLinkSprite();
+            // adjust for the presence of the sword in the sprite
+            link.Sprite.Position = new Point(link.X, link.Y - 24);
         }
 
         public override void Attack()
@@ -29,8 +30,8 @@ namespace LegendOfZelda
             {
                 link.State = new StillUpRedLinkState(link);
                 link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
+                link.Sprite.Position = new Point(link.X, link.Y);
             }
-            link.Sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

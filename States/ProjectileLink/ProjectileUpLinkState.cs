@@ -52,7 +52,9 @@ namespace LegendOfZelda
 
         public void BeStill()
         {
-            //Nothing to do
+            link.State = new StillUpLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
+            link.Sprite.Scale = 2f;
         }
 
         public void Update()

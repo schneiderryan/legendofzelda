@@ -18,11 +18,14 @@ namespace LegendOfZelda
 
         public Inventory()
         {
+            BowAndArrow = new BowAndArrow();
+
             Sword = new EmptyLeveledItem();
             Boomerang = new EmptyLeveledItem();
-            BowAndArrow = new BowAndArrow();
+
             RedPotion = new EmptyHeldItem();
             BluePotion = new EmptyHeldItem();
+            Offhand = new EmptyHeldItem();
         }
 
     }

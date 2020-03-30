@@ -8,8 +8,7 @@ namespace LegendOfZelda
 {
     abstract class Link : IPlayer
     {
-        public LegendOfZelda game;
-
+        private LegendOfZelda game;
         private int x;
         private int y;
         private int itemTimer;
@@ -165,6 +164,16 @@ namespace LegendOfZelda
                 }
             }
             return false;
+        }
+
+        public void WearRedRing()
+        {
+            game.link = new RedLink(this);
+        }
+
+        public void WearBlueRing()
+        {
+            throw new NotImplementedException();
         }
 
         protected void Initialize(LegendOfZelda game)

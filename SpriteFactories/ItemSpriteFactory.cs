@@ -130,13 +130,15 @@ namespace LegendOfZelda
         public static ISprite GetBlueRing()
         {
             return new Sprite(Textures.GetItemSheet(),
-                    new Rectangle(169, 19, 7, 9));
+                    new Rectangle(169, 19, 7, 9))
+                { Scale = 3f };
         }
 
         public static ISprite GetRedRing()
         {
             return new Sprite(Textures.GetItemSheet(),
-                    new Rectangle(169, 3, 7, 9));
+                    new Rectangle(169, 3, 7, 9))
+                { Scale = 3f };
         }
     }
 }

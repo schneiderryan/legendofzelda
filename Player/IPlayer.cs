@@ -15,13 +15,15 @@ namespace LegendOfZelda
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }
         IInventory Inventory { get; }
+
         Rectangle Footbox { get; }
         Rectangle UpAttackBox { get; }
         Rectangle DownAttackBox { get; }
         Rectangle RightAttackBox { get; }
         Rectangle LeftAttackBox { get; }
-        
 
+        void WearRedRing();
+        void WearBlueRing();
         void Attack();
         void BeStill();
         void UseProjectile(IProjectile projectile);

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -186,5 +186,14 @@ namespace LegendOfZelda
             return decoratedLink.IsAttacking();
         }
 
+        public void WearRedRing()
+        {
+            decoratedLink.WearRedRing();
+        }
+
+        public void WearBlueRing()
+        {
+            decoratedLink.WearBlueRing();
+        }
     }
 }

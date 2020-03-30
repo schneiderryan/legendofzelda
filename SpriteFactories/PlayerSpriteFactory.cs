@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -12,8 +9,6 @@ namespace LegendOfZelda
         private Texture2D linkSpriteSheet = Textures.GetLinkSheet();
         private Texture2D linkAttackingDown = Textures.GetLinkAttackingDown();
         private Texture2D linkAttackingUp = Textures.GetLinkAttackingUp();
-        private Texture2D redLinkAttackingDown = Textures.GetRedLinkAttackingDown();
-        private Texture2D redLinkAttackingUp = Textures.GetRedLinkAttackingUp();
         
         private static PlayerSpriteFactory instance = new PlayerSpriteFactory();
 
@@ -112,86 +107,86 @@ namespace LegendOfZelda
             return new Sprite(linkSpriteSheet, new Rectangle(90, 60, 14, 14));
         }
 
-        //Red Link Sprites
+        // Red Link Sprites
 
         public ISprite CreateRedLeftWalkingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(270, 0, 15, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(270, 0, 16, 16), 2, false);
         }
 
         public ISprite CreateRedRightWalkingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(330, 0, 15, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(330, 0, 16, 16), 2, false);
         }
 
         public ISprite CreateRedUpWalkingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(302, 0, 15, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(300, 0, 16, 16), 2, false);
         }
 
         public ISprite CreateRedDownWalkingLinkSprite()
         {
-            return new AnimatedSprite(linkSpriteSheet, new Rectangle(240, 0, 15, 15), 2, false);
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(240, 0, 16, 16), 2, false);
         }
 
         public ISprite CreateRedLeftAttackingLinkSprite()
         {
-            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(264, 60, 28, 15), 2, false);
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(258, 60, 27, 15), 2, false);
         }
 
         public ISprite CreateRedRightAttackingLinkSprite()
         {
-            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(324, 60, 28, 15), 2, false);
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(330, 60, 27, 15), 2, false);
         }
 
         public ISprite CreateRedUpAttackingLinkSprite()
         {
-            return new AnimateOnceSprite(redLinkAttackingUp, new Rectangle(0, 0, 20, redLinkAttackingUp.Height), 2, true);
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(390, 32, 16, 27), 2, false);
         }
 
         public ISprite CreateRedDownAttackingLinkSprite()
         {
-            return new AnimateOnceSprite(redLinkAttackingDown, new Rectangle(0, 0, 20, redLinkAttackingDown.Height), 2, true);
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(362, 32, 16, 27), 2, false);
         }
 
         public ISprite CreateRedLeftStillLinkSprite()
         {
-            return new Sprite(linkSpriteSheet, new Rectangle(270, 0, 16, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(270, 0, 16, 16));
         }
 
         public ISprite CreateRedRightStillLinkSprite()
         {
-            return new Sprite(linkSpriteSheet, new Rectangle(330, 0, 15, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(330, 0, 16, 16));
         }
 
         public ISprite CreateRedUpStillLinkSprite()
         {
-            return new Sprite(linkSpriteSheet, new Rectangle(302, 0, 12, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(300, 0, 14, 16));
         }
 
         public ISprite CreateRedDownStillLinkSprite()
         {
-            return new Sprite(linkSpriteSheet, new Rectangle(240, 0, 15, 17));
+            return new Sprite(linkSpriteSheet, new Rectangle(241, 0, 14, 16));
         }
 
         public ISprite CreateRedLeftProjectileLinkSprite()
         {
-            throw new NotImplementedException();
+            return new Sprite(linkSpriteSheet, new Rectangle(269, 60, 16, 16));
         }
 
         public ISprite CreateRedRightProjectileLinkSprite()
         {
-            throw new NotImplementedException();
+            return new Sprite(linkSpriteSheet, new Rectangle(330, 60, 16, 16));
         }
 
         public ISprite CreateRedUpProjectileLinkSprite()
         {
-            throw new NotImplementedException();
+            return new Sprite(linkSpriteSheet, new Rectangle(390, 43, 16, 16));
         }
 
         public ISprite CreateRedDownProjectileLinkSprite()
         {
-            throw new NotImplementedException();
+            return new Sprite(linkSpriteSheet, new Rectangle(362, 32, 16, 16));
         }
     }
 }

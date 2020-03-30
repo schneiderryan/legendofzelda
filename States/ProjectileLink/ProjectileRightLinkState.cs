@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -52,7 +50,9 @@ namespace LegendOfZelda
 
         public void BeStill()
         {
-            //Nothing to do
+            link.State = new StillRightLinkState(link);
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRightStillLinkSprite();
+            link.Sprite.Scale = 2f;
         }
 
         public void Update()

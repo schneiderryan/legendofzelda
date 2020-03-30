@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -12,6 +10,7 @@ namespace LegendOfZelda
         {
             this.link = link;
             this.link.Direction = "down";
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownAttackingLinkSprite();
         }
 
         public override void Attack()

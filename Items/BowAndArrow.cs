@@ -65,6 +65,7 @@ namespace LegendOfZelda
             {
                 IProjectile proj = new GreenArrowProjectile(player.Direction,
                         player.Center.X, player.Center.Y);
+                proj.OwningTeam = Team.Link;
                 player.UseProjectile(proj);
                 player.Inventory.Rupees -= 1;
             }

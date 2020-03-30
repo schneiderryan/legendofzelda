@@ -1,70 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace LegendOfZelda
 {
-    internal class StillLeftRedLinkState : ILinkState
+    class StillLeftRedLinkState : LeftRedLinkState
     {
-        private RedLink link;
-
-        public StillLeftRedLinkState(RedLink link)
+        public StillLeftRedLinkState(RedLink link) : base(link)
         {
-            this.link = link;
-            this.link.Direction = "left";
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftStillLinkSprite();
         }
 
-        public void MoveUp()
-        {
-            link.State = new MovingUpRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveDown()
-        {
-            link.State = new MovingDownRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveRight()
-        {
-            link.State = new MovingRightRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveLeft()
-        {
-            link.State = new MovingLeftRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void Attack()
-        {
-            link.State = new AttackingLeftRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftAttackingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void BeStill()
+        public override void BeStill()
         {
             //Nothing to do
-        }
-
-        public void Update()
-        {
-            link.Sprite.Position = new Point(link.X, link.Y);
-        }
-
-        public void Projectile()
-        {
-            link.State = new ProjectileLeftRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftProjectileLinkSprite();
-            link.Sprite.Scale = 2.0f;
         }
     }
 }
