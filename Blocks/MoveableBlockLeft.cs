@@ -17,9 +17,9 @@ namespace LegendOfZelda
         public int X { get => block.X; set => block.X = value; }
         public int Y { get => block.Y; set => block.Y = value; }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Color color)
         {
-            block.Draw(sb);
+            block.Draw(sb, color);
         }
 
         public void MoveOnceDown()

@@ -58,6 +58,7 @@ namespace LegendOfZelda
 
         public int X { get => link.X; set => link.X = value; }
         public int Y { get => link.Y; set => link.Y = value; }
+        public IItem HeldItem { get => link.HeldItem; set => link.HeldItem = value; }
 
         public void Attack()
         {
@@ -97,6 +98,11 @@ namespace LegendOfZelda
         public void MoveUp()
         {
             link.MoveUp();
+        }
+
+        public void PickupItem(IItem item, int time)
+        {
+            link.PickupItem(item, time);
         }
 
         public void RegisterAttackKeys(List<Keys> attackKeys)

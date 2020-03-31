@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 
+
 namespace LegendOfZelda
 {
     abstract class Link : IPlayer
@@ -21,7 +22,8 @@ namespace LegendOfZelda
         private Rectangle attackBoxDown;
         private Vector2 origin;
         private double damageResistance;
-
+        
+        public IItem HeldItem { get; set; }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
 
@@ -106,12 +108,21 @@ namespace LegendOfZelda
             State.BeStill();
         }
 
+        public void PickupItem(IItem item, int time)
+        {
+            State.PickupItem(item, time);
+        }
+
         public virtual void TakeDamage(double amount)
         {
             double actual = amount * (1.0 - damageResistance);
             System.Diagnostics.Debug.WriteLine("link took: " + actual + " damage");
             CurrentHearts -= actual;
             this.game.link = new DamagedLink(game);
+            if (CurrentHearts < 0.01) // close enough to 0 for a double
+            {
+                game.LoseGame();
+            }
         }
 
         public virtual void Update()
@@ -129,18 +140,21 @@ namespace LegendOfZelda
             if (State is AttackingUpLinkState)
             {
                 this.origin = new Vector2(0, 15);
-                Sprite.Draw(sb, color, origin);
             }
             else if (State is AttackingLeftLinkState)
             {
                 this.origin = new Vector2(10, 0);
-                Sprite.Draw(sb, color, origin);
+            }
+            else if (State is LinkPickupState)
+            {
+                HeldItem.Draw(sb, color);
+                this.origin = new Vector2(0, 0);
             }
             else
             {
                 this.origin = new Vector2(0, 0);
-                Sprite.Draw(sb, color, origin);
             }
+            Sprite.Draw(sb, color, origin);
         }
 
         public virtual void UseProjectile(IProjectile projectile)
@@ -148,9 +162,9 @@ namespace LegendOfZelda
             if (itemTimer == 0)
             {
                 itemTimer = 75;
-                Projectile.CenterProjectile(Sprite.Box, Direction, projectile);
+                Util.CenterRelativeToEdge(Sprite.Box, Direction, projectile);
                 game.projectiles.Add(projectile);
-                State.Projectile();
+                State.FireProjectile();
             }
         }
 

@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -11,6 +9,11 @@ namespace LegendOfZelda
         public PlayState(LegendOfZelda game)
         {
             this.game = game;
+        }
+
+        public void ToStart()
+        {
+            //Nothing to do
         }
 
         public void PlayGame()
@@ -71,18 +74,18 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            game.rooms[game.roomIndex].Draw(game.spriteBatch);
+            game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.link.Draw(game.spriteBatch, Color.White);
-            game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch);
+            game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
 
             foreach (IProjectile projectile in game.projectiles)
             {
-                projectile.Draw(game.spriteBatch);
+                projectile.Draw(game.spriteBatch, Color.White);
                 Debug.DrawHitbox(game.spriteBatch, projectile.Hitbox);
             }
             foreach (IDespawnEffect effect in game.effects)
             {
-                effect.Draw(game.spriteBatch);
+                effect.Draw(game.spriteBatch, Color.White);
             }
         }
     }

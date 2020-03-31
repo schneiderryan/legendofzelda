@@ -19,7 +19,7 @@ namespace LegendOfZelda
             link.State = new StillUpRedLinkState(link);
         }
 
-        public override void Projectile()
+        public override void FireProjectile()
         {
             link.State = new ProjectileUpRedLinkState(link);
         }

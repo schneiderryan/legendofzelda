@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace LegendOfZelda
@@ -7,7 +8,7 @@ namespace LegendOfZelda
     {
         public bool Finished => true;
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Color color)
         {
             // do nothing
         }

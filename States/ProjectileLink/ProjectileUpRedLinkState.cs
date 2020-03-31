@@ -9,7 +9,7 @@ namespace LegendOfZelda
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpProjectileLinkSprite();
         }
 
-        public override void Projectile()
+        public override void FireProjectile()
         {
             // nothing to do
         }

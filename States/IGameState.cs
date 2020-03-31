@@ -6,6 +6,7 @@ namespace LegendOfZelda
 {
     interface IGameState
     {
+        void ToStart();
         void PlayGame();
         void PauseGame();
         void ResumeGame();

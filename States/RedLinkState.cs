@@ -14,7 +14,7 @@ namespace LegendOfZelda
 
         public abstract void Attack();
         public abstract void BeStill();
-        public abstract void Projectile();
+        public abstract void FireProjectile();
 
         public virtual void MoveDown()
         {
@@ -36,6 +36,10 @@ namespace LegendOfZelda
             link.State = new MovingUpRedLinkState(link);
         }
 
+        public virtual void PickupItem(IItem item, int time)
+        {
+            link.State = new RedLinkPickupState(link, item, time);
+        }
 
         public virtual void Update()
         {

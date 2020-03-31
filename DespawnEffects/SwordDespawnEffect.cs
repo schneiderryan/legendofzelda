@@ -50,12 +50,12 @@ namespace LegendOfZelda
             lowerRight.Y += SPREAD_RATE;
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Color color)
         {
-            upperLeft.Draw(sb);
-            upperRight.Draw(sb);
-            lowerLeft.Draw(sb);
-            lowerRight.Draw(sb);
+            upperLeft.Draw(sb, color);
+            upperRight.Draw(sb, color);
+            lowerLeft.Draw(sb, color);
+            lowerRight.Draw(sb, color);
         }
     }
 }

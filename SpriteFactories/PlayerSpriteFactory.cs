@@ -188,5 +188,25 @@ namespace LegendOfZelda
         {
             return new Sprite(linkSpriteSheet, new Rectangle(362, 32, 16, 16));
         }
+
+        public ISprite CreateLinkPickup1()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(1, 150, 13, 16));
+        }
+
+        public ISprite CreateLinkPickup2()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(31, 150, 14, 16));
+        }
+
+        public ISprite CreateRedLinkPickup1()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(241, 150, 13, 16));
+        }
+
+        public ISprite CreateRedLinkPickup2()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(271, 150, 14, 16));
+        }
     }
 }

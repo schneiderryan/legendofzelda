@@ -3,12 +3,10 @@
 
 namespace LegendOfZelda
 {
-    class AttackingUpRedLinkState : AttackingLinkState
+    class AttackingUpRedLinkState : AttackingRedLinkState
     {
-        private RedLink link;
-        public AttackingUpRedLinkState(RedLink link)
+        public AttackingUpRedLinkState(RedLink link) : base(link)
         {
-            this.link = link;
             this.link.Direction = "up";
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpAttackingLinkSprite();
             // adjust for the presence of the sword in the sprite

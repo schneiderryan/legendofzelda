@@ -12,6 +12,11 @@ namespace LegendOfZelda
             this.game = game;
         }
 
+        public void ToStart()
+        {
+            //Nothing to do
+        }
+
         public void PlayGame()
         {
             game.state = new PlayState(game);
@@ -19,7 +24,7 @@ namespace LegendOfZelda
 
         public void PauseGame()
         {
-            game.state = new PauseState(game);
+            //Nothing to do
         }
 
         public void ResumeGame()

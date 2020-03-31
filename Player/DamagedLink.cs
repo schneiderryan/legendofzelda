@@ -94,6 +94,8 @@ namespace LegendOfZelda
 
         public Rectangle Hitbox => decoratedLink.Hitbox;
 
+        public IItem HeldItem { get => decoratedLink.HeldItem; set => decoratedLink.HeldItem = value; }
+
         public DamagedLink (LegendOfZelda game)
         {
             this.game = game;
@@ -197,6 +199,11 @@ namespace LegendOfZelda
             decoratedLink.WearBlueRing();
             decoratedLink = game.link;
             game.link = this;
+        }
+
+        public void PickupItem(IItem item, int time)
+        {
+            decoratedLink.PickupItem(item, time);
         }
     }
 }

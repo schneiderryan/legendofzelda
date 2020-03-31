@@ -82,47 +82,46 @@ namespace LegendOfZelda
             LoadRoomLayout(levelLoader.RoomNumber());
         }
 
-        public void DrawOverlay(SpriteBatch sb)
+        public void DrawOverlay(SpriteBatch sb, Color color)
         {
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 if((!(door.Key == "up")) || door.Value is TopOpen )
                 {
-                    door.Value.Draw(sb);
+                    door.Value.Draw(sb, color);
                 }
             }
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Color color)
         {
-            background.Draw(sb);
-
+            background.Draw(sb, color);
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 if (door.Key == "up")
                 {
-                    door.Value.Draw(sb);
+                    door.Value.Draw(sb, color);
                 }
             }
 
             foreach (IBlock b in Blocks)
             {
-                b.Draw(sb);
+                b.Draw(sb, color);
             }
 
             foreach (IItem item in Items)
             {
-                item.Draw(sb);
+                item.Draw(sb, color);
             }
 
             foreach (INPC npc in npcs)
             {
-                npc.Draw(sb);
+                npc.Draw(sb, color);
             }
 
             foreach (IEnemy enemy in Enemies)
             {
-                enemy.Draw(sb, Color.White);
+                enemy.Draw(sb, color);
             }
         }
 

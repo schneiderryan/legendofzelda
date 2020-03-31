@@ -1,13 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
-    class AttackingRightLinkState : AttackingLinkState
+    class AttackingRightLinkState : AttackingGreenLinkState
     {
-        private GreenLink link;
         public AttackingRightLinkState(GreenLink link)
         {
             this.link = link;

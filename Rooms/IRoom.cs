@@ -6,7 +6,7 @@ namespace LegendOfZelda
 {
     interface IRoom : IDrawable, IUpdateable
     {
-        void DrawOverlay(SpriteBatch sb);
+        void DrawOverlay(SpriteBatch sb, Color color);
         IList<Rectangle> Hitboxes { get; }
         IDictionary<string, IDoor> Doors { get; }
         IList<IBlock> Blocks { get; }

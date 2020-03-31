@@ -16,7 +16,7 @@ namespace LegendOfZelda
 
         public void Handle(IPlayer player, IItem item, int postionInItemList)
         {
-            item.Pickup(player);
+            item.Collect(player);
             itemsToDespawnPositions.Add(postionInItemList);
         }
     }

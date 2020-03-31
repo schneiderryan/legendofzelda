@@ -3,12 +3,10 @@
 
 namespace LegendOfZelda
 {
-    class AttackingRightRedLinkState : AttackingLinkState
+    class AttackingRightRedLinkState : AttackingRedLinkState
     {
-        private RedLink link;
-        public AttackingRightRedLinkState(RedLink link)
+        public AttackingRightRedLinkState(RedLink link) : base(link)
         {
-            this.link = link;
             this.link.Direction = "right";
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightAttackingLinkSprite();
         }

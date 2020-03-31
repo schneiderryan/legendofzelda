@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace LegendOfZelda
@@ -47,15 +48,15 @@ namespace LegendOfZelda
             hasBow = true;
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Color color)
         {
             if (hasBow)
             {
-                bow.Draw(sb);
+                bow.Draw(sb, color);
             }
             if (hasArrow)
             {
-                arrow.Draw(sb);
+                arrow.Draw(sb, color);
             }
         }
 

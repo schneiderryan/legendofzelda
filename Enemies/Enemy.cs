@@ -29,7 +29,7 @@ namespace LegendOfZelda
         {
             if (isBeingAttacked)
             {
-                    
+                
                 Color hurt1 = new Color(83, 68, 198);
                 Color hurt2 = new Color(184, 101, 22);
                 Color hurt3 = new Color(76, 80, 69);
@@ -52,7 +52,7 @@ namespace LegendOfZelda
             }
             else
             {
-                Sprite.Draw(sb, Color.White);
+                Sprite.Draw(sb, color);
             }
         }
 
