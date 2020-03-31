@@ -48,29 +48,29 @@ namespace LegendOfZelda
             currentPosition= 0;
         }
 
-        public void Handle(LegendOfZelda game, ISet<IProjectile> projectiles, IPlayer player)
+        public void Handle(IRoom room, ISet<IProjectile> projectiles, IPlayer player, LegendOfZelda game)
         {
             // check if player and enemies are touching walls and blocks
-            CheckPlayerTouchingWallBlock(player, game.rooms[game.roomIndex]);
-            CheckEnemyTouchingWallBlock(game.rooms[game.roomIndex]);
+            CheckPlayerTouchingWallBlock(player, room);
+            CheckEnemyTouchingWallBlock(room);
 
             // handle all things player first
-            HandlePlayerCollisions(game, projectiles, player);
+            HandlePlayerCollisions(room, projectiles, player, game);
 
             // handle all things enemy that haven't already been handled
-            HandleEnemyCollisions(game.rooms[game.roomIndex], projectiles, player);
+            HandleEnemyCollisions(room, projectiles, player);
 
             // handle whatever's left
-            HandleProjectileCollisions(game.rooms[game.roomIndex], projectiles);
+            HandleProjectileCollisions(room, projectiles);
 
-            Despawn(projectiles, game.rooms[game.roomIndex].Enemies, game.rooms[game.roomIndex].Items);
+            Despawn(projectiles, room.Enemies, room.Items);
             RemoveFinshedEffects();
         }
 
-        private void HandlePlayerCollisions(LegendOfZelda game, ISet<IProjectile> projectiles,
-                IPlayer player)
+        private void HandlePlayerCollisions(IRoom room, ISet<IProjectile> projectiles,
+                IPlayer player, LegendOfZelda game)
         {
-            foreach (Rectangle wall in game.rooms[game.roomIndex].Hitboxes)
+            foreach (Rectangle wall in room.Hitboxes)
             {
                 Rectangle collision = Rectangle.Intersect(wall, player.Footbox);
                 if (!collision.IsEmpty)
@@ -79,37 +79,34 @@ namespace LegendOfZelda
                 }
             }
 
-            foreach (IBlock block in game.rooms[game.roomIndex].Blocks)
+            foreach (IBlock block in room.Blocks)
             {
                 Rectangle collision = Rectangle.Intersect(block.Hitbox, player.Footbox);
                 if (!collision.IsEmpty)
                 {
 
-                    playerBlockCollision.Handle(game.rooms[game.roomIndex], player, block, collision);
+                    PlayerBlockCollision.Handle(room, player, block, collision);
 
                     
                 }
             }
 
-            foreach (KeyValuePair<string, IDoor> door in game.rooms[game.roomIndex].Doors.ToList())
+            foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
             {
                 Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
                 if (!collision.IsEmpty)
                 {
-
-             
                     if (door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)
                     {
-                        System.Diagnostics.Debug.WriteLine("edge collision");
-                        playerDoorCollision.HandleEdge(player, door.Value, collision, game);
+                        PlayerDoorCollision.HandleEdge(player, door.Value, collision, game);
                     }
                     else 
                         {
-                            playerDoorCollision.Handle(player, door.Value, collision);
+                            PlayerDoorCollision.Handle(player, door.Value, collision);
                             if (door.Value is TopKey)
                             {
-                                game.rooms[game.roomIndex].Doors.Remove(door);
-                                game.rooms[game.roomIndex].Doors.Add("top", new TopOpen());
+                            room.Doors.Remove(door);
+                            room.Doors.Add("top", new TopOpen());
                             }
 
                         }
@@ -117,7 +114,7 @@ namespace LegendOfZelda
                 }
             }
 
-            foreach (IEnemy enemy in game.rooms[game.roomIndex].Enemies)
+            foreach (IEnemy enemy in room.Enemies)
             {
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
@@ -138,7 +135,7 @@ namespace LegendOfZelda
                 if (projectile.GetType().ToString().Equals("LegendOfZelda.BoomerangProjectile") && projectile.OwningTeam.ToString().Equals("Link"))
                 {
                     currentPosition = 0;
-                    foreach (IItem item in game.rooms[game.roomIndex].Items)
+                    foreach (IItem item in room.Items)
                     {
                         collision = Rectangle.Intersect(item.Hitbox, projectile.Hitbox);
                         if (!collision.IsEmpty)
@@ -153,7 +150,7 @@ namespace LegendOfZelda
 
 
             currentPosition= 0;
-            foreach (IItem item in game.rooms[game.roomIndex].Items)
+            foreach (IItem item in room.Items)
 
             {
                 Rectangle collision = Rectangle.Intersect(item.Hitbox, player.Hitbox);

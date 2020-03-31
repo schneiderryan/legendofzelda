@@ -69,7 +69,7 @@ namespace LegendOfZelda
                 effect.Update();
             }
 
-            game.collisionHandler.Handle(game.rooms[game.roomIndex], game.projectiles, game.link);
+            game.collisionHandler.Handle(game.rooms[game.roomIndex], game.projectiles, game.link, game);
         }
 
         public void Draw()

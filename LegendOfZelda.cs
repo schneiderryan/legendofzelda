@@ -27,7 +27,7 @@ namespace LegendOfZelda
         public LegendOfZelda()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 352; 
+            graphics.PreferredBackBufferHeight = 352;
             graphics.PreferredBackBufferWidth = 512;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -49,30 +49,7 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
-
-            
-            rooms[roomIndex].Update();
-            
-            mouse.Update();
-            keyboard.Update();
-            playerKeyboard.Update();
-
-            
-            link.Update();
-
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Update();
-            }
-            foreach (IDespawnEffect effect in effects)
-            {
-                effect.Update();
-            }
-
-            collisionHandler.Handle(this, projectiles, link);
-
             state.Update();
-
 
             base.Update(gameTime);
         }
