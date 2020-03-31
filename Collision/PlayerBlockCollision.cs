@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class PlayerBlockCollision
     {
-        public void Handle(IRoom room, IPlayer player, IBlock block, in Rectangle collision)
+        public static void Handle(IRoom room, IPlayer player, IBlock block, in Rectangle collision)
         {
             IMoveableBlock moveableBlock;
             if (block is IMoveableBlock)

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
+
 
 namespace LegendOfZelda
 {
@@ -15,7 +15,7 @@ namespace LegendOfZelda
         internal static ISprite GetClock()
         {
             return new Sprite(Textures.GetItemSheet(),
-                new Rectangle(57, 0, 12, 16));
+                new Rectangle(58, 0, 11, 16));
         }
 
         public static ISprite GetHeartContainer()
@@ -48,6 +48,11 @@ namespace LegendOfZelda
         {
             return new Sprite(Textures.GetItemSheet(),
                     new Rectangle(104, 0, 7, 16));
+        }
+        public static ISprite GetWhiteSword()
+        {
+            return new Sprite(Textures.GetItemSheet(),
+                    new Rectangle(104, 16, 7, 16));
         }
 
         public static ISprite GetBomb()
@@ -108,6 +113,32 @@ namespace LegendOfZelda
             return new AnimatedSprite(Textures.GetItemSheet(),
                     new Rectangle(95, 34, 10, 10), 2)
             { AnimationDelay = 10 };
+        }
+
+        public static ISprite GetRedPotion()
+        {
+            return new Sprite(Textures.GetItemSheet(),
+                    new Rectangle(80, 0, 8, 16));
+        }
+
+        public static ISprite GetBluePotion()
+        {
+            return new Sprite(Textures.GetItemSheet(),
+                    new Rectangle(80, 16, 8, 16));
+        }
+
+        public static ISprite GetBlueRing()
+        {
+            return new Sprite(Textures.GetItemSheet(),
+                    new Rectangle(169, 19, 7, 9))
+                { Scale = 3f };
+        }
+
+        public static ISprite GetRedRing()
+        {
+            return new Sprite(Textures.GetItemSheet(),
+                    new Rectangle(169, 3, 7, 9))
+                { Scale = 3f };
         }
     }
 }

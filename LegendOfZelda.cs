@@ -7,20 +7,22 @@ namespace LegendOfZelda
 {
     class LegendOfZelda : Game
     {
+        public IGameState state;
+
         public IList<IRoom> rooms;
-        public int roomIndex = 0;
+        public int roomIndex;
 
         public IPlayer link;
         public ISet<IProjectile> projectiles;
         public IList<IDespawnEffect> effects;
         public GraphicsDeviceManager graphics;
 
-        private IController mouse;
-        private IController keyboard;
-        private IController playerKeyboard;
+        public IController mouse;
+        public IController keyboard;
+        public IController playerKeyboard;
 
-        private CollisionHandler collisionHandler;
-        private SpriteBatch spriteBatch;
+        public CollisionHandler collisionHandler;
+        public SpriteBatch spriteBatch;
 
         public LegendOfZelda()
         {
@@ -36,15 +38,7 @@ namespace LegendOfZelda
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
 
-            this.link = new GreenLink(this);
-            playerKeyboard = GameSetup.CreatePlayerKeysController(link);
-            mouse = new MouseController(this);
-            keyboard = GameSetup.CreateGeneralKeysController(this);
-
-            projectiles = new HashSet<IProjectile>();
-            effects = new List<IDespawnEffect>();
-            collisionHandler = new CollisionHandler(effects);
-            rooms = GameSetup.GenerateRoomList(this);
+            state = new StartMenuState(this);
         }
 
         protected override void LoadContent()
@@ -55,6 +49,7 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
+
             
             rooms[roomIndex].Update();
             
@@ -76,6 +71,9 @@ namespace LegendOfZelda
 
             collisionHandler.Handle(this, projectiles, link);
 
+            state.Update();
+
+
             base.Update(gameTime);
         }
 
@@ -83,31 +81,53 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            
-            rooms[roomIndex].Draw(spriteBatch);
-            link.Draw(spriteBatch, Color.White);
-            rooms[roomIndex].DrawOverlay(spriteBatch);
-            
-            Debug.DrawHitbox(spriteBatch, link.Footbox);
-            Debug.DrawHitbox(spriteBatch, link.Hitbox);
-            Debug.DrawHitbox(spriteBatch, link.LeftAttackBox);
-            Debug.DrawHitbox(spriteBatch, link.RightAttackBox);
-            Debug.DrawHitbox(spriteBatch, link.UpAttackBox);
-            Debug.DrawHitbox(spriteBatch, link.DownAttackBox);
+            GraphicsDevice.Clear(Color.White);
 
-            foreach (IProjectile projectile in projectiles)
-            {
-                projectile.Draw(spriteBatch);
-                Debug.DrawHitbox(spriteBatch, projectile.Hitbox);
-            }
-            foreach (IDespawnEffect effect in effects)
-            {
-                effect.Draw(spriteBatch);
-            }
+            state.Draw();
 
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void ToStart()
+        {
+            state.ToStart();
+        }
+
+        public void PlayGame()
+        {
+            state.PlayGame();
+        }
+
+        public void PauseGame()
+        {
+            state.PauseGame();
+        }
+
+        public void ResumeGame()
+        {
+            state.ResumeGame();
+        }
+
+        public void ChangeRoom()
+        {
+            state.ChangeRoom();
+        }
+
+        public void WinGame()
+        {
+            state.WinGame();
+        }
+
+        public void LoseGame()
+        {
+            state.LoseGame();
+        }
+
+        public void SelectItem()
+        {
+            state.SelectItem();
         }
 
     }

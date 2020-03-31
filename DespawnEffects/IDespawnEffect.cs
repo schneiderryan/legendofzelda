@@ -2,11 +2,8 @@
 
 namespace LegendOfZelda
 {
-    interface IDespawnEffect
-    {
-        void Draw(SpriteBatch sb);
-        void Update();
-        
+    interface IDespawnEffect : IDrawable, IUpdateable
+    {   
         bool Finished { get; }
     }
 }

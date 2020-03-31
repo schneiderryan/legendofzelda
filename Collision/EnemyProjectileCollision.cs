@@ -30,7 +30,7 @@ namespace LegendOfZelda
                 }
 
                 System.Diagnostics.Debug.WriteLine("call take damage");
-                enemy.TakeDamage();
+                enemy.TakeDamage(projectile.Damage);
                 if (!handler.playerTouchingBlockorWall)
                 {
                     Knockback(enemy, collision);
@@ -41,12 +41,6 @@ namespace LegendOfZelda
                     enemiesToDepsawn.Add(enemy);
                 }
             }
-            if(enemy is Fire)
-            {
-                enemy.currentHearts--;
-            }
-            
-
         }
     }
 }

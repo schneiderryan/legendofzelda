@@ -5,11 +5,13 @@ namespace LegendOfZelda
 {
     class PlayerDoorCollision
     {
+
         ICommand cmdLeft;
         ICommand cmdRight;
         ICommand cmdUp;
         ICommand cmdDown;
         public void Handle(IPlayer player, IDoor door, in Rectangle collision)
+
         {
             if(!(player.X > 449 && (door is RightWall || door is RightOther)))
             {

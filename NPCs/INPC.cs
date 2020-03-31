@@ -1,10 +1,10 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    interface INPC : ICollideable
+    interface INPC : ICollideable, IDrawable, IUpdateable
     {
-        void Update();
-        void Draw(SpriteBatch sb);
+
     }
 }

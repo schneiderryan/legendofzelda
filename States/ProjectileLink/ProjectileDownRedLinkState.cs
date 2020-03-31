@@ -1,68 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace LegendOfZelda
 {
-    internal class ProjectileDownRedLinkState : ILinkState
+    class ProjectileDownRedLinkState : DownRedLinkState
     {
-        private RedLink link;
-
-        public ProjectileDownRedLinkState(RedLink link)
+        public ProjectileDownRedLinkState(RedLink link) : base(link)
         {
-            this.link = link;
-            this.link.Direction = "down";
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownProjectileLinkSprite();
         }
 
-        public void MoveUp()
+        public override void FireProjectile()
         {
-            link.State = new MovingUpRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateUpWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveDown()
-        {
-            link.State = new MovingDownRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateDownWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveRight()
-        {
-            link.State = new MovingRightRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRightWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveLeft()
-        {
-            link.State = new MovingLeftRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateLeftWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void Attack()
-        {
-            link.State = new AttackingDownRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateDownAttackingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void BeStill()
-        {
-            //Nothing to do
-        }
-
-        public void Update()
-        {
-            link.Sprite.Position = new Point(link.X, link.Y);
-        }
-
-        public void Projectile()
-        {
-
+            // nothing to do
         }
     }
 }

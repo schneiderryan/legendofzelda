@@ -1,0 +1,29 @@
+﻿Author of the code review: Emily Smith
+Date of the code review: 3/23/2020
+Sprint number: 3
+File: MoveableBlock.cs
+File Author: Isaac Smith
+9 minutes
+
+Comments:
+	Overall, I would say Isaac's code quality is pretty high. The class isn’t very long with less than 
+	100 lines, and none of the methods are very long and have excessive branching. If you need to add 
+	additions to the update method then I would recommend abstracting them. The cohesion of this class is 
+	pretty high with this class only focusing on blocks that can be moved. The coupling isn’t very high 
+	because the class is only dependent on ISprite, IRoom, RoomSpriteFactory, LevelParser, and 
+	CollideableObject. Additionally, the coupling is loose because this class only uses one or two methods 
+	or fields from these other classes. Also, there aren’t really any magic numbers other then maybe the 
+	moveCounter += 2, but I think that is reasonable. Also the variables used in this class are private 
+	or protected. Finally, all names are readable and follow a naming convention. 
+
+
+Hypothetical Change:
+	One change would be having different colors of blocks for different levels of the game. 
+	I think this a realistic change as the original game has levels with different colored blocks. 
+	This would be an easy change to implement as the level or color could be passed in the constructor.
+
+	Another change would be having the  having additional actions happen when blocks are moved. 
+	(like how moving the block left opens the door to the old man), This would also be a relatively 
+	easy change to make to the code, would just have to add additional conditions to the 
+	foreach loop in the update method.
+

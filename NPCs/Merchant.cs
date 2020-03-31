@@ -1,15 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace LegendOfZelda
 {
 	class Merchant : CollideableObject, INPC
 	{
 		private ISprite sprite;
-		private Fire leftFire;
-		private Fire rightFire;
 
-		public Merchant(LegendOfZelda loz)
+		public Merchant()
 		{
 			sprite = EnemySpriteFactory.Instance.CreateMerchantSprite();
 			Hitbox = sprite.Box;
@@ -21,12 +20,11 @@ namespace LegendOfZelda
 		public void Update()
 		{
 			sprite.Update();
-			
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, Color color)
 		{
-			sprite.Draw(spriteBatch);
+			sprite.Draw(spriteBatch, color);
 		}
 	}
 }

@@ -8,6 +8,7 @@ namespace LegendOfZelda
         public int VX { get; set; }
         public int VY { get; set; }
         public Team OwningTeam { get; set; }
+        public abstract double Damage { get; }
 
         protected ISprite sprite;
 
@@ -56,41 +57,14 @@ namespace LegendOfZelda
             sprite.Update();
         }
 
-        public virtual void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb, Color color)
         {
-            sprite.Draw(sb);
+            sprite.Draw(sb, color);
         }
 
         public virtual IDespawnEffect GetDespawnEffect()
         {
             return new NoDespawnEffect();
         }
-
-
-        public static void CenterProjectile(Rectangle source,
-                string direction, IProjectile projectile)
-        {
-            if (direction == "up")
-            {
-                projectile.X = source.Center.X - projectile.Hitbox.Width / 2;
-                projectile.Y = source.Top - projectile.Hitbox.Height;
-            }
-            else if (direction == "down")
-            {
-                projectile.X = source.Center.X - projectile.Hitbox.Width / 2;
-                projectile.Y = source.Bottom;
-            }
-            else if (direction == "right")
-            {
-                projectile.X = source.Right;
-                projectile.Y = source.Center.Y - projectile.Hitbox.Height / 2;
-            }
-            else if (direction == "left")
-            {
-                projectile.X = source.Left - projectile.Hitbox.Width;
-                projectile.Y = source.Center.Y - projectile.Hitbox.Height / 2;
-            }
-        }
-
     }
 }

@@ -9,8 +9,6 @@ namespace LegendOfZelda
         private static Texture2D link;
         private static Texture2D linkAttackingDown;
         private static Texture2D linkAttackingUp;
-        private static Texture2D redLinkAttackingDown;
-        private static Texture2D redLinkAttackingUp;
 
         private static Texture2D misc;
         private static Texture2D effects;
@@ -23,8 +21,12 @@ namespace LegendOfZelda
         private static Texture2D blank;
 
         private static Texture2D rooms;
+        private static Texture2D BWRoom;
         private static Texture2D dungeon;
         private static Texture2D tiles;
+
+        private static Texture2D StartMenu;
+        private static Texture2D WinCurtain;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -41,12 +43,14 @@ namespace LegendOfZelda
             link = contentManager.Load<Texture2D>("link_mod");
             linkAttackingDown = contentManager.Load<Texture2D>("downAttackingLink");
             linkAttackingUp = contentManager.Load<Texture2D>("upAttackingLink");
-            redLinkAttackingDown = contentManager.Load<Texture2D>("downAttackingRedLink");
-            redLinkAttackingUp = contentManager.Load<Texture2D>("upAttackingRedLink");
 
             rooms = contentManager.Load<Texture2D>("rooms");
+            BWRoom = contentManager.Load<Texture2D>("RoomsBW");
             dungeon = contentManager.Load<Texture2D>("dungeon");
             tiles = contentManager.Load<Texture2D>("tiles");
+
+            StartMenu = contentManager.Load<Texture2D>("StartMenu");
+            WinCurtain = contentManager.Load<Texture2D>("winCurtain");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -101,16 +105,6 @@ namespace LegendOfZelda
             return linkAttackingDown;
         }
 
-        public static Texture2D GetRedLinkAttackingUp()
-        {
-            return redLinkAttackingUp;
-        }
-
-        public static Texture2D GetRedLinkAttackingDown()
-        {
-            return redLinkAttackingDown;
-        }
-
         public static Texture2D GetBlankTexture()
         {
             return blank;
@@ -129,6 +123,21 @@ namespace LegendOfZelda
         public static Texture2D GetMerchantSheet()
         {
             return merchant;
+        }
+
+        public static Texture2D GetStartMenu()
+        {
+            return StartMenu;
+        }
+
+        public static Texture2D GetBWRoom()
+        {
+            return BWRoom;
+        }
+
+        public static Texture2D GetWinCurtain()
+        {
+            return WinCurtain;
         }
     }
 }

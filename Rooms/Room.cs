@@ -83,59 +83,46 @@ namespace LegendOfZelda
             LoadRoomLayout(levelLoader.RoomNumber());
         }
 
-        public void DrawOverlay(SpriteBatch sb)
+        public void DrawOverlay(SpriteBatch sb, Color color)
         {
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 if((!(door.Key == "up")) || door.Value is TopOpen )
                 {
-                    door.Value.Draw(sb);
-                    Debug.DrawHitbox(sb, door.Value.Hitbox);
+                    door.Value.Draw(sb, color);
                 }
             }
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Color color)
         {
-            background.Draw(sb);
-
+            background.Draw(sb, color);
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 if (door.Key == "up")
                 {
-                    Debug.DrawHitbox(sb, door.Value.Hitbox);
-                    door.Value.Draw(sb);
+                    door.Value.Draw(sb, color);
                 }
             }
 
             foreach (IBlock b in Blocks)
             {
-                b.Draw(sb);
-                
-                Debug.DrawHitbox(sb, b.Hitbox);
+                b.Draw(sb, color);
             }
 
             foreach (IItem item in Items)
             {
-                item.Draw(sb);
-                Debug.DrawHitbox(sb, item.Hitbox);
+                item.Draw(sb, color);
             }
 
             foreach (INPC npc in npcs)
             {
-                npc.Draw(sb);
-                Debug.DrawHitbox(sb, npc.Hitbox);
+                npc.Draw(sb, color);
             }
 
             foreach (IEnemy enemy in Enemies)
             {
-                enemy.Draw(sb, Color.White);
-                Debug.DrawHitbox(sb, enemy.Hitbox);
-            }
-
-            foreach (Rectangle box in Hitboxes)
-            {
-                Debug.DrawHitbox(sb, box);
+                enemy.Draw(sb, color);
             }
         }
 

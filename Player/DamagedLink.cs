@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -74,12 +74,6 @@ namespace LegendOfZelda
             set { decoratedLink.Color = value; }
         }
 
-        public int NumRupees
-        {
-            get { return decoratedLink.NumRupees; }
-            set { decoratedLink.NumRupees = value; }
-        }
-
         public double MaxHearts
         {
             get { return decoratedLink.MaxHearts; }
@@ -92,22 +86,15 @@ namespace LegendOfZelda
             set { decoratedLink.CurrentHearts = value; }
         }
 
-        public int NumberBombs
-        {
-            get { return decoratedLink.NumberBombs; }
-            set { decoratedLink.NumberBombs = value; }
-        }
-        public int NumberKeys
-        {
-            get { return decoratedLink.NumberKeys; }
-            set { decoratedLink.NumberKeys = value; }
-        }
+        public IInventory Inventory => decoratedLink.Inventory;
 
         public Team Team { get => decoratedLink.Team; set => decoratedLink.Team = value; }
 
         public Point Center => decoratedLink.Center;
 
         public Rectangle Hitbox => decoratedLink.Hitbox;
+
+        public IItem HeldItem { get => decoratedLink.HeldItem; set => decoratedLink.HeldItem = value; }
 
         public DamagedLink (LegendOfZelda game)
         {
@@ -148,7 +135,6 @@ namespace LegendOfZelda
             {
                 decoratedLink.Draw(sb, Microsoft.Xna.Framework.Color.White);
             }
-            
         }
 
         public void MoveDown()
@@ -171,7 +157,7 @@ namespace LegendOfZelda
             decoratedLink.MoveUp();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(double amount)
         {
             // does not take damage
         }
@@ -184,11 +170,6 @@ namespace LegendOfZelda
                 game.link = decoratedLink;
             }
             decoratedLink.Update();
-        }
-
-        public void UseItem(IItem item)
-        {
-            decoratedLink.UseItem(item);
         }
 
         public void UseProjectile(IProjectile projectile)
@@ -206,5 +187,23 @@ namespace LegendOfZelda
             return decoratedLink.IsAttacking();
         }
 
+        public void WearRedRing()
+        {
+            decoratedLink.WearRedRing();
+            decoratedLink = game.link;
+            game.link = this;
+        }
+
+        public void WearBlueRing()
+        {
+            decoratedLink.WearBlueRing();
+            decoratedLink = game.link;
+            game.link = this;
+        }
+
+        public void PickupItem(IItem item, int time)
+        {
+            decoratedLink.PickupItem(item, time);
+        }
     }
 }

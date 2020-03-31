@@ -59,6 +59,7 @@ namespace LegendOfZelda
                 "Rupee",
                 "TriforceShard",
                 "WoodSword",
+                "RedRing",
             };
 
             this.possibleBlocks = new List<string>()
@@ -80,13 +81,13 @@ namespace LegendOfZelda
 
         public int RoomNumber()
         {
-            return parser.parseRoomNumber();
+            return parser.ParseRoomNumber();
         }
 
         public ISprite LoadBackground()
         {
             ISprite background;
-            int roomNumber = parser.parseRoomNumber();
+            int roomNumber = parser.ParseRoomNumber();
             if (roomNumber == 0)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom0();
@@ -169,7 +170,7 @@ namespace LegendOfZelda
         public ISet<IEnemy> LoadEnemies()
         {
             ISet<IEnemy> enemies = new HashSet<IEnemy>();
-            Dictionary<Vector2, String> enemyInfo = parser.parse(possibleEnemies);
+            Dictionary<Vector2, String> enemyInfo = parser.Parse(possibleEnemies);
             foreach (KeyValuePair<Vector2, String> entry in enemyInfo)
             {
                 IEnemy enemy;
@@ -231,7 +232,7 @@ namespace LegendOfZelda
         public IList<IItem> LoadItems()
         {
             List<IItem> items = new List<IItem>();
-            Dictionary<Vector2, String> itemInfo = parser.parse(possibleItems);
+            Dictionary<Vector2, String> itemInfo = parser.Parse(possibleItems);
             foreach (KeyValuePair<Vector2, String> entry in itemInfo)
             {
                 IItem item;
@@ -289,7 +290,11 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("TriforceShard"))
                 {
-                    item = new TriforceShard();
+                    item = new TriforceShard(game);
+                }
+                else if (entry.Value.Equals("RedRing"))
+                {
+                    item = new RedRing();
                 }
                 else //wood sword
                 {
@@ -305,7 +310,7 @@ namespace LegendOfZelda
         public IList<IBlock> LoadBlocks(IRoom room)
         {
             IList<IBlock> blocks = new List<IBlock>();
-            Dictionary<Vector2, String> blockInfo = parser.parse(possibleBlocks);
+            Dictionary<Vector2, String> blockInfo = parser.Parse(possibleBlocks);
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
                 IBlock block = null;
@@ -335,7 +340,7 @@ namespace LegendOfZelda
         public Dictionary<String, IDoor> LoadDoors()
         {
             Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
-            Dictionary<String, String> doorInfo = parser.parseDoors(possibleDoors);
+            Dictionary<String, String> doorInfo = parser.ParseDoors(possibleDoors);
             
             foreach (KeyValuePair<String, String> entry in doorInfo)
             {
@@ -442,19 +447,19 @@ namespace LegendOfZelda
         public IList<INPC> LoadNPCs()
         {
             IList<INPC> npcs = new List<INPC>();
-            Dictionary<Vector2, String> info = parser.parse(possibleNPCs);
+            Dictionary<Vector2, String> info = parser.Parse(possibleNPCs);
             foreach (KeyValuePair<Vector2, String> entry in info)
             {
                 if (entry.Value.Equals("OldMan"))
                 {
-                    INPC npc = new OldMan(game);
+                    INPC npc = new OldMan();
                     npc.X = (int)entry.Key.X;
                     npc.Y = (int)entry.Key.Y;
                     npcs.Add(npc);
                 }
                 else
                 {
-                    INPC npc = new Merchant(game);
+                    INPC npc = new Merchant();
                     npc.X = (int)entry.Key.X;
                     npc.Y = (int)entry.Key.Y;
                     npcs.Add(npc);
