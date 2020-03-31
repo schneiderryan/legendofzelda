@@ -1,7 +1,7 @@
 ﻿
 namespace LegendOfZelda
 {
-    public interface ILinkState
+    interface ILinkState : IUpdateable
     {
         void MoveUp();
         void MoveDown();
@@ -9,8 +9,7 @@ namespace LegendOfZelda
         void MoveLeft();
         void Attack();
         void BeStill();
-        void PickupItem(int time);
-        void Update();
-        void Projectile();
+        void FireProjectile();
+        void PickupItem(IItem item, int time);
     }
 }

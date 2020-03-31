@@ -9,8 +9,6 @@ namespace LegendOfZelda
         private static Texture2D link;
         private static Texture2D linkAttackingDown;
         private static Texture2D linkAttackingUp;
-        private static Texture2D redLinkAttackingDown;
-        private static Texture2D redLinkAttackingUp;
 
         private static Texture2D misc;
         private static Texture2D effects;
@@ -45,8 +43,6 @@ namespace LegendOfZelda
             link = contentManager.Load<Texture2D>("link_mod");
             linkAttackingDown = contentManager.Load<Texture2D>("downAttackingLink");
             linkAttackingUp = contentManager.Load<Texture2D>("upAttackingLink");
-            redLinkAttackingDown = contentManager.Load<Texture2D>("downAttackingRedLink");
-            redLinkAttackingUp = contentManager.Load<Texture2D>("upAttackingRedLink");
 
             rooms = contentManager.Load<Texture2D>("rooms");
             BWRoom = contentManager.Load<Texture2D>("RoomsBW");
@@ -107,16 +103,6 @@ namespace LegendOfZelda
         public static Texture2D GetLinkAttackingDown()
         {
             return linkAttackingDown;
-        }
-
-        public static Texture2D GetRedLinkAttackingUp()
-        {
-            return redLinkAttackingUp;
-        }
-
-        public static Texture2D GetRedLinkAttackingDown()
-        {
-            return redLinkAttackingDown;
         }
 
         public static Texture2D GetBlankTexture()

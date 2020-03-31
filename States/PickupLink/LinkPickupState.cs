@@ -1,22 +1,22 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace LegendOfZelda
 {
-    internal class LinkPickupState : ILinkState
+    abstract class LinkPickupState : ILinkState
     {
-        private GreenLink link;
-        private int delay;
-        private int time;
+        protected int delay;
+        protected int time;
 
-        public LinkPickupState(GreenLink link, int time)
+        public LinkPickupState(IPlayer link, IItem item, int time)
         {
-            this.link = link;
             delay = 0;
             this.time = time;
+            Util.CenterRelativeToEdge(link.Sprite.Box, "up", item);
+            item.Update();
+            link.HeldItem = item;
         }
+
+        public abstract void Update();
 
         public void MoveUp()
         {
@@ -48,31 +48,14 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
-        public void PickupItem(int time)
+        public void FireProjectile()
         {
             //Nothing to do
         }
 
-        public void Update()
+        public void PickupItem(IItem item, int time)
         {
-            if(delay > 20)
-            {
-                link.Sprite = PlayerSpriteFactory.Instance.CreateLinkPickup2();
-            }
-            if(delay == time)
-            {
-                this.link.PickedUpItem.Clear();
-                link.State = new StillDownLinkState(link);
-                link.Sprite = PlayerSpriteFactory.Instance.CreateDownStillLinkSprite();
-                link.Sprite.Scale = 2.0f;
-            }
-            link.Sprite.Position = new Point(link.X, link.Y);
-            delay++;
-        }
-
-        public void Projectile()
-        {
-            //Nothing to do
+            // do nothing
         }
     }
 }

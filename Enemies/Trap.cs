@@ -54,9 +54,9 @@ namespace LegendOfZelda
 			VY = 0;
 			VX = 0;
 		}
-		public override void TakeDamage()
+		public override void TakeDamage(double amount)
 		{
-			//
+			// do nothing
 		}
 
 		public override void Update()

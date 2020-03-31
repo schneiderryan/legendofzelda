@@ -15,20 +15,7 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            if (player.HasBow)
-            {
-                Bow bow = new Bow()
-                {
-                    HasArrow = true
-                };
-                player.UseItem(bow);
-            }
-
-            /*Bow bow = new Bow()
-            {
-                HasArrow = true
-            };
-            player.UseItem(bow);*/
+            player.Inventory.BowAndArrow.Use(player);
         }
     }
 }

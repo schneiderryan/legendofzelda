@@ -4,6 +4,8 @@ namespace LegendOfZelda
 {
     class SwordProjectile : Projectile
     {
+        public override double Damage => 1;
+
         public SwordProjectile(string direction, int x, int y)
             : base(direction, x, y)
         {

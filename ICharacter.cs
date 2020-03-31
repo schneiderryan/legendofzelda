@@ -3,7 +3,7 @@
 
 namespace LegendOfZelda
 {
-    interface ICharacter : ICollideable
+    interface ICharacter : ICollideable, IUpdateable
     {
         Point Center { get; }
         Team Team { get; set; }
@@ -12,7 +12,6 @@ namespace LegendOfZelda
         void MoveRight();
         void MoveUp();
         void MoveDown();
-        void Update();
-        void TakeDamage();
+        void TakeDamage(double amount);
     }
 }

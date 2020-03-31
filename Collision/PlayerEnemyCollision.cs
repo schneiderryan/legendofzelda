@@ -6,6 +6,7 @@ namespace LegendOfZelda
     class PlayerEnemyCollision
     {
         private CollisionHandler handler;
+        private const double BUMP_DAMAGE = 0.5;
 
         public PlayerEnemyCollision(CollisionHandler handler)
         {
@@ -22,7 +23,7 @@ namespace LegendOfZelda
                 {
                     if (!player.Direction.Equals("up") || !player.IsAttacking())
                     {
-                        player.TakeDamage();
+                        player.TakeDamage(BUMP_DAMAGE);
                     }
                     playerYKnockback = 5;
                 }
@@ -30,7 +31,7 @@ namespace LegendOfZelda
                 {
                     if (!player.Direction.Equals("down") || !player.IsAttacking())
                     {
-                        player.TakeDamage();
+                        player.TakeDamage(BUMP_DAMAGE);
                     }
                     playerYKnockback = -5;
                 }
@@ -41,7 +42,7 @@ namespace LegendOfZelda
                 {
                     if (!player.Direction.Equals("left") || !player.IsAttacking())
                     {
-                        player.TakeDamage();
+                        player.TakeDamage(BUMP_DAMAGE);
                     }
                     playerXKnockback = 5;
                 }
@@ -49,7 +50,7 @@ namespace LegendOfZelda
                 {
                     if (!player.Direction.Equals("right") || !player.IsAttacking())
                     {
-                        player.TakeDamage();
+                        player.TakeDamage(BUMP_DAMAGE);
                     }
                     playerXKnockback = -5;
                 }

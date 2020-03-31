@@ -5,6 +5,8 @@ namespace LegendOfZelda
 {
     class RedArrowProjectile : Projectile
     {
+        public override double Damage => 2;
+
         public RedArrowProjectile(string direction, int x, int y)
             : base(direction, x, y)
         {

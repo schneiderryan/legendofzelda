@@ -4,9 +4,8 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    interface IDoor: ICollideable
+    interface IDoor: ICollideable, IUpdateable, IDrawable
     {
-        void Update();
-        void Draw(SpriteBatch sb, Color color);
+
     }
 }

@@ -1,17 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
-    class AttackingUpRedLinkState : AttackingLinkState
+    class AttackingUpRedLinkState : AttackingRedLinkState
     {
-        private RedLink link;
-        public AttackingUpRedLinkState(RedLink link)
+        public AttackingUpRedLinkState(RedLink link) : base(link)
         {
-            this.link = link;
             this.link.Direction = "up";
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpAttackingLinkSprite();
+            // adjust for the presence of the sword in the sprite
+            link.Sprite.Position = new Point(link.X, link.Y - 24);
         }
 
         public override void Attack()
@@ -29,8 +28,8 @@ namespace LegendOfZelda
             {
                 link.State = new StillUpRedLinkState(link);
                 link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
+                link.Sprite.Position = new Point(link.X, link.Y);
             }
-            link.Sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

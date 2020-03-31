@@ -1,9 +1,8 @@
 ﻿
 namespace LegendOfZelda
 {
-    interface IEnemyState
+    interface IEnemyState : IUpdateable
     {
-        void Update();
         void MoveDown();
         void MoveUp();
         void MoveRight();

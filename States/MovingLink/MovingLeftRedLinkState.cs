@@ -1,68 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
-    class MovingLeftRedLinkState : ILinkState
+    class MovingLeftRedLinkState : LeftRedLinkState
     {
-        private RedLink link;
-
-        public MovingLeftRedLinkState(RedLink link)
+        public MovingLeftRedLinkState(RedLink link) : base(link)
         {
-            this.link = link;
-            this.link.Direction = "left";
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftWalkingLinkSprite();
         }
 
-        public void MoveUp()
-        {
-            link.State = new MovingUpRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveDown()
-        {
-            link.State = new MovingDownRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveRight()
-        {
-            link.State = new MovingRightRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void MoveLeft()
+        public override void MoveLeft()
         {
             //Nothing to do
         }
 
-        public void Attack()
-        {
-            link.State = new AttackingLeftRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftAttackingLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void BeStill()
-        {
-            link.State = new StillLeftRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftStillLinkSprite();
-            link.Sprite.Scale = 2.0f;
-        }
-
-        public void PickupItem(int time)
-        {
-            //link.State = new LinkPickupState(link);
-            //link.Sprite = PlayerSpriteFactory.Instance.CreateLinkPickup1();
-            //link.Sprite.Scale = 2.0f;
-        }
-
-        public void Update()
+        public override void Update()
         {
             link.X -= 2;
             if (link.X < 0)
@@ -70,13 +23,6 @@ namespace LegendOfZelda
                 link.X += 800;
             }
             link.Sprite.Position = new Point(link.X, link.Y);
-        }
-
-        public void Projectile()
-        {
-            link.State = new ProjectileLeftRedLinkState(link);
-            link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftProjectileLinkSprite();
-            link.Sprite.Scale = 2.0f;
         }
     }
 }

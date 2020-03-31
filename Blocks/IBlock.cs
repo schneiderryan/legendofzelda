@@ -1,14 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace LegendOfZelda
 {
-    interface IBlock : ICollideable
+    interface IBlock : ICollideable, IDrawable, IUpdateable
     {
-        void Update();
-        void Draw(SpriteBatch sb, Color color);
+
     }
 }

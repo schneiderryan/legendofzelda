@@ -11,6 +11,7 @@ namespace LegendOfZelda
             get { return hitbox; }
             protected set { hitbox = value; }
         }
+
         public virtual int X
         {
             get { return hitbox.X; }

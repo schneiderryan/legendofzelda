@@ -1,17 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
-    class AttackingDownRedLinkState : AttackingLinkState
+    class AttackingDownRedLinkState : AttackingRedLinkState
     {
-        private RedLink link;
-        public AttackingDownRedLinkState(RedLink link)
+        public AttackingDownRedLinkState(RedLink link) : base(link)
         {
-            this.link = link;
             this.link.Direction = "down";
+            link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownAttackingLinkSprite();
         }
 
         public override void Attack()

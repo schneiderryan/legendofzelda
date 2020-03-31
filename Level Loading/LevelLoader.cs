@@ -59,6 +59,7 @@ namespace LegendOfZelda
                 "Rupee",
                 "TriforceShard",
                 "WoodSword",
+                "RedRing",
             };
 
             this.possibleBlocks = new List<string>()
@@ -290,6 +291,10 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("TriforceShard"))
                 {
                     item = new TriforceShard(game);
+                }
+                else if (entry.Value.Equals("RedRing"))
+                {
+                    item = new RedRing();
                 }
                 else //wood sword
                 {

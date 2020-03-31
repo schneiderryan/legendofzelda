@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -17,9 +17,10 @@ namespace LegendOfZelda
 
         public void Handle(IEnemy enemy, IPlayer player, String attackDirection)
         {
-            if (player.Direction.Equals(attackDirection) && player.IsAttacking() && !(enemy is Trap) && !(enemy is Fire))
+            if (player.Direction.Equals(attackDirection) && player.IsAttacking()
+                    && !(enemy is Trap) && !(enemy is Fire))
             {
-                enemy.TakeDamage();
+                enemy.TakeDamage(player.Inventory.Sword.Damage);
                 int xKnockback = 0;
                 int yKnockback = 0;
                 switch (attackDirection)

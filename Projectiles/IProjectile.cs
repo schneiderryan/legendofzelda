@@ -2,13 +2,11 @@
 
 namespace LegendOfZelda
 {
-    interface IProjectile : ICollideable
+    interface IProjectile : IDrawable, IUpdateable, ICollideable
     {
-        void Update();
-        void Draw(SpriteBatch sb);
         IDespawnEffect GetDespawnEffect();
         Team OwningTeam { get; set; }
-
+        double Damage { get; }
         int VX { get; }
         int VY { get; }
     }

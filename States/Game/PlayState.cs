@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -83,12 +80,12 @@ namespace LegendOfZelda
 
             foreach (IProjectile projectile in game.projectiles)
             {
-                projectile.Draw(game.spriteBatch);
+                projectile.Draw(game.spriteBatch, Color.White);
                 Debug.DrawHitbox(game.spriteBatch, projectile.Hitbox);
             }
             foreach (IDespawnEffect effect in game.effects)
             {
-                effect.Draw(game.spriteBatch);
+                effect.Draw(game.spriteBatch, Color.White);
             }
         }
     }
