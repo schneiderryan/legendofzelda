@@ -28,7 +28,6 @@ namespace LegendOfZelda
 			startY = Y;
 			game = loz;
 			BeStill();
-			this.Name = "Trap";
 			currentHearts = 1;
 			roommidheight = 156;
 			roommidwidth = 240;
