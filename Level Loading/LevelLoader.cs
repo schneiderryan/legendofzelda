@@ -184,7 +184,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Goriya"))
                 {
-                    enemy = new Goriya(this.game.projectiles);
+                    enemy = new Goriya(this.game.ProjectileManager);
                 }
                 else if (entry.Value.Equals("Keese"))
                 {

@@ -54,10 +54,9 @@ namespace LegendOfZelda
                 { AnimationDelay = ANIMATION_DELAY };
         }
 
-
         public ISprite CreateMovingGelSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(404, 185, 8, 11), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(404, 186, 8, 9), 2, false);
         }
 
         public ISprite CreateMovingZolSprite()

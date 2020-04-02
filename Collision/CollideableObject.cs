@@ -12,6 +12,7 @@ namespace LegendOfZelda
             protected set { hitbox = value; }
         }
 
+        // X & Y properties so that hitbox X & Y can be modified ez
         public virtual int X
         {
             get { return hitbox.X; }

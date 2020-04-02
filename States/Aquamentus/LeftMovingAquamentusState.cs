@@ -16,7 +16,7 @@ namespace LegendOfZelda
 			if (aquamentus.CurrentStep % 2 == 1)
 			{
 				aquamentus.Sprite = EnemySpriteFactory.Instance.CreateMovingFireAquamentusSprite();
-				ICommand fire = new BreatheFireballCommand(aquamentus.game.projectiles, this.aquamentus);
+				ICommand fire = new BreatheFireballCommand(aquamentus.game.ProjectileManager, this.aquamentus);
 				fire.Execute();
 				aquamentus.Breathed = true;
 			}

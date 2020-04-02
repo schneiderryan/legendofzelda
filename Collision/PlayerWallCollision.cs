@@ -3,9 +3,18 @@
 
 namespace LegendOfZelda
 {
-    class PlayerWallCollision
+    class PlayerWallCollision : ICollision
     {
-        public static void Handle(IPlayer player, in Rectangle collision)
+        private IPlayer player;
+        private Rectangle collision;
+
+        public PlayerWallCollision(IPlayer player, in Rectangle collision)
+        {
+            this.player = player;
+            this.collision = collision;
+        }
+
+        public void Handle()
         {
             if (collision.Width > collision.Height)
             {

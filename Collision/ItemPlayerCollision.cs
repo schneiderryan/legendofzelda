@@ -1,23 +1,25 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+
 
 namespace LegendOfZelda
 {
-    class ItemPlayerCollision
+    class ItemPlayerCollision : ICollision
     {
-        private List<int> itemsToDespawnPositions;
+        private ICollection<IItem> items;
+        private IPlayer player;
+        private IItem item;
 
-        public ItemPlayerCollision(List<int> itemsToDespawnPositions)
+        public ItemPlayerCollision(ICollection<IItem> items, IPlayer player, IItem item)
         {
-            this.itemsToDespawnPositions = itemsToDespawnPositions;
+            this.items = items;
+            this.item = item;
+            this.player = player;
         }
 
-        public void Handle(IPlayer player, IItem item, int postionInItemList)
+        public void Handle()
         {
             item.Collect(player);
-            itemsToDespawnPositions.Add(postionInItemList);
+            items.Remove(item);
         }
     }
 }

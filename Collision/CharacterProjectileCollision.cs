@@ -4,24 +4,30 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    abstract class CharacterProjectileCollision
+    abstract class CharacterProjectileCollision : ICollision
     {
-        protected ISet<IProjectile> projectilesToDespawn;
+        protected IProjectileManager manager;
+        protected IProjectile projectile;
+        protected ICharacter character;
+        protected Rectangle collision;
 
-        public CharacterProjectileCollision(ISet<IProjectile> projectilesToDespawn)
+        public CharacterProjectileCollision(IProjectileManager manager,
+                ICharacter character, IProjectile projectile, in Rectangle collision)
         {
-            this.projectilesToDespawn = projectilesToDespawn;
+            this.manager = manager;
+            this.character = character;
+            this.projectile = projectile;
+            this.collision = collision;
         }
 
-        protected virtual void HandleProjectileCollision(ICharacter character,
-                IProjectile projectile)
+        protected virtual void HandleProjectileCollision()
         {
             if (projectile is BoomerangProjectile)
             {
                 BoomerangProjectile bp = projectile as BoomerangProjectile;
                 if (bp.Returned)
                 {
-                    projectilesToDespawn.Add(projectile);
+                    manager.Remove(projectile);
                 }
                 else if (projectile.OwningTeam != character.Team)
                 {
@@ -30,7 +36,7 @@ namespace LegendOfZelda
             }
             else if (projectile.OwningTeam != character.Team)
             {
-                projectilesToDespawn.Add(projectile);
+                manager.Remove(projectile);
             }
         }
 
@@ -58,7 +64,10 @@ namespace LegendOfZelda
                     character.X -= 5;
                 }
             }
+
+            // TO DO: handle bound checking thingies
         }
 
+        public abstract void Handle();
     }
 }

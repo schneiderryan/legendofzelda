@@ -163,7 +163,7 @@ namespace LegendOfZelda
             {
                 itemTimer = 75;
                 Util.CenterRelativeToEdge(Sprite.Box, Direction, projectile);
-                game.projectiles.Add(projectile);
+                game.ProjectileManager.Add(projectile);
                 State.FireProjectile();
             }
         }
