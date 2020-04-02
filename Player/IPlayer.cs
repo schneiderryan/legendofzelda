@@ -28,6 +28,6 @@ namespace LegendOfZelda
         void Draw(SpriteBatch sb, Color color);
         void RegisterAttackKeys(List<Keys> attackKeys);
         bool IsAttacking();
-        void PickupItem(IItem item, int time);
+        void PickupItem(IItem item, int time, bool twoHands = true);
     }
 }

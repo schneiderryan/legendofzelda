@@ -36,9 +36,9 @@ namespace LegendOfZelda
             link.State = new MovingUpRedLinkState(link);
         }
 
-        public virtual void PickupItem(IItem item, int time)
+        public virtual void PickupItem(IItem item, int time, bool twoHands = true)
         {
-            link.State = new RedLinkPickupState(link, item, time);
+            link.State = new RedLinkPickupState(link, item, time, twoHands);
         }
 
         public virtual void Update()

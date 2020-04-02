@@ -17,6 +17,7 @@ namespace LegendOfZelda
             if (player.Inventory.Sword.Level < Level)
             {
                 player.Inventory.Sword = this;
+                player.PickupItem(this, 50, false);
             }
         }
     }

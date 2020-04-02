@@ -6,12 +6,22 @@ namespace LegendOfZelda
     {
         protected int delay;
         protected int time;
+        protected bool twoHands;
 
-        public LinkPickupState(IPlayer link, IItem item, int time)
+        public LinkPickupState(IPlayer link, IItem item, int time, bool twoHands = true)
         {
             delay = 0;
             this.time = time;
-            Util.CenterRelativeToEdge(link.Sprite.Box, "up", item);
+            this.twoHands = twoHands;
+            if (twoHands)
+            {
+                Util.CenterRelativeToEdge(link.Sprite.Box, "up", item);
+            }
+            else
+            {
+                item.X = link.X;
+                item.Y = link.Y - item.Hitbox.Height;
+            }
             item.Update();
             link.HeldItem = item;
         }
@@ -53,7 +63,7 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
-        public void PickupItem(IItem item, int time)
+        public void PickupItem(IItem item, int time, bool twoHands = true)
         {
             // do nothing
         }

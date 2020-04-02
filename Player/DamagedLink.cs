@@ -181,9 +181,9 @@ namespace LegendOfZelda
             return InnerLink.IsAttacking();
         }
 
-        public void PickupItem(IItem item, int time)
+        public void PickupItem(IItem item, int time, bool twoHands = true)
         {
-            InnerLink.PickupItem(item, time);
+            InnerLink.PickupItem(item, time, twoHands);
         }
     }
 }

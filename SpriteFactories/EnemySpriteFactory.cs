@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
 
 namespace LegendOfZelda
 {
@@ -57,7 +57,7 @@ namespace LegendOfZelda
 
         public ISprite CreateMovingGelSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(400, 180, 14, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(404, 185, 8, 11), 2, false);
         }
 
         public ISprite CreateMovingZolSprite()

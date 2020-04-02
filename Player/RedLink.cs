@@ -102,9 +102,9 @@ namespace LegendOfZelda
             link.MoveUp();
         }
 
-        public void PickupItem(IItem item, int time)
+        public void PickupItem(IItem item, int time, bool twoHands = true)
         {
-            link.PickupItem(item, time);
+            link.PickupItem(item, time, twoHands);
         }
 
         public void RegisterAttackKeys(List<Keys> attackKeys)

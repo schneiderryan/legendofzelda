@@ -108,9 +108,9 @@ namespace LegendOfZelda
             State.BeStill();
         }
 
-        public void PickupItem(IItem item, int time)
+        public void PickupItem(IItem item, int time, bool twoHands = true)
         {
-            State.PickupItem(item, time);
+            State.PickupItem(item, time, twoHands);
         }
 
         public virtual void TakeDamage(double amount)
