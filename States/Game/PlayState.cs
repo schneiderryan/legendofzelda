@@ -16,6 +16,11 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void NewGame()
+        {
+            //Nothing to do
+        }
+
         public void PlayGame()
         {
             //Nothing to do

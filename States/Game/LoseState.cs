@@ -19,8 +19,14 @@ namespace LegendOfZelda
 
         public void ToStart()
         {
-            this.game.state = new StartMenuState(this.game);
+            //Nothing to do
         }
+
+        public void NewGame()
+        {
+            game.state = new NewGameState(game);
+        }
+
         public void PlayGame()
         {
             //Nothing to do
@@ -76,7 +82,7 @@ namespace LegendOfZelda
             }
             else
             {
-                game.ToStart();
+                game.NewGame();
             }
             tintTimer++;
         }

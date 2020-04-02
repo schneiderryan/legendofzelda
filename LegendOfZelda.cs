@@ -72,6 +72,11 @@ namespace LegendOfZelda
             state.ToStart();
         }
 
+        public void NewGame()
+        {
+            state.NewGame();
+        }
+
         public void PlayGame()
         {
             state.PlayGame();
