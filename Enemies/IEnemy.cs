@@ -8,8 +8,6 @@ namespace LegendOfZelda
     {
         IEnemyState State { get; set; }
         bool isDead { get; set; }
-        bool isBeingAttacked { get; set; }
-        int attackTimer { get; set; }
         double currentHearts { get; set; }
         int VX { get; set; }
         int VY { get; set; }

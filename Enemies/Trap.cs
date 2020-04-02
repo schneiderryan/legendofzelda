@@ -48,11 +48,7 @@ namespace LegendOfZelda
 		{
 			X -= 3;
 		}
-		public void BeStill()
-		{
-			VY = 0;
-			VX = 0;
-		}
+
 		public override void TakeDamage(double amount)
 		{
 			// do nothing

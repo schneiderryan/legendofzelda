@@ -104,10 +104,6 @@ namespace LegendOfZelda
                 game.ToStart();
             }
             game.link.Update();
-            foreach(IItem item in game.rooms[game.roomIndex].Items)
-            {
-                item.Update();
-            }
             timer++;
         }
 

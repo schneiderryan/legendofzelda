@@ -46,6 +46,11 @@ namespace LegendOfZelda
 			// do nothing
 		}
 
+		public void BeStill()
+		{
+			// do nothing
+		}
+
 		public void Update()
 		{
 			if (aquamentus.Breathed)

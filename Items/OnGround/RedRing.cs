@@ -4,17 +4,20 @@ namespace LegendOfZelda
 {
     class RedRing : Item
     {
-        public RedRing()
+        private LegendOfZelda game;
+
+        public RedRing(LegendOfZelda game)
         {
             sprite = ItemSpriteFactory.GetRedRing();
             Hitbox = sprite.Box;
+            this.game = game;
         }
 
         public override void Collect(IPlayer player)
         {
-            if (!(player is RedLink))
+            if (!player.Color.Equals("red"))
             {
-                player.WearRedRing();
+                game.link = new RedLink(player);
             }
         }
     }

@@ -21,8 +21,8 @@ namespace LegendOfZelda
         private Rectangle attackBoxUp;
         private Rectangle attackBoxDown;
         private Vector2 origin;
-        private double damageResistance;
-        
+
+        public double Resistance { get; set; }
         public IItem HeldItem { get; set; }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
@@ -115,7 +115,7 @@ namespace LegendOfZelda
 
         public virtual void TakeDamage(double amount)
         {
-            double actual = amount * (1.0 - damageResistance);
+            double actual = amount * (1.0 - Resistance);
             System.Diagnostics.Debug.WriteLine("link took: " + actual + " damage");
             CurrentHearts -= actual;
             this.game.link = new DamagedLink(game);
@@ -147,7 +147,7 @@ namespace LegendOfZelda
             }
             else if (State is LinkPickupState)
             {
-                HeldItem.Draw(sb, color);
+                HeldItem.Draw(sb, Microsoft.Xna.Framework.Color.White);
                 this.origin = new Vector2(0, 0);
             }
             else
@@ -185,18 +185,6 @@ namespace LegendOfZelda
             return false;
         }
 
-        public void WearRedRing()
-        {
-            game.link = new RedLink(this);
-            damageResistance = 0.25;
-        }
-
-        public void WearBlueRing()
-        {
-            damageResistance = 0.5;
-            throw new NotImplementedException();
-        }
-
         protected void Initialize(LegendOfZelda game)
         {
             this.game = game;
@@ -213,7 +201,7 @@ namespace LegendOfZelda
             this.itemTimer = 0;
             this.MaxHearts = 3.0;
             this.CurrentHearts = 3.0;
-            this.damageResistance = 0;
+            this.Resistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
         }

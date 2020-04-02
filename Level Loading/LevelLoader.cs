@@ -258,7 +258,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Clock"))
                 {
-                    item = new Clock();
+                    item = new Clock(game);
                 }
                 else if (entry.Value.Equals("Compass"))
                 {
@@ -294,7 +294,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("RedRing"))
                 {
-                    item = new RedRing();
+                    item = new RedRing(game);
                 }
                 else //wood sword
                 {

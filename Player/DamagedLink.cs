@@ -9,152 +9,135 @@ namespace LegendOfZelda
 {
     class DamagedLink : IPlayer
     {
-        IPlayer decoratedLink;
+        public IPlayer InnerLink { get; private set; }
+
+        const int ANIMATION_TIME = 192; // to give about 3 seconds
+        int timer = ANIMATION_TIME;
         LegendOfZelda game;
-        int timer = 192; // to give about 3 seconds
 
-        public Rectangle Footbox
-        {
-            get { return decoratedLink.Footbox; }
-        }
-
-        public Rectangle LeftAttackBox
-        {
-            get { return decoratedLink.LeftAttackBox; }
-        }
-
-        public Rectangle RightAttackBox
-        {
-            get { return decoratedLink.RightAttackBox; }
-        }
-
-        public Rectangle DownAttackBox
-        {
-            get { return decoratedLink.DownAttackBox; }
-        }
-
-        public Rectangle UpAttackBox
-        {
-            get { return decoratedLink.UpAttackBox; }
-        }
+        public Rectangle Footbox => InnerLink.Footbox;
+        public Rectangle LeftAttackBox => InnerLink.LeftAttackBox;
+        public Rectangle RightAttackBox => InnerLink.RightAttackBox;
+        public Rectangle DownAttackBox => InnerLink.DownAttackBox;
+        public Rectangle UpAttackBox => InnerLink.UpAttackBox;
 
         public ISprite Sprite
         {
-            get { return decoratedLink.Sprite; }
-            set { decoratedLink.Sprite = value; }
+            get { return InnerLink.Sprite; }
+            set { InnerLink.Sprite = value; }
         }
 
         public ILinkState State
         {
-            get { return decoratedLink.State; }
-            set { decoratedLink.State = value; }
+            get { return InnerLink.State; }
+            set { InnerLink.State = value; }
         }
 
         public int X
         {
-            get { return decoratedLink.X; }
-            set { decoratedLink.X = value; }
+            get { return InnerLink.X; }
+            set { InnerLink.X = value; }
         }
 
         public int Y
         {
-            get { return decoratedLink.Y; }
-            set { decoratedLink.Y = value; }
+            get { return InnerLink.Y; }
+            set { InnerLink.Y = value; }
         }
 
         public String Direction
         {
-            get { return decoratedLink.Direction; }
-            set { decoratedLink.Direction = value; }
+            get { return InnerLink.Direction; }
+            set { InnerLink.Direction = value; }
         }
 
         public String Color
         {
-            get { return decoratedLink.Color; }
-            set { decoratedLink.Color = value; }
+            get { return InnerLink.Color; }
+            set { InnerLink.Color = value; }
         }
 
         public double MaxHearts
         {
-            get { return decoratedLink.MaxHearts; }
-            set { decoratedLink.MaxHearts = value; }
+            get { return InnerLink.MaxHearts; }
+            set { InnerLink.MaxHearts = value; }
         }
         
         public double CurrentHearts
         {
-            get { return decoratedLink.CurrentHearts; }
-            set { decoratedLink.CurrentHearts = value; }
+            get { return InnerLink.CurrentHearts; }
+            set { InnerLink.CurrentHearts = value; }
         }
 
-        public IInventory Inventory => decoratedLink.Inventory;
+        public IInventory Inventory => InnerLink.Inventory;
 
-        public Team Team { get => decoratedLink.Team; set => decoratedLink.Team = value; }
+        public Team Team { get => InnerLink.Team; set => InnerLink.Team = value; }
 
-        public Point Center => decoratedLink.Center;
+        public Point Center => InnerLink.Center;
 
-        public Rectangle Hitbox => decoratedLink.Hitbox;
+        public Rectangle Hitbox => InnerLink.Hitbox;
 
-        public IItem HeldItem { get => decoratedLink.HeldItem; set => decoratedLink.HeldItem = value; }
+        public IItem HeldItem { get => InnerLink.HeldItem; set => InnerLink.HeldItem = value; }
+        public double Resistance { get => InnerLink.Resistance; set => InnerLink.Resistance = value; }
 
         public DamagedLink (LegendOfZelda game)
         {
             this.game = game;
-            this.decoratedLink = game.link;
+            this.InnerLink = game.link;
         }
 
         public void Attack()
         {
-            decoratedLink.Attack();
+            InnerLink.Attack();
         }
 
         public void BeStill()
         {
-            decoratedLink.BeStill();
+            InnerLink.BeStill();
         }
 
         public void Draw(SpriteBatch sb, Color color)
         {
-            // rgba
             Color hurt1 = new Color(83, 68, 198);
             Color hurt2 = new Color(184, 101, 22);
             Color hurt3 = new Color(76, 80, 69);
 
             if (timer<=8 || timer>=33 && timer<=40 || timer>=65 && timer<=72 || timer>=97 && timer<=104 || timer>=129 && timer<=136 || timer>=161 && timer<=168)
             {
-                decoratedLink.Draw(sb, hurt1);
+                InnerLink.Draw(sb, hurt1);
             }
             else if (timer<=16 || timer>=41 && timer<=48 || timer>=73 && timer<= 80 || timer>=105 && timer<=112 || timer>=137 && timer<=144 || timer>=169 && timer<=176)
             {
-                decoratedLink.Draw(sb, hurt2);
+                InnerLink.Draw(sb, hurt2);
             }
             else if (timer<=24 || timer>=49 && timer<=56 || timer>=81 && timer<=88 || timer>=113 && timer<=120 || timer>=145 && timer<=152 || timer>=177 && timer<=184)
             {
-                decoratedLink.Draw(sb, hurt3);
+                InnerLink.Draw(sb, hurt3);
             }
             else
             {
-                decoratedLink.Draw(sb, Microsoft.Xna.Framework.Color.White);
+                InnerLink.Draw(sb, color);
             }
         }
 
         public void MoveDown()
         {
-            decoratedLink.MoveDown();
+            InnerLink.MoveDown();
         }
 
         public void MoveLeft()
         {
-            decoratedLink.MoveLeft();
+            InnerLink.MoveLeft();
         }
 
         public void MoveRight()
         {
-            decoratedLink.MoveRight();
+            InnerLink.MoveRight();
         }
 
         public void MoveUp()
         {
-            decoratedLink.MoveUp();
+            InnerLink.MoveUp();
         }
 
         public void TakeDamage(double amount)
@@ -165,45 +148,42 @@ namespace LegendOfZelda
         public void Update()
         {
             timer--;
-            if (timer == 0)
+            if (InnerLink.Inventory.HasClock)
             {
-                game.link = decoratedLink;
+                foreach (IEnemy enemy in game.rooms[game.roomIndex].Enemies)
+                {
+                    enemy.BeStill();
+                }
+                if (timer <= 0)
+                {
+                    timer = ANIMATION_TIME;
+                }
             }
-            decoratedLink.Update();
+            else if (timer <= 0)
+            {
+                game.link = InnerLink;
+            }
+            InnerLink.Update();
         }
 
         public void UseProjectile(IProjectile projectile)
         {
-            decoratedLink.UseProjectile(projectile);
+            InnerLink.UseProjectile(projectile);
         }
 
         public void RegisterAttackKeys(List<Keys> attackKeys)
         {
-            decoratedLink.RegisterAttackKeys(attackKeys);
+            InnerLink.RegisterAttackKeys(attackKeys);
         }
 
         public bool IsAttacking()
         {
-            return decoratedLink.IsAttacking();
-        }
-
-        public void WearRedRing()
-        {
-            decoratedLink.WearRedRing();
-            decoratedLink = game.link;
-            game.link = this;
-        }
-
-        public void WearBlueRing()
-        {
-            decoratedLink.WearBlueRing();
-            decoratedLink = game.link;
-            game.link = this;
+            return InnerLink.IsAttacking();
         }
 
         public void PickupItem(IItem item, int time)
         {
-            decoratedLink.PickupItem(item, time);
+            InnerLink.PickupItem(item, time);
         }
     }
 }

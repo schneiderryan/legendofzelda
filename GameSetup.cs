@@ -74,59 +74,11 @@ namespace LegendOfZelda
             return new SlowKeyboardController(keyBinds);
         }
 
-        public static ICollection<IItem> GenerateItemList()
-        {
-            IList<IItem> list = new List<IItem>()
-            {
-                new Arrow(),
-                new BlueRupee(),
-                new Bomb(),
-                new Boomerang(),
-                new Bow(),
-                new Compass(),
-                new Fairy(),
-                new Heart(),
-                new HeartContainer(),
-                new Key(),
-                new Map(),
-                new Rupee(),
-                //new TriforceShard(),
-                new WoodSword(),
-                new Clock()
-            };
-
-            foreach (IItem i in list)
-            {
-                i.X = 100;
-                i.Y = 100;
-            }
-
-
-            return list;
-        }
-
-        public static ICollection<IEnemy> GenerateEnemyList(LegendOfZelda game)
-        {
-            IList<IEnemy> list = new List<IEnemy>()
-            {
-                new Gel(),
-                new Aquamentus(game),
-                new Goriya(game.projectiles),
-                new Keese(),
-                new Stalfo(),
-                new Trap(game),
-                new Snake(game),
-                new LFWallmaster(),
-                new RFWallmaster(),
-            };
-
-            return list;
-        }
-
         public static IList<IRoom> GenerateRoomList(LegendOfZelda game)
         {
             IList<IRoom> list = new List<IRoom>()
             {
+                new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
                 new Room(game, "Rooms/Room1.csv"),
                 new Room(game, "Rooms/Room2.csv"),

@@ -13,6 +13,7 @@ namespace LegendOfZelda
         string Color { get; set; }
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }
+        double Resistance { get; set; }
         IInventory Inventory { get; }
         IItem HeldItem { get; set; }
 
@@ -22,10 +23,7 @@ namespace LegendOfZelda
         Rectangle RightAttackBox { get; }
         Rectangle LeftAttackBox { get; }
 
-        void WearRedRing();
-        void WearBlueRing();
         void Attack();
-        void BeStill();
         void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);
         void RegisterAttackKeys(List<Keys> attackKeys);
