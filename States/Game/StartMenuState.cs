@@ -19,30 +19,21 @@ namespace LegendOfZelda
             StartMenu = Textures.GetStartMenu();
             counter = 0;
             delay = 7;
-            gameInit();
-        }
-
-        private void gameInit()
-        {
-            game.link = new GreenLink(game);
-            game.playerKeyboard = GameSetup.CreatePlayerKeysController(game.link);
-            game.mouse = new MouseController(game);
-            game.keyboard = GameSetup.CreateGeneralKeysController(game);
-
-            game.projectiles = new HashSet<IProjectile>();
-            game.effects = new List<IDespawnEffect>();
-            game.collisionHandler = new CollisionHandler(game.effects);
-            game.rooms = GameSetup.GenerateRoomList(game);
-            game.roomIndex = 0;
         }
 
         public void ToStart()
         {
             //Nothing to do
         }
+
+        public void NewGame()
+        {
+            game.state = new NewGameState(game);
+        }
+
         public void PlayGame()
         {
-            game.state = new PlayState(game);
+            //Nothing to do
         }
 
         public void PauseGame()
@@ -79,7 +70,7 @@ namespace LegendOfZelda
         {
             if (Mouse.GetState().LeftButton.HasFlag(ButtonState.Pressed))
             {
-                game.state = new PlayState(game);
+                game.NewGame();
             }
             delay--;
             if(delay == 0)
