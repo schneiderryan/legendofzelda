@@ -7,6 +7,7 @@ namespace LegendOfZelda
         BowAndArrow BowAndArrow { get; }
         IHeldItem BluePotion { get; set; }
         IHeldItem RedPotion { get; set; }
+        bool HasClock { get; set; }
 
         int Rupees { get; set; }
         int Bombs { get; set; }

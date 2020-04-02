@@ -6,8 +6,8 @@ namespace LegendOfZelda
     class RedLinkPickupState : LinkPickupState
     {
         private RedLink link;
-        public RedLinkPickupState(RedLink link, IItem item, int time)
-            : base(link, item, time)
+        public RedLinkPickupState(RedLink link, IItem item, int time, bool twoHands = true)
+            : base(link, item, time, twoHands)
         {
             this.link = link;
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedLinkPickup1();
@@ -16,7 +16,7 @@ namespace LegendOfZelda
 
         public override void Update()
         {
-            if (delay > 20)
+            if (delay > 20 && twoHands)
             {
                 link.Sprite = PlayerSpriteFactory.Instance.CreateRedLinkPickup2();
             }

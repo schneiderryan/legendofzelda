@@ -10,6 +10,6 @@ namespace LegendOfZelda
         void Attack();
         void BeStill();
         void FireProjectile();
-        void PickupItem(IItem item, int time);
+        void PickupItem(IItem item, int time, bool twoHands = true);
     }
 }

@@ -41,5 +41,11 @@ namespace LegendOfZelda
 			enemy.X += enemy.VX;
 		}
 
+		public virtual void BeStill()
+		{
+			enemy.VX = 0;
+			enemy.VY = 0;
+		}
+
 	}
 }

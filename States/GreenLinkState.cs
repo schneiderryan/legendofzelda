@@ -13,9 +13,9 @@ namespace LegendOfZelda
         public abstract void MoveRight();
         public abstract void MoveUp();
 
-        public virtual void PickupItem(IItem item, int time)
+        public virtual void PickupItem(IItem item, int time, bool twoHands = true)
         {
-            link.State = new GreenLinkPickupState(link, item, time);
+            link.State = new GreenLinkPickupState(link, item, time, twoHands);
         }
 
         public abstract void Update();

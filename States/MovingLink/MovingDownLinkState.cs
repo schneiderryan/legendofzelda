@@ -51,11 +51,6 @@ namespace LegendOfZelda
             link.Sprite.Scale = 2.0f;
         }
 
-        public override void PickupItem(IItem item, int time)
-        {
-            link.State = new GreenLinkPickupState(link, item, time);
-        }
-
         public override void Update()
         {
             link.Y += 2;
