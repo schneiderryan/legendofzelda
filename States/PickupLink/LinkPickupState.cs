@@ -69,5 +69,10 @@ namespace LegendOfZelda
         {
             // do nothing
         }
+
+        public void Knockback(int amountX, int amountY)
+        {
+            // do nothing
+        }
     }
 }

@@ -82,6 +82,11 @@ namespace LegendOfZelda
             return link.IsAttacking();
         }
 
+        public void Knockback(int amountX, int amountY)
+        {
+            link.Knockback(amountX, amountY);
+        }
+
         public void MoveDown()
         {
             link.MoveDown();

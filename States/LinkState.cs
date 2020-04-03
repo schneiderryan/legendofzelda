@@ -8,7 +8,7 @@ namespace LegendOfZelda
         private int knockbackX = 0;
         private int knockbackY = 0;
         private int knockbackTimer = 0;
-        private const int KNOCKBACK_TIME = 60;
+        private const int KNOCKBACK_TIME = 10;
 
         protected int VX { get; set; }
         protected int VY { get; set; }
@@ -30,10 +30,10 @@ namespace LegendOfZelda
         public abstract void MoveUp();
         public abstract void PickupItem(IItem item, int time, bool twoHands = true);
 
-        public virtual void Knockback(int xAmount, int yAmount)
+        public virtual void Knockback(int amountX, int amountY)
         {
-            knockbackX = xAmount / KNOCKBACK_TIME;
-            knockbackY = yAmount / KNOCKBACK_TIME;
+            knockbackX = amountX / KNOCKBACK_TIME;
+            knockbackY = amountY / KNOCKBACK_TIME;
             knockbackTimer = KNOCKBACK_TIME;
         }
 

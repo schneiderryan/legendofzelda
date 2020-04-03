@@ -205,5 +205,10 @@ namespace LegendOfZelda
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
         }
+
+        public void Knockback(int amountX, int amountY)
+        {
+            State.Knockback(amountX, amountY);
+        }
     }
 }

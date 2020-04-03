@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 
 
 namespace LegendOfZelda
@@ -26,16 +25,19 @@ namespace LegendOfZelda
                     && !(enemy is Trap) && !(enemy is Fire))
             {
                 enemy.TakeDamage(player.Inventory.Sword.Damage);
-                Rectangle dummyCollision = new Rectangle();
                 switch (attackDirection)
                 {
                     case "up":
+                        enemy.Knockback(0, -CollideableObject.KNOCKBACK);
+                        break;
                     case "down":
-                        dummyCollision.Width = 1;
+                        enemy.Knockback(0, CollideableObject.KNOCKBACK);
                         break;
                     case "right":
+                        enemy.Knockback(CollideableObject.KNOCKBACK, 0);
+                        break;
                     case "left":
-                        dummyCollision.Height = 1;
+                        enemy.Knockback(-CollideableObject.KNOCKBACK, 0);
                         break;
                 }
 

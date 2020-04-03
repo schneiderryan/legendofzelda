@@ -67,5 +67,9 @@ namespace LegendOfZelda
 			aquamentus.Sprite.Position = new Point(aquamentus.X, aquamentus.Y);
 		}
 
+		public void Knockback(int amountX, int amountY)
+		{
+			// do nothing
+		}
 	}
 }

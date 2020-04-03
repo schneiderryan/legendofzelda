@@ -24,6 +24,7 @@ namespace LegendOfZelda
                     if (!player.Direction.Equals("up") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
+                        player.Knockback(0, CollideableObject.KNOCKBACK);
                     }
                 }
                 else
@@ -31,6 +32,7 @@ namespace LegendOfZelda
                     if (!player.Direction.Equals("down") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
+                        player.Knockback(0, -CollideableObject.KNOCKBACK);
                     }
                 }
             }
@@ -41,6 +43,7 @@ namespace LegendOfZelda
                     if (!player.Direction.Equals("left") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
+                        player.Knockback(CollideableObject.KNOCKBACK, 0);
                     }
                 }
                 else
@@ -48,7 +51,7 @@ namespace LegendOfZelda
                     if (!player.Direction.Equals("right") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
-                        // link = knockedback link ?
+                        player.Knockback(-CollideableObject.KNOCKBACK, 0);
                     }
                 }
             }
