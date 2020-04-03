@@ -13,6 +13,7 @@ namespace LegendOfZelda
         void MoveUp();
         void MoveDown();
         void BeStill();
+        void Knockback(int amountX, int amountY);
         void TakeDamage(double amount);
     }
 }

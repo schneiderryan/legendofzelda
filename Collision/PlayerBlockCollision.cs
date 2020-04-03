@@ -3,9 +3,23 @@
 
 namespace LegendOfZelda
 {
-    class PlayerBlockCollision
+    class PlayerBlockCollision : ICollision
     {
-        public static void Handle(IRoom room, IPlayer player, IBlock block, in Rectangle collision)
+        private IRoom room;
+        private IPlayer player;
+        private IBlock block;
+        private Rectangle collision;
+
+        public PlayerBlockCollision(IRoom room, IPlayer player,
+                IBlock block, in Rectangle collision)
+        {
+            this.room = room;
+            this.player = player;
+            this.block = block;
+            this.collision = collision;
+        }
+
+        public void Handle()
         {
             IMoveableBlock moveableBlock;
             if (block is IMoveableBlock)
@@ -36,7 +50,6 @@ namespace LegendOfZelda
             {
                 if (collision.X == player.Footbox.X)
                 {
-                    int xBefore = moveableBlock.X;
                     player.X += collision.Width;
                     moveableBlock.MoveOnceLeft();
                     
@@ -47,8 +60,6 @@ namespace LegendOfZelda
                     moveableBlock.MoveOnceRight();
                 }
             }
-            
         }
-
     }
 }

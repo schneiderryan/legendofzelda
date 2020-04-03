@@ -1,49 +1,37 @@
-﻿using Microsoft.Xna.Framework;
-
+﻿
 
 namespace LegendOfZelda
 {
-    abstract class RedLinkState : ILinkState
+    abstract class RedLinkState : LinkState
     {
-        protected RedLink link;
-
-        public RedLinkState(RedLink link)
+        public RedLinkState(IPlayer link) : base(link)
         {
-            this.link = link;
+            // nothing needed
         }
 
-        public abstract void Attack();
-        public abstract void BeStill();
-        public abstract void FireProjectile();
-
-        public virtual void MoveDown()
+        public override void MoveDown()
         {
             link.State = new MovingDownRedLinkState(link);
         }
 
-        public virtual void MoveLeft()
+        public override void MoveLeft()
         {
             link.State = new MovingLeftRedLinkState(link);
         }
 
-        public virtual void MoveRight()
+        public override void MoveRight()
         {
             link.State = new MovingRightRedLinkState(link);
         }
 
-        public virtual void MoveUp()
+        public override void MoveUp()
         {
             link.State = new MovingUpRedLinkState(link);
         }
 
-        public virtual void PickupItem(IItem item, int time, bool twoHands = true)
+        public override void PickupItem(IItem item, int time, bool twoHands = true)
         {
             link.State = new RedLinkPickupState(link, item, time, twoHands);
-        }
-
-        public virtual void Update()
-        {
-            link.Sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

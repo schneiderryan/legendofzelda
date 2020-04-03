@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -65,16 +66,11 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].Update();
             game.link.Update();
 
-            foreach (IProjectile projectile in game.projectiles)
-            {
-                projectile.Update();
-            }
-            foreach (IDespawnEffect effect in game.effects)
-            {
-                effect.Update();
-            }
+            game.ProjectileManager.Update();
 
-            game.collisionHandler.Handle(game.rooms[game.roomIndex], game.projectiles, game.link);
+            IEnumerable<ICollision> collisions =
+                    game.CollisionDetector.Detect(game.rooms[game.roomIndex], game.link);
+            CollisionHandler.Handle(collisions);
         }
 
         public void Draw()
@@ -82,16 +78,7 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
-
-            foreach (IProjectile projectile in game.projectiles)
-            {
-                projectile.Draw(game.spriteBatch, Color.White);
-                Debug.DrawHitbox(game.spriteBatch, projectile.Hitbox);
-            }
-            foreach (IDespawnEffect effect in game.effects)
-            {
-                effect.Draw(game.spriteBatch, Color.White);
-            }
+            game.ProjectileManager.Draw(game.spriteBatch, Color.White);
         }
     }
 }

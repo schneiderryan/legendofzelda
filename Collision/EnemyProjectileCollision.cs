@@ -6,22 +6,23 @@ namespace LegendOfZelda
 {
     class EnemyProjectileCollision : CharacterProjectileCollision
     {
-        private ISet<IEnemy> enemiesToDepsawn;
-        private CollisionHandler handler;
+        private ICollection<IEnemy> enemies;
 
-        public EnemyProjectileCollision(ISet<IProjectile> projectilesToDespawn,
-                ISet<IEnemy> enemiesToDepsawn, CollisionHandler handler)
-            : base(projectilesToDespawn)
+        public EnemyProjectileCollision(IProjectileManager manager,
+                ICollection<IEnemy> enemies, IEnemy enemy, IProjectile projectile,
+                in Rectangle collision)
+            : base(manager, enemy, projectile, collision)
         {
-            this.enemiesToDepsawn = enemiesToDepsawn;
-            this.handler = handler;
+            this.enemies = enemies;
         }
 
-        public void Handle(IEnemy enemy, IProjectile projectile, in Rectangle collision)
+        public override void Handle()
         {
+            IEnemy enemy = character as IEnemy;
+
             if(!(enemy is Trap) && !(enemy is Fire))
             {
-                HandleProjectileCollision(enemy, projectile);
+                HandleProjectileCollision();
                 if ((projectile.OwningTeam == enemy.Team)
                     || (projectile is BoomerangProjectile
                         && enemy is Goriya)) // goriya is immune to boomerangs
@@ -29,16 +30,14 @@ namespace LegendOfZelda
                     return;
                 }
 
-                System.Diagnostics.Debug.WriteLine("call take damage");
+                System.Diagnostics.Debug.WriteLine(enemy.GetType().ToString()
+                    + " took " + projectile.Damage + " damage");
+
                 enemy.TakeDamage(projectile.Damage);
-                if (!handler.playerTouchingBlockorWall)
-                {
-                    Knockback(enemy, collision);
-                }
 
                 if (enemy.isDead)
                 {
-                    enemiesToDepsawn.Add(enemy);
+                    enemies.Remove(enemy);
                 }
             }
         }

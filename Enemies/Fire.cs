@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
+
 namespace LegendOfZelda
 {
 	class Fire : Enemy
@@ -11,8 +12,6 @@ namespace LegendOfZelda
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateFireSprite();
 			Hitbox = Sprite.Box;
-			//X = 400;
-			//Y = 200;
 			Sprite.Position = new Point(X, Y);
 			State = new EnemyState(this);
 			timer = 0;
@@ -43,12 +42,11 @@ namespace LegendOfZelda
 							dir = "leftdown";
 						}
 					}
-					ICommand fire = new ShootFireballCommand(game.projectiles, this, dir);
+					ICommand fire = new ShootFireballCommand(game.ProjectileManager, this, dir);
 					fire.Execute();
 				}
 				timer++;
 			}
-			//currentHearts = 100;
 			base.Update();
 		}
 		

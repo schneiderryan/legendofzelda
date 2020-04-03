@@ -6,7 +6,7 @@ namespace LegendOfZelda
 {
     class EnemySpriteFactory
     {
-        private const int ANIMATION_DELAY = 10;
+        private const int ANIMATION_DELAY = 8;
         private Texture2D enemySpriteSheet = Textures.GetEnemySheet();
         private Texture2D bossSpriteSheet = Textures.GetBossSheet();
         private Texture2D npcSpriteSheet = Textures.GetNPCSheet();
@@ -54,10 +54,9 @@ namespace LegendOfZelda
                 { AnimationDelay = ANIMATION_DELAY };
         }
 
-
         public ISprite CreateMovingGelSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(404, 185, 8, 11), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(404, 186, 8, 9), 2, false);
         }
 
         public ISprite CreateMovingZolSprite()
@@ -83,12 +82,14 @@ namespace LegendOfZelda
 
         public ISprite CreateMovingLFWallmasterSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(240, 0, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(240, 0, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateMovingRFWallmasterSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(270, 0, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(270, 0, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateMovingAquamentusSprite()
@@ -103,22 +104,26 @@ namespace LegendOfZelda
 
         public ISprite CreateDownMovingSnakeSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(30, 300, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(30, 300, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateUpMovingSnakeSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(0, 300, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(0, 300, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateLeftMovingSnakeSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(0, 300, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(0, 300, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateRightMovingSnakeSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(30, 300, 15, 15), 2, false);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(30, 300, 15, 15), 2, false)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateDownMovingDodongoSprite()

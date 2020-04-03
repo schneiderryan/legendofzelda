@@ -185,5 +185,10 @@ namespace LegendOfZelda
         {
             InnerLink.PickupItem(item, time, twoHands);
         }
+
+        public void Knockback(int amountX, int amountY)
+        {
+            InnerLink.Knockback(amountX, amountY);
+        }
     }
 }

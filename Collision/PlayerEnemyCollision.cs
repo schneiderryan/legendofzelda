@@ -3,20 +3,20 @@
 
 namespace LegendOfZelda
 {
-    class PlayerEnemyCollision
+    class PlayerEnemyCollision : ICollision
     {
-        private CollisionHandler handler;
+        private IPlayer player;
+        private Rectangle collision;
         private const double BUMP_DAMAGE = 0.5;
 
-        public PlayerEnemyCollision(CollisionHandler handler)
+        public PlayerEnemyCollision(IPlayer player, in Rectangle collision)
         {
-            this.handler = handler;
+            this.player = player;
+            this.collision = collision;
         }
 
-        public void Handle(IPlayer player, in Rectangle collision)
+        public void Handle()
         {
-            int playerXKnockback = 0;
-            int playerYKnockback = 0;
             if (collision.Width > collision.Height)
             {
                 if (collision.Y == player.Hitbox.Y)
@@ -24,16 +24,16 @@ namespace LegendOfZelda
                     if (!player.Direction.Equals("up") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
+                        player.Knockback(0, CollideableObject.KNOCKBACK);
                     }
-                    playerYKnockback = 5;
                 }
                 else
                 {
                     if (!player.Direction.Equals("down") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
+                        player.Knockback(0, -CollideableObject.KNOCKBACK);
                     }
-                    playerYKnockback = -5;
                 }
             }
             else
@@ -43,22 +43,17 @@ namespace LegendOfZelda
                     if (!player.Direction.Equals("left") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
+                        player.Knockback(CollideableObject.KNOCKBACK, 0);
                     }
-                    playerXKnockback = 5;
                 }
                 else
                 {
                     if (!player.Direction.Equals("right") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
+                        player.Knockback(-CollideableObject.KNOCKBACK, 0);
                     }
-                    playerXKnockback = -5;
                 }
-            }
-            if (!this.handler.playerTouchingBlockorWall)
-            {
-                player.X += playerXKnockback;
-                player.Y += playerYKnockback;
             }
         }
 

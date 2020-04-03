@@ -163,7 +163,7 @@ namespace LegendOfZelda
             {
                 itemTimer = 75;
                 Util.CenterRelativeToEdge(Sprite.Box, Direction, projectile);
-                game.projectiles.Add(projectile);
+                game.ProjectileManager.Add(projectile);
                 State.FireProjectile();
             }
         }
@@ -204,6 +204,11 @@ namespace LegendOfZelda
             this.Resistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
+        }
+
+        public void Knockback(int amountX, int amountY)
+        {
+            State.Knockback(amountX, amountY);
         }
     }
 }

@@ -8,5 +8,6 @@ namespace LegendOfZelda
         void MoveRight();
         void MoveLeft();
         void BeStill();
+        void Knockback(int amountX, int amountY);
     }
 }

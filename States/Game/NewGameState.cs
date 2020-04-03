@@ -26,19 +26,18 @@ namespace LegendOfZelda
             leftPos = game.GraphicsDevice.Viewport.Width / 2;
             CurtainWidth = game.GraphicsDevice.Viewport.Width / 2;
             CurtainHeight = game.GraphicsDevice.Viewport.Height;
-            gameInit();
+            GameInit();
         }
 
-        private void gameInit()
+        private void GameInit()
         {
             game.link = new GreenLink(game);
             game.playerKeyboard = GameSetup.CreatePlayerKeysController(game.link);
             game.mouse = new MouseController(game);
             game.keyboard = GameSetup.CreateGeneralKeysController(game);
 
-            game.projectiles = new HashSet<IProjectile>();
-            game.effects = new List<IDespawnEffect>();
-            game.collisionHandler = new CollisionHandler(game.effects);
+            game.ProjectileManager = new ProjectileManager();
+            game.CollisionDetector = new CollisionDetector(game.ProjectileManager);
             game.rooms = GameSetup.GenerateRoomList(game);
             game.roomIndex = 0;
         }

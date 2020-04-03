@@ -1,52 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 
 namespace LegendOfZelda
 {
-    class EnemyAttackCollision
+    class EnemyAttackCollision : ICollision
     {
-        private ISet<IEnemy> enemiesToDespawn;
-        private CollisionHandler handler;
+        private ICollection<IEnemy> enemies;
+        private IEnemy enemy;
+        private IPlayer player;
+        private string attackDirection;
 
-        public EnemyAttackCollision(ISet<IEnemy> enemiesToDespawn, CollisionHandler handler)
+        public EnemyAttackCollision(ICollection<IEnemy> enemies, IEnemy enemy,
+                IPlayer player, string attackDirection)
         {
-            this.enemiesToDespawn = enemiesToDespawn;
-            this.handler = handler;
+            this.enemies = enemies;
+            this.enemy = enemy;
+            this.player = player;
+            this.attackDirection = attackDirection;
         }
 
-        public void Handle(IEnemy enemy, IPlayer player, String attackDirection)
+        public void Handle()
         {
             if (player.Direction.Equals(attackDirection) && player.IsAttacking()
                     && !(enemy is Trap) && !(enemy is Fire))
             {
                 enemy.TakeDamage(player.Inventory.Sword.Damage);
-                int xKnockback = 0;
-                int yKnockback = 0;
                 switch (attackDirection)
                 {
-                    case "left":
-                        xKnockback = -5;
-                        break;
-                    case "right":
-                        xKnockback = 5;
-                        break;
                     case "up":
-                        yKnockback = -5;
+                        enemy.Knockback(0, -CollideableObject.KNOCKBACK);
                         break;
                     case "down":
-                        yKnockback = 5;
+                        enemy.Knockback(0, CollideableObject.KNOCKBACK);
                         break;
-                }
-                if (!this.handler.enemyTouchingBlockorWall)
-                {
-                    enemy.X += xKnockback;
-                    enemy.Y += yKnockback;
+                    case "right":
+                        enemy.Knockback(CollideableObject.KNOCKBACK, 0);
+                        break;
+                    case "left":
+                        enemy.Knockback(-CollideableObject.KNOCKBACK, 0);
+                        break;
                 }
 
                 if (enemy.isDead)
                 {
-                    enemiesToDespawn.Add(enemy);
+                    enemies.Remove(enemy);
                 }
             }
         }

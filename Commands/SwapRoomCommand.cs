@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace LegendOfZelda
 {
@@ -41,8 +37,7 @@ namespace LegendOfZelda
                     game.roomIndex--;
                 }
             }
-            game.projectiles.Clear();
-            game.effects.Clear();
+            game.ProjectileManager.Clear();
             System.Diagnostics.Debug.WriteLine("switching rooms");
         }
     }

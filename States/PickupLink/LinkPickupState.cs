@@ -7,9 +7,11 @@ namespace LegendOfZelda
         protected int delay;
         protected int time;
         protected bool twoHands;
+        protected IPlayer link;
 
         public LinkPickupState(IPlayer link, IItem item, int time, bool twoHands = true)
         {
+            this.link = link;
             delay = 0;
             this.time = time;
             this.twoHands = twoHands;
@@ -64,6 +66,11 @@ namespace LegendOfZelda
         }
 
         public void PickupItem(IItem item, int time, bool twoHands = true)
+        {
+            // do nothing
+        }
+
+        public void Knockback(int amountX, int amountY)
         {
             // do nothing
         }

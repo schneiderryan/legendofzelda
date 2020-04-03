@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class AttackingUpRedLinkState : AttackingRedLinkState
     {
-        public AttackingUpRedLinkState(RedLink link) : base(link)
+        public AttackingUpRedLinkState(IPlayer link) : base(link)
         {
             this.link.Direction = "up";
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpAttackingLinkSprite();
@@ -28,7 +28,7 @@ namespace LegendOfZelda
             {
                 link.State = new StillUpRedLinkState(link);
                 link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
-                link.Sprite.Position = new Point(link.X, link.Y);
+                base.Update();
             }
         }
     }

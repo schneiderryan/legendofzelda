@@ -6,19 +6,19 @@ namespace LegendOfZelda
     class ShootFireballCommand : ICommand
     {
         private IEnemy fire;
-        private ICollection<IProjectile> projectiles;
+        private ICollection<IProjectile> projectileManager;
         private string dir;
 
-        public ShootFireballCommand(ICollection<IProjectile> projectiles, IEnemy fire, string dir)
+        public ShootFireballCommand(ICollection<IProjectile> projectileManager, IEnemy fire, string dir)
         {
-            this.projectiles = projectiles;
+            this.projectileManager = projectileManager;
             this.fire = fire;
             this.dir = dir;
         }
 
         public void Execute()
-        {         
-            projectiles.Add(new FireballProjectile(dir, fire.X, fire.Y));
+        {
+            projectileManager.Add(new FireballProjectile(dir, fire.X, fire.Y));
         }
 
     }

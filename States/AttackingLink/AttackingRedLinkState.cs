@@ -6,10 +6,10 @@ namespace LegendOfZelda
     {
         protected int attackTimer = 20;
 
-        public AttackingRedLinkState(RedLink link)
-            : base(link)
+        public AttackingRedLinkState(IPlayer link) : base(link)
         {
-            // nothing needed
+            VX = 0;
+            VY = 0;
         }
         public override void MoveUp() { }
         public override void MoveDown() { }
