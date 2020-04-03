@@ -19,7 +19,7 @@ namespace LegendOfZelda
         public IController keyboard;
         public IController playerKeyboard;
 
-        public CollisionDetector collisionHandler;
+        public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
 
         public LegendOfZelda()
@@ -49,7 +49,6 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             state.Update();
-
             base.Update(gameTime);
         }
 

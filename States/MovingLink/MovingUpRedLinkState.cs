@@ -1,28 +1,35 @@
-﻿using Microsoft.Xna.Framework;
-
+﻿
 
 namespace LegendOfZelda
 {
-    class MovingUpRedLinkState : UpRedLinkState
+    class MovingUpRedLinkState : RedLinkState
     {
-        public MovingUpRedLinkState(RedLink link) : base(link)
+        public MovingUpRedLinkState(IPlayer link) : base(link)
         {
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpWalkingLinkSprite();
+            link.Direction = "up";
+            VY = -2;
+            VX = 0;
+        }
+
+        public override void Attack()
+        {
+            link.State = new AttackingUpRedLinkState(link);
+        }
+
+        public override void BeStill()
+        {
+            link.State = new StillUpRedLinkState(link);
+        }
+
+        public override void FireProjectile()
+        {
+            link.State = new ProjectileUpRedLinkState(link);
         }
 
         public override void MoveUp()
         {
             //Nothing to do
-        }
-
-        public override void Update()
-        {
-            link.Y -= 2;
-            if (link.Y < 0)
-            {
-                link.Y += 480;
-            }
-            link.Sprite.Position = new Point(link.X, link.Y);
         }
     }
 }

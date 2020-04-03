@@ -48,6 +48,7 @@ namespace LegendOfZelda
                     if (!player.Direction.Equals("right") || !player.IsAttacking())
                     {
                         player.TakeDamage(BUMP_DAMAGE);
+                        // link = knockedback link ?
                     }
                 }
             }

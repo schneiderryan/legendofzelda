@@ -19,7 +19,6 @@ namespace LegendOfZelda
             if (projectile.OwningTeam != player.Team)
             {
                 player.TakeDamage(projectile.Damage);
-                Knockback(player, collision);
             }
         }
 

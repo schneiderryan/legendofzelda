@@ -1,11 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-
+﻿
 
 namespace LegendOfZelda
 {
     class AttackingDownRedLinkState : AttackingRedLinkState
     {
-        public AttackingDownRedLinkState(RedLink link) : base(link)
+        public AttackingDownRedLinkState(IPlayer link) : base(link)
         {
             this.link.Direction = "down";
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownAttackingLinkSprite();
@@ -27,7 +26,7 @@ namespace LegendOfZelda
                 link.State = new StillDownRedLinkState(link);
                 link.Sprite = PlayerSpriteFactory.Instance.CreateRedDownStillLinkSprite();
             }
-            link.Sprite.Position = new Point(link.X, link.Y);
+            base.Update();
         }
     }
 }

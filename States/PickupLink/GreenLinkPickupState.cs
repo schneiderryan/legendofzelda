@@ -5,11 +5,9 @@ namespace LegendOfZelda
 {
     class GreenLinkPickupState : LinkPickupState
     {
-        private GreenLink link;
-        public GreenLinkPickupState(GreenLink link, IItem item, int time, bool twoHands = true)
+        public GreenLinkPickupState(IPlayer link, IItem item, int time, bool twoHands = true)
             : base(link, item, time, twoHands)
         {
-            this.link = link;
             link.Sprite = PlayerSpriteFactory.Instance.CreateLinkPickup1();
             link.Sprite.Position = new Point(link.X, link.Y);
         }

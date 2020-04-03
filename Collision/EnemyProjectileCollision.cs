@@ -34,7 +34,6 @@ namespace LegendOfZelda
                     + " took " + projectile.Damage + " damage");
 
                 enemy.TakeDamage(projectile.Damage);
-                Knockback(enemy, collision);
 
                 if (enemy.isDead)
                 {

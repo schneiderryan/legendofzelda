@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 
 namespace LegendOfZelda
@@ -25,6 +26,18 @@ namespace LegendOfZelda
                     && !(enemy is Trap) && !(enemy is Fire))
             {
                 enemy.TakeDamage(player.Inventory.Sword.Damage);
+                Rectangle dummyCollision = new Rectangle();
+                switch (attackDirection)
+                {
+                    case "up":
+                    case "down":
+                        dummyCollision.Width = 1;
+                        break;
+                    case "right":
+                    case "left":
+                        dummyCollision.Height = 1;
+                        break;
+                }
 
                 if (enemy.isDead)
                 {

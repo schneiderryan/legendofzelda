@@ -2,16 +2,27 @@
 
 namespace LegendOfZelda
 {
-    class StillUpRedLinkState : UpRedLinkState
+    class StillUpRedLinkState : RedLinkState
     {
-        public StillUpRedLinkState(RedLink link) : base(link)
+        public StillUpRedLinkState(IPlayer link) : base(link)
         {
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedUpStillLinkSprite();
+            link.Direction = "up";
+        }
+
+        public override void Attack()
+        {
+            link.State = new AttackingUpRedLinkState(link);
         }
 
         public override void BeStill()
         {
             //Nothing to do
+        }
+
+        public override void FireProjectile()
+        {
+            link.State = new ProjectileUpRedLinkState(link);
         }
     }
 }

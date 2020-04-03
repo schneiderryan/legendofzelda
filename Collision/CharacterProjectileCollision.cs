@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -38,34 +37,6 @@ namespace LegendOfZelda
             {
                 manager.Remove(projectile);
             }
-        }
-
-        protected static void Knockback(ICharacter character, in Rectangle collision)
-        {
-            if (collision.Width > collision.Height)
-            {
-                if (collision.Y == character.Hitbox.Y)
-                {
-                    character.Y += 5;
-                }
-                else
-                {
-                    character.Y -= 5;
-                }
-            }
-            else
-            {
-                if (collision.X == character.Hitbox.X)
-                {
-                    character.X += 5;
-                }
-                else
-                {
-                    character.X -= 5;
-                }
-            }
-
-            // TO DO: handle bound checking thingies
         }
 
         public abstract void Handle();
