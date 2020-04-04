@@ -78,7 +78,7 @@ namespace LegendOfZelda
         {
             IList<IRoom> list = new List<IRoom>()
             {
-                new Room(game, "Rooms/TestLevel.csv"),
+                //new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
                 new Room(game, "Rooms/Room1.csv"),
                 new Room(game, "Rooms/Room2.csv"),

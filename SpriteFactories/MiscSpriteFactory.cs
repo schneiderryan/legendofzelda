@@ -37,5 +37,10 @@ namespace LegendOfZelda
         {
             return new Sprite(WinCurtain, new Rectangle(0, 0, WinCurtain.Width, WinCurtain.Height));
         }
+
+        public ISprite CreateStory()
+        {
+            return new Sprite(menu, new Rectangle(523, 20, 252, 960));
+        }
     }
 }
