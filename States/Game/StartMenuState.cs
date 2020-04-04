@@ -70,7 +70,8 @@ namespace LegendOfZelda
         {
             if (Mouse.GetState().LeftButton.HasFlag(ButtonState.Pressed))
             {
-                game.NewGame();
+                //game.NewGame();
+                game.state = new StoryState(game);
             }
             delay--;
             if(delay == 0)
