@@ -16,6 +16,8 @@ namespace LegendOfZelda
         public ISet<IProjectile> projectiles;
         public IList<IDespawnEffect> effects;
         public GraphicsDeviceManager graphics;
+        public int xRoom = 515;
+        public int yRoom = 886;
 
         public IController mouse;
         public IController keyboard;

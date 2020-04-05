@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace LegendOfZelda
 { 
@@ -8,7 +9,6 @@ namespace LegendOfZelda
         private Texture2D roomSheet = Textures.GetRoomSheet();
         private Texture2D dungeonSheet = Textures.GetDungeonSheet();
         private Texture2D tileSheet = Textures.GetTileSheet();
-
         private static RoomSpriteFactory instance = new RoomSpriteFactory();
 
         private RoomSpriteFactory() { }
@@ -20,8 +20,11 @@ namespace LegendOfZelda
                 return instance;
             }
         }
+        internal ISprite CreateRooms(int xRoom, int yRoom)
+        {
+            return new Sprite(roomSheet, new Rectangle(xRoom, yRoom, 512, 352));
+        }
 
-       
         //doors
         public ISprite CreateRightOpen()
         {
@@ -79,6 +82,9 @@ namespace LegendOfZelda
         {
             return new Sprite(dungeonSheet, new Rectangle(914, 11, 32, 32));
         }
+
+        
+
         public ISprite CreateRightOther()
         {
             return new Sprite(dungeonSheet, new Rectangle(914, 77, 32, 32));

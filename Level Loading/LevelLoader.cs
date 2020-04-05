@@ -88,81 +88,102 @@ namespace LegendOfZelda
         {
             ISprite background;
             int roomNumber = parser.ParseRoomNumber();
+            background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
             if (roomNumber == 0)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom0();
+                System.Diagnostics.Debug.WriteLine("move camera to room 0 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom0();
+
             }
             else if (roomNumber == 1)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom1();
+                System.Diagnostics.Debug.WriteLine("move camera to room 1 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom1();
             }
             else if (roomNumber == 2)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom2();
+                System.Diagnostics.Debug.WriteLine("move camera to room 2 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom2();
             }
             else if (roomNumber == 3)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom3();
+                System.Diagnostics.Debug.WriteLine("move camera to room 3 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom3();
             }
             else if (roomNumber == 4)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom4();
+                System.Diagnostics.Debug.WriteLine("move camera to room 4 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom4();
             }
             else if (roomNumber == 5)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom5();
+                System.Diagnostics.Debug.WriteLine("move camera to room 5 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom5();
             }
             else if (roomNumber == 6)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom6();
+                System.Diagnostics.Debug.WriteLine("move camera to room 6 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom6();
             }
             else if (roomNumber == 7)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom7();
+                System.Diagnostics.Debug.WriteLine("move camera to room 7 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom7();
             }
             else if (roomNumber == 8)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom8();
+                System.Diagnostics.Debug.WriteLine("move camera to room 8 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom8();
             }
             else if (roomNumber == 9)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom9();
+                System.Diagnostics.Debug.WriteLine("move camera to room 9 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom9();
             }
             else if (roomNumber == 10)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom10();
+                System.Diagnostics.Debug.WriteLine("move camera to room 10 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom10();
             }
             else if (roomNumber == 11)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom11();
+                System.Diagnostics.Debug.WriteLine("move camera to room 11 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom11();
             }
             else if (roomNumber == 12)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom12();
+                System.Diagnostics.Debug.WriteLine("move camera to room 12 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom12();
             }
             else if (roomNumber == 13)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom13();
+                System.Diagnostics.Debug.WriteLine("move camera to room 13 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom13();
             }
             else if (roomNumber == 14)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom14();
+                System.Diagnostics.Debug.WriteLine("move camera to room 14 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom14();
             }
             else if (roomNumber == 15)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom15();
+                System.Diagnostics.Debug.WriteLine("move camera to room 15 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom15();
             }
             else if (roomNumber == 16)
             {
-                background = RoomSpriteFactory.Instance.CreateRoom16();
+                System.Diagnostics.Debug.WriteLine("move camera to room 16 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom16();
             }
             else if (roomNumber == 18) // test room
             {
-                background = RoomSpriteFactory.Instance.CreateRoom0();
+                System.Diagnostics.Debug.WriteLine("move camera to room 18 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom0();
             }
             else // room 17
             {
-                background = RoomSpriteFactory.Instance.CreateRoom17();
+                System.Diagnostics.Debug.WriteLine("move camera to room 17 coordinates");
+                //background = RoomSpriteFactory.Instance.CreateRoom17();
             }
             return background;
         }

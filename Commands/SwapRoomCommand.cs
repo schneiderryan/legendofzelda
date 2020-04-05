@@ -32,6 +32,7 @@ namespace LegendOfZelda
             }
             else if (swapDirection.Equals("previous"))
             {
+               
                 if (0 == game.roomIndex)
                 {
                     game.roomIndex = game.rooms.Count - 1;
@@ -43,11 +44,14 @@ namespace LegendOfZelda
             }
             else if (swapDirection.Equals("up"))
             {
+                game.state = new ChangeRoomState(game);
+                game.yRoom += 176;
+                
                 if (game.roomIndex == 2 || game.roomIndex == 4 ||  game.roomIndex == 12)
                 {
                     game.roomIndex += 2;
                 }
-                else if(game.roomIndex == 9)
+                else if(game.roomIndex == 9 || game.roomIndex == 10)
                 {
                     game.roomIndex += 3;
                 }
@@ -82,6 +86,7 @@ namespace LegendOfZelda
                 }
                 
             }
+            
             game.projectiles.Clear();
             game.effects.Clear();
         }

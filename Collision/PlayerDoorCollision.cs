@@ -15,10 +15,8 @@ namespace LegendOfZelda
         {
 
 
-            System.Diagnostics.Debug.WriteLine("collision data:\n door: " + door +"\nplayer.X: "+player.X+"\nplayer.Y: "+player.Y);
-
             
-            if(!(player.X > 449 && (door is RightWall || door is RightOther)) && !(player.Y == 315 && door is BottomWall))
+            if(!(player.X > 449 && (door is RightWall || door is RightOther || door is RightKey)) && !(player.Y == 315 && door is BottomWall))
             {
                 System.Diagnostics.Debug.WriteLine("cause collision");
                 if (collision.Width > collision.Height)
@@ -53,31 +51,29 @@ namespace LegendOfZelda
             cmdLeft = new SwapRoomCommand(game, "previous");
             cmdUp = new SwapRoomCommand(game, "up");
             cmdDown = new SwapRoomCommand(game, "down");
+            
             //change rooms based on door collision
             if (door is TopOpen)
             {
-                System.Diagnostics.Debug.WriteLine("walk through top door");
-                player.Y = 315;
+                player.Y = 300;
                 cmdUp.Execute();
             }
             if (door is BottomOpen)
             {
-                System.Diagnostics.Debug.WriteLine("walk through bottom door");
-                player.Y = 5;
+                player.Y = 60;
                 cmdDown.Execute();
             }
             if (door is LeftOpen)
             {
-                System.Diagnostics.Debug.WriteLine("walk through left door");
                 cmdLeft.Execute();
-                player.X = 465;
+                player.X = 417;
                 
             }
             if (door is RightOpen)
             {
-                System.Diagnostics.Debug.WriteLine("walk through right door");
+               
                 cmdRight.Execute();
-                player.X = 2;
+                player.X = 60;
             }
         }
     }

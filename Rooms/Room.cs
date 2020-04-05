@@ -68,7 +68,7 @@ namespace LegendOfZelda
 
             LevelLoader levelLoader = new LevelLoader(levelName, game);
 
-            this.background = levelLoader.LoadBackground();
+            this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
             this.background.Scale = 2.0f;
             this.background.Position = new Point(0, 0);
 
@@ -128,6 +128,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            background.Update();
             
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {

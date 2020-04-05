@@ -15,7 +15,7 @@ namespace LegendOfZelda
         {
             link.State = new MovingUpLinkState(link);
             link.Sprite = PlayerSpriteFactory.Instance.CreateUpWalkingLinkSprite();
-            link.Sprite.Scale = 2.0f;
+            
         }
 
         public override void MoveDown()
