@@ -4,10 +4,10 @@ namespace LegendOfZelda
 {
     abstract class CollideableObject : ICollideable
     {
-        public const int KNOCKBACK = LevelParser.TILE_SIZE * 2;
+        public const int KNOCKBACK = RoomParser.TILE_SIZE * 2;
 
         private Rectangle hitbox = new Rectangle(0, 0,
-                LevelParser.TILE_SIZE, LevelParser.TILE_SIZE);
+                RoomParser.TILE_SIZE, RoomParser.TILE_SIZE);
 
         public virtual Rectangle Hitbox
         {

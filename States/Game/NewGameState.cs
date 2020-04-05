@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -41,7 +39,7 @@ namespace LegendOfZelda
             game.ProjectileManager = new ProjectileManager();
             game.CollisionDetector = new CollisionDetector(game.ProjectileManager);
             game.rooms = GameSetup.GenerateRoomList(game);
-            game.roomIndex = 0;
+            game.roomIndex = 1;
         }
 
         public void ToStart()

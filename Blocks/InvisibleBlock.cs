@@ -7,7 +7,7 @@ namespace LegendOfZelda
     {
         public InvisibleBlock()
         {
-            Hitbox = new Rectangle(0, 0, LevelParser.TILE_SIZE, LevelParser.TILE_SIZE);
+            Hitbox = new Rectangle(0, 0, RoomParser.TILE_SIZE, RoomParser.TILE_SIZE);
         }
 
         public virtual void Update()

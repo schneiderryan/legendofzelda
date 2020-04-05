@@ -5,9 +5,9 @@ namespace LegendOfZelda
 {
     class KeyboardController : IController
     {
-        private Dictionary<Keys, ICommand> keyBinds;
+        private IDictionary<Keys, ICommand> keyBinds;
 
-        public KeyboardController(Dictionary<Keys, ICommand> keyBinds)
+        public KeyboardController(IDictionary<Keys, ICommand> keyBinds)
         {
             this.keyBinds = keyBinds;
         }

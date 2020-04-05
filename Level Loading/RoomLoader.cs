@@ -5,89 +5,24 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    class LevelLoader
+    class RoomLoader
     {
-        private LevelParser parser;
+        private RoomParser parser;
         private LegendOfZelda game;
-        private IList<string> possibleEnemies;
-        private IList<string> possibleItems;
-        private IList<string> possibleBlocks;
-        private IList<string> possibleDoors;
-        private IList<string> possibleNPCs;
 
-        public LevelLoader(string level, LegendOfZelda game)
+        public RoomLoader(string level, LegendOfZelda game)
         {
-            this.parser = new LevelParser(level);
+            this.parser = new RoomParser();
+            parser.Parse(level);
             this.game = game;
-
-            this.possibleEnemies = new List<string>()
-            {
-                "Aquamentus",
-                "Dodongo",
-                "Gel",
-                "Goriya",
-                "Keese",
-                "LFWallmaster",
-                "RFWallmaster",
-                "Snake",
-                "Stalfo",
-                "Fire",
-                "Zol",
-                "Trap",
-            };
-
-            this.possibleNPCs = new List<string>()
-            {
-                "OldMan",
-                "Merchant",
-            };
-
-            this.possibleItems = new List<string>()
-            {
-                "Arrow",
-                "BlueRupee",
-                "Bomb",
-                "Boomerang",
-                "Bow",
-                "Clock",
-                "Compass",
-                "Fairy",
-                "Heart",
-                "HeartContainer",
-                "Key",
-                "Map",
-                "Rupee",
-                "TriforceShard",
-                "WoodSword",
-                "RedRing",
-            };
-
-            this.possibleBlocks = new List<string>()
-            {
-                "Block",
-                "MoveableBlockVertical",
-                "MoveableBlockLeft",
-            };
-
-            this.possibleDoors = new List<string>()
-            {
-                "Wall",
-                "Open",
-                "Key",
-                "Other",
-                "Exploded",
-            };
         }
 
-        public int RoomNumber()
-        {
-            return parser.ParseRoomNumber();
-        }
+        public int RoomNumber() => parser.RoomNumber;
 
         public ISprite LoadBackground()
         {
             ISprite background;
-            int roomNumber = parser.ParseRoomNumber();
+            int roomNumber = parser.RoomNumber;
             if (roomNumber == 0)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom0();
@@ -170,7 +105,7 @@ namespace LegendOfZelda
         public ISet<IEnemy> LoadEnemies()
         {
             ISet<IEnemy> enemies = new HashSet<IEnemy>();
-            Dictionary<Vector2, String> enemyInfo = parser.Parse(possibleEnemies);
+            IDictionary<Vector2, string> enemyInfo = parser.Enemies;
             foreach (KeyValuePair<Vector2, String> entry in enemyInfo)
             {
                 IEnemy enemy;
@@ -178,7 +113,7 @@ namespace LegendOfZelda
                 {
                     enemy = new Aquamentus(this.game);
                 }
-                else if(entry.Value.Equals("Gel"))
+                else if (entry.Value.Equals("Gel"))
                 {
                     enemy = new Gel();
                 }
@@ -232,7 +167,7 @@ namespace LegendOfZelda
         public IList<IItem> LoadItems()
         {
             List<IItem> items = new List<IItem>();
-            Dictionary<Vector2, String> itemInfo = parser.Parse(possibleItems);
+            IDictionary<Vector2, string> itemInfo = parser.Items;
             foreach (KeyValuePair<Vector2, String> entry in itemInfo)
             {
                 IItem item;
@@ -240,7 +175,7 @@ namespace LegendOfZelda
                 {
                     item = new Arrow();
                 }
-                else if(entry.Value.Equals("BlueRupee"))
+                else if (entry.Value.Equals("BlueRupee"))
                 {
                     item = new BlueRupee();
                 }
@@ -310,7 +245,7 @@ namespace LegendOfZelda
         public IList<IBlock> LoadBlocks(IRoom room)
         {
             IList<IBlock> blocks = new List<IBlock>();
-            Dictionary<Vector2, String> blockInfo = parser.Parse(possibleBlocks);
+            IDictionary<Vector2, string> blockInfo = parser.Blocks;
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
                 IBlock block = null;
@@ -340,7 +275,7 @@ namespace LegendOfZelda
         public Dictionary<String, IDoor> LoadDoors()
         {
             Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
-            Dictionary<String, String> doorInfo = parser.ParseDoors(possibleDoors);
+            IDictionary<string, string> doorInfo = parser.Doors;
             
             foreach (KeyValuePair<String, String> entry in doorInfo)
             {
@@ -364,10 +299,10 @@ namespace LegendOfZelda
                     {
                         door = new LeftOther();
                     }
-                    else {
+                    else
+                    {
                         door = new LeftExploded();
                     }
-                    
                 }
                 else if (entry.Key.Equals("right"))
                 {
@@ -447,23 +382,21 @@ namespace LegendOfZelda
         public IList<INPC> LoadNPCs()
         {
             IList<INPC> npcs = new List<INPC>();
-            Dictionary<Vector2, String> info = parser.Parse(possibleNPCs);
+            IDictionary<Vector2, string> info = parser.NPCs;
             foreach (KeyValuePair<Vector2, String> entry in info)
             {
+                INPC npc;
                 if (entry.Value.Equals("OldMan"))
                 {
-                    INPC npc = new OldMan();
-                    npc.X = (int)entry.Key.X;
-                    npc.Y = (int)entry.Key.Y;
-                    npcs.Add(npc);
+                    npc = new OldMan();
                 }
                 else
                 {
-                    INPC npc = new Merchant();
-                    npc.X = (int)entry.Key.X;
-                    npc.Y = (int)entry.Key.Y;
-                    npcs.Add(npc);
+                    npc = new Merchant();
                 }
+                npc.X = (int)entry.Key.X;
+                npc.Y = (int)entry.Key.Y;
+                npcs.Add(npc);
             }
 
             return npcs;

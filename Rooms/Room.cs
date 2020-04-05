@@ -40,7 +40,7 @@ namespace LegendOfZelda
                 Hitboxes = new List<Rectangle>()
                 {
                     // left hitboxes
-                    new Rectangle(0, 0, 64, 172),
+                    new Rectangle(0, 0, 64, 170),
                     new Rectangle(0, 193, 64, 160),
 
                     // top hitboxes
@@ -52,15 +52,15 @@ namespace LegendOfZelda
                     new Rectangle(289, 289, 224, 64),
 
                     // right hitboxes
-                    new Rectangle(448, 0, 64, 172),
-                    new Rectangle(448, 190, 64, 160),
+                    new Rectangle(448, 0, 64, 170),
+                    new Rectangle(448, 193, 64, 160),
                 };
             }
         }
 
         public Room(LegendOfZelda game, String levelName)
         {
-            LevelLoader levelLoader = new LevelLoader(levelName, game);
+            RoomLoader levelLoader = new RoomLoader(levelName, game);
 
             this.background = levelLoader.LoadBackground();
             this.background.Scale = 2.0f;
