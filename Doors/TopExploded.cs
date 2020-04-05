@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -14,7 +11,7 @@ namespace LegendOfZelda
         public TopExploded()
         {
             door = RoomSpriteFactory.Instance.CreateTopExploded();
-            door.Position = new Point(225, 0);
+            door.Position = new Point(224, 0);
             Hitbox = door.Box;
             
         }
