@@ -33,7 +33,7 @@ namespace LegendOfZelda
 
         public void ChangeRoom()
         {
-            game.state = new ChangeRoomState(game);
+            //game.state = new ChangeRoomState(game);
         }
 
         public void WinGame()

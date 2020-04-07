@@ -15,7 +15,7 @@ namespace LegendOfZelda
         public IList<IItem> Items { get; private set; }
         private IList<INPC> npcs;
         private LegendOfZelda game;
-        private ISprite background;
+        public ISprite background { get; set; }
         public IDictionary<string, IDoor> Doors
         {
             get { return doors; }
@@ -128,8 +128,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            background.Update();
-            
+            this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();

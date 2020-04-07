@@ -14,11 +14,8 @@ namespace LegendOfZelda
 
         {
 
-
-            
             if(!(player.X > 449 && (door is RightWall || door is RightOther || door is RightKey)) && !(player.Y == 315 && door is BottomWall))
             {
-                System.Diagnostics.Debug.WriteLine("cause collision");
                 if (collision.Width > collision.Height)
                 {
                     if (collision.Y != player.Footbox.Y)
@@ -55,23 +52,21 @@ namespace LegendOfZelda
             //change rooms based on door collision
             if (door is TopOpen)
             {
-                player.Y = 300;
                 cmdUp.Execute();
+                player.Y = 300;
             }
             if (door is BottomOpen)
             {
-                player.Y = 60;
                 cmdDown.Execute();
+                player.Y = 60;
             }
             if (door is LeftOpen)
             {
                 cmdLeft.Execute();
                 player.X = 417;
-                
             }
             if (door is RightOpen)
             {
-               
                 cmdRight.Execute();
                 player.X = 60;
             }

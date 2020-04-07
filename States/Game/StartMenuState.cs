@@ -33,7 +33,7 @@ namespace LegendOfZelda
             game.effects = new List<IDespawnEffect>();
             game.collisionHandler = new CollisionHandler(game.effects);
             game.rooms = GameSetup.GenerateRoomList(game);
-            game.roomIndex = 0;
+            game.roomIndex = 2;
         }
 
         public void ToStart()

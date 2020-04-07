@@ -21,74 +21,41 @@ namespace LegendOfZelda
         {
             if (swapDirection.Equals("next"))
             {
-                if (game.rooms.Count - 1 == game.roomIndex)
-                {
-                    game.roomIndex = 0;
-                }
-                else
-                {
-                    game.roomIndex++;
-                }
+                game.projectiles.Clear();
+                game.effects.Clear();
+                game.state = new ChangeRoomState("right", game);
+                
+               
+        
             }
             else if (swapDirection.Equals("previous"))
             {
+                game.projectiles.Clear();
+                game.effects.Clear();
+                game.state = new ChangeRoomState("left", game);
+                
                
-                if (0 == game.roomIndex)
-                {
-                    game.roomIndex = game.rooms.Count - 1;
-                }
-                else
-                {
-                    game.roomIndex--;
-                }
             }
             else if (swapDirection.Equals("up"))
             {
-                game.state = new ChangeRoomState(game);
-                game.yRoom += 176;
+                game.projectiles.Clear();
+                game.effects.Clear();
+                game.state = new ChangeRoomState("up",game);
                 
-                if (game.roomIndex == 2 || game.roomIndex == 4 ||  game.roomIndex == 12)
-                {
-                    game.roomIndex += 2;
-                }
-                else if(game.roomIndex == 9 || game.roomIndex == 10)
-                {
-                    game.roomIndex += 3;
-                }
-                else if(game.roomIndex == 5 || game.roomIndex == 6 || game.roomIndex == 7)
-                {
-                    game.roomIndex += 4;
-                }
-                else if(game.roomIndex == 13)
-                {
-                    game.roomIndex += 5;
-                }
+                
+                
             }
             else if (swapDirection.Equals("down"))
             {
+                game.projectiles.Clear();
+                game.effects.Clear();
+                game.state = new ChangeRoomState("down", game);
                 
-                if (game.roomIndex == 4 || game.roomIndex == 6 || game.roomIndex == 14)
-                {
-                    game.roomIndex -= 2;
-                }
-               
-                else if (game.roomIndex == 13)
-                {
-                    game.roomIndex -= 3;
-                }
-                else if (game.roomIndex == 9 || game.roomIndex == 10 || game.roomIndex == 11)
-                {
-                    game.roomIndex -= 4;
-                }
-                else if (game.roomIndex == 13 || game.roomIndex == 18)
-                {
-                    game.roomIndex -= 5;
-                }
+                
                 
             }
             
-            game.projectiles.Clear();
-            game.effects.Clear();
+            
         }
     }
 }

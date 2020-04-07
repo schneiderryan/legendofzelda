@@ -341,7 +341,6 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(player.Footbox, wall);
                 if (!collision.IsEmpty)
                 {
-                    System.Diagnostics.Debug.WriteLine("wall collision");
                     playerTouchingBlockorWall = true;
                 }
             }
