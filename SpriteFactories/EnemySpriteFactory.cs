@@ -86,10 +86,22 @@ namespace LegendOfZelda
                 { AnimationDelay = ANIMATION_DELAY };
         }
 
+        public ISprite CreateDraggingLFWallmasterSprite()
+        {
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(240, 0, 15, 15), 1, false)
+            { AnimationDelay = ANIMATION_DELAY };
+        }
+
         public ISprite CreateMovingRFWallmasterSprite()
         {
             return new AnimatedSprite(enemySpriteSheet, new Rectangle(270, 0, 15, 15), 2, false)
                 { AnimationDelay = ANIMATION_DELAY };
+        }
+
+        public ISprite CreateDraggingRFWallmasterSprite()
+        {
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(270, 0, 15, 15), 1, false)
+            { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateMovingAquamentusSprite()
@@ -160,5 +172,7 @@ namespace LegendOfZelda
         {
             return new AnimatedSprite(merchantSpriteSheet, new Rectangle(0, 0, 15, 15), 1, false);
         }
+
+
     }
 }
