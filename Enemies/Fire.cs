@@ -12,18 +12,23 @@ namespace LegendOfZelda
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateFireSprite();
 			Hitbox = Sprite.Box;
+			//Hitbox = new Rectangle(240, 130, Sprite.Box.Width, Sprite.Box.Height);
 			Sprite.Position = new Point(X, Y);
 			State = new EnemyState(this);
 			timer = 0;
 			game = loz;
 			currentHearts = 100;
+			
 		}
 		
 		public override void Update()
 		{
-			if(currentHearts<100)
+			//Hitbox = new Rectangle(240, 130, Sprite.Box.Width, Sprite.Box.Height);
+			//Sprite.Position = new Point(X, Y);
+			
+			if (game.OldManDamaged)
 			{
-				if (timer % 200 == 0)
+				if (timer % 150 == 0)
 				{
 					int linkXPos = game.link.X;
 					int linkYPos = game.link.Y;

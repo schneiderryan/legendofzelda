@@ -12,5 +12,6 @@ namespace LegendOfZelda
         IList<IBlock> Blocks { get; }
         ISet<IEnemy> Enemies { get; }
         IList<IItem> Items { get; }
+        IList<INPC> NPCs { get; }
     }
 }

@@ -14,7 +14,7 @@ namespace LegendOfZelda
         public IList<IItem> Items { get; private set; }
         public IDictionary<string, IDoor> Doors { get; private set; }
 
-        private IList<INPC> npcs;
+        public IList<INPC> NPCs { get; private set; }
         private ISprite background;
 
         private void LoadRoomLayout(int roomNumber)
@@ -69,7 +69,7 @@ namespace LegendOfZelda
             this.Enemies = levelLoader.LoadEnemies();
             this.Blocks = levelLoader.LoadBlocks(this);
             this.Items = levelLoader.LoadItems();
-            this.npcs = levelLoader.LoadNPCs();
+            this.NPCs = levelLoader.LoadNPCs();
             this.Doors = levelLoader.LoadDoors();
  
 
@@ -108,7 +108,7 @@ namespace LegendOfZelda
                 item.Draw(sb, color);
             }
 
-            foreach (INPC npc in npcs)
+            foreach (INPC npc in NPCs)
             {
                 npc.Draw(sb, color);
             }
@@ -136,7 +136,7 @@ namespace LegendOfZelda
                 item.Update();
             }
 
-            foreach (INPC npc in npcs)
+            foreach (INPC npc in NPCs)
             {
                 npc.Update();
             }

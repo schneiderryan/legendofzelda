@@ -74,6 +74,8 @@ namespace LegendOfZelda
                     }
                 }
 
+                
+
                 foreach (IProjectile projectile in projectileManager)
                 {
                     Rectangle collision = Rectangle.Intersect(projectile.Hitbox, player.Hitbox);
@@ -165,7 +167,7 @@ namespace LegendOfZelda
                     foreach (IBlock block in room.Blocks)
                     {
                         Rectangle collision = Rectangle.Intersect(block.Hitbox, enemy.Hitbox);
-                        if (!collision.IsEmpty && !(enemy is Keese) && !(enemy is LFWallmaster))
+                        if (!collision.IsEmpty && !(enemy is Keese || enemy is LFWallmaster || enemy is RFWallmaster))
                         {
                             collisions.Add(new EnemyWallBlockDoorCollision(enemy, collision));
                         }
@@ -180,6 +182,8 @@ namespace LegendOfZelda
                                 enemy, projectile, collision));
                         }
                     }
+
+
 
                     if (enemy.Hitbox.Intersects(player.LeftAttackBox))
                     {
@@ -198,6 +202,21 @@ namespace LegendOfZelda
                         collisions.Add(new EnemyAttackCollision(room.Enemies, enemy, player, "down"));
                     }
 
+                }
+
+                foreach(INPC npc in room.NPCs)
+                {
+                    foreach (IProjectile projectile in projectileManager)
+                    {
+                        Rectangle collision = Rectangle.Intersect(projectile.Hitbox, npc.Hitbox);
+                        if (!collision.IsEmpty)
+                        {
+                            if(npc is OldMan)
+                            {
+                                game.OldManDamaged = true;
+                            }
+                        }
+                    }
                 }
             }
         }

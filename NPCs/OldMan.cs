@@ -6,14 +6,15 @@ namespace LegendOfZelda
 	class OldMan : CollideableObject, INPC
 	{
 		private ISprite sprite;
+		public bool damaged;
 
 		public OldMan()
 		{
 			sprite = EnemySpriteFactory.Instance.CreateOldManSprite();
-			Hitbox = sprite.Box;
 			X = 240;
 			Y = 130;
 			sprite.Position = new Point(X, Y);
+			Hitbox = sprite.Box;
 		}
 
 		public void Update()
@@ -24,6 +25,11 @@ namespace LegendOfZelda
 		public void Draw(SpriteBatch spriteBatch, Color color)
 		{
 			sprite.Draw(spriteBatch, color);
+		}
+
+		public void TakeDamage()
+		{
+			damaged = true;
 		}
 	}
 }

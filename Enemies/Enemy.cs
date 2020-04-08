@@ -27,7 +27,7 @@ namespace LegendOfZelda
 
         public void Draw(SpriteBatch sb, Color color)
         {
-            if (isBeingAttacked)
+            if (isBeingAttacked && !(this is Fire))
             {
                 
                 Color hurt1 = new Color(83, 68, 198);
