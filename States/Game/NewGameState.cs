@@ -13,12 +13,10 @@ namespace LegendOfZelda
         private int leftPos;
         private int CurtainWidth;
         private int CurtainHeight;
-        private int timer;
         private int updateTimer;
         public NewGameState(LegendOfZelda game)
         {
             this.game = game;
-            timer = 0;
             updateTimer = 1;
             RightCurtain = Textures.GetWinCurtain();
             LeftCurtain = Textures.GetWinCurtain();
@@ -39,7 +37,7 @@ namespace LegendOfZelda
             game.ProjectileManager = new ProjectileManager();
             game.CollisionDetector = new CollisionDetector(game.ProjectileManager);
             game.rooms = GameSetup.GenerateRoomList(game);
-            game.roomIndex = 1;
+            game.roomIndex = 0;
         }
 
         public void ToStart()
@@ -103,7 +101,6 @@ namespace LegendOfZelda
                 game.rooms[game.roomIndex].Update();
                 game.link.Update();
             }
-            timer++;
             updateTimer--;
         }
 
