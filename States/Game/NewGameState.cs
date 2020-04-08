@@ -39,7 +39,7 @@ namespace LegendOfZelda
             game.CollisionDetector = new CollisionDetector(game.ProjectileManager, game);
 
             game.rooms = GameSetup.GenerateRoomList(game);
-            game.roomIndex = 0;
+            game.roomIndex = 1;
         }
 
         public void ToStart()
