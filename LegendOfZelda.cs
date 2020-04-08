@@ -23,8 +23,8 @@ namespace LegendOfZelda
         public IController roomController;
 
 
-        public int xRoom = 515;
-        public int yRoom = 886;
+        public int xRoom;
+        public int yRoom;
 
         public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
