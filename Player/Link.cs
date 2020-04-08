@@ -21,7 +21,7 @@ namespace LegendOfZelda
         private Rectangle attackBoxUp;
         private Rectangle attackBoxDown;
         private Vector2 origin;
-
+        private Color deadColor;
         public double Resistance { get; set; }
         public IItem HeldItem { get; set; }
         public ISprite Sprite { get; set; }
@@ -33,6 +33,11 @@ namespace LegendOfZelda
         public Rectangle RightAttackBox => attackBoxRight;
         public Rectangle DownAttackBox => attackBoxDown;
         public Rectangle UpAttackBox => attackBoxUp;
+        public Color DeadColor 
+        {
+            get { return deadColor; }
+            set { deadColor = value; }
+        }
 
         public int X
         {
@@ -118,10 +123,14 @@ namespace LegendOfZelda
             double actual = amount * (1.0 - Resistance);
             System.Diagnostics.Debug.WriteLine("link took: " + actual + " damage");
             CurrentHearts -= actual;
-            this.game.link = new DamagedLink(game);
             if (CurrentHearts < 0.01) // close enough to 0 for a double
             {
+                this.State = new GreenLinkDeadState(this);
                 game.LoseGame();
+            }
+            else
+            {
+                this.game.link = new DamagedLink(game);
             }
         }
 
@@ -137,6 +146,7 @@ namespace LegendOfZelda
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {
+            Color tint = color;
             if (State is AttackingUpLinkState)
             {
                 this.origin = new Vector2(0, 15);
@@ -154,7 +164,11 @@ namespace LegendOfZelda
             {
                 this.origin = new Vector2(0, 0);
             }
-            Sprite.Draw(sb, color, origin);
+            if (State is LinkDeadState)
+            {
+                tint = this.DeadColor;
+            }
+            Sprite.Draw(sb, tint, origin);
         }
 
         public virtual void UseProjectile(IProjectile projectile)
@@ -204,6 +218,7 @@ namespace LegendOfZelda
             this.Resistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
+            this.DeadColor = Microsoft.Xna.Framework.Color.White;
         }
 
         public void Knockback(int amountX, int amountY)

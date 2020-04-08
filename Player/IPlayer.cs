@@ -22,6 +22,7 @@ namespace LegendOfZelda
         Rectangle DownAttackBox { get; }
         Rectangle RightAttackBox { get; }
         Rectangle LeftAttackBox { get; }
+        Color DeadColor { get; set; }
 
         void Attack();
         void UseProjectile(IProjectile projectile);

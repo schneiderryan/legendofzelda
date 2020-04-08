@@ -20,6 +20,11 @@ namespace LegendOfZelda
         public Rectangle RightAttackBox => InnerLink.RightAttackBox;
         public Rectangle DownAttackBox => InnerLink.DownAttackBox;
         public Rectangle UpAttackBox => InnerLink.UpAttackBox;
+        public Color DeadColor
+        {
+            get { return InnerLink.DeadColor; }
+            set { InnerLink.DeadColor = value; }
+        }
 
         public ISprite Sprite
         {
