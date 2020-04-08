@@ -22,7 +22,7 @@ namespace LegendOfZelda
 
         public void ToStart()
         {
-            //Nothing to do
+
         }
 
         public void NewGame()

@@ -64,19 +64,23 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            if(tintTimer < 30)
+            if (tintTimer < 30)
             {
                 tint = Color.YellowGreen;
-            } else if(tintTimer < 60)
+            }
+            else if (tintTimer < 60)
             {
                 tint = Color.LightGreen;
-            } else if(tintTimer < 90)
+            }
+            else if (tintTimer < 90)
             {
                 tint = Color.Green;
-            } else if(tintTimer < 120)
+            }
+            else if (tintTimer < 120)
             {
                 tint = Color.DarkGreen;
-            } else if(tintTimer < 210)
+            }
+            else if (tintTimer < 210)
             {
                 tint = Color.Black;
             }

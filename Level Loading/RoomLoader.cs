@@ -22,83 +22,7 @@ namespace LegendOfZelda
         public ISprite LoadBackground()
         {
             ISprite background;
-            int roomNumber = parser.RoomNumber;
-            if (roomNumber == 0)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom0();
-            }
-            else if (roomNumber == 1)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom1();
-            }
-            else if (roomNumber == 2)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom2();
-            }
-            else if (roomNumber == 3)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom3();
-            }
-            else if (roomNumber == 4)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom4();
-            }
-            else if (roomNumber == 5)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom5();
-            }
-            else if (roomNumber == 6)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom6();
-            }
-            else if (roomNumber == 7)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom7();
-            }
-            else if (roomNumber == 8)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom8();
-            }
-            else if (roomNumber == 9)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom9();
-            }
-            else if (roomNumber == 10)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom10();
-            }
-            else if (roomNumber == 11)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom11();
-            }
-            else if (roomNumber == 12)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom12();
-            }
-            else if (roomNumber == 13)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom13();
-            }
-            else if (roomNumber == 14)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom14();
-            }
-            else if (roomNumber == 15)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom15();
-            }
-            else if (roomNumber == 16)
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom16();
-            }
-            else if (roomNumber == 18) // test room
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom0();
-            }
-            else // room 17
-            {
-                background = RoomSpriteFactory.Instance.CreateRoom17();
-            }
+            background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
             return background;
         }
 
@@ -276,7 +200,7 @@ namespace LegendOfZelda
         {
             Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
             IDictionary<string, string> doorInfo = parser.Doors;
-            
+
             foreach (KeyValuePair<String, String> entry in doorInfo)
             {
                 IDoor door;
@@ -347,10 +271,10 @@ namespace LegendOfZelda
                     }
                     else
                     {
-                       door = new TopExploded();
+                        door = new TopExploded();
                     }
                 }
-                else 
+                else
                 {
                     if (entry.Value.Equals("Wall"))
                     {
