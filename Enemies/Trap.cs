@@ -28,7 +28,6 @@ namespace LegendOfZelda
 			startY = Y;
 			game = loz;
 			BeStill();
-			this.Name = "Trap";
 			currentHearts = 1;
 			roommidheight = 156;
 			roommidwidth = 240;
@@ -49,11 +48,7 @@ namespace LegendOfZelda
 		{
 			X -= 3;
 		}
-		public void BeStill()
-		{
-			VY = 0;
-			VX = 0;
-		}
+
 		public override void TakeDamage(double amount)
 		{
 			// do nothing

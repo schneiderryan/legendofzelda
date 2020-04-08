@@ -29,6 +29,7 @@ namespace LegendOfZelda
                     break;
             }
             link.Sprite.Position = new Point(link.X, link.Y);
+            link.Resistance = 0.25;
         }
 
         public ILinkState State { get => link.State; set => link.State = value; }
@@ -59,6 +60,7 @@ namespace LegendOfZelda
         public int X { get => link.X; set => link.X = value; }
         public int Y { get => link.Y; set => link.Y = value; }
         public IItem HeldItem { get => link.HeldItem; set => link.HeldItem = value; }
+        public double Resistance { get => link.Resistance; set => link.Resistance = value; }
 
         public void Attack()
         {
@@ -78,6 +80,11 @@ namespace LegendOfZelda
         public bool IsAttacking()
         {
             return link.IsAttacking();
+        }
+
+        public void Knockback(int amountX, int amountY)
+        {
+            link.Knockback(amountX, amountY);
         }
 
         public void MoveDown()
@@ -100,9 +107,9 @@ namespace LegendOfZelda
             link.MoveUp();
         }
 
-        public void PickupItem(IItem item, int time)
+        public void PickupItem(IItem item, int time, bool twoHands = true)
         {
-            link.PickupItem(item, time);
+            link.PickupItem(item, time, twoHands);
         }
 
         public void RegisterAttackKeys(List<Keys> attackKeys)
@@ -123,16 +130,6 @@ namespace LegendOfZelda
         public void UseProjectile(IProjectile projectile)
         {
             link.UseProjectile(projectile);
-        }
-
-        public void WearBlueRing()
-        {
-            link.WearBlueRing();
-        }
-
-        public void WearRedRing()
-        {
-            // already wearing it
         }
     }
 }

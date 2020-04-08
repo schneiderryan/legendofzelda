@@ -12,13 +12,16 @@ namespace LegendOfZelda
         public int roomIndex;
 
         public IPlayer link;
-        public ProjectileManager ProjectileManager { get; set; }
+
+        public IProjectileManager ProjectileManager { get; set; }
+
         public GraphicsDeviceManager graphics;
 
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
         public IController roomController;
+
 
         public int xRoom = 515;
         public int yRoom = 886;

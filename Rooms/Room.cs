@@ -8,19 +8,17 @@ namespace LegendOfZelda
 {
     class Room : IRoom
     {
-        public IDictionary<string, IDoor> doors;
         public IList<Rectangle> Hitboxes { get; private set; }
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
         public IList<IItem> Items { get; private set; }
+        public IDictionary<string, IDoor> Doors { get; private set; }
+
         private IList<INPC> npcs;
         private LegendOfZelda game;
         public ISprite background { get; set; }
-        public IDictionary<string, IDoor> Doors
-        {
-            get { return doors; }
-            set { doors = value; }
-        }
+        
+
         private void LoadRoomLayout(int roomNumber)
         {
             if (roomNumber == 15)
@@ -43,6 +41,7 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>()
                 {
+
                     // left wall hitboxes
                     new Rectangle(0, 0, 64, 168),
                     new Rectangle(0, 192, 64, 160),
@@ -58,12 +57,14 @@ namespace LegendOfZelda
                     // bottom wall hitboxes
                     new Rectangle(0, 289, 240, 64),
                     new Rectangle(272, 289, 224, 64),
+
                 };
             }
         }
 
         public Room(LegendOfZelda game, String levelName)
         {
+
             this.game = game;
 
             RoomLoader levelLoader = new RoomLoader(levelName, game);
@@ -155,7 +156,6 @@ namespace LegendOfZelda
 
             foreach (IEnemy enemy in Enemies.ToList())
             {
-                
                 if (enemy.isDead)
                 {
                     Enemies.Remove(enemy);

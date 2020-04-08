@@ -1,6 +1,5 @@
 # legendofzelda
 - built with Monogame
-- The first room is total chaos, and exists solely for the ease of testing
 
 # Controls
 - W and up arrow: move player up
@@ -8,6 +7,7 @@
 - S and down arrow: move player down
 - D and right up: move player right
 - Q: quit game
+- R: reset game
 - 1: throw sword
 - 2: throw arrow
 - 3: throw boomerang

@@ -16,7 +16,7 @@ namespace LegendOfZelda
 			if (aquamentus.CurrentStep % 2 == 1)
 			{
 				aquamentus.Sprite = EnemySpriteFactory.Instance.CreateMovingFireAquamentusSprite();
-				ICommand fire = new BreatheFireballCommand(aquamentus.game.projectiles, this.aquamentus);
+				ICommand fire = new BreatheFireballCommand(aquamentus.game.ProjectileManager, this.aquamentus);
 				fire.Execute();
 				aquamentus.Breathed = true;
 			}
@@ -46,6 +46,11 @@ namespace LegendOfZelda
 			// do nothing
 		}
 
+		public void BeStill()
+		{
+			// do nothing
+		}
+
 		public void Update()
 		{
 			if (aquamentus.Breathed)
@@ -62,5 +67,9 @@ namespace LegendOfZelda
 			aquamentus.Sprite.Position = new Point(aquamentus.X, aquamentus.Y);
 		}
 
+		public void Knockback(int amountX, int amountY)
+		{
+			// do nothing
+		}
 	}
 }

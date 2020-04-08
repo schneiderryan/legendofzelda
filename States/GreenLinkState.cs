@@ -2,22 +2,36 @@
 
 namespace LegendOfZelda
 {
-    abstract class GreenLinkState : ILinkState
+    abstract class GreenLinkState : LinkState
     {
-        protected GreenLink link;
-        public abstract void Attack();
-        public abstract void BeStill();
-        public abstract void FireProjectile();
-        public abstract void MoveDown();
-        public abstract void MoveLeft();
-        public abstract void MoveRight();
-        public abstract void MoveUp();
-
-        public virtual void PickupItem(IItem item, int time)
+        public GreenLinkState(IPlayer link) : base(link)
         {
-            link.State = new GreenLinkPickupState(link, item, time);
+            // nothing needed
         }
 
-        public abstract void Update();
+        public override void MoveDown()
+        {
+            link.State = new MovingDownLinkState(link);
+        }
+
+        public override void MoveLeft()
+        {
+            link.State = new MovingLeftLinkState(link);
+        }
+
+        public override void MoveRight()
+        {
+            link.State = new MovingRightLinkState(link);
+        }
+
+        public override void MoveUp()
+        {
+            link.State = new MovingUpLinkState(link);
+        }
+
+        public override void PickupItem(IItem item, int time, bool twoHands = true)
+        {
+            link.State = new GreenLinkPickupState(link, item, time, twoHands);
+        }
     }
 }

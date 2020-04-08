@@ -39,6 +39,11 @@ namespace LegendOfZelda
             this.game.state = new StartMenuState(this.game);
         }
 
+        public void NewGame()
+        {
+            //Nothing to do
+        }
+
         public void PlayGame()
         {
             //Nothing to do
@@ -99,10 +104,6 @@ namespace LegendOfZelda
                 game.ToStart();
             }
             game.link.Update();
-            foreach(IItem item in game.rooms[game.roomIndex].Items)
-            {
-                item.Update();
-            }
             timer++;
         }
 

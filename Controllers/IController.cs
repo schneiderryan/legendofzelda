@@ -1,8 +1,8 @@
 ﻿
 namespace LegendOfZelda
 {
-    public interface IController
+    interface IController : IUpdateable
     {
-        void Update();
+
     }
 }

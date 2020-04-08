@@ -38,7 +38,7 @@ namespace LegendOfZelda
 			int linkXPos = link.X;
 			if ((linkXPos < (enemy.X + 10)) && (linkXPos > (enemy.X - 10)))
 			{
-				if (linkXPos > enemy.Y)
+				if (linkXPos > enemy.Y && enemy.VX != 0 && enemy.VY != 0)
 				{
 					enemy.Y += 4;
 				}

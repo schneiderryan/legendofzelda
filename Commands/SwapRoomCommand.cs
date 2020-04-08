@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace LegendOfZelda
 {
@@ -21,7 +17,7 @@ namespace LegendOfZelda
         
         public void Execute()
         {
-            game.ProjectileManager.Clear();
+            
             
             if (swapDirection.Equals("next"))
             {
@@ -47,8 +43,9 @@ namespace LegendOfZelda
                 
                 
             }
-            
-            
+
+            game.ProjectileManager.Clear();
+
         }
     }
 }

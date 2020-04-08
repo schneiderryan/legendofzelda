@@ -7,6 +7,7 @@ namespace LegendOfZelda
         public BowAndArrow BowAndArrow { get; }
         public IHeldItem BluePotion { get; set; }
         public IHeldItem RedPotion { get; set; }
+        public bool HasClock { get; set; } = false;
 
         public int Rupees { get; set; } = 255; // for testing, remove l8r
         public int Bombs { get; set; } = 8; // for testing, remove l8r

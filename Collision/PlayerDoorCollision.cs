@@ -1,16 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
+
 
 namespace LegendOfZelda
 {
     class PlayerDoorCollision : ICollision
     {
+
         LegendOfZelda game;
+
+
         private IPlayer player;
         private Rectangle collision;
         private IDictionary<string, IDoor> doors;
         private KeyValuePair<string, IDoor> door;
+
         static ICommand cmdLeft;
         static ICommand cmdRight;
         static ICommand cmdUp;
@@ -26,6 +30,7 @@ namespace LegendOfZelda
             this.doors = doors;
             this.door = door;
         }
+
        
 
         public void Handle()
@@ -93,6 +98,7 @@ namespace LegendOfZelda
                 {
                     cmdRight.Execute();
                     player.X = 60;
+
                 }
             }
         }

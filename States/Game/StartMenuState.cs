@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -17,32 +15,24 @@ namespace LegendOfZelda
         {
             this.game = game;
             StartMenu = Textures.GetStartMenu();
+            game.keyboard = GameSetup.CreateGeneralKeysController(game);
             counter = 0;
             delay = 7;
-            gameInit();
-        }
-
-        private void gameInit()
-        {
-            game.link = new GreenLink(game);
-            game.playerKeyboard = GameSetup.CreatePlayerKeysController(game.link);
-            game.mouse = new MouseController(game);
-            game.keyboard = GameSetup.CreateGeneralKeysController(game);
-
-            game.projectiles = new HashSet<IProjectile>();
-            game.effects = new List<IDespawnEffect>();
-            game.collisionHandler = new CollisionHandler(game.effects);
-            game.rooms = GameSetup.GenerateRoomList(game);
-            game.roomIndex = 2;
         }
 
         public void ToStart()
         {
-            //Nothing to do
+
         }
+
+        public void NewGame()
+        {
+            game.state = new NewGameState(game);
+        }
+
         public void PlayGame()
         {
-            game.state = new PlayState(game);
+            //Nothing to do
         }
 
         public void PauseGame()
@@ -79,7 +69,8 @@ namespace LegendOfZelda
         {
             if (Mouse.GetState().LeftButton.HasFlag(ButtonState.Pressed))
             {
-                game.state = new PlayState(game);
+                //game.NewGame();
+                game.state = new StoryState(game);
             }
             delay--;
             if(delay == 0)

@@ -93,7 +93,9 @@ namespace LegendOfZelda
         public void Parse(string roomFileName)
         {
             Clear();
-            using (StreamReader level = new StreamReader(roomFileName))
+
+            using(StreamReader level = new StreamReader(roomFileName))
+
             {
                 RoomNumber = ParseRoomNumber(level);
                 Doors = ParseDoors(level);
@@ -190,7 +192,9 @@ namespace LegendOfZelda
         private static String NextBox(ref String line)
         {
             int index = line.IndexOf(",");
-            if (index == -1)
+
+            if(index == -1)
+
             {
                 return line;
             }
@@ -202,4 +206,6 @@ namespace LegendOfZelda
             }
         }
     }
+
 }
+

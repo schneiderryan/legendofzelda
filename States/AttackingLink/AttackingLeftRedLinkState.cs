@@ -5,7 +5,7 @@ namespace LegendOfZelda
 {
     class AttackingLeftRedLinkState : AttackingRedLinkState
     {
-        public AttackingLeftRedLinkState(RedLink link) : base(link)
+        public AttackingLeftRedLinkState(IPlayer link) : base(link)
         {
             this.link.Direction = "left";
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftAttackingLinkSprite();
@@ -28,7 +28,7 @@ namespace LegendOfZelda
             {
                 link.State = new StillLeftRedLinkState(link);
                 link.Sprite = PlayerSpriteFactory.Instance.CreateRedLeftStillLinkSprite();
-                link.Sprite.Position = new Point(link.X, link.Y);
+                base.Update();
             }
         }
     }

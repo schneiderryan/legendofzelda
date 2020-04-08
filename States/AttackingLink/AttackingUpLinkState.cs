@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-
+﻿
 
 namespace LegendOfZelda
 {
     class AttackingUpLinkState : AttackingGreenLinkState
     {
-        public AttackingUpLinkState(GreenLink link)
+        public AttackingUpLinkState(IPlayer link) : base(link)
         {
-            this.link = link;
+            link.Sprite = PlayerSpriteFactory.Instance.CreateUpAttackingLinkSprite();
             this.link.Direction = "up";
         }
 
@@ -27,7 +26,7 @@ namespace LegendOfZelda
                 link.State = new StillUpLinkState(link);
                 link.Sprite = PlayerSpriteFactory.Instance.CreateUpStillLinkSprite();
             }
-            link.Sprite.Position = new Point(link.X, link.Y);
+            base.Update();
         }
 
     }

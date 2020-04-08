@@ -63,6 +63,12 @@ namespace LegendOfZelda
         public void ChangeRoom()
         {
 
+            if (game.link is DamagedLink && game.link.Inventory.HasClock)
+            {
+                game.link.Inventory.HasClock = false;
+                game.link = (game.link as DamagedLink).InnerLink;
+            }
+
         }
 
         public void WinGame()

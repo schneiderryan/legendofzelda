@@ -20,6 +20,10 @@ namespace LegendOfZelda
 
 		public override void Update()
 		{
+			base.Update();
+
+			if (VY == 0 && VX == 0) return;
+
 			int direction = random.Next(0, 3);
 			int velocity = random.Next(0, 3);
 			if (VY > 0)
@@ -44,7 +48,6 @@ namespace LegendOfZelda
 					Y += velocity;
 				}
 			}
-			base.Update();
 		}
 
 	}

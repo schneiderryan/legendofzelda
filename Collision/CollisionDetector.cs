@@ -7,12 +7,16 @@ namespace LegendOfZelda
 {
     class CollisionDetector
     {
-        private ProjectileManager projectileManager;
+
+        private IProjectileManager projectileManager;
         private IList<ICollision> collisions;
+
         private LegendOfZelda game;
 
-        public CollisionDetector(ProjectileManager projectileManager, LegendOfZelda game)
+       
+        public CollisionDetector(IProjectileManager projectileManager, LegendOfZelda game)
         {
+
             this.game = game;
             collisions = new List<ICollision>();
             this.projectileManager = projectileManager;
@@ -23,6 +27,7 @@ namespace LegendOfZelda
             collisions.Clear();
 
             // handle all things player first
+
             HandlePlayerCollisions(room, player, game);
 
             // handle all things enemy that haven't already been handled
@@ -34,7 +39,9 @@ namespace LegendOfZelda
             return collisions;
         }
 
+
         private void HandlePlayerCollisions(IRoom room, IPlayer player, LegendOfZelda game)
+
         {
             foreach (Rectangle wall in room.Hitboxes)
             {
@@ -59,7 +66,9 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
                 if (!collision.IsEmpty)
                 {
+
                     collisions.Add(new PlayerDoorCollision(room.Doors, door, player, collision, game));
+
                 }
             }
 
@@ -178,7 +187,7 @@ namespace LegendOfZelda
 
                 if (enemy.Hitbox.Intersects(player.LeftAttackBox))
                 {
-                    collisions.Add(new EnemyAttackCollision(room.Enemies, enemy, player, "left"));
+                    collisions.Add(new EnemyAttackCollision(room.Enemies,  enemy, player, "left"));
                 }
                 if (enemy.Hitbox.Intersects(player.UpAttackBox))
                 {
@@ -228,4 +237,6 @@ namespace LegendOfZelda
         }
 
     }
+
 }
+

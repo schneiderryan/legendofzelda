@@ -1,7 +1,11 @@
-﻿namespace LegendOfZelda
+
+namespace LegendOfZelda
+
 {
     interface ICollision
     {
         void Handle();
     }
+
 }
+

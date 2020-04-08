@@ -11,6 +11,7 @@ namespace LegendOfZelda
 
         public override void Collect(IPlayer player)
         {
+            player.PickupItem(this, 50, false);
             player.Inventory.BowAndArrow.FoundBow();
         }
     }

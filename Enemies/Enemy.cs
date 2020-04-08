@@ -6,22 +6,22 @@ namespace LegendOfZelda
     abstract class Enemy : CollideableObject, IEnemy
     {
         public ISprite Sprite { get; set; }
-        public ISprite TempSprite { get; set; }
         public IEnemyState State { get; set; }
         public bool isDead { get; set; }
-        public bool isDying { get; set; }
-        public int dieTimer = 13;
-        public bool isSpawning { get; set; }
-        public bool hasSpawned { get; set; }
-        public int spawnTimer = 25;
-        public bool isBeingAttacked { get; set; }
-        public int attackTimer { get; set; }
         public double currentHearts { get; set; }
-        public int listIndex { get; set; }
         public int VX { get; set; }
         public int VY { get; set; }
         public Team Team { get; set; } = Team.Enemy;
-        public string Name { get; set; }
+
+        protected int attackTimer { get; set; }
+
+        private int dieTimer = 13;
+        private int spawnTimer = 25;
+        private bool isBeingAttacked { get; set; }
+        private bool isDying { get; set; }
+        private bool isSpawning { get; set; }
+        private bool hasSpawned { get; set; }
+        private ISprite TempSprite { get; set; }
 
         public Point Center => Sprite.Box.Center;
 
@@ -82,6 +82,11 @@ namespace LegendOfZelda
             State.MoveUp();
             Sprite.Position = new Point(X, Y);
             Hitbox = Sprite.Box;
+        }
+
+        public void BeStill()
+        {
+            State.BeStill();
         }
 
         public virtual void Update()
@@ -145,6 +150,11 @@ namespace LegendOfZelda
         {
             isSpawning = true;
             this.Sprite = EnemySpriteFactory.Instance.CreateNewEnemy();
+        }
+
+        public void Knockback(int amountX, int amountY)
+        {
+            State.Knockback(amountX, amountY);
         }
     }
 }

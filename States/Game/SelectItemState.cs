@@ -16,6 +16,12 @@ namespace LegendOfZelda
         {
             //Nothing to do
         }
+
+        public void NewGame()
+        {
+            //Nothing to do
+        }
+
         public void PlayGame()
         {
             game.state = new PlayState(game);
