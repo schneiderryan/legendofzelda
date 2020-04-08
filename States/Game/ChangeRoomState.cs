@@ -21,7 +21,7 @@ namespace LegendOfZelda
             this.direction = direction;
             x = game.xRoom;
             y = game.yRoom;
-            if(direction == "left" || direction == "right")
+            if (direction == "left" || direction == "right")
             {
                 this.timer = 257 / 2;
             }
@@ -30,7 +30,7 @@ namespace LegendOfZelda
                 this.timer = 177 / 2;
             }
 
-            
+
             this.game = game;
 
         }
@@ -63,12 +63,6 @@ namespace LegendOfZelda
         public void ChangeRoom()
         {
 
-            if (game.link is DamagedLink && game.link.Inventory.HasClock)
-            {
-                game.link.Inventory.HasClock = false;
-                game.link = (game.link as DamagedLink).InnerLink;
-            }
-
         }
 
         public void WinGame()
@@ -90,7 +84,6 @@ namespace LegendOfZelda
         {
             if (timer == 0)
             {
-               
                 this.PlayGame();
             }
             game.rooms[game.roomIndex].background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
@@ -98,63 +91,64 @@ namespace LegendOfZelda
             {
                 if (timer > 0)
                 {
-                    game.yRoom-=2;
+                    game.yRoom -= 2;
                     timer--;
                 }
                 else
                 {
-                    if (game.roomIndex == 2 || game.roomIndex == 4 || game.roomIndex == 12)
+                    if (game.roomIndex == 1 || game.roomIndex == 3 || game.roomIndex == 11)
                     {
                         game.roomIndex += 2;
                     }
-                    else if (game.roomIndex == 9 || game.roomIndex == 10)
+                    else if (game.roomIndex == 8 || game.roomIndex == 9)
                     {
                         game.roomIndex += 3;
                     }
-                    else if (game.roomIndex == 5 || game.roomIndex == 6 || game.roomIndex == 7)
+                    else if (game.roomIndex == 4 || game.roomIndex == 5 || game.roomIndex == 6)
                     {
                         game.roomIndex += 4;
                     }
-                    else if (game.roomIndex == 13)
+                    else if (game.roomIndex == 12)
                     {
                         game.roomIndex += 5;
                     }
 
-                    timer = 0;
-                    this.PlayGame();
+                        game.rooms[game.roomIndex].Update();
+                        this.PlayGame();
                 }
             }
-            else if(direction == "down")
+            else if (direction == "down")
             {
                 if (timer > 0)
                 {
-                    game.yRoom+=2;
+                    game.yRoom += 2;
                     timer--;
                 }
                 else
                 {
-                    if (game.roomIndex == 4 || game.roomIndex == 6 || game.roomIndex == 14)
+                    if (game.roomIndex == 3 || game.roomIndex == 5 || game.roomIndex == 13)
                     {
                         game.roomIndex -= 2;
                     }
 
-                    else if (game.roomIndex == 13)
+                    else if (game.roomIndex == 12)
                     {
                         game.roomIndex -= 3;
                     }
-                    else if (game.roomIndex == 9 || game.roomIndex == 10 || game.roomIndex == 11)
+                    else if (game.roomIndex == 8 || game.roomIndex == 9 || game.roomIndex == 10)
                     {
                         game.roomIndex -= 4;
                     }
-                    else if (game.roomIndex == 13 || game.roomIndex == 18)
+                    else if (game.roomIndex == 12 || game.roomIndex == 17)
                     {
                         game.roomIndex -= 5;
                     }
-                    timer = 0;
-                    
+                    game.rooms[game.roomIndex].Update();
+                    this.PlayGame();
+
                 }
             }
-            else if(direction == "left")
+            else if (direction == "left")
             {
                 if (timer > 0)
                 {
@@ -171,14 +165,17 @@ namespace LegendOfZelda
                     {
                         game.roomIndex--;
                     }
-                    timer = 0;
-                } 
+                    game.rooms[game.roomIndex].Update();
+                    this.PlayGame();
+
+                }
             }
             else
             {
                 if (timer > 0)
                 {
-                    game.xRoom+=2;
+                    
+                    game.xRoom += 2;
                     timer--;
                 }
                 else
@@ -191,19 +188,21 @@ namespace LegendOfZelda
                     {
                         game.roomIndex++;
                     }
-                    timer = 0;
-                    
+                    game.rooms[game.roomIndex].Update();
+                    this.PlayGame();
+
                 }
             }
-            
 
+            
 
         }
 
         public void Draw()
         {
             game.rooms[game.roomIndex].background.Draw(game.spriteBatch, Color.White);
-            
+            //game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
+
         }
     }
 }

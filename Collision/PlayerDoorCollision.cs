@@ -38,7 +38,7 @@ namespace LegendOfZelda
         {
             if (door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)
             {
-                HandleEdge(player, door.Value, collision);
+                HandleEdge(player, door.Value, collision, game);
             }
             else
             {
@@ -76,13 +76,18 @@ namespace LegendOfZelda
             }
         }
 
-            public void HandleEdge(IPlayer player, IDoor door, Rectangle collision)
+            public void HandleEdge(IPlayer player, IDoor door, Rectangle collision, LegendOfZelda game)
             {
-                //change rooms based on door collision
-                if (door is TopOpen)
+
+            cmdRight = new SwapRoomCommand(game, "next");
+            cmdLeft = new SwapRoomCommand(game, "previous");
+            cmdUp = new SwapRoomCommand(game, "up");
+            cmdDown = new SwapRoomCommand(game, "down");
+            //change rooms based on door collision
+            if (door is TopOpen)
                 {
                     cmdUp.Execute();
-                    player.Y = 300;
+                    player.Y = 280;
                 }
                 if (door is BottomOpen)
                 {

@@ -12,7 +12,12 @@ namespace LegendOfZelda
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
         public IList<IItem> Items { get; private set; }
-        public IDictionary<string, IDoor> Doors { get; private set; }
+        public IDictionary<string, IDoor> doors;
+        public IDictionary<string, IDoor> Doors
+        {
+            get { return doors; }
+            set { doors = value; }
+        }
 
         private IList<INPC> npcs;
         private LegendOfZelda game;
@@ -70,7 +75,7 @@ namespace LegendOfZelda
             RoomLoader levelLoader = new RoomLoader(levelName, game);
 
             this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
-            this.background.Scale = 2.0f;
+            
             this.background.Position = new Point(0, 0);
 
             this.Doors = levelLoader.LoadDoors();

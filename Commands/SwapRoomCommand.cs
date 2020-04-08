@@ -40,8 +40,6 @@ namespace LegendOfZelda
             {
                 game.state = new ChangeRoomState("down", game);
                 
-                
-                
             }
 
             game.ProjectileManager.Clear();

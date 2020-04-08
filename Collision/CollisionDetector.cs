@@ -22,7 +22,7 @@ namespace LegendOfZelda
             this.projectileManager = projectileManager;
         }
 
-        public IEnumerable<ICollision> Detect(IRoom room, IPlayer player)
+        public IEnumerable<ICollision> Detect(IRoom room, IPlayer player, LegendOfZelda game)
         {
             collisions.Clear();
 
@@ -43,6 +43,7 @@ namespace LegendOfZelda
         private void HandlePlayerCollisions(IRoom room, IPlayer player, LegendOfZelda game)
 
         {
+            
             foreach (Rectangle wall in room.Hitboxes)
             {
                 Rectangle collision = Rectangle.Intersect(wall, player.Footbox);
@@ -66,7 +67,6 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
                 if (!collision.IsEmpty)
                 {
-
                     collisions.Add(new PlayerDoorCollision(room.Doors, door, player, collision, game));
 
                 }
