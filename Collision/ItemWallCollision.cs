@@ -3,9 +3,18 @@
 
 namespace LegendOfZelda
 {
-    class ItemWallCollision
+    class ItemWallCollision : ICollision
     {
-        public static void Handle(IMovingItem item, Rectangle collision)
+        private IMovingItem item;
+        private Rectangle collision;
+
+        public ItemWallCollision(IMovingItem item, in Rectangle collision)
+        {
+            this.item = item;
+            this.collision = collision;
+        }
+
+        public void Handle()
         {
             if (collision.Width > collision.Height)
             {

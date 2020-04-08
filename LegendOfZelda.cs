@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace LegendOfZelda
@@ -13,24 +12,27 @@ namespace LegendOfZelda
         public int roomIndex;
 
         public IPlayer link;
-        public ISet<IProjectile> projectiles;
-        public IList<IDespawnEffect> effects;
+        public ProjectileManager ProjectileManager { get; set; }
         public GraphicsDeviceManager graphics;
-        public int xRoom = 515;
-        public int yRoom = 886;
 
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
+        public IController roomController;
 
-        public CollisionHandler collisionHandler;
+        public int xRoom = 515;
+        public int yRoom = 886;
+
+        public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
 
         public LegendOfZelda()
         {
-            graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 352;
-            graphics.PreferredBackBufferWidth = 512;
+            graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferHeight = 352,
+                PreferredBackBufferWidth = 512
+            };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -39,7 +41,6 @@ namespace LegendOfZelda
         {
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
-
             state = new StartMenuState(this);
         }
 
@@ -52,7 +53,6 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             state.Update();
-
             base.Update(gameTime);
         }
 
@@ -72,6 +72,11 @@ namespace LegendOfZelda
         public void ToStart()
         {
             state.ToStart();
+        }
+
+        public void NewGame()
+        {
+            state.NewGame();
         }
 
         public void PlayGame()

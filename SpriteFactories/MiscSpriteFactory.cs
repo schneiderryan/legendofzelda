@@ -24,7 +24,7 @@ namespace LegendOfZelda
 
         public ISprite CreateStartMenu()
         {
-            
+
             return new AnimatedSprite(menu, new Rectangle(0, 0, 197, 191), 4, false);
         }
 
@@ -36,6 +36,11 @@ namespace LegendOfZelda
         public ISprite CreateWinCurtain()
         {
             return new Sprite(WinCurtain, new Rectangle(0, 0, WinCurtain.Width, WinCurtain.Height));
+        }
+
+        public ISprite CreateStory()
+        {
+            return new Sprite(menu, new Rectangle(523, 20, 252, 960));
         }
     }
 }

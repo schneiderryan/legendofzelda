@@ -1,29 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
 {
     class PlayerProjectileCollision : CharacterProjectileCollision
     {
-        private CollisionHandler handler;
-        public PlayerProjectileCollision(ISet<IProjectile> projectilesToDespawn, CollisionHandler handler)
-            : base (projectilesToDespawn)
+        public PlayerProjectileCollision(ProjectileManager manager, IPlayer player,
+                IProjectile projectile, in Rectangle collision)
+            : base(manager, player, projectile, collision)
         {
-            this.handler = handler;
+            // nothing needed
         }
 
-        public void Handle(IPlayer player, IProjectile projectile,
-                in Rectangle collision)
+        public override void Handle()
         {
-            HandleProjectileCollision(player, projectile);
+            IPlayer player = character as IPlayer;
+            HandleProjectileCollision();
             if (projectile.OwningTeam != player.Team)
             {
                 player.TakeDamage(projectile.Damage);
-                if (!handler.playerTouchingBlockorWall)
-                {
-                    Knockback(player, collision);
-                }
             }
         }
 

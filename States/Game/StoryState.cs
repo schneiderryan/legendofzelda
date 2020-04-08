@@ -1,20 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LegendOfZelda
 {
-    class LoseState : IGameState
+    class StoryState : IGameState
     {
         private LegendOfZelda game;
-        private Color tint;
-        private int tintTimer;
-        public LoseState(LegendOfZelda game)
+        private ISprite story;
+        private int clickDelay;
+        public StoryState(LegendOfZelda game)
         {
             this.game = game;
-            this.tint = Color.White;
-            this.tintTimer = 0;
+            game.GraphicsDevice.Clear(Color.Black);
+            this.story = MiscSpriteFactory.Instance.CreateStory();
+            story.Y = game.GraphicsDevice.Viewport.Height;
+            clickDelay = 5;
         }
 
         public void ToStart()
@@ -42,17 +45,17 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
-        public void ChangeRoom()
-        {
-            //Nothing to do
-        }
-
         public void WinGame()
         {
             //Nothing to do
         }
 
         public void LoseGame()
+        {
+            //Nothing to do
+        }
+
+        public void ChangeRoom()
         {
             //Nothing to do
         }
@@ -64,37 +67,23 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            if (tintTimer < 30)
-            {
-                tint = Color.YellowGreen;
-            }
-            else if (tintTimer < 60)
-            {
-                tint = Color.LightGreen;
-            }
-            else if (tintTimer < 90)
-            {
-                tint = Color.Green;
-            }
-            else if (tintTimer < 120)
-            {
-                tint = Color.DarkGreen;
-            }
-            else if (tintTimer < 210)
-            {
-                tint = Color.Black;
-            }
-            else
+            if (Mouse.GetState().LeftButton.HasFlag(ButtonState.Pressed) && clickDelay <= 0)
             {
                 game.NewGame();
             }
-            tintTimer++;
+            clickDelay--;
+
+            story.Y -= 2;
+            if (story.Y == -story.Box.Height + game.GraphicsDevice.Viewport.Height)
+            {
+                game.NewGame();
+            }
         }
 
         public void Draw()
         {
-            game.rooms[game.roomIndex].Draw(game.spriteBatch, tint);
-            game.link.Draw(game.spriteBatch, Color.White);
+            game.GraphicsDevice.Clear(Color.Black);
+            story.Draw(game.spriteBatch);
         }
     }
 }

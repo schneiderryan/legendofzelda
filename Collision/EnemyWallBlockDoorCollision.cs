@@ -3,9 +3,18 @@
 
 namespace LegendOfZelda
 {
-    class EnemyWallBlockDoorCollision
+    class EnemyWallBlockDoorCollision : ICollision
     {
-        public static void Handle(IEnemy enemy, in Rectangle collision)
+        private IEnemy enemy;
+        private Rectangle collision;
+
+        public EnemyWallBlockDoorCollision(IEnemy enemy, in Rectangle collision)
+        {
+            this.enemy = enemy;
+            this.collision = collision;
+        }
+
+        public void Handle()
         {
             if (collision.Width > collision.Height)
             {

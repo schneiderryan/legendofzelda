@@ -1,18 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
 {
-    class WallProjectileCollision
+    class WallProjectileCollision : ICollision
     {
-        private ISet<IProjectile> toDespawn;
-        public WallProjectileCollision(ISet<IProjectile> toDespawn)
+        private IProjectileManager manager;
+        private IProjectile projectile;
+        private Rectangle collision;
+
+        public WallProjectileCollision(IProjectileManager manager,
+                IProjectile projectile, in Rectangle collision)
         {
-            this.toDespawn = toDespawn;
+            this.manager = manager;
+            this.projectile = projectile;
+            this.collision = collision;
         }
 
-        public void Handle(IProjectile projectile, in Rectangle collision)
+        public void Handle()
         {
             // wait for the projcetile to inside a wall before despawning
             if (collision.Contains(projectile.Hitbox.Center))
@@ -23,7 +28,7 @@ namespace LegendOfZelda
                 }
                 else
                 {
-                    toDespawn.Add(projectile);
+                    manager.Remove(projectile);
                 }
             }
         }

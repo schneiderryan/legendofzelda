@@ -66,7 +66,7 @@ namespace LegendOfZelda
         {
             this.game = game;
 
-            LevelLoader levelLoader = new LevelLoader(levelName, game);
+            RoomLoader levelLoader = new RoomLoader(levelName, game);
 
             this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
             this.background.Scale = 2.0f;

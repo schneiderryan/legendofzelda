@@ -11,6 +11,16 @@
   <ItemGroup>
     <MonoGameContentReference Include="**\*.mgcb" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Level Loading\LevelLoader.cs" />
+    <Compile Remove="Level Loading\LevelParser.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Level Loading\RoomLoader.cs" />
+    <Compile Include="Level Loading\RoomParser.cs" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">

@@ -59,6 +59,15 @@ namespace LegendOfZelda
             return new KeyboardController(keyBinds);
         }
 
+        public static IController RoomController(LegendOfZelda game)
+        {
+            ICommand cmdRight = new SwapRoomCommand(game, "next");
+            ICommand cmdLeft = new SwapRoomCommand(game, "previous");
+            ICommand cmdUp = new SwapRoomCommand(game, "up");
+            ICommand cmdDown = new SwapRoomCommand(game, "down");
+            return new RoomController(game);
+        }
+
         public static IController CreateGeneralKeysController(LegendOfZelda game)
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
@@ -72,55 +81,6 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.Q, cmd);
 
             return new SlowKeyboardController(keyBinds);
-        }
-
-        public static ICollection<IItem> GenerateItemList()
-        {
-            IList<IItem> list = new List<IItem>()
-            {
-                new Arrow(),
-                new BlueRupee(),
-                new Bomb(),
-                new Boomerang(),
-                new Bow(),
-                new Compass(),
-                new Fairy(),
-                new Heart(),
-                new HeartContainer(),
-                new Key(),
-                new Map(),
-                new Rupee(),
-                //new TriforceShard(),
-                new WoodSword(),
-                new Clock()
-            };
-
-            foreach (IItem i in list)
-            {
-                i.X = 100;
-                i.Y = 100;
-            }
-
-
-            return list;
-        }
-
-        public static ICollection<IEnemy> GenerateEnemyList(LegendOfZelda game)
-        {
-            IList<IEnemy> list = new List<IEnemy>()
-            {
-                new Gel(),
-                new Aquamentus(game),
-                new Goriya(game.projectiles),
-                new Keese(),
-                new Stalfo(),
-                new Trap(game),
-                new Snake(game),
-                new LFWallmaster(),
-                new RFWallmaster(),
-            };
-
-            return list;
         }
 
         public static IList<IRoom> GenerateRoomList(LegendOfZelda game)
