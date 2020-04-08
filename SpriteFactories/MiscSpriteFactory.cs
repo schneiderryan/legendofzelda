@@ -24,7 +24,7 @@ namespace LegendOfZelda
 
         public ISprite CreateStartMenu()
         {
-            
+
             return new AnimatedSprite(menu, new Rectangle(0, 0, 197, 191), 4, false);
         }
 

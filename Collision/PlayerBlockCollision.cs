@@ -30,20 +30,20 @@ namespace LegendOfZelda
             {
                 moveableBlock = new MoveableBlock(room);
             }
-            
+
             if (collision.Width > collision.Height)
             {
                 if (collision.Y == player.Footbox.Y)
                 {
                     player.Y += collision.Height;
                     moveableBlock.MoveOnceUp();
-                    
+
                 }
                 else
                 {
                     player.Y -= collision.Height;
                     moveableBlock.MoveOnceDown();
-                    
+
                 }
             }
             else
@@ -52,7 +52,7 @@ namespace LegendOfZelda
                 {
                     player.X += collision.Width;
                     moveableBlock.MoveOnceLeft();
-                    
+
                 }
                 else
                 {

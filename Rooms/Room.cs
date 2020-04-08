@@ -12,10 +12,17 @@ namespace LegendOfZelda
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
         public IList<IItem> Items { get; private set; }
-        public IDictionary<string, IDoor> Doors { get; private set; }
+        public IDictionary<string, IDoor> doors;
+        public IDictionary<string, IDoor> Doors
+        {
+            get { return doors; }
+            set { doors = value; }
+        }
 
         private IList<INPC> npcs;
-        private ISprite background;
+        private LegendOfZelda game;
+        public ISprite background { get; set; }
+        
 
         private void LoadRoomLayout(int roomNumber)
         {
@@ -39,38 +46,44 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>()
                 {
-                    // left hitboxes
-                    new Rectangle(0, 0, 64, 170),
-                    new Rectangle(0, 193, 64, 160),
 
-                    // top hitboxes
-                    new Rectangle(0, 0, 224, 64),
-                    new Rectangle(289, 0, 224, 64),
+                    // left wall hitboxes
+                    new Rectangle(0, 0, 64, 168),
+                    new Rectangle(0, 192, 64, 160),
+                   
+                    // right wall hitboxes
+                    new Rectangle(449, 0, 64, 168),
+                    new Rectangle(449, 192, 64, 160),
 
-                    // bottom hitboxes
-                    new Rectangle(0, 289, 224, 64),
-                    new Rectangle(289, 289, 224, 64),
+                    // top wall hitboxes
+                    new Rectangle(0, 0, 240, 64),
+                    new Rectangle(272, 0, 224, 64),
 
-                    // right hitboxes
-                    new Rectangle(448, 0, 64, 170),
-                    new Rectangle(448, 193, 64, 160),
+                    // bottom wall hitboxes
+                    new Rectangle(0, 289, 240, 64),
+                    new Rectangle(272, 289, 224, 64),
+
                 };
             }
         }
 
         public Room(LegendOfZelda game, String levelName)
         {
+
+            this.game = game;
+
             RoomLoader levelLoader = new RoomLoader(levelName, game);
 
-            this.background = levelLoader.LoadBackground();
-            this.background.Scale = 2.0f;
+            this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+            
             this.background.Position = new Point(0, 0);
 
+            this.Doors = levelLoader.LoadDoors();
             this.Enemies = levelLoader.LoadEnemies();
             this.Blocks = levelLoader.LoadBlocks(this);
             this.Items = levelLoader.LoadItems();
             this.npcs = levelLoader.LoadNPCs();
-            this.Doors = levelLoader.LoadDoors();
+            
  
 
             LoadRoomLayout(levelLoader.RoomNumber());
@@ -121,6 +134,11 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+            foreach (KeyValuePair<String, IDoor> door in Doors)
+            {
+                door.Value.Update();
+            }
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();

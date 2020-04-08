@@ -5,10 +5,12 @@ namespace LegendOfZelda
 {
     abstract class CharacterProjectileCollision : ICollision
     {
+
         protected IProjectileManager manager;
         protected IProjectile projectile;
         protected ICharacter character;
         protected Rectangle collision;
+
 
         public CharacterProjectileCollision(IProjectileManager manager,
                 ICharacter character, IProjectile projectile, in Rectangle collision)

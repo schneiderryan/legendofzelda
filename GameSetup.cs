@@ -59,6 +59,15 @@ namespace LegendOfZelda
             return new KeyboardController(keyBinds);
         }
 
+        public static IController RoomController(LegendOfZelda game)
+        {
+            ICommand cmdRight = new SwapRoomCommand(game, "next");
+            ICommand cmdLeft = new SwapRoomCommand(game, "previous");
+            ICommand cmdUp = new SwapRoomCommand(game, "up");
+            ICommand cmdDown = new SwapRoomCommand(game, "down");
+            return new RoomController(game);
+        }
+
         public static IController CreateGeneralKeysController(LegendOfZelda game)
         {
             Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();

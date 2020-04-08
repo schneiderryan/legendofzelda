@@ -9,8 +9,8 @@ namespace LegendOfZelda
         public LeftWall()
         {
             door = RoomSpriteFactory.Instance.CreateLeftWall();
-            door.Scale = 2.0f;
-            door.Position = new Point(0, 145);
+            door.Position = new Point(0, 144);
+
             Hitbox = door.Box;
         }
 
