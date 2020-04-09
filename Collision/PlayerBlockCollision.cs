@@ -8,15 +8,12 @@ namespace LegendOfZelda
         private IRoom room;
         private IPlayer player;
         private IBlock block;
-        private Rectangle collision;
 
-        public PlayerBlockCollision(IRoom room, IPlayer player,
-                IBlock block, in Rectangle collision)
+        public PlayerBlockCollision(IRoom room, IPlayer player, IBlock block)
         {
             this.room = room;
             this.player = player;
             this.block = block;
-            this.collision = collision;
         }
 
         public void Handle()
@@ -31,19 +28,21 @@ namespace LegendOfZelda
                 moveableBlock = new MoveableBlock(room);
             }
 
+            // computing this here so that link doesn't get double corrected if he runs
+            // into two blocks at the same time
+            Rectangle collision = Rectangle.Intersect(player.Footbox, block.Hitbox);
+
             if (collision.Width > collision.Height)
             {
                 if (collision.Y == player.Footbox.Y)
                 {
                     player.Y += collision.Height;
                     moveableBlock.MoveOnceUp();
-
                 }
                 else
                 {
                     player.Y -= collision.Height;
                     moveableBlock.MoveOnceDown();
-
                 }
             }
             else
@@ -52,7 +51,6 @@ namespace LegendOfZelda
                 {
                     player.X += collision.Width;
                     moveableBlock.MoveOnceLeft();
-
                 }
                 else
                 {
