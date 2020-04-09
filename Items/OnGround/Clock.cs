@@ -1,6 +1,4 @@
-﻿
-
-namespace LegendOfZelda
+﻿namespace LegendOfZelda
 {
     class Clock : Item
     {

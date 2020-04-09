@@ -6,39 +6,44 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private string swapDirection;
+        
 
         public SwapRoomCommand(LegendOfZelda game, string direction)
         {
             this.game = game;
             this.swapDirection = direction;
+            
         }
         
         public void Execute()
         {
+            
+            
             if (swapDirection.Equals("next"))
             {
-                if (game.rooms.Count - 1 == game.roomIndex)
-                {
-                    game.roomIndex = 0;
-                }
-                else
-                {
-                    game.roomIndex++;
-                }
+                
+                game.state = new ChangeRoomState("right", game);
+                
             }
             else if (swapDirection.Equals("previous"))
             {
-                if (0 == game.roomIndex)
-                {
-                    game.roomIndex = game.rooms.Count - 1;
-                }
-                else
-                {
-                    game.roomIndex--;
-                }
+                
+                game.state = new ChangeRoomState("left", game);
+                
             }
+            else if (swapDirection.Equals("up"))
+            {
+                game.state = new ChangeRoomState("up",game);
+                
+            }
+            else if (swapDirection.Equals("down"))
+            {
+                game.state = new ChangeRoomState("down", game);
+                
+            }
+
             game.ProjectileManager.Clear();
-            System.Diagnostics.Debug.WriteLine("switching rooms");
+
         }
     }
 }

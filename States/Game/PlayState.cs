@@ -39,7 +39,7 @@ namespace LegendOfZelda
 
         public void ChangeRoom()
         {
-            game.state = new ChangeRoomState(game);
+            game.state = new ChangeRoomState(game.link.Direction, game);
         }
 
         public void WinGame()
@@ -59,6 +59,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            
             game.mouse.Update();
             game.keyboard.Update();
             game.playerKeyboard.Update();
@@ -69,7 +70,7 @@ namespace LegendOfZelda
             game.ProjectileManager.Update();
 
             IEnumerable<ICollision> collisions =
-                    game.CollisionDetector.Detect(game.rooms[game.roomIndex], game.link);
+                    game.CollisionDetector.Detect(game.rooms[game.roomIndex], game.link, game);
             CollisionHandler.Handle(collisions);
         }
 

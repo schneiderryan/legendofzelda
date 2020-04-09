@@ -12,12 +12,19 @@ namespace LegendOfZelda
         public int roomIndex;
 
         public IPlayer link;
+
         public IProjectileManager ProjectileManager { get; set; }
+
         public GraphicsDeviceManager graphics;
 
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
+        public IController roomController;
+
+
+        public int xRoom;
+        public int yRoom;
 
         public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
