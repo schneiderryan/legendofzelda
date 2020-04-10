@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 
@@ -8,14 +6,11 @@ namespace LegendOfZelda
 {
     class PlayerDoorCollision : ICollision
     {
-
         LegendOfZelda game;
-
-
-        private IPlayer player;
-        private Rectangle collision;
-        private IDictionary<string, IDoor> doors;
-        private KeyValuePair<string, IDoor> door;
+        IPlayer player;
+        Rectangle collision;
+        IDictionary<string, IDoor> doors;
+        KeyValuePair<string, IDoor> door;
 
         static ICommand cmdLeft;
         static ICommand cmdRight;
@@ -33,10 +28,7 @@ namespace LegendOfZelda
             this.door = door;
         }
 
-
-
         public void Handle()
-
         {
             if (door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)
             {
@@ -99,11 +91,11 @@ namespace LegendOfZelda
 
         public void HandleEdge(IPlayer player, IDoor door, Rectangle collision, LegendOfZelda game)
         {
-
             cmdRight = new SwapRoomCommand(game, "next");
             cmdLeft = new SwapRoomCommand(game, "previous");
             cmdUp = new SwapRoomCommand(game, "up");
             cmdDown = new SwapRoomCommand(game, "down");
+
             //change rooms based on door collision
             if (door is TopOpen)
             {

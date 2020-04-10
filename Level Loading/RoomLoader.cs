@@ -207,7 +207,6 @@ namespace LegendOfZelda
                 IDoor door;
                 if (entry.Key.Equals("left"))
                 {
-
                     if (entry.Value.Equals("Wall"))
                     {
                         door = new LeftWall();

@@ -12,14 +12,9 @@ namespace LegendOfZelda
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
         public IList<IItem> Items { get; private set; }
-        public IDictionary<string, IDoor> doors;
-        public IDictionary<string, IDoor> Doors
-        {
-            get { return doors; }
-            set { doors = value; }
-        }
+        public IList<INPC> NPCs { get; private set; }
+        public IDictionary<string, IDoor> Doors { get; set; }
 
-        private IList<INPC> npcs;
         private LegendOfZelda game;
         public ISprite background { get; set; }
         
@@ -82,7 +77,7 @@ namespace LegendOfZelda
             this.Enemies = levelLoader.LoadEnemies();
             this.Blocks = levelLoader.LoadBlocks(this);
             this.Items = levelLoader.LoadItems();
-            this.npcs = levelLoader.LoadNPCs();
+            this.NPCs = levelLoader.LoadNPCs();
             
  
 
@@ -121,7 +116,7 @@ namespace LegendOfZelda
                 item.Draw(sb, color);
             }
 
-            foreach (INPC npc in npcs)
+            foreach (INPC npc in NPCs)
             {
                 npc.Draw(sb, color);
             }
@@ -154,7 +149,7 @@ namespace LegendOfZelda
                 item.Update();
             }
 
-            foreach (INPC npc in npcs)
+            foreach (INPC npc in NPCs)
             {
                 npc.Update();
             }

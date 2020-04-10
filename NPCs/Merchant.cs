@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-	class Merchant : CollideableObject, INPC
+	class Merchant : NPC
 	{
 		private ISprite sprite;
 
@@ -17,12 +17,12 @@ namespace LegendOfZelda
 			sprite.Position = new Point(X, Y);
 		}
 
-		public void Update()
+		public override void Update()
 		{
 			sprite.Update();
 		}
 
-		public void Draw(SpriteBatch spriteBatch, Color color)
+		public override void Draw(SpriteBatch spriteBatch, Color color)
 		{
 			sprite.Draw(spriteBatch, color);
 		}

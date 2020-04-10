@@ -6,36 +6,38 @@ namespace LegendOfZelda
     class PlayerWallCollision : ICollision
     {
         private IPlayer player;
-        private Rectangle collision;
+        private Rectangle wall;
 
-        public PlayerWallCollision(IPlayer player, in Rectangle collision)
+        public PlayerWallCollision(IPlayer player, in Rectangle wall)
         {
             this.player = player;
-            this.collision = collision;
+            this.wall = wall;
         }
 
         public void Handle()
         {
+            Rectangle collision = Rectangle.Intersect(player.Footbox, wall);
+
             if (collision.Width > collision.Height)
             {
-                if (collision.Y != player.Footbox.Y)
+                if (collision.Y == player.Footbox.Y)
                 {
-                    player.Y -= collision.Height;
+                    player.Y += collision.Height;
                 }
                 else
                 {
-                    player.Y += collision.Height;
+                    player.Y -= collision.Height;
                 }
             }
             else
             {
-                if (collision.X > player.Footbox.X)
+                if (collision.X == player.Footbox.X)
                 {
-                    player.X -= collision.Width;
+                    player.X += collision.Width;
                 }
                 else
                 {
-                    player.X += collision.Width;
+                    player.X -= collision.Width;
                 }
             }
         }
