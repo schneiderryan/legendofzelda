@@ -10,7 +10,7 @@ namespace LegendOfZelda
         public BottomWall()
         {
             door = RoomSpriteFactory.Instance.CreateBottomWall();
-            door.Position = new Point(224, 288);
+            door.Position = new Point(224, 408);
             Hitbox = door.Box;
         }
 

@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 
@@ -38,7 +36,7 @@ namespace LegendOfZelda
             }
             else
             {
-                if (!(player.X > 449 && (door is RightWall || door is RightOther || door is RightKey)) && !(player.Y == 315 && door is BottomWall))
+                if (!(player.X > 449 && (door is RightWall || door is RightOther || door is RightKey)) && !(player.Y == 435 && door is BottomWall))
                 {
                     if (collision.Width > collision.Height)
                     {
@@ -102,12 +100,12 @@ namespace LegendOfZelda
             if (door is TopOpen)
             {
                 cmdUp.Execute();
-                player.Y = 280;
+                player.Y = 400;
             }
             if (door is BottomOpen)
             {
                 cmdDown.Execute();
-                player.Y = 60;
+                player.Y = 180;
             }
             if (door is LeftOpen)
             {

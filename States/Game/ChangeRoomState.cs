@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,10 +14,11 @@ namespace LegendOfZelda
         private int x;
         private int y;
         private Texture2D background;
+        private Texture2D HUD;
         private string direction;
         public ChangeRoomState(String direction, LegendOfZelda game)
         {
-
+            this.HUD = Textures.GetHUD();
             this.background = Textures.GetRoomSheet();
             this.direction = direction;
             x = game.xRoom;
@@ -82,6 +84,8 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            
+            //game.soundEffects[0].Play();
             if (timer == 0)
             {
                 this.PlayGame();
@@ -113,8 +117,8 @@ namespace LegendOfZelda
                         game.roomIndex += 5;
                     }
 
-                        game.rooms[game.roomIndex].Update();
-                        this.PlayGame();
+                    game.rooms[game.roomIndex].Update();
+                    this.PlayGame();
                 }
             }
             else if (direction == "down")
@@ -174,7 +178,7 @@ namespace LegendOfZelda
             {
                 if (timer > 0)
                 {
-                    
+
                     game.xRoom += 2;
                     timer--;
                 }
@@ -194,14 +198,14 @@ namespace LegendOfZelda
                 }
             }
 
-            
+
 
         }
 
         public void Draw()
         {
             game.rooms[game.roomIndex].background.Draw(game.spriteBatch, Color.White);
-            //game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
 
         }
     }

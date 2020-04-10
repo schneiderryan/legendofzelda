@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
@@ -13,6 +13,8 @@ namespace LegendOfZelda
         private int delay;
         public StartMenuState(LegendOfZelda game)
         {
+            MediaPlayer.Play(game.menusong);
+            
             this.game = game;
             StartMenu = Textures.GetStartMenu();
             game.keyboard = GameSetup.CreateGeneralKeysController(game);

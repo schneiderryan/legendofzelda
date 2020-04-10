@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
@@ -16,6 +16,8 @@ namespace LegendOfZelda
         private int updateTimer;
         public NewGameState(LegendOfZelda game)
         {
+            MediaPlayer.Stop();
+            
             this.game = game;
             updateTimer = 1;
             RightCurtain = Textures.GetWinCurtain();
@@ -41,8 +43,8 @@ namespace LegendOfZelda
             game.rooms = GameSetup.GenerateRoomList(game);
             game.roomIndex = 1;
             game.xRoom = 515;
-            game.yRoom = 886;
-        }
+            game.yRoom = 826;
+    }
 
         public void ToStart()
         {
@@ -56,6 +58,7 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
+            MediaPlayer.Play(game.dungeonsong);
             game.state = new PlayState(game);
         }
 

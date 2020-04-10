@@ -207,7 +207,7 @@ namespace LegendOfZelda
             this.footbox = new Rectangle(0, 0, Sprite.Box.Width, Sprite.Box.Height / 2);
             this.hitbox = Sprite.Box;
             this.X = 250;
-            this.Y = 175;
+            this.Y = 295;
             this.attackBoxLeft = new Rectangle(x - 25, y + Sprite.Box.Height/4, 25, Sprite.Box.Height/2);
             this.attackBoxRight = new Rectangle(x + Sprite.Box.Width, y + Sprite.Box.Height / 4, 25, Sprite.Box.Height / 2);
             this.attackBoxUp = new Rectangle(x + Sprite.Box.Width/4, y - 25, Sprite.Box.Width/2, 25);

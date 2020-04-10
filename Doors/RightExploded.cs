@@ -9,7 +9,7 @@ namespace LegendOfZelda
         public RightExploded()
         {
             door = RoomSpriteFactory.Instance.CreateRightExploded();
-            door.Position = new Point(448, 145);
+            door.Position = new Point(448, 265);
             Hitbox = door.Box;
         }
 
