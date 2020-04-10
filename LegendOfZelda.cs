@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
@@ -22,9 +24,12 @@ namespace LegendOfZelda
         public IController playerKeyboard;
         public IController roomController;
 
+        //public List<SoundEffect> soundEffects;
+        public Song menusong;
+        public Song dungeonsong;
 
         public int xRoom = 515;
-        public int yRoom = 886;
+        public int yRoom = 826;
 
         public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
@@ -33,11 +38,13 @@ namespace LegendOfZelda
         {
             graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferHeight = 352,
+                PreferredBackBufferHeight = 472,
                 PreferredBackBufferWidth = 512
             };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            //soundEffects = new List<SoundEffect>();
+            
         }
 
         protected override void Initialize()
@@ -49,6 +56,9 @@ namespace LegendOfZelda
 
         protected override void LoadContent()
         {
+            this.menusong = Content.Load<Song>("intro");
+            this.dungeonsong = Content.Load<Song>("dungeonsong");
+            //soundEffects.Add(Content.Load<SoundEffect>("dooropened"));
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content, GraphicsDevice);
         }

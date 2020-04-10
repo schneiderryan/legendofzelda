@@ -82,7 +82,7 @@ namespace LegendOfZelda
                     enemy = new Trap(game);
                 }
                 enemy.X = (int)entry.Key.X;
-                enemy.Y = (int)entry.Key.Y;
+                enemy.Y = (int)entry.Key.Y + 120;
                 enemies.Add(enemy);
             }
             return enemies;
@@ -160,7 +160,7 @@ namespace LegendOfZelda
                     item = new WoodSword();
                 }
                 item.X = (int)entry.Key.X;
-                item.Y = (int)entry.Key.Y;
+                item.Y = 120+(int)entry.Key.Y;
                 items.Add(item);
             }
             return items;
@@ -189,7 +189,8 @@ namespace LegendOfZelda
                 if (block != null)
                 {
                     block.X = (int)entry.Key.X;
-                    block.Y = (int)entry.Key.Y;
+                    block.Y = 120+(int)entry.Key.Y;
+                    
                     blocks.Add(block);
                 }
             }
@@ -319,7 +320,8 @@ namespace LegendOfZelda
                     npc = new Merchant();
                 }
                 npc.X = (int)entry.Key.X;
-                npc.Y = (int)entry.Key.Y;
+                npc.Y = 120+(int)entry.Key.Y;
+                
                 npcs.Add(npc);
             }
 

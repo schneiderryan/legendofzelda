@@ -10,7 +10,7 @@ namespace LegendOfZelda
         public BottomKey()
         {
             door = RoomSpriteFactory.Instance.CreateBottomKey();
-            door.Position = new Point(224, 288);
+            door.Position = new Point(224, 408);
             Hitbox = door.Box;
         }
 

@@ -10,7 +10,7 @@ namespace LegendOfZelda
         {
             door = RoomSpriteFactory.Instance.CreateLeftKey();
 
-            door.Position = new Point(0, 144);
+            door.Position = new Point(0, 264);
 
         }
 
