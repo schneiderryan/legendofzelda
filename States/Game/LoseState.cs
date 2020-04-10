@@ -66,21 +66,21 @@ namespace LegendOfZelda
         {
             if (tintTimer < 30)
             {
-                tint = Color.YellowGreen;
+                tint = Color.Blue;
             }
             else if (tintTimer < 60)
             {
-                tint = Color.LightGreen;
+                tint = Color.BlueViolet;
             }
             else if (tintTimer < 90)
             {
-                tint = Color.Green;
+                tint = Color.Violet;
             }
             else if (tintTimer < 120)
             {
-                tint = Color.DarkGreen;
+                tint = Color.DarkViolet;
             }
-            else if (tintTimer < 210)
+            else if (tintTimer < 300)
             {
                 tint = Color.Black;
             }
@@ -89,6 +89,8 @@ namespace LegendOfZelda
                 game.NewGame();
             }
             tintTimer++;
+
+            game.link.Update();
         }
 
         public void Draw()
