@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 
 namespace LegendOfZelda
 {
@@ -25,20 +23,6 @@ namespace LegendOfZelda
 			Breathed = false;
 			currentHearts = 6;
 			attackTimer = 100;
-		}
-
-		public override void Die()
-		{
-			isDying = true;
-			this.Sprite = EnemySpriteFactory.Instance.CreateDeadEnemy();
-			foreach (KeyValuePair<String, IDoor> door in game.rooms[game.roomIndex].Doors.ToList())
-			{
-				if (door.Key == "right" && door.Value is RightOther)
-				{
-					game.rooms[game.roomIndex].Doors.Remove("right");
-					game.rooms[game.roomIndex].Doors.Add("right", new RightOpen());
-				}
-			}
 		}
 
 	}
