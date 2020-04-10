@@ -1,50 +1,23 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System.Collections.Generic;
+
 
 namespace LegendOfZelda
 {
-    class MoveableBlockVertical : IMoveableBlock
+    class MoveableBlockVertical : MoveableBlock
     {
-        private readonly IMoveableBlock block;
-
-        public MoveableBlockVertical(IRoom room)
+        public MoveableBlockVertical(IDictionary<string, IDoor> doors) : base(doors)
         {
-            block = new MoveableBlock(room);
+            // nothing needed
         }
 
-        public Rectangle Hitbox => block.Hitbox;
-
-        public int X { get => block.X; set => block.X = value; }
-        public int Y { get => block.Y; set => block.Y = value; }
-
-        public void Draw(SpriteBatch sb, Color color)
+        public override void MoveOnceDown()
         {
-            block.Draw(sb, color);
+            State.MoveDown();
         }
 
-        public void MoveOnceDown()
+        public override void MoveOnceUp()
         {
-            block.MoveOnceDown();
-        }
-
-        public void MoveOnceLeft()
-        {
-            // no op
-        }
-
-        public void MoveOnceRight()
-        {
-            // no op
-        }
-
-        public void MoveOnceUp()
-        {
-            block.MoveOnceUp();
-        }
-
-        public void Update()
-        {
-            block.Update();
+            State.MoveDown();
         }
     }
 }
