@@ -31,7 +31,7 @@ namespace LegendOfZelda
             this.door = door;
         }
 
-       
+
 
         public void Handle()
 
@@ -42,7 +42,7 @@ namespace LegendOfZelda
             }
             else
             {
-                if (!(player.X > 449 && (door is RightWall || door is RightOther || door is RightKey)) && !(player.Y == 315 && door is BottomWall))
+                if (!(player.X > 449 && (door is RightWall || door is RightOther || door is RightKey)) && !(player.Y == 435 && door is BottomWall))
                 {
                     if (collision.Width > collision.Height)
                     {
@@ -95,8 +95,8 @@ namespace LegendOfZelda
             }
         }
 
-            public void HandleEdge(IPlayer player, IDoor door, Rectangle collision, LegendOfZelda game)
-            {
+        public void HandleEdge(IPlayer player, IDoor door, Rectangle collision, LegendOfZelda game)
+        {
 
             cmdRight = new SwapRoomCommand(game, "next");
             cmdLeft = new SwapRoomCommand(game, "previous");
@@ -104,29 +104,26 @@ namespace LegendOfZelda
             cmdDown = new SwapRoomCommand(game, "down");
             //change rooms based on door collision
             if (door is TopOpen)
-                {
-                    cmdUp.Execute();
-                    player.Y = 280;
-                }
-                if (door is BottomOpen)
-                {
-                    cmdDown.Execute();
-                    player.Y = 60;
-                }
-                if (door is LeftOpen)
-                {
-                    cmdLeft.Execute();
-                    player.X = 417;
-                }
-                if (door is RightOpen)
-                {
-                    cmdRight.Execute();
-                    player.X = 60;
+            {
+                cmdUp.Execute();
+                player.Y = 400;
+            }
+            if (door is BottomOpen)
+            {
+                cmdDown.Execute();
+                player.Y = 180;
+            }
+            if (door is LeftOpen)
+            {
+                cmdLeft.Execute();
+                player.X = 417;
+            }
+            if (door is RightOpen)
+            {
+                cmdRight.Execute();
+                player.X = 60;
 
-                }
             }
         }
     }
-
-    
-
+}

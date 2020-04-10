@@ -9,8 +9,8 @@ namespace LegendOfZelda
         public LeftOpen()
         {
             door = RoomSpriteFactory.Instance.CreateLeftOpen();
-            door.Position = new Point(0, 144);
-            Hitbox = new Rectangle(0, 163, 1, 30);
+            door.Position = new Point(0, 264);
+            Hitbox = new Rectangle(0, 283, 1, 30);
 
         }
 

@@ -48,20 +48,20 @@ namespace LegendOfZelda
                 {
 
                     // left wall hitboxes
-                    new Rectangle(0, 0, 64, 168),
-                    new Rectangle(0, 192, 64, 160),
+                    new Rectangle(0, 120, 64, 168),
+                    new Rectangle(0, 312, 64, 160),
                    
                     // right wall hitboxes
-                    new Rectangle(449, 0, 64, 168),
-                    new Rectangle(449, 192, 64, 160),
+                    new Rectangle(449, 120, 64, 168),
+                    new Rectangle(449, 312, 64, 160),
 
                     // top wall hitboxes
-                    new Rectangle(0, 0, 240, 64),
-                    new Rectangle(272, 0, 224, 64),
+                    new Rectangle(0, 120, 240, 64),
+                    new Rectangle(272, 120, 224, 64),
 
                     // bottom wall hitboxes
-                    new Rectangle(0, 289, 240, 64),
-                    new Rectangle(272, 289, 224, 64),
+                    new Rectangle(0, 409, 240, 64),
+                    new Rectangle(272, 409, 224, 64),
 
                 };
             }
