@@ -18,7 +18,7 @@ namespace LegendOfZelda
         private int dieTimer = 13;
         private int spawnTimer = 25;
         private bool isBeingAttacked { get; set; }
-        protected bool isDying { get; set; }
+        private bool isDying { get; set; }
         private bool isSpawning { get; set; }
         private bool hasSpawned { get; set; }
         private ISprite TempSprite { get; set; }

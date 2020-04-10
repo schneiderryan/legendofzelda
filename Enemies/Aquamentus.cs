@@ -29,8 +29,7 @@ namespace LegendOfZelda
 
 		public override void Die()
 		{
-			isDying = true;
-			this.Sprite = EnemySpriteFactory.Instance.CreateDeadEnemy();
+			base.Die();
 			foreach (KeyValuePair<String, IDoor> door in game.rooms[game.roomIndex].Doors.ToList())
 			{
 				if (door.Key == "right" && door.Value is RightOther)

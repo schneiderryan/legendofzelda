@@ -14,6 +14,7 @@ namespace LegendOfZelda
         private int CurtainWidth;
         private int CurtainHeight;
         private int updateTimer;
+        private Texture2D HUD;
         public NewGameState(LegendOfZelda game)
         {
             MediaPlayer.Stop();
@@ -26,6 +27,7 @@ namespace LegendOfZelda
             leftPos = game.GraphicsDevice.Viewport.Width / 2;
             CurtainWidth = game.GraphicsDevice.Viewport.Width / 2;
             CurtainHeight = game.GraphicsDevice.Viewport.Height;
+            this.HUD = Textures.GetHUD();
             GameInit();
         }
 
@@ -121,6 +123,7 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
             game.spriteBatch.Draw(RightCurtain, new Rectangle(rightPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, RightCurtain.Width, RightCurtain.Height), Color.Black);
             game.spriteBatch.Draw(LeftCurtain, new Rectangle(leftPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, LeftCurtain.Width, LeftCurtain.Height), Color.Black);
         }
