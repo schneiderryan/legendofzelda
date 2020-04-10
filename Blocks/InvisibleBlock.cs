@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace LegendOfZelda
 {
     class InvisibleBlock : CollideableObject, IBlock
@@ -10,12 +11,12 @@ namespace LegendOfZelda
             Hitbox = new Rectangle(0, 0, RoomParser.TILE_SIZE, RoomParser.TILE_SIZE);
         }
 
-        public virtual void Update()
+        public void Update()
         {
             // nothing to update
         }
 
-        public virtual void Draw(SpriteBatch sb, Color color)
+        public void Draw(SpriteBatch sb, Color color)
         {
             // do nothing, it's invisible
         }

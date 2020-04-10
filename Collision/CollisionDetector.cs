@@ -51,7 +51,7 @@ namespace LegendOfZelda
             {
                 if (player.Footbox.Intersects(block.Hitbox))
                 {
-                    collisions.Add(new PlayerBlockCollision(room, player, block));
+                    collisions.Add(new PlayerBlockCollision(room.Doors, player, block));
                 }
             }
 

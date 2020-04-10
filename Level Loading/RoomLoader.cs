@@ -166,7 +166,7 @@ namespace LegendOfZelda
             return items;
         }
 
-        public IList<IBlock> LoadBlocks(IRoom room)
+        public IList<IBlock> LoadBlocks(IDictionary<string, IDoor> doors)
         {
             IList<IBlock> blocks = new List<IBlock>();
             IDictionary<Vector2, string> blockInfo = parser.Blocks;
@@ -179,11 +179,11 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("MoveableBlockVertical"))
                 {
-                    block = new MoveableBlockVertical(room);
+                    block = new MoveableBlockVertical(doors);
                 }
                 else if (entry.Value.Equals("MoveableBlockLeft"))
                 {
-                    block = new MoveableBlockLeft(room);
+                    block = new MoveableBlockLeft(doors);
                 }
 
                 if (block != null)
