@@ -16,7 +16,7 @@ namespace LegendOfZelda
 			State = new EnemyState(this);
 			currentHearts = 2;
 			attackTimer = 50;
-			item = new Key();
+			//item = new Key();
 		}
 
 	}

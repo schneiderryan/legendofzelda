@@ -9,6 +9,7 @@ namespace LegendOfZelda
     {
         private RoomParser parser;
         private LegendOfZelda game;
+        int roomNumber;
 
         public RoomLoader(string level, LegendOfZelda game)
         {
@@ -22,7 +23,7 @@ namespace LegendOfZelda
         public ISprite LoadBackground()
         {
             ISprite background;
-            int roomNumber = parser.RoomNumber;
+            roomNumber = parser.RoomNumber;
             if (roomNumber == 0)
             {
                 background = RoomSpriteFactory.Instance.CreateRoom0();
@@ -136,6 +137,10 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("Stalfo"))
                 {
                     enemy = new Stalfo();
+                    if(enemies.Count==1 && (roomNumber == 2 || roomNumber == 12))
+                    {
+                        enemy.item = new Key();
+                    }
                 }
                 else if (entry.Value.Equals("Snake"))
                 {

@@ -15,6 +15,8 @@ namespace LegendOfZelda
         public IDictionary<string, IDoor> Doors { get; private set; }
 
         public IList<INPC> NPCs { get; private set; }
+        private string level;
+        private LegendOfZelda game;
         private ISprite background;
 
         private void LoadRoomLayout(int roomNumber)
@@ -61,7 +63,7 @@ namespace LegendOfZelda
         public Room(LegendOfZelda game, String levelName)
         {
             RoomLoader levelLoader = new RoomLoader(levelName, game);
-
+            level = levelName;
             this.background = levelLoader.LoadBackground();
             this.background.Scale = 2.0f;
             this.background.Position = new Point(0, 0);
@@ -71,7 +73,7 @@ namespace LegendOfZelda
             this.Items = levelLoader.LoadItems();
             this.NPCs = levelLoader.LoadNPCs();
             this.Doors = levelLoader.LoadDoors();
- 
+            this.game = game;
 
             LoadRoomLayout(levelLoader.RoomNumber());
         }
@@ -153,6 +155,40 @@ namespace LegendOfZelda
                         Items.Add(item);
                     }
                     Enemies.Remove(enemy);
+                    if(Enemies.Count==0)
+                    {
+                        Item item;
+                        if (level.Equals("Rooms/Room0.csv"))
+                        {
+                            item = new Key();
+                            item.X = 320;
+                            item.Y = 255; //before adjustments
+                        }
+                        else if (level.Equals("Rooms/Room5.csv") || level.Equals("Rooms/Room17.csv"))
+                        {
+                            item = new Key();
+                            item.X = (game.GraphicsDevice.Viewport.Width / 2) + 5;  //265
+                            item.Y = (game.GraphicsDevice.Viewport.Height / 3) - 20; //95 before adjustments
+                        }
+                        else if (level.Equals("Rooms/Room10.csv"))
+                        {
+                            item = new Boomerang();
+                            item.X = (game.GraphicsDevice.Viewport.Width / 2) + 5;  //265
+                            item.Y = (game.GraphicsDevice.Viewport.Height / 3) - 20; //95 before adjustments
+                        }
+                        else if (level.Equals("Rooms/Room13.csv"))
+                        {
+                            item = new HeartContainer();
+                            item.X = 385;
+                            item.Y = 160; //before adjustments
+                        }
+                        else
+                        { item = new Key(); }
+                        if (!(item.X == 0 && item.Y == 0))
+                        {
+                            Items.Add(item);
+                        }
+                    }
                 }
                 enemy.Update();
             }
