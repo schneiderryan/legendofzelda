@@ -13,7 +13,7 @@ namespace LegendOfZelda
         private int delay;
         public StartMenuState(LegendOfZelda game)
         {
-            MediaPlayer.Play(game.menusong);
+            MediaPlayer.Play(Sounds.GetMenuSong());
             
             this.game = game;
             StartMenu = Textures.GetStartMenu();

@@ -26,7 +26,7 @@ namespace LegendOfZelda
         public IItem HeldItem { get; set; }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
-
+        public int attackSoundTimer = 0;
         public Rectangle Footbox => footbox;
         public Rectangle Hitbox => hitbox;
         public Rectangle LeftAttackBox => attackBoxLeft;
@@ -105,6 +105,7 @@ namespace LegendOfZelda
 
         public virtual void Attack()
         {
+            Sounds.GetAttackSound().Play();
             State.Attack();
         }
 
@@ -120,11 +121,13 @@ namespace LegendOfZelda
 
         public virtual void TakeDamage(double amount)
         {
+            Sounds.GetLinkHurtSound().Play();
             double actual = amount * (1.0 - Resistance);
-            System.Diagnostics.Debug.WriteLine("link took: " + actual + " damage");
+            
             CurrentHearts -= actual;
             if (CurrentHearts < 0.01) // close enough to 0 for a double
             {
+                Sounds.GetLinkDieSound().Play();
                 this.State = new GreenLinkDeadState(this);
                 game.LoseGame();
             }

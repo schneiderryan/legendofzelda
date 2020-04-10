@@ -24,10 +24,6 @@ namespace LegendOfZelda
         public IController playerKeyboard;
         public IController roomController;
 
-        //public List<SoundEffect> soundEffects;
-        public Song menusong;
-        public Song dungeonsong;
-
         public int xRoom;
         public int yRoom;
 
@@ -43,7 +39,7 @@ namespace LegendOfZelda
             };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            //soundEffects = new List<SoundEffect>();
+            
             
         }
 
@@ -56,11 +52,11 @@ namespace LegendOfZelda
 
         protected override void LoadContent()
         {
-            this.menusong = Content.Load<Song>("intro");
-            this.dungeonsong = Content.Load<Song>("dungeonsong");
-            //soundEffects.Add(Content.Load<SoundEffect>("dooropened"));
+            
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content, GraphicsDevice);
+            Sounds.LoadAllSounds(Content);
         }
 
         protected override void Update(GameTime gameTime)

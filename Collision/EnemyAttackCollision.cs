@@ -24,6 +24,7 @@ namespace LegendOfZelda
             if (player.Direction.Equals(attackDirection) && player.IsAttacking()
                     && !(enemy is Trap) && !(enemy is Fire))
             {
+                
                 enemy.TakeDamage(player.Inventory.Sword.Damage);
                 switch (attackDirection)
                 {

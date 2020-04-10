@@ -60,7 +60,7 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
-            MediaPlayer.Play(game.dungeonsong);
+            MediaPlayer.Play(Sounds.GetDungeonSong());
             game.state = new PlayState(game);
         }
 
