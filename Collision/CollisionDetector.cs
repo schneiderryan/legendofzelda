@@ -51,6 +51,7 @@ namespace LegendOfZelda
             {
                 if (player.Footbox.Intersects(block.Hitbox))
                 {
+
                     collisions.Add(new PlayerBlockCollision(room, player, block));
                 }
             }
@@ -69,6 +70,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(enemy.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
                 {
+                    
                     collisions.Add(new PlayerEnemyCollision(player, collision));
                 }
             }
@@ -181,6 +183,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(projectile.Hitbox, enemy.Hitbox);
                     if (!collision.IsEmpty && !(enemy is Trap))
                     {
+                        
                         collisions.Add(new EnemyProjectileCollision(projectileManager, room.Enemies,
                             enemy, projectile, collision));
                     }
@@ -188,18 +191,22 @@ namespace LegendOfZelda
 
                 if (enemy.Hitbox.Intersects(player.LeftAttackBox))
                 {
+                    
                     collisions.Add(new EnemyAttackCollision(room.Enemies,  enemy, player, "left"));
                 }
                 if (enemy.Hitbox.Intersects(player.UpAttackBox))
                 {
+                    
                     collisions.Add(new EnemyAttackCollision(room.Enemies, enemy, player, "up"));
                 }
                 if (enemy.Hitbox.Intersects(player.RightAttackBox))
                 {
+                    
                     collisions.Add(new EnemyAttackCollision(room.Enemies, enemy, player, "right"));
                 }
                 if (enemy.Hitbox.Intersects(player.DownAttackBox))
                 {
+                    
                     collisions.Add(new EnemyAttackCollision(room.Enemies, enemy, player, "down"));
                 }
 

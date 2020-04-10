@@ -47,6 +47,7 @@ namespace LegendOfZelda
 
         public void MoveOnceLeft()
         {
+            
             if (state == BlockState.Ready)
             {
                 vx = -1;
@@ -92,6 +93,7 @@ namespace LegendOfZelda
             {
                 moveCounter -= 1;
             }
+            
             sprite.Position = new Point(X, Y);
         }
 
