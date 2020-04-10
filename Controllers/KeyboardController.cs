@@ -5,30 +5,50 @@ namespace LegendOfZelda
 {
     class KeyboardController : IController
     {
-        private IDictionary<Keys, ICommand> keyBinds;
+        public enum Priority { NORMAL, HIGH }
 
-        public KeyboardController(IDictionary<Keys, ICommand> keyBinds)
+        private IDictionary<Keys, (ICommand, Priority)> keyBinds;
+
+        public KeyboardController()
         {
-            this.keyBinds = keyBinds;
+            this.keyBinds = new Dictionary<Keys, (ICommand, Priority)>();
+        }
+
+        public void Register(Keys key, ICommand cmd, Priority priority = Priority.NORMAL)
+        {
+            keyBinds.Add(key, (cmd, priority));
         }
 
         public void Update()
         {
             KeyboardState state = Keyboard.GetState();
             Keys[] keys = state.GetPressedKeys();
-            ICommand a;
+            LinkedList<ICommand> priorityList = new LinkedList<ICommand>();
+            (ICommand, Priority) a;
 
             foreach (Keys k in keys)
             {
-                    if (keyBinds.TryGetValue(k, out a))
+                if (keyBinds.TryGetValue(k, out a))
+                {
+                    if (a.Item2 == Priority.HIGH)
                     {
-                        a.Execute();
+                        priorityList.AddFirst(a.Item1);
                     }
+                    else
+                    {
+                        priorityList.AddLast(a.Item1);
+                    }
+                }
+            }
+
+            if (priorityList.Count > 0)
+            {
+                priorityList.First.Value.Execute();
             }
 
             if (keys.Length == 0 && keyBinds.TryGetValue(Keys.None, out a))
             {
-                a.Execute();
+                a.Item1.Execute();
             }
         }
     }

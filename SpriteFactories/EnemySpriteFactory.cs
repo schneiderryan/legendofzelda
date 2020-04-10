@@ -94,12 +94,14 @@ namespace LegendOfZelda
 
         public ISprite CreateMovingAquamentusSprite()
         {
-            return new AnimatedSprite(bossSpriteSheet, new Rectangle(4, 0, 24, 32), 2, true);
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(4, 0, 24, 32), 2, true)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateMovingFireAquamentusSprite()
         {
-            return new AnimatedSprite(bossSpriteSheet, new Rectangle(94, 0, 24, 32), 2, true);
+            return new AnimatedSprite(bossSpriteSheet, new Rectangle(94, 0, 24, 32), 2, true)
+                { AnimationDelay = ANIMATION_DELAY };
         }
 
         public ISprite CreateDownMovingSnakeSprite()
@@ -148,17 +150,22 @@ namespace LegendOfZelda
 
         public ISprite CreateOldManSprite()
         {
-            return new AnimatedSprite(npcSpriteSheet, new Rectangle(154, 134, 15, 15), 1, false);
+            return new Sprite(npcSpriteSheet, new Rectangle(231, 133, 26, 26))
+            { Scale = 32f / 26f };
         }
 
         public ISprite CreateFireSprite()
         {
-            return new AnimatedSprite(npcSpriteSheet, new Rectangle(101, 134, 15, 15), 2, true);
+            return new AnimatedSprite(npcSpriteSheet, new Rectangle(103, 133, 26, 26), 2, true)
+            {
+                Scale = 32f / 26f,
+                AnimationDelay = ANIMATION_DELAY
+            };
         }
 
         public ISprite CreateMerchantSprite()
         {
-            return new AnimatedSprite(merchantSpriteSheet, new Rectangle(0, 0, 15, 15), 1, false);
+            return new Sprite(merchantSpriteSheet, new Rectangle(0, 0, 15, 15));
         }
     }
 }
