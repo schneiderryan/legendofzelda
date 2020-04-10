@@ -118,7 +118,7 @@ namespace LegendOfZelda
             else
             {
                 Texture2D bwroom = Textures.GetBWRoom();
-                game.spriteBatch.Draw(bwroom, new Rectangle(0, -1, game.GraphicsDevice.Viewport.Width+2, game.GraphicsDevice.Viewport.Height+2), new Rectangle(0, 0, bwroom.Width, bwroom.Height), Color.White);
+                game.spriteBatch.Draw(bwroom, new Rectangle(0, 512, game.GraphicsDevice.Viewport.Width+2, game.GraphicsDevice.Viewport.Height+2-512), new Rectangle(0, 0, bwroom.Width, bwroom.Height), Color.White);
             }
             game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
             game.spriteBatch.Draw(RightCurtain, new Rectangle(rightPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, RightCurtain.Width, RightCurtain.Height), Color.Black);

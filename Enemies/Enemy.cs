@@ -140,7 +140,7 @@ namespace LegendOfZelda
             currentHearts -= amount;
         }
 
-        public void Die()
+        public virtual void Die()
         {
             isDying = true;
             this.Sprite = EnemySpriteFactory.Instance.CreateDeadEnemy();
