@@ -43,8 +43,8 @@ namespace LegendOfZelda
             game.rooms = GameSetup.GenerateRoomList(game);
             game.roomIndex = 1;
             game.xRoom = 515;
-            game.yRoom = 886;
-        }
+            game.yRoom = 826;
+    }
 
         public void ToStart()
         {
