@@ -6,8 +6,6 @@ namespace LegendOfZelda
 
 	class LFWallmaster : RandomMovingEnemy
 	{
-		public bool dragging;
-		
 		public LFWallmaster()
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateMovingLFWallmasterSprite();

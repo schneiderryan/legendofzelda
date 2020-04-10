@@ -12,6 +12,7 @@ namespace LegendOfZelda
         public int VX { get; set; }
         public int VY { get; set; }
         public Team Team { get; set; } = Team.Enemy;
+        public Item item { get; set; }
 
         protected int attackTimer { get; set; }
 
@@ -54,6 +55,10 @@ namespace LegendOfZelda
             {
                 Sprite.Draw(sb, color);
             }
+            if (item != null)
+            {
+                item.Draw(sb, color);
+            }
         }
 
         public void MoveDown()
@@ -91,6 +96,11 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
+            if (item != null)
+            {
+                item.X = X + 8;
+                item.Y = Y;
+            }
             if (!hasSpawned && !isSpawning)
             {
                 TempSprite = this.Sprite;
@@ -132,6 +142,10 @@ namespace LegendOfZelda
             Sprite.Position = new Point(X, Y);
             Hitbox = Sprite.Box;
             Sprite.Update();
+            if (item != null)
+            {
+                item.Update();
+            }
         }
 
         public virtual void TakeDamage(double amount)
@@ -155,6 +169,17 @@ namespace LegendOfZelda
         public void Knockback(int amountX, int amountY)
         {
             State.Knockback(amountX, amountY);
+        }
+
+        public void DropItem()
+        {
+            if(item is Key)
+            {
+                Key key = new Key();
+                key.X = X;
+                key.Y = Y;
+            }
+                
         }
     }
 }

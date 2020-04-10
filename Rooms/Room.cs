@@ -11,7 +11,7 @@ namespace LegendOfZelda
         public IList<Rectangle> Hitboxes { get; private set; }
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
-        public IList<IItem> Items { get; private set; }
+        public IList<IItem> Items { get; set; }
         public IDictionary<string, IDoor> Doors { get; private set; }
 
         public IList<INPC> NPCs { get; private set; }
@@ -145,6 +145,13 @@ namespace LegendOfZelda
             {
                 if (enemy.isDead)
                 {
+                    if (enemy.item != null)
+                    {
+                        Item item = enemy.item;
+                        item.X = enemy.X;
+                        item.Y = enemy.Y;
+                        Items.Add(item);
+                    }
                     Enemies.Remove(enemy);
                 }
                 enemy.Update();

@@ -24,10 +24,12 @@ namespace LegendOfZelda
             if (this.enemy is LFWallmaster)
             {
                 enemy.State = new DraggingLFWallmasterState(enemy, player, game);
+                player.BeStill();
             }
             else if (this.enemy is RFWallmaster)
             {
                 enemy.State = new DraggingRFWallmasterState(enemy, player, game);
+                player.BeStill();
             }
             else
             {
