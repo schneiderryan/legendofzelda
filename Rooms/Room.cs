@@ -74,8 +74,8 @@ namespace LegendOfZelda
             this.background.Position = new Point(0, 0);
 
             this.Doors = levelLoader.LoadDoors();
+            this.Blocks = levelLoader.LoadBlocks(Doors);
             this.Enemies = levelLoader.LoadEnemies();
-            this.Blocks = levelLoader.LoadBlocks(this);
             this.Items = levelLoader.LoadItems();
             this.NPCs = levelLoader.LoadNPCs();
             

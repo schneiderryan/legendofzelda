@@ -1,17 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 
 namespace LegendOfZelda
 {
     class PlayerBlockCollision : ICollision
     {
-        private IRoom room;
+        private IDictionary<string, IDoor> doors;
         private IPlayer player;
         private IBlock block;
 
-        public PlayerBlockCollision(IRoom room, IPlayer player, IBlock block)
+        public PlayerBlockCollision(IDictionary<string, IDoor> doors, IPlayer player, IBlock block)
         {
-            this.room = room;
+            this.doors = doors;
             this.player = player;
             this.block = block;
         }
@@ -25,7 +26,7 @@ namespace LegendOfZelda
             }
             else
             {
-                moveableBlock = new MoveableBlock(room);
+                moveableBlock = new MoveableBlock(doors);
             }
 
             // computing this here so that link doesn't get double corrected if he runs
