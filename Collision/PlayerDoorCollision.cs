@@ -62,24 +62,28 @@ namespace LegendOfZelda
                     }
                     if (door.Value is TopKey && player.Inventory.Keys > 0)
                     {
+                        Sounds.GetDoorUnlockSound().Play();
                         player.Inventory.Keys--;
                         doors.Remove(door);
                         doors.Add("top", new TopOpen());
                     }
                     if(door.Value is RightKey && player.Inventory.Keys > 0)
                     {
+                        Sounds.GetDoorUnlockSound().Play();
                         player.Inventory.Keys--;
                         doors.Remove(door);
                         doors.Add("right", new RightOpen());
                     }
                     if (door.Value is LeftKey && player.Inventory.Keys > 0)
                     {
+                        Sounds.GetDoorUnlockSound().Play();
                         player.Inventory.Keys--;
                         doors.Remove(door);
                         doors.Add("left", new LeftOpen());
                     }
                     if (door.Value is BottomKey && player.Inventory.Keys > 0)
                     {
+                        Sounds.GetDoorUnlockSound().Play();
                         player.Inventory.Keys--;
                         doors.Remove(door);
                         doors.Add("bottom", new BottomOpen());

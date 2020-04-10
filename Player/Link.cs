@@ -125,6 +125,7 @@ namespace LegendOfZelda
             double actual = amount * (1.0 - Resistance);
             
             CurrentHearts -= actual;
+
             if (CurrentHearts < 0.01) // close enough to 0 for a double
             {
                 Sounds.GetLinkDieSound().Play();
@@ -139,6 +140,10 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
+            if(CurrentHearts < 1)
+            {
+                Sounds.GetLowHealthSound().Play();
+            }
             State.Update();
             Sprite.Update();
             if (itemTimer > 0)

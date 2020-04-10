@@ -29,11 +29,13 @@ namespace LegendOfZelda
 
 		public override void Die()
 		{
+			Sounds.GetBossDefeatedSound().Play();
 			base.Die();
 			foreach (KeyValuePair<String, IDoor> door in game.rooms[game.roomIndex].Doors.ToList())
 			{
 				if (door.Key == "right" && door.Value is RightOther)
 				{
+					Sounds.GetDoorUnlockSound().Play();
 					game.rooms[game.roomIndex].Doors.Remove("right");
 					game.rooms[game.roomIndex].Doors.Add("right", new RightOpen());
 				}

@@ -113,6 +113,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(item.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
                 {
+
                     collisions.Add(new ItemPlayerCollision(room.Items, player, item));
                 }
                 if (item is IMovingItem)
