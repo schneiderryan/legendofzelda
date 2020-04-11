@@ -312,7 +312,7 @@ namespace LegendOfZelda
                 INPC npc;
                 if (entry.Value.Equals("OldMan"))
                 {
-                    npc = new OldMan();
+                    npc = new OldMan(game);
                 }
                 else
                 {
