@@ -21,18 +21,23 @@ namespace LegendOfZelda
         private Rectangle attackBoxUp;
         private Rectangle attackBoxDown;
         private Vector2 origin;
-
+        private Color deadColor;
         public double Resistance { get; set; }
         public IItem HeldItem { get; set; }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
-
+        public int attackSoundTimer = 0;
         public Rectangle Footbox => footbox;
         public Rectangle Hitbox => hitbox;
         public Rectangle LeftAttackBox => attackBoxLeft;
         public Rectangle RightAttackBox => attackBoxRight;
         public Rectangle DownAttackBox => attackBoxDown;
         public Rectangle UpAttackBox => attackBoxUp;
+        public Color DeadColor 
+        {
+            get { return deadColor; }
+            set { deadColor = value; }
+        }
 
         public int X
         {
@@ -100,6 +105,7 @@ namespace LegendOfZelda
 
         public virtual void Attack()
         {
+            Sounds.GetAttackSound().Play();
             State.Attack();
         }
 
@@ -115,18 +121,29 @@ namespace LegendOfZelda
 
         public virtual void TakeDamage(double amount)
         {
+            Sounds.GetLinkHurtSound().Play();
             double actual = amount * (1.0 - Resistance);
-            System.Diagnostics.Debug.WriteLine("link took: " + actual + " damage");
+            
             CurrentHearts -= actual;
-            this.game.link = new DamagedLink(game);
+
             if (CurrentHearts < 0.01) // close enough to 0 for a double
             {
+                Sounds.GetLinkDieSound().Play();
+                this.State = new GreenLinkDeadState(this);
                 game.LoseGame();
+            }
+            else
+            {
+                this.game.link = new DamagedLink(game);
             }
         }
 
         public virtual void Update()
         {
+            if(CurrentHearts < 1)
+            {
+                Sounds.GetLowHealthSound().Play();
+            }
             State.Update();
             Sprite.Update();
             if (itemTimer > 0)
@@ -137,6 +154,7 @@ namespace LegendOfZelda
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {
+            Color tint = color;
             if (State is AttackingUpLinkState)
             {
                 this.origin = new Vector2(0, 15);
@@ -154,7 +172,11 @@ namespace LegendOfZelda
             {
                 this.origin = new Vector2(0, 0);
             }
-            Sprite.Draw(sb, color, origin);
+            if (State is LinkDeadState)
+            {
+                tint = this.DeadColor;
+            }
+            Sprite.Draw(sb, tint, origin);
         }
 
         public virtual void UseProjectile(IProjectile projectile)
@@ -193,7 +215,7 @@ namespace LegendOfZelda
             this.footbox = new Rectangle(0, 0, Sprite.Box.Width, Sprite.Box.Height / 2);
             this.hitbox = Sprite.Box;
             this.X = 250;
-            this.Y = 175;
+            this.Y = 295;
             this.attackBoxLeft = new Rectangle(x - 25, y + Sprite.Box.Height/4, 25, Sprite.Box.Height/2);
             this.attackBoxRight = new Rectangle(x + Sprite.Box.Width, y + Sprite.Box.Height / 4, 25, Sprite.Box.Height / 2);
             this.attackBoxUp = new Rectangle(x + Sprite.Box.Width/4, y - 25, Sprite.Box.Width/2, 25);
@@ -204,6 +226,7 @@ namespace LegendOfZelda
             this.Resistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
+            this.DeadColor = Microsoft.Xna.Framework.Color.White;
         }
 
         public void Knockback(int amountX, int amountY)

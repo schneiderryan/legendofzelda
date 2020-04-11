@@ -27,6 +27,7 @@ namespace LegendOfZelda
 
         private static Texture2D StartMenu;
         private static Texture2D WinCurtain;
+        private static Texture2D HUD;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -49,6 +50,7 @@ namespace LegendOfZelda
             dungeon = contentManager.Load<Texture2D>("dungeon");
             tiles = contentManager.Load<Texture2D>("tiles");
 
+            HUD = contentManager.Load<Texture2D>("HUDbackground");
             StartMenu = contentManager.Load<Texture2D>("StartMenu");
             WinCurtain = contentManager.Load<Texture2D>("winCurtain");
 
@@ -60,6 +62,12 @@ namespace LegendOfZelda
         {
             return misc;
         }
+
+        public static Texture2D GetHUD()
+        {
+            return HUD;
+        }
+
         public static Texture2D GetRoomSheet()
         {
             return rooms;

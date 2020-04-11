@@ -18,6 +18,7 @@ namespace LegendOfZelda
 
         public void Handle()
         {
+            Sounds.GetItemObtainedSound().Play();
             item.Collect(player);
             items.Remove(item);
         }

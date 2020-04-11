@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
@@ -12,6 +13,7 @@ namespace LegendOfZelda
         public int VX { get; set; }
         public int VY { get; set; }
         public Team Team { get; set; } = Team.Enemy;
+        
 
         protected int attackTimer { get; set; }
 
@@ -117,6 +119,7 @@ namespace LegendOfZelda
             }
             if (currentHearts <= 0 && !isDying)
             {
+               
                 this.Die();
             }
             if (isDying)
@@ -136,12 +139,14 @@ namespace LegendOfZelda
 
         public virtual void TakeDamage(double amount)
         {
+            Sounds.GetEnemyHurtSound().Play();
             isBeingAttacked = true;
             currentHearts -= amount;
         }
 
-        public void Die()
+        public virtual void Die()
         {
+            Sounds.GetEnemyDieSound().Play();
             isDying = true;
             this.Sprite = EnemySpriteFactory.Instance.CreateDeadEnemy();
         }

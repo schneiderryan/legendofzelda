@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 
@@ -7,8 +9,10 @@ namespace LegendOfZelda
     class PlayState : IGameState
     {
         private LegendOfZelda game;
+        private Texture2D HUD;
         public PlayState(LegendOfZelda game)
         {
+            this.HUD = Textures.GetHUD();
             this.game = game;
         }
 
@@ -39,7 +43,7 @@ namespace LegendOfZelda
 
         public void ChangeRoom()
         {
-            game.state = new ChangeRoomState(game);
+            game.state = new ChangeRoomState(game.link.Direction, game);
         }
 
         public void WinGame()
@@ -59,6 +63,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            
             game.mouse.Update();
             game.keyboard.Update();
             game.playerKeyboard.Update();
@@ -79,6 +84,7 @@ namespace LegendOfZelda
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
             game.ProjectileManager.Draw(game.spriteBatch, Color.White);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
         }
     }
 }

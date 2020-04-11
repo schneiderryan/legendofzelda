@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace LegendOfZelda
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
         public IList<IItem> Items { get; private set; }
-        public IDictionary<string, IDoor> Doors { get; private set; }
+        public IList<INPC> NPCs { get; private set; }
+        public IDictionary<string, IDoor> Doors { get; set; }
 
-        private IList<INPC> npcs;
-        private ISprite background;
+        private LegendOfZelda game;
+        public ISprite background { get; set; }
+        
 
         private void LoadRoomLayout(int roomNumber)
         {
@@ -39,38 +42,44 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>()
                 {
-                    // left hitboxes
-                    new Rectangle(0, 0, 64, 170),
-                    new Rectangle(0, 193, 64, 160),
 
-                    // top hitboxes
-                    new Rectangle(0, 0, 224, 64),
-                    new Rectangle(289, 0, 224, 64),
+                    // left wall hitboxes
+                    new Rectangle(0, 120, 64, 168),
+                    new Rectangle(0, 312, 64, 160),
+                   
+                    // right wall hitboxes
+                    new Rectangle(449, 120, 64, 168),
+                    new Rectangle(449, 312, 64, 160),
 
-                    // bottom hitboxes
-                    new Rectangle(0, 289, 224, 64),
-                    new Rectangle(289, 289, 224, 64),
+                    // top wall hitboxes
+                    new Rectangle(0, 120, 240, 64),
+                    new Rectangle(272, 120, 224, 64),
 
-                    // right hitboxes
-                    new Rectangle(448, 0, 64, 170),
-                    new Rectangle(448, 193, 64, 160),
+                    // bottom wall hitboxes
+                    new Rectangle(0, 409, 240, 64),
+                    new Rectangle(272, 409, 224, 64),
+
                 };
             }
         }
 
         public Room(LegendOfZelda game, String levelName)
         {
+
+            this.game = game;
+
             RoomLoader levelLoader = new RoomLoader(levelName, game);
 
-            this.background = levelLoader.LoadBackground();
-            this.background.Scale = 2.0f;
+            this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+            
             this.background.Position = new Point(0, 0);
 
-            this.Enemies = levelLoader.LoadEnemies();
-            this.Blocks = levelLoader.LoadBlocks(this);
-            this.Items = levelLoader.LoadItems();
-            this.npcs = levelLoader.LoadNPCs();
             this.Doors = levelLoader.LoadDoors();
+            this.Blocks = levelLoader.LoadBlocks(Doors);
+            this.Enemies = levelLoader.LoadEnemies();
+            this.Items = levelLoader.LoadItems();
+            this.NPCs = levelLoader.LoadNPCs();
+            
  
 
             LoadRoomLayout(levelLoader.RoomNumber());
@@ -108,7 +117,7 @@ namespace LegendOfZelda
                 item.Draw(sb, color);
             }
 
-            foreach (INPC npc in npcs)
+            foreach (INPC npc in NPCs)
             {
                 npc.Draw(sb, color);
             }
@@ -121,6 +130,19 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+            foreach (IEnemy enemy in Enemies.ToList())
+            {
+                if (enemy.isDead)
+                {
+                    Enemies.Remove(enemy);
+                }
+                enemy.Update();
+            }
+            foreach (KeyValuePair<String, IDoor> door in Doors)
+            {
+                door.Value.Update();
+            }
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();
@@ -136,19 +158,12 @@ namespace LegendOfZelda
                 item.Update();
             }
 
-            foreach (INPC npc in npcs)
+            foreach (INPC npc in NPCs)
             {
                 npc.Update();
             }
 
-            foreach (IEnemy enemy in Enemies.ToList())
-            {
-                if (enemy.isDead)
-                {
-                    Enemies.Remove(enemy);
-                }
-                enemy.Update();
-            }
+            
         }
 
     }

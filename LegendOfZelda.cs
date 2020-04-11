@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
@@ -13,12 +15,18 @@ namespace LegendOfZelda
         public int roomIndex;
 
         public IPlayer link;
+
         public IProjectileManager ProjectileManager { get; set; }
+
         public GraphicsDeviceManager graphics;
 
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
+        public IController roomController;
+
+        public int xRoom;
+        public int yRoom;
 
         public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
@@ -27,11 +35,13 @@ namespace LegendOfZelda
         {
             graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferHeight = 352,
+                PreferredBackBufferHeight = 472,
                 PreferredBackBufferWidth = 512
             };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            
+            
         }
 
         protected override void Initialize()
@@ -44,8 +54,11 @@ namespace LegendOfZelda
 
         protected override void LoadContent()
         {
+            
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content, GraphicsDevice);
+            Sounds.LoadAllSounds(Content);
         }
 
         protected override void Update(GameTime gameTime)
