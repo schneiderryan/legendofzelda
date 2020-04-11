@@ -97,10 +97,9 @@ namespace LegendOfZelda
             };
         }
 
-
         public ISprite CreateMovingFireballSprite()
         {
-            return new AnimatedSprite(enemySpriteSheet, new Rectangle(329, 0, 16, 16), 3, true);
+            return new AnimatedSprite(enemySpriteSheet, new Rectangle(334, 3, 8, 10), 3, true);
         }
 
     }
