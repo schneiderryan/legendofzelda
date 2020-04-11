@@ -57,7 +57,10 @@ namespace LegendOfZelda
             }
             if (item != null)
             {
-                item.Draw(sb, color);
+                if (item is Key)
+                {
+                    item.Draw(sb, color);
+                }
             }
         }
 
