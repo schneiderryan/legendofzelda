@@ -95,13 +95,13 @@ namespace LegendOfZelda
         public ISprite CreateMovingAquamentusSprite()
         {
             return new AnimatedSprite(bossSpriteSheet, new Rectangle(4, 0, 24, 32), 2, true)
-                { AnimationDelay = ANIMATION_DELAY };
+                { AnimationDelay = 12 };
         }
 
         public ISprite CreateMovingFireAquamentusSprite()
         {
             return new AnimatedSprite(bossSpriteSheet, new Rectangle(94, 0, 24, 32), 2, true)
-                { AnimationDelay = ANIMATION_DELAY };
+                { AnimationDelay = 12 };
         }
 
         public ISprite CreateDownMovingSnakeSprite()

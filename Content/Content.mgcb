@@ -49,6 +49,30 @@
 /processorParam:TextureFormat=Color
 /build:dungeon.png
 
+#begin dungeonsong.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:dungeonsong.mp3
+
+#begin HUDbackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HUDbackground.png
+
+#begin intro.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:intro.mp3
+
 #begin items_mod.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -85,18 +109,6 @@
 /processorParam:TextureFormat=Color
 /build:loz_anothertry_npc_sheet.png
 
-#begin loz_boss_sheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:loz_boss_sheet.png
-
 #begin loz_enemy_sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -120,18 +132,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:misc.png
-
-#begin Room_bw.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Room_bw.png
 
 #begin rooms.png
 /importer:TextureImporter
@@ -240,28 +240,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:zelda-sprites-bosses.png
-
-#begin intro.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:intro.mp3
-
-#begin dungeonsong.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:dungeonsong.mp3
-
-#begin HUDbackground.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:HUDbackground.png
 
