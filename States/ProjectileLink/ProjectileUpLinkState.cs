@@ -12,7 +12,7 @@ namespace LegendOfZelda
 
         public override void Attack()
         {
-            link.State = new AttackingDownLinkState(link);
+            link.State = new AttackingUpLinkState(link);
         }
 
         public override void BeStill()
