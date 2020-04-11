@@ -64,7 +64,10 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             state.Update();
-            hud.Update();
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState"))
+            {
+                hud.Update();
+            }
             base.Update(gameTime);
         }
 
