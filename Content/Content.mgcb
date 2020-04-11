@@ -49,6 +49,78 @@
 /processorParam:TextureFormat=Color
 /build:dungeon.png
 
+#begin dungeonsong.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:dungeonsong.mp3
+
+#begin HUDbackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HUDbackground.png
+
+#begin HUDbackgroundnew.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HUDbackgroundnew.png
+
+#begin HUDbackgroundnew.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HUDbackgroundnew.png
+
+#begin HUDBackgroundnewnew.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HUDBackgroundnewnew.png
+
+#begin hudSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:hudSpriteSheet.png
+
+#begin intro.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:intro.mp3
+
 #begin items_mod.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -85,6 +157,12 @@
 /processorParam:TextureFormat=Color
 /build:loz_anothertry_npc_sheet.png
 
+#begin LOZ_Boss_Scream1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Boss_Scream1.wav
+
 #begin loz_boss_sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -97,6 +175,24 @@
 /processorParam:TextureFormat=Color
 /build:loz_boss_sheet.png
 
+#begin LOZ_Door_Unlock.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Door_Unlock.wav
+
+#begin LOZ_Enemy_Die.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Enemy_Die.wav
+
+#begin LOZ_Enemy_Hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Enemy_Hit.wav
+
 #begin loz_enemy_sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -108,6 +204,54 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:loz_enemy_sheet.png
+
+#begin LOZ_Get_Item.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Get_Item.wav
+
+#begin LOZ_Key_Appear.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Key_Appear.wav
+
+#begin LOZ_Link_Die.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Link_Die.wav
+
+#begin LOZ_Link_Hurt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Link_Hurt.wav
+
+#begin LOZ_LowHealth.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_LowHealth.wav
+
+#begin LOZ_Secret.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Secret.wav
+
+#begin LOZ_Stairs.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Stairs.wav
+
+#begin LOZ_Sword_Slash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Sword_Slash.wav
 
 #begin misc.png
 /importer:TextureImporter
@@ -240,100 +384,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:zelda-sprites-bosses.png
-
-#begin intro.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:intro.mp3
-
-#begin dungeonsong.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:dungeonsong.mp3
-
-#begin HUDbackground.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:HUDbackground.png
-
-#begin LOZ_Sword_Slash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Sword_Slash.wav
-
-#begin LOZ_Enemy_Die.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Enemy_Die.wav
-
-#begin LOZ_Enemy_Hit.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Enemy_Hit.wav
-
-#begin LOZ_Link_Hurt.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Link_Hurt.wav
-
-#begin LOZ_Link_Die.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Link_Die.wav
-
-#begin LOZ_Door_Unlock.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Door_Unlock.wav
-
-#begin LOZ_Secret.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Secret.wav
-
-#begin LOZ_Stairs.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Stairs.wav
-
-#begin LOZ_Boss_Scream1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Boss_Scream1.wav
-
-#begin LOZ_LowHealth.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_LowHealth.wav
-
-#begin LOZ_Key_Appear.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Key_Appear.wav
-
-#begin LOZ_Get_Item.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Get_Item.wav
 

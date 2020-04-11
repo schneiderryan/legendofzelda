@@ -76,7 +76,10 @@ namespace LegendOfZelda
 
             state.Draw();
 
-            hud.Draw();
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState"))
+            {
+                hud.Draw();
+            }
 
             spriteBatch.End();
 
