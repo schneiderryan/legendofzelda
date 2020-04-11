@@ -38,8 +38,8 @@ namespace LegendOfZelda
             menusong = contentManager.Load<Song>("intro");
             dungeonsong = contentManager.Load<Song>("dungeonsong");
            
-            itemObtained = contentManager.Load<SoundEffect>("LOZ_Item_Obtained");
-            keyAppearance = contentManager.Load<SoundEffect>("LOZ_Key_Appearance");
+            itemObtained = contentManager.Load<SoundEffect>("LOZ_Get_Item");
+            keyAppearance = contentManager.Load<SoundEffect>("LOZ_Key_Appear");
             attackEffect = contentManager.Load<SoundEffect>("LOZ_Sword_Slash");
             linkHurt = contentManager.Load<SoundEffect>("LOZ_Link_Hurt");
             linkDie = contentManager.Load<SoundEffect>("LOZ_Link_Die");
@@ -47,7 +47,6 @@ namespace LegendOfZelda
             enemyDie = contentManager.Load<SoundEffect>("LOZ_Enemy_Die");
 
             bossHurt = contentManager.Load<SoundEffect>("LOZ_Boss_Scream1");
-            bossDie = contentManager.Load<SoundEffect>("LOZ_Boss_Defeated");
 
 
             stairs = contentManager.Load<SoundEffect>("LOZ_Stairs");
@@ -57,10 +56,12 @@ namespace LegendOfZelda
 
         }
 
+        
+        
 
-        public static SoundEffect GetBossDefeatedSound()
+        public static SoundEffect GetBossHurtSound()
         {
-            return bossDie;
+            return bossHurt;
         }
         public static SoundEffect GetKeyAppearedSound()
         {
@@ -84,7 +85,10 @@ namespace LegendOfZelda
         {
             return doorUnlock;
         }
-
+        public static SoundEffect GetStairSound()
+        {
+            return stairs;
+        }
 
         public static SoundEffect GetEnemyDieSound()
         {

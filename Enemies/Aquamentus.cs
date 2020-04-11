@@ -29,7 +29,7 @@ namespace LegendOfZelda
 
 		public override void Die()
 		{
-			Sounds.GetBossDefeatedSound().Play();
+			//Sounds.GetBossDefeatedSound().Play();
 			base.Die();
 			foreach (KeyValuePair<String, IDoor> door in game.rooms[game.roomIndex].Doors.ToList())
 			{
