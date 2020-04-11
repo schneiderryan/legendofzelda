@@ -325,21 +325,15 @@
 /processorParam:Quality=Best
 /build:LOZ_LowHealth.wav
 
-#begin LOZ_Boss_Defeated.wav
+#begin LOZ_Key_Appear.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:LOZ_Boss_Defeated.wav
+/build:LOZ_Key_Appear.wav
 
-#begin LOZ_Key_Appearance.wav
+#begin LOZ_Get_Item.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:LOZ_Key_Appearance.wav
-
-#begin LOZ_Item_Obtained.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:LOZ_Item_Obtained.wav
+/build:LOZ_Get_Item.wav
 
