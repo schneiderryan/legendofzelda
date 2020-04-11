@@ -14,6 +14,7 @@
 - 4: throw bomb
 - Left Click: Iterate forward through rooms
 - Right Click: Iterate backwards through rooms
+- P: Pause Game
 
 # Functionality
 - Room switching using mouse

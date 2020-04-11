@@ -80,6 +80,9 @@ namespace LegendOfZelda
             cmd = new QuitCommand(game);
             controller.Register(Keys.Q, cmd);
 
+            cmd = new PauseGameCommand(game);
+            controller.Register(Keys.P, cmd);
+
             return controller;
         }
 
