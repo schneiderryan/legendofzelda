@@ -72,5 +72,11 @@ namespace LegendOfZelda
             return new Sprite(Textures.GetFonts(),
                     new Rectangle(144, 0, 7, 7));
         }
+
+        public static ISprite GetWhiteBox()
+        {
+            return new Sprite(Textures.GetFonts(),
+                    new Rectangle(96, 17, 2, 2));
+        }
     }
 }

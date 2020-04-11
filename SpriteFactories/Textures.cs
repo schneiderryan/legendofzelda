@@ -31,6 +31,7 @@ namespace LegendOfZelda
         private static Texture2D HUDBackground;
         private static Texture2D HUDContents;
         private static Texture2D Fonts;
+        private static Texture2D Map;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -59,6 +60,7 @@ namespace LegendOfZelda
             WinCurtain = contentManager.Load<Texture2D>("winCurtain");
             HUDContents = contentManager.Load<Texture2D>("hudSpriteSheet");
             Fonts = contentManager.Load<Texture2D>("fonts");
+            Map = contentManager.Load<Texture2D>("mapstuff");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -88,6 +90,11 @@ namespace LegendOfZelda
         public static Texture2D GetFonts()
         {
             return Fonts;
+        }
+
+        public static Texture2D GetMap()
+        {
+            return Map;
         }
 
         public static Texture2D GetRoomSheet()
