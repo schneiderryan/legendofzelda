@@ -78,5 +78,41 @@ namespace LegendOfZelda
             return new Sprite(Textures.GetFonts(),
                     new Rectangle(96, 17, 2, 2));
         }
+
+        public static ISprite GetP()
+        {
+            return new Sprite(Textures.GetTransparentFonts(),
+                    new Rectangle(144, 16, 7, 7));
+        }
+
+        public static ISprite GetA()
+        {
+            return new Sprite(Textures.GetTransparentFonts(),
+                    new Rectangle(160, 0, 7, 7));
+        }
+
+        public static ISprite GetU()
+        {
+            return new Sprite(Textures.GetTransparentFonts(),
+                    new Rectangle(224, 16, 7, 7));
+        }
+
+        public static ISprite GetS()
+        {
+            return new Sprite(Textures.GetTransparentFonts(),
+                    new Rectangle(192, 16, 7, 7));
+        }
+
+        public static ISprite GetE()
+        {
+            return new Sprite(Textures.GetTransparentFonts(),
+                    new Rectangle(224, 0, 7, 7));
+        }
+
+        public static ISprite GetD()
+        {
+            return new Sprite(Textures.GetTransparentFonts(),
+                    new Rectangle(208, 0, 7, 7));
+        }
     }
 }
