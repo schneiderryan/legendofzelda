@@ -15,10 +15,12 @@ namespace LegendOfZelda
         private int y;
         private Texture2D background;
         private Texture2D HUD;
+        private Texture2D HUDBackground;
         private string direction;
         public ChangeRoomState(String direction, LegendOfZelda game)
         {
             this.HUD = Textures.GetHUD();
+            this.HUDBackground = Textures.GetHUDBackground();
             this.background = Textures.GetRoomSheet();
             this.direction = direction;
             x = game.xRoom;
@@ -205,7 +207,8 @@ namespace LegendOfZelda
         public void Draw()
         {
             game.rooms[game.roomIndex].background.Draw(game.spriteBatch, Color.White);
-            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
+            game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
 
         }
     }

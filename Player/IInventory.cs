@@ -8,6 +8,8 @@ namespace LegendOfZelda
         IHeldItem BluePotion { get; set; }
         IHeldItem RedPotion { get; set; }
         bool HasClock { get; set; }
+        bool HasMap { get; set; }
+        bool HasCompass { get; set; }
 
         int Rupees { get; set; }
         int Bombs { get; set; }

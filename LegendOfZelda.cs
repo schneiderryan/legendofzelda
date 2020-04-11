@@ -9,6 +9,7 @@ namespace LegendOfZelda
     class LegendOfZelda : Game
     {
         public IGameState state;
+        public HeadsUpDisplay hud;
 
         public IList<IRoom> rooms;
         public int roomIndex;
@@ -48,6 +49,7 @@ namespace LegendOfZelda
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
             state = new StartMenuState(this);
+            hud = new HeadsUpDisplay(this);
         }
 
         protected override void LoadContent()
@@ -62,6 +64,10 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             state.Update();
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState"))
+            {
+                hud.Update();
+            }
             base.Update(gameTime);
         }
 
@@ -72,6 +78,11 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.White);
 
             state.Draw();
+
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState"))
+            {
+                hud.Draw();
+            }
 
             spriteBatch.End();
 
