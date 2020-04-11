@@ -10,6 +10,7 @@ namespace LegendOfZelda
             this.link.Direction = "up";
         }
 
+
         public override void Attack()
         {
             link.State = new AttackingUpLinkState(link);

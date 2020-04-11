@@ -37,6 +37,7 @@ namespace LegendOfZelda
         public string Color { get => link.Color; set => link.Color = value; }
         public double MaxHearts { get => link.MaxHearts; set => link.MaxHearts = value; }
         public double CurrentHearts { get => link.CurrentHearts; set => link.CurrentHearts = value; }
+        public Color DeadColor { get => link.DeadColor; set => link.DeadColor = value; }
 
         public IInventory Inventory => link.Inventory;
 
@@ -119,7 +120,7 @@ namespace LegendOfZelda
 
         public void TakeDamage(double amount)
         {
-            link.TakeDamage(amount);
+            this.link.TakeDamage(amount);
         }
 
         public void Update()

@@ -8,7 +8,9 @@ namespace LegendOfZelda
     {
         private ICollection<IEnemy> enemies;
 
+
         public EnemyProjectileCollision(IProjectileManager manager,
+
                 ICollection<IEnemy> enemies, IEnemy enemy, IProjectile projectile,
                 in Rectangle collision)
             : base(manager, enemy, projectile, collision)

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
@@ -13,12 +13,14 @@ namespace LegendOfZelda
         private int leftPos;
         private int CurtainWidth;
         private int CurtainHeight;
-        private int timer;
         private int updateTimer;
+        private Texture2D HUD;
+        private Texture2D HUDBackground;
         public NewGameState(LegendOfZelda game)
         {
+            MediaPlayer.Stop();
+            
             this.game = game;
-            timer = 0;
             updateTimer = 1;
             RightCurtain = Textures.GetWinCurtain();
             LeftCurtain = Textures.GetWinCurtain();
@@ -26,6 +28,8 @@ namespace LegendOfZelda
             leftPos = game.GraphicsDevice.Viewport.Width / 2;
             CurtainWidth = game.GraphicsDevice.Viewport.Width / 2;
             CurtainHeight = game.GraphicsDevice.Viewport.Height;
+            this.HUD = Textures.GetHUD();
+            this.HUDBackground = Textures.GetHUDBackground();
             GameInit();
         }
 
@@ -37,10 +41,14 @@ namespace LegendOfZelda
             game.keyboard = GameSetup.CreateGeneralKeysController(game);
 
             game.ProjectileManager = new ProjectileManager();
+
             game.CollisionDetector = new CollisionDetector(game.ProjectileManager, game);
+
             game.rooms = GameSetup.GenerateRoomList(game);
             game.roomIndex = 1;
-        }
+            game.xRoom = 515;
+            game.yRoom = 826;
+    }
 
         public void ToStart()
         {
@@ -54,6 +62,7 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
+            MediaPlayer.Play(Sounds.GetDungeonSong());
             game.state = new PlayState(game);
         }
 
@@ -89,7 +98,9 @@ namespace LegendOfZelda
 
         public void Update()
         {
+
             if(rightPos > -CurtainWidth)
+
             {
                 rightPos -= 4;
                 leftPos += 4;
@@ -98,12 +109,13 @@ namespace LegendOfZelda
             {
                 game.PlayGame();
             }
+
             if(updateTimer > 0)
+
             {
                 game.rooms[game.roomIndex].Update();
                 game.link.Update();
             }
-            timer++;
             updateTimer--;
         }
 
@@ -113,8 +125,12 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
+            game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
             game.spriteBatch.Draw(RightCurtain, new Rectangle(rightPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, RightCurtain.Width, RightCurtain.Height), Color.Black);
             game.spriteBatch.Draw(LeftCurtain, new Rectangle(leftPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, LeftCurtain.Width, LeftCurtain.Height), Color.Black);
         }
     }
+
 }
+

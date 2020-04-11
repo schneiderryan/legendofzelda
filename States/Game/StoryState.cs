@@ -17,7 +17,7 @@ namespace LegendOfZelda
             game.GraphicsDevice.Clear(Color.Black);
             this.story = MiscSpriteFactory.Instance.CreateStory();
             story.Y = game.GraphicsDevice.Viewport.Height;
-            clickDelay = 5;
+            clickDelay = 15;
         }
 
         public void ToStart()
@@ -86,4 +86,5 @@ namespace LegendOfZelda
             story.Draw(game.spriteBatch);
         }
     }
+
 }

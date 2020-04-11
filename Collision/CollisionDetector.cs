@@ -7,12 +7,14 @@ namespace LegendOfZelda
 {
     class CollisionDetector
     {
+        private LegendOfZelda game;
         private IProjectileManager projectileManager;
         private IList<ICollision> collisions;
-        private LegendOfZelda game;
-
+        
         public CollisionDetector(IProjectileManager projectileManager, LegendOfZelda game)
         {
+
+            this.game = game;
             collisions = new List<ICollision>();
             this.projectileManager = projectileManager;
             this.game = game;
@@ -23,7 +25,8 @@ namespace LegendOfZelda
             collisions.Clear();
 
             // handle all things player first
-            HandlePlayerCollisions(room, player);
+
+            HandlePlayerCollisions(room, player, game);
 
             // handle all things enemy that haven't already been handled
             HandleEnemyCollisions(room, player);
@@ -34,7 +37,8 @@ namespace LegendOfZelda
             return collisions;
         }
 
-        private void HandlePlayerCollisions(IRoom room, IPlayer player)
+
+        private void HandlePlayerCollisions(IRoom room, IPlayer player, LegendOfZelda game)
         {
             if (!(player.State is GrabbedLinkState))
             {
@@ -47,23 +51,22 @@ namespace LegendOfZelda
                     }
                 }
 
-                foreach (IBlock block in room.Blocks)
+            foreach (IBlock block in room.Blocks)
+            {
+                if (player.Footbox.Intersects(block.Hitbox))
                 {
-                    Rectangle collision = Rectangle.Intersect(block.Hitbox, player.Footbox);
-                    if (!collision.IsEmpty)
-                    {
-                        collisions.Add(new PlayerBlockCollision(room, player, block, collision));
-                    }
+                    collisions.Add(new PlayerBlockCollision(room.Doors, player, block));
                 }
+            }
 
-                foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
+            foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
+            {
+                Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
+                if (!collision.IsEmpty)
                 {
-                    Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
-                    if (!collision.IsEmpty)
-                    {
-                        collisions.Add(new PlayerDoorCollision(room.Doors, door, player, collision));
-                    }
+                    collisions.Add(new PlayerDoorCollision(room.Doors, door, player, collision, game));
                 }
+            }
 
                 foreach (IEnemy enemy in room.Enemies)
                 {
@@ -74,16 +77,23 @@ namespace LegendOfZelda
                     }
                 }
 
-                
-
-                foreach (IProjectile projectile in projectileManager)
+            foreach (INPC npc in room.NPCs)
+            {
+                Rectangle collision = Rectangle.Intersect(npc.Hitbox, player.Hitbox);
+                if (!collision.IsEmpty)
                 {
-                    Rectangle collision = Rectangle.Intersect(projectile.Hitbox, player.Hitbox);
-                    if (!collision.IsEmpty)
-                    {
-                        collisions.Add(new PlayerProjectileCollision(projectileManager, player,
-                                projectile, collision));
-                    }
+                    collisions.Add(new PlayerWallCollision(player, collision));
+                }
+            }
+
+            foreach (IProjectile projectile in projectileManager)
+            {
+                Rectangle collision = Rectangle.Intersect(projectile.Hitbox, player.Hitbox);
+                if (!collision.IsEmpty)
+                {
+                    collisions.Add(new PlayerProjectileCollision(projectileManager, player,
+                            projectile, collision));
+                }
 
                     //Boomerang Item Pickup Code
                     if (projectile is BoomerangProjectile && projectile.OwningTeam == Team.Link)
@@ -253,4 +263,6 @@ namespace LegendOfZelda
         }
 
     }
+
 }
+

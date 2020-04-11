@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,13 @@ namespace LegendOfZelda
         public IList<Rectangle> Hitboxes { get; private set; }
         public IList<IBlock> Blocks { get; private set; }
         public ISet<IEnemy> Enemies { get; private set; }
-        public IList<IItem> Items { get; set; }
-        public IDictionary<string, IDoor> Doors { get; private set; }
-
+        public IList<IItem> Items { get; private set; }
         public IList<INPC> NPCs { get; private set; }
-        private string level;
+        public IDictionary<string, IDoor> Doors { get; set; }
+
         private LegendOfZelda game;
-        private ISprite background;
+        public ISprite background { get; set; }
+        
 
         private void LoadRoomLayout(int roomNumber)
         {
@@ -41,39 +42,45 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>()
                 {
-                    // left hitboxes
-                    new Rectangle(0, 0, 64, 170),
-                    new Rectangle(0, 193, 64, 160),
 
-                    // top hitboxes
-                    new Rectangle(0, 0, 224, 64),
-                    new Rectangle(289, 0, 224, 64),
+                    // left wall hitboxes
+                    new Rectangle(0, 120, 64, 168),
+                    new Rectangle(0, 312, 64, 160),
+                   
+                    // right wall hitboxes
+                    new Rectangle(449, 120, 64, 168),
+                    new Rectangle(449, 312, 64, 160),
 
-                    // bottom hitboxes
-                    new Rectangle(0, 289, 224, 64),
-                    new Rectangle(289, 289, 224, 64),
+                    // top wall hitboxes
+                    new Rectangle(0, 120, 240, 64),
+                    new Rectangle(272, 120, 224, 64),
 
-                    // right hitboxes
-                    new Rectangle(448, 0, 64, 170),
-                    new Rectangle(448, 193, 64, 160),
+                    // bottom wall hitboxes
+                    new Rectangle(0, 409, 240, 64),
+                    new Rectangle(272, 409, 224, 64),
+
                 };
             }
         }
 
         public Room(LegendOfZelda game, String levelName)
         {
+
+            this.game = game;
+
             RoomLoader levelLoader = new RoomLoader(levelName, game);
-            level = levelName;
-            this.background = levelLoader.LoadBackground();
-            this.background.Scale = 2.0f;
+
+            this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+            
             this.background.Position = new Point(0, 0);
 
+            this.Doors = levelLoader.LoadDoors();
+            this.Blocks = levelLoader.LoadBlocks(Doors);
             this.Enemies = levelLoader.LoadEnemies();
-            this.Blocks = levelLoader.LoadBlocks(this);
             this.Items = levelLoader.LoadItems();
             this.NPCs = levelLoader.LoadNPCs();
-            this.Doors = levelLoader.LoadDoors();
-            this.game = game;
+            
+ 
 
             LoadRoomLayout(levelLoader.RoomNumber());
         }
@@ -123,6 +130,19 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+            foreach (IEnemy enemy in Enemies.ToList())
+            {
+                if (enemy.isDead)
+                {
+                    Enemies.Remove(enemy);
+                }
+                enemy.Update();
+            }
+            foreach (KeyValuePair<String, IDoor> door in Doors)
+            {
+                door.Value.Update();
+            }
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();
@@ -143,55 +163,7 @@ namespace LegendOfZelda
                 npc.Update();
             }
 
-            foreach (IEnemy enemy in Enemies.ToList())
-            {
-                if (enemy.isDead)
-                {
-                    if (enemy.item != null)
-                    {
-                        Item item = enemy.item;
-                        item.X = enemy.X;
-                        item.Y = enemy.Y;
-                        Items.Add(item);
-                    }
-                    Enemies.Remove(enemy);
-                    if(Enemies.Count==0)
-                    {
-                        Item item;
-                        if (level.Equals("Rooms/Room0.csv"))
-                        {
-                            item = new Key();
-                            item.X = 320;
-                            item.Y = 255; //before adjustments
-                        }
-                        else if (level.Equals("Rooms/Room5.csv") || level.Equals("Rooms/Room17.csv"))
-                        {
-                            item = new Key();
-                            item.X = (game.GraphicsDevice.Viewport.Width / 2) + 5;  //265
-                            item.Y = (game.GraphicsDevice.Viewport.Height / 3) - 20; //95 before adjustments
-                        }
-                        else if (level.Equals("Rooms/Room10.csv"))
-                        {
-                            item = new Boomerang();
-                            item.X = (game.GraphicsDevice.Viewport.Width / 2) + 5;  //265
-                            item.Y = (game.GraphicsDevice.Viewport.Height / 3) - 20; //95 before adjustments
-                        }
-                        else if (level.Equals("Rooms/Room13.csv"))
-                        {
-                            item = new HeartContainer();
-                            item.X = 385;
-                            item.Y = 160; //before adjustments
-                        }
-                        else
-                        { item = new Key(); }
-                        if (!(item.X == 0 && item.Y == 0))
-                        {
-                            Items.Add(item);
-                        }
-                    }
-                }
-                enemy.Update();
-            }
+            
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,11 +11,13 @@ namespace LegendOfZelda
         private LegendOfZelda game;
         private Color tint;
         private int tintTimer;
+        private Texture2D HUDBackground;
         public LoseState(LegendOfZelda game)
         {
             this.game = game;
             this.tint = Color.White;
             this.tintTimer = 0;
+            this.HUDBackground = Textures.GetHUDBackground();
         }
 
         public void ToStart()
@@ -64,19 +67,23 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            if(tintTimer < 30)
+            if (tintTimer < 30)
             {
-                tint = Color.YellowGreen;
-            } else if(tintTimer < 60)
+                tint = Color.Blue;
+            }
+            else if (tintTimer < 60)
             {
-                tint = Color.LightGreen;
-            } else if(tintTimer < 90)
+                tint = Color.BlueViolet;
+            }
+            else if (tintTimer < 90)
             {
-                tint = Color.Green;
-            } else if(tintTimer < 120)
+                tint = Color.Violet;
+            }
+            else if (tintTimer < 120)
             {
-                tint = Color.DarkGreen;
-            } else if(tintTimer < 210)
+                tint = Color.DarkViolet;
+            }
+            else if (tintTimer < 300)
             {
                 tint = Color.Black;
             }
@@ -85,11 +92,14 @@ namespace LegendOfZelda
                 game.NewGame();
             }
             tintTimer++;
+
+            game.link.Update();
         }
 
         public void Draw()
         {
             game.rooms[game.roomIndex].Draw(game.spriteBatch, tint);
+            game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
             game.link.Draw(game.spriteBatch, Color.White);
         }
     }
