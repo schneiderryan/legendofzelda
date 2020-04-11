@@ -11,5 +11,9 @@ namespace LegendOfZelda
         public abstract void Draw(SpriteBatch sb, Color color);
 
         public abstract void Update();
+
+        //public abstract void TakeDamage();
+       
+        
     }
 }

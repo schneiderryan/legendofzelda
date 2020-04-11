@@ -52,7 +52,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(block.Hitbox, player.Footbox);
                     if (!collision.IsEmpty)
                     {
-                        collisions.Add(new PlayerBlockCollision(room, player, block, collision));
+                        collisions.Add(new PlayerBlockCollision(room.Doors, player, block));
                     }
                 }
 
@@ -61,7 +61,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
                     if (!collision.IsEmpty)
                     {
-                        collisions.Add(new PlayerDoorCollision(room.Doors, door, player, collision));
+                        collisions.Add(new PlayerDoorCollision(room.Doors, door, player, collision, game));
                     }
                 }
 

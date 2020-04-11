@@ -18,7 +18,7 @@ namespace LegendOfZelda
         public IList<INPC> NPCs { get; private set; }
         private string level;
         private LegendOfZelda game;
-        private ISprite background { get; set; };
+        public ISprite background { get; set; }
 
         private void LoadRoomLayout(int roomNumber)
         {

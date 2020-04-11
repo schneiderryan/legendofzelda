@@ -18,7 +18,7 @@ namespace LegendOfZelda
             this.enemy = enemy;
             this.player = player;
             this.attackDirection = attackDirection;
-            this.room = room;
+            //this.room = room;
         }
 
         public void Handle()

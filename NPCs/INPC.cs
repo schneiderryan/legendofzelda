@@ -5,7 +5,7 @@ namespace LegendOfZelda
     
     interface INPC : ICollideable, IDrawable, IUpdateable
     {
-        void TakeDamage();
+       // void TakeDamage();
         Team Team { get; }
     }
 }

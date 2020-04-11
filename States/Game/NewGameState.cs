@@ -42,7 +42,7 @@ namespace LegendOfZelda
             game.keyboard = GameSetup.CreateGeneralKeysController(game);
 
             game.ProjectileManager = new ProjectileManager();
-            game.CollisionDetector = new CollisionDetector(game.ProjectileManager);
+            game.CollisionDetector = new CollisionDetector(game.ProjectileManager,game);
             game.rooms = GameSetup.GenerateRoomList(game);
             game.roomIndex = 1;
             game.xRoom = 515;
