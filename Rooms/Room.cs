@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -130,6 +131,14 @@ namespace LegendOfZelda
         public void Update()
         {
             this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+            foreach (IEnemy enemy in Enemies.ToList())
+            {
+                if (enemy.isDead)
+                {
+                    Enemies.Remove(enemy);
+                }
+                enemy.Update();
+            }
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();
@@ -154,14 +163,7 @@ namespace LegendOfZelda
                 npc.Update();
             }
 
-            foreach (IEnemy enemy in Enemies.ToList())
-            {
-                if (enemy.isDead)
-                {
-                    Enemies.Remove(enemy);
-                }
-                enemy.Update();
-            }
+            
         }
 
     }

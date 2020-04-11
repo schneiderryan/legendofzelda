@@ -9,6 +9,7 @@ namespace LegendOfZelda
     class LegendOfZelda : Game
     {
         public IGameState state;
+        public HeadsUpDisplay hud;
 
         public IList<IRoom> rooms;
         public int roomIndex;
@@ -23,10 +24,6 @@ namespace LegendOfZelda
         public IController keyboard;
         public IController playerKeyboard;
         public IController roomController;
-
-        //public List<SoundEffect> soundEffects;
-        public Song menusong;
-        public Song dungeonsong;
 
         public int xRoom;
         public int yRoom;
@@ -43,7 +40,7 @@ namespace LegendOfZelda
             };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            //soundEffects = new List<SoundEffect>();
+            
             
         }
 
@@ -52,20 +49,25 @@ namespace LegendOfZelda
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
             state = new StartMenuState(this);
+            hud = new HeadsUpDisplay(this);
         }
 
         protected override void LoadContent()
         {
-            this.menusong = Content.Load<Song>("intro");
-            this.dungeonsong = Content.Load<Song>("dungeonsong");
-            //soundEffects.Add(Content.Load<SoundEffect>("dooropened"));
+            
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content, GraphicsDevice);
+            Sounds.LoadAllSounds(Content);
         }
 
         protected override void Update(GameTime gameTime)
         {
             state.Update();
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState"))
+            {
+                hud.Update();
+            }
             base.Update(gameTime);
         }
 
@@ -76,6 +78,11 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.White);
 
             state.Draw();
+
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.PauseState"))
+            {
+                hud.Draw();
+            }
 
             spriteBatch.End();
 

@@ -13,6 +13,7 @@ namespace LegendOfZelda
         private Texture2D menu = Textures.GetStartMenu();
         private Texture2D BWRoom = Textures.GetBWRoom();
         private Texture2D WinCurtain = Textures.GetWinCurtain();
+        private Texture2D hudcontents = Textures.GetHUDContents();
         private MiscSpriteFactory() { }
         public static MiscSpriteFactory Instance
         {
@@ -41,6 +42,11 @@ namespace LegendOfZelda
         public ISprite CreateStory()
         {
             return new Sprite(menu, new Rectangle(523, 20, 252, 960));
+        }
+
+        public ISprite CreateLife()
+        {
+            return new Sprite(hudcontents, new Rectangle(440, 25, 51, 11));
         }
     }
 }

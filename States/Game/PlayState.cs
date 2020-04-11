@@ -10,9 +10,11 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private Texture2D HUD;
+        private Texture2D HUDBackground;
         public PlayState(LegendOfZelda game)
         {
             this.HUD = Textures.GetHUD();
+            this.HUDBackground = Textures.GetHUDBackground();
             this.game = game;
         }
 
@@ -84,7 +86,8 @@ namespace LegendOfZelda
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
             game.ProjectileManager.Draw(game.spriteBatch, Color.White);
-            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
+            game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.Black);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
         }
     }
 }

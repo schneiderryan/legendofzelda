@@ -15,6 +15,7 @@ namespace LegendOfZelda
         private int CurtainHeight;
         private int updateTimer;
         private Texture2D HUD;
+        private Texture2D HUDBackground;
         public NewGameState(LegendOfZelda game)
         {
             MediaPlayer.Stop();
@@ -28,6 +29,7 @@ namespace LegendOfZelda
             CurtainWidth = game.GraphicsDevice.Viewport.Width / 2;
             CurtainHeight = game.GraphicsDevice.Viewport.Height;
             this.HUD = Textures.GetHUD();
+            this.HUDBackground = Textures.GetHUDBackground();
             GameInit();
         }
 
@@ -60,7 +62,7 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
-            MediaPlayer.Play(game.dungeonsong);
+            MediaPlayer.Play(Sounds.GetDungeonSong());
             game.state = new PlayState(game);
         }
 
@@ -123,7 +125,8 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
-            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
+            game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
             game.spriteBatch.Draw(RightCurtain, new Rectangle(rightPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, RightCurtain.Width, RightCurtain.Height), Color.Black);
             game.spriteBatch.Draw(LeftCurtain, new Rectangle(leftPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, LeftCurtain.Width, LeftCurtain.Height), Color.Black);
         }

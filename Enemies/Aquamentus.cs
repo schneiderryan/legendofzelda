@@ -42,6 +42,7 @@ namespace LegendOfZelda
 				{
 					doors.Remove("right");
 					doors.Add("right", new RightOpen());
+					Sounds.GetDoorUnlockSound().Play();
 				}
 			}
 		}
