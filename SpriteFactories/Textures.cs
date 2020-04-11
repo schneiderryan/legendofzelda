@@ -31,6 +31,7 @@ namespace LegendOfZelda
         private static Texture2D HUDBackground;
         private static Texture2D HUDContents;
         private static Texture2D Fonts;
+        private static Texture2D FontsTransparent;
         private static Texture2D Map;
 
 
@@ -60,6 +61,7 @@ namespace LegendOfZelda
             WinCurtain = contentManager.Load<Texture2D>("winCurtain");
             HUDContents = contentManager.Load<Texture2D>("hudSpriteSheet");
             Fonts = contentManager.Load<Texture2D>("fonts");
+            FontsTransparent = contentManager.Load<Texture2D>("fontskindatransparent");
             Map = contentManager.Load<Texture2D>("mapstuff");
 
             blank = new Texture2D(graphics, 1, 1);
@@ -90,6 +92,11 @@ namespace LegendOfZelda
         public static Texture2D GetFonts()
         {
             return Fonts;
+        }
+
+        public static Texture2D GetTransparentFonts()
+        {
+            return FontsTransparent;
         }
 
         public static Texture2D GetMap()

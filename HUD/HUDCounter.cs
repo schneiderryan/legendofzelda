@@ -13,7 +13,6 @@ namespace LegendOfZelda
         private string type;
         private int xCoord;
         private int yCoord;
-        private bool needX;
         private ISprite char1;
         private ISprite char2;
         private ISprite char3;
@@ -22,7 +21,6 @@ namespace LegendOfZelda
         public HUDCounter(LegendOfZelda game, string type)
         {
             xCoord = 195;
-            needX = false;
             if (type.Equals("bombs"))
             {
                 yCoord = 89; //change to right value
@@ -38,7 +36,6 @@ namespace LegendOfZelda
             this.game = game;
             count = 0;
             this.type = type;
-            needX = false;
         }
 
         public void Update()
