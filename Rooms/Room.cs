@@ -18,6 +18,7 @@ namespace LegendOfZelda
 
         private LegendOfZelda game;
         public ISprite background { get; set; }
+        private string level;
         
 
         private void LoadRoomLayout(int roomNumber)
@@ -67,7 +68,7 @@ namespace LegendOfZelda
         {
 
             this.game = game;
-
+            level = levelName;
             RoomLoader levelLoader = new RoomLoader(levelName, game);
 
             this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
@@ -131,14 +132,57 @@ namespace LegendOfZelda
         public void Update()
         {
             this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+
             foreach (IEnemy enemy in Enemies.ToList())
             {
                 if (enemy.isDead)
                 {
+                    if (enemy.item != null)
+                    {
+                        Item item = enemy.item;
+                        item.X = enemy.X;
+                        item.Y = enemy.Y;
+                        Items.Add(item);
+                    }
                     Enemies.Remove(enemy);
+                    if (Enemies.Count == 0)
+                    {
+                        Item item;
+                        if (level.Equals("Rooms/Room0.csv"))
+                        {
+                            item = new Key();
+                            item.X = 320;
+                            item.Y = 120+255; //before adjustments
+                        }
+                        else if (level.Equals("Rooms/Room5.csv") || level.Equals("Rooms/Room17.csv"))
+                        {
+                            item = new Key();
+                            item.X = 265;  //265
+                            item.Y = 120 + 95; //95 before adjustments
+                        }
+                        else if (level.Equals("Rooms/Room10.csv"))
+                        {
+                            item = new Boomerang();
+                            item.X = 265;  //265
+                            item.Y = 120 + 95; //95 before adjustments
+                        }
+                        else if (level.Equals("Rooms/Room13.csv"))
+                        {
+                            item = new HeartContainer();
+                            item.X = 385;
+                            item.Y = 120+ 160; //before adjustments
+                        }
+                        else
+                        { item = new Key(); }
+                        if (!(item.X == 0 && item.Y == 0))
+                        {
+                            Items.Add(item);
+                        }
+                    }
                 }
                 enemy.Update();
             }
+
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();
