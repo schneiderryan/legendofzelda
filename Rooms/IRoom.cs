@@ -13,5 +13,6 @@ namespace LegendOfZelda
         ISet<IEnemy> Enemies { get; }
         IList<IItem> Items { get; set; }
         IList<INPC> NPCs { get; }
+        ISprite background { get; set; }
     }
 }

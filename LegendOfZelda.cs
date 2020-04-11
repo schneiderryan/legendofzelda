@@ -1,23 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
     class LegendOfZelda : Game
     {
         public IGameState state;
+        public HeadsUpDisplay hud;
 
         public IList<IRoom> rooms;
         public int roomIndex;
         public bool OldManDamaged { get; set; }
         public IPlayer link;
+
         public IProjectileManager ProjectileManager { get; set; }
+
         public GraphicsDeviceManager graphics;
 
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
+        public IController roomController;
+
+        public int xRoom;
+        public int yRoom;
 
         public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
@@ -26,11 +35,13 @@ namespace LegendOfZelda
         {
             graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferHeight = 352,
+                PreferredBackBufferHeight = 472,
                 PreferredBackBufferWidth = 512
             };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            
+            
         }
 
         protected override void Initialize()
@@ -38,17 +49,25 @@ namespace LegendOfZelda
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
             state = new StartMenuState(this);
+            hud = new HeadsUpDisplay(this);
         }
 
         protected override void LoadContent()
         {
+            
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content, GraphicsDevice);
+            Sounds.LoadAllSounds(Content);
         }
 
         protected override void Update(GameTime gameTime)
         {
             state.Update();
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState"))
+            {
+                hud.Update();
+            }
             base.Update(gameTime);
         }
 
@@ -59,6 +78,11 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.White);
 
             state.Draw();
+
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.PauseState"))
+            {
+                hud.Draw();
+            }
 
             spriteBatch.End();
 

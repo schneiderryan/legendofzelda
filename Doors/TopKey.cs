@@ -9,8 +9,7 @@ namespace LegendOfZelda
         public TopKey()
         {
             door = RoomSpriteFactory.Instance.CreateTopKey();
-            door.Scale = 2.0f;
-            door.Position = new Point(224, 0);
+            door.Position = new Point(224, 120);
             Hitbox = door.Box;
         }
 

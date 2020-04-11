@@ -164,7 +164,7 @@ namespace LegendOfZelda
                     enemy = new Trap(game);
                 }
                 enemy.X = (int)entry.Key.X;
-                enemy.Y = (int)entry.Key.Y;
+                enemy.Y = (int)entry.Key.Y + 120;
                 enemies.Add(enemy);
                 int rand = random.Next(0, 25);
                 if (enemy.item == null && !(enemy is Keese || enemy is Aquamentus))
@@ -271,13 +271,13 @@ namespace LegendOfZelda
                     item = new WoodSword();
                 }
                 item.X = (int)entry.Key.X;
-                item.Y = (int)entry.Key.Y;
+                item.Y = 120+(int)entry.Key.Y;
                 items.Add(item);
             }
             return items;
         }
 
-        public IList<IBlock> LoadBlocks(IRoom room)
+        public IList<IBlock> LoadBlocks(IDictionary<string, IDoor> doors)
         {
             IList<IBlock> blocks = new List<IBlock>();
             IDictionary<Vector2, string> blockInfo = parser.Blocks;
@@ -290,17 +290,18 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("MoveableBlockVertical"))
                 {
-                    block = new MoveableBlockVertical(room);
+                    block = new MoveableBlockVertical(doors);
                 }
                 else if (entry.Value.Equals("MoveableBlockLeft"))
                 {
-                    block = new MoveableBlockLeft(room);
+                    block = new MoveableBlockLeft(doors);
                 }
 
                 if (block != null)
                 {
                     block.X = (int)entry.Key.X;
-                    block.Y = (int)entry.Key.Y;
+                    block.Y = 120+(int)entry.Key.Y;
+                    
                     blocks.Add(block);
                 }
             }
@@ -311,13 +312,12 @@ namespace LegendOfZelda
         {
             Dictionary<String, IDoor> doors = new Dictionary<String, IDoor>();
             IDictionary<string, string> doorInfo = parser.Doors;
-            
+
             foreach (KeyValuePair<String, String> entry in doorInfo)
             {
                 IDoor door;
                 if (entry.Key.Equals("left"))
                 {
-
                     if (entry.Value.Equals("Wall"))
                     {
                         door = new LeftWall();
@@ -382,10 +382,10 @@ namespace LegendOfZelda
                     }
                     else
                     {
-                       door = new TopExploded();
+                        door = new TopExploded();
                     }
                 }
-                else 
+                else
                 {
                     if (entry.Value.Equals("Wall"))
                     {
@@ -430,7 +430,8 @@ namespace LegendOfZelda
                     npc = new Merchant();
                 }
                 npc.X = (int)entry.Key.X;
-                npc.Y = (int)entry.Key.Y;
+                npc.Y = 120+(int)entry.Key.Y;
+                
                 npcs.Add(npc);
             }
 

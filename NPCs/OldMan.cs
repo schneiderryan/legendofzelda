@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-	class OldMan : CollideableObject, INPC
+	class OldMan : NPC
 	{
 		private ISprite sprite;
 		public bool damaged;
@@ -21,7 +21,7 @@ namespace LegendOfZelda
 			attackTimer = 50;
 		}
 
-		public void Update()
+		public override void Update()
 		{
 			if(game.OldManDamaged)
 			{
@@ -39,7 +39,7 @@ namespace LegendOfZelda
 			sprite.Update();
 		}
 
-		public void Draw(SpriteBatch spriteBatch, Color color)
+		public override  void Draw(SpriteBatch spriteBatch, Color color)
 		{
 			Color hurt1 = new Color(83, 68, 198);
 			if (damaged)

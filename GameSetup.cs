@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
+
 
 namespace LegendOfZelda
 {
@@ -8,46 +8,47 @@ namespace LegendOfZelda
     {
         public static IController CreatePlayerKeysController(IPlayer player)
         {
-            Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
+            KeyboardController controller = new KeyboardController();
+            ICommand cmd;
 
-            ICommand cmd = new PlayerMoveLeftCommand(player);
-            keyBinds.Add(Keys.Left, cmd);
-            keyBinds.Add(Keys.A, cmd);
+            cmd = new PlayerMoveLeftCommand(player);
+            controller.Register(Keys.Left, cmd);
+            controller.Register(Keys.A, cmd);
 
             cmd = new PlayerMoveRightCommand(player);
-            keyBinds.Add(Keys.Right, cmd);
-            keyBinds.Add(Keys.D, cmd);
+            controller.Register(Keys.Right, cmd);
+            controller.Register(Keys.D, cmd);
 
             cmd = new PlayerMoveUpCommand(player);
-            keyBinds.Add(Keys.Up, cmd);
-            keyBinds.Add(Keys.W, cmd);
+            controller.Register(Keys.Up, cmd);
+            controller.Register(Keys.W, cmd);
 
             cmd = new PlayerMoveDownCommand(player);
-            keyBinds.Add(Keys.Down, cmd);
-            keyBinds.Add(Keys.S, cmd);
-
-            cmd = new PlayerAttackCommand(player);
-            keyBinds.Add(Keys.Z, cmd);
-            keyBinds.Add(Keys.N, cmd);
-
-            cmd = new PlayerUseThrowingSwordCommand(player);
-            keyBinds.Add(Keys.D1, cmd);
-            keyBinds.Add(Keys.NumPad1, cmd);
-
-            cmd = new PlayerUseArrowCommand(player);
-            keyBinds.Add(Keys.D2, cmd);
-            keyBinds.Add(Keys.NumPad2, cmd);
-
-            cmd = new PlayerUseBoomerangCommand(player);
-            keyBinds.Add(Keys.D3, cmd);
-            keyBinds.Add(Keys.NumPad3, cmd);
-
-            cmd = new PlayerUseBombCommand(player);
-            keyBinds.Add(Keys.D4, cmd);
-            keyBinds.Add(Keys.NumPad4, cmd);
+            controller.Register(Keys.Down, cmd);
+            controller.Register(Keys.S, cmd);
 
             cmd = new PlayerStillCommand(player);
-            keyBinds.Add(Keys.None, cmd);
+            controller.Register(Keys.None, cmd);
+
+            cmd = new PlayerAttackCommand(player);
+            controller.Register(Keys.Z, cmd, KeyboardController.Priority.HIGH);
+            controller.Register(Keys.N, cmd, KeyboardController.Priority.HIGH);
+
+            cmd = new PlayerUseThrowingSwordCommand(player);
+            controller.Register(Keys.D1, cmd, KeyboardController.Priority.HIGH);
+            controller.Register(Keys.NumPad1, cmd, KeyboardController.Priority.HIGH);
+
+            cmd = new PlayerUseArrowCommand(player);
+            controller.Register(Keys.D2, cmd, KeyboardController.Priority.HIGH);
+            controller.Register(Keys.NumPad2, cmd, KeyboardController.Priority.HIGH);
+
+            cmd = new PlayerUseBoomerangCommand(player);
+            controller.Register(Keys.D3, cmd, KeyboardController.Priority.HIGH);
+            controller.Register(Keys.NumPad3, cmd, KeyboardController.Priority.HIGH);
+
+            cmd = new PlayerUseBombCommand(player);
+            controller.Register(Keys.D4, cmd, KeyboardController.Priority.HIGH);
+            controller.Register(Keys.NumPad4, cmd, KeyboardController.Priority.HIGH);
 
             List<Keys> attackKeys = new List<Keys>()
             {
@@ -56,22 +57,33 @@ namespace LegendOfZelda
             };
             player.RegisterAttackKeys(attackKeys);
 
-            return new KeyboardController(keyBinds);
+            return controller;
+        }
+
+        public static IController RoomController(LegendOfZelda game)
+        {
+            ICommand cmdRight = new SwapRoomCommand(game, "next");
+            ICommand cmdLeft = new SwapRoomCommand(game, "previous");
+            ICommand cmdUp = new SwapRoomCommand(game, "up");
+            ICommand cmdDown = new SwapRoomCommand(game, "down");
+            return new RoomController(game);
         }
 
         public static IController CreateGeneralKeysController(LegendOfZelda game)
         {
-            Dictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
-
+            KeyboardController controller = new KeyboardController();
             ICommand cmd;
 
             cmd = new ResetCommand(game);
-            keyBinds.Add(Keys.R, cmd);
+            controller.Register(Keys.R, cmd);
 
             cmd = new QuitCommand(game);
-            keyBinds.Add(Keys.Q, cmd);
+            controller.Register(Keys.Q, cmd);
 
-            return new SlowKeyboardController(keyBinds);
+            cmd = new PauseGameCommand(game);
+            controller.Register(Keys.P, cmd);
+
+            return controller;
         }
 
         public static IList<IRoom> GenerateRoomList(LegendOfZelda game)

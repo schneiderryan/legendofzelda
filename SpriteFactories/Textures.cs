@@ -27,6 +27,12 @@ namespace LegendOfZelda
 
         private static Texture2D StartMenu;
         private static Texture2D WinCurtain;
+        private static Texture2D HUD;
+        private static Texture2D HUDBackground;
+        private static Texture2D HUDContents;
+        private static Texture2D Fonts;
+        private static Texture2D FontsTransparent;
+        private static Texture2D Map;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -49,8 +55,14 @@ namespace LegendOfZelda
             dungeon = contentManager.Load<Texture2D>("dungeon");
             tiles = contentManager.Load<Texture2D>("tiles");
 
+            HUD = contentManager.Load<Texture2D>("HUDbackgroundnew");
+            HUDBackground = contentManager.Load<Texture2D>("HUDbackground");
             StartMenu = contentManager.Load<Texture2D>("StartMenu");
             WinCurtain = contentManager.Load<Texture2D>("winCurtain");
+            HUDContents = contentManager.Load<Texture2D>("hudSpriteSheet");
+            Fonts = contentManager.Load<Texture2D>("fonts");
+            FontsTransparent = contentManager.Load<Texture2D>("fontskindatransparent");
+            Map = contentManager.Load<Texture2D>("mapstuff");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -60,6 +72,38 @@ namespace LegendOfZelda
         {
             return misc;
         }
+
+        public static Texture2D GetHUD()
+        {
+            return HUD;
+        }
+
+        public static Texture2D GetHUDBackground()
+        {
+
+            return HUDBackground;
+        }
+
+        public static Texture2D GetHUDContents()
+        {
+            return HUDContents;
+        }
+
+        public static Texture2D GetFonts()
+        {
+            return Fonts;
+        }
+
+        public static Texture2D GetTransparentFonts()
+        {
+            return FontsTransparent;
+        }
+
+        public static Texture2D GetMap()
+        {
+            return Map;
+        }
+
         public static Texture2D GetRoomSheet()
         {
             return rooms;

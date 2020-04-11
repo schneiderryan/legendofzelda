@@ -5,9 +5,11 @@ namespace LegendOfZelda
 {
     class PlayerProjectileCollision : CharacterProjectileCollision
     {
+
         public PlayerProjectileCollision(IProjectileManager manager, IPlayer player,
                 IProjectile projectile, in Rectangle collision)
             : base (manager, player, projectile, collision)
+
         {
             // nothing needed
         }

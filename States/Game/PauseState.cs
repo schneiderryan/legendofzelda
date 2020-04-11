@@ -1,15 +1,23 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda
 {
     class PauseState : IGameState
     {
         private LegendOfZelda game;
+        private Texture2D HUD;
+        private Texture2D HUDBackground;
+        private PauseMessage pausemessage;
         public PauseState(LegendOfZelda game)
         {
+            this.HUD = Textures.GetHUD();
+            this.HUDBackground = Textures.GetHUDBackground();
             this.game = game;
+            pausemessage = new PauseMessage(this.game);
+         
         }
 
         public void ToStart()
@@ -60,11 +68,19 @@ namespace LegendOfZelda
         public void Update()
         {
             //Figure out later
+            game.mouse.Update();
+            game.keyboard.Update();
         }
 
         public void Draw()
         {
-
+            game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
+            game.link.Draw(game.spriteBatch, Color.White);
+            game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
+            game.ProjectileManager.Draw(game.spriteBatch, Color.White);
+            game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.Black);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
+            pausemessage.Draw();
         }
     }
 }
