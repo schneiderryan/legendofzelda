@@ -17,7 +17,7 @@ namespace LegendOfZelda
             
             this.game = game;
             StartMenu = Textures.GetStartMenu();
-            game.keyboard = GameSetup.CreateGeneralKeysController(game);
+            game.keyboard = GameSetup.CreateSinglePressKeysController(game);
             counter = 0;
             delay = 13;
         }

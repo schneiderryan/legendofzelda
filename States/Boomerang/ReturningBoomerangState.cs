@@ -17,12 +17,12 @@ namespace LegendOfZelda
             int dy = boom.source.Center.Y - boom.Hitbox.Center.Y;
 
             boom.VX = (Math.Abs(dx) > boom.Hitbox.Width) ?
-                SignOrZero(dx) * (boom.velocity - Math.Abs(boom.VY) / 2)
+                Util.SignOrZero(dx) * (boom.velocity - Math.Abs(boom.VY) / 2)
                 :
                 0;
 
             boom.VY = (Math.Abs(dy) > boom.Hitbox.Height) ?
-                SignOrZero(dy) * (boom.velocity - Math.Abs(boom.VX) / 2)
+                Util.SignOrZero(dy) * (boom.velocity - Math.Abs(boom.VX) / 2)
                 :
                 0;
 
@@ -31,11 +31,5 @@ namespace LegendOfZelda
                 boom.state = new PocketBoomerangState(boom);
             }
         }
-
-        private int SignOrZero(int a)
-        {
-            return (a + 1) % 2 + (a % 2);
-        }
-
     }
 }

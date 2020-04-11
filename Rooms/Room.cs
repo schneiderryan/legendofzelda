@@ -76,7 +76,7 @@ namespace LegendOfZelda
 
             this.Doors = levelLoader.LoadDoors();
             this.Blocks = levelLoader.LoadBlocks(Doors);
-            this.Enemies = levelLoader.LoadEnemies();
+            this.Enemies = levelLoader.LoadEnemies(Doors);
             this.Items = levelLoader.LoadItems();
             this.NPCs = levelLoader.LoadNPCs();
             
