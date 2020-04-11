@@ -9,6 +9,7 @@ namespace LegendOfZelda
     {
         private RoomParser parser;
         private LegendOfZelda game;
+        private Random random = new Random();
 
         public RoomLoader(string level, LegendOfZelda game)
         {
@@ -88,7 +89,37 @@ namespace LegendOfZelda
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y + 120;
                 enemies.Add(enemy);
+                int rand = random.Next(0, 25);
+                if (enemy.item == null && !(enemy is Keese || enemy is Aquamentus))
+                {
+                    if (0 <= rand && rand <= 8)
+                    {
+                        enemy.item = new Rupee();
+                    }
+                    else if (9 <= rand && rand <= 12)
+                    {
+                        enemy.item = new Heart();
+                    }
+                    else if (rand == 14)
+                    {
+                        enemy.item = new Clock(game);
+                    }
+                    else if (rand == 15)
+                    {
+                        enemy.item = new Fairy();
+                    }
+                    else if (rand == 20)
+                    {
+                        enemy.item = new BlueRupee();
+                    }
+                    else if (16 <= rand && rand <= 26 && enemy is Goriya)
+                    {
+                        enemy.item = new Bomb();
+                    }
+
+                }
             }
+        
             return enemies;
         }
 
