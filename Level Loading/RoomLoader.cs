@@ -26,7 +26,7 @@ namespace LegendOfZelda
             return background;
         }
 
-        public ISet<IEnemy> LoadEnemies()
+        public ISet<IEnemy> LoadEnemies(IDictionary<string, IDoor> doors)
         {
             ISet<IEnemy> enemies = new HashSet<IEnemy>();
             IDictionary<Vector2, string> enemyInfo = parser.Enemies;
@@ -35,7 +35,7 @@ namespace LegendOfZelda
                 IEnemy enemy;
                 if (entry.Value.Equals("Aquamentus"))
                 {
-                    enemy = new Aquamentus(this.game);
+                    enemy = new Aquamentus(doors, game.ProjectileManager, game.link);
                 }
                 else if (entry.Value.Equals("Gel"))
                 {

@@ -47,7 +47,6 @@ namespace LegendOfZelda
             foreach (IProjectile projectile in projectiles)
             {
                 projectile.Draw(sb, color);
-                Debug.DrawHitbox(sb, projectile.Hitbox);
             }
             foreach (IDespawnEffect effect in effects)
             {

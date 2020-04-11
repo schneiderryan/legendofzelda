@@ -3,14 +3,43 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    abstract class Projectile : CollideableObject, IProjectile
+    abstract class Projectile : IProjectile
     {
-        public int VX { get; set; }
-        public int VY { get; set; }
+        public double VX { get; set; }
+        public double VY { get; set; }
         public Team OwningTeam { get; set; }
         public abstract double Damage { get; }
 
+        public Rectangle Hitbox
+        {
+            get => hitbox;
+            protected set => hitbox = value;
+        }
+
+        public int X
+        {
+            get => hitbox.X;
+            set
+            {
+                x = value;
+                hitbox.X = value;
+            }
+        }
+
+        public int Y
+        {
+            get => hitbox.Y;
+            set
+            {
+                y = value;
+                hitbox.Y = value;
+            }
+        }
+
         protected ISprite sprite;
+        private Rectangle hitbox;
+        private double x;
+        private double y;
 
         public Projectile(string direction, int x, int y,
                 int initialVel = 8, Team team = Team.Enemy)
@@ -49,10 +78,21 @@ namespace LegendOfZelda
             }
         }
 
+        public Projectile(int x, int y, double vx, double vy, Team team = Team.Enemy)
+        {
+            OwningTeam = team;
+            X = x;
+            Y = y;
+            VX = vx;
+            VY = vy;
+        }
+
         public virtual void Update()
         {
-            X += VX;
-            Y += VY;
+            x += VX;
+            y += VY;
+            hitbox.X = (int)x;
+            hitbox.Y = (int)y;
             sprite.Position = new Point(X, Y);
             sprite.Update();
         }

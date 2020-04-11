@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -7,18 +8,21 @@ namespace LegendOfZelda
     {
         private IEnemy fire;
         private ICollection<IProjectile> projectileManager;
-        private string dir;
+        private IPlayer player;
 
-        public ShootFireballCommand(ICollection<IProjectile> projectileManager, IEnemy fire, string dir)
+        public ShootFireballCommand(ICollection<IProjectile> projectileManager,
+                IEnemy fire, IPlayer player)
         {
             this.projectileManager = projectileManager;
             this.fire = fire;
-            this.dir = dir;
+            this.player = player;
         }
 
         public void Execute()
         {
-            projectileManager.Add(new FireballProjectile(dir, fire.X, fire.Y));
+            Vector2 v = Util.VelocityVectorToTarget(player.Center, fire.Center, 3.5f);
+            projectileManager.Add(new FireballProjectile(fire.Center.X,
+                    fire.Center.Y, v.X, v.Y));
         }
 
     }

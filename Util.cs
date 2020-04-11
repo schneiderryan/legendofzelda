@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 
 namespace LegendOfZelda
@@ -28,6 +29,19 @@ namespace LegendOfZelda
                 toBeCentered.X = origin.Left - toBeCentered.Hitbox.Width;
                 toBeCentered.Y = origin.Center.Y - toBeCentered.Hitbox.Height / 2;
             }
+        }
+
+        public static int SignOrZero(int a)
+        {
+            return (a + 1) % 2 + (a % 2);
+        }
+
+        public static Vector2 VelocityVectorToTarget(Point source, Point target, float velocity)
+        {
+            int dx = target.X - source.X;
+            int dy = target.Y - source.Y;
+            float lower = (float)Math.Sqrt(dx * dx + dy * dy);
+            return new Vector2(velocity * dx / lower, velocity * dy / lower);
         }
     }
 }

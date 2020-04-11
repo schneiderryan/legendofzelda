@@ -4,12 +4,12 @@ namespace LegendOfZelda
 {
     abstract class RandomMovingEnemy : Enemy
     {
-        protected int currentStep;
+        protected RandomEnemyController controller;
 
+        private int currentStep;
         private int stepsToTake;
         private readonly int maxRandomSteps;
         private Random randomStep;
-        private RandomEnemyController controller;
 
         public RandomMovingEnemy(int maxRandomSteps = 150)
         {
