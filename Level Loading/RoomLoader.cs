@@ -60,6 +60,10 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("Stalfo"))
                 {
                     enemy = new Stalfo();
+                    if (enemies.Count == 1 && (RoomNumber() == 2 || RoomNumber() == 12))
+                    {
+                        enemy.item = new Key();
+                    }
                 }
                 else if (entry.Value.Equals("Snake"))
                 {
