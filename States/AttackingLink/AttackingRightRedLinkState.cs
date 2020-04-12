@@ -10,11 +10,6 @@ namespace LegendOfZelda
             link.Sprite = PlayerSpriteFactory.Instance.CreateRedRightAttackingLinkSprite();
         }
 
-        public override void Attack()
-        {
-            this.link.UseProjectile(new SwordProjectile("right", this.link.X, this.link.Y));
-        }
-
         public override void Update()
         {
             if (attackTimer > 0)

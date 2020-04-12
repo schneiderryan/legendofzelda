@@ -12,8 +12,10 @@ namespace LegendOfZelda
         double currentHearts { get; set; }
         int VX { get; set; }
         int VY { get; set; }
+        Item item { get; set; }
         void Draw(SpriteBatch spriteBatch, Color color);
         void Die();
         void Spawn();
+        void DropItem();
     }
 }

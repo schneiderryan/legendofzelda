@@ -30,9 +30,14 @@ namespace LegendOfZelda
 
         public void Handle()
         {
-            if (door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen || door.Value is RightOpen)
+            if (door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen
+                || door.Value is RightOpen || door.Value is TopExploded || door.Value is BottomExploded
+                || door.Value is LeftExploded || door.Value is RightExploded)
             {
-                HandleEdge(player, door.Value, collision, game);
+                if (door.Value.Hitbox.Contains(player.Hitbox))
+                {
+                    HandleEdge(player, door.Value, game);
+                }
             }
             else
             {
@@ -93,30 +98,31 @@ namespace LegendOfZelda
             }
         }
 
-        public void HandleEdge(IPlayer player, IDoor door, Rectangle collision, LegendOfZelda game)
+        public void HandleEdge(IPlayer player, IDoor door, LegendOfZelda game)
         {
             cmdRight = new SwapRoomCommand(game, "next");
             cmdLeft = new SwapRoomCommand(game, "previous");
             cmdUp = new SwapRoomCommand(game, "up");
             cmdDown = new SwapRoomCommand(game, "down");
+            const int margin = 8;
 
             //change rooms based on door collision
-            if (door is TopOpen)
+            if ((door is TopOpen || door is TopExploded) && player.Hitbox.Top - door.Hitbox.Top < margin)
             {
                 cmdUp.Execute();
                 player.Y = 400;
             }
-            if (door is BottomOpen)
+            if ((door is BottomOpen || door is BottomExploded) && door.Hitbox.Bottom - player.Hitbox.Bottom < margin)
             {
                 cmdDown.Execute();
                 player.Y = 180;
             }
-            if (door is LeftOpen)
+            if ((door is LeftOpen || door is LeftExploded) && player.Hitbox.Left - door.Hitbox.Left < margin)
             {
                 cmdLeft.Execute();
                 player.X = 417;
             }
-            if (door is RightOpen)
+            if ((door is RightOpen || door is RightExploded) && door.Hitbox.Right - player.Hitbox.Right < margin)
             {
                 game.state = new ChangeRoomState("right", game);
                 player.X = 60;

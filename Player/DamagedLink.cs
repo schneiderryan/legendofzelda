@@ -176,11 +176,6 @@ namespace LegendOfZelda
             InnerLink.UseProjectile(projectile);
         }
 
-        public void RegisterAttackKeys(List<Keys> attackKeys)
-        {
-            InnerLink.RegisterAttackKeys(attackKeys);
-        }
-
         public bool IsAttacking()
         {
             return InnerLink.IsAttacking();

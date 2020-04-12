@@ -13,7 +13,7 @@ namespace LegendOfZelda
 
         public IList<IRoom> rooms;
         public int roomIndex;
-
+        public bool OldManDamaged { get; set; }
         public IPlayer link;
 
         public IProjectileManager ProjectileManager { get; set; }
