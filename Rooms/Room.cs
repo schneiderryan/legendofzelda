@@ -26,16 +26,17 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>
                 {
-                    new Rectangle(0, 0, 94, 190),
-                    new Rectangle(0, 190, 64, 130),
-                    new Rectangle(62, 256, 448, 64),
-                    new Rectangle(130, 2, 376, 142),
-                    new Rectangle(448, 106, 64, 150),
-                    new Rectangle(62, 192, 30, 47),
-                    new Rectangle(130, 192, 222, 47),
-                    new Rectangle(386, 164, 64, 77),
-                    new Rectangle(130, 144, 92, 48),
-                    new Rectangle(130, 160, 222, 32),
+                    new Rectangle(94, 100, 64,5),
+                    new Rectangle(0, 120, 94, 190),
+                    new Rectangle(0, 310, 64, 130),
+                    new Rectangle(62, 376, 448, 64),
+                    new Rectangle(130, 122, 376, 142),
+                    new Rectangle(448, 226, 64, 150),
+                    new Rectangle(62, 312, 30, 47),
+                    new Rectangle(130, 312, 222, 47),
+                    new Rectangle(386, 284, 64, 77),
+                    new Rectangle(130, 264, 92, 48),
+                    new Rectangle(130, 280, 222, 32),
                 };
             }
             else

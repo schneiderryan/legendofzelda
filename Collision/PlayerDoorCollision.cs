@@ -118,7 +118,7 @@ namespace LegendOfZelda
             }
             if (door is RightOpen)
             {
-                cmdRight.Execute();
+                game.state = new ChangeRoomState("right", game);
                 player.X = 60;
 
             }

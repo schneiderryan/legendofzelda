@@ -65,7 +65,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            
+            System.Diagnostics.Debug.WriteLine("x: " + game.link.X + "\n y: " + game.link.Y);
             game.mouse.Update();
             game.keyboard.Update();
             game.playerKeyboard.Update();

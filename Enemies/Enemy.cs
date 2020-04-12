@@ -93,6 +93,7 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
+            
             if (!hasSpawned && !isSpawning)
             {
                 TempSprite = this.Sprite;
@@ -139,6 +140,7 @@ namespace LegendOfZelda
 
         public virtual void TakeDamage(double amount)
         {
+            
             Sounds.GetEnemyHurtSound().Play();
             isBeingAttacked = true;
             currentHearts -= amount;

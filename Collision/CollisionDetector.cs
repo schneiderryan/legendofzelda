@@ -43,7 +43,7 @@ namespace LegendOfZelda
             {
                 if (player.Footbox.Intersects(wall))
                 {
-                    collisions.Add(new PlayerWallCollision(player, wall));
+                    collisions.Add(new PlayerWallCollision(player, wall, game));
                 }
             }
 
@@ -51,7 +51,7 @@ namespace LegendOfZelda
             {
                 if (player.Footbox.Intersects(block.Hitbox))
                 {
-                    collisions.Add(new PlayerBlockCollision(room.Doors, player, block));
+                    collisions.Add(new PlayerBlockCollision(room.Doors, player, block, game));
                 }
             }
 
@@ -74,11 +74,11 @@ namespace LegendOfZelda
             }
 
             foreach (INPC npc in room.NPCs)
-            {
+            {  
                 Rectangle collision = Rectangle.Intersect(npc.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
                 {
-                    collisions.Add(new PlayerWallCollision(player, collision));
+                    collisions.Add(new PlayerWallCollision(player, collision, game));
                 }
             }
 
@@ -228,7 +228,7 @@ namespace LegendOfZelda
                         collisions.Add(new WallProjectileCollision(projectileManager, projectile, collision));
                     }
                 }
-
+                 
                 // takes care of case where goriya dies b4 boomerang returns
                 if ((projectile is BoomerangProjectile)
                     && (projectile as BoomerangProjectile).Returned)
