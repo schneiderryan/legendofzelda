@@ -17,7 +17,6 @@ namespace LegendOfZelda
         public IPlayer link;
 
         public IProjectileManager ProjectileManager { get; set; }
-
         public GraphicsDeviceManager graphics;
 
         public IController mouse;
@@ -50,12 +49,11 @@ namespace LegendOfZelda
             this.Window.Title = "The Legend of Zelda";
             state = new StartMenuState(this);
             hud = new HeadsUpDisplay(this);
+            ProjectileManager = new ProjectileManager();
         }
 
         protected override void LoadContent()
         {
-            
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content, GraphicsDevice);
             Sounds.LoadAllSounds(Content);

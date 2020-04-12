@@ -60,16 +60,6 @@ namespace LegendOfZelda
             return new Sprite(Textures.GetItemSheet(),
                     new Rectangle(136, 0, 8, 14));
         }
-
-        public static ISprite GetExplodingBomb()
-        {
-            return new AnimateOnceSprite(Textures.GetWeaponSheet(),
-                new Rectangle(138, 203, 16, 16), 4)
-            {
-                AnimationDelay = 20,
-                Scale = 2
-            };
-        }
         
         public static ISprite GetBoomerang()
         {
