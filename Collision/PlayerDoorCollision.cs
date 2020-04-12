@@ -124,7 +124,7 @@ namespace LegendOfZelda
             }
             if ((door is RightOpen || door is RightExploded) && door.Hitbox.Right - player.Hitbox.Right < margin)
             {
-                cmdRight.Execute();
+                game.state = new ChangeRoomState("right", game);
                 player.X = 60;
 
             }

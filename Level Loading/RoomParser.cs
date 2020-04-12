@@ -73,6 +73,7 @@ namespace LegendOfZelda
 
             this.possibleBlocks = new List<string>()
             {
+                "Stair",
                 "Block",
                 "MoveableBlockVertical",
                 "MoveableBlockLeft",
