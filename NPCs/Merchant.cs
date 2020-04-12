@@ -26,5 +26,10 @@ namespace LegendOfZelda
 		{
 			sprite.Draw(spriteBatch, color);
 		}
+
+		public void TakeDamage()
+		{
+
+		}
 	}
 }

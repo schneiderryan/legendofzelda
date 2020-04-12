@@ -22,9 +22,7 @@ namespace LegendOfZelda
         {
             IEnemy enemy = character as IEnemy;
 
-
-            if(!(enemy is Trap) && !(enemy is Fire))
-
+            if(!(enemy is Trap) /*&& !(enemy is Fire)*/)
             {
                 HandleProjectileCollision();
                 if ((projectile.OwningTeam == enemy.Team)
