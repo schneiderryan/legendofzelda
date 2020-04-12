@@ -30,7 +30,6 @@ namespace LegendOfZelda
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {
-            door.Scale = 2.0f;
             door.Draw(sb, color);
         }
         
