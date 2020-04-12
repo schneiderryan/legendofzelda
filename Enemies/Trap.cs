@@ -29,7 +29,7 @@ namespace LegendOfZelda
 			game = loz;
 			BeStill();
 			currentHearts = 1;
-			roommidheight = 156;
+			roommidheight = 276;
 			roommidwidth = 240;
 		}
 		public void ChaseRight()
