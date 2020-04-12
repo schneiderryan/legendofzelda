@@ -13,7 +13,6 @@ namespace LegendOfZelda
         private int x;
         private int y;
         private int itemTimer;
-        private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
         private Rectangle attackBoxLeft;
@@ -63,7 +62,7 @@ namespace LegendOfZelda
                 attackBoxRight.Y += value - hitbox.Y;
                 attackBoxDown.Y += value - hitbox.Y;
                 attackBoxUp.Y += value - hitbox.Y;
-                footbox.Y = value + Sprite.Box.Height - footbox.Height;
+                footbox.Y = value + hitbox.Height - footbox.Height;
                 hitbox.Y = value;
                 y = value;
             }
