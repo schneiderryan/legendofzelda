@@ -7,51 +7,68 @@ namespace LegendOfZelda
     {
         private IPlayer player;
         private Rectangle collision;
+        private IEnemy enemy;
+        private LegendOfZelda game;
         private const double BUMP_DAMAGE = 0.5;
 
-        public PlayerEnemyCollision(IPlayer player, in Rectangle collision)
+        public PlayerEnemyCollision(IPlayer player, in Rectangle collision, IEnemy enemy, LegendOfZelda game)
         {
             this.player = player;
             this.collision = collision;
+            this.enemy = enemy;
+            this.game = game;
         }
 
         public void Handle()
         {
-            if (collision.Width > collision.Height)
+            if (this.enemy is LFWallmaster)
             {
-                if (collision.Y == player.Hitbox.Y)
-                {
-                    if (!player.Direction.Equals("up") || !player.IsAttacking())
-                    {
-                        player.TakeDamage(BUMP_DAMAGE);
-                        player.Knockback(0, CollideableObject.KNOCKBACK);
-                    }
-                }
-                else
-                {
-                    if (!player.Direction.Equals("down") || !player.IsAttacking())
-                    {
-                        player.TakeDamage(BUMP_DAMAGE);
-                        player.Knockback(0, -CollideableObject.KNOCKBACK);
-                    }
-                }
+                enemy.State = new DraggingLFWallmasterState(enemy, player, game);
+                player.BeStill();
+            }
+            else if (this.enemy is RFWallmaster)
+            {
+                enemy.State = new DraggingRFWallmasterState(enemy, player, game);
+                player.BeStill();
             }
             else
             {
-                if (collision.X == player.Hitbox.X)
+                if (collision.Width > collision.Height)
                 {
-                    if (!player.Direction.Equals("left") || !player.IsAttacking())
+                    if (collision.Y == player.Hitbox.Y)
                     {
-                        player.TakeDamage(BUMP_DAMAGE);
-                        player.Knockback(CollideableObject.KNOCKBACK, 0);
+                        if (!player.Direction.Equals("up") || !player.IsAttacking())
+                        {
+                            player.TakeDamage(BUMP_DAMAGE);
+                            player.Knockback(0, CollideableObject.KNOCKBACK);
+                        }
+                    }
+                    else
+                    {
+                        if (!player.Direction.Equals("down") || !player.IsAttacking())
+                        {
+                            player.TakeDamage(BUMP_DAMAGE);
+                            player.Knockback(0, -CollideableObject.KNOCKBACK);
+                        }
                     }
                 }
                 else
                 {
-                    if (!player.Direction.Equals("right") || !player.IsAttacking())
+                    if (collision.X == player.Hitbox.X)
                     {
-                        player.TakeDamage(BUMP_DAMAGE);
-                        player.Knockback(-CollideableObject.KNOCKBACK, 0);
+                        if (!player.Direction.Equals("left") || !player.IsAttacking())
+                        {
+                            player.TakeDamage(BUMP_DAMAGE);
+                            player.Knockback(CollideableObject.KNOCKBACK, 0);
+                        }
+                    }
+                    else
+                    {
+                        if (!player.Direction.Equals("right") || !player.IsAttacking())
+                        {
+                            player.TakeDamage(BUMP_DAMAGE);
+                            player.Knockback(-CollideableObject.KNOCKBACK, 0);
+                        }
                     }
                 }
             }
