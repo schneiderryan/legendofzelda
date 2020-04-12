@@ -1,43 +1,48 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+
 
 namespace LegendOfZelda
 {
 	class Aquamentus : RandomMovingEnemy
 	{
-		public bool Breathed { get; set; }
-		public LegendOfZelda game;
-
-		public int CurrentStep => currentStep;
+		public ICollection<IProjectile> projectiles;
+		public IPlayer player;
+		private IDictionary<string, IDoor> doors;
 		
-		public Aquamentus(LegendOfZelda game)
-			: base(10)
+		public Aquamentus(IDictionary<string, IDoor> doors,
+				ICollection<IProjectile> projectiles, IPlayer player)
+			: base(30)
 		{
-			this.game = game;
+			this.doors = doors;
+			this.projectiles = projectiles;
+			this.player = player;
 			Sprite = EnemySpriteFactory.Instance.CreateMovingAquamentusSprite();
 			Hitbox = Sprite.Box;
 			X = 400;
 			Y = 200;
 			Sprite.Position = new Point(X, Y);
-			State = new LeftMovingAquamentusState(this);
-			Breathed = false;
+			State = new NotBreathingAquamentusState(this);
+			controller.Directions = new ICommand[]
+			{
+				new EnemyMoveLeftCommand(this),
+				new EnemyMoveRightCommand(this),
+			};
 			currentHearts = 6;
 			attackTimer = 100;
 		}
 
 		public override void Die()
 		{
-			//Sounds.GetBossDefeatedSound().Play();
 			base.Die();
-			foreach (KeyValuePair<String, IDoor> door in game.rooms[game.roomIndex].Doors.ToList())
+			foreach (KeyValuePair<string, IDoor> door in doors.ToList())
 			{
 				if (door.Key == "right" && door.Value is RightOther)
 				{
+					doors.Remove("right");
+					doors.Add("right", new RightOpen());
 					Sounds.GetDoorUnlockSound().Play();
-					game.rooms[game.roomIndex].Doors.Remove("right");
-					game.rooms[game.roomIndex].Doors.Add("right", new RightOpen());
 				}
 			}
 		}

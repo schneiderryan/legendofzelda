@@ -9,14 +9,9 @@ namespace LegendOfZelda
 
         private IDictionary<Keys, (ICommand, Priority)> keyBinds;
 
-        private KeyboardState previousState;
-        private Keys[] previouskeys;
-
         public KeyboardController()
         {
             this.keyBinds = new Dictionary<Keys, (ICommand, Priority)>();
-            previousState = Keyboard.GetState();
-            previouskeys = previousState.GetPressedKeys();
         }
 
         public void Register(Keys key, ICommand cmd, Priority priority = Priority.NORMAL)
@@ -31,9 +26,9 @@ namespace LegendOfZelda
             LinkedList<ICommand> priorityList = new LinkedList<ICommand>();
             (ICommand, Priority) a;
 
-            if ((state.IsKeyDown(Keys.Z) && previousState.IsKeyDown(Keys.Z)) || (state.IsKeyDown(Keys.N) && previousState.IsKeyDown(Keys.N)))
+            foreach (Keys k in keys)
             {
-                if (keyBinds.TryGetValue(Keys.D1, out a) || keyBinds.TryGetValue(Keys.NumPad1, out a))
+                if (keyBinds.TryGetValue(k, out a))
                 {
                     if (a.Item2 == Priority.HIGH)
                     {
@@ -42,23 +37,6 @@ namespace LegendOfZelda
                     else
                     {
                         priorityList.AddLast(a.Item1);
-                    }
-                }
-            }
-            else
-            {
-                foreach (Keys k in keys)
-                {
-                    if (keyBinds.TryGetValue(k, out a))
-                    {
-                        if (a.Item2 == Priority.HIGH)
-                        {
-                            priorityList.AddFirst(a.Item1);
-                        }
-                        else
-                        {
-                            priorityList.AddLast(a.Item1);
-                        }
                     }
                 }
             }
@@ -72,9 +50,6 @@ namespace LegendOfZelda
             {
                 a.Item1.Execute();
             }
-
-            previousState = state;
-            previouskeys = previousState.GetPressedKeys();
         }
     }
 }

@@ -199,18 +199,6 @@
 /processorParam:Quality=Best
 /build:LOZ_Boss_Scream1.wav
 
-#begin loz_boss_sheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:loz_boss_sheet.png
-
 #begin LOZ_Door_Unlock.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -312,18 +300,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:misc.png
-
-#begin Room_bw.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Room_bw.png
 
 #begin rooms.png
 /importer:TextureImporter

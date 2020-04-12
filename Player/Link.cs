@@ -106,6 +106,10 @@ namespace LegendOfZelda
         public virtual void Attack()
         {
             Sounds.GetAttackSound().Play();
+            if(CurrentHearts >= MaxHearts)
+            {
+                UseProjectile(new SwordProjectile(this.Direction, this.X, this.Y));
+            }
             State.Attack();
         }
 
@@ -183,7 +187,7 @@ namespace LegendOfZelda
         {
             if (itemTimer == 0)
             {
-                itemTimer = 75;
+                itemTimer = 45;
                 Util.CenterRelativeToEdge(Sprite.Box, Direction, projectile);
                 game.ProjectileManager.Add(projectile);
                 State.FireProjectile();

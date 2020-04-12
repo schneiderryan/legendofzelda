@@ -1,18 +1,17 @@
-using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
+
 
 namespace LegendOfZelda
 {
     class RandomEnemyController : IController
     {
-        private ICommand[] directions;
+        public ICommand[] Directions { get; set; }
         private Random random = new Random();
         
 
         public RandomEnemyController(IEnemy enemy)
         {
-            directions = new ICommand[] { 
+            Directions = new ICommand[] { 
                 new EnemyMoveUpCommand(enemy),
                 new EnemyMoveDownCommand(enemy),
                 new EnemyMoveLeftCommand(enemy),
@@ -22,7 +21,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            directions[random.Next(0, 4)].Execute();
+            Directions[random.Next(0, Directions.Length)].Execute();
         }
     }
 }

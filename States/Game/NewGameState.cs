@@ -36,9 +36,9 @@ namespace LegendOfZelda
         private void GameInit()
         {
             game.link = new GreenLink(game);
-            game.playerKeyboard = GameSetup.CreatePlayerKeysController(game.link);
+            game.playerKeyboard = GameSetup.CreatePlayerMovementController(game.link);
             game.mouse = new MouseController(game);
-            game.keyboard = GameSetup.CreateGeneralKeysController(game);
+            game.keyboard = GameSetup.CreateSinglePressKeysController(game);
 
             game.ProjectileManager = new ProjectileManager();
 
