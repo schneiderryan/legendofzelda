@@ -84,6 +84,23 @@ namespace LegendOfZelda
                 {
                     collisions.Add(new PlayerWallCollision(player, collision, game));
                 }
+
+                if (npc.Hitbox.Intersects(player.LeftAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "left", game));
+                }
+                if (npc.Hitbox.Intersects(player.UpAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "up", game));
+                }
+                if (npc.Hitbox.Intersects(player.RightAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "right", game));
+                }
+                if (npc.Hitbox.Intersects(player.DownAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "down", game));
+                }
             }
 
             foreach (IProjectile projectile in projectileManager)
