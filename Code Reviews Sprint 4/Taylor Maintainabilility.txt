@@ -1,0 +1,12 @@
+﻿Taylor Benjamin
+4/12/20
+4
+DraggingRFWallmasterState.cs
+Will Bartlett
+10 minutes
+
+I believe that this class has good maintainability.  The main reason for this is because it extends an
+abstract class which implements most of the functionality needed for the wallmaster states.  All this class 
+needs to do then is simply override the update method.  This class is also maintainable because it doesn't
+rely on too many types and for the types that it does rely on, if the behavior of those types was wanted to
+be changed that would not have to happen in this class, it would have to happen in the other classes.
