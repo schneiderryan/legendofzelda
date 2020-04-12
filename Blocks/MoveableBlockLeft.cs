@@ -5,15 +5,22 @@ namespace LegendOfZelda
 {
     class MoveableBlockLeft : MoveableBlock
     {
+        private bool moved;
         public MoveableBlockLeft(IDictionary<string, IDoor> doors) : base(doors)
         {
-            // nothing needed
+            moved = false;
         }
 
         public override void MoveOnceLeft()
         {
-            Sounds.GetSecretSound().Play();
+            
+            
             State.MoveLeft();
+            if (!moved)
+            {
+                Sounds.GetSecretSound().Play();
+                moved = true;
+            }
         }
     }
 }

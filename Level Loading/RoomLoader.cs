@@ -208,9 +208,13 @@ namespace LegendOfZelda
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
                 IBlock block = null;
-                if (entry.Value.Equals("Block"))
+                if (entry.Value.Equals("Block")) 
                 {
                     block = new InvisibleBlock();
+                }
+                else if (entry.Value.Equals("Stair"))
+                {
+                    block = new InvisibleBlockStairs();
                 }
                 else if (entry.Value.Equals("MoveableBlockVertical"))
                 {
