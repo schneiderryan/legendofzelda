@@ -106,7 +106,7 @@ namespace LegendOfZelda
         public virtual void Attack()
         {
             Sounds.GetAttackSound().Play();
-            if(CurrentHearts >= MaxHearts)
+            if (MaxHearts - CurrentHearts < 0.01) // close enough to 0 for a double
             {
                 UseProjectile(new SwordProjectile(this.Direction, this.X, this.Y));
             }
@@ -194,21 +194,9 @@ namespace LegendOfZelda
             }
         }
 
-        public virtual void RegisterAttackKeys(List<Keys> attackKeys)
-        {
-            this.attackKeys = attackKeys;
-        }
-
         public virtual bool IsAttacking()
         {
-            foreach (Keys key in this.attackKeys)
-            {
-                if (Keyboard.GetState().IsKeyDown(key))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return State is AttackingGreenLinkState || State is AttackingRedLinkState;
         }
 
         protected void Initialize(LegendOfZelda game)

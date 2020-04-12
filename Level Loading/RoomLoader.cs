@@ -262,6 +262,8 @@ namespace LegendOfZelda
                     {
                         door = new LeftExploded();
                     }
+                    door.X = 0;
+                    door.Y = 264;
                 }
                 else if (entry.Key.Equals("right"))
                 {
@@ -285,6 +287,8 @@ namespace LegendOfZelda
                     {
                         door = new RightExploded();
                     }
+                    door.X = 448;
+                    door.Y = 265;
                 }
                 else if (entry.Key.Equals("up"))
                 {
@@ -308,6 +312,8 @@ namespace LegendOfZelda
                     {
                         door = new TopExploded();
                     }
+                    door.X = 224;
+                    door.Y = 120;
                 }
                 else
                 {
@@ -331,6 +337,8 @@ namespace LegendOfZelda
                     {
                         door = new BottomExploded();
                     }
+                    door.X = 224;
+                    door.Y = 408;
                 }
 
                 doors.Add(entry.Key, door);

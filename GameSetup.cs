@@ -30,13 +30,6 @@ namespace LegendOfZelda
             cmd = new PlayerStillCommand(player);
             controller.Register(Keys.None, cmd);
 
-            List<Keys> attackKeys = new List<Keys>()
-            {
-                Keys.Z,
-                Keys.N
-            };
-            player.RegisterAttackKeys(attackKeys);
-
             return controller;
         }
 

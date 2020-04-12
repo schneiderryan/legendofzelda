@@ -113,11 +113,6 @@ namespace LegendOfZelda
             link.PickupItem(item, time, twoHands);
         }
 
-        public void RegisterAttackKeys(List<Keys> attackKeys)
-        {
-            link.RegisterAttackKeys(attackKeys);
-        }
-
         public void TakeDamage(double amount)
         {
             this.link.TakeDamage(amount);
