@@ -10,11 +10,6 @@ namespace LegendOfZelda
             link.Sprite = PlayerSpriteFactory.Instance.CreateDownAttackingLinkSprite();
         }
 
-        public override void Attack()
-        {
-            this.link.UseProjectile(new SwordProjectile("down", this.link.X, this.link.Y));
-        }
-
         public override void Update()
         {
             if (attackTimer > 0)

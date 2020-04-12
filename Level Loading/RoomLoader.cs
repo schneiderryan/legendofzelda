@@ -227,6 +227,7 @@ namespace LegendOfZelda
                     {
                         door = new LeftExploded();
                     }
+                    
                 }
                 else if (entry.Key.Equals("right"))
                 {

@@ -9,9 +9,8 @@ namespace LegendOfZelda
         public LeftKey()
         {
             door = RoomSpriteFactory.Instance.CreateLeftKey();
-
             door.Position = new Point(0, 264);
-
+            Hitbox = door.Box;
         }
 
 

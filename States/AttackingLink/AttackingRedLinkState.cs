@@ -17,5 +17,6 @@ namespace LegendOfZelda
         public override void MoveLeft() { }
         public override void BeStill() { }
         public override void FireProjectile() { }
+        public override void Attack() { }
     }
 }

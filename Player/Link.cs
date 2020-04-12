@@ -106,7 +106,7 @@ namespace LegendOfZelda
         public virtual void Attack()
         {
             Sounds.GetAttackSound().Play();
-            if(CurrentHearts >= MaxHearts)
+            if (MaxHearts - CurrentHearts < 0.01) // close enough to 0 for a double
             {
                 UseProjectile(new SwordProjectile(this.Direction, this.X, this.Y));
             }

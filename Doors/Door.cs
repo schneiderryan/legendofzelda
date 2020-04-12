@@ -4,10 +4,29 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    class Door : CollideableObject, IDoor
+    abstract class Door : CollideableObject, IDoor
     {
-        public ISprite door;
+        protected ISprite door;
 
+        public override int X
+        {
+            get => base.X;
+            set
+            {
+                base.X = value;
+                door.X = value;
+            }
+        }
+
+        public override int Y
+        {
+            get => base.Y;
+            set
+            {
+                base.Y = value;
+                door.Y = value;
+            }
+        }
 
         public virtual void Draw(SpriteBatch sb, Color color)
         {

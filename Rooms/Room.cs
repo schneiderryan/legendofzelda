@@ -105,6 +105,7 @@ namespace LegendOfZelda
                 {
                     door.Value.Draw(sb, color);
                 }
+                Debug.DrawHitbox(sb, door.Value.Hitbox);
             }
 
             foreach (IBlock b in Blocks)
