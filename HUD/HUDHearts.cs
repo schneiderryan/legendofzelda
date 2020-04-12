@@ -28,8 +28,7 @@ namespace LegendOfZelda
         private int halfY;
         private int emptyX;
         private int emptyY;
-        private IItem currentItem;
-        public bool timeToDraw;
+        private int offset;
 
 
 
@@ -83,13 +82,14 @@ namespace LegendOfZelda
                 }
                 numEmptyHearts = (int)game.link.MaxHearts - (numFullHearts + numHalfHearts);
             }
+            this.offset = game.hud.offset;
         }
 
         public void Draw()
         {
             currentInt = 0;
             currentX = initX;
-            currentY = initY;
+            currentY = offset + initY;
             while (currentInt < (numEmptyHearts + numFullHearts + numHalfHearts))
             {
                 if (currentInt < numFullHearts)

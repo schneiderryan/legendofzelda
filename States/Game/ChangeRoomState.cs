@@ -59,6 +59,16 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void OpenInventory()
+        {
+            //Nothing to do
+        }
+
+        public void CloseInventory()
+        {
+            //Nothing to do
+        }
+
         public void ResumeGame()
         {
             game.state = new PlayState(game);

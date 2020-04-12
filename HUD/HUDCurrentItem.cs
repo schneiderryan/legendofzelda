@@ -9,6 +9,7 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private IItem item;
+        private int offset;
         public HUDCurrentItem(LegendOfZelda game)
         {
             this.game = game;
@@ -17,6 +18,7 @@ namespace LegendOfZelda
         public void Update()
         {
             this.item = game.link.HeldItem;
+            this.offset = game.hud.offset;
         }
 
         public void Draw()
@@ -24,7 +26,7 @@ namespace LegendOfZelda
             if (this.item != null)
             {
                 this.item.X = 257;
-                this.item.Y = 55;
+                this.item.Y = offset + 55;
                 this.item.Draw(game.spriteBatch, Color.White);
             }
         }

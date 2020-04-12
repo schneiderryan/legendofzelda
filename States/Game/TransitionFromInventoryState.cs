@@ -4,51 +4,28 @@ using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
-    class NewGameState : IGameState
+    class TransitionFromInventoryState : IGameState
     {
         private LegendOfZelda game;
-        private Texture2D RightCurtain;
-        private Texture2D LeftCurtain;
-        private int rightPos;
-        private int leftPos;
-        private int CurtainWidth;
+        private int pos;
         private int CurtainHeight;
         private int updateTimer;
         private Texture2D HUD;
         private Texture2D HUDBackground;
-        public NewGameState(LegendOfZelda game)
+        private Texture2D Inventory;
+        public TransitionFromInventoryState(LegendOfZelda game)
         {
             MediaPlayer.Stop();
-            
+
             this.game = game;
             updateTimer = 1;
-            RightCurtain = Textures.GetWinCurtain();
-            LeftCurtain = Textures.GetWinCurtain();
-            rightPos = 0;
-            leftPos = game.GraphicsDevice.Viewport.Width / 2;
-            CurtainWidth = game.GraphicsDevice.Viewport.Width / 2;
+            pos = 0;
             CurtainHeight = game.GraphicsDevice.Viewport.Height;
             this.HUD = Textures.GetHUD();
             this.HUDBackground = Textures.GetHUDBackground();
-            GameInit();
+            this.Inventory = Textures.GetInventory();
+            game.hud.offset = 0;
         }
-
-        private void GameInit()
-        {
-            game.link = new GreenLink(game);
-            game.playerKeyboard = GameSetup.CreatePlayerKeysController(game.link);
-            game.mouse = new MouseController(game);
-            game.keyboard = GameSetup.CreateGeneralKeysController(game);
-
-            game.ProjectileManager = new ProjectileManager();
-
-            game.CollisionDetector = new CollisionDetector(game.ProjectileManager, game);
-
-            game.rooms = GameSetup.GenerateRoomList(game);
-            game.roomIndex = 1;
-            game.xRoom = 515;
-            game.yRoom = 826;
-    }
 
         public void ToStart()
         {
@@ -78,7 +55,7 @@ namespace LegendOfZelda
 
         public void CloseInventory()
         {
-            //Nothing to do
+            game.state = new PlayState(game);
         }
 
         public void ResumeGame()
@@ -109,18 +86,16 @@ namespace LegendOfZelda
         public void Update()
         {
 
-            if(rightPos > -CurtainWidth)
-
+            if (360 + pos > 0)
             {
-                rightPos -= 4;
-                leftPos += 4;
+                pos -= 6;
             }
             else
             {
-                game.PlayGame();
+                PlayGame();
             }
 
-            if(updateTimer > 0)
+            if (updateTimer > 0)
 
             {
                 game.rooms[game.roomIndex].Update();
@@ -136,9 +111,8 @@ namespace LegendOfZelda
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
-            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
-            game.spriteBatch.Draw(RightCurtain, new Rectangle(rightPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, RightCurtain.Width, RightCurtain.Height), Color.Black);
-            game.spriteBatch.Draw(LeftCurtain, new Rectangle(leftPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, LeftCurtain.Width, LeftCurtain.Height), Color.Black);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 360 + pos, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
+            game.spriteBatch.Draw(Inventory, new Rectangle(0, -40 + pos, 512, 400), new Rectangle(0, 0, 246, 176), Color.White);
         }
     }
 

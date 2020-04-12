@@ -33,6 +33,7 @@ namespace LegendOfZelda
         private static Texture2D Fonts;
         private static Texture2D FontsTransparent;
         private static Texture2D Map;
+        private static Texture2D Inventory;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -55,7 +56,7 @@ namespace LegendOfZelda
             dungeon = contentManager.Load<Texture2D>("dungeon");
             tiles = contentManager.Load<Texture2D>("tiles");
 
-            HUD = contentManager.Load<Texture2D>("HUDbackgroundnew");
+            HUD = contentManager.Load<Texture2D>("HUDbackgroundnewnew");
             HUDBackground = contentManager.Load<Texture2D>("HUDbackground");
             StartMenu = contentManager.Load<Texture2D>("StartMenu");
             WinCurtain = contentManager.Load<Texture2D>("winCurtain");
@@ -63,6 +64,7 @@ namespace LegendOfZelda
             Fonts = contentManager.Load<Texture2D>("fonts");
             FontsTransparent = contentManager.Load<Texture2D>("fontskindatransparent");
             Map = contentManager.Load<Texture2D>("mapstuff");
+            Inventory = contentManager.Load<Texture2D>("inventory");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -102,6 +104,11 @@ namespace LegendOfZelda
         public static Texture2D GetMap()
         {
             return Map;
+        }
+
+        public static Texture2D GetInventory()
+        {
+            return Inventory;
         }
 
         public static Texture2D GetRoomSheet()

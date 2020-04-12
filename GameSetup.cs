@@ -83,6 +83,9 @@ namespace LegendOfZelda
             cmd = new PauseGameCommand(game);
             controller.Register(Keys.P, cmd);
 
+            cmd = new InventoryTransitionCommand(game);
+            controller.Register(Keys.I, cmd);
+
             return controller;
         }
 
