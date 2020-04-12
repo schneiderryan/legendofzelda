@@ -38,8 +38,10 @@ namespace LegendOfZelda
 
         public static Vector2 VelocityVectorToTarget(Point source, Point target, float velocity)
         {
-            int dx = target.X - source.X;
-            int dy = target.Y - source.Y;
+            //int dx = target.X - source.X;
+            int dx = source.X - target.X;
+            //int dy = target.Y - source.Y;
+            int dy = source.Y - target.Y;
             float lower = (float)Math.Sqrt(dx * dx + dy * dy);
             return new Vector2(velocity * dx / lower, velocity * dy / lower);
         }
