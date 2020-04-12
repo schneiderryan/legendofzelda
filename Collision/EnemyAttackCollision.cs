@@ -9,7 +9,6 @@ namespace LegendOfZelda
         private IEnemy enemy;
         private IPlayer player;
         private string attackDirection;
-        private IRoom room;
 
         public EnemyAttackCollision(ICollection<IEnemy> enemies, IEnemy enemy,
                 IPlayer player, string attackDirection)
@@ -18,7 +17,6 @@ namespace LegendOfZelda
             this.enemy = enemy;
             this.player = player;
             this.attackDirection = attackDirection;
-            this.room = room;
         }
 
         public void Handle()

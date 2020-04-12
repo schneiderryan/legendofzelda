@@ -1,0 +1,11 @@
+﻿Taylor Benjamin
+4/12/20
+4
+DraggingRFWallmasterState.cs
+Will Bartlett
+10 minutes
+
+This class has overall good readability.  The one thing that may make it a little difficult to read is the 
+length of the update method.  This method performs a number of different tasks which can possibly make it a
+little difficult to understand what the method is doing.  Besides this however, the logic on the class is
+clear and easy to understand.
