@@ -89,7 +89,7 @@ namespace LegendOfZelda
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y + 120;
                 enemies.Add(enemy);
-                int rand = random.Next(0, 25);
+                int rand = random.Next(0, 22);
                 if (enemy.item == null && !(enemy is Keese || enemy is Aquamentus))
                 {
                     if (0 <= rand && rand <= 8)

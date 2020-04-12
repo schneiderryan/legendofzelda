@@ -47,7 +47,7 @@ namespace LegendOfZelda
 							dir = "leftdown";
 						}
 					}
-					ICommand fire = new ShootFireballCommand(game.ProjectileManager, this, dir);
+					ICommand fire = new ShootFireballCommand(game.ProjectileManager, this, game.link);
 					fire.Execute();
 				}
 				timer++;
