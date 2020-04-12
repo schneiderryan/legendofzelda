@@ -1,0 +1,11 @@
+Will Bartlett on Readability
+4/12/20
+Sprint 4
+PlayerDoorCollision.cs
+Adam O'Reilly
+10 minutes
+
+Overall, I'd say this class is quite readable, especially given the logic this class has to deal with. 
+The door switching logic is pretty complicated, but how the variables are named makes it easier to 
+follow along since the names align very easily with the actions or functions of the variable. This
+class on the whole does a good job remaining readable with branching logic.

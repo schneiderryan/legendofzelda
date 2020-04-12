@@ -1,0 +1,13 @@
+Will Bartlett on Code Quality
+4/12/20
+Sprint 4
+PlayerDoorCollision.cs
+Adam O'Reilly
+10 minutes
+
+I would say that Adam's class has good maintability. The collisions in particular should be very
+maintanable as well as the code for unlocking the doors. This class is also not overly long, which
+adds to its maintainability further. One hypothetical change to the game could be if we had to work
+on the overworld, which has multiple doors on each edge of the screen, this could cause some issues
+but I think the class or the way the class is called could be modified relatively easily to 
+deal with these changes.
