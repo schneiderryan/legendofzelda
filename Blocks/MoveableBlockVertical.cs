@@ -5,9 +5,10 @@ namespace LegendOfZelda
 {
     class MoveableBlockVertical : MoveableBlock
     {
+        private bool moved;
         public MoveableBlockVertical(IDictionary<string, IDoor> doors) : base(doors)
         {
-            // nothing needed
+            moved = false;
         }
 
         public override void MoveOnceDown()
@@ -17,8 +18,13 @@ namespace LegendOfZelda
 
         public override void MoveOnceUp()
         {
-            Sounds.GetSecretSound().Play();
+            
             State.MoveDown();
+            if (!moved)
+            {
+                Sounds.GetSecretSound().Play();
+                moved = true;
+            }
         }
     }
 }

@@ -209,6 +209,11 @@ namespace LegendOfZelda
         {
             return new Sprite(tileSheet, new Rectangle(16, 0, 16, 16));
         }
+
+        public ISprite CreateStair()
+        {
+            return new Sprite(tileSheet, new Rectangle(32, 0, 16, 16));
+        }
     }
     
 }
