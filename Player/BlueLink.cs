@@ -6,30 +6,30 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda
 {
-    class RedLink : IPlayer
+    class BlueLink : IPlayer
     {
         private IPlayer link;
-        public RedLink(IPlayer link)
+        public BlueLink(IPlayer link)
         {
             this.link = link;
-            this.link.Color = "red";
+            this.link.Color = "blue";
             switch (link.Direction)
             {
                 case "up":
-                    link.State = new StillUpRedLinkState(this);
+                    link.State = new StillUpBlueLinkState(this);
                     break;
                 case "down":
-                    link.State = new StillDownRedLinkState(this);
+                    link.State = new StillDownBlueLinkState(this);
                     break;
                 case "left":
-                    link.State = new StillLeftRedLinkState(this);
+                    link.State = new StillLeftBlueLinkState(this);
                     break;
                 case "right":
-                    link.State = new StillRightRedLinkState(this);
+                    link.State = new StillRightBlueLinkState(this);
                     break;
             }
             link.Sprite.Position = new Point(link.X, link.Y);
-            link.Resistance = 0.75;
+            link.Resistance = 0.50;
         }
 
         public ILinkState State { get => link.State; set => link.State = value; }

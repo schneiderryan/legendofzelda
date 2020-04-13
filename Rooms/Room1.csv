@@ -1,9 +1,9 @@
 ﻿1
-Open,Open,Key,Open
+Open,Open,Key,Wall
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Block,Null,Null,Block,Null,Null,Block,Null,Null,Block,Null
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Block,Null,Null,Block,Null,Null,Block,Null,Null,Block,Null
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
-Null,Block,Null,Null,Block,Null,Null,Block,Null,Null,Block,Null
+Null,Block,Null,Null,Block,Null,Null,Block,Null,Arrow,Block,Null
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null

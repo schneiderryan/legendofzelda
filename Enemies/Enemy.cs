@@ -173,16 +173,5 @@ namespace LegendOfZelda
         {
             State.Knockback(amountX, amountY);
         }
-
-        public void DropItem()
-        {
-            if(Item is Key)
-            {
-                Key key = new Key();
-                key.X = X;
-                key.Y = Y;
-            }
-                
-        }
     }
 }

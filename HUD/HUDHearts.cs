@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda
 {
@@ -13,7 +10,6 @@ namespace LegendOfZelda
         private int numFullHearts;
         private int numHalfHearts;
         private int numEmptyHearts;
-        private double currentHearts;
         private int sheetX;
         private int sheetY;
         private int finalX;
@@ -38,7 +34,6 @@ namespace LegendOfZelda
             numFullHearts = 0;
             numHalfHearts = 0;
             numEmptyHearts = 0;
-            currentHearts = 0;
             sheetX = 0;
             sheetY = 0;
             finalX = 476;
@@ -57,29 +52,10 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            //notihng yet
-
             if (game.link != null)
             {
-
-                numFullHearts = 0;
-                numHalfHearts = 0;
-                numEmptyHearts = 0;
-                currentHearts = 0;
-                currentHearts = game.link.CurrentHearts;
-                while (currentHearts >= 0.1)
-                {
-                    if (currentHearts - 1.0 >= 0.00)
-                    {
-                        currentHearts = currentHearts - 1.0;
-                        numFullHearts++;
-                    }
-                    else if (currentHearts - 0.5 >= 0.00)
-                    {
-                        currentHearts = currentHearts - 0.5;
-                        numHalfHearts++;
-                    }
-                }
+                numFullHearts = (int)game.link.CurrentHearts;
+                numHalfHearts = (int)(game.link.CurrentHearts * 2) % 2;
                 numEmptyHearts = (int)game.link.MaxHearts - (numFullHearts + numHalfHearts);
             }
             this.offset = game.hud.offset;
