@@ -22,9 +22,9 @@ namespace LegendOfZelda
                 Color.White);
         }
 
-        internal static void WriteLine()
+        public static void WriteLine(object value)
         {
-            throw new NotImplementedException();
+            System.Diagnostics.Debug.WriteLine(value);
         }
     }
 }

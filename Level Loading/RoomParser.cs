@@ -164,7 +164,7 @@ namespace LegendOfZelda
         {
             Dictionary<String, String> dictionary = new Dictionary<String, String>();
             String line = level.ReadLine();
-            String[] array = { "left", "right", "up", "down" };
+            String[] array = { "left", "right", "top", "bottom" };
             for (int x = 0; x < 4; x++)
             {
                 String box = NextBox(ref line);

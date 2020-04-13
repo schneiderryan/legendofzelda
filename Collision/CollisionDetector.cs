@@ -47,7 +47,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(wall, player.Footbox);
                     if (!collision.IsEmpty)
                     {
-                        collisions.Add(new PlayerWallCollision(player, collision));
+                        collisions.Add(new PlayerWallCollision(player, collision, game));
                     }
                 }
 
@@ -81,7 +81,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(npc.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
                 {
-                    collisions.Add(new PlayerWallCollision(player, collision));
+                    collisions.Add(new PlayerWallCollision(player, collision, game));
                 }
 
                 if (npc.Hitbox.Intersects(player.LeftAttackBox))
@@ -177,7 +177,7 @@ namespace LegendOfZelda
                         Rectangle collision = Rectangle.Intersect(wall, enemy.Hitbox);
                         if (!collision.IsEmpty && !(enemy is LFWallmaster || enemy is RFWallmaster))
                         {
-                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, collision));
+                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, wall));
                         }
                     }
 
@@ -186,7 +186,7 @@ namespace LegendOfZelda
                         Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, enemy.Hitbox);
                         if (!collision.IsEmpty && !(enemy is LFWallmaster || enemy is RFWallmaster))
                         {
-                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, collision));
+                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, door.Value.Hitbox));
                         }
                     }
 
@@ -195,7 +195,7 @@ namespace LegendOfZelda
                         Rectangle collision = Rectangle.Intersect(block.Hitbox, enemy.Hitbox);
                         if (!collision.IsEmpty && !(enemy is Keese || enemy is LFWallmaster || enemy is RFWallmaster))
                         {
-                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, collision));
+                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, block.Hitbox));
                         }
                     }
 
@@ -259,12 +259,11 @@ namespace LegendOfZelda
                     }
                 }
 
-                foreach (IDoor door in room.Doors.Values)
+                foreach (KeyValuePair<string, IDoor> door in room.Doors)
                 {
-                    Rectangle collision = Rectangle.Intersect(door.Hitbox, projectile.Hitbox);
-                    if (!collision.IsEmpty)
+                    if (door.Value.Hitbox.Intersects(projectile.Hitbox))
                     {
-                        collisions.Add(new WallProjectileCollision(projectileManager, projectile, collision));
+                        collisions.Add(new DoorProjectileCollision(room.Doors, door, projectileManager, projectile));
                     }
                 }
 
