@@ -40,7 +40,7 @@ namespace LegendOfZelda
 			{
 				enemy.X = link.X;
 				enemy.Y = link.Y;
-				//link.State = new GrabbedLinkState(link);
+				link.State = new GrabbedLinkState(link);
 				if (enemy.X > 10)
 				{
 					enemy.X--;
@@ -51,6 +51,8 @@ namespace LegendOfZelda
 					game.roomIndex = 1;
 					link.X = game.GraphicsDevice.Viewport.Width/2;
 					link.Y = game.GraphicsDevice.Viewport.Height / 2;
+					game.xRoom = 515;
+					game.yRoom = 826;
 					enemy = new LFWallmaster();
 					//game.NewGame();
 				}

@@ -6,6 +6,7 @@
 - A and left arrow: move player left
 - S and down arrow: move player down
 - D and right up: move player right
+- Z and N: player attacks
 - Q: quit game
 - R: reset game
 - 1: throw sword
@@ -17,7 +18,10 @@
 - P: Pause Game
 
 # Functionality
-- Room switching using mouse
+- Room switching when going through doors and with mouse
+- Player can die which resets game
+- Player can win upon picking up triforce
+- Start menu and credits
 - Player moves around and fires projectiles
 - Player picks up items
 - Player collides with enemies and takes damage from enemies
