@@ -39,6 +39,7 @@ namespace LegendOfZelda
                 game.link = (game.link as DamagedLink).InnerLink;
                 game.link.Inventory.HasClock = false;
             }
+            game.ProjectileManager.Clear();
         }
 
         public void ToStart()
