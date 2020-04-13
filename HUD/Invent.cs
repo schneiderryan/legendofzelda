@@ -7,9 +7,11 @@ namespace LegendOfZelda
     class Invent
     {
         private LegendOfZelda game;
+        private InventIcons icons;
         public Invent(LegendOfZelda game)
         {
             this.game = game;
+            this.icons = new InventIcons(game);
         }
 
         public void Update()
@@ -19,7 +21,7 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            //nothing yet
+            icons.Draw();
         }
     }
 }

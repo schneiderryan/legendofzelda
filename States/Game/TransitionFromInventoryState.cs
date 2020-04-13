@@ -15,8 +15,6 @@ namespace LegendOfZelda
         private Texture2D Inventory;
         public TransitionFromInventoryState(LegendOfZelda game)
         {
-            MediaPlayer.Stop();
-
             this.game = game;
             updateTimer = 1;
             pos = 0;
@@ -39,7 +37,6 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
-            MediaPlayer.Play(Sounds.GetDungeonSong());
             game.state = new PlayState(game);
         }
 

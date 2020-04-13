@@ -48,6 +48,15 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void OpenInventory()
+        {
+            //Nothing to do
+        }
+
+        public void CloseInventory()
+        {
+            //Nothing to do
+        }
         public void ChangeRoom()
         {
             //Nothing to do

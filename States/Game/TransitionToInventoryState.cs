@@ -15,8 +15,6 @@ namespace LegendOfZelda
         private Texture2D Inventory;
         public TransitionToInventoryState(LegendOfZelda game)
         {
-            MediaPlayer.Stop();
-
             this.game = game;
             updateTimer = 1;
             pos = 0;
