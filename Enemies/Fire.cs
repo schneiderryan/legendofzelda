@@ -7,7 +7,7 @@ namespace LegendOfZelda
 	{
 		private int timer;
 		private LegendOfZelda game;
-		private string dir;
+
 		public Fire(LegendOfZelda loz)
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateFireSprite();
@@ -18,35 +18,14 @@ namespace LegendOfZelda
 			timer = 0;
 			game = loz;
 			currentHearts = 100;
-			
 		}
 		
 		public override void Update()
 		{
-			//Hitbox = new Rectangle(240, 130, Sprite.Box.Width, Sprite.Box.Height);
-			//Sprite.Position = new Point(X, Y);
-			
 			if (game.OldManDamaged)
 			{
 				if (timer % 150 == 0)
 				{
-					int linkXPos = game.link.X;
-					int linkYPos = game.link.Y;
-					if (linkYPos > Y)
-					{
-						if (linkXPos < (X + 10) && linkXPos > (X - 10))
-						{
-							dir = "down";
-						}
-						else if (linkXPos > X)
-						{
-							dir = "rightdown";
-						}
-						else
-						{
-							dir = "leftdown";
-						}
-					}
 					ICommand fire = new ShootFireballCommand(game.ProjectileManager, this, game.link);
 					fire.Execute();
 				}
