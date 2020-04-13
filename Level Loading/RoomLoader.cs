@@ -134,6 +134,10 @@ namespace LegendOfZelda
                 {
                     item = new Arrow();
                 }
+                else if (entry.Value.Equals("BlueRing"))
+                {
+                    item = new BlueRing(game);
+                }
                 else if (entry.Value.Equals("BlueRupee"))
                 {
                     item = new BlueRupee();

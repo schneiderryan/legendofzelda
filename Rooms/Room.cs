@@ -44,7 +44,6 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>()
                 {
-
                     // left wall hitboxes
                     new Rectangle(0, 120, 64, 168),
                     new Rectangle(0, 312, 64, 160),

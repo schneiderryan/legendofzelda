@@ -64,7 +64,7 @@ namespace LegendOfZelda
                 attackBoxRight.Y += value - hitbox.Y;
                 attackBoxDown.Y += value - hitbox.Y;
                 attackBoxUp.Y += value - hitbox.Y;
-                footbox.Y = value + Sprite.Box.Height - footbox.Height;
+                footbox.Y = value + hitbox.Height - footbox.Height;
                 hitbox.Y = value;
                 y = value;
             }
@@ -202,7 +202,8 @@ namespace LegendOfZelda
 
         public virtual bool IsAttacking()
         {
-            return State is AttackingGreenLinkState || State is AttackingRedLinkState;
+            return State is AttackingGreenLinkState || State is AttackingRedLinkState
+                || State is AttackingBlueLinkState;
         }
 
         protected void Initialize(LegendOfZelda game)
