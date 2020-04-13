@@ -93,7 +93,7 @@ namespace LegendOfZelda
         {
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
-                if((!(door.Key == "up")) || door.Value is TopOpen )
+                if(!door.Key.Equals("top") || door.Value is TopOpen)
                 {
                     door.Value.Draw(sb, color);
                 }
@@ -105,7 +105,7 @@ namespace LegendOfZelda
             background.Draw(sb, color);
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
-                if (door.Key == "up")
+                if (door.Key.Equals("top"))
                 {
                     door.Value.Draw(sb, color);
                 }
@@ -140,48 +140,8 @@ namespace LegendOfZelda
             {
                 if (enemy.isDead)
                 {
-                    if (enemy.item != null)
-                    {
-                        Item item = enemy.item;
-                        item.X = enemy.X;
-                        item.Y = enemy.Y;
-                        Items.Add(item);
-                    }
                     Enemies.Remove(enemy);
-                    if (Enemies.Count == 0)
-                    {
-                        Item item;
-                        if (level.Equals("Rooms/Room0.csv"))
-                        {
-                            item = new Key();
-                            item.X = 320;
-                            item.Y = 120+255; //before adjustments
-                        }
-                        else if (level.Equals("Rooms/Room5.csv") || level.Equals("Rooms/Room17.csv"))
-                        {
-                            item = new Key();
-                            item.X = 265;  //265
-                            item.Y = 120 + 95; //95 before adjustments
-                        }
-                        else if (level.Equals("Rooms/Room10.csv"))
-                        {
-                            item = new Boomerang();
-                            item.X = 265;  //265
-                            item.Y = 120 + 95; //95 before adjustments
-                        }
-                        else if (level.Equals("Rooms/Room13.csv"))
-                        {
-                            item = new HeartContainer();
-                            item.X = 385;
-                            item.Y = 120+ 160; //before adjustments
-                        }
-                        else
-                        { item = new Key(); }
-                        if (!(item.X == 0 && item.Y == 0))
-                        {
-                            Items.Add(item);
-                        }
-                    }
+                    SpawnEnemyLoot(enemy);
                 }
                 enemy.Update();
             }
@@ -209,8 +169,53 @@ namespace LegendOfZelda
             {
                 npc.Update();
             }
+        }
 
-            
+        private void SpawnEnemyLoot(IEnemy enemy)
+        {
+            if (enemy.Item != null)
+            {
+                IItem item = enemy.Item;
+                item.X = enemy.X;
+                item.Y = enemy.Y;
+                Items.Add(item);
+            }
+            if (Enemies.Count == 0)
+            {
+                IItem item;
+                if (level.Equals("Rooms/Room0.csv"))
+                {
+                    item = new Key();
+                    item.X = 320;
+                    item.Y = 120 + 255; //before adjustments
+                }
+                else if (level.Equals("Rooms/Room5.csv") || level.Equals("Rooms/Room17.csv"))
+                {
+                    item = new Key();
+                    item.X = 265;  //265
+                    item.Y = 120 + 95; //95 before adjustments
+                }
+                else if (level.Equals("Rooms/Room10.csv"))
+                {
+                    item = new Boomerang();
+                    item.X = 265;  //265
+                    item.Y = 120 + 95; //95 before adjustments
+                }
+                else if (level.Equals("Rooms/Room13.csv"))
+                {
+                    item = new HeartContainer();
+                    item.X = 385;
+                    item.Y = 120 + 160; //before adjustments
+                }
+                else
+                {
+                    item = new Key();
+                }
+                if (!(item.X == 0 && item.Y == 0))
+                {
+                    Items.Add(item);
+                }
+            }
         }
 
     }

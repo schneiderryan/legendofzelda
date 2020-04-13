@@ -6,16 +6,18 @@ namespace LegendOfZelda
     class EnemyWallBlockDoorCollision : ICollision
     {
         private IEnemy enemy;
-        private Rectangle collision;
+        private Rectangle otherThing;
 
-        public EnemyWallBlockDoorCollision(IEnemy enemy, in Rectangle collision)
+        public EnemyWallBlockDoorCollision(IEnemy enemy, in Rectangle otherThing)
         {
             this.enemy = enemy;
-            this.collision = collision;
+            this.otherThing = otherThing;
         }
 
         public void Handle()
         {
+            Rectangle collision = Rectangle.Intersect(otherThing, enemy.Hitbox);
+
             if (collision.Width > collision.Height)
             {
                 if (collision.Y != enemy.Hitbox.Y)

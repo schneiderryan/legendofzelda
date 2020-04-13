@@ -16,7 +16,6 @@ namespace LegendOfZelda
 			Y = 200;
 			Sprite.Position = new Point(X, Y);
 			State = new UpMovingSnakeState(this, game.link);
-			attackTimer = 100;
 			currentHearts = 1;
 		}
 		

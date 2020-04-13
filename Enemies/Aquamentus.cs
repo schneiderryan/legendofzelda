@@ -30,8 +30,6 @@ namespace LegendOfZelda
 				new EnemyMoveRightCommand(this),
 			};
 			currentHearts = 6;
-			
-			attackTimer = 100;
 		}
 
 		public override void Die()
