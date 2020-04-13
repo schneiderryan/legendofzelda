@@ -107,6 +107,16 @@ namespace LegendOfZelda
             return new Sprite(linkSpriteSheet, new Rectangle(90, 60, 14, 14));
         }
 
+        public ISprite CreateLinkPickup1()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(1, 150, 13, 16));
+        }
+
+        public ISprite CreateLinkPickup2()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(31, 150, 14, 16));
+        }
+
         // Red Link Sprites
 
         public ISprite CreateRedLeftWalkingLinkSprite()
@@ -189,16 +199,6 @@ namespace LegendOfZelda
             return new Sprite(linkSpriteSheet, new Rectangle(362, 32, 16, 16));
         }
 
-        public ISprite CreateLinkPickup1()
-        {
-            return new Sprite(linkSpriteSheet, new Rectangle(1, 150, 13, 16));
-        }
-
-        public ISprite CreateLinkPickup2()
-        {
-            return new Sprite(linkSpriteSheet, new Rectangle(31, 150, 14, 16));
-        }
-
         public ISprite CreateRedLinkPickup1()
         {
             return new Sprite(linkSpriteSheet, new Rectangle(241, 150, 13, 16));
@@ -207,6 +207,98 @@ namespace LegendOfZelda
         public ISprite CreateRedLinkPickup2()
         {
             return new Sprite(linkSpriteSheet, new Rectangle(271, 150, 14, 16));
+        }
+
+        // Blue Link Sprites
+
+        public ISprite CreateBlueLeftWalkingLinkSprite()
+        {
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(150, 0, 16, 16), 2, false);
+        }
+
+        public ISprite CreateBlueRightWalkingLinkSprite()
+        {
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(210, 0, 16, 16), 2, false);
+        }
+
+        public ISprite CreateBlueUpWalkingLinkSprite()
+        {
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(180, 0, 16, 16), 2, false);
+        }
+
+        public ISprite CreateBlueDownWalkingLinkSprite()
+        {
+            return new AnimatedSprite(linkSpriteSheet, new Rectangle(120, 0, 16, 16), 2, false);
+        }
+
+        public ISprite CreateBlueLeftAttackingLinkSprite()
+        {
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(138, 60, 27, 15), 2, false);
+        }
+
+        public ISprite CreateBlueRightAttackingLinkSprite()
+        {
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(210, 60, 27, 15), 2, false);
+        }
+
+
+       public ISprite CreateBlueUpAttackingLinkSprite()
+        {
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(410, 32, 16, 27), 2, false);
+        }
+
+       public ISprite CreateBlueDownAttackingLinkSprite()
+        {
+            return new AnimateOnceSprite(linkSpriteSheet, new Rectangle(362, 131, 16, 27), 2, false);
+        }
+
+        public ISprite CreateBlueLeftStillLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(150, 0, 16, 16));
+        }
+
+        public ISprite CreateBlueRightStillLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(210, 0, 16, 16));
+        }
+
+        public ISprite CreateBlueUpStillLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(182, 0, 14, 16));
+        }
+
+        public ISprite CreateBlueDownStillLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(121, 0, 14, 16));
+        }
+
+        public ISprite CreateBlueLeftProjectileLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(149, 60, 16, 16));
+        }
+
+        public ISprite CreateBlueRightProjectileLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(210, 60, 16, 16));
+        }
+        public ISprite CreateBlueUpProjectileLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(410, 43, 16, 16));
+        }
+
+        public ISprite CreateBlueDownProjectileLinkSprite()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(362, 131, 16, 16));
+        }
+
+        public ISprite CreateBlueLinkPickup1()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(121, 150, 13, 16));
+        }
+
+        public ISprite CreateBlueLinkPickup2()
+        {
+            return new Sprite(linkSpriteSheet, new Rectangle(151, 150, 14, 16));
         }
     }
 }
