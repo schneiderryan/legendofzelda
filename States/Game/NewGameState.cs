@@ -40,7 +40,7 @@ namespace LegendOfZelda
             game.mouse = new MouseController(game);
             game.keyboard = GameSetup.CreateSinglePressKeysController(game);
 
-            game.ProjectileManager = new ProjectileManager();
+            game.ProjectileManager.Clear();
 
             game.CollisionDetector = new CollisionDetector(game.ProjectileManager, game);
 

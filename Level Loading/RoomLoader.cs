@@ -212,9 +212,13 @@ namespace LegendOfZelda
                 {
                     block = new InvisibleBlock();
                 }
-                else if (entry.Value.Equals("Stair"))
+                else if (entry.Value.Equals("StairUp"))
                 {
-                    block = new InvisibleBlockStairs();
+                    block = new Stairs(Stairs.StairDirection.Up);
+                }
+                else if (entry.Value.Equals("StairDown"))
+                {
+                    block = new Stairs(Stairs.StairDirection.Down);
                 }
                 else if (entry.Value.Equals("MoveableBlockVertical"))
                 {
@@ -229,7 +233,6 @@ namespace LegendOfZelda
                 {
                     block.X = (int)entry.Key.X;
                     block.Y = 120+(int)entry.Key.Y;
-                    
                     blocks.Add(block);
                 }
             }

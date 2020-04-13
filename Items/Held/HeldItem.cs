@@ -25,6 +25,6 @@ namespace LegendOfZelda
             sprite.Draw(sb, color);
         }
 
-        public abstract void Use(IPlayer player);
+        public abstract void Use();
     }
 }

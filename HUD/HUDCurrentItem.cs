@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
     class HUDCurrentItem
     {
         private LegendOfZelda game;
-        private IItem item;
+        private IHeldItem item;
         public HUDCurrentItem(LegendOfZelda game)
         {
             this.game = game;
@@ -16,7 +14,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            this.item = game.link.HeldItem;
+            this.item = game.link.Inventory.Offhand;
         }
 
         public void Draw()

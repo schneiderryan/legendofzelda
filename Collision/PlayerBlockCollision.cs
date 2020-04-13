@@ -10,12 +10,10 @@ namespace LegendOfZelda
         private IDictionary<string, IDoor> doors;
         private IPlayer player;
         private IBlock block;
-        private bool stairs;
-        
 
-        public PlayerBlockCollision(IDictionary<string, IDoor> doors, IPlayer player, IBlock block, LegendOfZelda game)
+        public PlayerBlockCollision(IDictionary<string, IDoor> doors, IPlayer player,
+                IBlock block, LegendOfZelda game)
         {
-            
             this.game = game;
             this.doors = doors;
             this.player = player;
@@ -24,102 +22,58 @@ namespace LegendOfZelda
 
         public void Handle()
         {
-
-            if(!(block is InvisibleBlockStairs))
+            if (block is Stairs)
             {
-                IMoveableBlock moveableBlock;
-                if (block is IMoveableBlock)
+                if (block.Hitbox.Contains(player.Center))
                 {
-                    moveableBlock = block as IMoveableBlock;
+                    game.state = new StairRoomState(game, (block as Stairs).Direction);
                 }
+                return;
+            }
 
-                else
-                {
-                    moveableBlock = new MoveableBlock(doors);
-                }
+            // computing this here so that link doesn't get double corrected if he runs
+            // into two blocks at the same time
+            Rectangle collision = Rectangle.Intersect(player.Footbox, block.Hitbox);
 
-                Rectangle collision = Rectangle.Intersect(player.Footbox, block.Hitbox);
-
-                if (collision.Width > collision.Height)
-                {
-                    if (collision.Y == player.Footbox.Y)
-                    {
-                        player.Y += collision.Height;
-                        moveableBlock.MoveOnceUp();
-                        
-                    }
-                    else
-                    {
-                        player.Y -= collision.Height;
-                        moveableBlock.MoveOnceDown();
-                    }
-                }
-                else
-                {
-                    if (collision.X == player.Footbox.X)
-                    {
-                        player.X += collision.Width;
-                        moveableBlock.MoveOnceLeft();
-                        
-                    }
-                    else
-                    {
-                        player.X -= collision.Width;
-                        moveableBlock.MoveOnceRight();
-                    }
-                }
+            IMoveableBlock moveableBlock;
+            if (block is IMoveableBlock)
+            {
+                moveableBlock = block as IMoveableBlock;
             }
 
             else
             {
-                Rectangle collision = Rectangle.Intersect(player.Footbox, block.Hitbox);
-                
+                moveableBlock = new MoveableBlock(doors);
+            }
 
-
-                if (collision.Width > collision.Height)
+            if (collision.Width > collision.Height)
+            {
+                if (collision.Y == player.Footbox.Y)
                 {
-                    if (collision.Y == player.Footbox.Y)
-                    {
-                        player.Y += collision.Height;
-                       
-                    }
-                    else
-                    {
-                        player.Y -= collision.Height;
-                       
-                    }
+                    player.Y += collision.Height;
+                    moveableBlock.MoveOnceUp();
+                        
                 }
                 else
                 {
-                    if (collision.X == player.Footbox.X)
-                    {
-                        player.X += collision.Width;
-                       
-                    }
-                    else
-                    {
-                        player.X -= collision.Width;
-                        game.state = new StairRoomState(game, "enter");
-                    }
+                    player.Y -= collision.Height;
+                    moveableBlock.MoveOnceDown();
                 }
             }
-
-            
-
-
-            // computing this here so that link doesn't get double corrected if he runs
-            // into two blocks at the same time
-
-           
-                  
-                
-            
-            
-                
-            
-                
-            
-            
+            else
+            {
+                if (collision.X == player.Footbox.X)
+                {
+                    player.X += collision.Width;
+                    moveableBlock.MoveOnceLeft();
+                        
+                }
+                else
+                {
+                    player.X -= collision.Width;
+                    moveableBlock.MoveOnceRight();
+                }
+            }
         }
     }
 }

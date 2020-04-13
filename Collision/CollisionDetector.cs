@@ -47,26 +47,25 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(wall, player.Footbox);
                     if (!collision.IsEmpty)
                     {
-                        collisions.Add(new PlayerWallCollision(player, collision, game));
+                        collisions.Add(new PlayerWallCollision(player, collision));
                     }
                 }
 
-            foreach (IBlock block in room.Blocks)
-            {
-                if (player.Footbox.Intersects(block.Hitbox))
+                foreach (IBlock block in room.Blocks)
                 {
-                    collisions.Add(new PlayerBlockCollision(room.Doors, player, block, game));
+                    if (player.Footbox.Intersects(block.Hitbox))
+                    {
+                        collisions.Add(new PlayerBlockCollision(room.Doors, player, block, game));
+                    }
                 }
-            }
 
-            foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
-            {
-                Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
-                if (!collision.IsEmpty)
+                foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
                 {
-                    collisions.Add(new PlayerDoorCollision(room.Doors, door, player, collision, game));
+                    if (door.Value.Hitbox.Intersects(player.Footbox))
+                    {
+                        collisions.Add(new PlayerDoorCollision(room.Doors, door, player, game));
+                    }
                 }
-            }
 
                 foreach (IEnemy enemy in room.Enemies)
                 {
@@ -82,7 +81,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(npc.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
                 {
-                    collisions.Add(new PlayerWallCollision(player, collision, game));
+                    collisions.Add(new PlayerWallCollision(player, collision));
                 }
 
                 if (npc.Hitbox.Intersects(player.LeftAttackBox))
@@ -103,14 +102,14 @@ namespace LegendOfZelda
                 }
             }
 
-            foreach (IProjectile projectile in projectileManager)
-            {
-                Rectangle collision = Rectangle.Intersect(projectile.Hitbox, player.Hitbox);
-                if (!collision.IsEmpty)
+                foreach (IProjectile projectile in projectileManager)
                 {
-                    collisions.Add(new PlayerProjectileCollision(projectileManager, player,
-                            projectile, collision));
-                }
+                    Rectangle collision = Rectangle.Intersect(projectile.Hitbox, player.Hitbox);
+                    if (!collision.IsEmpty)
+                    {
+                        collisions.Add(new PlayerProjectileCollision(projectileManager, player,
+                                projectile, collision));
+                    }
 
                     //Boomerang Item Pickup Code
                     if (projectile is BoomerangProjectile && projectile.OwningTeam == Team.Link)
@@ -211,7 +210,6 @@ namespace LegendOfZelda
                     }
 
 
-
                     if (enemy.Hitbox.Intersects(player.LeftAttackBox))
                     {
                         collisions.Add(new EnemyAttackCollision(room.Enemies, enemy, player, "left"));
@@ -273,6 +271,17 @@ namespace LegendOfZelda
                 // takes care of case where goriya dies b4 boomerang returns
                 if ((projectile is BoomerangProjectile)
                     && (projectile as BoomerangProjectile).Returned)
+                {
+                    collisions.Add(new DummyProjectileCollision(projectileManager, projectile));
+                }
+                // get rid of bombs when they're done doing their things
+                else if ((projectile is Explosion)
+                    && (projectile as Explosion).Done)
+                {
+                    collisions.Add(new DummyProjectileCollision(projectileManager, projectile));
+                }
+                else if ((projectile is PlacedBomb)
+                    && (projectile as PlacedBomb).Exploded)
                 {
                     collisions.Add(new DummyProjectileCollision(projectileManager, projectile));
                 }

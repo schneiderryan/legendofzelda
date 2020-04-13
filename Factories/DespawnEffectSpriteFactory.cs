@@ -38,5 +38,15 @@ namespace LegendOfZelda
             return new Sprite(weapons, new Rectangle(53, 189, 8, 8));
         }
 
+        public static ISprite GetExplodingBomb()
+        {
+            return new AnimateOnceSprite(weapons,
+                new Rectangle(138, 203, 16, 16), 4)
+            {
+                AnimationDelay = 10,
+                Scale = 2
+            };
+        }
+
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -11,10 +9,11 @@ namespace LegendOfZelda
         private LegendOfZelda game;
         private Color tint;
         private int tintTimer;
-        private String direction;
+        private Stairs.StairDirection direction;
         private Texture2D HUDBackground;
         private bool changed;
-        public StairRoomState(LegendOfZelda game, String direction)
+
+        public StairRoomState(LegendOfZelda game, Stairs.StairDirection direction)
         {
             this.changed = false;
             this.direction = direction;
@@ -71,7 +70,6 @@ namespace LegendOfZelda
 
         public void Update()
         {
-
             if (tintTimer < 10)
             {
                 tint = Color.Gray;
@@ -83,7 +81,7 @@ namespace LegendOfZelda
             else if (tintTimer < 30)
             {
                 tint = Color.Black;
-                if (direction == "enter" && !changed)
+                if (direction == Stairs.StairDirection.Down && !changed)
                 {
                     changed = true;
                     game.roomIndex--;
@@ -92,13 +90,13 @@ namespace LegendOfZelda
                     game.link.Y = 124;
                     game.rooms[game.roomIndex].Update();
                 }
-                else if(direction == "leave" && !changed)
+                else if (direction == Stairs.StairDirection.Up && !changed)
                 {
                     changed = true;
                     game.roomIndex++;
                     game.xRoom += 256;
-                    game.link.X = 258;
-                    game.link.Y = 278;
+                    game.link.X = 6 * RoomParser.TILE_SIZE;
+                    game.link.Y = 7 * RoomParser.TILE_SIZE + 120;
                     game.rooms[game.roomIndex].Update();
                 }
             }
@@ -117,15 +115,11 @@ namespace LegendOfZelda
                 this.PlayGame();
             }
 
-            
             tintTimer++;
-
-            
         }
 
         public void Draw()
         {
-            
             game.rooms[game.roomIndex].Draw(game.spriteBatch, tint);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
             game.link.Draw(game.spriteBatch, Color.White);

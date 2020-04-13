@@ -8,7 +8,6 @@ namespace LegendOfZelda
     {
         LegendOfZelda game;
         IPlayer player;
-        Rectangle collision;
         IDictionary<string, IDoor> doors;
         KeyValuePair<string, IDoor> door;
 
@@ -18,12 +17,10 @@ namespace LegendOfZelda
         static ICommand cmdDown;
 
         public PlayerDoorCollision(IDictionary<string, IDoor> doors,
-               KeyValuePair<string, IDoor> door, IPlayer player,
-               in Rectangle collision, LegendOfZelda game)
+               KeyValuePair<string, IDoor> door, IPlayer player, LegendOfZelda game)
         {
             this.game = game;
             this.player = player;
-            this.collision = collision;
             this.doors = doors;
             this.door = door;
         }
@@ -43,6 +40,7 @@ namespace LegendOfZelda
             {
                 if (!(player.X > 449 && (door is RightWall || door is RightOther || door is RightKey)) && !(player.Y == 435 && door is BottomWall))
                 {
+                    Rectangle collision = Rectangle.Intersect(player.Footbox, door.Value.Hitbox);
                     if (collision.Width > collision.Height)
                     {
                         if (collision.Y != player.Footbox.Y)

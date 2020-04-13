@@ -73,10 +73,11 @@ namespace LegendOfZelda
 
             this.possibleBlocks = new List<string>()
             {
-                "Stair",
                 "Block",
                 "MoveableBlockVertical",
                 "MoveableBlockLeft",
+                "StairUp",
+                "StairDown",
             };
 
             this.possibleDoors = new List<string>()
@@ -195,7 +196,6 @@ namespace LegendOfZelda
             int index = line.IndexOf(",");
 
             if(index == -1)
-
             {
                 return line;
             }
