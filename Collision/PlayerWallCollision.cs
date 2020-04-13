@@ -18,7 +18,9 @@ namespace LegendOfZelda
         public void Handle()
         {
             Rectangle collision = Rectangle.Intersect(player.Footbox, wall);
-            if(wall.X == 94 && wall.Y == 100)
+           
+
+            if (wall.Y == 108)
             {
                 game.state = new StairRoomState(game, "leave");
             }

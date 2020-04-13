@@ -13,6 +13,7 @@ namespace LegendOfZelda
         private int x;
         private int y;
         private int itemTimer;
+        private int heartSoundTimer = 0;
         private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
@@ -144,9 +145,14 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
-            if(CurrentHearts < 1)
+            if(CurrentHearts < 1 && CurrentHearts > 0)
             {
-                Sounds.GetLowHealthSound().Play();
+                if(heartSoundTimer % 20 == 0)
+                {
+                    Sounds.GetLowHealthSound().Play();
+                    
+                }
+                heartSoundTimer++;
             }
             State.Update();
             Sprite.Update();

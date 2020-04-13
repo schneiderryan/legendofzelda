@@ -27,7 +27,7 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>
                 {
-                    new Rectangle(94, 100, 64,5),
+                    new Rectangle(94, 105, 64,5),
                     new Rectangle(0, 120, 94, 190),
                     new Rectangle(0, 310, 64, 130),
                     new Rectangle(62, 376, 448, 64),
