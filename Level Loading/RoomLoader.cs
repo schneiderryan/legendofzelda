@@ -297,7 +297,7 @@ namespace LegendOfZelda
                     door.X = 448;
                     door.Y = 265;
                 }
-                else if (entry.Key.Equals("up"))
+                else if (entry.Key.Equals("top"))
                 {
                     if (entry.Value.Equals("Wall"))
                     {
@@ -322,7 +322,7 @@ namespace LegendOfZelda
                     door.X = 224;
                     door.Y = 120;
                 }
-                else
+                else // bottom
                 {
                     if (entry.Value.Equals("Wall"))
                     {
