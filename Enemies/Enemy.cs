@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
+
 
 namespace LegendOfZelda
 {
@@ -13,13 +13,13 @@ namespace LegendOfZelda
         public int VX { get; set; }
         public int VY { get; set; }
         public Team Team { get; set; } = Team.Enemy;
-        public Item item { get; set; }
+        public IItem Item { get; set; }
 
-        protected int attackTimer { get; set; }
+        protected int TakeDamageCooldown { get; set; } = 100;
+        protected int attackTimer { get; set; } = 0;
 
         private int dieTimer = 13;
         private int spawnTimer = 25;
-        private bool isBeingAttacked { get; set; }
         private bool isDying { get; set; }
         private bool isSpawning { get; set; }
         private bool hasSpawned { get; set; }
@@ -29,9 +29,8 @@ namespace LegendOfZelda
 
         public void Draw(SpriteBatch sb, Color color)
         {
-            if (isBeingAttacked && !(this is Fire))
+            if (attackTimer > 0 && !(this is Fire))
             {
-                
                 Color hurt1 = new Color(83, 68, 198);
                 Color hurt2 = new Color(184, 101, 22);
                 Color hurt3 = new Color(76, 80, 69);
@@ -56,11 +55,11 @@ namespace LegendOfZelda
             {
                 Sprite.Draw(sb, color);
             }
-            if (item != null)
+            if (Item != null)
             {
-                if (item is Key)
+                if (Item is Key)
                 {
-                    item.Draw(sb, color);
+                    Item.Draw(sb, color);
                 }
             }
         }
@@ -100,10 +99,10 @@ namespace LegendOfZelda
 
         public virtual void Update()
         {
-            if (item != null)
+            if (Item != null)
             {
-                item.X = X + 8;
-                item.Y = Y;
+                Item.X = X + 8;
+                Item.Y = Y;
             }
             if (!hasSpawned && !isSpawning)
             {
@@ -120,24 +119,18 @@ namespace LegendOfZelda
                     this.Sprite = TempSprite;
                 }
             }
-            if (isBeingAttacked)
+            if (attackTimer > 0)
             {
                 attackTimer--;
-                if (attackTimer == 0)
-                {
-                    isBeingAttacked = false;
-                }
-
             }
-            if (currentHearts <= 0 && !isDying)
+            if (currentHearts <= 0.01 && !isDying)
             {
-               
                 this.Die();
             }
             if (isDying)
             {
                 dieTimer--;
-                if(dieTimer == 0)
+                if (dieTimer == 0)
                 {
                     isDead = true;
                 }
@@ -147,17 +140,20 @@ namespace LegendOfZelda
             Sprite.Position = new Point(X, Y);
             Hitbox = Sprite.Box;
             Sprite.Update();
-            if (item != null)
+            if (Item != null)
             {
-                item.Update();
+                Item.Update();
             }
         }
 
         public virtual void TakeDamage(double amount)
         {
-            Sounds.GetEnemyHurtSound().Play();
-            isBeingAttacked = true;
-            currentHearts -= amount;
+            if (attackTimer == 0)
+            {
+                Sounds.GetEnemyHurtSound().Play();
+                attackTimer = TakeDamageCooldown;
+                currentHearts -= amount;
+            }
         }
 
         public virtual void Die()
@@ -180,7 +176,7 @@ namespace LegendOfZelda
 
         public void DropItem()
         {
-            if(item is Key)
+            if(Item is Key)
             {
                 Key key = new Key();
                 key.X = X;

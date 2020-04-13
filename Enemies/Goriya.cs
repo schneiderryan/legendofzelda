@@ -25,7 +25,6 @@ namespace LegendOfZelda
 			canThrowBoomerang = true;
 			boomerang = new BoomerangProjectile(direction, this);
 			currentHearts = 3;
-			attackTimer = 50;
 		}
 
 		public override void Update()

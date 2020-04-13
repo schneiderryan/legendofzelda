@@ -63,7 +63,7 @@ namespace LegendOfZelda
                     enemy = new Stalfo();
                     if (enemies.Count == 1 && (RoomNumber() == 2 || RoomNumber() == 12))
                     {
-                        enemy.item = new Key();
+                        enemy.Item = new Key();
                     }
                 }
                 else if (entry.Value.Equals("Snake"))
@@ -90,31 +90,31 @@ namespace LegendOfZelda
                 enemy.Y = (int)entry.Key.Y + 120;
                 enemies.Add(enemy);
                 int rand = random.Next(0, 22);
-                if (enemy.item == null && !(enemy is Keese || enemy is Aquamentus))
+                if (enemy.Item == null && !(enemy is Keese || enemy is Aquamentus))
                 {
                     if (0 <= rand && rand <= 8)
                     {
-                        enemy.item = new Rupee();
+                        enemy.Item = new Rupee();
                     }
                     else if (9 <= rand && rand <= 12)
                     {
-                        enemy.item = new Heart();
+                        enemy.Item = new Heart();
                     }
                     else if (rand == 14)
                     {
-                        enemy.item = new Clock(game);
+                        enemy.Item = new Clock(game);
                     }
                     else if (rand == 15)
                     {
-                        enemy.item = new Fairy();
+                        enemy.Item = new Fairy();
                     }
                     else if (rand == 20)
                     {
-                        enemy.item = new BlueRupee();
+                        enemy.Item = new BlueRupee();
                     }
                     else if (16 <= rand && rand <= 26 && enemy is Goriya)
                     {
-                        enemy.item = new Bomb();
+                        enemy.Item = new Bomb();
                     }
 
                 }
