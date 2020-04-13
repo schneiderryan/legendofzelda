@@ -76,14 +76,31 @@ namespace LegendOfZelda
                     }
                 }
 
-                foreach (INPC npc in room.NPCs)
+            foreach (INPC npc in room.NPCs)
+            {
+                Rectangle collision = Rectangle.Intersect(npc.Hitbox, player.Hitbox);
+                if (!collision.IsEmpty)
                 {
-                    Rectangle collision = Rectangle.Intersect(npc.Hitbox, player.Hitbox);
-                    if (!collision.IsEmpty)
-                    {
-                        collisions.Add(new PlayerWallCollision(player, collision));
-                    }
+                    collisions.Add(new PlayerWallCollision(player, collision, game));
                 }
+
+                if (npc.Hitbox.Intersects(player.LeftAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "left", game));
+                }
+                if (npc.Hitbox.Intersects(player.UpAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "up", game));
+                }
+                if (npc.Hitbox.Intersects(player.RightAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "right", game));
+                }
+                if (npc.Hitbox.Intersects(player.DownAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "down", game));
+                }
+            }
 
                 foreach (IProjectile projectile in projectileManager)
                 {
