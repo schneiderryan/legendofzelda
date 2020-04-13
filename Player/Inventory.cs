@@ -11,7 +11,7 @@ namespace LegendOfZelda
         public bool HasClock { get; set; } = false;
 
         public bool HasMap { get; set; } = true; //change to false before final submission
-        public bool HasCompass { get; set; } = true;
+        public bool HasCompass { get; set; } = true; //change to false before final submission
         public int Rupees { get; set; } = 255; // for testing, remove l8r
         public int Bombs { get; set; } = 8; // for testing, remove l8r
         public int Keys { get; set; } = 999; // for testing, remove l8r

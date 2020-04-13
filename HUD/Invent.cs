@@ -8,6 +8,7 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private InventIcons icons;
+        public IItem currentItem;
         public Invent(LegendOfZelda game)
         {
             this.game = game;

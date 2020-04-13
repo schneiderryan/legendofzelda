@@ -7,25 +7,39 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private int offset;
-        private IHeldItem item;
+        private IItem item;
+        private ISprite currentSprite;
         public HUDCurrentItem(LegendOfZelda game)
         {
             this.game = game;
+            currentSprite = FontSpriteFactory.GetWhiteBox();
         }
 
         public void Update()
         {
             this.offset = game.hud.offset;
-            this.item = game.link.Inventory.Offhand;
+            System.Console.WriteLine(game.link.HeldItem);
+            if(game.link.HeldItem.ToString().Equals("LegendOfZelda.Bomb"))
+            {
+                currentSprite = ItemSpriteFactory.GetBomb();
+            }
+            else if (game.link.HeldItem.ToString().Equals("LegendOfZelda.Boomerang"))
+            {
+                currentSprite = ItemSpriteFactory.GetBoomerang();
+            }
+            else if (game.link.HeldItem.ToString().Equals("LegendOfZelda.Arrow"))
+            {
+                currentSprite = ItemSpriteFactory.GetArrow();
+            }
+            currentSprite.X = 257;
+            currentSprite.Y = offset + 55;
         }
 
         public void Draw()
         {
-            if (this.item != null)
+            if (game.link.HeldItem != null)
             {
-                this.item.X = 257;
-                this.item.Y = offset + 55;
-                this.item.Draw(game.spriteBatch, Color.White);
+                currentSprite.Draw(game.spriteBatch, Color.White);
             }
         }
     }

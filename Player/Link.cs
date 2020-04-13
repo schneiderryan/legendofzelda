@@ -224,6 +224,7 @@ namespace LegendOfZelda
             this.Resistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
+            this.HeldItem = new Bomb();
             this.DeadColor = Microsoft.Xna.Framework.Color.White;
         }
 
