@@ -33,10 +33,12 @@ namespace LegendOfZelda
             {
                 this.timer = 177 / 2;
             }
-
-
             this.game = game;
-
+            if (game.link.Inventory.HasClock)
+            {
+                game.link = (game.link as DamagedLink).InnerLink;
+                game.link.Inventory.HasClock = false;
+            }
         }
 
         public void ToStart()

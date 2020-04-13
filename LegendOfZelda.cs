@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
+
 
 namespace LegendOfZelda
 {
@@ -39,8 +38,6 @@ namespace LegendOfZelda
             };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            
-            
         }
 
         protected override void Initialize()

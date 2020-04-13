@@ -67,7 +67,6 @@ namespace LegendOfZelda
 
         public Room(LegendOfZelda game, String levelName)
         {
-
             this.game = game;
             level = levelName;
             RoomLoader levelLoader = new RoomLoader(levelName, game);
@@ -82,7 +81,10 @@ namespace LegendOfZelda
             this.Items = levelLoader.LoadItems();
             this.NPCs = levelLoader.LoadNPCs();
             
- 
+            if (levelName.Equals("Rooms/Room15.csv"))
+            {
+                Blocks.ElementAt(0).Y -= 3 * RoomParser.TILE_SIZE;
+            }
 
             LoadRoomLayout(levelLoader.RoomNumber());
         }
