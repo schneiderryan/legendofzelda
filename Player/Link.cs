@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -14,7 +12,6 @@ namespace LegendOfZelda
         private int y;
         private int itemTimer;
         private int heartSoundTimer = 0;
-        private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
         private Rectangle attackBoxLeft;
@@ -202,7 +199,8 @@ namespace LegendOfZelda
 
         public virtual bool IsAttacking()
         {
-            return State is AttackingGreenLinkState || State is AttackingRedLinkState;
+            return State is AttackingGreenLinkState || State is AttackingRedLinkState
+                || State is AttackingBlueLinkState;
         }
 
         protected void Initialize(LegendOfZelda game)
