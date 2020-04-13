@@ -1,0 +1,10 @@
+Adam O'Reilly
+4/12/20
+4
+PauseGameCommand.cs
+Emily Smith
+10 minutes
+
+This class has good maintainability because it implements the ICommand interface which provides functionality for commands to be executed.
+It simply uses a boolean in order to change back into the correct state and is executed by another (SinglePressKeysController) controller. 
+If another game state were to require a pause state, you could easily add logic to the existing code by addding another instance variable and if/else statements.
