@@ -22,7 +22,7 @@ namespace LegendOfZelda
 
             if (wall.Y == 108)
             {
-                game.state = new StairRoomState(game, "leave");
+                game.state = new StairRoomState(game, Stairs.StairDirection.Up);
             }
                 else
                     {
