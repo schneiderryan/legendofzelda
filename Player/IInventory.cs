@@ -4,9 +4,10 @@ namespace LegendOfZelda
 {
     interface IInventory
     {
-        BowAndArrow BowAndArrow { get; }
-        IHeldItem BluePotion { get; set; }
-        IHeldItem RedPotion { get; set; }
+        bool HasArrow { get; set; }
+        bool HasBow { get; set; }
+        bool HasBluePotion { get; set; }
+        bool HasRedPotion { get; set; }
         bool HasClock { get; set; }
         bool HasMap { get; set; }
         bool HasCompass { get; set; }

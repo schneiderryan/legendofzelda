@@ -10,11 +10,13 @@ namespace LegendOfZelda
     {
         private ICollection<IProjectile> projectiles;
         private IList<IDespawnEffect> effects;
+        private ICollection<IProjectile> buffer;
 
         public ProjectileManager()
         {
             effects = new List<IDespawnEffect>();
             projectiles = new HashSet<IProjectile>();
+            buffer = new LinkedList<IProjectile>();
         }
 
         public int Count => projectiles.Count;
@@ -23,7 +25,7 @@ namespace LegendOfZelda
 
         public void Add(IProjectile projectile)
         {
-            projectiles.Add(projectile);
+            buffer.Add(projectile);
         }
 
         public void Clear()
@@ -82,6 +84,11 @@ namespace LegendOfZelda
                     effects[i].Update();
                 }
             }
+            foreach (IProjectile projectile in buffer)
+            {
+                projectiles.Add(projectile);
+            }
+            buffer.Clear();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -89,5 +96,4 @@ namespace LegendOfZelda
             return projectiles.GetEnumerator();
         }
     }
-
 }

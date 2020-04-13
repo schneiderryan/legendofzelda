@@ -14,7 +14,7 @@ namespace LegendOfZelda
 		{
 			sprite = EnemySpriteFactory.Instance.CreateOldManSprite();
 			X = 240;
-			Y = 130;
+			Y = 250;
 			sprite.Position = new Point(X, Y);
 			Hitbox = sprite.Box;
 			this.game = game;

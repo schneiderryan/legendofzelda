@@ -35,7 +35,8 @@ namespace LegendOfZelda
                     bp.BeginReturning();
                 }
             }
-            else if (projectile.OwningTeam != character.Team)
+            else if (projectile.OwningTeam != character.Team &&
+                    !(projectile is PlacedBomb || projectile is Explosion))
             {
                 manager.Remove(projectile);
             }

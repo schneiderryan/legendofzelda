@@ -14,7 +14,7 @@ namespace LegendOfZelda
             // do nothing
         }
 
-        public void Use(IPlayer player)
+        public void Use()
         {
             // do nothing
         }
