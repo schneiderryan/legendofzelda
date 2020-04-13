@@ -22,14 +22,12 @@ namespace LegendOfZelda
         {
             IEnemy enemy = character as IEnemy;
 
-
-            if(!(enemy is Trap) && !(enemy is Fire))
-
+            if(!(enemy is Trap))
             {
                 HandleProjectileCollision();
                 if ((projectile.OwningTeam == enemy.Team)
-                    || (projectile is BoomerangProjectile
-                        && enemy is Goriya)) // goriya is immune to boomerangs
+                    // goriya is immune to boomerangs
+                    || (projectile is BoomerangProjectile && enemy is Goriya))
                 {
                     return;
                 }

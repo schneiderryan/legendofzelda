@@ -13,7 +13,6 @@ namespace LegendOfZelda
         private int x;
         private int y;
         private int itemTimer;
-        private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
         private Rectangle attackBoxLeft;
@@ -63,7 +62,7 @@ namespace LegendOfZelda
                 attackBoxRight.Y += value - hitbox.Y;
                 attackBoxDown.Y += value - hitbox.Y;
                 attackBoxUp.Y += value - hitbox.Y;
-                footbox.Y = value + Sprite.Box.Height - footbox.Height;
+                footbox.Y = value + hitbox.Height - footbox.Height;
                 hitbox.Y = value;
                 y = value;
             }
@@ -106,7 +105,7 @@ namespace LegendOfZelda
         public virtual void Attack()
         {
             Sounds.GetAttackSound().Play();
-            if(CurrentHearts >= MaxHearts)
+            if (MaxHearts - CurrentHearts < 0.01) // close enough to 0 for a double
             {
                 UseProjectile(new SwordProjectile(this.Direction, this.X, this.Y));
             }
@@ -194,21 +193,9 @@ namespace LegendOfZelda
             }
         }
 
-        public virtual void RegisterAttackKeys(List<Keys> attackKeys)
-        {
-            this.attackKeys = attackKeys;
-        }
-
         public virtual bool IsAttacking()
         {
-            foreach (Keys key in this.attackKeys)
-            {
-                if (Keyboard.GetState().IsKeyDown(key))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return State is AttackingGreenLinkState || State is AttackingRedLinkState;
         }
 
         protected void Initialize(LegendOfZelda game)

@@ -30,13 +30,6 @@ namespace LegendOfZelda
             cmd = new PlayerStillCommand(player);
             controller.Register(Keys.None, cmd);
 
-            List<Keys> attackKeys = new List<Keys>()
-            {
-                Keys.Z,
-                Keys.N
-            };
-            player.RegisterAttackKeys(attackKeys);
-
             return controller;
         }
 
@@ -70,7 +63,7 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.D3, cmd);
             keyBinds.Add(Keys.NumPad3, cmd);
 
-            cmd = new PlayerUseBombCommand(game.link);
+            cmd = new PlayerUseBombCommand(game.link, game.ProjectileManager);
             keyBinds.Add(Keys.D4, cmd);
             keyBinds.Add(Keys.NumPad4, cmd);
 
@@ -93,7 +86,6 @@ namespace LegendOfZelda
         {
             IList<IRoom> list = new List<IRoom>()
             {
-                //new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
                 new Room(game, "Rooms/Room1.csv"),
                 new Room(game, "Rooms/Room2.csv"),

@@ -17,7 +17,6 @@ namespace LegendOfZelda
         public void Handle()
         {
             Rectangle collision = Rectangle.Intersect(player.Footbox, wall);
-
             if (collision.Width > collision.Height)
             {
                 if (collision.Y == player.Footbox.Y)
@@ -40,6 +39,7 @@ namespace LegendOfZelda
                     player.X -= collision.Width;
                 }
             }
+            
         }
     }
 }

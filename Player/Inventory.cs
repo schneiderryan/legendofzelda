@@ -4,9 +4,10 @@ namespace LegendOfZelda
 {
     class Inventory : IInventory
     {
-        public BowAndArrow BowAndArrow { get; }
-        public IHeldItem BluePotion { get; set; }
-        public IHeldItem RedPotion { get; set; }
+        public bool HasArrow { get; set; } = false;
+        public bool HasBow { get; set; } = false;
+        public bool HasBluePotion { get; set; } = false;
+        public bool HasRedPotion { get; set; } = false;
         public bool HasClock { get; set; } = false;
 
         public bool HasMap { get; set; } = true; //change to false before final submission
@@ -23,13 +24,8 @@ namespace LegendOfZelda
 
         public Inventory()
         {
-            BowAndArrow = new BowAndArrow();
-
             Sword = new EmptyLeveledItem();
             Boomerang = new EmptyLeveledItem();
-
-            RedPotion = new EmptyHeldItem();
-            BluePotion = new EmptyHeldItem();
             Offhand = new EmptyHeldItem();
         }
 

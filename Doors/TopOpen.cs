@@ -11,7 +11,7 @@ namespace LegendOfZelda
             door = RoomSpriteFactory.Instance.CreateTopOpen();
 
             door.Position = new Point(225, 120);
-            Hitbox = new Rectangle(241, 137, 30, 1);
+            Hitbox = door.Box;
 
         }
 

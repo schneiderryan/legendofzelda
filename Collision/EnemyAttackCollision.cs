@@ -45,6 +45,7 @@ namespace LegendOfZelda
                 if (enemy.isDead)
                 {
                     enemies.Remove(enemy);
+                     
                 }
             }
         }

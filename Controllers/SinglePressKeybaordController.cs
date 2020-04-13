@@ -7,7 +7,7 @@ namespace LegendOfZelda
     {
         private IDictionary<Keys, ICommand> keyBinds;
         private IDictionary<Keys, int> heldKeys;
-        private const int COOLDOWN = 40;
+        private const int COOLDOWN = 20;
 
         public SinglePressKeyboardController(IDictionary<Keys, ICommand> keyBinds)
         {

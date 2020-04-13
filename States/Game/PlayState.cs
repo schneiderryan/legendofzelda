@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 
@@ -76,7 +75,6 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            
             game.mouse.Update();
             game.keyboard.Update();
             game.playerKeyboard.Update();

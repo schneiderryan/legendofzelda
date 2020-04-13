@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using System;
 
+
 namespace LegendOfZelda
 {
     class LegendOfZelda : Game
@@ -14,7 +15,7 @@ namespace LegendOfZelda
 
         public IList<IRoom> rooms;
         public int roomIndex;
-
+        public bool OldManDamaged { get; set; }
         public IPlayer link;
 
         public IProjectileManager ProjectileManager { get; set; }
@@ -40,8 +41,6 @@ namespace LegendOfZelda
             };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            
-            
         }
 
         protected override void Initialize()
@@ -50,12 +49,11 @@ namespace LegendOfZelda
             this.Window.Title = "The Legend of Zelda";
             state = new StartMenuState(this);
             hud = new HeadsUpDisplay(this);
+            ProjectileManager = new ProjectileManager();
         }
 
         protected override void LoadContent()
         {
-            
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content, GraphicsDevice);
             Sounds.LoadAllSounds(Content);

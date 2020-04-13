@@ -12,8 +12,7 @@ namespace LegendOfZelda
 
         public override void Collect(IPlayer player)
         {
-            player.CurrentHearts = player.MaxHearts;
-            player.Inventory.RedPotion = new HeldRedPotion();
+            player.Inventory.HasRedPotion = true;
         }
     }
 }
