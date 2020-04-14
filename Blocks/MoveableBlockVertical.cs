@@ -24,7 +24,10 @@ namespace LegendOfZelda
         public override void MoveOnceUp()
         {
             State.MoveUp();
-            
+            {
+                Sounds.GetSecretSound().Play();
+                moved = true;
+            }
         }
     }
 }

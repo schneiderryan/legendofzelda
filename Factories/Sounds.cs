@@ -17,7 +17,7 @@ namespace LegendOfZelda
         private static SoundEffect linkDie;
 
         private static SoundEffect bossHurt;
-        private static SoundEffect bossDie;
+        //private static SoundEffect bossDie;
 
         private static SoundEffect keyAppearance;
         private static SoundEffect itemObtained;
