@@ -45,7 +45,8 @@ namespace LegendOfZelda
             }
             else
             {
-                if (!(player.X > 449 && (door is RightWall || door is RightOther || door is RightKey)) && !(player.Y == 435 && door is BottomWall))
+                if (!(player.X > 449 && (door.Value is RightWall || door.Value is RightOther
+                    || door.Value is RightKey)) && !(player.Y == 435 && door.Value is BottomWall))
                 {
                     Rectangle collision = Rectangle.Intersect(player.Footbox, door.Value.Hitbox);
                     if (collision.Width > collision.Height)

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -9,8 +8,6 @@ namespace LegendOfZelda
 
         private LegendOfZelda game;
         private String direction;
-        private bool canChange;
-        private string[] items;
         private int currentIndex;
         private int i;
         private string currentItem;

@@ -7,7 +7,6 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private int offset;
-        private IItem item;
         private ISprite currentSprite;
         public HUDCurrentItem(LegendOfZelda game)
         {

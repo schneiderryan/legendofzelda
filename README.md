@@ -34,9 +34,10 @@
 - Spawning/despawing animations for enemies and projectiles
 
 # Known Bugs
-None
+Candle item is missing
+HUD is kinda buggy
 
-# Code Analyzer Suppressions (17 warnings found sprint 3)(9 warning found sprint 4)
+# Code Analyzer Suppressions (12 warnings found this sprint)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
             If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 
