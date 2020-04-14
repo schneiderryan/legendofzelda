@@ -10,15 +10,12 @@
 - Q: quit game
 - R: reset game
 - 1: throw sword
-- 2: throw arrow
-- 3: throw boomerang
-- 4: throw bomb
-- Left Click: Iterate forward through rooms
-- Right Click: Iterate backwards through rooms
+- 2: throw arrow (after link as found both arrow & bow, and has > 0 rupees)
+- 3: throw boomerang (after link has found the boomerang)
+- 4: drop bomb
 - P: Pause Game
 
 # Functionality
-- Room switching when going through doors and with mouse
 - Player can die which resets game
 - Player can win upon picking up triforce
 - Start menu and credits
@@ -29,18 +26,12 @@
 - Enemies die and despawn
 - Enemies and player collide with walls and blocks
 - Player can move moveable blocks
-- Player can walk through doors (doesn't change room though)
+- Player can walk through doors
 - Rooms loaded using csv files
-- Spawning/despawing animations for enemies and projectiles implemented
+- Spawning/despawing animations for enemies and projectiles
 
 # Known Bugs
-- When trying to move link in two directions at once, he stops animating
 - When link attacks with another weapon there aren't different sprites
-- Some enemy/npc functionality isn't fully implemented yet (Wallmasters, old man, merchant)
-- Some items are not fully implemented yet (rings, candle, clock, compass)
-- When the attack key is held, link attacks repeatedly
-- Bomb does not work correctly
-- Aqumentus' fireballs are not directed at link
 
 # Code Analyzer Suppressions (17 warnings found this sprint)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
