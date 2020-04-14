@@ -34,6 +34,7 @@ namespace LegendOfZelda
         private static Texture2D FontsTransparent;
         private static Texture2D Map;
         private static Texture2D Inventory;
+        private static Texture2D Selector;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -65,6 +66,7 @@ namespace LegendOfZelda
             FontsTransparent = contentManager.Load<Texture2D>("fontskindatransparent");
             Map = contentManager.Load<Texture2D>("mapstuff");
             Inventory = contentManager.Load<Texture2D>("inventory");
+            Selector = contentManager.Load<Texture2D>("selector");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -189,6 +191,11 @@ namespace LegendOfZelda
         public static Texture2D GetWinCurtain()
         {
             return WinCurtain;
+        }
+
+        public static Texture2D GetItemSelector()
+        {
+            return Selector;
         }
     }
 }

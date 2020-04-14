@@ -22,6 +22,7 @@ namespace LegendOfZelda
         private Color deadColor;
         public double Resistance { get; set; }
         public IItem HeldItem { get; set; }
+        public IItem CurrentItem { get; set; }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
         public int attackSoundTimer = 0;
@@ -223,6 +224,7 @@ namespace LegendOfZelda
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
             this.HeldItem = new Bomb();
+            this.CurrentItem = new Bomb();
             this.DeadColor = Microsoft.Xna.Framework.Color.White;
         }
 

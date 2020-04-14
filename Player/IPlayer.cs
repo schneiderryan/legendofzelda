@@ -16,7 +16,7 @@ namespace LegendOfZelda
         double Resistance { get; set; }
         IInventory Inventory { get; }
         IItem HeldItem { get; set; }
-
+        IItem CurrentItem { get; set; }
         Rectangle Footbox { get; }
         Rectangle UpAttackBox { get; }
         Rectangle DownAttackBox { get; }

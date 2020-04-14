@@ -79,6 +79,12 @@ namespace LegendOfZelda
             cmd = new InventoryTransitionCommand(game);
             keyBinds.Add(Keys.I, cmd);
 
+            cmd = new InventoryMoveCommand(game, "left");
+            keyBinds.Add(Keys.H, cmd);
+
+            cmd = new InventoryMoveCommand(game, "right");
+            keyBinds.Add(Keys.J, cmd);
+
             return new SinglePressKeyboardController(keyBinds);
         }
 

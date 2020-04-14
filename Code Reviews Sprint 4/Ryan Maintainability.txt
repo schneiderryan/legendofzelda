@@ -1,0 +1,11 @@
+Ryan Schneider
+4/13/20
+4
+PlacedBomb.cs
+Ryan Schneider
+10 minutes
+
+This class executes good maintainability as the bomb and the explosion that the bomb creates are seperate. This means
+that if something needed to be changed about the bomb but not the explosions then the explosion class wouldn't need to be changed. 
+This also will help resolve any errors as it can effectively be found if the error originates in the explosion or the bomb
+itself, meaning there is 1/2 the code to comb through when error checking. 

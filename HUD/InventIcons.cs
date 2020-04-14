@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,7 +18,8 @@ namespace LegendOfZelda
         private ISprite compass;
         private int firstRowY;
         private int mapCompassX;
-        private ISprite currentItem;
+        private ISprite currentSprite;
+        private ISprite selector;
         public InventIcons(LegendOfZelda game)
         {
             firstRowY = 75;
@@ -40,22 +42,41 @@ namespace LegendOfZelda
             map = ItemSpriteFactory.GetMap();
             map.X = mapCompassX;
             map.Y = 220;
+            currentSprite = FontSpriteFactory.GetWhiteBox();
             compass = ItemSpriteFactory.GetCompass();
             compass.X = mapCompassX;
             compass.Y = 300;
-            currentItem = ItemSpriteFactory.GetArrow();
-            currentItem.X = 145;
-            currentItem.Y = firstRowY - 5;
+            selector = ItemSpriteFactory.GetItemSelector();
     }
 
         public void Update()
         {
-            //Nothing to do
+            if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
+            {
+                currentSprite = ItemSpriteFactory.GetBomb();
+                selector.X = bomb.X;
+                selector.Y = bomb.Y;
+            }
+            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang"))
+            {
+                currentSprite = ItemSpriteFactory.GetBoomerang();
+                selector.X = boomerang.X;
+                selector.Y = boomerang.Y;
+            }
+            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Arrow"))
+            {
+                currentSprite = ItemSpriteFactory.GetArrow();
+                selector.X = arrow.X;
+                selector.Y = arrow.Y;
+            }
+            currentSprite.X = 145;
+            currentSprite.Y = firstRowY - 5;
+            selector.X = selector.X - 5;
         }
 
         public void Draw()
         {
-           if(true)
+           if(game.link.Inventory.Boomerang.Level > 0)
             {
                 boomerang.Draw(game.spriteBatch);
             }
@@ -63,23 +84,24 @@ namespace LegendOfZelda
             {
                 bomb.Draw(game.spriteBatch);
             }
-            if (true)
+            if (game.link.Inventory.HasArrow)
             {
                 arrow.Draw(game.spriteBatch);
             }
-            if (true)
+            if (game.link.Inventory.HasBow)
             {
                 bow.Draw(game.spriteBatch);
             }
-            if (true)
+            if (game.link.Inventory.HasMap)
             {
                 map.Draw(game.spriteBatch);
             }
-            if (true)
+            if (game.link.Inventory.HasCompass)
             {
                 compass.Draw(game.spriteBatch);
             }
-            currentItem.Draw(game.spriteBatch);
+            currentSprite.Draw(game.spriteBatch);
+            selector.Draw(game.spriteBatch);
         }
     }
 }
