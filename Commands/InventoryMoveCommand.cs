@@ -35,6 +35,7 @@ namespace LegendOfZelda
                 }
                 i++;
             }
+            i = currentIndex;
             if (game.state.ToString().Equals("LegendOfZelda.InventoryState"))
             {
                 while (!itemSelected)
@@ -56,7 +57,11 @@ namespace LegendOfZelda
                         }
                     }
                     currentItem = items[currentIndex];
-                    if (currentItem == "Boomerang")
+                    if (currentIndex == i)
+                    {
+                        itemSelected = true; //if there are no items
+                    }
+                    else if (currentItem == "Boomerang")
                     {
                         if (game.link.Inventory.Boomerang.Level > 0)
                         {

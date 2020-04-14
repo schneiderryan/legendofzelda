@@ -37,7 +37,8 @@
 - Spawning/despawing animations for enemies and projectiles implemented
 
 # Known Bugs
-None
+Inventory shows bombs when bomb count is zero
+item selection has some issues when items are missing
 
 # Code Analyzer Suppressions (17 warnings found sprint 3)(9 warning found sprint 4)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
