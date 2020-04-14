@@ -92,7 +92,8 @@ namespace LegendOfZelda
         {
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
-                if(!door.Key.Equals("top") || door.Value is TopOpen)
+                if ((!door.Key.Equals("top") || door.Value is TopOpen)
+                        && !(door.Value is BottomExploded))
                 {
                     door.Value.Draw(sb, color);
                 }
@@ -104,10 +105,7 @@ namespace LegendOfZelda
             background.Draw(sb, color);
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
-                if (door.Key.Equals("top"))
-                {
-                    door.Value.Draw(sb, color);
-                }
+                door.Value.Draw(sb, color);
             }
 
             foreach (IBlock b in Blocks)

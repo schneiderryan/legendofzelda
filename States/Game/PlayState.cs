@@ -73,8 +73,7 @@ namespace LegendOfZelda
 
             game.ProjectileManager.Update();
 
-            IEnumerable<ICollision> collisions =
-                    game.CollisionDetector.Detect(game.rooms[game.roomIndex], game.link);
+            IEnumerable<ICollision> collisions = game.CollisionDetector.Detect();
             CollisionHandler.Handle(collisions);
         }
 
