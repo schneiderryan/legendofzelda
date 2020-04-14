@@ -34,13 +34,7 @@
 - Spawning/despawing animations for enemies and projectiles implemented
 
 # Known Bugs
-FIXED - When trying to move link in two directions at once, he stops animating
-FIXED - When link attacks with another weapon there aren't different sprites
-FIXED - Some enemy/npc functionality isn't fully implemented yet (Wallmasters, old man, merchant)
-FIXED - Some items are not fully implemented yet (rings, candle, clock, compass)
-FIXED - When the attack key is held, link attacks repeatedly
-FIXED - Bomb does not work correctly
-FIXED - Aqumentus' fireballs are not directed at link
+None
 
 # Code Analyzer Suppressions (17 warnings found sprint 3)(9 warning found sprint 4)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
