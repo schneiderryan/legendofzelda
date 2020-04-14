@@ -62,6 +62,7 @@ namespace LegendOfZelda
         public int Y { get => link.Y; set => link.Y = value; }
         public IItem HeldItem { get => link.HeldItem; set => link.HeldItem = value; }
         public double Resistance { get => link.Resistance; set => link.Resistance = value; }
+        public bool usedinRoom { get => link.usedinRoom; set => link.usedinRoom = value; }
 
         public void Attack()
         {
