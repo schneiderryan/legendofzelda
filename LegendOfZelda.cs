@@ -124,6 +124,7 @@ namespace LegendOfZelda
         public void ChangeRoom()
         {
             state.ChangeRoom();
+            link.usedinRoom = false;
         }
 
         public void WinGame()

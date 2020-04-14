@@ -20,6 +20,7 @@ namespace LegendOfZelda
         private Rectangle attackBoxDown;
         private Vector2 origin;
         private Color deadColor;
+        public bool usedinRoom { get; set; }
         public double Resistance { get; set; }
         public IItem HeldItem { get; set; }
         public IItem CurrentItem { get; set; }
@@ -226,6 +227,7 @@ namespace LegendOfZelda
             this.HeldItem = new Bomb();
             this.CurrentItem = new Bomb();
             this.DeadColor = Microsoft.Xna.Framework.Color.White;
+            this.usedinRoom = false;
         }
 
         public void Knockback(int amountX, int amountY)

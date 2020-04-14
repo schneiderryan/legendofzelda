@@ -136,5 +136,12 @@ namespace LegendOfZelda
             return new AnimatedSprite(Textures.GetItemSelector(),
                     new Rectangle(0, 0, 16, 16), 2);
         }
+
+        public static ISprite GetBlueCandle()
+        {
+            return new Sprite(Textures.GetItemSheet(),
+                    new Rectangle(160, 16, 7, 14))
+            { Scale = 3f };
+        }
     }
 }
