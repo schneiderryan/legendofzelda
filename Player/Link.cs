@@ -20,8 +20,10 @@ namespace LegendOfZelda
         private Rectangle attackBoxDown;
         private Vector2 origin;
         private Color deadColor;
+        public bool usedinRoom { get; set; }
         public double Resistance { get; set; }
         public IItem HeldItem { get; set; }
+        public IItem CurrentItem { get; set; }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
         public int attackSoundTimer = 0;
@@ -222,7 +224,10 @@ namespace LegendOfZelda
             this.Resistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
+            this.HeldItem = new Bomb();
+            this.CurrentItem = new Bomb();
             this.DeadColor = Microsoft.Xna.Framework.Color.White;
+            this.usedinRoom = false;
         }
 
         public void Knockback(int amountX, int amountY)

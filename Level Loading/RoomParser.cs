@@ -54,6 +54,8 @@ namespace LegendOfZelda
             this.possibleItems = new List<string>()
             {
                 "Arrow",
+                "BlueCandle",
+                "BluePotion",
                 "BlueRing",
                 "BlueRupee",
                 "Bomb",
@@ -66,9 +68,11 @@ namespace LegendOfZelda
                 "HeartContainer",
                 "Key",
                 "Map",
+                "RedPotion",
                 "RedRing",
                 "Rupee",
                 "TriforceShard",
+                "WhiteSword",
                 "WoodSword",
             };
 

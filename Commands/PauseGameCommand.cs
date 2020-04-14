@@ -26,6 +26,7 @@ namespace LegendOfZelda
                 game.PauseGame();
                 paused = true;
             }
+            
         }
     }
 }

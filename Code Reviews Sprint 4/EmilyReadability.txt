@@ -1,0 +1,14 @@
+Emily Smith
+4/13/20
+4
+LoseState.cs
+Taylor Benjamin
+10 minutes
+
+Overall I would that this class is very readable, I understand that 
+this is the game's transition from link dying back to a new game. 
+All variables and methods have descriptive names.
+The only issue I see with readability is the use of magic numbers for the tintTimer,
+this is because I don't really understand why these numbers were chosen. However,
+this is ok given that these numbers were probaly used to recreate the timing in 
+the orginal zelda game. If needed or wanted could move these values to a ulitiy class.

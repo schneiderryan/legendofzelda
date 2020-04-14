@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
+using System;
 
 
 namespace LegendOfZelda
@@ -59,7 +62,7 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             state.Update();
-            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState"))
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.TransitionToInventoryState"))
             {
                 hud.Update();
             }
@@ -74,7 +77,7 @@ namespace LegendOfZelda
 
             state.Draw();
 
-            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.PauseState"))
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.PauseState") || state.ToString().Equals("LegendOfZelda.InventoryState"))
             {
                 hud.Draw();
             }
@@ -104,6 +107,15 @@ namespace LegendOfZelda
             state.PauseGame();
         }
 
+        public void OpenInventory()
+        {
+            state.OpenInventory();
+        }
+
+        public void CloseInventory()
+        {
+            state.CloseInventory();
+        }
         public void ResumeGame()
         {
             state.ResumeGame();
@@ -112,6 +124,7 @@ namespace LegendOfZelda
         public void ChangeRoom()
         {
             state.ChangeRoom();
+            link.usedinRoom = false;
         }
 
         public void WinGame()

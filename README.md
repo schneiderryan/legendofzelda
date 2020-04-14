@@ -7,6 +7,9 @@
 - S and down arrow: move player down
 - D and right up: move player right
 - Z and N: player attacks
+- I: Open Inventory
+- H: Move Left Thorugh Inventory
+- J: Move Right Through Inventory
 - Q: quit game
 - R: reset game
 - 1: throw sword
@@ -31,9 +34,9 @@
 - Spawning/despawing animations for enemies and projectiles
 
 # Known Bugs
-- When link attacks with another weapon there aren't different sprites
+None
 
-# Code Analyzer Suppressions (17 warnings found this sprint)
+# Code Analyzer Suppressions (17 warnings found sprint 3)(9 warning found sprint 4)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
             If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 
