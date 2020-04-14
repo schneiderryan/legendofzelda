@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace LegendOfZelda
 {
@@ -13,7 +10,6 @@ namespace LegendOfZelda
         private ISprite bomb;
         private ISprite bow;
         private ISprite arrow;
-        private ISprite candle;
         private ISprite map;
         private ISprite compass;
         private int firstRowY;
@@ -47,7 +43,7 @@ namespace LegendOfZelda
             compass.X = mapCompassX;
             compass.Y = 300;
             selector = ItemSpriteFactory.GetItemSelector();
-    }
+        }
 
         public void Update()
         {

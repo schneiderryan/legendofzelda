@@ -17,7 +17,9 @@ namespace LegendOfZelda
         {
             if (!(player.Inventory.Boomerang is EmptyLeveledItem))
             {
-                player.UseProjectile(new BoomerangProjectile(player.Direction, player));
+                IProjectile proj = new BoomerangProjectile(player.Direction, player);
+                proj.Update();
+                player.UseProjectile(proj);
             }
         }
     }

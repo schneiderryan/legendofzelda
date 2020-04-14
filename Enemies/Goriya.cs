@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-
+using System;
 
 namespace LegendOfZelda
 {
@@ -12,6 +12,7 @@ namespace LegendOfZelda
 		private bool canThrowBoomerang;
 		private BoomerangProjectile boomerang;
 		private ICollection<IProjectile> projectiles;
+		private const int THROW_DELAY = 250;
 
 		public Goriya(ICollection<IProjectile> projectiles)
 		{
@@ -23,6 +24,7 @@ namespace LegendOfZelda
 			Sprite.Position = new Point(X, Y);
 			State = new RightMovingGoriyaState(this);
 			canThrowBoomerang = true;
+			boomerangTimer = new Random().Next(180, THROW_DELAY);
 			boomerang = new BoomerangProjectile(direction, this);
 			currentHearts = 3;
 		}
@@ -32,7 +34,7 @@ namespace LegendOfZelda
 			if (canThrowBoomerang)
 			{
 				boomerangTimer++;
-				if (boomerangTimer == 250)
+				if (boomerangTimer >= THROW_DELAY)
 				{
 					ThrowBoomerang();
 					boomerangTimer = 0;
@@ -52,6 +54,7 @@ namespace LegendOfZelda
 			boomerang = new BoomerangProjectile(direction, this);
 			Util.CenterRelativeToEdge(Sprite.Box, direction, boomerang);
 			projectiles.Add(boomerang);
+			boomerang.Update();
 			canThrowBoomerang = false;
 		}
 

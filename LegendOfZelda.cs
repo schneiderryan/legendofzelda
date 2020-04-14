@@ -24,7 +24,6 @@ namespace LegendOfZelda
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
-        public IController roomController;
 
         public int xRoom;
         public int yRoom;

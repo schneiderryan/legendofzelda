@@ -6,16 +6,18 @@ namespace LegendOfZelda
 {
     class DoorProjectileCollision : ICollision
     {
-        IDictionary<string, IDoor> doors;
+        IList<IRoom> rooms;
+        int roomIndex;
         KeyValuePair<string, IDoor> door;
         IProjectileManager projectiles;
         IProjectile projectile;
 
-        public DoorProjectileCollision(IDictionary<string, IDoor> doors,
+        public DoorProjectileCollision(IList<IRoom> rooms, int roomIndex,
                 KeyValuePair<string, IDoor> door, IProjectileManager projectiles,
                 IProjectile projectile)
         {
-            this.doors = doors;
+            this.rooms = rooms;
+            this.roomIndex = roomIndex;
             this.door = door;
             this.projectiles = projectiles;
             this.projectile = projectile;
@@ -26,35 +28,24 @@ namespace LegendOfZelda
             if (projectile is Explosion
                     && door.Value.Hitbox.Contains(projectile.Hitbox.Center))
             {
-                Debug.WriteLine(door.Key);
                 switch (door.Key)
                 {
-                    case "left":
-                        if (door.Value is LeftWall)
-                        {
-                            doors.Remove(door.Key);
-                            doors.Add(door.Key, new LeftExploded());
-                        }
-                        break;
                     case "top":
-                        if (door.Value is TopWall)
+                        if (door.Value is TopWall && (roomIndex == 5 || roomIndex == 6))
                         {
-                            doors.Remove(door.Key);
-                            doors.Add(door.Key, new TopExploded());
-                        }
-                        break;
-                    case "right":
-                        if (door.Value is RightWall)
-                        {
-                            doors.Remove(door.Key);
-                            doors.Add(door.Key, new RightExploded());
+                            rooms[roomIndex].Doors.Remove(door.Key);
+                            rooms[roomIndex].Doors.Add(door.Key, new TopExploded());
+                            rooms[roomIndex + 4].Doors.Remove("bottom");
+                            rooms[roomIndex + 4].Doors.Add("bottom", new BottomExploded());
                         }
                         break;
                     case "bottom":
-                        if (door.Value is BottomWall)
+                        if (door.Value is BottomWall && (roomIndex == 9 || roomIndex == 10))
                         {
-                            doors.Remove(door.Key);
-                            doors.Add(door.Key, new BottomExploded());
+                            rooms[roomIndex].Doors.Remove(door.Key);
+                            rooms[roomIndex].Doors.Add(door.Key, new BottomExploded());
+                            rooms[roomIndex - 4].Doors.Remove("top");
+                            rooms[roomIndex - 4].Doors.Add("top", new TopExploded());
                         }
                         break;
                 }
