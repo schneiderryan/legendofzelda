@@ -39,6 +39,8 @@
 - Spawning/despawing animations for enemies and projectiles implemented
 
 # Known Bugs
+Inventory shows bombs when bomb count is zero
+item selection has some issues when items are missing
 - Issues with Item Selection and using second weapon
 
 # Code Analyzer Suppressions (17 warnings found sprint 3)(9 warning found sprint 4)
