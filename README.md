@@ -19,6 +19,8 @@
 - Left Click: Iterate forward through rooms
 - Right Click: Iterate backwards through rooms
 - P: Pause Game
+- I: Item Selection Screen
+- J and H: Item Selection
 
 # Functionality
 - Room switching when going through doors and with mouse
@@ -39,6 +41,7 @@
 # Known Bugs
 Inventory shows bombs when bomb count is zero
 item selection has some issues when items are missing
+- Issues with Item Selection and using second weapon
 
 # Code Analyzer Suppressions (17 warnings found sprint 3)(9 warning found sprint 4)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
