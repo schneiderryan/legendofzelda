@@ -24,6 +24,8 @@ namespace LegendOfZelda
         private int halfY;
         private int emptyX;
         private int emptyY;
+        private int offset;
+
 
 
         public HUDHearts(LegendOfZelda game)
@@ -56,13 +58,14 @@ namespace LegendOfZelda
                 numHalfHearts = (int)(game.link.CurrentHearts * 2) % 2;
                 numEmptyHearts = (int)game.link.MaxHearts - (numFullHearts + numHalfHearts);
             }
+            this.offset = game.hud.offset;
         }
 
         public void Draw()
         {
             currentInt = 0;
             currentX = initX;
-            currentY = initY;
+            currentY = offset + initY;
             while (currentInt < (numEmptyHearts + numFullHearts + numHalfHearts))
             {
                 if (currentInt < numFullHearts)

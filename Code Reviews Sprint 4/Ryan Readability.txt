@@ -1,0 +1,10 @@
+Ryan Schneider
+4/13/20
+4
+PlacedBomb.cs
+Issac Smith
+5 minutes
+
+The Class performs the task of placing a bomb on the ground to be exploded. The class does a great job at seperating the
+bomb into different tasks so that it can be effiently blown up and resposibility is passed on as to not make the class too
+large. The names of the variables are informative and fully explain what is doing what. Great Readability, 10/10

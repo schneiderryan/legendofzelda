@@ -3,19 +3,24 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
-
 namespace LegendOfZelda
 {
-    class PlayState : IGameState
+    class InventoryState : IGameState
     {
         private LegendOfZelda game;
         private Texture2D HUD;
         private Texture2D HUDBackground;
-        public PlayState(LegendOfZelda game)
+        private Texture2D Inventory;
+        private Invent invent; 
+        public InventoryState(LegendOfZelda game)
         {
             this.HUD = Textures.GetHUD();
             this.HUDBackground = Textures.GetHUDBackground();
+            this.Inventory = Textures.GetInventory();
             this.game = game;
+            this.invent = new Invent(game);
+
+
         }
 
         public void ToStart()
@@ -30,64 +35,56 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
-            //Nothing to do
+            game.state = new PlayState(game);
         }
 
         public void PauseGame()
         {
-            game.state = new PauseState(game);
+            //Nothing to do
         }
 
         public void OpenInventory()
         {
-            game.hud.offset = 360;
-            game.state = new TransitionToInventoryState(game);
+            //Nothing to do
         }
 
         public void CloseInventory()
         {
-            //Nothing to do
+            this.game.state = new TransitionFromInventoryState(this.game);
         }
 
         public void ResumeGame()
         {
-            //Nothing to do
+            //game.state = new TransitionFromInventoryState(game);
         }
 
         public void ChangeRoom()
         {
-            game.state = new ChangeRoomState(game.link.Direction, game);
+            //Nothing to do
         }
 
         public void WinGame()
         {
-            game.state = new WinState(game);
+            //Nothing to do
         }
 
         public void LoseGame()
         {
-            game.state = new LoseState(game);
+            //Nothing to do
         }
 
         public void SelectItem()
         {
-            game.state = new SelectItemState(game);
+            //Nothing to do
         }
 
         public void Update()
         {
+            //Figure out later
             game.mouse.Update();
             game.keyboard.Update();
-            game.playerKeyboard.Update();
-
-            game.rooms[game.roomIndex].Update();
-            game.link.Update();
-
-            game.ProjectileManager.Update();
-
-            IEnumerable<ICollision> collisions =
-                    game.CollisionDetector.Detect(game.rooms[game.roomIndex], game.link);
-            CollisionHandler.Handle(collisions);
+            game.hud.Update();
+            invent.Update();
         }
 
         public void Draw()
@@ -97,7 +94,9 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
             game.ProjectileManager.Draw(game.spriteBatch, Color.White);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.Black);
-            game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
+            game.spriteBatch.Draw(HUD, new Rectangle(0, 360, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
+            game.spriteBatch.Draw(Inventory, new Rectangle(0, -40, 512, 400), new Rectangle(0, 0, 246, 176), Color.White);
+            invent.Draw();
         }
     }
 }

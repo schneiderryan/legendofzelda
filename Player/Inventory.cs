@@ -1,5 +1,6 @@
 ﻿
 
+
 namespace LegendOfZelda
 {
     class Inventory : IInventory
@@ -10,7 +11,6 @@ namespace LegendOfZelda
         public bool HasRedPotion { get; set; } = false;
         public bool HasClock { get; set; } = false;
         public bool HasBlueCandle { get; set; } = false;
-
         public bool HasMap { get; set; } = false;
         public bool HasCompass { get; set; } = true;
         public int Rupees { get; set; } = 0;

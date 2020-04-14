@@ -7,6 +7,9 @@
 - S and down arrow: move player down
 - D and right up: move player right
 - Z and N: player attacks
+- I: Open Inventory
+- H: Move Left Thorugh Inventory
+- J: Move Right Through Inventory
 - Q: quit game
 - R: reset game
 - 1: throw sword
