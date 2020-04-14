@@ -1,0 +1,20 @@
+Emily Smith
+4/13/20
+4
+LoseState.cs
+Taylor Benjamin
+15 minutes
+
+Overall, I would say that this code would be easy to maintain. It is a pretty short class
+with only around 100 lines and each method is 5 lines or less. Variables used in this class
+are private as well which is good code practice. Also the class has high cohesion as this
+class focuses only on the losing state of the game and not all the states of the game.
+It also has loose coupling as the class only calls methods to get and change other classes
+variables. Finally it has not high coupling because the class only depends on LegendOfZelda,
+IGameState and Textures directly.
+
+A hypothetical change to make to the game would be to have different save points 
+in the game so that if you died you would reset to that location. I think this is a
+realistic hypothetical change. The current implementation could not easily support this change
+as it would require adding more classes most likely. The easiest way I think to do this would to make
+game states for each save point and also more lose states for each of those save points.
