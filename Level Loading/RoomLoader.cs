@@ -134,6 +134,14 @@ namespace LegendOfZelda
                 {
                     item = new Arrow();
                 }
+                else if (entry.Value.Equals("BlueCandle"))
+                {
+                    item = new BlueCandle();
+                }
+                else if (entry.Value.Equals("BluePotion"))
+                {
+                    item = new BluePotion();
+                }
                 else if (entry.Value.Equals("BlueRing"))
                 {
                     item = new BlueRing(game);
@@ -193,6 +201,14 @@ namespace LegendOfZelda
                 else if (entry.Value.Equals("RedRing"))
                 {
                     item = new RedRing(game);
+                }
+                else if (entry.Value.Equals("RedPotion"))
+                {
+                    item = new RedPotion();
+                }
+                else if (entry.Value.Equals("WhiteSword"))
+                {
+                    item = new WhiteSword();
                 }
                 else //wood sword
                 {
