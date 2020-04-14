@@ -17,6 +17,8 @@
 - 3: throw boomerang (after link has found the boomerang)
 - 4: drop bomb
 - P: Pause Game
+- I: Item Selection Screen
+- J and H: Item Selection
 
 # Functionality
 - Player can die which resets game
@@ -34,8 +36,10 @@
 - Spawning/despawing animations for enemies and projectiles
 
 # Known Bugs
+Inventory shows bombs when bomb count is zero
+item selection has some issues when items are missing
+- Issues with Item Selection and using second weapon
 Candle item is missing
-HUD is kinda buggy
 
 # Code Analyzer Suppressions (12 warnings found this sprint)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
