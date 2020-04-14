@@ -9,6 +9,7 @@ namespace LegendOfZelda
         public bool HasBluePotion { get; set; } = false;
         public bool HasRedPotion { get; set; } = false;
         public bool HasClock { get; set; } = false;
+        public bool HasBlueCandle { get; set; } = false;
 
         public bool HasMap { get; set; } = false;
         public bool HasCompass { get; set; } = true;
