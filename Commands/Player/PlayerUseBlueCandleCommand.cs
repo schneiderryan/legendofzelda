@@ -16,11 +16,12 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            if (player.Inventory.HasBlueCandle)
+            if (player.Inventory.HasBlueCandle && !player.usedinRoom)
             {
                 IProjectile blueCandle = new BlueCandleFlame();
                 Util.CenterRelativeToEdge(player.Hitbox, player.Direction, blueCandle);
                 projectiles.Add(blueCandle);
+                player.usedinRoom = true;
             }
         }
     }

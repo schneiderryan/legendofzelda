@@ -14,6 +14,8 @@ namespace LegendOfZelda
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }
         double Resistance { get; set; }
+
+        bool usedinRoom { get; set; }
         IInventory Inventory { get; }
         IItem HeldItem { get; set; }
 
