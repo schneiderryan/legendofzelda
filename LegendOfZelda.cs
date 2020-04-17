@@ -17,6 +17,7 @@ namespace LegendOfZelda
         public int roomIndex;
         public bool OldManDamaged { get; set; }
         public IPlayer link;
+        public ConeOfVision cone;
 
         public IProjectileManager ProjectileManager { get; set; }
         public GraphicsDeviceManager graphics;
