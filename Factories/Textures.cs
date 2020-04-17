@@ -35,6 +35,7 @@ namespace LegendOfZelda
         private static Texture2D Map;
         private static Texture2D Inventory;
         private static Texture2D Selector;
+        private static Texture2D ConeOfVision;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -67,6 +68,7 @@ namespace LegendOfZelda
             Map = contentManager.Load<Texture2D>("mapstuff");
             Inventory = contentManager.Load<Texture2D>("inventory");
             Selector = contentManager.Load<Texture2D>("selector");
+            ConeOfVision = contentManager.Load<Texture2D>("ConeOfVision");
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -196,6 +198,11 @@ namespace LegendOfZelda
         public static Texture2D GetItemSelector()
         {
             return Selector;
+        }
+
+        public static Texture2D GetConeOfVision()
+        {
+            return ConeOfVision;
         }
     }
 }
