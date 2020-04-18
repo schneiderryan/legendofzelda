@@ -14,6 +14,7 @@ namespace LegendOfZelda
         private Texture2D BWRoom = Textures.GetBWRoom();
         private Texture2D WinCurtain = Textures.GetWinCurtain();
         private Texture2D hudcontents = Textures.GetHUDContents();
+        private Texture2D ConeOfVision = Textures.GetConeOfVision();
         private MiscSpriteFactory() { }
         public static MiscSpriteFactory Instance
         {
@@ -47,6 +48,11 @@ namespace LegendOfZelda
         public ISprite CreateLife()
         {
             return new Sprite(hudcontents, new Rectangle(440, 25, 51, 11));
+        }
+
+        public ISprite CreateConeOfVision()
+        {
+            return new Sprite(ConeOfVision, new Rectangle(0, 0, ConeOfVision.Width, ConeOfVision.Height));
         }
     }
 }
