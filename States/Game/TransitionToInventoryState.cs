@@ -97,6 +97,7 @@ namespace LegendOfZelda
             {
                 game.rooms[game.roomIndex].Update();
                 game.link.Update();
+                game.cone.Update();
             }
             updateTimer--;
         }
@@ -107,6 +108,7 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
+            game.cone.Draw(game.spriteBatch);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
             game.spriteBatch.Draw(HUD, new Rectangle(0, pos, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
             game.spriteBatch.Draw(Inventory, new Rectangle(0, -400 + pos, 512, 400), new Rectangle(0, 0, 246, 176), Color.White);
