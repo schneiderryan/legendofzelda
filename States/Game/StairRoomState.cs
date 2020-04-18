@@ -132,6 +132,7 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].Draw(game.spriteBatch, tint);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
             game.link.Draw(game.spriteBatch, Color.White);
+            game.cone.Draw(game.spriteBatch);
         }
     }
 }

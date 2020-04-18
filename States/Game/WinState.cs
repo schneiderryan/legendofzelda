@@ -118,6 +118,7 @@ namespace LegendOfZelda
                 game.ToStart();
             }
             game.link.Update();
+            game.cone.Update();
             timer++;
         }
 
@@ -137,6 +138,7 @@ namespace LegendOfZelda
             game.spriteBatch.Draw(RightCurtain, new Rectangle(rightPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, RightCurtain.Width, RightCurtain.Height), Color.Black);
             game.spriteBatch.Draw(LeftCurtain, new Rectangle(leftPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, LeftCurtain.Width, LeftCurtain.Height), Color.Black);
             game.link.Draw(game.spriteBatch, Color.White);
+            game.cone.Draw(game.spriteBatch);
             foreach (IItem item in game.rooms[game.roomIndex].Items)
             {
                 item.Update();
