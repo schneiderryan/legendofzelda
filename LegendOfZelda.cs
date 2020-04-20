@@ -22,6 +22,7 @@ namespace LegendOfZelda
         public IProjectileManager ProjectileManager { get; set; }
         public GraphicsDeviceManager graphics;
 
+        public string currentMode;
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
@@ -45,6 +46,7 @@ namespace LegendOfZelda
 
         protected override void Initialize()
         {
+            currentMode = "normal";
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
             state = new StartMenuState(this);
@@ -61,6 +63,7 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
+            //System.Console.WriteLine(state);
             state.Update();
             if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.TransitionToInventoryState"))
             {
@@ -95,6 +98,11 @@ namespace LegendOfZelda
         public void NewGame()
         {
             state.NewGame();
+        }
+
+        public void SelectMode()
+        {
+            state.SelectMode();
         }
 
         public void PlayGame()

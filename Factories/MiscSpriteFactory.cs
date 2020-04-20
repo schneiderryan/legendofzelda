@@ -54,5 +54,14 @@ namespace LegendOfZelda
         {
             return new Sprite(ConeOfVision, new Rectangle(0, 0, ConeOfVision.Width, ConeOfVision.Height));
         }
+
+        public ISprite CreateModeSelector()
+        {
+            return new AnimatedSprite(Textures.GetModeSelector(),
+                    new Rectangle(0, 0, 100, 16), 2, true)
+            {
+                Scale = 4
+            };
+        }
     }
 }

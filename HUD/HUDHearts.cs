@@ -7,6 +7,7 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private Texture2D itemSheet = Textures.GetItemSheet();
+        private ISprite suddenDeathMessage;
         private int numFullHearts;
         private int numHalfHearts;
         private int numEmptyHearts;
@@ -48,6 +49,7 @@ namespace LegendOfZelda
             halfY = 0;
             emptyX = 16;
             emptyY = 0;
+            suddenDeathMessage = FontSpriteFactory.GetSuddenDeathMessage();
         }
 
         public void Update()
@@ -58,39 +60,48 @@ namespace LegendOfZelda
                 numHalfHearts = (int)(game.link.CurrentHearts * 2) % 2;
                 numEmptyHearts = (int)game.link.MaxHearts - (numFullHearts + numHalfHearts);
             }
+            suddenDeathMessage.X = initX;
+            suddenDeathMessage.Y = initY + offset - 20;
             this.offset = game.hud.offset;
         }
 
         public void Draw()
         {
-            currentInt = 0;
-            currentX = initX;
-            currentY = offset + initY;
-            while (currentInt < (numEmptyHearts + numFullHearts + numHalfHearts))
+
+            if (!game.currentMode.Equals("sudden death"))
             {
-                if (currentInt < numFullHearts)
+                currentInt = 0;
+                currentX = initX;
+                currentY = offset + initY;
+                while (currentInt < (numEmptyHearts + numFullHearts + numHalfHearts))
                 {
-                    sheetX = fullX;
-                    sheetY = fullY;
+                    if (currentInt < numFullHearts)
+                    {
+                        sheetX = fullX;
+                        sheetY = fullY;
+                    }
+                    else if (currentInt < numFullHearts + numHalfHearts)
+                    {
+                        sheetX = halfX;
+                        sheetY = halfY;
+                    }
+                    else
+                    {
+                        sheetX = emptyX;
+                        sheetY = emptyY;
+                    }
+                    game.spriteBatch.Draw(itemSheet, new Rectangle(currentX, currentY, 13, 12), new Rectangle(sheetX, sheetY, 8, 8), Color.White);
+                    currentX += 13;
+                    if (currentX > finalX)
+                    {
+                        currentX = initX;
+                        currentY -= 12;
+                    }
+                    currentInt++;
                 }
-                else if (currentInt < numFullHearts + numHalfHearts)
-                {
-                    sheetX = halfX;
-                    sheetY = halfY;
-                }
-                else
-                {
-                    sheetX = emptyX;
-                    sheetY = emptyY;
-                }
-                game.spriteBatch.Draw(itemSheet, new Rectangle(currentX, currentY, 13, 12), new Rectangle(sheetX, sheetY, 8, 8), Color.White);
-                currentX += 13;
-                if (currentX > finalX)
-                {
-                    currentX = initX;
-                    currentY -= 12;
-                }
-                currentInt++;
+            } else
+            {
+                suddenDeathMessage.Draw(game.spriteBatch);
             }
         }
     }

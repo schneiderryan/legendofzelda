@@ -88,6 +88,29 @@ namespace LegendOfZelda
             return new SinglePressKeyboardController(keyBinds);
         }
 
+        public static IController CreateMenuKeysController(LegendOfZelda game)
+        {
+            IDictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
+            ICommand cmd;
+
+            cmd = new QuitCommand(game);
+            keyBinds.Add(Keys.Q, cmd);
+
+            cmd = new SelectModeCommand(game, "down");
+            keyBinds.Add(Keys.Down, cmd);
+            keyBinds.Add(Keys.S, cmd);
+
+            cmd = new SelectModeCommand(game, "up");
+            keyBinds.Add(Keys.Up, cmd);
+            keyBinds.Add(Keys.W, cmd);
+
+            cmd = new StartGameCommand(game);
+            keyBinds.Add(Keys.Enter, cmd);
+
+
+            return new SinglePressKeyboardController(keyBinds);
+        }
+
         public static IList<IRoom> GenerateRoomList(LegendOfZelda game)
         {
             IList<IRoom> list = new List<IRoom>()

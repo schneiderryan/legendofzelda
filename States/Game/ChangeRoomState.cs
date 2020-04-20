@@ -82,6 +82,11 @@ namespace LegendOfZelda
 
         }
 
+        public void SelectMode()
+        {
+            //Do nothing
+        }
+
         public void WinGame()
         {
             //Nothing to do

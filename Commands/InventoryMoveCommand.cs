@@ -56,6 +56,7 @@ namespace LegendOfZelda
                     currentItem = items[currentIndex];
                     if (currentIndex == i)
                     {
+                        //game.link.CurrentItem = new NoItem();
                         itemSelected = true; //if there are no items
                     }
                     else if (currentItem == "Boomerang")
