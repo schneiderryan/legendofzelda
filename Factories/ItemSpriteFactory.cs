@@ -134,7 +134,7 @@ namespace LegendOfZelda
         public static ISprite GetItemSelector()
         {
             return new AnimatedSprite(Textures.GetItemSelector(),
-                    new Rectangle(0, 0, 16, 16), 2);
+                    new Rectangle(0, 0, 16, 16), 2, true);
         }
 
         public static ISprite GetBlueCandle()

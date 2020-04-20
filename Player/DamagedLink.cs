@@ -84,6 +84,7 @@ namespace LegendOfZelda
         public IItem CurrentItem { get => InnerLink.CurrentItem; set => InnerLink.CurrentItem = value; }
         public double Resistance { get => InnerLink.Resistance; set => InnerLink.Resistance = value; }
         public bool usedinRoom { get => InnerLink.usedinRoom; set => InnerLink.usedinRoom = value; }
+        public bool HeartsCanChange { get => InnerLink.HeartsCanChange; set => InnerLink.HeartsCanChange = value; }
 
         public DamagedLink (LegendOfZelda game)
         {
