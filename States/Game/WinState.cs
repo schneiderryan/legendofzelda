@@ -68,6 +68,11 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void SelectMode()
+        {
+            //Do nothing
+        }
+
         public void ResumeGame()
         {
             //Nothing to do
@@ -138,7 +143,10 @@ namespace LegendOfZelda
             game.spriteBatch.Draw(RightCurtain, new Rectangle(rightPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, RightCurtain.Width, RightCurtain.Height), Color.Black);
             game.spriteBatch.Draw(LeftCurtain, new Rectangle(leftPos, 0, CurtainWidth, CurtainHeight), new Rectangle(0, 0, LeftCurtain.Width, LeftCurtain.Height), Color.Black);
             game.link.Draw(game.spriteBatch, Color.White);
-            game.cone.Draw(game.spriteBatch);
+            if (game.currentMode.Equals("hard"))
+            {
+                game.cone.Draw(game.spriteBatch);
+            }
             foreach (IItem item in game.rooms[game.roomIndex].Items)
             {
                 item.Update();

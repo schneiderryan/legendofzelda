@@ -35,7 +35,10 @@ namespace LegendOfZelda
         private static Texture2D Map;
         private static Texture2D Inventory;
         private static Texture2D Selector;
+        private static Texture2D ModeSelector;
         private static Texture2D ConeOfVision;
+        private static Texture2D SelectScreen;
+        private static Texture2D SuddenDeathMessage;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -68,7 +71,11 @@ namespace LegendOfZelda
             Map = contentManager.Load<Texture2D>("mapstuff");
             Inventory = contentManager.Load<Texture2D>("inventory");
             Selector = contentManager.Load<Texture2D>("selector");
+            ModeSelector = contentManager.Load<Texture2D>("mode_selector_transparent");
             ConeOfVision = contentManager.Load<Texture2D>("ConeOfVision");
+            SelectScreen = contentManager.Load<Texture2D>("game_select_screen");
+            SuddenDeathMessage = contentManager.Load<Texture2D>("sudden_death_name");
+
 
             blank = new Texture2D(graphics, 1, 1);
             blank.SetData(new Color[1] { Color.Red });
@@ -200,9 +207,24 @@ namespace LegendOfZelda
             return Selector;
         }
 
+        public static Texture2D GetModeSelector()
+        {
+            return ModeSelector;
+        }
+
         public static Texture2D GetConeOfVision()
         {
             return ConeOfVision;
+        }
+
+        public static Texture2D GetSelectModeScreen()
+        {
+            return SelectScreen;
+        }
+
+        public static Texture2D GetSuddenDeathMessage()
+        {
+            return SuddenDeathMessage;
         }
     }
 }

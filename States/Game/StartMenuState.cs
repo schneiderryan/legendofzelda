@@ -52,6 +52,11 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void SelectMode()
+        {
+            //Do nothing
+        }
+
         public void ResumeGame()
         {
             //Nothing to do

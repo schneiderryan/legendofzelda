@@ -53,6 +53,8 @@ namespace LegendOfZelda
 
         public Point Center => link.Center;
 
+        public bool HeartsCanChange { get => link.HeartsCanChange; set => link.HeartsCanChange = value; }
+
         public Team Team { get => link.Team; set => link.Team = value; }
         public ISprite Sprite { get => link.Sprite; set => link.Sprite = value; }
 

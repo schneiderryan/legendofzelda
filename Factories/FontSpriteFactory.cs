@@ -114,5 +114,21 @@ namespace LegendOfZelda
             return new Sprite(Textures.GetTransparentFonts(),
                     new Rectangle(208, 0, 7, 7));
         }
+
+        public static ISprite GetModeScreen()
+        {
+
+            return new Sprite(Textures.GetSelectModeScreen(),
+                    new Rectangle(0, 0, 108, 53))
+            {
+                Scale = 4
+            };
+        }
+
+        public static ISprite GetSuddenDeathMessage()
+        {
+            return new Sprite(Textures.GetSuddenDeathMessage(),
+                    new Rectangle(0, 0, 47, 16));
+        }
     }
 }

@@ -33,6 +33,11 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void SelectMode()
+        {
+            //Do nothing
+        }
+
         public void PauseGame()
         {
             game.state = new PauseState(game);
@@ -95,7 +100,11 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
-            game.cone.Draw(game.spriteBatch);
+            game.ProjectileManager.Draw(game.spriteBatch, Color.White);
+            if (game.currentMode.Equals("hard"))
+            {
+                game.cone.Draw(game.spriteBatch);
+            }
             game.ProjectileManager.Draw(game.spriteBatch, Color.White);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.Black);
             game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);

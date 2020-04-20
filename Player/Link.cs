@@ -26,6 +26,7 @@ namespace LegendOfZelda
         public IItem CurrentItem { get; set; }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
+        public bool HeartsCanCahnge { get; set; }
         public int attackSoundTimer = 0;
         public Rectangle Footbox => footbox;
         public Rectangle Hitbox => hitbox;
@@ -82,6 +83,8 @@ namespace LegendOfZelda
         public Team Team { get; set; } = Team.Link;
 
         public Point Center => Sprite.Box.Center;
+
+        public bool HeartsCanChange { get; set; }
 
         public virtual void MoveLeft()
         {
@@ -219,8 +222,17 @@ namespace LegendOfZelda
             this.attackBoxUp = new Rectangle(x + Sprite.Box.Width/4, y - 25, Sprite.Box.Width/2, 25);
             this.attackBoxDown = new Rectangle(x + Sprite.Box.Width / 4, y + Sprite.Box.Height, Sprite.Box.Width / 2, 25);
             this.itemTimer = 0;
-            this.MaxHearts = 3.0;
-            this.CurrentHearts = 3.0;
+            if (game.currentMode.Equals("sudden death"))
+            {
+                this.MaxHearts = 0.5;
+                this.CurrentHearts = 0.5;
+                HeartsCanChange = false;
+            } else
+            {
+                this.MaxHearts = 3.0;
+                this.CurrentHearts = 3.0;
+                HeartsCanChange = true;
+            }
             this.Resistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
