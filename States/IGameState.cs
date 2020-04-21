@@ -17,5 +17,8 @@ namespace LegendOfZelda
         void SelectItem();
         void Update();
         void Draw();
+        void OpenInventory();
+        void CloseInventory();
+        void SelectMode();
     }
 }

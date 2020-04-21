@@ -30,13 +30,6 @@ namespace LegendOfZelda
             cmd = new PlayerStillCommand(player);
             controller.Register(Keys.None, cmd);
 
-            List<Keys> attackKeys = new List<Keys>()
-            {
-                Keys.Z,
-                Keys.N
-            };
-            player.RegisterAttackKeys(attackKeys);
-
             return controller;
         }
 
@@ -70,7 +63,7 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.D3, cmd);
             keyBinds.Add(Keys.NumPad3, cmd);
 
-            cmd = new PlayerUseBombCommand(game.link);
+            cmd = new PlayerUseBombCommand(game.link, game.ProjectileManager);
             keyBinds.Add(Keys.D4, cmd);
             keyBinds.Add(Keys.NumPad4, cmd);
 
@@ -83,6 +76,38 @@ namespace LegendOfZelda
             cmd = new PauseGameCommand(game);
             keyBinds.Add(Keys.P, cmd);
 
+            cmd = new InventoryTransitionCommand(game);
+            keyBinds.Add(Keys.I, cmd);
+
+            cmd = new InventoryMoveCommand(game, "left");
+            keyBinds.Add(Keys.H, cmd);
+
+            cmd = new InventoryMoveCommand(game, "right");
+            keyBinds.Add(Keys.J, cmd);
+
+            return new SinglePressKeyboardController(keyBinds);
+        }
+
+        public static IController CreateMenuKeysController(LegendOfZelda game)
+        {
+            IDictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
+            ICommand cmd;
+
+            cmd = new QuitCommand(game);
+            keyBinds.Add(Keys.Q, cmd);
+
+            cmd = new SelectModeCommand(game, "down");
+            keyBinds.Add(Keys.Down, cmd);
+            keyBinds.Add(Keys.S, cmd);
+
+            cmd = new SelectModeCommand(game, "up");
+            keyBinds.Add(Keys.Up, cmd);
+            keyBinds.Add(Keys.W, cmd);
+
+            cmd = new StartGameCommand(game);
+            keyBinds.Add(Keys.Enter, cmd);
+
+
             return new SinglePressKeyboardController(keyBinds);
         }
 
@@ -90,7 +115,6 @@ namespace LegendOfZelda
         {
             IList<IRoom> list = new List<IRoom>()
             {
-                //new Room(game, "Rooms/TestLevel.csv"),
                 new Room(game, "Rooms/Room0.csv"),
                 new Room(game, "Rooms/Room1.csv"),
                 new Room(game, "Rooms/Room2.csv"),

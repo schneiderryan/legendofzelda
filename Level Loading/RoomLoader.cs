@@ -63,7 +63,7 @@ namespace LegendOfZelda
                     enemy = new Stalfo();
                     if (enemies.Count == 1 && (RoomNumber() == 2 || RoomNumber() == 12))
                     {
-                        enemy.item = new Key();
+                        enemy.Item = new Key();
                     }
                 }
                 else if (entry.Value.Equals("Snake"))
@@ -90,31 +90,31 @@ namespace LegendOfZelda
                 enemy.Y = (int)entry.Key.Y + 120;
                 enemies.Add(enemy);
                 int rand = random.Next(0, 22);
-                if (enemy.item == null && !(enemy is Keese || enemy is Aquamentus))
+                if (enemy.Item == null && !(enemy is Keese || enemy is Aquamentus))
                 {
                     if (0 <= rand && rand <= 8)
                     {
-                        enemy.item = new Rupee();
+                        enemy.Item = new Rupee();
                     }
                     else if (9 <= rand && rand <= 12)
                     {
-                        enemy.item = new Heart();
+                        enemy.Item = new Heart();
                     }
                     else if (rand == 14)
                     {
-                        enemy.item = new Clock(game);
+                        enemy.Item = new Clock(game);
                     }
                     else if (rand == 15)
                     {
-                        enemy.item = new Fairy();
+                        enemy.Item = new Fairy();
                     }
                     else if (rand == 20)
                     {
-                        enemy.item = new BlueRupee();
+                        enemy.Item = new BlueRupee();
                     }
                     else if (16 <= rand && rand <= 26 && enemy is Goriya)
                     {
-                        enemy.item = new Bomb();
+                        enemy.Item = new Bomb();
                     }
 
                 }
@@ -133,6 +133,18 @@ namespace LegendOfZelda
                 if (entry.Value.Equals("Arrow"))
                 {
                     item = new Arrow();
+                }
+                else if (entry.Value.Equals("BlueCandle"))
+                {
+                    item = new BlueCandle();
+                }
+                else if (entry.Value.Equals("BluePotion"))
+                {
+                    item = new BluePotion();
+                }
+                else if (entry.Value.Equals("BlueRing"))
+                {
+                    item = new BlueRing(game);
                 }
                 else if (entry.Value.Equals("BlueRupee"))
                 {
@@ -190,6 +202,14 @@ namespace LegendOfZelda
                 {
                     item = new RedRing(game);
                 }
+                else if (entry.Value.Equals("RedPotion"))
+                {
+                    item = new RedPotion();
+                }
+                else if (entry.Value.Equals("WhiteSword"))
+                {
+                    item = new WhiteSword();
+                }
                 else //wood sword
                 {
                     item = new WoodSword();
@@ -208,9 +228,17 @@ namespace LegendOfZelda
             foreach (KeyValuePair<Vector2, String> entry in blockInfo)
             {
                 IBlock block = null;
-                if (entry.Value.Equals("Block"))
+                if (entry.Value.Equals("Block")) 
                 {
                     block = new InvisibleBlock();
+                }
+                else if (entry.Value.Equals("StairUp"))
+                {
+                    block = new Stairs(Stairs.StairDirection.Up);
+                }
+                else if (entry.Value.Equals("StairDown"))
+                {
+                    block = new Stairs(Stairs.StairDirection.Down);
                 }
                 else if (entry.Value.Equals("MoveableBlockVertical"))
                 {
@@ -225,7 +253,6 @@ namespace LegendOfZelda
                 {
                     block.X = (int)entry.Key.X;
                     block.Y = 120+(int)entry.Key.Y;
-                    
                     blocks.Add(block);
                 }
             }
@@ -266,6 +293,8 @@ namespace LegendOfZelda
                     {
                         door = new LeftExploded();
                     }
+                    door.X = 0;
+                    door.Y = 264;
                 }
                 else if (entry.Key.Equals("right"))
                 {
@@ -289,8 +318,10 @@ namespace LegendOfZelda
                     {
                         door = new RightExploded();
                     }
+                    door.X = 448;
+                    door.Y = 265;
                 }
-                else if (entry.Key.Equals("up"))
+                else if (entry.Key.Equals("top"))
                 {
                     if (entry.Value.Equals("Wall"))
                     {
@@ -312,8 +343,10 @@ namespace LegendOfZelda
                     {
                         door = new TopExploded();
                     }
+                    door.X = 224;
+                    door.Y = 120;
                 }
-                else
+                else // bottom
                 {
                     if (entry.Value.Equals("Wall"))
                     {
@@ -335,6 +368,8 @@ namespace LegendOfZelda
                     {
                         door = new BottomExploded();
                     }
+                    door.X = 224;
+                    door.Y = 408;
                 }
 
                 doors.Add(entry.Key, door);

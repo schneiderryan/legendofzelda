@@ -20,19 +20,19 @@ namespace LegendOfZelda
             this.game = game;
         }
 
-        public IEnumerable<ICollision> Detect(IRoom room, IPlayer player)
+        public IEnumerable<ICollision> Detect()
         {
             collisions.Clear();
+            IRoom room = game.rooms[game.roomIndex];
 
             // handle all things player first
-
-            HandlePlayerCollisions(room, player, game);
+            HandlePlayerCollisions(room, game.link, game);
 
             // handle all things enemy that haven't already been handled
-            HandleEnemyCollisions(room, player);
+            HandleEnemyCollisions(room, game.link);
 
             // handle whatever's left
-            HandleProjectileCollisions(room);
+            HandleProjectileCollisions(game.rooms, game.roomIndex);
 
             return collisions;
         }
@@ -47,26 +47,25 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(wall, player.Footbox);
                     if (!collision.IsEmpty)
                     {
-                        collisions.Add(new PlayerWallCollision(player, collision));
+                        collisions.Add(new PlayerWallCollision(player, collision, game));
                     }
                 }
 
-            foreach (IBlock block in room.Blocks)
-            {
-                if (player.Footbox.Intersects(block.Hitbox))
+                foreach (IBlock block in room.Blocks)
                 {
-                    collisions.Add(new PlayerBlockCollision(room.Doors, player, block));
+                    if (player.Footbox.Intersects(block.Hitbox))
+                    {
+                        collisions.Add(new PlayerBlockCollision(room.Doors, player, block, game));
+                    }
                 }
-            }
 
-            foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
-            {
-                Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, player.Footbox);
-                if (!collision.IsEmpty)
+                foreach (KeyValuePair<string, IDoor> door in room.Doors.ToList())
                 {
-                    collisions.Add(new PlayerDoorCollision(room.Doors, door, player, collision, game));
+                    if (door.Value.Hitbox.Intersects(player.Footbox))
+                    {
+                        collisions.Add(new PlayerDoorCollision(room.Doors, door, player, game));
+                    }
                 }
-            }
 
                 foreach (IEnemy enemy in room.Enemies)
                 {
@@ -82,18 +81,35 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(npc.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
                 {
-                    collisions.Add(new PlayerWallCollision(player, collision));
+                    collisions.Add(new PlayerWallCollision(player, collision, game));
+                }
+
+                if (npc.Hitbox.Intersects(player.LeftAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "left", game));
+                }
+                if (npc.Hitbox.Intersects(player.UpAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "up", game));
+                }
+                if (npc.Hitbox.Intersects(player.RightAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "right", game));
+                }
+                if (npc.Hitbox.Intersects(player.DownAttackBox))
+                {
+                    collisions.Add(new PlayerNPCCollision(player, npc, "down", game));
                 }
             }
 
-            foreach (IProjectile projectile in projectileManager)
-            {
-                Rectangle collision = Rectangle.Intersect(projectile.Hitbox, player.Hitbox);
-                if (!collision.IsEmpty)
+                foreach (IProjectile projectile in projectileManager)
                 {
-                    collisions.Add(new PlayerProjectileCollision(projectileManager, player,
-                            projectile, collision));
-                }
+                    Rectangle collision = Rectangle.Intersect(projectile.Hitbox, player.Hitbox);
+                    if (!collision.IsEmpty)
+                    {
+                        collisions.Add(new PlayerProjectileCollision(projectileManager, player,
+                                projectile, collision));
+                    }
 
                     //Boomerang Item Pickup Code
                     if (projectile is BoomerangProjectile && projectile.OwningTeam == Team.Link)
@@ -161,7 +177,7 @@ namespace LegendOfZelda
                         Rectangle collision = Rectangle.Intersect(wall, enemy.Hitbox);
                         if (!collision.IsEmpty && !(enemy is LFWallmaster || enemy is RFWallmaster))
                         {
-                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, collision));
+                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, wall));
                         }
                     }
 
@@ -170,7 +186,7 @@ namespace LegendOfZelda
                         Rectangle collision = Rectangle.Intersect(door.Value.Hitbox, enemy.Hitbox);
                         if (!collision.IsEmpty && !(enemy is LFWallmaster || enemy is RFWallmaster))
                         {
-                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, collision));
+                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, door.Value.Hitbox));
                         }
                     }
 
@@ -179,7 +195,7 @@ namespace LegendOfZelda
                         Rectangle collision = Rectangle.Intersect(block.Hitbox, enemy.Hitbox);
                         if (!collision.IsEmpty && !(enemy is Keese || enemy is LFWallmaster || enemy is RFWallmaster))
                         {
-                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, collision));
+                            collisions.Add(new EnemyWallBlockDoorCollision(enemy, block.Hitbox));
                         }
                     }
 
@@ -192,7 +208,6 @@ namespace LegendOfZelda
                                 enemy, projectile, collision));
                         }
                     }
-
 
 
                     if (enemy.Hitbox.Intersects(player.LeftAttackBox))
@@ -231,8 +246,9 @@ namespace LegendOfZelda
             }
         }
 
-        private void HandleProjectileCollisions(IRoom room)
+        private void HandleProjectileCollisions(IList<IRoom> rooms, int roomIndex)
         {
+            IRoom room = rooms[roomIndex];
             foreach (IProjectile projectile in projectileManager)
             {
                 foreach (Rectangle wall in room.Hitboxes)
@@ -244,18 +260,28 @@ namespace LegendOfZelda
                     }
                 }
 
-                foreach (IDoor door in room.Doors.Values)
+                foreach (KeyValuePair<string, IDoor> door in room.Doors)
                 {
-                    Rectangle collision = Rectangle.Intersect(door.Hitbox, projectile.Hitbox);
-                    if (!collision.IsEmpty)
+                    if (door.Value.Hitbox.Intersects(projectile.Hitbox))
                     {
-                        collisions.Add(new WallProjectileCollision(projectileManager, projectile, collision));
+                        collisions.Add(new DoorProjectileCollision(rooms, roomIndex, door, projectileManager, projectile));
                     }
                 }
 
                 // takes care of case where goriya dies b4 boomerang returns
                 if ((projectile is BoomerangProjectile)
                     && (projectile as BoomerangProjectile).Returned)
+                {
+                    collisions.Add(new DummyProjectileCollision(projectileManager, projectile));
+                }
+                // get rid of bombs when they're done doing their things
+                else if ((projectile is Explosion)
+                    && (projectile as Explosion).Done)
+                {
+                    collisions.Add(new DummyProjectileCollision(projectileManager, projectile));
+                }
+                else if ((projectile is PlacedBomb)
+                    && (projectile as PlacedBomb).Exploded)
                 {
                     collisions.Add(new DummyProjectileCollision(projectileManager, projectile));
                 }

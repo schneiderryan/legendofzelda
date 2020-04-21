@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using System;
+
 
 namespace LegendOfZelda
 {
@@ -15,15 +17,15 @@ namespace LegendOfZelda
         public int roomIndex;
         public bool OldManDamaged { get; set; }
         public IPlayer link;
+        public ConeOfVision cone;
 
         public IProjectileManager ProjectileManager { get; set; }
-
         public GraphicsDeviceManager graphics;
 
+        public string currentMode;
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
-        public IController roomController;
 
         public int xRoom;
         public int yRoom;
@@ -40,22 +42,20 @@ namespace LegendOfZelda
             };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            
-            
         }
 
         protected override void Initialize()
         {
+            currentMode = "normal";
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
             state = new StartMenuState(this);
             hud = new HeadsUpDisplay(this);
+            ProjectileManager = new ProjectileManager();
         }
 
         protected override void LoadContent()
         {
-            
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Textures.LoadAllTextures(Content, GraphicsDevice);
             Sounds.LoadAllSounds(Content);
@@ -63,8 +63,9 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
+            //System.Console.WriteLine(state);
             state.Update();
-            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState"))
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.TransitionToInventoryState"))
             {
                 hud.Update();
             }
@@ -79,7 +80,7 @@ namespace LegendOfZelda
 
             state.Draw();
 
-            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.PauseState"))
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.PauseState") || state.ToString().Equals("LegendOfZelda.InventoryState"))
             {
                 hud.Draw();
             }
@@ -99,6 +100,11 @@ namespace LegendOfZelda
             state.NewGame();
         }
 
+        public void SelectMode()
+        {
+            state.SelectMode();
+        }
+
         public void PlayGame()
         {
             state.PlayGame();
@@ -109,6 +115,15 @@ namespace LegendOfZelda
             state.PauseGame();
         }
 
+        public void OpenInventory()
+        {
+            state.OpenInventory();
+        }
+
+        public void CloseInventory()
+        {
+            state.CloseInventory();
+        }
         public void ResumeGame()
         {
             state.ResumeGame();
@@ -117,6 +132,7 @@ namespace LegendOfZelda
         public void ChangeRoom()
         {
             state.ChangeRoom();
+            link.usedinRoom = false;
         }
 
         public void WinGame()

@@ -29,7 +29,7 @@ namespace LegendOfZelda
                     break;
             }
             link.Sprite.Position = new Point(link.X, link.Y);
-            link.Resistance = 0.25;
+            link.Resistance = 0.75;
         }
 
         public ILinkState State { get => link.State; set => link.State = value; }
@@ -53,6 +53,8 @@ namespace LegendOfZelda
 
         public Point Center => link.Center;
 
+        public bool HeartsCanChange { get => link.HeartsCanChange; set => link.HeartsCanChange = value; }
+
         public Team Team { get => link.Team; set => link.Team = value; }
         public ISprite Sprite { get => link.Sprite; set => link.Sprite = value; }
 
@@ -61,7 +63,9 @@ namespace LegendOfZelda
         public int X { get => link.X; set => link.X = value; }
         public int Y { get => link.Y; set => link.Y = value; }
         public IItem HeldItem { get => link.HeldItem; set => link.HeldItem = value; }
+        public IItem CurrentItem { get => link.CurrentItem; set => link.CurrentItem = value; }
         public double Resistance { get => link.Resistance; set => link.Resistance = value; }
+        public bool usedinRoom { get => link.usedinRoom; set => link.usedinRoom = value; }
 
         public void Attack()
         {
@@ -111,11 +115,6 @@ namespace LegendOfZelda
         public void PickupItem(IItem item, int time, bool twoHands = true)
         {
             link.PickupItem(item, time, twoHands);
-        }
-
-        public void RegisterAttackKeys(List<Keys> attackKeys)
-        {
-            link.RegisterAttackKeys(attackKeys);
         }
 
         public void TakeDamage(double amount)

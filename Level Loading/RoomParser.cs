@@ -54,6 +54,9 @@ namespace LegendOfZelda
             this.possibleItems = new List<string>()
             {
                 "Arrow",
+                "BlueCandle",
+                "BluePotion",
+                "BlueRing",
                 "BlueRupee",
                 "Bomb",
                 "Boomerang",
@@ -65,10 +68,12 @@ namespace LegendOfZelda
                 "HeartContainer",
                 "Key",
                 "Map",
+                "RedPotion",
+                "RedRing",
                 "Rupee",
                 "TriforceShard",
+                "WhiteSword",
                 "WoodSword",
-                "RedRing",
             };
 
             this.possibleBlocks = new List<string>()
@@ -76,6 +81,8 @@ namespace LegendOfZelda
                 "Block",
                 "MoveableBlockVertical",
                 "MoveableBlockLeft",
+                "StairUp",
+                "StairDown",
             };
 
             this.possibleDoors = new List<string>()
@@ -163,7 +170,7 @@ namespace LegendOfZelda
         {
             Dictionary<String, String> dictionary = new Dictionary<String, String>();
             String line = level.ReadLine();
-            String[] array = { "left", "right", "up", "down" };
+            String[] array = { "left", "right", "top", "bottom" };
             for (int x = 0; x < 4; x++)
             {
                 String box = NextBox(ref line);
@@ -195,7 +202,6 @@ namespace LegendOfZelda
             int index = line.IndexOf(",");
 
             if(index == -1)
-
             {
                 return line;
             }

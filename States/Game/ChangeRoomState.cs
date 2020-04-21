@@ -33,10 +33,13 @@ namespace LegendOfZelda
             {
                 this.timer = 177 / 2;
             }
-
-
             this.game = game;
-
+            if (game.link.Inventory.HasClock)
+            {
+                game.link = (game.link as DamagedLink).InnerLink;
+                game.link.Inventory.HasClock = false;
+            }
+            game.ProjectileManager.Clear();
         }
 
         public void ToStart()
@@ -59,6 +62,16 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void OpenInventory()
+        {
+            //Nothing to do
+        }
+
+        public void CloseInventory()
+        {
+            //Nothing to do
+        }
+
         public void ResumeGame()
         {
             game.state = new PlayState(game);
@@ -67,6 +80,11 @@ namespace LegendOfZelda
         public void ChangeRoom()
         {
 
+        }
+
+        public void SelectMode()
+        {
+            //Do nothing
         }
 
         public void WinGame()

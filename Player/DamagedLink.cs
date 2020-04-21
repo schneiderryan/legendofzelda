@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -83,7 +81,10 @@ namespace LegendOfZelda
         public Rectangle Hitbox => InnerLink.Hitbox;
 
         public IItem HeldItem { get => InnerLink.HeldItem; set => InnerLink.HeldItem = value; }
+        public IItem CurrentItem { get => InnerLink.CurrentItem; set => InnerLink.CurrentItem = value; }
         public double Resistance { get => InnerLink.Resistance; set => InnerLink.Resistance = value; }
+        public bool usedinRoom { get => InnerLink.usedinRoom; set => InnerLink.usedinRoom = value; }
+        public bool HeartsCanChange { get => InnerLink.HeartsCanChange; set => InnerLink.HeartsCanChange = value; }
 
         public DamagedLink (LegendOfZelda game)
         {
@@ -174,11 +175,6 @@ namespace LegendOfZelda
         public void UseProjectile(IProjectile projectile)
         {
             InnerLink.UseProjectile(projectile);
-        }
-
-        public void RegisterAttackKeys(List<Keys> attackKeys)
-        {
-            InnerLink.RegisterAttackKeys(attackKeys);
         }
 
         public bool IsAttacking()

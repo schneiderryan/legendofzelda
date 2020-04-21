@@ -1,19 +1,21 @@
 ﻿
 
+
 namespace LegendOfZelda
 {
     class Inventory : IInventory
     {
-        public BowAndArrow BowAndArrow { get; }
-        public IHeldItem BluePotion { get; set; }
-        public IHeldItem RedPotion { get; set; }
+        public bool HasArrow { get; set; } = false;
+        public bool HasBow { get; set; } = false;
+        public bool HasBluePotion { get; set; } = false;
+        public bool HasRedPotion { get; set; } = false;
         public bool HasClock { get; set; } = false;
-
-        public bool HasMap { get; set; } = true; //change to false before final submission
+        public bool HasBlueCandle { get; set; } = false;
+        public bool HasMap { get; set; } = false;
         public bool HasCompass { get; set; } = true;
-        public int Rupees { get; set; } = 255; // for testing, remove l8r
-        public int Bombs { get; set; } = 8; // for testing, remove l8r
-        public int Keys { get; set; } = 999; // for testing, remove l8r
+        public int Rupees { get; set; } = 0;
+        public int Bombs { get; set; } = 0;
+        public int Keys { get; set; } = 0;
 
         public int MaxBombs { get; set; } = 8;
 
@@ -23,13 +25,8 @@ namespace LegendOfZelda
 
         public Inventory()
         {
-            BowAndArrow = new BowAndArrow();
-
             Sword = new EmptyLeveledItem();
             Boomerang = new EmptyLeveledItem();
-
-            RedPotion = new EmptyHeldItem();
-            BluePotion = new EmptyHeldItem();
             Offhand = new EmptyHeldItem();
         }
 

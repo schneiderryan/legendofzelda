@@ -15,8 +15,7 @@ namespace LegendOfZelda
 			Sprite.Position = new Point(X, Y);
 			State = new EnemyState(this);
 			currentHearts = 2;
-			attackTimer = 50;
-			//item = new Key();
+			TakeDamageCooldown = 50;
 		}
 
 	}

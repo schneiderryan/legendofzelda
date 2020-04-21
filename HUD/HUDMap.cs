@@ -11,27 +11,30 @@ namespace LegendOfZelda
         private LegendOfZelda game;
         private Texture2D map = Textures.GetMap();
         private ISprite whiteBox = FontSpriteFactory.GetWhiteBox();
+        private int offset;
 
         public HUDMap(LegendOfZelda game)
         {
             this.game = game;
+            
         }
 
         public void Update()
         {
-            whiteBox = MoveThatBox(whiteBox, game);
+            offset = game.hud.offset;
+            whiteBox = MoveThatBox(whiteBox, game, offset);
         }
 
         public void Draw()
         {
             if (game.link.Inventory.HasMap)
             {
-                game.spriteBatch.Draw(map, new Rectangle(45, 47, 100, 48), new Rectangle(0, 0, 94, 46), Color.White);
-                whiteBox.Draw(game.spriteBatch);
+                game.spriteBatch.Draw(map, new Rectangle(45, offset + 47, 100, 48), new Rectangle(0, 0, 94, 46), Color.White);
             }
+            whiteBox.Draw(game.spriteBatch);
         }
 
-        private static ISprite MoveThatBox(ISprite sprite, LegendOfZelda game)
+        private static ISprite MoveThatBox(ISprite sprite, LegendOfZelda game, int offset)
         {
 
             ISprite temp = sprite;
@@ -107,6 +110,7 @@ namespace LegendOfZelda
                     temp.Y = 90;
                     break;
             }
+            temp.Y += offset;
             return temp;
         }
     }

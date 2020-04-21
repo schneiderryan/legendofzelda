@@ -27,7 +27,8 @@ namespace LegendOfZelda
 
         public void NewGame()
         {
-            game.state = new NewGameState(game);
+            //added in select game state
+            //game.state = new NewGameState(game);
         }
 
         public void PlayGame()
@@ -40,9 +41,24 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void OpenInventory()
+        {
+            //Nothing to do
+        }
+
+        public void CloseInventory()
+        {
+            //Nothing to do
+        }
+
         public void ResumeGame()
         {
             //Nothing to do
+        }
+
+        public void SelectMode()
+        {
+            game.state = new SelectGameState(game);
         }
 
         public void WinGame()
@@ -69,14 +85,14 @@ namespace LegendOfZelda
         {
             if (Mouse.GetState().LeftButton.HasFlag(ButtonState.Pressed) && clickDelay <= 0)
             {
-                game.NewGame();
+                game.SelectMode();
             }
             clickDelay--;
 
             story.Y -= 2;
             if (story.Y == -story.Box.Height + game.GraphicsDevice.Viewport.Height)
             {
-                game.NewGame();
+                game.SelectMode();
             }
         }
 

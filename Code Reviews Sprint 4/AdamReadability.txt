@@ -1,0 +1,10 @@
+Adam O'Reilly
+4/12/20
+4
+PauseState.cs
+Emily Smith
+10 minutes
+
+The Class performs a the basic task of switching from the play state to a paused state, with the ability to add additional
+state changes if the game is further developed because it implements the IGameState interface (which we are familar with from other game state classes). The only issue I see with readability
+is the remaining Magic Numbers used to draw the HUD+background, but the team is planning on creating a class to handle these and provide variables in their place. This class has great readability. 

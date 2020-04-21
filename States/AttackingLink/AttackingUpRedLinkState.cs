@@ -13,11 +13,6 @@ namespace LegendOfZelda
             link.Sprite.Position = new Point(link.X, link.Y - 24);
         }
 
-        public override void Attack()
-        {
-            this.link.UseProjectile(new SwordProjectile("up", this.link.X, this.link.Y));
-        }
-
         public override void Update()
         {
             if (attackTimer > 0)

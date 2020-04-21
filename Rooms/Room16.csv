@@ -3,7 +3,7 @@ Wall,Open,Wall,Wall
 Trap,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Trap
 Null,Null,Null,Null,Null,Null,Block,Null,Null,Null,Null,Null
 Null,Null,Null,Null,Null,Block,Null,Block,Null,Null,Null,Null
-Null,Null,Null,Null,MoveableBlockVertical,Null,Null,Null,Block,Null,Null,Null
+Null,Null,Null,Null,MoveableBlockVertical,Null,StairDown,Null,Block,Null,Null,Null
 Null,Null,Null,Null,Null,Block,Null,Block,Null,Null,Null,Null
 Null,Null,Null,Null,Null,Null,Block,Null,Null,Null,Null,Null
 Trap,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Trap

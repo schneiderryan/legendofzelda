@@ -14,9 +14,11 @@ namespace LegendOfZelda
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }
         double Resistance { get; set; }
+        bool HeartsCanChange { get; set; }
+        bool usedinRoom { get; set; }
         IInventory Inventory { get; }
         IItem HeldItem { get; set; }
-
+        IItem CurrentItem { get; set; }
         Rectangle Footbox { get; }
         Rectangle UpAttackBox { get; }
         Rectangle DownAttackBox { get; }
@@ -27,7 +29,6 @@ namespace LegendOfZelda
         void Attack();
         void UseProjectile(IProjectile projectile);
         void Draw(SpriteBatch sb, Color color);
-        void RegisterAttackKeys(List<Keys> attackKeys);
         bool IsAttacking();
         void PickupItem(IItem item, int time, bool twoHands = true);
     }
