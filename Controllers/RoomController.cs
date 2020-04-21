@@ -19,7 +19,7 @@ namespace LegendOfZelda
             cmdLeft = new SwapRoomCommand(game, "previous");
             cmdUp = new SwapRoomCommand(game, "up");
             cmdDown = new SwapRoomCommand(game, "down");
-
+            
         }
         public void Update()
         {

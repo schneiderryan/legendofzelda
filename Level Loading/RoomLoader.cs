@@ -258,6 +258,10 @@ namespace LegendOfZelda
                     {
                         door = new LeftOther();
                     }
+                    else if (entry.Value.Equals("Portal"))
+                    {
+                        door = new LeftPortal();
+                    }
                     else
                     {
                         door = new LeftExploded();
