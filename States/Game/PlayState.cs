@@ -90,7 +90,7 @@ namespace LegendOfZelda
             game.cone.Update();
 
             game.ProjectileManager.Update();
-
+            System.Diagnostics.Debug.WriteLine("Link's Y is " + game.link.Y + " and his X is " + game.link.X);
             IEnumerable<ICollision> collisions = game.CollisionDetector.Detect();
             CollisionHandler.Handle(collisions);
         }

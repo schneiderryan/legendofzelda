@@ -364,6 +364,10 @@ namespace LegendOfZelda
                     {
                         door = new BottomOther();
                     }
+                    else if (entry.Value.Equals("Portal"))
+                    {
+                        door = new BottomPortal();
+                    }
                     else
                     {
                         door = new BottomExploded();

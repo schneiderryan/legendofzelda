@@ -12,7 +12,7 @@ namespace LegendOfZelda
         public virtual Rectangle Hitbox
         {
             get { return hitbox; }
-            protected set { hitbox = value; }
+            set { hitbox = value; }
         }
 
         // X & Y properties so that hitbox X & Y can be modified ez
