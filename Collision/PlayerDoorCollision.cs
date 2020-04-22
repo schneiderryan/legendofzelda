@@ -147,11 +147,12 @@ namespace LegendOfZelda
                 cmdRight.Execute();
                 player.X = 60;
             }
-            if ((door is LeftPortal) && door.Hitbox.Right - player.Hitbox.Right < margin)
+            if ((door is LeftPortal) && door.Hitbox.Right - player.Hitbox.Right < margin && game.currentMode.Equals("hard"))
             {
                 cmdPortal.Execute();
                 //player.X = 417;
             }
+            
             if ((door is BottomPortal) && (player.Y >= 374 && player.X <= 378) && (player.X >= 240 && player.X <= 244))  //link's y = 376, x = 242
             { 
                 cmdPortal.Execute();

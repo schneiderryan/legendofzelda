@@ -287,7 +287,14 @@ namespace LegendOfZelda
                     }
                     else if (entry.Value.Equals("Portal"))
                     {
-                        door = new LeftPortal();
+                        if (game.currentMode.Equals("hard"))
+                        {
+                            door = new LeftPortal();
+                        }
+                        else
+                        {
+                            door = new LeftOpen();
+                        }
                     }
                     else
                     {
@@ -366,7 +373,14 @@ namespace LegendOfZelda
                     }
                     else if (entry.Value.Equals("Portal"))
                     {
-                        door = new BottomPortal();
+                        if(game.currentMode.Equals("hard"))
+                        {
+                            door = new BottomPortal();
+                        }
+                        else
+                        {
+                            door = new BottomOpen();
+                        }
                     }
                     else
                     {
