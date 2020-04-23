@@ -43,15 +43,15 @@ namespace LegendOfZelda
         {
             if (type.Equals("bombs"))
             {
-                count = game.link.Inventory.Bombs;
+                count = game.Link.Inventory.Bombs;
             }
             else if (type.Equals("rupees"))
             {
-                count = game.link.Inventory.Rupees;
+                count = game.Link.Inventory.Rupees;
             }
             else if (type.Equals("keys"))
             {
-                count = game.link.Inventory.Keys;
+                count = game.Link.Inventory.Keys;
             }
             this.offset = game.hud.offset;
 

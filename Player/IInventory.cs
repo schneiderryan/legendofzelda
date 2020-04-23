@@ -11,7 +11,7 @@ namespace LegendOfZelda
         bool HasClock { get; set; }
         bool HasMap { get; set; }
         bool HasCompass { get; set; }
-        bool HasBlueCandle { get; set; }
+        HeldBlueCandle BlueCandle { get; set; }
 
         int Rupees { get; set; }
         int Bombs { get; set; }

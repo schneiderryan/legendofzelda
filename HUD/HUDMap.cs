@@ -27,7 +27,7 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            if (game.link.Inventory.HasMap)
+            if (game.Link.Inventory.HasMap)
             {
                 game.spriteBatch.Draw(map, new Rectangle(45, offset + 47, 100, 48), new Rectangle(0, 0, 94, 46), Color.White);
             }

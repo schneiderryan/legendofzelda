@@ -28,7 +28,6 @@ namespace LegendOfZelda
         private int offset;
 
 
-
         public HUDHearts(LegendOfZelda game)
         {
             this.game = game;
@@ -54,12 +53,9 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            if (game.link != null)
-            {
-                numFullHearts = (int)game.link.CurrentHearts;
-                numHalfHearts = (int)(game.link.CurrentHearts * 2) % 2;
-                numEmptyHearts = (int)game.link.MaxHearts - (numFullHearts + numHalfHearts);
-            }
+            numFullHearts = (int)game.Link.CurrentHearts;
+            numHalfHearts = (int)(game.Link.CurrentHearts * 2) % 2;
+            numEmptyHearts = (int)game.Link.MaxHearts - (numFullHearts + numHalfHearts);
             suddenDeathMessage.X = initX;
             suddenDeathMessage.Y = initY + offset - 20;
             this.offset = game.hud.offset;

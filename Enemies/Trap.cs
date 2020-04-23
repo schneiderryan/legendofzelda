@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Diagnostics;
+using System.Collections.Generic;
+
 
 namespace LegendOfZelda
 {
@@ -7,7 +8,7 @@ namespace LegendOfZelda
 	{
 		private int timer;
 
-		private LegendOfZelda game;
+		private ICollection<IPlayer> players;
 		private int startY;
 		private int startX;
 		private bool attack;
@@ -16,7 +17,7 @@ namespace LegendOfZelda
 		private int roommidheight;
 		private int roommidwidth;
 
-		public Trap(LegendOfZelda loz)
+		public Trap(ICollection<IPlayer> players)
 		{
 			Sprite = EnemySpriteFactory.Instance.CreateMovingTrapSprite();
 			Hitbox = Sprite.Box;
@@ -26,7 +27,7 @@ namespace LegendOfZelda
 			timer = 0;
 			startX = X;
 			startY = Y;
-			game = loz;
+			this.players = players;
 			BeStill();
 			currentHearts = 1;
 			roommidheight = 276;
@@ -137,32 +138,35 @@ namespace LegendOfZelda
 					BeStill();
 				}
 			}
-			int linkXPos = game.link.X;
-			int linkYPos = game.link.Y;
 			if (!attack && !retreat)
 			{
-				if (linkXPos < (X + 15) && (linkXPos > (X - 15)))
+				foreach (IPlayer player in players)
 				{
-					attack = true;
-					if (linkYPos < Y)
+					int linkXPos = player.X;
+					int linkYPos = player.Y;
+					if (linkXPos < (X + 15) && (linkXPos > (X - 15)))
 					{
-						dir = "up";
+						attack = true;
+						if (linkYPos < Y)
+						{
+							dir = "up";
+						}
+						else
+						{
+							dir = "down";
+						}
 					}
-					else
+					if (linkYPos < (Y + 20) && (linkYPos > (Y - 20)))
 					{
-						dir = "down";
-					}
-				}
-				if (linkYPos < (Y + 20) && (linkYPos > (Y - 20)))
-				{
-					attack = true;
-					if (linkXPos < X)
-					{
-						dir = "left";
-					}
-					else
-					{
-						dir = "right";
+						attack = true;
+						if (linkXPos < X)
+						{
+							dir = "left";
+						}
+						else
+						{
+							dir = "right";
+						}
 					}
 				}
 			}

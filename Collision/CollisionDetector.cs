@@ -26,10 +26,10 @@ namespace LegendOfZelda
             IRoom room = game.rooms[game.roomIndex];
 
             // handle all things player first
-            HandlePlayerCollisions(room, game.link, game);
+            HandlePlayerCollisions(room, game.Link, game);
 
             // handle all things enemy that haven't already been handled
-            HandleEnemyCollisions(room, game.link);
+            HandleEnemyCollisions(room, game.Link);
 
             // handle whatever's left
             HandleProjectileCollisions(game.rooms, game.roomIndex);

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 
 namespace LegendOfZelda
 {
@@ -16,12 +15,12 @@ namespace LegendOfZelda
 
         public void Execute()
         {
-            if (player.Inventory.HasBlueCandle && !player.usedinRoom)
+            if (player.Inventory.BlueCandle.Found && !player.Inventory.BlueCandle.UsedInRoom)
             {
                 IProjectile blueCandle = new BlueCandleFlame();
                 Util.CenterRelativeToEdge(player.Hitbox, player.Direction, blueCandle);
                 projectiles.Add(blueCandle);
-                player.usedinRoom = true;
+                player.Inventory.BlueCandle.UsedInRoom = true;
             }
         }
     }

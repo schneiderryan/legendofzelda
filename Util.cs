@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -44,6 +45,24 @@ namespace LegendOfZelda
             int dy = source.Y - target.Y;
             float lower = (float)Math.Sqrt(dx * dx + dy * dy);
             return new Vector2(velocity * dx / lower, velocity * dy / lower);
+        }
+
+        public static IPlayer FindClosestPlayer(Point origin, ICollection<IPlayer> players)
+        {
+            long shortest = long.MaxValue;
+            IPlayer result = null;
+            foreach (IPlayer player in players)
+            {
+                long diffX = origin.X - player.Center.X;
+                long diffY = origin.Y - player.Center.Y;
+                long dist = diffX * diffX + diffY * diffY;
+                if (dist < shortest)
+                {
+                    shortest = dist;
+                    result = player;
+                }
+            }
+            return result;
         }
     }
 }
