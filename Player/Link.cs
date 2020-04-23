@@ -20,7 +20,9 @@ namespace LegendOfZelda
         private Rectangle attackBoxDown;
         private Vector2 origin;
         private Color deadColor;
-        public bool usedinRoom { get; set; }
+
+        public int ID { get; set; }
+        public int InRoom { get; set; }
         public double Resistance { get; set; }
         public IItem HeldItem { get; set; }
         public IItem CurrentItem { get; set; }
@@ -141,7 +143,7 @@ namespace LegendOfZelda
             }
             else
             {
-                this.game.link = new DamagedLink(game);
+                game.rooms[game.roomIndex].Players[ID] = new DamagedLink(this);
             }
         }
 
@@ -208,8 +210,9 @@ namespace LegendOfZelda
                 || State is AttackingBlueLinkState;
         }
 
-        protected void Initialize(LegendOfZelda game)
+        protected void Initialize(LegendOfZelda game, int id)
         {
+            this.ID = id;
             this.game = game;
             this.Direction = "up";
             this.Sprite.Scale = 2.0f;
@@ -239,7 +242,6 @@ namespace LegendOfZelda
             this.HeldItem = new Bomb();
             this.CurrentItem = new Bomb();
             this.DeadColor = Microsoft.Xna.Framework.Color.White;
-            this.usedinRoom = false;
         }
 
         public void Knockback(int amountX, int amountY)

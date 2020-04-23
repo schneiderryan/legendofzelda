@@ -1,22 +1,24 @@
-﻿
+﻿using System.Collections.Generic;
+
 
 namespace LegendOfZelda
 {
     class BlueRing : Item
     {
-        private LegendOfZelda game;
-        public BlueRing(LegendOfZelda game)
+        private IDictionary<int, IPlayer> players;
+
+        public BlueRing(IDictionary<int, IPlayer> players)
         {
             sprite = ItemSpriteFactory.GetBlueRing();
             Hitbox = sprite.Box;
-            this.game = game;
+            this.players = players;
         }
 
         public override void Collect(IPlayer player)
         {
             if (!player.Color.Equals("blue"))
             {
-                game.link = new BlueLink(player);
+                players[player.ID] = new BlueLink(player);
             }
         }
     }

@@ -21,7 +21,7 @@ namespace LegendOfZelda
             firstRowY = 75;
             mapCompassX = 100;
             this.game = game;
-            this.inventory = game.link.Inventory;
+            this.inventory = game.Link.Inventory;
             boomerang = ItemSpriteFactory.GetBoomerang();
             boomerang.X = 275;
             boomerang.Y = firstRowY;
@@ -47,19 +47,19 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
+            if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
             {
                 currentSprite = ItemSpriteFactory.GetBomb();
                 selector.X = bomb.X;
                 selector.Y = bomb.Y;
             }
-            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang"))
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang"))
             {
                 currentSprite = ItemSpriteFactory.GetBoomerang();
                 selector.X = boomerang.X;
                 selector.Y = boomerang.Y;
             }
-            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Arrow"))
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Arrow"))
             {
                 currentSprite = ItemSpriteFactory.GetArrow();
                 selector.X = arrow.X;
@@ -72,7 +72,7 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-           if(game.link.Inventory.Boomerang.Level > 0)
+           if(game.Link.Inventory.Boomerang.Level > 0)
             {
                 boomerang.Draw(game.spriteBatch);
             }
@@ -80,19 +80,19 @@ namespace LegendOfZelda
             {
                 bomb.Draw(game.spriteBatch);
             }
-            if (game.link.Inventory.HasArrow)
+            if (game.Link.Inventory.HasArrow)
             {
                 arrow.Draw(game.spriteBatch);
             }
-            if (game.link.Inventory.HasBow)
+            if (game.Link.Inventory.HasBow)
             {
                 bow.Draw(game.spriteBatch);
             }
-            if (game.link.Inventory.HasMap)
+            if (game.Link.Inventory.HasMap)
             {
                 map.Draw(game.spriteBatch);
             }
-            if (game.link.Inventory.HasCompass)
+            if (game.Link.Inventory.HasCompass)
             {
                 compass.Draw(game.spriteBatch);
             }

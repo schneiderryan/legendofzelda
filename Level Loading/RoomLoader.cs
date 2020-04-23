@@ -27,7 +27,8 @@ namespace LegendOfZelda
             return background;
         }
 
-        public ISet<IEnemy> LoadEnemies(IDictionary<string, IDoor> doors)
+        public ISet<IEnemy> LoadEnemies(IDictionary<string, IDoor> doors,
+                IDictionary<int, IPlayer> players)
         {
             ISet<IEnemy> enemies = new HashSet<IEnemy>();
             IDictionary<Vector2, string> enemyInfo = parser.Enemies;
@@ -36,7 +37,7 @@ namespace LegendOfZelda
                 IEnemy enemy;
                 if (entry.Value.Equals("Aquamentus"))
                 {
-                    enemy = new Aquamentus(doors, game.ProjectileManager, game.link);
+                    enemy = new Aquamentus(doors, game.ProjectileManager, players.Values);
                 }
                 else if (entry.Value.Equals("Gel"))
                 {
@@ -68,7 +69,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Snake"))
                 {
-                    enemy = new Snake(game);
+                    enemy = new Snake(players);
                 }
                 else if (entry.Value.Equals("Dodongo"))
                 {
@@ -76,7 +77,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Fire"))
                 {
-                    enemy = new Fire(game);
+                    enemy = new Fire(game, players);
                 }
                 else if (entry.Value.Equals("Zol"))
                 {
@@ -84,7 +85,7 @@ namespace LegendOfZelda
                 }
                 else //trap
                 {
-                    enemy = new Trap(game);
+                    enemy = new Trap(players.Values);
                 }
                 enemy.X = (int)entry.Key.X;
                 enemy.Y = (int)entry.Key.Y + 120;
@@ -102,7 +103,7 @@ namespace LegendOfZelda
                     }
                     else if (rand == 14)
                     {
-                        enemy.Item = new Clock(game);
+                        enemy.Item = new Clock(players);
                     }
                     else if (rand == 15)
                     {
@@ -123,7 +124,7 @@ namespace LegendOfZelda
             return enemies;
         }
 
-        public IList<IItem> LoadItems()
+        public IList<IItem> LoadItems(IDictionary<int, IPlayer> players)
         {
             List<IItem> items = new List<IItem>();
             IDictionary<Vector2, string> itemInfo = parser.Items;
@@ -144,7 +145,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("BlueRing"))
                 {
-                    item = new BlueRing(game);
+                    item = new BlueRing(players);
                 }
                 else if (entry.Value.Equals("BlueRupee"))
                 {
@@ -164,7 +165,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("Clock"))
                 {
-                    item = new Clock(game);
+                    item = new Clock(players);
                 }
                 else if (entry.Value.Equals("Compass"))
                 {
@@ -200,7 +201,7 @@ namespace LegendOfZelda
                 }
                 else if (entry.Value.Equals("RedRing"))
                 {
-                    item = new RedRing(game);
+                    item = new RedRing(players);
                 }
                 else if (entry.Value.Equals("RedPotion"))
                 {

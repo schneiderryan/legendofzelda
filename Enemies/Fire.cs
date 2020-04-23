@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -7,16 +8,17 @@ namespace LegendOfZelda
 	{
 		private int timer;
 		private LegendOfZelda game;
+		private IDictionary<int, IPlayer> players;
 
-		public Fire(LegendOfZelda loz)
+		public Fire(LegendOfZelda loz, IDictionary<int, IPlayer> players)
 		{
+			game = loz;
+			this.players = players;
 			Sprite = EnemySpriteFactory.Instance.CreateFireSprite();
 			Hitbox = Sprite.Box;
-			//Hitbox = new Rectangle(240, 130, Sprite.Box.Width, Sprite.Box.Height);
 			Sprite.Position = new Point(X, Y);
 			State = new EnemyState(this);
 			timer = 0;
-			game = loz;
 			currentHearts = 100;
 		}
 		
@@ -26,14 +28,13 @@ namespace LegendOfZelda
 			{
 				if (timer % 150 == 0)
 				{
-					ICommand fire = new ShootFireballCommand(game.ProjectileManager, this, game.link);
+					ICommand fire = new ShootFireballCommand(game.ProjectileManager, this, players.Values);
 					fire.Execute();
 				}
 				timer++;
 			}
 			base.Update();
 		}
-		
 
 	}
 }

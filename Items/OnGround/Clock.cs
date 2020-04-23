@@ -1,20 +1,23 @@
-﻿namespace LegendOfZelda
+﻿using System.Collections.Generic;
+
+
+namespace LegendOfZelda
 {
     class Clock : Item
     {
-        private LegendOfZelda game;
+        private IDictionary<int, IPlayer> players;
 
-        public Clock(LegendOfZelda game)
+        public Clock(IDictionary<int, IPlayer> players)
         {
             sprite = ItemSpriteFactory.GetClock();
             Hitbox = sprite.Box;
-            this.game = game;
+            this.players = players;
         }
 
         public override void Collect(IPlayer player)
         {
             player.Inventory.HasClock = true;
-            game.link = new DamagedLink(game);
+            players[player.ID] = new DamagedLink(player);
         }
     }
 }

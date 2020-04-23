@@ -13,7 +13,7 @@ namespace LegendOfZelda
 
         public override void Collect(IPlayer player)
         {
-            player.Inventory.HasBlueCandle = true;
+            player.Inventory.BlueCandle.Found = true;
         }
     }
 }
