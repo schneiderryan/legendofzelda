@@ -17,7 +17,7 @@ namespace LegendOfZelda
             
             this.game = game;
             StartMenu = Textures.GetStartMenu();
-            game.keyboard = GameSetup.CreateSinglePressKeysController(game);
+            game.keyboard = GameSetup.CreateSimpleKeysController(game);
             counter = 0;
             delay = 13;
         }
@@ -40,6 +40,21 @@ namespace LegendOfZelda
         public void PauseGame()
         {
             //Nothing to do
+        }
+
+        public void OpenInventory()
+        {
+            //Nothing to do
+        }
+
+        public void CloseInventory()
+        {
+            //Nothing to do
+        }
+
+        public void SelectMode()
+        {
+            //Do nothing
         }
 
         public void ResumeGame()

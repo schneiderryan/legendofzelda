@@ -13,6 +13,8 @@ namespace LegendOfZelda
         ISet<IEnemy> Enemies { get; }
         IList<IItem> Items { get; }
         IList<INPC> NPCs { get; }
+        IDictionary<int, IPlayer> Players { get; }
+        bool FreezeEnemies { get; set; }
         ISprite background { get; set; }
     }
 }

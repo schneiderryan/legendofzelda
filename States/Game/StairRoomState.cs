@@ -48,6 +48,20 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void SelectMode()
+        {
+            //Do nothing
+        }
+
+        public void OpenInventory()
+        {
+            //Nothing to do
+        }
+
+        public void CloseInventory()
+        {
+            //Nothing to do
+        }
         public void ChangeRoom()
         {
             //Nothing to do
@@ -86,8 +100,8 @@ namespace LegendOfZelda
                     changed = true;
                     game.roomIndex--;
                     game.xRoom -= 256;
-                    game.link.X = 94;
-                    game.link.Y = 124;
+                    game.Link.X = 94;
+                    game.Link.Y = 124;
                     game.rooms[game.roomIndex].Update();
                 }
                 else if (direction == Stairs.StairDirection.Up && !changed)
@@ -95,8 +109,8 @@ namespace LegendOfZelda
                     changed = true;
                     game.roomIndex++;
                     game.xRoom += 256;
-                    game.link.X = 6 * RoomParser.TILE_SIZE;
-                    game.link.Y = 7 * RoomParser.TILE_SIZE + 120;
+                    game.Link.X = 6 * RoomParser.TILE_SIZE;
+                    game.Link.Y = 7 * RoomParser.TILE_SIZE + 120;
                     game.rooms[game.roomIndex].Update();
                 }
             }
@@ -122,7 +136,11 @@ namespace LegendOfZelda
         {
             game.rooms[game.roomIndex].Draw(game.spriteBatch, tint);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
-            game.link.Draw(game.spriteBatch, Color.White);
+            game.Link.Draw(game.spriteBatch, Color.White);
+            if (game.currentMode.Equals("hard"))
+            {
+                game.cone.Draw(game.spriteBatch);
+            }
         }
     }
 }

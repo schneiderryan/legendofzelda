@@ -1,9 +1,9 @@
 ﻿1
-Open,Open,Key,Open
-Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
+Open,Open,Key,Wall
+WhiteSword,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,HeartContainer
 Null,Block,Null,Null,Block,Null,Null,Block,Null,Null,Block,Null
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
 Null,Block,Null,Null,Block,Null,Null,Block,Null,Null,Block,Null
 Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
-Null,Block,Null,Null,Block,Null,Null,Block,Null,Null,Block,Null
-Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
+Null,Block,Null,Null,Block,Null,Null,Block,Null,Arrow,Block,Null
+BluePotion,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,RedPotion

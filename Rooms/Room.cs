@@ -14,12 +14,14 @@ namespace LegendOfZelda
         public ISet<IEnemy> Enemies { get; private set; }
         public IList<IItem> Items { get; private set; }
         public IList<INPC> NPCs { get; private set; }
+        public IDictionary<int, IPlayer> Players { get; private set; }
         public IDictionary<string, IDoor> Doors { get; set; }
+        public bool FreezeEnemies { get; set; }
 
         private LegendOfZelda game;
         public ISprite background { get; set; }
         private string level;
-        
+
 
         private void LoadRoomLayout(int roomNumber)
         {
@@ -44,7 +46,6 @@ namespace LegendOfZelda
             {
                 Hitboxes = new List<Rectangle>()
                 {
-
                     // left wall hitboxes
                     new Rectangle(0, 120, 64, 168),
                     new Rectangle(0, 312, 64, 160),
@@ -75,10 +76,11 @@ namespace LegendOfZelda
             
             this.background.Position = new Point(0, 0);
 
+            Players = new Dictionary<int, IPlayer>();
             this.Doors = levelLoader.LoadDoors();
             this.Blocks = levelLoader.LoadBlocks(Doors);
-            this.Enemies = levelLoader.LoadEnemies(Doors);
-            this.Items = levelLoader.LoadItems();
+            this.Enemies = levelLoader.LoadEnemies(Doors, Players);
+            this.Items = levelLoader.LoadItems(Players);
             this.NPCs = levelLoader.LoadNPCs();
             
             if (levelName.Equals("Rooms/Room15.csv"))
@@ -93,7 +95,8 @@ namespace LegendOfZelda
         {
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
-                if(!door.Key.Equals("top") || door.Value is TopOpen)
+                if ((!door.Key.Equals("top") || door.Value is TopOpen)
+                        && !(door.Value is BottomExploded))
                 {
                     door.Value.Draw(sb, color);
                 }
@@ -105,10 +108,7 @@ namespace LegendOfZelda
             background.Draw(sb, color);
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
-                if (door.Key.Equals("top"))
-                {
-                    door.Value.Draw(sb, color);
-                }
+                door.Value.Draw(sb, color);
             }
 
             foreach (IBlock b in Blocks)
@@ -136,6 +136,16 @@ namespace LegendOfZelda
         {
             this.background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
 
+            foreach (IPlayer player in Players.Values.ToList())
+            {
+                player.Update();
+                if (player is DamagedLink && (player as DamagedLink).Finished)
+                {
+                    Players[player.ID] = (player as DamagedLink).InnerLink;
+                }
+                FreezeEnemies |= player.Inventory.HasClock;
+            }
+
             foreach (IEnemy enemy in Enemies.ToList())
             {
                 if (enemy.isDead)
@@ -143,13 +153,13 @@ namespace LegendOfZelda
                     Enemies.Remove(enemy);
                     SpawnEnemyLoot(enemy);
                 }
+                if (FreezeEnemies)
+                {
+                    enemy.BeStill();
+                }
                 enemy.Update();
             }
 
-            foreach (KeyValuePair<String, IDoor> door in Doors)
-            {
-                door.Value.Update();
-            }
             foreach (KeyValuePair<String, IDoor> door in Doors)
             {
                 door.Value.Update();

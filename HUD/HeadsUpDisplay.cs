@@ -16,6 +16,7 @@ namespace LegendOfZelda
         private HUDMap hudmap;
         private Texture2D itemSheet = Textures.GetItemSheet();
         private HUDCurrentItem hudcurrentitem;
+        public int offset;
 
         public HeadsUpDisplay(LegendOfZelda game)
         {
@@ -26,6 +27,14 @@ namespace LegendOfZelda
             hudrupees = new HUDCounter(this.game, "rupees");
             hudmap = new HUDMap(this.game);
             hudcurrentitem = new HUDCurrentItem(this.game);
+            if (game.state.ToString().Equals("LegendOfZelda.InventoryState"))
+            {
+                offset = 360;
+            }
+            else
+            {
+                offset = 0;
+            }
         }
         
         public void Update()
@@ -36,6 +45,7 @@ namespace LegendOfZelda
             hudrupees.Update();
             hudmap.Update();
             hudcurrentitem.Update();
+
         }
 
         public void Draw()
@@ -46,7 +56,7 @@ namespace LegendOfZelda
             hudrupees.Draw();
             hudmap.Draw();
             hudcurrentitem.Draw();
-            game.spriteBatch.Draw(itemSheet, new Rectangle(305, 55, 14, 32), new Rectangle(104, 0, 8, 16), Color.White);
+            game.spriteBatch.Draw(itemSheet, new Rectangle(305, offset + 55, 14, 32), new Rectangle(104, 0, 8, 16), Color.White);
             //game.spriteBatch.Draw(itemSheet, new Rectangle(257, 55, 14, 32), new Rectangle(136, 0, 8, 16), Color.White);
 
             

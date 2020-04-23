@@ -1,0 +1,12 @@
+﻿Author: Isaac Smith
+4/13/2020
+Sprint: 4
+File: HeadsUpDisplay.cs
+File Author: Ryan S.
+
+The level of coupling in the class seems pretty high.
+It knows about six different classes, one of which is the game class.
+Interfaces are not used. If one of the HUD classes got replaced by a
+new HUD class, this class would have to change both the initialization code
+and the field type that had been using that class. Basically, slightly more work
+for a simple change.

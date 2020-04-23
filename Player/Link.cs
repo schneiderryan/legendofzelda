@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -14,7 +12,6 @@ namespace LegendOfZelda
         private int y;
         private int itemTimer;
         private int heartSoundTimer = 0;
-        private List<Keys> attackKeys;
         private Rectangle footbox;
         private Rectangle hitbox;
         private Rectangle attackBoxLeft;
@@ -23,10 +20,15 @@ namespace LegendOfZelda
         private Rectangle attackBoxDown;
         private Vector2 origin;
         private Color deadColor;
+
+        public int ID { get; set; }
+        public int InRoom { get; set; }
         public double Resistance { get; set; }
         public IItem HeldItem { get; set; }
+        public IItem CurrentItem { get; set; }
         public ISprite Sprite { get; set; }
         public ILinkState State { get; set; }
+        public bool HeartsCanCahnge { get; set; }
         public int attackSoundTimer = 0;
         public Rectangle Footbox => footbox;
         public Rectangle Hitbox => hitbox;
@@ -64,7 +66,7 @@ namespace LegendOfZelda
                 attackBoxRight.Y += value - hitbox.Y;
                 attackBoxDown.Y += value - hitbox.Y;
                 attackBoxUp.Y += value - hitbox.Y;
-                footbox.Y = value + Sprite.Box.Height - footbox.Height;
+                footbox.Y = value + hitbox.Height - footbox.Height;
                 hitbox.Y = value;
                 y = value;
             }
@@ -83,6 +85,8 @@ namespace LegendOfZelda
         public Team Team { get; set; } = Team.Link;
 
         public Point Center => Sprite.Box.Center;
+
+        public bool HeartsCanChange { get; set; }
 
         public virtual void MoveLeft()
         {
@@ -139,7 +143,7 @@ namespace LegendOfZelda
             }
             else
             {
-                this.game.link = new DamagedLink(game);
+                game.rooms[game.roomIndex].Players[ID] = new DamagedLink(this);
             }
         }
 
@@ -202,11 +206,13 @@ namespace LegendOfZelda
 
         public virtual bool IsAttacking()
         {
-            return State is AttackingGreenLinkState || State is AttackingRedLinkState;
+            return State is AttackingGreenLinkState || State is AttackingRedLinkState
+                || State is AttackingBlueLinkState;
         }
 
-        protected void Initialize(LegendOfZelda game)
+        protected void Initialize(LegendOfZelda game, int id)
         {
+            this.ID = id;
             this.game = game;
             this.Direction = "up";
             this.Sprite.Scale = 2.0f;
@@ -219,11 +225,22 @@ namespace LegendOfZelda
             this.attackBoxUp = new Rectangle(x + Sprite.Box.Width/4, y - 25, Sprite.Box.Width/2, 25);
             this.attackBoxDown = new Rectangle(x + Sprite.Box.Width / 4, y + Sprite.Box.Height, Sprite.Box.Width / 2, 25);
             this.itemTimer = 0;
-            this.MaxHearts = 3.0;
-            this.CurrentHearts = 3.0;
+            if (game.currentMode.Equals("sudden death"))
+            {
+                this.MaxHearts = 0.5;
+                this.CurrentHearts = 0.5;
+                HeartsCanChange = false;
+            } else
+            {
+                this.MaxHearts = 3.0;
+                this.CurrentHearts = 3.0;
+                HeartsCanChange = true;
+            }
             this.Resistance = 0;
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
+            this.HeldItem = new Bomb();
+            this.CurrentItem = new Bomb();
             this.DeadColor = Microsoft.Xna.Framework.Color.White;
         }
 

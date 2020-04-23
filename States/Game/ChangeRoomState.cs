@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -11,20 +8,16 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private int timer;
-        private int x;
-        private int y;
-        private Texture2D background;
         private Texture2D HUD;
         private Texture2D HUDBackground;
         private string direction;
-        public ChangeRoomState(String direction, LegendOfZelda game)
+        private IPlayer player;
+
+        public ChangeRoomState(string direction, IPlayer player, LegendOfZelda game)
         {
             this.HUD = Textures.GetHUD();
             this.HUDBackground = Textures.GetHUDBackground();
-            this.background = Textures.GetRoomSheet();
             this.direction = direction;
-            x = game.xRoom;
-            y = game.yRoom;
             if (direction == "left" || direction == "right")
             {
                 this.timer = 257 / 2;
@@ -34,11 +27,16 @@ namespace LegendOfZelda
                 this.timer = 177 / 2;
             }
             this.game = game;
-            if (game.link.Inventory.HasClock)
+            this.player = player;
+            player.Inventory.BlueCandle.UsedInRoom = false;
+            if (player.Inventory.HasClock)
             {
-                game.link = (game.link as DamagedLink).InnerLink;
-                game.link.Inventory.HasClock = false;
+                this.player = (player as DamagedLink).InnerLink;
+                game.rooms[game.roomIndex].Players[player.ID] = this.player;
+                this.player.Inventory.HasClock = false;
+                game.rooms[game.roomIndex].FreezeEnemies = false;
             }
+            game.rooms[game.roomIndex].Players.Remove(player.ID);
             game.ProjectileManager.Clear();
         }
 
@@ -62,6 +60,16 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void OpenInventory()
+        {
+            //Nothing to do
+        }
+
+        public void CloseInventory()
+        {
+            //Nothing to do
+        }
+
         public void ResumeGame()
         {
             game.state = new PlayState(game);
@@ -70,6 +78,11 @@ namespace LegendOfZelda
         public void ChangeRoom()
         {
 
+        }
+
+        public void SelectMode()
+        {
+            //Do nothing
         }
 
         public void WinGame()
@@ -89,19 +102,12 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            
-            //game.soundEffects[0].Play();
-            if (timer == 0)
-            {
-                this.PlayGame();
-            }
             game.rooms[game.roomIndex].background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
             if (direction == "up")
             {
                 if (timer > 0)
                 {
                     game.yRoom -= 2;
-                    timer--;
                 }
                 else
                 {
@@ -121,9 +127,6 @@ namespace LegendOfZelda
                     {
                         game.roomIndex += 5;
                     }
-
-                    game.rooms[game.roomIndex].Update();
-                    this.PlayGame();
                 }
             }
             else if (direction == "down")
@@ -131,7 +134,6 @@ namespace LegendOfZelda
                 if (timer > 0)
                 {
                     game.yRoom += 2;
-                    timer--;
                 }
                 else
                 {
@@ -152,9 +154,6 @@ namespace LegendOfZelda
                     {
                         game.roomIndex -= 5;
                     }
-                    game.rooms[game.roomIndex].Update();
-                    this.PlayGame();
-
                 }
             }
             else if (direction == "left")
@@ -162,7 +161,6 @@ namespace LegendOfZelda
                 if (timer > 0)
                 {
                     game.xRoom -= 2;
-                    timer--;
                 }
                 else
                 {
@@ -174,18 +172,13 @@ namespace LegendOfZelda
                     {
                         game.roomIndex--;
                     }
-                    game.rooms[game.roomIndex].Update();
-                    this.PlayGame();
-
                 }
             }
             else
             {
                 if (timer > 0)
                 {
-
                     game.xRoom += 2;
-                    timer--;
                 }
                 else
                 {
@@ -197,14 +190,16 @@ namespace LegendOfZelda
                     {
                         game.roomIndex++;
                     }
-                    game.rooms[game.roomIndex].Update();
-                    this.PlayGame();
-
                 }
             }
 
-
-
+            if (timer == 0)
+            {
+                game.rooms[game.roomIndex].Players.Add(player.ID, player);
+                game.rooms[game.roomIndex].Update();
+                this.PlayGame();
+            }
+            timer--;
         }
 
         public void Draw()
@@ -212,7 +207,6 @@ namespace LegendOfZelda
             game.rooms[game.roomIndex].background.Draw(game.spriteBatch, Color.White);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
             game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
-
         }
     }
 }

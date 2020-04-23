@@ -48,5 +48,14 @@ namespace LegendOfZelda
             };
         }
 
+        public static ISprite GetBlueCandleFlame()
+        {
+            return new AnimatedSprite(weapons, new Rectangle(262, 237, 16, 32), 2, true)
+            {
+                AnimationDelay = 10,
+                Scale = 2
+            };
+        }
+
     }
 }

@@ -26,7 +26,8 @@ namespace LegendOfZelda
 
 		private void BreathFire()
 		{
-			Vector2 v = Util.VelocityVectorToTarget(aquamentus.player.Center,
+			IPlayer target = Util.FindClosestPlayer(aquamentus.Center, aquamentus.players);
+			Vector2 v = Util.VelocityVectorToTarget(target.Center,
 					aquamentus.Hitbox.Location, 3.5f);
 			float shiftV = 1.25f;
 

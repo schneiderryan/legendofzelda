@@ -1,22 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
 {
     interface IPlayer : ICharacter
     {
+        int ID { get; set; }
         ILinkState State { get; set; }
         string Direction { get; set; }
         string Color { get; set; }
         double MaxHearts { get; set; }
         double CurrentHearts { get; set; }
         double Resistance { get; set; }
+        bool HeartsCanChange { get; set; }
         IInventory Inventory { get; }
         IItem HeldItem { get; set; }
-
+        IItem CurrentItem { get; set; }
         Rectangle Footbox { get; }
         Rectangle UpAttackBox { get; }
         Rectangle DownAttackBox { get; }

@@ -1,0 +1,10 @@
+﻿Author: Isaac Smith
+4/13/2020
+Sprint: 4
+File: HeadsUpDisplay.cs
+File Author: Ryan S.
+Number of minutes taken to complete the review: 1min
+
+The class is very readable. It only has a few methods and those methods are
+very straightforward about the one task that they perform. I didn't see anything
+that struck me as unreadable.

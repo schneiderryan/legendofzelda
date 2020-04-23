@@ -20,19 +20,19 @@ namespace LegendOfZelda
             this.game = game;
         }
 
-        public IEnumerable<ICollision> Detect(IRoom room, IPlayer player)
+        public IEnumerable<ICollision> Detect()
         {
             collisions.Clear();
+            IRoom room = game.rooms[game.roomIndex];
 
             // handle all things player first
-
-            HandlePlayerCollisions(room, player, game);
+            HandlePlayerCollisions(room, game.Link, game);
 
             // handle all things enemy that haven't already been handled
-            HandleEnemyCollisions(room, player);
+            HandleEnemyCollisions(room, game.Link);
 
             // handle whatever's left
-            HandleProjectileCollisions(room);
+            HandleProjectileCollisions(game.rooms, game.roomIndex);
 
             return collisions;
         }
@@ -246,8 +246,9 @@ namespace LegendOfZelda
             }
         }
 
-        private void HandleProjectileCollisions(IRoom room)
+        private void HandleProjectileCollisions(IList<IRoom> rooms, int roomIndex)
         {
+            IRoom room = rooms[roomIndex];
             foreach (IProjectile projectile in projectileManager)
             {
                 foreach (Rectangle wall in room.Hitboxes)
@@ -263,7 +264,7 @@ namespace LegendOfZelda
                 {
                     if (door.Value.Hitbox.Intersects(projectile.Hitbox))
                     {
-                        collisions.Add(new DoorProjectileCollision(room.Doors, door, projectileManager, projectile));
+                        collisions.Add(new DoorProjectileCollision(rooms, roomIndex, door, projectileManager, projectile));
                     }
                 }
 

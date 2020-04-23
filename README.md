@@ -7,18 +7,20 @@
 - S and down arrow: move player down
 - D and right up: move player right
 - Z and N: player attacks
+- I: Open Inventory
+- H: Move Left Thorugh Inventory
+- J: Move Right Through Inventory
 - Q: quit game
 - R: reset game
 - 1: throw sword
-- 2: throw arrow
-- 3: throw boomerang
-- 4: throw bomb
-- Left Click: Iterate forward through rooms
-- Right Click: Iterate backwards through rooms
+- 2: throw arrow (after link as found both arrow & bow, and has > 0 rupees)
+- 3: throw boomerang (after link has found the boomerang)
+- 4: drop bomb
 - P: Pause Game
+- I: Item Selection Screen
+- J and H: Item Selection
 
 # Functionality
-- Room switching when going through doors and with mouse
 - Player can die which resets game
 - Player can win upon picking up triforce
 - Start menu and credits
@@ -29,20 +31,17 @@
 - Enemies die and despawn
 - Enemies and player collide with walls and blocks
 - Player can move moveable blocks
-- Player can walk through doors (doesn't change room though)
+- Player can walk through doors
 - Rooms loaded using csv files
-- Spawning/despawing animations for enemies and projectiles implemented
+- Spawning/despawing animations for enemies and projectiles
 
 # Known Bugs
-- When trying to move link in two directions at once, he stops animating
-- When link attacks with another weapon there aren't different sprites
-- Some enemy/npc functionality isn't fully implemented yet (Wallmasters, old man, merchant)
-- Some items are not fully implemented yet (rings, candle, clock, compass)
-- When the attack key is held, link attacks repeatedly
-- Bomb does not work correctly
-- Aqumentus' fireballs are not directed at link
+Inventory shows bombs when bomb count is zero
+item selection has some issues when items are missing
+- Issues with Item Selection and using second weapon
+Candle item is missing
 
-# Code Analyzer Suppressions (17 warnings found this sprint)
+# Code Analyzer Suppressions (12 warnings found this sprint)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 
             If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 

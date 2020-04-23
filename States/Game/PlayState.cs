@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 
@@ -32,9 +33,25 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void SelectMode()
+        {
+            //Do nothing
+        }
+
         public void PauseGame()
         {
             game.state = new PauseState(game);
+        }
+
+        public void OpenInventory()
+        {
+            game.hud.offset = 360;
+            game.state = new TransitionToInventoryState(game);
+        }
+
+        public void CloseInventory()
+        {
+            //Nothing to do
         }
 
         public void ResumeGame()
@@ -44,7 +61,7 @@ namespace LegendOfZelda
 
         public void ChangeRoom()
         {
-            game.state = new ChangeRoomState(game.link.Direction, game);
+            game.state = new ChangeRoomState(game.Link.Direction, game.Link, game);
         }
 
         public void WinGame()
@@ -69,20 +86,24 @@ namespace LegendOfZelda
             game.playerKeyboard.Update();
 
             game.rooms[game.roomIndex].Update();
-            game.link.Update();
+            game.cone.Update();
 
             game.ProjectileManager.Update();
 
-            IEnumerable<ICollision> collisions =
-                    game.CollisionDetector.Detect(game.rooms[game.roomIndex], game.link);
+            IEnumerable<ICollision> collisions = game.CollisionDetector.Detect();
             CollisionHandler.Handle(collisions);
         }
 
         public void Draw()
         {
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
-            game.link.Draw(game.spriteBatch, Color.White);
+            game.Link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
+            game.ProjectileManager.Draw(game.spriteBatch, Color.White);
+            if (game.currentMode.Equals("hard"))
+            {
+                game.cone.Draw(game.spriteBatch);
+            }
             game.ProjectileManager.Draw(game.spriteBatch, Color.White);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.Black);
             game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);

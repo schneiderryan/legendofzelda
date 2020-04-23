@@ -19,6 +19,7 @@ namespace LegendOfZelda
             pxMoved = 0;
             this.block = block;
             this.doors = doors;
+            Sounds.GetSecretSound().Play();
         }
 
         public override void Update()

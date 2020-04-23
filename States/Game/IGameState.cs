@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
+
 
 namespace LegendOfZelda
 {
@@ -17,5 +16,8 @@ namespace LegendOfZelda
         void SelectItem();
         void Update();
         void Draw();
+        void OpenInventory();
+        void CloseInventory();
+        void SelectMode();
     }
 }
