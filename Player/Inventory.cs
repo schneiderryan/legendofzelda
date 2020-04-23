@@ -6,7 +6,7 @@ namespace LegendOfZelda
     class Inventory : IInventory
     {
         public bool HasArrow { get; set; } = false;
-        public bool HasBow { get; set; } = false;
+        public bool HasBow { get; set; } = true;
         public bool HasBluePotion { get; set; } = false;
         public bool HasRedPotion { get; set; } = false;
         public bool HasClock { get; set; } = false;
@@ -14,7 +14,7 @@ namespace LegendOfZelda
         public bool HasMap { get; set; } = false;
         public bool HasCompass { get; set; } = true;
         public int Rupees { get; set; } = 0;
-        public int Bombs { get; set; } = 0;
+        public int Bombs { get; set; } = 6;
         public int Keys { get; set; } = 0;
 
         public int MaxBombs { get; set; } = 8;

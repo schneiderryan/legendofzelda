@@ -77,15 +77,15 @@ namespace LegendOfZelda
 
             //Get the coordinates of the characters
             char1.X = xCoord;
-            char2.X = xCoord + 16;
+            char2.X = xCoord + 17;
             char1.Y = char2.Y = offset + yCoord;
 
             //Draw the characters
             char1.Draw(game.spriteBatch);
             char2.Draw(game.spriteBatch);
-            if (char3 != null)
+            if (char3 != null && count > 9)
             {
-                char3.X = xCoord + 32;
+                char3.X = xCoord + 30;
                 char3.Y = offset + yCoord;
                 char3.Draw(game.spriteBatch);
 

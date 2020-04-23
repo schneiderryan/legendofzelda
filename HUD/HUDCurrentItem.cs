@@ -29,6 +29,16 @@ namespace LegendOfZelda
             {
                 currentSprite = ItemSpriteFactory.GetArrow();
             }
+            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.BlueCandle"))
+            {
+                currentSprite = ItemSpriteFactory.GetBlueCandle();
+            } else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.BluePotion"))
+            {
+                currentSprite = ItemSpriteFactory.GetBluePotion();
+            } else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.RedPotion"))
+            {
+                currentSprite = ItemSpriteFactory.GetRedPotion();
+            }
             currentSprite.X = 257;
             currentSprite.Y = offset + 55;
         }
@@ -37,7 +47,10 @@ namespace LegendOfZelda
         {
             if (game.link.CurrentItem != null)
             {
-                currentSprite.Draw(game.spriteBatch, Color.White);
+                if (!(game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.link.Inventory.Boomerang.Level == 0)))
+                {
+                    currentSprite.Draw(game.spriteBatch, Color.White);
+                }
             }
         }
     }
