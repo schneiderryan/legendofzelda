@@ -8,16 +8,16 @@ namespace LegendOfZelda
 	class Aquamentus : RandomMovingEnemy
 	{
 		public ICollection<IProjectile> projectiles;
-		public IPlayer player;
+		public ICollection<IPlayer> players;
 		private IDictionary<string, IDoor> doors;
 		
 		public Aquamentus(IDictionary<string, IDoor> doors,
-				ICollection<IProjectile> projectiles, IPlayer player)
+				ICollection<IProjectile> projectiles, ICollection<IPlayer> players)
 			: base(30)
 		{
 			this.doors = doors;
 			this.projectiles = projectiles;
-			this.player = player;
+			this.players = players;
 			Sprite = EnemySpriteFactory.Instance.CreateMovingAquamentusSprite();
 			Hitbox = Sprite.Box;
 			X = 400;

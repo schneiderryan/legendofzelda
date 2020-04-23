@@ -17,15 +17,15 @@ namespace LegendOfZelda
         public void Update()
         {
             this.offset = game.hud.offset;
-            if(game.link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
+            if(game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
             {
                 currentSprite = ItemSpriteFactory.GetBomb();
             }
-            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang"))
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang"))
             {
                 currentSprite = ItemSpriteFactory.GetBoomerang();
             }
-            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Arrow"))
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Arrow"))
             {
                 currentSprite = ItemSpriteFactory.GetArrow();
             }
@@ -45,7 +45,7 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            if (game.link.CurrentItem != null)
+            if (game.Link.CurrentItem != null)
             {
                 if (!(game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.link.Inventory.Boomerang.Level == 0)))
                 {
