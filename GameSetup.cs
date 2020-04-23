@@ -88,7 +88,13 @@ namespace LegendOfZelda
             cmd = new AddKeyCommand(game.link);
             keyBinds.Add(Keys.K, cmd);
 
-            return new SinglePressKeyboardController(keyBinds);
+            cmd = new AddBombCommand(game.link);
+            keyBinds.Add(Keys.B, cmd);
+
+            cmd = new AddRupeesCommand(game.link);
+            keyBinds.Add(Keys.U, cmd);
+
+            return new SinglePressKeyboardController(keyBinds, game.link);
         }
 
         public static IController CreateMenuKeysController(LegendOfZelda game)
@@ -111,7 +117,7 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.Enter, cmd);
 
 
-            return new SinglePressKeyboardController(keyBinds);
+            return new SinglePressKeyboardController(keyBinds, game.link);
         }
 
         public static IList<IRoom> GenerateRoomList(LegendOfZelda game)

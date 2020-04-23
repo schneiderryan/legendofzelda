@@ -8,11 +8,13 @@ namespace LegendOfZelda
         private IDictionary<Keys, ICommand> keyBinds;
         private IDictionary<Keys, int> heldKeys;
         private const int COOLDOWN = 20;
+        private IPlayer player;
 
-        public SinglePressKeyboardController(IDictionary<Keys, ICommand> keyBinds)
+        public SinglePressKeyboardController(IDictionary<Keys, ICommand> keyBinds, IPlayer player)
         {
             this.keyBinds = keyBinds;
             this.heldKeys = new Dictionary<Keys, int>();
+            this.player = player;
         }
 
         public void Update()
@@ -41,6 +43,11 @@ namespace LegendOfZelda
         {
             // copy Keys into a list so we can modify the dictionary while iterating
             List<Keys> keys = new List<Keys>(heldKeys.Keys);
+            if(keys.Contains(Keys.F) && keys.Contains(Keys.G) && keys.Contains(Keys.H))
+            {
+                ICommand cmd = new AddRupeesCommand(player);
+                cmd.Execute();
+            }
             for (int i = 0; i < keys.Count; i++)
             {
                 if (state.IsKeyUp(keys[i]) && heldKeys[keys[i]] <= 0)
