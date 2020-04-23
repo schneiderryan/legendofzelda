@@ -120,10 +120,10 @@ namespace LegendOfZelda
 
         public void HandleEdge(IPlayer player, IDoor door, LegendOfZelda game, int margin = 8)
         {
-            cmdRight = new SwapRoomCommand(game, "next");
-            cmdLeft = new SwapRoomCommand(game, "previous");
-            cmdUp = new SwapRoomCommand(game, "up");
-            cmdDown = new SwapRoomCommand(game, "down");
+            cmdRight = new SwapRoomCommand(game, player, "next");
+            cmdLeft = new SwapRoomCommand(game, player, "previous");
+            cmdUp = new SwapRoomCommand(game, player, "up");
+            cmdDown = new SwapRoomCommand(game, player, "down");
 
             //change rooms based on door collision
             if ((door is TopOpen || door is TopExploded) && player.Hitbox.Top - door.Hitbox.Top < margin)

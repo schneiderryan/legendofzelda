@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -65,7 +63,7 @@ namespace LegendOfZelda
         public IItem HeldItem { get => link.HeldItem; set => link.HeldItem = value; }
         public IItem CurrentItem { get => link.CurrentItem; set => link.CurrentItem = value; }
         public double Resistance { get => link.Resistance; set => link.Resistance = value; }
-        public bool usedinRoom { get => link.usedinRoom; set => link.usedinRoom = value; }
+        public int ID { get => link.ID; set => link.ID = value; }
 
         public void Attack()
         {

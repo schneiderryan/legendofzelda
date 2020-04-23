@@ -17,25 +17,25 @@ namespace LegendOfZelda
         public void Update()
         {
             this.offset = game.hud.offset;
-            if(game.link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
+            if(game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
             {
                 currentSprite = ItemSpriteFactory.GetBomb();
             }
-            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang"))
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang"))
             {
                 currentSprite = ItemSpriteFactory.GetBoomerang();
             }
-            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Arrow"))
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Arrow"))
             {
                 currentSprite = ItemSpriteFactory.GetArrow();
             }
-            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.BlueCandle"))
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.BlueCandle"))
             {
                 currentSprite = ItemSpriteFactory.GetBlueCandle();
-            } else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.BluePotion"))
+            } else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.BluePotion"))
             {
                 currentSprite = ItemSpriteFactory.GetBluePotion();
-            } else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.RedPotion"))
+            } else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.RedPotion"))
             {
                 currentSprite = ItemSpriteFactory.GetRedPotion();
             }
@@ -45,9 +45,9 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            if (game.link.CurrentItem != null)
+            if (game.Link.CurrentItem != null)
             {
-                if (!(game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.link.Inventory.Boomerang.Level == 0)))
+                if (!(game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.Link.Inventory.Boomerang.Level == 0)))
                 {
                     currentSprite.Draw(game.spriteBatch, Color.White);
                 }

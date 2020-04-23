@@ -61,7 +61,7 @@ namespace LegendOfZelda
 
         public void ChangeRoom()
         {
-            game.state = new ChangeRoomState(game.link.Direction, game);
+            game.state = new ChangeRoomState(game.Link.Direction, game.Link, game);
         }
 
         public void WinGame()
@@ -86,7 +86,6 @@ namespace LegendOfZelda
             game.playerKeyboard.Update();
 
             game.rooms[game.roomIndex].Update();
-            game.link.Update();
             game.cone.Update();
 
             game.ProjectileManager.Update();
@@ -98,7 +97,7 @@ namespace LegendOfZelda
         public void Draw()
         {
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
-            game.link.Draw(game.spriteBatch, Color.White);
+            game.Link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
             game.ProjectileManager.Draw(game.spriteBatch, Color.White);
             if (game.currentMode.Equals("hard"))

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 
 namespace LegendOfZelda
@@ -11,7 +12,6 @@ namespace LegendOfZelda
 
         const int ANIMATION_TIME = 192; // to give about 3 seconds
         int timer = ANIMATION_TIME;
-        LegendOfZelda game;
 
         public Rectangle Footbox => InnerLink.Footbox;
         public Rectangle LeftAttackBox => InnerLink.LeftAttackBox;
@@ -83,13 +83,13 @@ namespace LegendOfZelda
         public IItem HeldItem { get => InnerLink.HeldItem; set => InnerLink.HeldItem = value; }
         public IItem CurrentItem { get => InnerLink.CurrentItem; set => InnerLink.CurrentItem = value; }
         public double Resistance { get => InnerLink.Resistance; set => InnerLink.Resistance = value; }
-        public bool usedinRoom { get => InnerLink.usedinRoom; set => InnerLink.usedinRoom = value; }
+        public int ID { get => InnerLink.ID; set => InnerLink.ID = value; }
         public bool HeartsCanChange { get => InnerLink.HeartsCanChange; set => InnerLink.HeartsCanChange = value; }
+        public bool Finished => timer <= 0;
 
-        public DamagedLink (LegendOfZelda game)
+        public DamagedLink (IPlayer player)
         {
-            this.game = game;
-            this.InnerLink = game.link;
+            this.InnerLink = player;
         }
 
         public void Attack()
@@ -156,18 +156,10 @@ namespace LegendOfZelda
             timer--;
             if (InnerLink.Inventory.HasClock)
             {
-                foreach (IEnemy enemy in game.rooms[game.roomIndex].Enemies)
-                {
-                    enemy.BeStill();
-                }
                 if (timer <= 0)
                 {
                     timer = ANIMATION_TIME;
                 }
-            }
-            else if (timer <= 0)
-            {
-                game.link = InnerLink;
             }
             InnerLink.Update();
         }
