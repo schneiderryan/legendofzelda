@@ -237,7 +237,7 @@ namespace LegendOfZelda
             this.origin = new Vector2(0, 0);
             this.Inventory = new Inventory();
             this.HeldItem = new Bomb();
-            this.CurrentItem = new Bomb();
+            this.CurrentItem = new Boomerang();
             this.DeadColor = Microsoft.Xna.Framework.Color.White;
             this.usedinRoom = false;
         }
