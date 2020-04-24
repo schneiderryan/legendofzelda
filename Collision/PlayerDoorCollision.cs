@@ -15,6 +15,7 @@ namespace LegendOfZelda
         static ICommand cmdRight;
         static ICommand cmdUp;
         static ICommand cmdDown;
+        static ICommand cmdPortal;
 
         public PlayerDoorCollision(IDictionary<string, IDoor> doors,
                KeyValuePair<string, IDoor> door, IPlayer player, LegendOfZelda game)
@@ -28,7 +29,7 @@ namespace LegendOfZelda
         public void Handle()
         {
             if (door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen
-                || door.Value is RightOpen)
+                || door.Value is RightOpen || door.Value is LeftPortal)
             {
                 if (door.Value.Hitbox.Contains(player.Hitbox))
                 {
@@ -124,6 +125,7 @@ namespace LegendOfZelda
             cmdLeft = new SwapRoomCommand(game, player, "previous");
             cmdUp = new SwapRoomCommand(game, player, "up");
             cmdDown = new SwapRoomCommand(game, player, "down");
+            cmdPortal = new PortalRoomCommand(game, game.Link);
 
             //change rooms based on door collision
             if ((door is TopOpen || door is TopExploded) && player.Hitbox.Top - door.Hitbox.Top < margin)
@@ -146,6 +148,11 @@ namespace LegendOfZelda
                 cmdRight.Execute();
                 player.X = 60;
             }
+            if(door is LeftPortal && player.Hitbox.Left - door.Hitbox.Left < margin)
+            {
+                cmdPortal.Execute();
+            }
+
         }
     }
 }
