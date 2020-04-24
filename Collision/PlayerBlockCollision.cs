@@ -26,7 +26,15 @@ namespace LegendOfZelda
             {
                 if (block.Hitbox.Contains(player.Center))
                 {
-                    game.state = new StairRoomState(game, (block as Stairs).Direction);
+                    Stairs.StairDirection direction = (block as Stairs).Direction;
+                    if (direction == Stairs.StairDirection.Down)
+                    {
+                        game.state = new ChangeRoomState("stairdown", player, game);
+                    }
+                    else
+                    {
+                        game.state = new ChangeRoomState("stairup", player, game);
+                    }
                 }
                 return;
             }
@@ -52,7 +60,6 @@ namespace LegendOfZelda
                 {
                     player.Y += collision.Height;
                     moveableBlock.MoveOnceUp();
-                        
                 }
                 else
                 {
@@ -66,7 +73,6 @@ namespace LegendOfZelda
                 {
                     player.X += collision.Width;
                     moveableBlock.MoveOnceLeft();
-                        
                 }
                 else
                 {
