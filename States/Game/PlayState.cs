@@ -104,6 +104,7 @@ namespace LegendOfZelda
             {
                 game.cone.Draw(game.spriteBatch);
             }
+            game.ProjectileManager.Draw(game.spriteBatch, Color.White);
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.Black);
             game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
         }

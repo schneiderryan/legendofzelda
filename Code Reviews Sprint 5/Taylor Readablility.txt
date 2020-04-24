@@ -1,0 +1,12 @@
+﻿Taylor Benjamin
+4/24/20
+5
+SelectModeCommand.cs
+Ryan Schneider
+10 minutes
+
+I believe that this class has good overall readablility.  It may take a minute of looking it over to fully
+understand exactly what is happening but once you do, this class is easy to understand.  Once you look over
+the code you can see that the execute command is broken into 2 parts, the first is determining which game
+mode is currently selected (which mode the selection "box" is on) and the second part is moving the selection
+box up or down to the next game mode.  Thus, in my opinion the readablility of this class is good.

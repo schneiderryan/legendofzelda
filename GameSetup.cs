@@ -49,7 +49,7 @@ namespace LegendOfZelda
 
             //item Commands
 
-            cmd = new PlayerUseCurrentItemCommand(game.link, game.ProjectileManager);
+            cmd = new PlayerUseCurrentItemCommand(game.Link, game.ProjectileManager);
             keyBinds.Add(Keys.D2, cmd);
             keyBinds.Add(Keys.NumPad2, cmd);
             keyBinds.Add(Keys.B, cmd);
@@ -71,6 +71,15 @@ namespace LegendOfZelda
 
             cmd = new InventoryMoveCommand(game, "right", game.Link);
             keyBinds.Add(Keys.J, cmd);
+
+            cmd = new AddKeyCommand(game.Link);
+            keyBinds.Add(Keys.K, cmd);
+
+            cmd = new AddBombCommand(game.Link);
+            keyBinds.Add(Keys.L, cmd);
+
+            cmd = new AddRupeesCommand(game.Link);
+            keyBinds.Add(Keys.M, cmd);
 
             return new SinglePressKeyboardController(keyBinds);
         }

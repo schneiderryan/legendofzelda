@@ -1,0 +1,14 @@
+Will Bartlett on Code Quality
+4/24/20
+Sprint 5
+ConeOfVision.cs
+Taylor Benjamin
+10 minutes
+
+I would say that Taylor's class has good maintability. This class has low coupling, since it does not
+use information from other modules unless it has to, which it does in the case of the player.
+This class is also not overly long, whichadds to its maintainability. One hypothetical change to the 
+game could be if the Cone of Vision was forced to change size around Link in certain spots, such
+as maybe if a certain room is darker so the Cone becomes smaller. However, I think this implementation
+could support this relatively easily by just changing the size of the xOffset or yOffset after 
+checking that the player is in a certain room or area.

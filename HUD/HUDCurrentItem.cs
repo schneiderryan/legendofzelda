@@ -29,13 +29,14 @@ namespace LegendOfZelda
             {
                 currentSprite = ItemSpriteFactory.GetArrow();
             }
-            else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.BlueCandle"))
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.BlueCandle"))
             {
                 currentSprite = ItemSpriteFactory.GetBlueCandle();
-            } else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.BluePotion"))
+                currentSprite.Scale = 2;
+            } else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.BluePotion"))
             {
                 currentSprite = ItemSpriteFactory.GetBluePotion();
-            } else if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.RedPotion"))
+            } else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.RedPotion"))
             {
                 currentSprite = ItemSpriteFactory.GetRedPotion();
             }
@@ -47,7 +48,7 @@ namespace LegendOfZelda
         {
             if (game.Link.CurrentItem != null)
             {
-                if (!(game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.link.Inventory.Boomerang.Level == 0)))
+                if (!(game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.Link.Inventory.Boomerang.Level == 0)))
                 {
                     currentSprite.Draw(game.spriteBatch, Color.White);
                 }

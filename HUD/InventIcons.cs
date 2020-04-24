@@ -14,8 +14,12 @@ namespace LegendOfZelda
         private ISprite arrow;
         private ISprite map;
         private ISprite compass;
+        private ISprite blueCandle;
+        private ISprite bluePotion;
+        private ISprite redPotion;
         private int initX;
         private int firstRowY;
+        private int secondRowY;
         private int mapCompassX;
         private int mapY;
         private int compassY;
@@ -33,6 +37,7 @@ namespace LegendOfZelda
             itemDiff = 40;
             smallDiff = 5;
             firstRowY = 75;
+            secondRowY = 105;
             bowDiff = 15;
             mapCompassX = 100;
             mapY = 220;
@@ -53,7 +58,16 @@ namespace LegendOfZelda
             bow = ItemSpriteFactory.GetBow();
             bow.X = arrow.X + bowDiff;
             bow.Y = arrow.Y;
-            //candle = ItemSpriteFactory.GetCandle();
+            blueCandle = ItemSpriteFactory.GetBlueCandle();
+            blueCandle.Scale = 2;
+            blueCandle.X = arrow.X + itemDiff + smallDiff;
+            blueCandle.Y = arrow.Y;
+            bluePotion = ItemSpriteFactory.GetBluePotion();
+            bluePotion.X = bow.X;
+            bluePotion.Y = secondRowY;
+            redPotion = ItemSpriteFactory.GetRedPotion();
+            redPotion.X = bluePotion.X;
+            redPotion.Y = bluePotion.Y;
             map = ItemSpriteFactory.GetMap();
             map.X = mapCompassX;
             map.Y = mapY;
@@ -75,7 +89,7 @@ namespace LegendOfZelda
                 selector.Update();
                 currentDelay = 0;
             }
-            if (game.link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
+            if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Bomb"))
             {
                 currentSprite = ItemSpriteFactory.GetBomb();
                 selector.X = bomb.X;
@@ -92,6 +106,24 @@ namespace LegendOfZelda
                 currentSprite = ItemSpriteFactory.GetArrow();
                 selector.X = arrow.X;
                 selector.Y = arrow.Y;
+            } else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.BlueCandle"))
+            {
+                currentSprite = ItemSpriteFactory.GetBlueCandle();
+                currentSprite.Scale = 2;
+                selector.X = blueCandle.X;
+                selector.Y = blueCandle.Y;
+            } 
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.BluePotion"))
+            {
+                currentSprite = ItemSpriteFactory.GetBluePotion();
+                selector.X = bluePotion.X;
+                selector.Y = bluePotion.Y;
+            }
+            else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.RedPotion"))
+            {
+                currentSprite = ItemSpriteFactory.GetRedPotion();
+                selector.X = redPotion.X;
+                selector.Y = redPotion.Y;
             }
             currentSprite.X = currentSpriteX;
             currentSprite.Y = firstRowY - smallDiff;
@@ -124,7 +156,19 @@ namespace LegendOfZelda
             {
                 compass.Draw(game.spriteBatch);
             }
-            if (!(game.link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.link.Inventory.Boomerang.Level == 0)))
+            if (game.Link.Inventory.BlueCandle.Found)
+            {
+                blueCandle.Draw(game.spriteBatch);
+            }
+            if (game.Link.Inventory.HasBluePotion)
+            {
+                bluePotion.Draw(game.spriteBatch);
+            }
+            if (game.Link.Inventory.HasRedPotion)
+            {
+                redPotion.Draw(game.spriteBatch);
+            }
+            if (!(game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.Link.Inventory.Boomerang.Level == 0)))
             {
                 currentSprite.Draw(game.spriteBatch, Color.White);
             }
