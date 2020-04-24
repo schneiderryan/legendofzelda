@@ -8,7 +8,6 @@ namespace LegendOfZelda
         private LegendOfZelda game;
         private Random random = new Random();
         private int roomnumber;
-        private ICommand cmd;
 
 
         public PortalRoomCommand(LegendOfZelda game)
@@ -19,8 +18,20 @@ namespace LegendOfZelda
 
         public void Execute()
         {
+            System.Diagnostics.Debug.WriteLine("Started Portal command.");
+            game.rooms[game.roomIndex].Players.Remove(game.Link.ID);
+            System.Diagnostics.Debug.WriteLine("Removed from old room.");
+            game.rooms[game.roomIndex].Update();
+            System.Diagnostics.Debug.WriteLine("Updated old room.");
             roomnumber = random.Next(0, 18);
             game.roomIndex = roomnumber;
+            
+            System.Diagnostics.Debug.WriteLine("Changed room index.");
+            game.rooms[game.roomIndex].Players.Add(game.Link.ID, game.Link);
+            System.Diagnostics.Debug.WriteLine("Added to new room.");
+            game.rooms[game.roomIndex].Update();
+            System.Diagnostics.Debug.WriteLine("Updated new room.");
+
 
             if (roomnumber == 7 || roomnumber == 15)  //Column 1
             {

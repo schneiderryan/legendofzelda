@@ -29,7 +29,7 @@ namespace LegendOfZelda
         public void Handle()
         {
             if (door.Value is TopOpen || door.Value is BottomOpen || door.Value is LeftOpen
-                || door.Value is RightOpen)
+                || door.Value is RightOpen || door.Value is LeftPortal)
             {
                 if (door.Value.Hitbox.Contains(player.Hitbox))
                 {

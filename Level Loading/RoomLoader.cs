@@ -282,6 +282,17 @@ namespace LegendOfZelda
                     {
                         door = new LeftKey();
                     }
+                    else if (entry.Value.Equals("Portal"))
+                    {
+                        if(game.currentMode.Equals("hard"))
+                        {
+                            door = new LeftPortal();
+                        }
+                        else
+                        {
+                            door = new LeftOpen();
+                        }
+                    }
                     else if (entry.Value.Equals("Other"))
                     {
                         door = new LeftOther();
