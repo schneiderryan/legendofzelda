@@ -13,6 +13,7 @@ namespace LegendOfZelda
         public override void Collect(IPlayer player)
         {
             player.Inventory.HasRedPotion = true;
+            player.Inventory.HasBluePotion = false;
         }
     }
 }
