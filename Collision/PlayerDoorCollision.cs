@@ -125,7 +125,7 @@ namespace LegendOfZelda
             cmdLeft = new SwapRoomCommand(game, player, "previous");
             cmdUp = new SwapRoomCommand(game, player, "up");
             cmdDown = new SwapRoomCommand(game, player, "down");
-            cmdPortal = new PortalRoomCommand(game);
+            cmdPortal = new PortalRoomCommand(game, game.Link);
 
             //change rooms based on door collision
             if ((door is TopOpen || door is TopExploded) && player.Hitbox.Top - door.Hitbox.Top < margin)
