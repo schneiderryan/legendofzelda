@@ -47,7 +47,7 @@ namespace LegendOfZelda
                     Rectangle collision = Rectangle.Intersect(wall, player.Footbox);
                     if (!collision.IsEmpty)
                     {
-                        collisions.Add(new PlayerWallCollision(player, collision, game));
+                        collisions.Add(new PlayerWallCollision(player, collision));
                     }
                 }
 
@@ -81,7 +81,7 @@ namespace LegendOfZelda
                 Rectangle collision = Rectangle.Intersect(npc.Hitbox, player.Hitbox);
                 if (!collision.IsEmpty)
                 {
-                    collisions.Add(new PlayerWallCollision(player, collision, game));
+                    collisions.Add(new PlayerWallCollision(player, collision));
                 }
 
                 if (npc.Hitbox.Intersects(player.LeftAttackBox))

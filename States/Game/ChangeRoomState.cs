@@ -6,25 +6,29 @@ namespace LegendOfZelda
 {
     class ChangeRoomState : IGameState
     {
+        private static Texture2D HUD = Textures.GetHUD();
+        private static Texture2D HUDBackground = Textures.GetHUDBackground();
+
         private LegendOfZelda game;
         private int timer;
-        private Texture2D HUD;
-        private Texture2D HUDBackground;
         private string direction;
         private IPlayer player;
+        private Color tint = Color.White;
 
         public ChangeRoomState(string direction, IPlayer player, LegendOfZelda game)
         {
-            this.HUD = Textures.GetHUD();
-            this.HUDBackground = Textures.GetHUDBackground();
             this.direction = direction;
             if (direction == "left" || direction == "right")
             {
                 this.timer = 257 / 2;
             }
-            else
+            else if (direction == "up" || direction == "down")
             {
                 this.timer = 177 / 2;
+            }
+            else
+            {
+                this.timer = 60;
             }
             this.game = game;
             this.player = player;
@@ -52,6 +56,12 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
+            game.rooms[game.roomIndex].Players.Add(player.ID, player);
+            game.rooms[game.roomIndex].Update();
+            if (game.currentMode.Equals("hard"))
+            {
+                game.cone.Update();
+            }
             game.state = new PlayState(game);
         }
 
@@ -174,7 +184,7 @@ namespace LegendOfZelda
                     }
                 }
             }
-            else
+            else if (direction == "right")
             {
                 if (timer > 0)
                 {
@@ -192,11 +202,50 @@ namespace LegendOfZelda
                     }
                 }
             }
+            else // stairup & stairdown
+            {
+                if (timer > 50)
+                {
+                    tint = Color.Gray;
+                }
+                else if (timer > 40)
+                {
+                    tint = Color.DarkSlateGray;
+                }
+                else if (timer > 30)
+                {
+                    tint = Color.Black;
+                    if (direction == "stairdown" && timer == 39)
+                    {
+                        game.roomIndex--;
+                        game.xRoom -= 256;
+                        player.X = 94;
+                        player.Y = 124;
+                    }
+                    else if (direction == "stairup" && timer == 39)
+                    {
+                        game.roomIndex++;
+                        game.xRoom += 256;
+                        player.X = 6 * RoomParser.TILE_SIZE;
+                        player.Y = 7 * RoomParser.TILE_SIZE + 120;
+                    }
+                }
+                else if (timer > 20)
+                {
+                    tint = Color.DarkSlateGray;
+                }
+                else if (timer > 10)
+                {
+                    tint = Color.Gray;
+                }
+                else
+                {
+                    tint = Color.White;
+                }
+            }
 
             if (timer == 0)
             {
-                game.rooms[game.roomIndex].Players.Add(player.ID, player);
-                game.rooms[game.roomIndex].Update();
                 this.PlayGame();
             }
             timer--;
@@ -204,7 +253,26 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            game.rooms[game.roomIndex].background.Draw(game.spriteBatch, Color.White);
+            if (direction == "stairup" || direction == "stairdown")
+            {
+                player.Draw(game.spriteBatch, Color.White);
+                game.rooms[game.roomIndex].Draw(game.spriteBatch, tint);
+                if (game.currentMode.Equals("hard"))
+                {
+                    game.cone.Draw(game.spriteBatch);
+                }
+            }
+            else
+            {
+                if (game.currentMode.Equals("hard"))
+                {
+                    game.rooms[game.roomIndex].background.Draw(game.spriteBatch, Color.Black);
+                }
+                else
+                {
+                    game.rooms[game.roomIndex].background.Draw(game.spriteBatch, tint);
+                }
+            }
             game.spriteBatch.Draw(HUDBackground, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 512, 120), Color.Black);
             game.spriteBatch.Draw(HUD, new Rectangle(0, 0, 512, 120), new Rectangle(0, 0, 256, 56), Color.White);
         }
