@@ -1,23 +1,24 @@
-﻿
+﻿using System.Collections.Generic;
+
 
 namespace LegendOfZelda
 {
     class RedRing : Item
     {
-        private LegendOfZelda game;
+        private IDictionary<int, IPlayer> players;
 
-        public RedRing(LegendOfZelda game)
+        public RedRing(IDictionary<int, IPlayer> players)
         {
             sprite = ItemSpriteFactory.GetRedRing();
             Hitbox = sprite.Box;
-            this.game = game;
+            this.players = players;
         }
 
         public override void Collect(IPlayer player)
         {
             if (!player.Color.Equals("red"))
             {
-                game.link = new RedLink(player);
+                players[player.ID] = new RedLink(player);
             }
         }
     }

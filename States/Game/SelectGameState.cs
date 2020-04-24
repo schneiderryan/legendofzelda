@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace LegendOfZelda
 {
@@ -22,7 +20,6 @@ namespace LegendOfZelda
             this.screen = Textures.GetBlankTexture();
             selector = new ModeSelector(this.game);
             game.keyboard = GameSetup.CreateMenuKeysController(game);
-
         }
 
         public void ChangeRoom()

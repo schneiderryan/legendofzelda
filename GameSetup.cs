@@ -33,39 +33,26 @@ namespace LegendOfZelda
             return controller;
         }
 
-        public static IController RoomController(LegendOfZelda game)
-        {
-            ICommand cmdRight = new SwapRoomCommand(game, "next");
-            ICommand cmdLeft = new SwapRoomCommand(game, "previous");
-            ICommand cmdUp = new SwapRoomCommand(game, "up");
-            ICommand cmdDown = new SwapRoomCommand(game, "down");
-            return new RoomController(game);
-        }
-
         public static IController CreateSinglePressKeysController(LegendOfZelda game)
         {
             IDictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
             ICommand cmd;
 
-            cmd = new PlayerAttackCommand(game.link);
+            cmd = new PlayerAttackCommand(game.Link);
             keyBinds.Add(Keys.Z, cmd);
             keyBinds.Add(Keys.N, cmd);
 
-            cmd = new PlayerUseThrowingSwordCommand(game.link);
+            cmd = new PlayerUseThrowingSwordCommand(game.Link);
             keyBinds.Add(Keys.D1, cmd);
             keyBinds.Add(Keys.NumPad1, cmd);
 
-            cmd = new PlayerUseArrowCommand(game.link);
+
+            //item Commands
+
+            cmd = new PlayerUseCurrentItemCommand(game.Link, game.ProjectileManager);
             keyBinds.Add(Keys.D2, cmd);
             keyBinds.Add(Keys.NumPad2, cmd);
-
-            cmd = new PlayerUseBoomerangCommand(game.link);
-            keyBinds.Add(Keys.D3, cmd);
-            keyBinds.Add(Keys.NumPad3, cmd);
-
-            cmd = new PlayerUseBombCommand(game.link, game.ProjectileManager);
-            keyBinds.Add(Keys.D4, cmd);
-            keyBinds.Add(Keys.NumPad4, cmd);
+            keyBinds.Add(Keys.B, cmd);
 
             cmd = new ResetCommand(game);
             keyBinds.Add(Keys.R, cmd);
@@ -79,10 +66,10 @@ namespace LegendOfZelda
             cmd = new InventoryTransitionCommand(game);
             keyBinds.Add(Keys.I, cmd);
 
-            cmd = new InventoryMoveCommand(game, "left");
+            cmd = new InventoryMoveCommand(game, "left", game.Link);
             keyBinds.Add(Keys.H, cmd);
 
-            cmd = new InventoryMoveCommand(game, "right");
+            cmd = new InventoryMoveCommand(game, "right", game.Link);
             keyBinds.Add(Keys.J, cmd);
 
             cmd = new AddKeyCommand(game.link);
@@ -95,6 +82,20 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.U, cmd);
 
             return new SinglePressKeyboardController(keyBinds, game.link);
+        }
+
+        public static IController CreateSimpleKeysController(LegendOfZelda game)
+        {
+            IDictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
+            ICommand cmd;
+
+            cmd = new ResetCommand(game);
+            keyBinds.Add(Keys.R, cmd);
+
+            cmd = new QuitCommand(game);
+            keyBinds.Add(Keys.Q, cmd);
+
+            return new SinglePressKeyboardController(keyBinds);
         }
 
         public static IController CreateMenuKeysController(LegendOfZelda game)

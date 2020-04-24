@@ -35,21 +35,21 @@ namespace LegendOfZelda
 
         private void GameInit()
         {
-            game.link = new GreenLink(game);
-            game.cone = new ConeOfVision(game.link);
-            game.playerKeyboard = GameSetup.CreatePlayerMovementController(game.link);
+            game.rooms = GameSetup.GenerateRoomList(game);
+            game.roomIndex = 1;
+
+            game.Link = new GreenLink(game, game.MyPlayerID);
+            game.cone = new ConeOfVision(game.Link);
+            game.playerKeyboard = GameSetup.CreatePlayerMovementController(game.Link);
             game.mouse = new MouseController(game);
             game.keyboard = GameSetup.CreateSinglePressKeysController(game);
 
             game.ProjectileManager.Clear();
 
             game.CollisionDetector = new CollisionDetector(game.ProjectileManager, game);
-
-            game.rooms = GameSetup.GenerateRoomList(game);
-            game.roomIndex = 1;
             game.xRoom = 515;
             game.yRoom = 826;
-    }
+        }
 
         public void ToStart()
         {
@@ -130,7 +130,6 @@ namespace LegendOfZelda
 
             {
                 game.rooms[game.roomIndex].Update();
-                game.link.Update();
                 game.cone.Update();
             }
             updateTimer--;
@@ -140,7 +139,7 @@ namespace LegendOfZelda
         {
             //RoomSpriteFactory.Instance.CreateRoom0().Draw(game.spriteBatch);
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
-            game.link.Draw(game.spriteBatch, Color.White);
+            game.Link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
             if (game.currentMode.Equals("hard"))
             {

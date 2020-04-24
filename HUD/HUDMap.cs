@@ -12,6 +12,24 @@ namespace LegendOfZelda
         private Texture2D map = Textures.GetMap();
         private ISprite whiteBox = FontSpriteFactory.GetWhiteBox();
         private int offset;
+        private int[] room0;
+        private int[] room1;
+        private int[] room2;
+        private int[] room3;
+        private int[] room4;
+        private int[] room5;
+        private int[] room6;
+        private int[] room7;
+        private int[] room8;
+        private int[] room9;
+        private int[] room10;
+        private int[] room11;
+        private int[] room12;
+        private int[] room13;
+        private int[] room14;
+        private int[] room15;
+        private int[] room16;
+
 
         public HUDMap(LegendOfZelda game)
         {
@@ -27,7 +45,7 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            if (game.link.Inventory.HasMap)
+            if (game.Link.Inventory.HasMap)
             {
                 game.spriteBatch.Draw(map, new Rectangle(45, offset + 47, 100, 48), new Rectangle(0, 0, 94, 46), Color.White);
             }

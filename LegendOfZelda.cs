@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
-using System;
 
 
 namespace LegendOfZelda
@@ -16,7 +13,13 @@ namespace LegendOfZelda
         public IList<IRoom> rooms;
         public int roomIndex;
         public bool OldManDamaged { get; set; }
-        public IPlayer link;
+        public int MyPlayerID { get; set; }
+        public IPlayer Link
+        {
+            get => rooms[roomIndex].Players[MyPlayerID];
+            set => rooms[roomIndex].Players[MyPlayerID] = value;
+        }
+
         public ConeOfVision cone;
 
         public IProjectileManager ProjectileManager { get; set; }
@@ -63,9 +66,8 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
-            //System.Console.WriteLine(state);
             state.Update();
-            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.TransitionToInventoryState"))
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.TransitionToInventoryState"))
             {
                 hud.Update();
             }
@@ -74,13 +76,12 @@ namespace LegendOfZelda
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             GraphicsDevice.Clear(Color.White);
 
             state.Draw();
 
-            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.ChangeRoomState") || state.ToString().Equals("LegendOfZelda.PauseState") || state.ToString().Equals("LegendOfZelda.InventoryState"))
+            if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.PauseState") || state.ToString().Equals("LegendOfZelda.InventoryState"))
             {
                 hud.Draw();
             }
@@ -132,7 +133,6 @@ namespace LegendOfZelda
         public void ChangeRoom()
         {
             state.ChangeRoom();
-            link.usedinRoom = false;
         }
 
         public void WinGame()

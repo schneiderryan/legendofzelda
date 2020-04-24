@@ -26,8 +26,9 @@ namespace LegendOfZelda
         private int emptyX;
         private int emptyY;
         private int offset;
-
-
+        private int rowDiff;
+        private int columnDiff;
+        private int suddenDeathOffset;
 
         public HUDHearts(LegendOfZelda game)
         {
@@ -49,19 +50,19 @@ namespace LegendOfZelda
             halfY = 0;
             emptyX = 16;
             emptyY = 0;
+            rowDiff = 13;
+            columnDiff = 12;
+            suddenDeathOffset = 20;
             suddenDeathMessage = FontSpriteFactory.GetSuddenDeathMessage();
         }
 
         public void Update()
         {
-            if (game.link != null)
-            {
-                numFullHearts = (int)game.link.CurrentHearts;
-                numHalfHearts = (int)(game.link.CurrentHearts * 2) % 2;
-                numEmptyHearts = (int)game.link.MaxHearts - (numFullHearts + numHalfHearts);
-            }
+            numFullHearts = (int)game.Link.CurrentHearts;
+            numHalfHearts = (int)(game.Link.CurrentHearts * 2) % 2;
+            numEmptyHearts = (int)game.Link.MaxHearts - (numFullHearts + numHalfHearts);
             suddenDeathMessage.X = initX;
-            suddenDeathMessage.Y = initY + offset - 20;
+            suddenDeathMessage.Y = initY + offset - suddenDeathOffset;
             this.offset = game.hud.offset;
         }
 
@@ -91,11 +92,11 @@ namespace LegendOfZelda
                         sheetY = emptyY;
                     }
                     game.spriteBatch.Draw(itemSheet, new Rectangle(currentX, currentY, 13, 12), new Rectangle(sheetX, sheetY, 8, 8), Color.White);
-                    currentX += 13;
+                    currentX += rowDiff;
                     if (currentX > finalX)
                     {
                         currentX = initX;
-                        currentY -= 12;
+                        currentY -= columnDiff;
                     }
                     currentInt++;
                 }
