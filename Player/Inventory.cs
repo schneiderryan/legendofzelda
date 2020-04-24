@@ -28,7 +28,6 @@ namespace LegendOfZelda
             Boomerang = new EmptyLeveledItem();
             Offhand = new EmptyHeldItem();
             BlueCandle = new HeldBlueCandle();
-            BlueCandle.Found = true;
         }
 
     }
