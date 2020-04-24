@@ -32,6 +32,7 @@ namespace LegendOfZelda
             else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.BlueCandle"))
             {
                 currentSprite = ItemSpriteFactory.GetBlueCandle();
+                currentSprite.Scale = 2;
             } else if (game.Link.CurrentItem.ToString().Equals("LegendOfZelda.BluePotion"))
             {
                 currentSprite = ItemSpriteFactory.GetBluePotion();

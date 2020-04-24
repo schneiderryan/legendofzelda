@@ -13,7 +13,7 @@ namespace LegendOfZelda
         public bool HasMap { get; set; } = false;
         public bool HasCompass { get; set; } = true;
         public int Rupees { get; set; } = 0;
-        public int Bombs { get; set; } = 6;
+        public int Bombs { get; set; } = 0;
         public int Keys { get; set; } = 0;
 
         public int MaxBombs { get; set; } = 8;
@@ -28,6 +28,7 @@ namespace LegendOfZelda
             Boomerang = new EmptyLeveledItem();
             Offhand = new EmptyHeldItem();
             BlueCandle = new HeldBlueCandle();
+            BlueCandle.Found = true;
         }
 
     }

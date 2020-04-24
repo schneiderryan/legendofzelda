@@ -40,10 +40,12 @@ namespace LegendOfZelda
                 else if (player.CurrentItem.ToString().Equals("LegendOfZelda.BluePotion"))
                 {
                     command = new PlayerUseBluePotionCommand(player);
+                    player.CurrentItem = new Boomerang();
                 }
                 else if (player.CurrentItem.ToString().Equals("LegendOfZelda.RedPotion"))
                 {
                     command = new PlayerUseRedPotionCommand(player);
+                    player.CurrentItem = new RedPotion();
                 }
                 command.Execute();
             }
