@@ -1,14 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 
 
 namespace LegendOfZelda
 {
     class DamagedLink : IPlayer
     {
-        public IPlayer InnerLink { get; private set; }
+        public IPlayer InnerLink { get; set; }
 
         const int ANIMATION_TIME = 192; // to give about 3 seconds
         int timer = ANIMATION_TIME;
