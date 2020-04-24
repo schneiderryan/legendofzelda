@@ -33,12 +33,14 @@ namespace LegendOfZelda
         private static Texture2D Fonts;
         private static Texture2D FontsTransparent;
         private static Texture2D Map;
+        private static Texture2D MapTransparent;
         private static Texture2D Inventory;
         private static Texture2D Selector;
         private static Texture2D ModeSelector;
         private static Texture2D ConeOfVision;
         private static Texture2D SelectScreen;
         private static Texture2D SuddenDeathMessage;
+        private static Texture2D CompassSelector;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -69,12 +71,14 @@ namespace LegendOfZelda
             Fonts = contentManager.Load<Texture2D>("fonts");
             FontsTransparent = contentManager.Load<Texture2D>("fontskindatransparent");
             Map = contentManager.Load<Texture2D>("mapstuff");
+            MapTransparent = contentManager.Load<Texture2D>("mapstuff_transparent");
             Inventory = contentManager.Load<Texture2D>("inventory");
             Selector = contentManager.Load<Texture2D>("selector");
             ModeSelector = contentManager.Load<Texture2D>("mode_selector_transparent");
             ConeOfVision = contentManager.Load<Texture2D>("ConeOfVision");
             SelectScreen = contentManager.Load<Texture2D>("game_select_screen");
             SuddenDeathMessage = contentManager.Load<Texture2D>("sudden_death_name");
+            CompassSelector = contentManager.Load<Texture2D>("compassSelector");
 
 
             blank = new Texture2D(graphics, 1, 1);
@@ -116,6 +120,17 @@ namespace LegendOfZelda
         {
             return Map;
         }
+
+        public static Texture2D GetMapTransparent()
+        {
+            return MapTransparent;
+        }
+
+        public static Texture2D GetCompassSelector()
+        {
+            return CompassSelector;
+        }
+
 
         public static Texture2D GetInventory()
         {

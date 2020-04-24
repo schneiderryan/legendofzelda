@@ -63,5 +63,11 @@ namespace LegendOfZelda
                 Scale = 4
             };
         }
+
+        public ISprite CreateCompassSelector()
+        {
+            return new AnimatedSprite(Textures.GetCompassSelector(),
+                    new Rectangle(0, 0, 3, 3), 2, true);
+        }
     }
 }
