@@ -35,6 +35,8 @@ namespace LegendOfZelda
 
         public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
+        public MusicLoop music;
+
 
         public LegendOfZelda()
         {
@@ -55,6 +57,7 @@ namespace LegendOfZelda
             state = new StartMenuState(this);
             hud = new HeadsUpDisplay(this);
             ProjectileManager = new ProjectileManager();
+            music = new MusicLoop();
         }
 
         protected override void LoadContent()
@@ -67,6 +70,7 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             state.Update();
+            music.Update();
             if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.TransitionToInventoryState"))
             {
                 hud.Update();
