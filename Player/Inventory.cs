@@ -13,8 +13,8 @@ namespace LegendOfZelda
         public bool HasMap { get; set; } = false;
         public bool HasCompass { get; set; } = false;
         public int Rupees { get; set; } = 0;
-        public int Bombs { get; set; } = 0;
-        public int Keys { get; set; } = 0;
+        public int Bombs { get; set; } = 8;
+        public int Keys { get; set; } = 10;
 
         public int MaxBombs { get; set; } = 8;
 

@@ -91,6 +91,7 @@ namespace LegendOfZelda
                 "Open",
                 "Key",
                 "Other",
+                "Portal",
                 "Exploded",
             };
 
