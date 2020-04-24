@@ -148,6 +148,11 @@ namespace LegendOfZelda
                 cmdRight.Execute();
                 player.X = 60;
             }
+            if(door is LeftPortal && player.Hitbox.Left - door.Hitbox.Left < margin)
+            {
+                cmdPortal.Execute();
+            }
+
         }
     }
 }
