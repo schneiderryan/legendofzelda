@@ -125,6 +125,16 @@ namespace LegendOfZelda
             };
         }
 
+        public static ISprite GetItemShopScreen()
+        {
+
+            return new Sprite(Textures.GetItemShopScreen(),
+                    new Rectangle(0, 0, 108, 53))
+            {
+                Scale = 4
+            };
+        }
+
         public static ISprite GetSuddenDeathMessage()
         {
             return new Sprite(Textures.GetSuddenDeathMessage(),

@@ -50,6 +50,16 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void CloseItemShop()
+        {
+            //
+        }
+
+        public void OpenItemShop()
+        {
+            //
+        }
+
         public void SelectMode()
         {
             //Do nothing

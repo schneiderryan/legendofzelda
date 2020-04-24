@@ -47,6 +47,16 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        public void CloseItemShop()
+        {
+            //
+        }
+
+        public void OpenItemShop()
+        {
+            //
+        }
+
         public void ResumeGame()
         {
             game.state = new PlayState(game);

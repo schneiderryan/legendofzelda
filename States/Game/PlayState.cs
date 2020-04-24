@@ -79,6 +79,18 @@ namespace LegendOfZelda
             game.state = new SelectItemState(game);
         }
 
+
+        public void CloseItemShop()
+        {
+            // 
+        }
+
+        public void OpenItemShop()
+        {
+            game.state = new ItemShopState(game);
+        }
+
+
         public void Update()
         {
             game.mouse.Update();

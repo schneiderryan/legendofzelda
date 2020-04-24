@@ -16,6 +16,8 @@ namespace LegendOfZelda
         private Texture2D hudcontents = Textures.GetHUDContents();
         private Texture2D ConeOfVision = Textures.GetConeOfVision();
         private MiscSpriteFactory() { }
+
+        
         public static MiscSpriteFactory Instance
         {
             get
@@ -59,6 +61,15 @@ namespace LegendOfZelda
         {
             return new AnimatedSprite(Textures.GetModeSelector(),
                     new Rectangle(0, 0, 100, 16), 2, true)
+            {
+                Scale = 4
+            };
+        }
+
+        public ISprite CreateItemShopSelector()
+        {
+            return new Sprite(Textures.GetItemShopSelector(),
+                    new Rectangle(0, 0, 16, 16))
             {
                 Scale = 4
             };

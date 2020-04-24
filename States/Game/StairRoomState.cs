@@ -62,6 +62,16 @@ namespace LegendOfZelda
         {
             //Nothing to do
         }
+
+        public void CloseItemShop()
+        {
+            //
+        }
+
+        public void OpenItemShop()
+        {
+            //
+        }
         public void ChangeRoom()
         {
             //Nothing to do

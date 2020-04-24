@@ -26,6 +26,9 @@ namespace LegendOfZelda
         public GraphicsDeviceManager graphics;
 
         public string currentMode;
+        public string currentShopItem;
+        public Dictionary<string, double> itemPrices;
+        public double shopBalance;
         public IController mouse;
         public IController keyboard;
         public IController playerKeyboard;
@@ -49,6 +52,15 @@ namespace LegendOfZelda
 
         protected override void Initialize()
         {
+            itemPrices = new Dictionary<string, double>
+            {
+                { "sword", 3.50 },
+                { "heart", 2.25 },
+                { "bluepotion", 1.75 }
+            };
+
+            shopBalance = 10.00;
+            currentShopItem = "sword";
             currentMode = "normal";
             base.Initialize();
             this.Window.Title = "The Legend of Zelda";
@@ -124,6 +136,16 @@ namespace LegendOfZelda
         public void CloseInventory()
         {
             state.CloseInventory();
+        }
+
+        public void OpenItemShop()
+        {
+            state.OpenItemShop();
+        }
+
+        public void CloseItemShop()
+        {
+            state.CloseItemShop();
         }
         public void ResumeGame()
         {

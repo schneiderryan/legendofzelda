@@ -58,6 +58,16 @@ namespace LegendOfZelda
             //Do nothing
         }
 
+        public void CloseItemShop()
+        {
+            //
+        }
+
+        public void OpenItemShop()
+        {
+            //
+        }
+
         public void ResumeGame()
         {
             //game.state = new TransitionFromInventoryState(game);
@@ -83,6 +93,8 @@ namespace LegendOfZelda
             //Nothing to do
         }
 
+        
+
         public void Update()
         {
             //Figure out later
@@ -107,5 +119,7 @@ namespace LegendOfZelda
             game.spriteBatch.Draw(Inventory, new Rectangle(0, -40, 512, 400), new Rectangle(0, 0, 246, 176), Color.White);
             invent.Draw();
         }
+
+        
     }
 }
