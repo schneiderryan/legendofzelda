@@ -5,7 +5,7 @@ namespace LegendOfZelda
     class Inventory : IInventory
     {
         public bool HasArrow { get; set; } = false;
-        public bool HasBow { get; set; } = false;
+        public bool HasBow { get; set; } = true;
         public bool HasBluePotion { get; set; } = false;
         public bool HasRedPotion { get; set; } = false;
         public bool HasClock { get; set; } = false;
@@ -28,6 +28,7 @@ namespace LegendOfZelda
             Boomerang = new EmptyLeveledItem();
             Offhand = new EmptyHeldItem();
             BlueCandle = new HeldBlueCandle();
+            BlueCandle.Found = true;
         }
 
     }

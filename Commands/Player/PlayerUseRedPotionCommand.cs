@@ -15,6 +15,7 @@ namespace LegendOfZelda
             player.CurrentHearts = player.MaxHearts;
             player.Inventory.HasRedPotion = false;
             player.Inventory.HasBluePotion = true;
+            player.CurrentItem = new BluePotion();
         }
     }
 }
