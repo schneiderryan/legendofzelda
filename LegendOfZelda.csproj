@@ -6,7 +6,6 @@
     <AssemblyName>LegendOfZelda</AssemblyName>
     <RootNamespace>LegendOfZelda</RootNamespace>
     <NoWin32Manifest>true</NoWin32Manifest>
-    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +26,6 @@
     </PackageReference>
     <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
     <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.7.0.7" />
-    <PackageReference Include="System.Text.Json" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup>
