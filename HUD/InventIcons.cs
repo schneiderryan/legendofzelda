@@ -164,6 +164,10 @@ namespace LegendOfZelda
             {
                 bluePotion.Draw(game.spriteBatch);
             }
+            if (game.Link.Inventory.HasRedPotion)
+            {
+                redPotion.Draw(game.spriteBatch);
+            }
             if (!(game.Link.CurrentItem.ToString().Equals("LegendOfZelda.Boomerang") && (game.Link.Inventory.Boomerang.Level == 0)))
             {
                 currentSprite.Draw(game.spriteBatch, Color.White);
