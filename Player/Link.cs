@@ -201,6 +201,10 @@ namespace LegendOfZelda
                 Util.CenterRelativeToEdge(Sprite.Box, Direction, projectile);
                 game.ProjectileManager.Add(projectile);
                 State.FireProjectile();
+                if(projectile is GreenArrowProjectile)
+                {
+                    this.Inventory.Rupees -= 1;
+                }
             }
         }
 
