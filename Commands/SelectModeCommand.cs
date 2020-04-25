@@ -23,7 +23,7 @@ namespace LegendOfZelda
             {
                 currentIndex = 0;
                 i = 0;
-                string[] modes = { "normal", "hard", "sudden death" };
+                string[] modes = { "normal", "hard", "sudden death", "puzzle" };
                 foreach (string mode in modes)
                 {
                     if (mode.Equals(game.currentMode))

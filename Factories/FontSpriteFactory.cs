@@ -119,7 +119,7 @@ namespace LegendOfZelda
         {
 
             return new Sprite(Textures.GetSelectModeScreen(),
-                    new Rectangle(0, 0, 108, 53))
+                    new Rectangle(0, 0, 108, 68))
             {
                 Scale = 4
             };
