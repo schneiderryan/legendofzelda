@@ -57,7 +57,6 @@ namespace LegendOfZelda
             state = new StartMenuState(this);
             hud = new HeadsUpDisplay(this);
             ProjectileManager = new ProjectileManager();
-            music = new MusicLoop();
         }
 
         protected override void LoadContent()
