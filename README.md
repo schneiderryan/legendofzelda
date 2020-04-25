@@ -48,10 +48,6 @@
 - Random room portal in hard mode in first room's left door
 
 # Known Bugs
-Inventory shows bombs when bomb count is zero
-item selection has some issues when items are missing
-- Issues with Item Selection and using second weapon
-Candle item is missing
 - Puzzle mode not implemented yet
 
 # Code Analyzer Suppressions (12 warnings found this sprint)
