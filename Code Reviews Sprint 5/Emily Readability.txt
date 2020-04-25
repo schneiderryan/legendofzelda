@@ -1,0 +1,16 @@
+﻿Emily Smith
+4/24/20
+5
+MusicLoop.cs
+Isaac Smith
+10 minutes
+
+I would say that this code is very readable, I can easily see that the 
+purpose of this file is to loop through music. All variables and 
+methods have descriptive names. The only issue I see with readability is
+the use of magic floating for list of songs,  this is because I don't 
+really understand why these numbers were chosen. However, this is ok 
+given that these numbers were probably used to recreate the feeling in 
+the original zelda game. If wanted could move these values to a 
+utility class.
+

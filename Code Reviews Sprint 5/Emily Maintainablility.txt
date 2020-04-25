@@ -1,0 +1,20 @@
+﻿Emily Smith
+4/24/20
+5
+MusicLoop.cs
+Isaac Smith
+10 minutes
+
+Overall, I would say that this code would be easy to maintain. It is a 
+pretty short class with only around 50 lines and each method is 5 lines 
+or less. Also the class has high cohesion as this class focuses only on 
+looping through 3 different sounds. It also has loose coupling as the 
+class only calls methods to get and change other classes variables. 
+Finally it has not high coupling because the class only depends on Sounds,
+And MediaPlayer.
+
+A hypothetical change to make to the game would be to have different songs
+for different game modes that are used like dark mode having more creepy
+music. I think this is a realistic hypothetical change. The current 
+implementation could support this change but it would require passing 
+Musicloop the game mode.
