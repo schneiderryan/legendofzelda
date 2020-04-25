@@ -1,0 +1,10 @@
+﻿Ryan Schneider
+4/24/20
+5
+PurchaseItemCommand.cs
+Adam OReilly
+10 minutes
+
+The readability of this class is flawless. The name of each of the variables tells 
+exactly what is being manipulated and makes it very easy to see what is going on
+right when you first glance at the command. There is nothing to improve on readabilty wise, the command is great! 
