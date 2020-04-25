@@ -5,15 +5,16 @@ namespace LegendOfZelda
 	{
 		private IPlayer link;
 		private LegendOfZelda game;
+
 		public DraggingLFWallmasterState(IEnemy wallmaster, IPlayer gamelink, LegendOfZelda game) : base(wallmaster)
 		{
 			this.enemy = wallmaster;
 			enemy.Sprite = EnemySpriteFactory.Instance.CreateDraggingLFWallmasterSprite();
 			link = gamelink;
-			link.Sprite = PlayerSpriteFactory.Instance.CreateLeftStillLinkSprite();
 			link.State = new GrabbedLinkState(link);
 			this.game = game;
 		}
+
 		public override void Update()
 		{
 			if(link.X != enemy.X || link.Y != enemy.Y)
@@ -49,7 +50,6 @@ namespace LegendOfZelda
 				else
 				{
 					game.rooms[game.roomIndex].Players.Remove(link.ID);
-					//game.rooms[game.roomIndex].Update();
 					game.roomIndex = 1;
 					game.rooms[game.roomIndex].Players.Add(link.ID, link);
 					game.rooms[game.roomIndex].Update();
@@ -57,13 +57,10 @@ namespace LegendOfZelda
 					link.Y = game.GraphicsDevice.Viewport.Height / 2;
 					game.xRoom = 515;
 					game.yRoom = 826;
-					enemy = new LFWallmaster();
 					enemy.State = new EnemyState(enemy);
-					link.State = new StillLeftLinkState(link);
-					//game.NewGame();
+					link.BeStill();
 				}
 			}
-			//base.Update();
 		}
 
 	}

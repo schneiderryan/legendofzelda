@@ -15,6 +15,7 @@ namespace LegendOfZelda
         public LoseState(LegendOfZelda game)
         {
             this.game = game;
+            game.music.Pause();
             this.tint = Color.White;
             this.tintTimer = 0;
             this.HUDBackground = Textures.GetHUDBackground();

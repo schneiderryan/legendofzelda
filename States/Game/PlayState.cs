@@ -16,6 +16,7 @@ namespace LegendOfZelda
             this.HUD = Textures.GetHUD();
             this.HUDBackground = Textures.GetHUDBackground();
             this.game = game;
+            game.music.Play();
         }
 
         public void ToStart()
@@ -87,6 +88,7 @@ namespace LegendOfZelda
 
             game.rooms[game.roomIndex].Update();
             game.cone.Update();
+            game.music.Update();
 
             game.ProjectileManager.Update();
 
