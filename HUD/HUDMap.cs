@@ -45,6 +45,7 @@ namespace LegendOfZelda
                 118,57,  //13
                 135,57,  //14
                 68,49,   //15
+                0, 0, // place holder for room 16
                 84,59 }; //17
             compassBox.X = locations[28];
             compassBox.Y = locations[29] + offset;

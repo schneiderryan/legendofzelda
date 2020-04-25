@@ -16,8 +16,6 @@
     <Compile Remove="Level Loading\LevelLoader.cs" />
     <Compile Remove="Level Loading\LevelParser.cs" />
   </ItemGroup>
-
-  
   
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
