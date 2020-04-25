@@ -42,11 +42,6 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.Z, cmd);
             keyBinds.Add(Keys.N, cmd);
 
-            cmd = new PlayerUseThrowingSwordCommand(game.Link);
-            keyBinds.Add(Keys.D1, cmd);
-            keyBinds.Add(Keys.NumPad1, cmd);
-
-
             //item Commands
 
             cmd = new PlayerUseCurrentItemCommand(game.Link, game.ProjectileManager);
