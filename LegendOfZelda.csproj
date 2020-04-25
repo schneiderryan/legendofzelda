@@ -16,18 +16,6 @@
     <Compile Remove="Level Loading\LevelLoader.cs" />
     <Compile Remove="Level Loading\LevelParser.cs" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Code Reviews Sprint 5\Isaac Maintainability.txt" />
-    <None Remove="Code Reviews Sprint 5\Isaac Readability.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Code Reviews Sprint 5\Isaac Maintainability.txt" />
-    <Compile Include="Code Reviews Sprint 5\Isaac Readability.txt" />
-  </ItemGroup>
-
-  
   
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
