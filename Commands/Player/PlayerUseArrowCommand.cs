@@ -20,7 +20,7 @@ namespace LegendOfZelda
                         player.Center.X, player.Center.Y);
                 proj.OwningTeam = Team.Link;
                 player.UseProjectile(proj);
-                player.Inventory.Rupees -= 1;
+                //player.Inventory.Rupees -= 1;
             }
         }
     }
