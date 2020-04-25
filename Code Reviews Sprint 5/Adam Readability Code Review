@@ -1,0 +1,10 @@
+Adam O'Reilly
+4/24/20
+5
+PortalRoomCommand.cs
+Will Bartlett
+10 minutes
+
+I would rate the readability of this class very highly. 
+Each of the variable names is straightforward and makes it easy trace the functionality of the code. 
+The setup of this command is in line with the standard command pattern and leaves nothing to question. 
