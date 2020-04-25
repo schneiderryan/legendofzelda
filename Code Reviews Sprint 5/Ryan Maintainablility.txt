@@ -1,0 +1,11 @@
+﻿Ryan Schneider
+4/24/20
+5
+PurchaseItemCommand.cs
+AdamOReilly
+10 minutes
+
+
+This class has great maintainability, it does the most basic function of checking if an item can be purchased.
+It never has to change in the event that more items are added! This command is done and never has to be touched again!
+There is no improvement that I would make to this command by maintainability standards as it is a perfectly implimented command.

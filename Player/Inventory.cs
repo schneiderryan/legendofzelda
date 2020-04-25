@@ -11,7 +11,7 @@ namespace LegendOfZelda
         public bool HasClock { get; set; } = false;
         public HeldBlueCandle BlueCandle { get; set; }
         public bool HasMap { get; set; } = false;
-        public bool HasCompass { get; set; } = true;
+        public bool HasCompass { get; set; } = false;
         public int Rupees { get; set; } = 0;
         public int Bombs { get; set; } = 8;
         public int Keys { get; set; } = 10;
