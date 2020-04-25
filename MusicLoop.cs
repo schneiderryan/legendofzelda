@@ -1,28 +1,36 @@
 ﻿using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
-using System.Text;
 
 
 namespace LegendOfZelda
 {
     class MusicLoop : IUpdateable
     {
-        IList<Song> songs;
+        IList<(Song, float)> songs;
         int current;
 
         public MusicLoop()
         {
             current = 0;
-            songs = new List<Song>()
+            songs = new List<(Song, float)>()
             {
-                Sounds.GetDungeonSong(),
+                (Sounds.GetDungeonSong(), 1),
+                (Sounds.GetDungeonSong2(), 0.3f),
+                (Sounds.GetDungeonSong3(), 0.2f),
             };
-
         }
 
         public void Play()
         {
-            MediaPlayer.Play(songs[current]);
+            if (MediaPlayer.State == MediaState.Paused)
+            {
+                MediaPlayer.Resume();
+            }
+            else if (MediaPlayer.State == MediaState.Stopped)
+            {
+                MediaPlayer.Volume = songs[current].Item2;
+                MediaPlayer.Play(songs[current].Item1);
+            }
         }
 
         public void Pause()
@@ -35,7 +43,7 @@ namespace LegendOfZelda
             if (MediaPlayer.State == MediaState.Stopped)
             {
                 current = (current + 1) % songs.Count;
-                MediaPlayer.Play(songs[current]);
+                Play();
             }
         }
     }

@@ -67,6 +67,12 @@
 /processorParam:Quality=Best
 /build:dungeonsong.mp3
 
+#begin dungeonsong2.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:dungeonsong2.mp3
+
 #begin fonts.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -384,6 +390,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:selector.png
+
+#begin smb3song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:smb3song.mp3
 
 #begin StartMenu.png
 /importer:TextureImporter

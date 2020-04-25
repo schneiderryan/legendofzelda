@@ -70,7 +70,6 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             state.Update();
-            music.Update();
             if (state.ToString().Equals("LegendOfZelda.PlayState") || state.ToString().Equals("LegendOfZelda.TransitionToInventoryState"))
             {
                 hud.Update();
