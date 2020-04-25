@@ -1,0 +1,9 @@
+﻿Author: Isaac Smith
+Date: 4/24/2020
+Sprint: 5
+File: Projectiles/BlueCandleFlame.cs
+Author of the .cs file being reviewed: Emily Smith
+
+The methods are all very short and they only do one thing.
+The class seemed very maintainable to me. If the flame needed
+to move around, this class could easily adapt to that change.
