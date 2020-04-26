@@ -14,6 +14,7 @@ namespace LegendOfZelda
         public void Execute()
         {
             game.state = new StartMenuState(game);
+            game.hud.offset = 0;
         }
     }
 }
