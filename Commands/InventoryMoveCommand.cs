@@ -23,7 +23,7 @@ namespace LegendOfZelda
         public void Execute()
         {
             itemSelected = false;
-            string[] items = { "Boomerang", "Bomb", "Arrow" };
+            string[] items = { "Boomerang", "Bomb", "Arrow", "BlueCandle", "BluePotion", "RedPotion" };
             i = 0;
             foreach (string item in items)
             {
@@ -57,7 +57,6 @@ namespace LegendOfZelda
                     currentItem = items[currentIndex];
                     if (currentIndex == i)
                     {
-                        //game.link.CurrentItem = new NoItem();
                         itemSelected = true; //if there are no items
                     }
                     else if (currentItem == "Boomerang")
@@ -81,6 +80,27 @@ namespace LegendOfZelda
                         if (player.Inventory.HasArrow && player.Inventory.HasBow)
                         {
                             player.CurrentItem = new Arrow();
+                            itemSelected = true;
+                        }
+                    } else if (currentItem == "BlueCandle")
+                    {
+                        if (player.Inventory.BlueCandle.Found)
+                        {
+                            player.CurrentItem = new BlueCandle();
+                            itemSelected = true;
+                        }
+                    } else if (currentItem == "BluePotion")
+                    {
+                        if (player.Inventory.HasBluePotion)
+                        {
+                            player.CurrentItem = new BluePotion();
+                            itemSelected = true;
+                        }
+                    } else if (currentItem == "RedPotion")
+                    {
+                        if (player.Inventory.HasRedPotion)
+                        {
+                            player.CurrentItem = new RedPotion();
                             itemSelected = true;
                         }
                     }

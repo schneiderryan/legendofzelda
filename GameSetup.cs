@@ -46,17 +46,13 @@ namespace LegendOfZelda
             keyBinds.Add(Keys.D1, cmd);
             keyBinds.Add(Keys.NumPad1, cmd);
 
-            cmd = new PlayerUseArrowCommand(game.Link);
+
+            //item Commands
+
+            cmd = new PlayerUseCurrentItemCommand(game.Link, game.ProjectileManager);
             keyBinds.Add(Keys.D2, cmd);
             keyBinds.Add(Keys.NumPad2, cmd);
-
-            cmd = new PlayerUseBoomerangCommand(game.Link);
-            keyBinds.Add(Keys.D3, cmd);
-            keyBinds.Add(Keys.NumPad3, cmd);
-
-            cmd = new PlayerUseBombCommand(game.Link, game.ProjectileManager);
-            keyBinds.Add(Keys.D4, cmd);
-            keyBinds.Add(Keys.NumPad4, cmd);
+            keyBinds.Add(Keys.B, cmd);
 
             cmd = new ResetCommand(game);
             keyBinds.Add(Keys.R, cmd);
