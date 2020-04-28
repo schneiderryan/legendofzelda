@@ -36,11 +36,14 @@ namespace LegendOfZelda
         private static Texture2D MapTransparent;
         private static Texture2D Inventory;
         private static Texture2D Selector;
+        private static Texture2D ItemShopSelector;
         private static Texture2D ModeSelector;
         private static Texture2D ConeOfVision;
         private static Texture2D SelectScreen;
+        private static Texture2D ItemShopScreen;
         private static Texture2D SuddenDeathMessage;
         private static Texture2D CompassSelector;
+        private static Texture2D ZeroBalance;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -74,11 +77,14 @@ namespace LegendOfZelda
             MapTransparent = contentManager.Load<Texture2D>("mapstuff_transparent");
             Inventory = contentManager.Load<Texture2D>("inventory");
             Selector = contentManager.Load<Texture2D>("selector");
+            ItemShopSelector = contentManager.Load<Texture2D>("item_selector");
             ModeSelector = contentManager.Load<Texture2D>("mode_selector_transparent");
             ConeOfVision = contentManager.Load<Texture2D>("ConeOfVision");
             SelectScreen = contentManager.Load<Texture2D>("game_select_screen");
+            ItemShopScreen = contentManager.Load<Texture2D>("item_shop_screen");
             SuddenDeathMessage = contentManager.Load<Texture2D>("sudden_death_name");
             CompassSelector = contentManager.Load<Texture2D>("compassSelector");
+            ZeroBalance = contentManager.Load<Texture2D>("zeroBalance");
 
 
             blank = new Texture2D(graphics, 1, 1);
@@ -88,6 +94,11 @@ namespace LegendOfZelda
         public static Texture2D GetMiscSheet()
         {
             return misc;
+        }
+
+        public static Texture2D GetZeroBalance()
+        {
+            return ZeroBalance;
         }
 
         public static Texture2D GetHUD()
@@ -222,6 +233,11 @@ namespace LegendOfZelda
             return Selector;
         }
 
+        public static Texture2D GetItemShopSelector()
+        {
+            return ItemShopSelector;
+        }
+
         public static Texture2D GetModeSelector()
         {
             return ModeSelector;
@@ -235,6 +251,11 @@ namespace LegendOfZelda
         public static Texture2D GetSelectModeScreen()
         {
             return SelectScreen;
+        }
+
+        public static Texture2D GetItemShopScreen()
+        {
+            return ItemShopScreen;
         }
 
         public static Texture2D GetSuddenDeathMessage()

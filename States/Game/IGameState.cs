@@ -19,5 +19,7 @@ namespace LegendOfZelda
         void OpenInventory();
         void CloseInventory();
         void SelectMode();
+        void CloseItemShop();
+        void OpenItemShop();
     }
 }

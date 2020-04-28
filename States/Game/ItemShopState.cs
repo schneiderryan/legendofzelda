@@ -4,22 +4,27 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda
 {
-    class SelectGameState : IGameState
+    class ItemShopState : IGameState
     {
         private LegendOfZelda game;
-        private ISprite selectScreen;
+        private ISprite itemShopScreen;
         private Texture2D screen;
-        private ModeSelector selector;
+        private ItemShopSelector selector;
+        private ISprite zeroBalanceSprite;
+        public static bool displayError;
 
-        public SelectGameState(LegendOfZelda game)
+        public ItemShopState(LegendOfZelda game)
         {
             this.game = game;
-            this.selectScreen = FontSpriteFactory.GetModeScreen();
-            selectScreen.X = 40;
-            selectScreen.Y = 40;
+            this.itemShopScreen = FontSpriteFactory.GetItemShopScreen();
+            this.zeroBalanceSprite = MiscSpriteFactory.Instance.CreateZeroBalanceSprite();
+            
+            zeroBalanceSprite.X = 0;
+            zeroBalanceSprite.Y = 370;
             this.screen = Textures.GetBlankTexture();
-            selector = new ModeSelector(this.game);
-            game.keyboard = GameSetup.CreateMenuKeysController(game);
+            selector = new ItemShopSelector(this.game);
+            
+            displayError = false;
         }
 
         public void ChangeRoom()
@@ -39,7 +44,7 @@ namespace LegendOfZelda
 
         public void NewGame()
         {
-            game.state = new NewGameState(game);
+           //
         }
 
         public void OpenInventory()
@@ -49,7 +54,7 @@ namespace LegendOfZelda
 
         public void PauseGame()
         {
-             //Do nothing
+            //Do nothing
         }
 
         public void PlayGame()
@@ -84,7 +89,7 @@ namespace LegendOfZelda
 
         public void CloseItemShop()
         {
-            //
+            game.state = new PlayState(game);
         }
 
         public void OpenItemShop()
@@ -100,9 +105,14 @@ namespace LegendOfZelda
 
         public void Draw()
         {
+
             game.spriteBatch.Draw(screen, new Rectangle(0, 0, 512, 1020), new Rectangle(0, 0, 512, 120), Color.Black);
-            selectScreen.Draw(game.spriteBatch);
+            itemShopScreen.Draw(game.spriteBatch);
             selector.Draw();
+            if (displayError)
+            {
+                zeroBalanceSprite.Draw(game.spriteBatch);
+            }
         }
 
     }

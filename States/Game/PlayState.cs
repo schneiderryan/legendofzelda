@@ -17,6 +17,7 @@ namespace LegendOfZelda
             this.HUDBackground = Textures.GetHUDBackground();
             this.game = game;
             game.music.Play();
+           
         }
 
         public void ToStart()
@@ -79,6 +80,18 @@ namespace LegendOfZelda
         {
             game.state = new SelectItemState(game);
         }
+
+
+        public void CloseItemShop()
+        {
+            // 
+        }
+
+        public void OpenItemShop()
+        {
+            game.state = new ItemShopState(game);
+        }
+
 
         public void Update()
         {
