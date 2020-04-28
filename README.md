@@ -19,6 +19,15 @@
 - P: Pause Game
 - I: Item Selection Screen
 - J and H: Item Selection
+- B: used second item/weapon
+- Enter: select game mode
+
+#Cheats
+- K: gives you a key
+- L: gives you a bomb
+- M: gives you 10 rupees
+- mouse click to skip intro
+
 
 # Functionality
 - Player can die which resets game
@@ -34,12 +43,12 @@
 - Player can walk through doors
 - Rooms loaded using csv files
 - Spawning/despawing animations for enemies and projectiles
+- Addition Music
+- Multiple game modes (normal, hard(dark), sudden death, and puzzle)
+- Random room portal in hard mode in first room's left door
 
 # Known Bugs
-Inventory shows bombs when bomb count is zero
-item selection has some issues when items are missing
-- Issues with Item Selection and using second weapon
-Candle item is missing
+- Puzzle mode not implemented yet
 
 # Code Analyzer Suppressions (12 warnings found this sprint)
 - CA1812	RedLink is an internal class that is apparently never instantiated. If so, remove the code from the assembly. 

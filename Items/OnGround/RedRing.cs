@@ -18,7 +18,15 @@ namespace LegendOfZelda
         {
             if (!player.Color.Equals("red"))
             {
-                players[player.ID] = new RedLink(player);
+                if (player is DamagedLink)
+                {
+                    DamagedLink link = player as DamagedLink;
+                    link.InnerLink = new RedLink(link.InnerLink);
+                }
+                else
+                {
+                    players[player.ID] = new RedLink(player);
+                }
             }
         }
     }

@@ -1,0 +1,13 @@
+﻿Taylor Benjamin
+4/24/20
+5
+SelectModeCommand.cs
+Ryan Schneider
+10 minutes
+
+This class has very good maintainablility.  In the event that more game modes where added, only one line of 
+code in the entire class would have to change.  Everything else would work properly without any changes being
+made.  The only thing that would need to be changed if the game modes were changed is the array of game mode
+strings that is used to determine what mode is currently selected.  Even this could perhaps be removed by 
+passing an array of what game modes are possible into the commands constructor.  This would be a very small 
+change however and as this class currently is the maintainablility is excellent.

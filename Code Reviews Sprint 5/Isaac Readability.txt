@@ -1,0 +1,10 @@
+﻿Author: Isaac Smith
+Date: 4/24/2020
+Sprint: 5
+File: Projectiles/BlueCandleFlame.cs
+Author of the.cs file being reviewed: Emily Smith
+Number of minutes taken to complete the review: 1min
+
+The class is very short and readable.
+The methods are also very short and they only do one thing.
+I didn't see anything that stood out as unreadable.

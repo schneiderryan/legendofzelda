@@ -1,0 +1,11 @@
+Will Bartlett on Readability
+4/24/20
+Sprint 5
+ConeOfVision.cs
+Taylor Benjamin
+10 minutes
+
+Overall, I'd say this class is very readable. All the variables are named in such a way to make it
+easier to follow along with the code, although the code itself is not necessarily even complicated
+enough for this to be needed. All the steps taken by this class are easy to read and understand, so
+in the end this is a very readable class.

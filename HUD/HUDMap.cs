@@ -10,37 +10,67 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private Texture2D map = Textures.GetMap();
+        private Texture2D bigMap = Textures.GetMapTransparent();
         private ISprite whiteBox = FontSpriteFactory.GetWhiteBox();
+        private ISprite bigWhiteBox = FontSpriteFactory.GetWhiteBox();
+        private ISprite compassBox = MiscSpriteFactory.Instance.CreateCompassSelector();
+        private ISprite bigCompassBox = MiscSpriteFactory.Instance.CreateCompassSelector();
         private int offset;
-        private int[] room0;
-        private int[] room1;
-        private int[] room2;
-        private int[] room3;
-        private int[] room4;
-        private int[] room5;
-        private int[] room6;
-        private int[] room7;
-        private int[] room8;
-        private int[] room9;
-        private int[] room10;
-        private int[] room11;
-        private int[] room12;
-        private int[] room13;
-        private int[] room14;
-        private int[] room15;
-        private int[] room16;
+        private int[] locations;
+        private int currentDelay;
+        private int totalDelay;
+        private int bigOffsetX;
+        private int bigOffsetY;
 
 
         public HUDMap(LegendOfZelda game)
         {
             this.game = game;
-            
+            bigOffsetX = 140;
+            bigOffsetY = 105;
+            int[] locations = { 
+                68, 90,  //room0
+                84, 90,  //room1
+                101, 90, //room2
+                84, 82,  //room3
+                68, 73,  //room4
+                84, 73,  //room5
+                101, 73, //room6
+                52, 65,  //room7
+                68, 65,  //room8
+                84, 65,  //9
+                101, 65, //10
+                118,65,  //11
+                84,57,   //12
+                118,57,  //13
+                135,57,  //14
+                68,49,   //15
+                0, 0, // place holder for room 16
+                84,59 }; //17
+            compassBox.X = locations[28];
+            compassBox.Y = locations[29] + offset;
+            bigCompassBox.X = locations[28] * 2 + bigOffsetX;
+            bigCompassBox.Y = locations[29] * 2 + bigOffsetY;
+            bigCompassBox.Scale = 3;
+            this.locations = locations;
+            currentDelay = 0;
+            totalDelay = 5;
         }
 
         public void Update()
         {
+            currentDelay++;
+            if (currentDelay == totalDelay)
+            {
+                compassBox.Update();
+                bigCompassBox.Update();
+                currentDelay = 0;
+            }
+            compassBox.X = locations[28];
+            compassBox.Y = locations[29] + offset;
             offset = game.hud.offset;
-            whiteBox = MoveThatBox(whiteBox, game, offset);
+            whiteBox = MoveThatBox(whiteBox, game, offset, locations, false);
+            bigWhiteBox = MoveThatBox(bigWhiteBox, game, offset, locations, true);
         }
 
         public void Draw()
@@ -48,87 +78,45 @@ namespace LegendOfZelda
             if (game.Link.Inventory.HasMap)
             {
                 game.spriteBatch.Draw(map, new Rectangle(45, offset + 47, 100, 48), new Rectangle(0, 0, 94, 46), Color.White);
+                
+            }
+            if (game.Link.Inventory.HasCompass)
+            {
+                compassBox.Draw(game.spriteBatch);
             }
             whiteBox.Draw(game.spriteBatch);
+            if (game.state.ToString().Equals("LegendOfZelda.InventoryState"))
+            {
+                if (game.Link.Inventory.HasMap)
+                {
+                    game.spriteBatch.Draw(bigMap, new Rectangle(230, 200, 200, 96), new Rectangle(0, 0, 94, 46), Color.White);
+                }
+                if (game.Link.Inventory.HasCompass)
+                {
+                    bigCompassBox.Draw(game.spriteBatch);
+                }
+                bigWhiteBox.Draw(game.spriteBatch);
+            }
         }
 
-        private static ISprite MoveThatBox(ISprite sprite, LegendOfZelda game, int offset)
+        private static ISprite MoveThatBox(ISprite sprite, LegendOfZelda game, int offset, int[] locations, bool isBig)
         {
-
+            int bigOffsetX = 140;
+            int bigOffsetY = 105;
             ISprite temp = sprite;
-
-            switch (game.roomIndex)
+            if (!isBig)
             {
-                case 1:
-                    temp.X = 84;
-                    temp.Y = 90;
-                    break;
-                case 2:
-                    temp.X = 101;
-                    temp.Y = 90;
-                    break;
-                case 3:
-                    temp.X = 84;
-                    temp.Y = 82;
-                    break;
-                case 4:
-                    temp.X = 68;
-                    temp.Y = 73;
-                    break;
-                case 5:
-                    temp.X = 84;
-                    temp.Y = 73;
-                    break;
-                case 6:
-                    temp.X = 101;
-                    temp.Y = 73;
-                    break;
-                case 7:
-                    temp.X = 52;
-                    temp.Y = 65;
-                    break;
-                case 8:
-                    temp.X = 68;
-                    temp.Y = 65;
-                    break;
-                case 9:
-                    temp.X = 84;
-                    temp.Y = 65;
-                    break;
-                case 10:
-                    temp.X = 101;
-                    temp.Y = 65;
-                    break;
-                case 11:
-                    temp.X = 118;
-                    temp.Y = 65;
-                    break;
-                case 12:
-                    temp.X = 84;
-                    temp.Y = 57;
-                    break;
-                case 13:
-                    temp.X = 118;
-                    temp.Y = 57;
-                    break;
-                case 14:
-                    temp.X = 135;
-                    temp.Y = 57;
-                    break;
-                case 15:
-                    temp.X = 68;
-                    temp.Y = 49;
-                    break;
-                case 16:
-                    temp.X = 84;
-                    temp.Y = 49;
-                    break;
-                default:
-                    temp.X = 68;
-                    temp.Y = 90;
-                    break;
+                temp.X = locations[game.roomIndex * 2];
+                temp.Y = locations[game.roomIndex * 2 + 1];
+                temp.Y += offset;
+            } else
+            {
+                temp.Scale = 4;
+                temp.X = locations[game.roomIndex * 2] * 2 + bigOffsetX;
+                temp.Y = locations[game.roomIndex * 2 + 1] * 2 + bigOffsetY;
             }
-            temp.Y += offset;
+            
+            
             return temp;
         }
     }

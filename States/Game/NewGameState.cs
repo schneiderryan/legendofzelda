@@ -19,7 +19,7 @@ namespace LegendOfZelda
         public NewGameState(LegendOfZelda game)
         {
             MediaPlayer.Stop();
-            
+            game.music = new MusicLoop();
             this.game = game;
             updateTimer = 1;
             RightCurtain = Textures.GetWinCurtain();
@@ -63,7 +63,7 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
-            MediaPlayer.Play(Sounds.GetDungeonSong());
+            game.music.Play();
             game.state = new PlayState(game);
         }
 

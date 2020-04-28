@@ -1,0 +1,10 @@
+Adam O'Reilly
+4/24/20
+5
+PortalRoomCommand.cs
+Will Bartlett
+10 minutes
+
+This class has fairly good maintainability, other than the use of magic numbers. In order to have perfect maintainability, the magic numbers should be replaced with fields in a separate class so that 
+there is a single point of control for future changes. It implements the ICommand interface and therefor will need to reflect any changes to the interface that are made, but this is standard maintainability.
+There are no additional improvements that I would make to this command.

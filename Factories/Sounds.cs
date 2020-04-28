@@ -1,8 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+
 
 namespace LegendOfZelda
 {
@@ -17,7 +16,6 @@ namespace LegendOfZelda
         private static SoundEffect linkDie;
 
         private static SoundEffect bossHurt;
-        //private static SoundEffect bossDie;
 
         private static SoundEffect keyAppearance;
         private static SoundEffect itemObtained;
@@ -26,18 +24,19 @@ namespace LegendOfZelda
         private static SoundEffect secret;
         private static SoundEffect lowHealth;
         private static SoundEffect doorUnlock;
-        
 
         private static Song menusong;
         private static Song dungeonsong;
-        
-
+        private static Song dungeonsong2;
+        private static Song smb3song;
 
         public static void LoadAllSounds(ContentManager contentManager)
         {
             menusong = contentManager.Load<Song>("intro");
             dungeonsong = contentManager.Load<Song>("dungeonsong");
-           
+            dungeonsong2 = contentManager.Load<Song>("dungeonsong2");
+            smb3song = contentManager.Load<Song>("smb3song");
+
             itemObtained = contentManager.Load<SoundEffect>("LOZ_Get_Item");
             keyAppearance = contentManager.Load<SoundEffect>("LOZ_Key_Appear");
             attackEffect = contentManager.Load<SoundEffect>("LOZ_Sword_Slash");
@@ -56,13 +55,11 @@ namespace LegendOfZelda
 
         }
 
-        
-        
-
         public static SoundEffect GetBossHurtSound()
         {
             return bossHurt;
         }
+
         public static SoundEffect GetKeyAppearedSound()
         {
             return keyAppearance;
@@ -125,6 +122,14 @@ namespace LegendOfZelda
             return dungeonsong;
         }
 
+        public static Song GetDungeonSong2()
+        {
+            return dungeonsong2;
+        }
 
+        public static Song GetDungeonSong3()
+        {
+            return smb3song;
+        }
     }
 }

@@ -15,10 +15,8 @@ namespace LegendOfZelda
         private int selectorOffset = 61;
         private int offsetMultiplier = 0;
 
-        private string[] modes;
         public ModeSelector(LegendOfZelda game)
         {
-            string[] modes = {"normal", "hard", "sudden death"};
             this.game = game;
             this.selectorSprite = MiscSpriteFactory.Instance.CreateModeSelector();
             currentDelay = 0;
@@ -45,6 +43,9 @@ namespace LegendOfZelda
             } else if (game.currentMode.Equals("sudden death"))
             {
                 offsetMultiplier = 2;
+            } else if (game.currentMode.Equals("puzzle"))
+            {
+                offsetMultiplier = 3;
             }
             selectorSprite.Y = normalY + offsetMultiplier*selectorOffset;
         }

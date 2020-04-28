@@ -38,6 +38,8 @@ namespace LegendOfZelda
 
         public CollisionDetector CollisionDetector { get; set; }
         public SpriteBatch spriteBatch;
+        public MusicLoop music;
+
 
         public LegendOfZelda()
         {

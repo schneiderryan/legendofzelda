@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
+
 
 namespace LegendOfZelda
 {
@@ -8,17 +8,16 @@ namespace LegendOfZelda
     {
         private LegendOfZelda game;
         private int pos;
-        private int CurtainHeight;
         private int updateTimer;
         private Texture2D HUD;
         private Texture2D HUDBackground;
         private Texture2D Inventory;
+
         public TransitionToInventoryState(LegendOfZelda game)
         {
             this.game = game;
             updateTimer = 1;
             pos = 0;
-            CurtainHeight = game.GraphicsDevice.Viewport.Height;
             this.HUD = Textures.GetHUD();
             this.HUDBackground = Textures.GetHUDBackground();
             this.Inventory = Textures.GetInventory();
@@ -37,7 +36,6 @@ namespace LegendOfZelda
 
         public void PlayGame()
         {
-            MediaPlayer.Play(Sounds.GetDungeonSong());
             game.state = new PlayState(game);
         }
 
@@ -116,7 +114,6 @@ namespace LegendOfZelda
 
         public void Draw()
         {
-            //RoomSpriteFactory.Instance.CreateRoom0().Draw(game.spriteBatch);
             game.rooms[game.roomIndex].Draw(game.spriteBatch, Color.White);
             game.Link.Draw(game.spriteBatch, Color.White);
             game.rooms[game.roomIndex].DrawOverlay(game.spriteBatch, Color.White);
