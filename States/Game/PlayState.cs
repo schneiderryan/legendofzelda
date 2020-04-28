@@ -17,6 +17,7 @@ namespace LegendOfZelda
             this.HUDBackground = Textures.GetHUDBackground();
             this.game = game;
             game.music.Play();
+           
         }
 
         public void ToStart()

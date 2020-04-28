@@ -56,12 +56,14 @@ namespace LegendOfZelda
         {
             itemPrices = new Dictionary<string, double>
             {
-                { "sword", 3.50 },
-                { "heart", 2.25 },
-                { "bluepotion", 1.75 }
+                { "sword", 3.00 },
+                { "heart", 2.00 },
+                { "bluepotion", 1.00 }
             };
 
+
             shopBalance = 10.00;
+            
             currentShopItem = "sword";
             currentMode = "normal";
             base.Initialize();

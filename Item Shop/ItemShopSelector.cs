@@ -12,15 +12,21 @@ namespace LegendOfZelda
         private int totalDelay;
         private int x = 60;
         private int normalY = 85;
-        private int selectorOffset = 61;
+        private int selectorOffset = 75 ;
         private int offsetMultiplier = 0;
+        private HUDCounter hudrupees;
+       
+        
 
         private string[] items;
         public ItemShopSelector(LegendOfZelda game)
         {
+            
             string[] items = {"sword", "heart", "bluepotion"};
             this.game = game;
+            
             this.selectorSprite = MiscSpriteFactory.Instance.CreateItemShopSelector();
+            hudrupees = new HUDCounter(this.game, "rupees");
             currentDelay = 0;
             totalDelay = 5;
             selectorSprite.X = x;
@@ -29,6 +35,7 @@ namespace LegendOfZelda
 
         public void Update()
         {
+            hudrupees.Update();
             currentDelay++;
             if (currentDelay == totalDelay)
             {
@@ -51,6 +58,8 @@ namespace LegendOfZelda
 
         public void Draw()
         {
+            
+            hudrupees.Draw();
             selectorSprite.Draw(game.spriteBatch);
         }
     }

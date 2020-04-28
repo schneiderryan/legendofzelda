@@ -79,6 +79,20 @@ namespace LegendOfZelda
             cmd = new AddRupeesCommand(game.Link);
             keyBinds.Add(Keys.M, cmd);
 
+
+            cmd = new SelectItemCommand(game, "down");
+            keyBinds.Add(Keys.Down, cmd);
+
+
+            cmd = new SelectItemCommand(game, "up");
+            keyBinds.Add(Keys.Up, cmd);
+
+
+            cmd = new PurchaseItemCommand(game);
+            keyBinds.Add(Keys.Enter, cmd);
+
+           
+
             return new SinglePressKeyboardController(keyBinds);
         }
 
@@ -120,31 +134,7 @@ namespace LegendOfZelda
             return new SinglePressKeyboardController(keyBinds);
         }
 
-        public static IController CreateItemShopKeysController(LegendOfZelda game)
-        {
-            IDictionary<Keys, ICommand> keyBinds = new Dictionary<Keys, ICommand>();
-            ICommand cmd;
-
-            cmd = new QuitCommand(game);
-            keyBinds.Add(Keys.Q, cmd);
-
-            cmd = new SelectItemCommand(game, "down");
-            keyBinds.Add(Keys.Down, cmd);
-            keyBinds.Add(Keys.S, cmd);
-
-            cmd = new SelectItemCommand(game, "up");
-            keyBinds.Add(Keys.Up, cmd);
-            keyBinds.Add(Keys.W, cmd);
-
-            cmd = new PurchaseItemCommand(game);
-            keyBinds.Add(Keys.Enter, cmd);
-
-            cmd = new ItemShopTransitionCommand(game);
-            keyBinds.Add(Keys.E, cmd);
-
-
-            return new SinglePressKeyboardController(keyBinds);
-        }
+       
 
         public static IList<IRoom> GenerateRoomList(LegendOfZelda game)
         {

@@ -129,9 +129,9 @@ namespace LegendOfZelda
         {
 
             return new Sprite(Textures.GetItemShopScreen(),
-                    new Rectangle(0, 0, 108, 53))
+                    new Rectangle(0, 0, 256, 236))
             {
-                Scale = 4
+                
             };
         }
 

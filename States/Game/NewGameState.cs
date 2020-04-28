@@ -49,6 +49,7 @@ namespace LegendOfZelda
             game.CollisionDetector = new CollisionDetector(game.ProjectileManager, game);
             game.xRoom = 515;
             game.yRoom = 826;
+           game.Link.Inventory.Rupees = (int)game.shopBalance;
         }
 
         public void ToStart()

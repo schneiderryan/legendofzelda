@@ -10,16 +10,21 @@ namespace LegendOfZelda
         private ISprite itemShopScreen;
         private Texture2D screen;
         private ItemShopSelector selector;
+        private ISprite zeroBalanceSprite;
+        public static bool displayError;
 
         public ItemShopState(LegendOfZelda game)
         {
             this.game = game;
             this.itemShopScreen = FontSpriteFactory.GetItemShopScreen();
-            itemShopScreen.X = 40;
-            itemShopScreen.Y = 40;
+            this.zeroBalanceSprite = MiscSpriteFactory.Instance.CreateZeroBalanceSprite();
+            
+            zeroBalanceSprite.X = 0;
+            zeroBalanceSprite.Y = 370;
             this.screen = Textures.GetBlankTexture();
             selector = new ItemShopSelector(this.game);
-            game.keyboard = GameSetup.CreateItemShopKeysController(game);
+            
+            displayError = false;
         }
 
         public void ChangeRoom()
@@ -100,9 +105,14 @@ namespace LegendOfZelda
 
         public void Draw()
         {
+
             game.spriteBatch.Draw(screen, new Rectangle(0, 0, 512, 1020), new Rectangle(0, 0, 512, 120), Color.Black);
             itemShopScreen.Draw(game.spriteBatch);
             selector.Draw();
+            if (displayError)
+            {
+                zeroBalanceSprite.Draw(game.spriteBatch);
+            }
         }
 
     }

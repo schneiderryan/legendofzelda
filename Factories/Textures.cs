@@ -43,6 +43,7 @@ namespace LegendOfZelda
         private static Texture2D ItemShopScreen;
         private static Texture2D SuddenDeathMessage;
         private static Texture2D CompassSelector;
+        private static Texture2D ZeroBalance;
 
 
         public static void LoadAllTextures(ContentManager contentManager,
@@ -83,6 +84,7 @@ namespace LegendOfZelda
             ItemShopScreen = contentManager.Load<Texture2D>("item_shop_screen");
             SuddenDeathMessage = contentManager.Load<Texture2D>("sudden_death_name");
             CompassSelector = contentManager.Load<Texture2D>("compassSelector");
+            ZeroBalance = contentManager.Load<Texture2D>("zeroBalance");
 
 
             blank = new Texture2D(graphics, 1, 1);
@@ -92,6 +94,11 @@ namespace LegendOfZelda
         public static Texture2D GetMiscSheet()
         {
             return misc;
+        }
+
+        public static Texture2D GetZeroBalance()
+        {
+            return ZeroBalance;
         }
 
         public static Texture2D GetHUD()
