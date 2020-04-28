@@ -35,8 +35,16 @@ namespace LegendOfZelda
 
         private void GameInit()
         {
+            
             game.rooms = GameSetup.GenerateRoomList(game);
             game.roomIndex = 1;
+            game.xRoom = 515;
+            game.yRoom = 826;
+            if (game.currentMode.Equals("puzzle"))
+            {
+                game.rooms = GameSetup.GeneratePuzzleRoomList(game);
+                game.roomIndex = 0;
+            }
 
             game.Link = new GreenLink(game, game.MyPlayerID);
             game.cone = new ConeOfVision(game.Link);
@@ -47,8 +55,7 @@ namespace LegendOfZelda
             game.ProjectileManager.Clear();
 
             game.CollisionDetector = new CollisionDetector(game.ProjectileManager, game);
-            game.xRoom = 515;
-            game.yRoom = 826;
+            
            game.Link.Inventory.Rupees = (int)game.shopBalance;
         }
 

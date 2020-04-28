@@ -122,143 +122,256 @@ namespace LegendOfZelda
 
         public void Update()
         {
-            game.rooms[game.roomIndex].background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
-            if (direction == "up")
+            if (game.currentMode.Equals("puzzle"))
             {
-                if (timer > 0)
+                game.rooms[game.roomIndex].background = RoomSpriteFactory.Instance.CreatePuzzleRooms(game.xRoom, game.yRoom);
+                if (direction == "up")
                 {
-                    game.yRoom -= 2;
-                }
-                else
-                {
-                    if (game.roomIndex == 1 || game.roomIndex == 3 || game.roomIndex == 11)
+                    if (timer > 0)
                     {
-                        game.roomIndex += 2;
-                    }
-                    else if (game.roomIndex == 8 || game.roomIndex == 9)
-                    {
-                        game.roomIndex += 3;
-                    }
-                    else if (game.roomIndex == 4 || game.roomIndex == 5 || game.roomIndex == 6)
-                    {
-                        game.roomIndex += 4;
-                    }
-                    else if (game.roomIndex == 12)
-                    {
-                        game.roomIndex += 5;
-                    }
-                }
-            }
-            else if (direction == "down")
-            {
-                if (timer > 0)
-                {
-                    game.yRoom += 2;
-                }
-                else
-                {
-                    if (game.roomIndex == 3 || game.roomIndex == 5 || game.roomIndex == 13)
-                    {
-                        game.roomIndex -= 2;
-                    }
-
-                    else if (game.roomIndex == 12)
-                    {
-                        game.roomIndex -= 3;
-                    }
-                    else if (game.roomIndex == 8 || game.roomIndex == 9 || game.roomIndex == 10)
-                    {
-                        game.roomIndex -= 4;
-                    }
-                    else if (game.roomIndex == 12 || game.roomIndex == 17)
-                    {
-                        game.roomIndex -= 5;
-                    }
-                }
-            }
-            else if (direction == "left")
-            {
-                if (timer > 0)
-                {
-                    game.xRoom -= 2;
-                }
-                else
-                {
-                    if (0 == game.roomIndex)
-                    {
-                        game.roomIndex = game.rooms.Count - 1;
+                        game.yRoom -= 2;
                     }
                     else
                     {
-                        game.roomIndex--;
+                        if (game.roomIndex == 0 || game.roomIndex == 1 || game.roomIndex == 2 || game.roomIndex == 3 || game.roomIndex == 6 || game.roomIndex == 7 || game.roomIndex == 8 || game.roomIndex == 11)
+                        {
+                            game.roomIndex += 4;
+                        }
                     }
                 }
-            }
-            else if (direction == "right")
-            {
-                if (timer > 0)
+                else if (direction == "down")
                 {
-                    game.xRoom += 2;
-                }
-                else
-                {
-                    if (game.rooms.Count - 1 == game.roomIndex)
+                    if (timer > 0)
                     {
-                        game.roomIndex = 0;
+                        game.yRoom += 2;
                     }
                     else
                     {
-                        game.roomIndex++;
+                        if (game.roomIndex == 4 || game.roomIndex == 5 || game.roomIndex == 6 || game.roomIndex == 7 || game.roomIndex == 10 || game.roomIndex == 11 || game.roomIndex == 13 || game.roomIndex == 16)
+                        {
+                            game.roomIndex -= 4;
+                        }
                     }
                 }
-            }
-            else // stairup & stairdown
-            {
-                if (timer > 50)
+                else if (direction == "left")
                 {
-                    tint = Color.Gray;
-                }
-                else if (timer > 40)
-                {
-                    tint = Color.DarkSlateGray;
-                }
-                else if (timer > 30)
-                {
-                    tint = Color.Black;
-                    if (direction == "stairdown" && timer == 39)
+                    if (timer > 0)
                     {
-                        game.roomIndex--;
-                        game.xRoom -= 256;
-                        player.X = 94;
-                        player.Y = 124;
+                        game.xRoom -= 2;
                     }
-                    else if (direction == "stairup" && timer == 39)
+                    else
                     {
-                        game.roomIndex++;
-                        game.xRoom += 256;
-                        player.X = 6 * RoomParser.TILE_SIZE;
-                        player.Y = 7 * RoomParser.TILE_SIZE + 120;
+                        if (2 == game.roomIndex || game.roomIndex == 5 || game.roomIndex == 10 || game.roomIndex == 16 || game.roomIndex == 15 || game.roomIndex == 14 || game.roomIndex == 9)
+                        {
+                            game.roomIndex--;
+                        }
                     }
                 }
-                else if (timer > 20)
+                else if (direction == "right")
                 {
-                    tint = Color.DarkSlateGray;
+                    if (timer > 0)
+                    {
+                        game.xRoom += 2;
+                    }
+                    else
+                    {
+                        if (1 == game.roomIndex || 4 == game.roomIndex || 8 == game.roomIndex || 9 == game.roomIndex || 13 == game.roomIndex || 14 == game.roomIndex || 15 == game.roomIndex)
+                        {
+                            game.roomIndex++;
+                        }
+                    }
                 }
-                else if (timer > 10)
+                else // stairup & stairdown
                 {
-                    tint = Color.Gray;
+                    if (timer > 50)
+                    {
+                        tint = Color.Gray;
+                    }
+                    else if (timer > 40)
+                    {
+                        tint = Color.DarkSlateGray;
+                    }
+                    else if (timer > 30)
+                    {
+                        tint = Color.Black;
+                        if (direction == "stairdown" && timer == 39)
+                        {
+                            game.roomIndex--;
+                            game.xRoom -= 256;
+                            player.X = 94;
+                            player.Y = 124;
+                        }
+                        else if (direction == "stairup" && timer == 39)
+                        {
+                            game.roomIndex++;
+                            game.xRoom += 256;
+                            player.X = 6 * RoomParser.TILE_SIZE;
+                            player.Y = 7 * RoomParser.TILE_SIZE + 120;
+                        }
+                    }
+                    else if (timer > 20)
+                    {
+                        tint = Color.DarkSlateGray;
+                    }
+                    else if (timer > 10)
+                    {
+                        tint = Color.Gray;
+                    }
+                    else
+                    {
+                        tint = Color.White;
+                    }
                 }
-                else
+
+                if (timer == 0)
                 {
-                    tint = Color.White;
+                    this.PlayGame();
                 }
+                timer--;
             }
 
-            if (timer == 0)
+            else 
             {
-                this.PlayGame();
+                game.rooms[game.roomIndex].background = RoomSpriteFactory.Instance.CreateRooms(game.xRoom, game.yRoom);
+                if (direction == "up")
+                {
+                    if (timer > 0)
+                    {
+                        game.yRoom -= 2;
+                    }
+                    else
+                    {
+                        if (game.roomIndex == 1 || game.roomIndex == 3 || game.roomIndex == 11)
+                        {
+                            game.roomIndex += 2;
+                        }
+                        else if (game.roomIndex == 8 || game.roomIndex == 9)
+                        {
+                            game.roomIndex += 3;
+                        }
+                        else if (game.roomIndex == 4 || game.roomIndex == 5 || game.roomIndex == 6)
+                        {
+                            game.roomIndex += 4;
+                        }
+                        else if (game.roomIndex == 12)
+                        {
+                            game.roomIndex += 5;
+                        }
+                    }
+                }
+                else if (direction == "down")
+                {
+                    if (timer > 0)
+                    {
+                        game.yRoom += 2;
+                    }
+                    else
+                    {
+                        if (game.roomIndex == 3 || game.roomIndex == 5 || game.roomIndex == 13)
+                        {
+                            game.roomIndex -= 2;
+                        }
+
+                        else if (game.roomIndex == 12)
+                        {
+                            game.roomIndex -= 3;
+                        }
+                        else if (game.roomIndex == 8 || game.roomIndex == 9 || game.roomIndex == 10)
+                        {
+                            game.roomIndex -= 4;
+                        }
+                        else if (game.roomIndex == 12 || game.roomIndex == 17)
+                        {
+                            game.roomIndex -= 5;
+                        }
+                    }
+                }
+                else if (direction == "left")
+                {
+                    if (timer > 0)
+                    {
+                        game.xRoom -= 2;
+                    }
+                    else
+                    {
+                        if (0 == game.roomIndex)
+                        {
+                            game.roomIndex = game.rooms.Count - 1;
+                        }
+                        else
+                        {
+                            game.roomIndex--;
+                        }
+                    }
+                }
+                else if (direction == "right")
+                {
+                    if (timer > 0)
+                    {
+                        game.xRoom += 2;
+                    }
+                    else
+                    {
+                        if (game.rooms.Count - 1 == game.roomIndex)
+                        {
+                            game.roomIndex = 0;
+                        }
+                        else
+                        {
+                            game.roomIndex++;
+                        }
+                    }
+                }
+                else // stairup & stairdown
+                {
+                    if (timer > 50)
+                    {
+                        tint = Color.Gray;
+                    }
+                    else if (timer > 40)
+                    {
+                        tint = Color.DarkSlateGray;
+                    }
+                    else if (timer > 30)
+                    {
+                        tint = Color.Black;
+                        if (direction == "stairdown" && timer == 39)
+                        {
+                            game.roomIndex--;
+                            game.xRoom -= 256;
+                            player.X = 94;
+                            player.Y = 124;
+                        }
+                        else if (direction == "stairup" && timer == 39)
+                        {
+                            game.roomIndex++;
+                            game.xRoom += 256;
+                            player.X = 6 * RoomParser.TILE_SIZE;
+                            player.Y = 7 * RoomParser.TILE_SIZE + 120;
+                        }
+                    }
+                    else if (timer > 20)
+                    {
+                        tint = Color.DarkSlateGray;
+                    }
+                    else if (timer > 10)
+                    {
+                        tint = Color.Gray;
+                    }
+                    else
+                    {
+                        tint = Color.White;
+                    }
+                }
+
+                if (timer == 0)
+                {
+                    this.PlayGame();
+                }
+                timer--;
+
             }
-            timer--;
+            
         }
 
         public void Draw()

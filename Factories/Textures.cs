@@ -21,6 +21,7 @@ namespace LegendOfZelda
         private static Texture2D blank;
 
         private static Texture2D rooms;
+        private static Texture2D puzzlerooms;
         private static Texture2D BWRoom;
         private static Texture2D dungeon;
         private static Texture2D tiles;
@@ -62,6 +63,7 @@ namespace LegendOfZelda
             linkAttackingUp = contentManager.Load<Texture2D>("upAttackingLink");
 
             rooms = contentManager.Load<Texture2D>("rooms");
+            puzzlerooms = contentManager.Load<Texture2D>("puzzle rooms");
             BWRoom = contentManager.Load<Texture2D>("RoomsBW");
             dungeon = contentManager.Load<Texture2D>("dungeon");
             tiles = contentManager.Load<Texture2D>("tiles");
@@ -151,6 +153,11 @@ namespace LegendOfZelda
         public static Texture2D GetRoomSheet()
         {
             return rooms;
+        }
+
+        public static Texture2D GetPuzzleRoomSheet()
+        {
+            return puzzlerooms;
         }
 
         public static Texture2D GetDungeonSheet()

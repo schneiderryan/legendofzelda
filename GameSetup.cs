@@ -162,5 +162,31 @@ namespace LegendOfZelda
 
             return list;
         }
+
+        public static IList<IRoom> GeneratePuzzleRoomList(LegendOfZelda game)
+        {
+            IList<IRoom> list = new List<IRoom>()
+            {
+                new Room(game, "Rooms/RoomP0.csv"),
+                new Room(game, "Rooms/RoomP1.csv"),
+                new Room(game, "Rooms/RoomP2.csv"),
+                new Room(game, "Rooms/RoomP3.csv"),
+                new Room(game, "Rooms/RoomP4.csv"),
+                new Room(game, "Rooms/RoomP5.csv"),
+                new Room(game, "Rooms/RoomP6.csv"),
+                new Room(game, "Rooms/RoomP7.csv"),
+                new Room(game, "Rooms/RoomP8.csv"),
+                new Room(game, "Rooms/RoomP9.csv"),
+                new Room(game, "Rooms/RoomP10.csv"),
+                new Room(game, "Rooms/RoomP11.csv"),
+                new Room(game, "Rooms/RoomP12.csv"),
+                new Room(game, "Rooms/RoomP13.csv"),
+                new Room(game, "Rooms/RoomP14.csv"),
+                new Room(game, "Rooms/RoomP15.csv"),
+                new Room(game, "Rooms/RoomP16.csv"),
+            };
+
+            return list;
+        }
     }
 }

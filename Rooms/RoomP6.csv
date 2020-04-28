@@ -1,0 +1,9 @@
+﻿6
+Wall,Wall,Open,Open
+LFWallmaster,Null,RFWallmaster,RFWallmaster,Null,Null,Null,Null,Null,RFWallmaster,Null,RFWallmaster
+Null,Block,Null,Block,Null,Block,Block,Null,Block,Null,Block,Null
+Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null
+Null,Block,Null,Block,Null,Block,Block,Null,Block,Null,Block,Null
+Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,Null,RFWallmaster
+LFWallmaster,Block,Null,Block,Null,Block,Block,Null,Block,Null,Block,Null
+Null,Null,Null,Null,Null,Null,Null,Null,Key,Null,Null,RFWallmaster

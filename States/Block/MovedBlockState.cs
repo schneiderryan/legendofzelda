@@ -15,6 +15,11 @@ namespace LegendOfZelda
                     doors.Remove("left");
                     doors.Add("left", new LeftOpen());
                 }
+                if (door.Key == "right" && door.Value is RightOther)
+                {
+                    doors.Remove("right");
+                    doors.Add("right", new RightOpen());
+                }
             }
         }
     }

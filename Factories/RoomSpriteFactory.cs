@@ -7,6 +7,7 @@ namespace LegendOfZelda
     class RoomSpriteFactory
     {
         private Texture2D roomSheet = Textures.GetRoomSheet();
+        private Texture2D puzzleroomSheet = Textures.GetPuzzleRoomSheet();
         private Texture2D dungeonSheet = Textures.GetDungeonSheet();
         private Texture2D tileSheet = Textures.GetTileSheet();
         private static RoomSpriteFactory instance = new RoomSpriteFactory();
@@ -23,6 +24,10 @@ namespace LegendOfZelda
         internal ISprite CreateRooms(int xRoom, int yRoom)
         {
             return new Sprite(roomSheet, new Rectangle(xRoom, yRoom, 512, 352));
+        }
+        internal ISprite CreatePuzzleRooms(int xRoom, int yRoom)
+        {
+            return new Sprite(puzzleroomSheet, new Rectangle(xRoom, yRoom, 512, 352));
         }
 
         //doors
@@ -116,86 +121,154 @@ namespace LegendOfZelda
         }
 
         //rooms
-        public ISprite CreateRoom0()
+        public ISprite CreateRoom0(LegendOfZelda game)
         {
-            return new Sprite(roomSheet, new Rectangle(258, 886, 256, 176));
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(puzzleroomSheet, new Rectangle(515, 886, 256, 176));
+            }
+                return new Sprite(roomSheet, new Rectangle(258, 886, 256, 176));
         }
-        public ISprite CreateRoom1()
+        public ISprite CreateRoom1(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(772, 886, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(515, 886, 256, 176));
         }
 
-        public ISprite CreateRoom2()
+        public ISprite CreateRoom2(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(1029, 886, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(772, 886, 256, 176));
         }
 
-        public ISprite CreateRoom3()
+        public ISprite CreateRoom3(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(1286, 886, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(515, 709, 256, 176));
         }
 
-        public ISprite CreateRoom4()
+        public ISprite CreateRoom4(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(515, 709, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(258, 532, 256, 176));
         }
 
-        public ISprite CreateRoom5()
+        public ISprite CreateRoom5(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(772, 709, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(515, 532, 256, 176));
         }
 
-        public ISprite CreateRoom6()
+        public ISprite CreateRoom6(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(1029, 709, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(772, 532, 256, 176));
         }
 
-        public ISprite CreateRoom7()
+        public ISprite CreateRoom7(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(1286, 709, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(1, 355, 256, 176));
         }
 
-        public ISprite CreateRoom8()
+        public ISprite CreateRoom8(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(515, 532, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(258, 355, 256, 176));
         }
 
-        public ISprite CreateRoom9()
+        public ISprite CreateRoom9(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(772, 532, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(515, 355, 256, 176));
         }
 
-        public ISprite CreateRoom10()
+        public ISprite CreateRoom10(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(1029, 532, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(772, 355, 256, 176));
         }
 
-        public ISprite CreateRoom11()
+        public ISprite CreateRoom11(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(1286, 532, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(1029, 355, 256, 176));
         }
 
-        public ISprite CreateRoom12()
+        public ISprite CreateRoom12(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(258, 355, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(515, 178, 256, 176));
         }
-        public ISprite CreateRoom13()
+        public ISprite CreateRoom13(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(515, 355, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(1029, 178, 256, 176));
         }
 
-        public ISprite CreateRoom14()
+        public ISprite CreateRoom14(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(772, 355, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(1286, 178, 256, 176));
         }
 
-        public ISprite CreateRoom15()
+        public ISprite CreateRoom15(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(1029, 355, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(1, 1, 256, 176));
         }
 
-        public ISprite CreateRoom16()
+        public ISprite CreateRoom16(LegendOfZelda game)
         {
+            if (game.currentMode.Equals("puzzle"))
+            {
+                return new Sprite(roomSheet, new Rectangle(1286, 355, 256, 176));
+            }
             return new Sprite(roomSheet, new Rectangle(258, 1, 256, 176));
         }
 
